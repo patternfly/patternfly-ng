@@ -1,7 +1,6 @@
 const helpers = require('./helpers');
 const webpack = require('webpack');
 const path = require('path');
-const sass = require('./sass');
 
 /**
  * Webpack Plugins
@@ -67,27 +66,6 @@ module.exports = {
           fallback: "style-loader",
           use: "css-loader?sourceMap&context=/"
         })
-      }, {
-        test: /\.scss$/,
-        loaders: [
-          {
-            loader: 'css-to-string-loader'
-          }, {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              context: '/'
-            }
-          }, {
-            loader: 'sass-loader',
-            options: {
-              includePaths: sass.modules.map(val => {
-                return val.sassPath;
-              }),
-              sourceMap: true
-            }
-          }
-        ]
       },
 
       /* File loader for supporting fonts, for example, in CSS files.

@@ -52,7 +52,7 @@ gulp.task('transpile-less', function () {
   return transpileLESS(appSrc + '/app/**/*.less');
 });
 
-// Put the SASS files back to normal
+// Put the files back to normal
 gulp.task('build-library',
   [
     'transpile',
