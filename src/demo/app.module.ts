@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 // App components
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 
 // Main areas
 //  import example modules
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     FormsModule,
     HttpModule,
+    SampleExampleModule
   ],
   declarations: [
     AppComponent

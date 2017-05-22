@@ -35,7 +35,7 @@ module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    'app': './src/demo.ts'
   },
 
   resolve: {
@@ -128,7 +128,7 @@ module.exports = {
      */
     new HtmlWebpackPlugin({
       chunksSortMode: 'dependency',
-      template: 'src/index.html'
+      template: 'src/demo.html'
     }),
 
     /**
