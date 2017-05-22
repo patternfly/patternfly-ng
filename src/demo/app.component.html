@@ -1,5 +1,25 @@
-<main class="view-container flex-container in-column-direction">
-  <div class="view flex-container overflow-auto">
-    <router-outlet></router-outlet>
+<main class="container-fluid">
+  <nav class="navbar navbar-default navbar-pf">
+    <div class="navbar-header">
+      <div class="navbar-brand">
+        PatternFly NG - Component Demo
+      </div>
+    </div>
+  </nav>
+  <div>
+    <div id="lefthand-nav" style="position: fixed; width: 200px; height: 100%; border-right: 1px solid gray;">
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="active">Home</a>
+        </li>
+        <hr />
+        <li>
+          <a routerLink="/sample" routerLinkActive="active">Sample Component</a>
+        </li>
+      </ul>
+    </div>
+    <div style="margin-left: 200px;" class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </main>
