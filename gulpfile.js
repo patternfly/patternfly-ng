@@ -53,7 +53,7 @@ gulp.task('transpile-less', function () {
 });
 
 // Put the files back to normal
-gulp.task('build-library',
+gulp.task('build',
   [
     'transpile',
     'post-transpile',
@@ -84,11 +84,11 @@ gulp.task('copy-watch', ['post-transpile'], function() {
   return updateWatchDist();
 });
 
-gulp.task('copy-watch-all', ['build-library'], function() {
+gulp.task('copy-watch-all', ['build'], function() {
   return updateWatchDist();
 });
 
-gulp.task('watch', ['build-library', 'copy-watch-all'], function () {
+gulp.task('watch', ['build', 'copy-watch-all'], function () {
   gulp.watch([appSrc + '/app/**/*.ts', '!' + appSrc + '/app/**/*.spec.ts'], ['transpile', 'post-transpile', 'copy-watch']).on('change', function (e) {
     console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
   });
