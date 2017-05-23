@@ -7,7 +7,7 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "npm-run-all --serial remove-dist build:library",
-    "build:library": "gulp build-library",
+    "build:library": "gulp build",
     "bundle": "webpack --config config/webpack.prod.js --progress --profile --bail",
     "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist distwatch bundles",
     "cleanup": "rimraf dist/package.json dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
