@@ -66,6 +66,25 @@ module.exports = {
           fallback: "style-loader",
           use: "css-loader?sourceMap&context=/"
         })
+      }, {
+        test: /\.less$/,
+        loaders: [
+          {
+            loader: 'css-to-string-loader'
+          }, {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              context: '/'
+            }
+          }, {
+            loader: 'less-loader',
+            options: {
+              paths: ['./node_modules/patternfly/node_modules'],
+              sourceMap: true
+            }
+          }
+        ]
       },
 
       /* File loader for supporting fonts, for example, in CSS files.
