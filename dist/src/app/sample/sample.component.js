@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 var SampleComponent = (function () {
     function SampleComponent() {
     }
@@ -25,6 +25,7 @@ __decorate([
 ], SampleComponent.prototype, "label", void 0);
 SampleComponent = __decorate([
     Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pf-sample-component',
         styles: ["\n    .pfng__samplecomponent { \n      color: blueviolet; \n    }\n    .pfng__samplecomponent--disabled  { \n      color: grey; \n    }\n  "],
         template: require('./sample.component.html')

@@ -8,8 +8,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   host: {'class': ''},
   selector: 'demo-app',
-  styles: [],
-  templateUrl: 'app.component.html'
+  styleUrls: ['./app.component.less'],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
 

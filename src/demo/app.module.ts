@@ -8,10 +8,11 @@ import { HttpModule } from '@angular/http';
 // App components
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 
 // Main areas
 //  import example modules
+import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
+import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { SampleExampleModule } from '../app/sample/examples/sample-example.modul
     BrowserModule,
     FormsModule,
     HttpModule,
-    SampleExampleModule
+    SampleExampleModule,
+    SortExampleModule
   ],
   declarations: [
     AppComponent

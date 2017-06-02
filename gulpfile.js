@@ -1,17 +1,20 @@
 
 var gulp = require('gulp'),
+  cssmin = require('gulp-cssmin'),
+  lessCompiler = require('gulp-less'),
   runSequence = require('run-sequence'),
   del = require('del'),
   replace = require('gulp-string-replace'),
   sourcemaps = require('gulp-sourcemaps'),
   exec = require('child_process').exec,
   ngc = require('gulp-ngc'),
-  changed = require('gulp-changed');
+  changed = require('gulp-changed'),
+  path = require('path');
 
 var appSrc = 'src';
 var libraryDist = 'dist';
 var watchDist = 'dist-watch';
-var globalExcludes = [ '!./**/examples/**', '!./**/examples' ]
+var globalExcludes = [ '!./**/examples/**', '!./**/examples' ];
 
 /**
  * FUNCTION LIBRARY
@@ -29,6 +32,24 @@ function updateWatchDist() {
     .src([libraryDist + '/**'].concat(globalExcludes))
     .pipe(changed(watchDist))
     .pipe(gulp.dest(watchDist));
+}
+
+function transpileLESS(src) {
+  return gulp.src(src)
+    .pipe(sourcemaps.init())
+    .pipe(lessCompiler({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }).on('error', function (err) {
+      // this will prevent our future watch-task from crashing on sass-errors
+      console.log(err);
+    }))
+    .pipe(cssmin().on('error', function(err) {
+      console.log(err);
+    }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(function (file) {
+      return libraryDist + file.base.slice(__dirname.length); // save directly to dist
+    }));
 }
 
 /**
@@ -57,6 +78,7 @@ gulp.task('build',
   [
     'transpile',
     'post-transpile',
+    'transpile-less',
     'copy-html',
     'copy-static-assets'
   ]);

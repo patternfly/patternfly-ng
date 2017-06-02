@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SampleModule } from './src/app/sample/sample.module';
+import { SortModule } from './src/app/sort/sort.module';
 var PatternFlyNgModule = (function () {
     function PatternFlyNgModule() {
     }
@@ -20,6 +21,7 @@ PatternFlyNgModule = __decorate([
         declarations: [],
         exports: [
             SampleModule,
+            SortModule
         ]
     })
 ], PatternFlyNgModule);
