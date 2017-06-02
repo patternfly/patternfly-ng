@@ -1,12 +1,9 @@
 import {
   Component,
-  OnInit,
-  ViewEncapsulation
+  OnInit
 } from '@angular/core';
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  host: {'class': 'app app-component'},
   selector: 'sample-example',
   styles: [`
     .sample-form .form-horizontal .form-group {

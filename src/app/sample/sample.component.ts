@@ -2,9 +2,11 @@ import {
   Component,
   Input,
   OnInit,
+  ViewEncapsulation
 } from '@angular/core';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'pf-sample-component',
   styles: [ `
     .pfng__samplecomponent { 
