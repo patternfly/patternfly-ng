@@ -15,7 +15,7 @@ import { SortEvent } from './sort-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'alm-sort',
+  selector: 'pfng-sort',
   styleUrls: ['./sort.component.less'],
   templateUrl: './sort.component.html'
 })
