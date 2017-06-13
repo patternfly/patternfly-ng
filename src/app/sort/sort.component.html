@@ -6,7 +6,7 @@
     </button>
     <ul class="dropdown-menu" role="menu" *dropdownMenu>
       <li role="menuitem" *ngFor="let item of config.fields" [ngClass]="{'selected': item === currentField}">
-        <a href="javascript:void(0);" class="sort-field dropdown-item" tabindex="-1" (click)="selectField(item)">
+        <a href="javascript:void(0);" class="sortfield sort-field dropdown-item" tabindex="-1" (click)="selectField(item)">
           {{item.title}}
         </a>
       </li>
