@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
-//import { DropdownConfig, DropdownModule } from 'ng2-bootstrap';
 
 import { SortComponent } from './sort.component';
 import { SortConfig } from './sort-config';

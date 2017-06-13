@@ -4,17 +4,11 @@ import {
   TestBed
 } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { FormsModule }  from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-  ComponentLoaderFactory,
-  DropdownConfig,
-  DropdownModule,
-  PositioningService,
-  TooltipConfig,
-  TooltipModule
-} from 'ng2-bootstrap';
+
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { Filter } from './filter';
 import { FilterComponent } from './filter.component';
@@ -124,11 +118,14 @@ describe('Filter component - ', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule, FormsModule, DropdownModule,
-        TooltipModule, SearchHighlightModule
+        BsDropdownModule.forRoot(),
+        BrowserAnimationsModule,
+        FormsModule,
+        TooltipModule.forRoot(),
+        SearchHighlightModule
       ],
       declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
-      providers: [ComponentLoaderFactory, DropdownConfig, PositioningService, TooltipConfig]
+      providers: [BsDropdownConfig, TooltipConfig]
     })
       .compileComponents()
       .then(() => {

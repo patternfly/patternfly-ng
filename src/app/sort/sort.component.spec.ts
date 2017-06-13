@@ -4,10 +4,10 @@ import {
   TestBed
 } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { DropdownConfig, DropdownModule } from 'ng2-bootstrap';
+
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { SortComponent } from './sort.component';
 import { SortConfig } from './sort-config';
@@ -42,9 +42,9 @@ describe('Sort component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, DropdownModule],
+      imports: [BrowserAnimationsModule, BsDropdownModule.forRoot(), FormsModule],
       declarations: [SortComponent],
-      providers: [DropdownConfig]
+      providers: [BsDropdownConfig]
     })
       .compileComponents()
       .then(() => {

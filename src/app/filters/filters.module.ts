@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
-//import { DropdownModule, DropdownConfig, TooltipModule, TooltipConfig } from 'ng2-bootstrap';
-
 import { SearchHighlightModule } from './../pipes/search-highlight.module';
 import { Filter } from './filter';
 import { FilterComponent } from './filter.component';
@@ -29,7 +27,6 @@ export {
   imports: [
     BsDropdownModule.forRoot(),
     CommonModule,
-    //DropdownModule.forRoot(),
     FormsModule,
     TooltipModule.forRoot(),
     SearchHighlightModule
