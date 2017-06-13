@@ -281,7 +281,7 @@ export class FilterExampleComponent implements OnInit {
     filters.forEach((filter) => {
       if (!this.matchesFilter(item, filter)) {
         matches = false;
-        return false;
+        return matches;
       }
     });
     return matches;
