@@ -7,7 +7,7 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" *dropdownMenu>
-        <li *ngFor="let field of config.fields">
+        <li role="menuitem" *ngFor="let field of config.fields">
           <a class="filter-field dropdown-item" role="menuitem" tabindex="-1" (click)="selectField(field)">
             {{field.title}}
           </a>
@@ -26,16 +26,16 @@
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" *dropdownMenu>
-          <li *ngIf="currentField.placeholder">
-            <a role="menuitem" tabindex="-1" (click)="selectValue()">
+          <li role="menuitem" *ngIf="currentField.placeholder">
+            <a class="dropdown-item" tabindex="-1" (click)="selectValue()">
               {{currentField.placeholder}}
             </a>
           </li>
-          <li *ngFor="let query of currentField.queries"
-              [ngClass]="{'selected': query.value === currentValue}">
-            <a role="menuitem" tabindex="-1" (click)="selectValue(query)">
-              <span *ngIf="query?.iconClass" class="fa {{query?.iconClass}}"></span>
-              <img class="avatar" *ngIf="query?.imageUrl" [attr.src]="query?.imageUrl" />
+          <li role="menuitem" *ngFor="let query of currentField.queries"
+              [ngClass]="{'selected': query.value === currentValue, 'divider dropdown-divider': query?.separator}">
+            <a class="dropdown-item" tabindex="-1" (click)="selectValue(query)" *ngIf="!query?.separator">
+              <span class="fa {{query?.iconClass}}" *ngIf="query?.iconClass"></span>
+              <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
               {{query.value}}
             </a>
           </li>
@@ -51,16 +51,16 @@
           <span (click)="searchField.focus()" class="caret"></span>
         </div>
         <ul class="dropdown-menu" role="menu" *dropdownMenu>
-          <li *ngIf="currentField.placeholder">
-            <a role="menuitem" tabindex="-1" (click)="selectValue()">
+          <li role="menuitem" *ngIf="currentField.placeholder">
+            <a class="dropdown-item" tabindex="-1" (click)="selectValue()">
               {{currentField.placeholder}}
             </a>
           </li>
-          <li *ngFor="let query of currentField.queries"
+          <li role="menuitem" *ngFor="let query of currentField.queries"
               [ngClass]="{'selected': query.value === currentValue, 'divider dropdown-divider': query?.separator}">
-            <a *ngIf="!query?.separator" role="menuitem" tabindex="-1" (click)="selectValue(query)">
-              <span *ngIf="query?.iconClass" class="fa {{query?.iconClass}}"></span>
-              <img class="avatar" *ngIf="query?.imageUrl" [attr.src]="query?.imageUrl" />
+            <a class="dropdown-item" tabindex="-1" (click)="selectValue(query)" *ngIf="!query?.separator">
+              <span class="fa {{query?.iconClass}}" *ngIf="query?.iconClass"></span>
+              <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
               <span [innerHTML]="query.value | SearchHighlight: searchField.value"></span>
             </a>
           </li>

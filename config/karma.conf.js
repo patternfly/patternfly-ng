@@ -95,7 +95,7 @@ module.exports = function(config) {
       'PhantomJS_custom': {
         base: 'PhantomJS',
         options: {
-          windowName: 'alm-window',
+          windowName: 'pfng-window',
           settings: {
             webSecurityEnabled: false
           },
