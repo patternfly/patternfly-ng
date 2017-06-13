@@ -1,0 +1,71 @@
+<div class="filter-pf filter-fields">
+  <div class="input-group form-group">
+    <div class="input-group-btn" dropdown>
+      <button type="button" class="btn btn-default filter-fields dropdown-toggle" dropdownToggle
+              tooltip="Filter by" placement="{{config.tooltipPlacement}}">
+        {{currentField.title}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" *dropdownMenu>
+        <li *ngFor="let field of config.fields">
+          <a class="filter-field dropdown-item" role="menuitem" tabindex="-1" (click)="selectField(field)">
+            {{field.title}}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!currentField?.type || currentField.type === 'text' || currentField === 'default'">
+      <input class="form-control" type="{{currentField.type}}" [(ngModel)]="currentValue"
+             placeholder="{{currentField.placeholder}}"
+             (keypress)="onValueKeyPress($event)"/>
+    </div>
+    <div *ngIf="currentField.type === 'select'">
+      <div class="btn-group bootstrap-select form-control filter-select" dropdown>
+        <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle>
+          <span class="filter-option pull-left">{{currentValue || currentField.placeholder}}</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" *dropdownMenu>
+          <li *ngIf="currentField.placeholder">
+            <a role="menuitem" tabindex="-1" (click)="selectValue()">
+              {{currentField.placeholder}}
+            </a>
+          </li>
+          <li *ngFor="let query of currentField.queries"
+              [ngClass]="{'selected': query.value === currentValue}">
+            <a role="menuitem" tabindex="-1" (click)="selectValue(query)">
+              <span *ngIf="query?.iconClass" class="fa {{query?.iconClass}}"></span>
+              <img class="avatar" *ngIf="query?.imageUrl" [attr.src]="query?.imageUrl" />
+              {{query.value}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="currentField.type === 'typeahead'">
+      <div class="btn-group bootstrap-select form-control filter-select" dropdown>
+        <div class="pull-left typeahead-input-container dropdown-toggle" dropdownToggle>
+          <input #searchField class="form-control" type="text" placeholder="{{currentField.placeholder}}"
+                 [(ngModel)]="currentValue"
+                 (ngModelChange)="filterQueries($event)">
+          <span (click)="searchField.focus()" class="caret"></span>
+        </div>
+        <ul class="dropdown-menu" role="menu" *dropdownMenu>
+          <li *ngIf="currentField.placeholder">
+            <a role="menuitem" tabindex="-1" (click)="selectValue()">
+              {{currentField.placeholder}}
+            </a>
+          </li>
+          <li *ngFor="let query of currentField.queries"
+              [ngClass]="{'selected': query.value === currentValue, 'divider dropdown-divider': query?.separator}">
+            <a *ngIf="!query?.separator" role="menuitem" tabindex="-1" (click)="selectValue(query)">
+              <span *ngIf="query?.iconClass" class="fa {{query?.iconClass}}"></span>
+              <img class="avatar" *ngIf="query?.imageUrl" [attr.src]="query?.imageUrl" />
+              <span [innerHTML]="query.value | SearchHighlight: searchField.value"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
