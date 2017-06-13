@@ -95,7 +95,7 @@ __decorate([
 SortComponent = __decorate([
     Component({
         encapsulation: ViewEncapsulation.None,
-        selector: 'alm-sort',
+        selector: 'pfng-sort',
         styles: [require('./sort.component.css').toString()],
         template: require('./sort.component.html')
     }),

@@ -77,11 +77,6 @@ export class SortExampleComponent implements OnInit {
           sortType: 'alpha'
         },
         {
-          id: 'age',
-          title:  'Age',
-          sortType: 'numeric'
-        },
-        {
           id: 'address',
           title:  'Address',
           sortType: 'alpha'
@@ -102,8 +97,6 @@ export class SortExampleComponent implements OnInit {
     let compValue = 0;
     if (this.currentSortField.id === 'name') {
       compValue = item1.name.localeCompare(item2.name);
-    } else if (this.currentSortField.id === 'age') {
-      compValue = item1.age - item2.age;
     } else if (this.currentSortField.id === 'address') {
       compValue = item1.address.localeCompare(item2.address);
     } else if (this.currentSortField.id === 'birthMonth') {
