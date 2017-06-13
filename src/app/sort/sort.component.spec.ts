@@ -20,28 +20,23 @@ describe('Sort component - ', () => {
 
   beforeEach(() => {
     config = {
-      fields: [
-        {
-          id: 'name',
-          title:  'Name',
-          sortType: 'alpha'
-        },
-        {
-          id: 'age',
-          title:  'Age',
-          sortType: 'numeric'
-        },
-        {
-          id: 'address',
-          title:  'Address',
-          sortType: 'alpha'
-        },
-        {
-          id: 'birthMonth',
-          title:  'Birth Month',
-          sortType: 'alpha'
-        }
-      ]
+      fields: [{
+        id: 'name',
+        title:  'Name',
+        sortType: 'alpha'
+      }, {
+        id: 'age',
+        title:  'Age',
+        sortType: 'numeric'
+      }, {
+        id: 'address',
+        title:  'Address',
+        sortType: 'alpha'
+      }, {
+        id: 'birthMonth',
+        title:  'Birth Month',
+        sortType: 'alpha'
+      }]
     } as SortConfig;
   });
 
