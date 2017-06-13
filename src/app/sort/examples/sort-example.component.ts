@@ -40,53 +40,47 @@ export class SortExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.allItems = [
-      {
-        name: 'Fred Flintstone',
-        address: '20 Dinosaur Way, Bedrock, Washingstone',
-        birthMonth: 'February'
-      },
-      {
-        name: 'John Smith',
-        address: '415 East Main Street, Norfolk, Virginia',
-        birthMonth: 'October'
-      },
-      {
-        name: 'Frank Livingston',
-        address: '234 Elm Street, Pittsburgh, Pennsylvania',
-        birthMonth: 'March'
-      },
-      {
-        name: 'Judy Green',
-        address: '2 Apple Boulevard, Cincinatti, Ohio',
-        birthMonth: 'December'
-      },
-      {
-        name: 'Pat Thomas',
-        address: '50 Second Street, New York, New York',
-        birthMonth: 'February'
-      }
-    ];
+    this.allItems = [{
+      name: 'Fred Flintstone',
+      address: '20 Dinosaur Way, Bedrock, Washingstone',
+      birthMonth: 'February'
+    }, {
+      name: 'John Smith',
+      address: '415 East Main Street, Norfolk, Virginia',
+      birthMonth: 'October'
+    }, {
+      name: 'Frank Livingston',
+      address: '234 Elm Street, Pittsburgh, Pennsylvania',
+      birthMonth: 'March'
+    }, {
+      name: 'Judy Green',
+      address: '2 Apple Boulevard, Cincinatti, Ohio',
+      birthMonth: 'December'
+    }, {
+      name: 'Pat Thomas',
+      address: '50 Second Street, New York, New York',
+      birthMonth: 'February'
+    }];
     this.items = this.allItems;
 
     this.sortConfig = {
-      fields: [
-        {
-          id: 'name',
-          title:  'Name',
-          sortType: 'alpha'
-        },
-        {
-          id: 'address',
-          title:  'Address',
-          sortType: 'alpha'
-        },
-        {
-          id: 'birthMonth',
-          title:  'Birth Month',
-          sortType: 'alpha'
-        }
-      ],
+      fields: [{
+        id: 'name',
+        title:  'Name',
+        sortType: 'alpha'
+      }, {
+        id: 'age',
+        title:  'Age',
+        sortType: 'numeric'
+      }, {
+        id: 'address',
+        title:  'Address',
+        sortType: 'alpha'
+      }, {
+        id: 'birthMonth',
+        title:  'Birth Month',
+        sortType: 'alpha'
+      }],
       isAscending: this.isAscendingSort
     } as SortConfig;
   }
