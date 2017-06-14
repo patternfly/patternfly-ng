@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,7 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
 var SampleComponent = (function () {
     function SampleComponent() {
     }
@@ -16,21 +18,21 @@ var SampleComponent = (function () {
     return SampleComponent;
 }());
 __decorate([
-    Input(),
+    core_1.Input(),
     __metadata("design:type", Boolean)
 ], SampleComponent.prototype, "disabled", void 0);
 __decorate([
-    Input(),
+    core_1.Input(),
     __metadata("design:type", String)
 ], SampleComponent.prototype, "label", void 0);
 SampleComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
+    core_1.Component({
+        encapsulation: core_1.ViewEncapsulation.None,
         selector: 'pf-sample-component',
         styles: ["\n    .pfng__samplecomponent { \n      color: blueviolet; \n    }\n    .pfng__samplecomponent--disabled  { \n      color: grey; \n    }\n  "],
         template: require('./sample.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], SampleComponent);
-export { SampleComponent };
+exports.SampleComponent = SampleComponent;
 //# sourceMappingURL=sample.component.js.map

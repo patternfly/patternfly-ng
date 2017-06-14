@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * A sort event containing:
  *
@@ -10,5 +12,5 @@ var SortEvent = (function () {
     }
     return SortEvent;
 }());
-export { SortEvent };
+exports.SortEvent = SortEvent;
 //# sourceMappingURL=sort-event.js.map

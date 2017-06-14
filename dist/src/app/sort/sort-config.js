@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * A filter config containing:
  *
@@ -12,5 +14,5 @@ var SortConfig = (function () {
     }
     return SortConfig;
 }());
-export { SortConfig };
+exports.SortConfig = SortConfig;
 //# sourceMappingURL=sort-config.js.map

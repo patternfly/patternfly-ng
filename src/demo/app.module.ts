@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Main areas
 //  import example modules
+import { FilterExampleModule } from '../app/filters/examples/filter-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 
@@ -18,6 +19,7 @@ import { SortExampleModule } from '../app/sort/examples/sort-example.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FilterExampleModule,
     FormsModule,
     HttpModule,
     SampleExampleModule,

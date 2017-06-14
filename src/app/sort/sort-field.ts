@@ -6,7 +6,7 @@
  * sortType - The sort field type
  */
 export class SortField {
-  id: string;
-  title: string;
+  id?: string;
+  title?: string;
   sortType: string;
 }

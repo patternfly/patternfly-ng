@@ -7,3 +7,4 @@ import '@angular/platform-browser-dynamic';
 import '@angular/router';
 import 'rxjs';
 import 'patternfly/dist/css/patternfly.css';
+import 'patternfly/dist/css/patternfly-additions.css';

@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * A sortable field containing:
  *
@@ -10,5 +12,5 @@ var SortField = (function () {
     }
     return SortField;
 }());
-export { SortField };
+exports.SortField = SortField;
 //# sourceMappingURL=sort-field.js.map
