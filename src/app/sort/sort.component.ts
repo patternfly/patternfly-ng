@@ -43,12 +43,12 @@ export class SortComponent implements OnInit {
   }
 
   setupConfig(): void {
+    if (this.config === undefined) {
+      this.config = {} as SortConfig;
+    }
     this.prevConfig = _.cloneDeep(this.config);
 
-    if (this.config && this.config.fields === undefined) {
-      this.config.fields = [];
-    }
-    if (this.config && this.config.fields.length > 0) {
+    if (this.config && this.config.fields && this.config.fields.length > 0) {
       if (this.currentField === undefined) {
         this.currentField = this.config.fields[0];
       }
@@ -72,7 +72,8 @@ export class SortComponent implements OnInit {
 
   getSortIconClass(): string {
     let iconClass: string;
-    if (this.currentField.sortType === 'numeric') {
+    if (this.currentField && this.currentField.sortType
+        && this.currentField.sortType === 'numeric') {
       if (this.config.isAscending) {
         iconClass = 'fa fa-sort-numeric-asc';
       } else {
