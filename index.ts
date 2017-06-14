@@ -39,3 +39,8 @@ export { SortConfig } from './src/app/sort/sort-config';
 export { SortEvent } from './src/app/sort/sort-event';
 export { SortField } from './src/app/sort/sort-field';
 export { SortModule } from './src/app/sort/sort.module';
+
+// Toolbar
+export { ToolbarConfig } from './src/app/toolbar/toolbar-config';
+export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
+export { ToolbarModule } from './src/app/toolbar/toolbar.module';

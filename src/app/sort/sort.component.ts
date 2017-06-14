@@ -26,6 +26,10 @@ export class SortComponent implements OnInit {
 
   show: boolean = false;
   currentField: SortField;
+  defaultConfig: SortConfig = {
+    isAscending: true,
+    show: true
+  } as SortConfig;
   prevConfig: SortConfig;
 
   constructor() {
@@ -43,10 +47,11 @@ export class SortComponent implements OnInit {
   }
 
   setupConfig(): void {
-    if (this.config === undefined) {
-      this.config = {} as SortConfig;
+    if (this.config !== undefined) {
+      _.defaults(this.config, this.defaultConfig);
+    } else {
+      this.config = _.cloneDeep(this.defaultConfig);
     }
-    this.prevConfig = _.cloneDeep(this.config);
 
     if (this.config && this.config.fields && this.config.fields.length > 0) {
       if (this.currentField === undefined) {

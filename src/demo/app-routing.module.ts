@@ -6,7 +6,7 @@ import { SampleExampleComponent } from '../app/sample/examples/sample-example.co
 import { SearchHighlightExampleComponent } from '../app/pipes/examples/search-highlight-example.component';
 import { SortExampleComponent } from '../app/sort/examples/sort-example.component';
 import { ToastNotificationExampleComponent } from '../app/notification/examples/toast-notification-example.component';
-import { ToastNotificationListExampleComponent } from '../app/notification/examples/toast-notification-list-example.component';
+import { ToolbarExampleComponent } from '../app/toolbar/examples/toolbar-example.component';
 import { WelcomeComponent } from './components/welcome.component';
 
 const routes: Routes = [{
@@ -28,7 +28,10 @@ const routes: Routes = [{
   }, {
     path: 'toastnotification',
     component: ToastNotificationExampleComponent
-  }];
+  }, {
+    path: 'toolbar',
+    component: ToolbarExampleComponent
+}];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes, {useHash: true}) ],
