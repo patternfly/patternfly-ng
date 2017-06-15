@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 //  import example modules
 import { FilterExampleModule } from '../app/filters/examples/filter-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
+import { SearchHighlightExampleModule } from '../app/pipes/examples/search-highlight-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 
@@ -24,6 +25,7 @@ import { WelcomeComponent } from './components/welcome.component';
     FormsModule,
     HttpModule,
     SampleExampleModule,
+    SearchHighlightExampleModule,
     SortExampleModule
   ],
   declarations: [

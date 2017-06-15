@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { FilterExampleComponent } from '../app/filters/examples/filter-example.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
+import { SearchHighlightExampleComponent } from '../app/pipes/examples/search-highlight-example.component';
 import { SortExampleComponent } from '../app/sort/examples/sort-example.component';
 import { WelcomeComponent } from './components/welcome.component';
 
@@ -16,6 +17,9 @@ const routes: Routes = [{
   }, {
     path: 'sample',
     component: SampleExampleComponent
+  }, {
+    path: 'searchhighlight',
+    component: SearchHighlightExampleComponent
   }, {
     path: 'sort',
     component: SortExampleComponent

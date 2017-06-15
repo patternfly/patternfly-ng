@@ -3,8 +3,6 @@ import {
   OnInit
 } from '@angular/core';
 
-import { Router } from '@angular/router';
-
 import { SortConfig } from '../sort-config';
 import { SortField } from '../sort-field';
 import { SortEvent } from '../sort-event';
@@ -36,7 +34,7 @@ export class SortExampleComponent implements OnInit {
     'December': 12
   };
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   ngOnInit(): void {
