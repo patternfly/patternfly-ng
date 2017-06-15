@@ -7,7 +7,6 @@
  * separator - Set to true if this is a placehodler for a separator rather than an action
  * template - Optional template name for including custom content (listView only)
  * title - Optional title, used for the tooltip
- * type - Optional type property. Set to 'main' to be displayed as a main action button (listview only)
  * visible - Set to false if this menu option should be hidden
  */
 export class Action {
@@ -16,7 +15,6 @@ export class Action {
   name: string;
   separator?: boolean = false;
   template?: string;
-  type?: string;
   title?: string;
   visible?: boolean;
 }
