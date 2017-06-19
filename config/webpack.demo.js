@@ -25,7 +25,6 @@ const extractCSS = new ExtractTextPlugin({
 
 module.exports = {
   devServer: {
-    historyApiFallback: true,
     stats: 'minimal',
     inline: true
   },
@@ -111,7 +110,7 @@ module.exports = {
             }
           }
         ]
-      },
+      }
     ]
   },
 

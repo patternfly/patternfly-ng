@@ -13,6 +13,7 @@ var gulp = require('gulp'),
 
 var appSrc = 'src';
 var libraryDist = 'dist';
+var demoDist = 'dist-demo';
 var watchDist = 'dist-watch';
 var globalExcludes = [ '!./**/examples/**', '!./**/examples' ];
 
@@ -24,6 +25,14 @@ function copyToDist(srcArr) {
   return gulp.src(srcArr.concat(globalExcludes))
     .pipe(gulp.dest(function (file) {
       return libraryDist + file.base.slice(__dirname.length); // save directly to dist
+    }));
+}
+
+
+function copyToDemo(srcArr) {
+  return gulp.src(srcArr)
+    .pipe(gulp.dest(function (file) {
+      return demoDist + file.base.slice(__dirname.length); // save directly to demo
     }));
 }
 
@@ -90,6 +99,13 @@ gulp.task('transpile', function () {
 gulp.task('copy-html', function () {
   return copyToDist([
     'src/**/*.html'
+  ]);
+});
+
+
+gulp.task('copy-examples', function () {
+  return copyToDemo([
+    'src/**/examples/*.*'
   ]);
 });
 
