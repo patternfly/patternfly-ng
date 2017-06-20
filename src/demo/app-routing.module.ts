@@ -4,10 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { FilterExampleComponent } from '../app/filters/examples/filter-example.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
 import { SortExampleComponent } from '../app/sort/examples/sort-example.component';
+import { WelcomeComponent } from './components/welcome.component';
 
 const routes: Routes = [{
     path: '',
-    redirectTo: 'home',
+    component: WelcomeComponent,
     pathMatch: 'full'
   }, {
     path: 'filters',
@@ -21,7 +22,7 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, {useHash: true}) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

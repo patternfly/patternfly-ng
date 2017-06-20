@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FilterExampleModule } from '../app/filters/examples/filter-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
+import { WelcomeComponent } from './components/welcome.component';
 
 @NgModule({
   imports: [
@@ -26,9 +27,11 @@ import { SortExampleModule } from '../app/sort/examples/sort-example.module';
     SortExampleModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
