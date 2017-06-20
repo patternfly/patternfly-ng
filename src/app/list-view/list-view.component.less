@@ -1,0 +1,39 @@
+@import (reference) "../../assets/stylesheets/patternfly-ng";
+
+/* Ensure min button width (fabric8-ui fix) */
+.list-view-pf-actions {
+  .dropdown-kebab-pf {
+    .btn { min-width: initial; }
+  }
+}
+
+/* Why does PF add margin-top? */
+.list-view-pf-view {
+  margin-top: 0; // was 30
+}
+
+.pfng-list-view-dnd-drag-container { display: flex; }
+
+.pfng-expand-placeholder { width: 15px; }
+.pfng-cb-placeholder { width: 38px; }
+
+.pfng-list-view-heading {
+  @media (max-width: 992px) { display: none; }
+  .list-group-item-heading {
+    font-size: @font-size-base;
+    font-weight: initial;
+  }
+}
+
+.list-view-pf .list-group-item {
+  &.pfng-list-view-heading-row {
+    border-top: none;
+    pointer-events: none;
+    &:hover {
+      background-color: @color-pf-white;
+    }
+    i {
+      pointer-events: auto;
+    }
+  }
+}
