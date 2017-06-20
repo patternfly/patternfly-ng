@@ -6,7 +6,7 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "npm-run-all --serial remove-dist build:library build:demo copy-examples: demo",
+    "build": "npm-run-all --serial remove-dist build:library build:demo copy-examples:demo",
     "build:library": "gulp build",
     "bundle": "webpack --config config/webpack.prod.js --progress --profile --bail",
     "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist distwatch bundles",
@@ -16,7 +16,7 @@
     "remove-dist": "rimraf dist dist-watch dist-demo",
     "rimraf": "rimraf",
     "build:demo": "webpack --config config/webpack.demo.js --progress --profile --bail",
-    "copy-examples: demo": "gulp copy-examples",
+    "copy-examples:demo": "gulp copy-examples",
     "start:demo": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base .",
     "test": "karma start",
     "transpile": "gulp transpile",
