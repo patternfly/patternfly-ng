@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FilterExampleModule } from '../app/filters/examples/filter-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
+import { NotificationExampleModule } from '../app/notification/examples/notification-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { WelcomeComponent } from './components/welcome.component';
     FilterExampleModule,
     FormsModule,
     HttpModule,
+    NotificationExampleModule,
     SampleExampleModule,
     SortExampleModule
   ],
