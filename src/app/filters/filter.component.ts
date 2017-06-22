@@ -11,7 +11,7 @@ import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 
-import * as _ from 'lodash';
+import { cloneDeep, find, isEqual, remove } from 'lodash';
 
 /**
  * Component for the filter bar's filter entry components
@@ -26,8 +26,8 @@ export class FilterComponent implements OnInit {
   @Input() config: FilterConfig;
 
   @Output('onChange') onChange = new EventEmitter();
-  @Output('onFilterQueries') onFilterQueries = new EventEmitter();
   @Output('onFieldSelect') onFilterSelect = new EventEmitter();
+  @Output('onTypeAhead') onTypeAhead = new EventEmitter();
 
   prevConfig: FilterConfig;
 
@@ -42,7 +42,7 @@ export class FilterComponent implements OnInit {
 
   ngDoCheck(): void {
     // Do a deep compare on config
-    if (!_.isEqual(this.config, this.prevConfig)) {
+    if (!isEqual(this.config, this.prevConfig)) {
       this.setupConfig();
     }
   }
@@ -51,7 +51,7 @@ export class FilterComponent implements OnInit {
     if (this.config === undefined) {
       this.config = {} as FilterConfig;
     }
-    this.prevConfig = _.cloneDeep(this.config);
+    this.prevConfig = cloneDeep(this.config);
 
     if (this.config && this.config.appliedFilters === undefined) {
       this.config.appliedFilters = [];
@@ -84,22 +84,24 @@ export class FilterComponent implements OnInit {
     } as FilterEvent);
   }
 
-  enforceSingleSelect(filter: Filter): void {
-    _.remove(this.config.appliedFilters, {title: filter.field.title});
-  }
-
-  fieldSelected(): void {
-    this.onFilterSelect.emit(event);
+  fieldSelected($event: FilterEvent): void {
+    this.onFilterSelect.emit($event);
   }
 
   filterExists(filter: Filter): boolean {
-    let foundFilter = _.find(this.config.appliedFilters, {
+    let foundFilter = find(this.config.appliedFilters, {
       value: filter.value
     });
     return foundFilter !== undefined;
   }
 
-  filterQueries(event: any) {
-    this.onFilterQueries.emit(event);
+  typeAhead($event: any) {
+    this.onTypeAhead.emit($event);
+  }
+
+  // Private
+
+  private enforceSingleSelect(filter: Filter): void {
+    remove(this.config.appliedFilters, {title: filter.field.title});
   }
 }
