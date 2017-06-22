@@ -5,7 +5,7 @@
       <hr/>
     </div>
   </div>
-  <tabset style="border: 1px black;">
+  <tabset>
     <tab heading="Basic" (select)="tabSelected($event)">
       <toast-notification-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></toast-notification-basic-example>
     </tab>
