@@ -50,6 +50,9 @@ exports.ToastNotificationListComponent = toast_notification_list_component_1.Toa
 // Sample
 var sample_module_1 = require("./src/app/sample/sample.module");
 exports.SampleModule = sample_module_1.SampleModule;
+// Search Highlight
+var search_highlight_module_1 = require("./src/app/pipes/search-highlight.module");
+exports.SearchHighlightModule = search_highlight_module_1.SearchHighlightModule;
 // Sort
 var sort_component_1 = require("./src/app/sort/sort.component");
 exports.SortComponent = sort_component_1.SortComponent;

@@ -21,6 +21,7 @@ export { NotificationService } from './src/app/notification/notification.service
 export { ToastNotificationComponent } from './src/app/notification/toast-notification.component';
 export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
 export { SampleModule } from './src/app/sample/sample.module';
+export { SearchHighlightModule } from './src/app/pipes/search-highlight.module';
 export { SortComponent } from './src/app/sort/sort.component';
 export { SortConfig } from './src/app/sort/sort-config';
 export { SortEvent } from './src/app/sort/sort-event';

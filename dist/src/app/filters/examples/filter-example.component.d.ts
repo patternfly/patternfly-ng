@@ -1,10 +1,8 @@
 import { OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Filter } from '../filter';
 import { FilterConfig } from '../filter-config';
 import { FilterEvent } from '../filter-event';
 export declare class FilterExampleComponent implements OnInit {
-    private router;
     allItems: any[];
     imageQueries: any[];
     imageQueriesFixed: any[];
@@ -13,7 +11,7 @@ export declare class FilterExampleComponent implements OnInit {
     filtersText: string;
     separator: Object;
     weekDayQueries: any[];
-    constructor(router: Router);
+    constructor();
     ngOnInit(): void;
     applyFilters(filters: Filter[]): void;
     fieldSelected(event: FilterEvent): void;

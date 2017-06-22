@@ -30,6 +30,9 @@ export { ToastNotificationListComponent } from './src/app/notification/toast-not
 // Sample
 export { SampleModule } from './src/app/sample/sample.module';
 
+// Search Highlight
+export { SearchHighlightModule } from './src/app/pipes/search-highlight.module';
+
 // Sort
 export { SortComponent } from './src/app/sort/sort.component';
 export { SortConfig } from './src/app/sort/sort-config';

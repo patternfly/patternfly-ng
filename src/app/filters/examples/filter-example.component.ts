@@ -3,8 +3,6 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { Router } from '@angular/router';
-
 import { Filter } from '../filter';
 import { FilterConfig } from '../filter-config';
 import { FilterField } from '../filter-field';
@@ -24,7 +22,7 @@ export class FilterExampleComponent implements OnInit {
   separator: Object;
   weekDayQueries: any[];
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   ngOnInit(): void {
