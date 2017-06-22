@@ -1,5 +1,10 @@
 export { PatternFlyNgModule } from './patternfly-ng.module';
 
+// EmptyState
+export { EmptyStateComponent } from './src/app/empty-state/empty-state.component';
+export { EmptyStateConfig } from './src/app/empty-state/empty-state-config';
+export { EmptyStateModule } from './src/app/empty-state/empty-state.module';
+
 // Filter
 export { Filter } from './src/app/filters/filter';
 export { FilterComponent } from './src/app/filters/filter.component';

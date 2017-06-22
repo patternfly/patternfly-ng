@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Main areas
 //  import example modules
+import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state-example.module';
 import { FilterExampleModule } from '../app/filters/examples/filter-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 import { SearchHighlightExampleModule } from '../app/pipes/examples/search-highlight-example.module';
@@ -22,6 +23,7 @@ import { WelcomeComponent } from './components/welcome.component';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    EmptyStateExampleModule,
     FilterExampleModule,
     FormsModule,
     HttpModule,
