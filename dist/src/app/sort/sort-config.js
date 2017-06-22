@@ -9,8 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var SortConfig = (function () {
     function SortConfig() {
-        this.isAscending = true;
-        this.show = true;
     }
     return SortConfig;
 }());

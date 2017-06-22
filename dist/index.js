@@ -71,4 +71,11 @@ var sort_field_1 = require("./src/app/sort/sort-field");
 exports.SortField = sort_field_1.SortField;
 var sort_module_1 = require("./src/app/sort/sort.module");
 exports.SortModule = sort_module_1.SortModule;
+// Toolbar
+var toolbar_config_1 = require("./src/app/toolbar/toolbar-config");
+exports.ToolbarConfig = toolbar_config_1.ToolbarConfig;
+var toolbar_component_1 = require("./src/app/toolbar/toolbar.component");
+exports.ToolbarComponent = toolbar_component_1.ToolbarComponent;
+var toolbar_module_1 = require("./src/app/toolbar/toolbar.module");
+exports.ToolbarModule = toolbar_module_1.ToolbarModule;
 //# sourceMappingURL=index.js.map

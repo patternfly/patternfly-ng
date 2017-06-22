@@ -13,8 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var Action = (function () {
     function Action() {
-        this.disabled = false;
-        this.separator = false;
     }
     return Action;
 }());

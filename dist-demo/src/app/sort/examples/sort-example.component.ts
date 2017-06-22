@@ -67,10 +67,6 @@ export class SortExampleComponent implements OnInit {
         title:  'Name',
         sortType: 'alpha'
       }, {
-        id: 'age',
-        title:  'Age',
-        sortType: 'numeric'
-      }, {
         id: 'address',
         title:  'Address',
         sortType: 'alpha'

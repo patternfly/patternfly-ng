@@ -10,7 +10,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var View = (function () {
     function View() {
-        this.disabled = false;
     }
     return View;
 }());

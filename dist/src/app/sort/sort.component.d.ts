@@ -6,6 +6,7 @@ export declare class SortComponent implements OnInit {
     onChange: EventEmitter<{}>;
     show: boolean;
     currentField: SortField;
+    defaultConfig: SortConfig;
     prevConfig: SortConfig;
     constructor();
     ngOnInit(): void;

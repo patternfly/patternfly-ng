@@ -16,6 +16,10 @@ var SortComponent = (function () {
     function SortComponent() {
         this.onChange = new core_1.EventEmitter();
         this.show = false;
+        this.defaultConfig = {
+            isAscending: true,
+            show: true
+        };
     }
     SortComponent.prototype.ngOnInit = function () {
         this.setupConfig();
@@ -27,10 +31,12 @@ var SortComponent = (function () {
         }
     };
     SortComponent.prototype.setupConfig = function () {
-        if (this.config === undefined) {
-            this.config = {};
+        if (this.config !== undefined) {
+            _.defaults(this.config, this.defaultConfig);
         }
-        this.prevConfig = _.cloneDeep(this.config);
+        else {
+            this.config = _.cloneDeep(this.defaultConfig);
+        }
         if (this.config && this.config.fields && this.config.fields.length > 0) {
             if (this.currentField === undefined) {
                 this.currentField = this.config.fields[0];
