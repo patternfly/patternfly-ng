@@ -54,6 +54,9 @@ var toast_notification_component_1 = require("./src/app/notification/toast-notif
 exports.ToastNotificationComponent = toast_notification_component_1.ToastNotificationComponent;
 var toast_notification_list_component_1 = require("./src/app/notification/toast-notification-list.component");
 exports.ToastNotificationListComponent = toast_notification_list_component_1.ToastNotificationListComponent;
+// Remaining Chars
+var remaining_chars_directive_1 = require("./src/app/remaining-chars/remaining-chars.directive");
+exports.RemainingCharsDirective = remaining_chars_directive_1.RemainingCharsDirective;
 // Sample
 var sample_module_1 = require("./src/app/sample/sample.module");
 exports.SampleModule = sample_module_1.SampleModule;

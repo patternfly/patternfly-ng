@@ -23,6 +23,7 @@ export { NotificationType } from './src/app/notification/notification-type';
 export { NotificationService } from './src/app/notification/notification.service';
 export { ToastNotificationComponent } from './src/app/notification/toast-notification.component';
 export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
+export { RemainingCharsDirective } from './src/app/remaining-chars/remaining-chars.directive';
 export { SampleModule } from './src/app/sample/sample.module';
 export { SearchHighlightModule } from './src/app/pipes/search-highlight.module';
 export { SortComponent } from './src/app/sort/sort.component';
