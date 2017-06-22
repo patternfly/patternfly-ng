@@ -1,0 +1,20 @@
+<div class="filter-pf" *ngIf="config && config.appliedFilters && config.appliedFilters.length > 0">
+  <div class="row toolbar-pf-results">
+    <div class="col-sm-12">
+      <h5 *ngIf="config.resultsCount >= 0">{{config.resultsCount}} Results</h5>
+      <p *ngIf="config.appliedFilters.length > 0">Active filters:</p>
+      <ul class="list-inline">
+        <li *ngFor="let filter of config.appliedFilters">
+          <span class="active-filter label label-info">
+            {{filter.field.title}}: {{filter.value}}
+            <a><span class="pficon pficon-close" (click)="clearFilter(filter)"></span></a>
+          </span>
+        </li>
+      </ul>
+      <p><a class="clear-filters" (click)="clearAllFilters()" *ngIf="config.appliedFilters.length > 0">Clear All Filters</a></p>
+      <div *ngIf="config.totalCount !== 0" class="pf-table-view-selected-label">
+        <strong>{{config.selectedCount}}</strong> of <strong>{{config.totalCount}}</strong> selected
+      </div>
+    </div><!-- /col -->
+  </div><!-- /row -->
+</div>
