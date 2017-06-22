@@ -8,7 +8,7 @@ import { SortField } from './sort-field';
  * show - Optional flag to show sort functionality
  */
 export class SortConfig {
-  isAscending?: boolean = true;
+  isAscending?: boolean;
   fields: SortField[];
-  show?: boolean = true;
+  show?: boolean;
 }

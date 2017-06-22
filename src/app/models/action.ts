@@ -10,10 +10,10 @@
  * visible - Set to false if this menu option should be hidden
  */
 export class Action {
-  disabled?: boolean = false;
+  disabled?: boolean;
   id?: string;
   name: string;
-  separator?: boolean = false;
+  separator?: boolean;
   template?: string;
   title?: string;
   visible?: boolean;

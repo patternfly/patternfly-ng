@@ -7,7 +7,7 @@
  * title - Optional title, uses as a tooltip for the view selector
  */
 export class View {
-  disabled?: boolean = false;
+  disabled?: boolean;
   iconClass: string;
   id: string;
   title: string;
