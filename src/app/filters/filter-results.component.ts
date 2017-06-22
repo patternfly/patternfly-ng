@@ -10,7 +10,7 @@ import {
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 
-import * as _ from 'lodash';
+import { cloneDeep, isEqual } from 'lodash';
 
 /**
  * Component for the filter results
@@ -39,7 +39,7 @@ export class FilterResultsComponent implements OnInit {
 
   ngDoCheck(): void {
     // Do a deep compare on config
-    if (!_.isEqual(this.config, this.prevConfig)) {
+    if (!isEqual(this.config, this.prevConfig)) {
       this.setupConfig();
     }
   }
@@ -48,7 +48,7 @@ export class FilterResultsComponent implements OnInit {
     if (this.config === undefined) {
       this.config = {} as FilterConfig;
     }
-    this.prevConfig = _.cloneDeep(this.config);
+    this.prevConfig = cloneDeep(this.config);
 
     if (this.config && this.config.appliedFilters === undefined) {
       this.config.appliedFilters = [];
