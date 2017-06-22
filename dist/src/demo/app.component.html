@@ -1,0 +1,50 @@
+<main class="container-fluid">
+  <nav class="navbar navbar-default navbar-pf">
+    <div class="navbar-header">
+      <div class="navbar-brand">
+        PatternFly NG - Component Demo
+      </div>
+    </div>
+  </nav>
+  <div>
+    <div id="lefthand-nav" style="position: fixed; width: 200px; height: 100%; border-right: 1px solid gray;">
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="active">Home</a>
+        </li>
+      </ul>
+      <hr/>
+      <h3>Components</h3>
+      <ul>
+        <li>
+          <a routerLink="/filters" routerLinkActive="active">Filter</a>
+        </li>
+        <li>
+          <a routerLink="/sample" routerLinkActive="active">Sample</a>
+        </li>
+        <li>
+          <a routerLink="/sort" routerLinkActive="active">Sort</a>
+        </li>
+      </ul>
+      <hr/>
+      <h3>Directives</h3>
+      <ul>
+        <li>
+          <a routerLink="/remainingchars" routerLinkActive="active">Remaining Chars</a>
+        </li>
+      </ul>
+      <h3>Pipes</h3>
+      <ul>
+        <li>
+          <a routerLink="/searchhighlight" routerLinkActive="active">Search Highlight</a>
+        </li>
+        <li>
+          <a routerLink="/toastnotification" routerLinkActive="active">Toast Notification Component</a>
+        </li>
+      </ul>
+    </div>
+    <div style="margin-left: 200px;" class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>
