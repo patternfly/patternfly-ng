@@ -1,4 +1,4 @@
-//import './rxjs-extensions';
+// import './rxjs-extensions';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state-example.module';
 import { FilterExampleModule } from '../app/filters/examples/filter-example.module';
 import { NotificationExampleModule } from '../app/notification/examples/notification-example.module';
+import { RemainingCharsExampleModule } from '../app/remaining-chars/examples/remaining-chars-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 import { SearchHighlightExampleModule } from '../app/pipes/examples/search-highlight-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
@@ -29,6 +30,7 @@ import { WelcomeComponent } from './components/welcome.component';
     FormsModule,
     HttpModule,
     NotificationExampleModule,
+    RemainingCharsExampleModule,
     SampleExampleModule,
     SearchHighlightExampleModule,
     SortExampleModule,

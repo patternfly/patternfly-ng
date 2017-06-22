@@ -32,6 +32,9 @@ export { NotificationService } from './src/app/notification/notification.service
 export { ToastNotificationComponent } from './src/app/notification/toast-notification.component';
 export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
 
+// Remaining Chars
+export { RemainingCharsDirective } from './src/app/remaining-chars/remaining-chars.directive';
+
 // Sample
 export { SampleModule } from './src/app/sample/sample.module';
 
