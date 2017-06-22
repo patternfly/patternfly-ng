@@ -1,0 +1,16 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Toast Notification Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <toast-notification-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></toast-notification-basic-example>
+    </tab>
+    <tab heading="List" (select)="tabSelected($event)">
+      <toast-notification-list-example *ngIf="activeTab === 'List'"></toast-notification-list-example>
+    </tab>
+  </tabset>
+</div>
