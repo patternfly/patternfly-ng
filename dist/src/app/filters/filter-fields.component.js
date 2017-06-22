@@ -11,15 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var filter_config_1 = require("./filter-config");
-var _ = require("lodash");
+var lodash_1 = require("lodash");
 /**
  * Component for the filter bar's filter entry components
  */
 var FilterFieldsComponent = (function () {
     function FilterFieldsComponent() {
         this.onAdd = new core_1.EventEmitter();
-        this.onFilterQueries = new core_1.EventEmitter();
         this.onFieldSelect = new core_1.EventEmitter();
+        this.onTypeAhead = new core_1.EventEmitter();
         this.show = false;
     }
     // Initialization
@@ -28,7 +28,7 @@ var FilterFieldsComponent = (function () {
     };
     FilterFieldsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!_.isEqual(this.config, this.prevConfig)) {
+        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
@@ -37,7 +37,7 @@ var FilterFieldsComponent = (function () {
         if (this.config === undefined) {
             this.config = {};
         }
-        this.prevConfig = _.cloneDeep(this.config);
+        this.prevConfig = lodash_1.cloneDeep(this.config);
         if (this.config && this.config.fields === undefined) {
             this.config.fields = [];
         }
@@ -46,7 +46,7 @@ var FilterFieldsComponent = (function () {
         }
         var fieldFound = false;
         if (this.currentField !== undefined) {
-            _.find(this.config.fields, function (nextField) {
+            lodash_1.find(this.config.fields, function (nextField) {
                 if (nextField.id === _this.currentField.id) {
                     fieldFound = true;
                     return;
@@ -61,21 +61,21 @@ var FilterFieldsComponent = (function () {
             this.currentValue = null;
         }
     };
-    // Field functions
-    FilterFieldsComponent.prototype.filterQueries = function (value) {
-        this.onFilterQueries.emit({
-            field: this.currentField,
-            value: this.currentValue
-        });
-    };
-    FilterFieldsComponent.prototype.onValueKeyPress = function (keyEvent) {
-        if (keyEvent.which === 13) {
+    // Actions
+    FilterFieldsComponent.prototype.fieldInputKeyPress = function ($event) {
+        if ($event.which === 13) {
             this.onAdd.emit({
                 field: this.currentField,
                 value: this.currentValue
             });
             this.currentValue = undefined;
         }
+    };
+    FilterFieldsComponent.prototype.queryInputChange = function (value) {
+        this.onTypeAhead.emit({
+            field: this.currentField,
+            value: this.currentValue
+        });
     };
     FilterFieldsComponent.prototype.selectField = function (field) {
         this.currentField = field;
@@ -85,7 +85,7 @@ var FilterFieldsComponent = (function () {
             value: this.currentValue
         });
     };
-    FilterFieldsComponent.prototype.selectValue = function (filterQuery) {
+    FilterFieldsComponent.prototype.selectQuery = function (filterQuery) {
         if (filterQuery != null) {
             this.onAdd.emit({
                 field: this.currentField,
@@ -106,13 +106,13 @@ __decorate([
     __metadata("design:type", Object)
 ], FilterFieldsComponent.prototype, "onAdd", void 0);
 __decorate([
-    core_1.Output('onFilterQueries'),
-    __metadata("design:type", Object)
-], FilterFieldsComponent.prototype, "onFilterQueries", void 0);
-__decorate([
     core_1.Output('onFieldSelect'),
     __metadata("design:type", Object)
 ], FilterFieldsComponent.prototype, "onFieldSelect", void 0);
+__decorate([
+    core_1.Output('onTypeAhead'),
+    __metadata("design:type", Object)
+], FilterFieldsComponent.prototype, "onTypeAhead", void 0);
 FilterFieldsComponent = __decorate([
     core_1.Component({
         encapsulation: core_1.ViewEncapsulation.None,

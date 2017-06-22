@@ -11,15 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var filter_config_1 = require("./filter-config");
-var _ = require("lodash");
+var lodash_1 = require("lodash");
 /**
  * Component for the filter bar's filter entry components
  */
 var FilterComponent = (function () {
     function FilterComponent() {
         this.onChange = new core_1.EventEmitter();
-        this.onFilterQueries = new core_1.EventEmitter();
         this.onFilterSelect = new core_1.EventEmitter();
+        this.onTypeAhead = new core_1.EventEmitter();
     }
     // Initialization
     FilterComponent.prototype.ngOnInit = function () {
@@ -27,7 +27,7 @@ var FilterComponent = (function () {
     };
     FilterComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!_.isEqual(this.config, this.prevConfig)) {
+        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
@@ -35,7 +35,7 @@ var FilterComponent = (function () {
         if (this.config === undefined) {
             this.config = {};
         }
-        this.prevConfig = _.cloneDeep(this.config);
+        this.prevConfig = lodash_1.cloneDeep(this.config);
         if (this.config && this.config.appliedFilters === undefined) {
             this.config.appliedFilters = [];
         }
@@ -62,20 +62,21 @@ var FilterComponent = (function () {
             appliedFilters: $event
         });
     };
-    FilterComponent.prototype.enforceSingleSelect = function (filter) {
-        _.remove(this.config.appliedFilters, { title: filter.field.title });
-    };
-    FilterComponent.prototype.fieldSelected = function () {
-        this.onFilterSelect.emit(event);
+    FilterComponent.prototype.fieldSelected = function ($event) {
+        this.onFilterSelect.emit($event);
     };
     FilterComponent.prototype.filterExists = function (filter) {
-        var foundFilter = _.find(this.config.appliedFilters, {
+        var foundFilter = lodash_1.find(this.config.appliedFilters, {
             value: filter.value
         });
         return foundFilter !== undefined;
     };
-    FilterComponent.prototype.filterQueries = function (event) {
-        this.onFilterQueries.emit(event);
+    FilterComponent.prototype.typeAhead = function ($event) {
+        this.onTypeAhead.emit($event);
+    };
+    // Private
+    FilterComponent.prototype.enforceSingleSelect = function (filter) {
+        lodash_1.remove(this.config.appliedFilters, { title: filter.field.title });
     };
     return FilterComponent;
 }());
@@ -88,13 +89,13 @@ __decorate([
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onChange", void 0);
 __decorate([
-    core_1.Output('onFilterQueries'),
-    __metadata("design:type", Object)
-], FilterComponent.prototype, "onFilterQueries", void 0);
-__decorate([
     core_1.Output('onFieldSelect'),
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onFilterSelect", void 0);
+__decorate([
+    core_1.Output('onTypeAhead'),
+    __metadata("design:type", Object)
+], FilterComponent.prototype, "onTypeAhead", void 0);
 FilterComponent = __decorate([
     core_1.Component({
         encapsulation: core_1.ViewEncapsulation.None,

@@ -1,11 +1,14 @@
 import { NgModule }  from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 import { FiltersModule } from '../filters.module';
+import { FilterBasicExampleComponent } from './filter-basic-example.component';
 import { FilterExampleComponent } from './filter-example.component';
+import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.component';
 
 @NgModule({
   imports: [
@@ -15,7 +18,7 @@ import { FilterExampleComponent } from './filter-example.component';
     FormsModule,
     TabsModule.forRoot()
   ],
-  declarations: [ FilterExampleComponent ],
+  declarations: [ FilterBasicExampleComponent, FilterExampleComponent, FilterTypeAheadExampleComponent ],
   providers: [ TabsetConfig ]
 })
 export class FilterExampleModule {

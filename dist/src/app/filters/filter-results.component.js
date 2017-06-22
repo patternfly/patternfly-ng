@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var filter_config_1 = require("./filter-config");
-var _ = require("lodash");
+var lodash_1 = require("lodash");
 /**
  * Component for the filter results
  */
@@ -25,7 +25,7 @@ var FilterResultsComponent = (function () {
     };
     FilterResultsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!_.isEqual(this.config, this.prevConfig)) {
+        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
@@ -33,7 +33,7 @@ var FilterResultsComponent = (function () {
         if (this.config === undefined) {
             this.config = {};
         }
-        this.prevConfig = _.cloneDeep(this.config);
+        this.prevConfig = lodash_1.cloneDeep(this.config);
         if (this.config && this.config.appliedFilters === undefined) {
             this.config.appliedFilters = [];
         }

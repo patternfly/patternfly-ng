@@ -8,8 +8,8 @@ import { FilterEvent } from './filter-event';
 export declare class FilterComponent implements OnInit {
     config: FilterConfig;
     onChange: EventEmitter<{}>;
-    onFilterQueries: EventEmitter<{}>;
     onFilterSelect: EventEmitter<{}>;
+    onTypeAhead: EventEmitter<{}>;
     prevConfig: FilterConfig;
     constructor();
     ngOnInit(): void;
@@ -17,8 +17,8 @@ export declare class FilterComponent implements OnInit {
     setupConfig(): void;
     addFilter($event: FilterEvent): void;
     clear($event: Filter[]): void;
-    enforceSingleSelect(filter: Filter): void;
-    fieldSelected(): void;
+    fieldSelected($event: FilterEvent): void;
     filterExists(filter: Filter): boolean;
-    filterQueries(event: any): void;
+    typeAhead($event: any): void;
+    private enforceSingleSelect(filter);
 }

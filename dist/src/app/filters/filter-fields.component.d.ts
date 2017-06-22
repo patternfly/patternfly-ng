@@ -8,8 +8,8 @@ import { FilterQuery } from './filter-query';
 export declare class FilterFieldsComponent implements OnInit {
     config: FilterConfig;
     onAdd: EventEmitter<{}>;
-    onFilterQueries: EventEmitter<{}>;
     onFieldSelect: EventEmitter<{}>;
+    onTypeAhead: EventEmitter<{}>;
     currentField: FilterField;
     currentValue: string;
     prevConfig: FilterConfig;
@@ -18,8 +18,8 @@ export declare class FilterFieldsComponent implements OnInit {
     ngOnInit(): void;
     ngDoCheck(): void;
     setupConfig(): void;
-    filterQueries(value: string): void;
-    onValueKeyPress(keyEvent: KeyboardEvent): void;
+    fieldInputKeyPress($event: KeyboardEvent): void;
+    queryInputChange(value: string): void;
     selectField(field: FilterField): void;
-    selectValue(filterQuery: FilterQuery): void;
+    selectQuery(filterQuery: FilterQuery): void;
 }
