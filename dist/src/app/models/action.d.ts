@@ -4,7 +4,6 @@ export declare class Action {
     name: string;
     separator?: boolean;
     template?: string;
-    type?: string;
     title?: string;
     visible?: boolean;
 }

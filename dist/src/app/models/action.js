@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * separator - Set to true if this is a placehodler for a separator rather than an action
  * template - Optional template name for including custom content (listView only)
  * title - Optional title, used for the tooltip
- * type - Optional type property. Set to 'main' to be displayed as a main action button (listview only)
  * visible - Set to false if this menu option should be hidden
  */
 var Action = (function () {
