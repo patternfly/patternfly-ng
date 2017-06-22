@@ -32,6 +32,21 @@ var view_1 = require("./src/app/models/view");
 exports.View = view_1.View;
 var views_config_1 = require("./src/app/models/views-config");
 exports.ViewsConfig = views_config_1.ViewsConfig;
+// Notification
+var notification_1 = require("./src/app/notification/notification");
+exports.Notification = notification_1.Notification;
+var notification_event_1 = require("./src/app/notification/notification-event");
+exports.NotificationEvent = notification_event_1.NotificationEvent;
+var notification_module_1 = require("./src/app/notification/notification.module");
+exports.NotificationModule = notification_module_1.NotificationModule;
+var notification_type_1 = require("./src/app/notification/notification-type");
+exports.NotificationType = notification_type_1.NotificationType;
+var notification_service_1 = require("./src/app/notification/notification.service");
+exports.NotificationService = notification_service_1.NotificationService;
+var toast_notification_component_1 = require("./src/app/notification/toast-notification.component");
+exports.ToastNotificationComponent = toast_notification_component_1.ToastNotificationComponent;
+var toast_notification_list_component_1 = require("./src/app/notification/toast-notification-list.component");
+exports.ToastNotificationListComponent = toast_notification_list_component_1.ToastNotificationListComponent;
 // Sample
 var sample_module_1 = require("./src/app/sample/sample.module");
 exports.SampleModule = sample_module_1.SampleModule;

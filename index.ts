@@ -18,6 +18,15 @@ export { ModelsModule } from './src/app/models/models.module';
 export { View } from './src/app/models/view';
 export { ViewsConfig } from './src/app/models/views-config';
 
+// Notification
+export { Notification } from './src/app/notification/notification';
+export { NotificationEvent } from './src/app/notification/notification-event';
+export { NotificationModule } from './src/app/notification/notification.module';
+export { NotificationType } from './src/app/notification/notification-type';
+export { NotificationService } from './src/app/notification/notification.service';
+export { ToastNotificationComponent } from './src/app/notification/toast-notification.component';
+export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
+
 // Sample
 export { SampleModule } from './src/app/sample/sample.module';
 
