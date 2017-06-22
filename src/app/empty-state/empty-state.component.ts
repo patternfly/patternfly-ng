@@ -10,7 +10,7 @@ import {
 import { Action } from '../models/action';
 import { EmptyStateConfig } from './empty-state-config';
 
-import * as _ from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Empty state component.
@@ -42,18 +42,18 @@ export class EmptyStateComponent implements OnInit {
 
   ngDoCheck(): void {
     // Do a deep compare on config
-    if (!_.isEqual(this.config, this.prevConfig)) {
+    if (!isEqual(this.config, this.prevConfig)) {
       this.setupConfig();
     }
   }
 
   setupConfig(): void {
     if (this.config !== undefined) {
-      _.defaults(this.config, this.defaultConfig);
+      defaults(this.config, this.defaultConfig);
     } else {
-      this.config = _.cloneDeep(this.defaultConfig);
+      this.config = cloneDeep(this.defaultConfig);
     }
-    this.prevConfig = _.cloneDeep(this.config);
+    this.prevConfig = cloneDeep(this.config);
   }
 
   // Action functions
