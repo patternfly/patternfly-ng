@@ -19,7 +19,7 @@
                     (onOverCharsMaxLimit)="handleOverCharsMaxLimit($event, 'example1')"
                     (onUnderCharsMaxLimit)="handleUnderCharsMaxLimit($event, 'example1')"
                     (ngModel)="example1"
-                    pfng-remaining-chars>Initial text</textarea>
+                    pfng-remaining-chars-count>Initial text</textarea>
         </div>
         <span class="pull-right chars-remaining-pf">
         <span #remainingCountElement1></span>
@@ -43,7 +43,7 @@
                       (onOverCharsMaxLimit)="handleOverCharsMaxLimit($event, 'example2')"
                       (onUnderCharsMaxLimit)="handleUnderCharsMaxLimit($event, 'example2')"
                       (ngModel)="example2"
-                      pfng-remaining-chars></textarea>
+                      pfng-remaining-chars-count></textarea>
           </div>
           <span class="pull-left">
           <button class="btn btn-default" onclick="return false;">Submit</button>
@@ -66,7 +66,7 @@
                (onOverCharsMaxLimit)="handleOverCharsMaxLimit($event, 'example3')"
                (onUnderCharsMaxLimit)="handleUnderCharsMaxLimit($event, 'example3')"
                (ngModel)="example3"
-               pfng-remaining-chars>
+               pfng-remaining-chars-count>
         <span class="chars-remaining-pf padding-left-5">
           <span #remainingCountElement3></span>
           <span>Remaining</span>
@@ -83,10 +83,10 @@
   <div>
     <tabset>
       <tab heading="html">
-        <include-content src="/src/app/remaining-chars/examples/remaining-chars-example.component.html"></include-content>
+        <include-content src="/src/app/remaining-chars-count/examples/remaining-chars-count-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="/src/app/remaining-chars/examples/remaining-chars-example.component.ts"></include-content>
+        <include-content src="/src/app/remaining-chars-count/examples/remaining-chars-count-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>
