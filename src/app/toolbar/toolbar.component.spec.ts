@@ -12,11 +12,11 @@ import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { Action } from '../models/action';
 import { ActionConfig } from '../models/action-config';
-import { Filter } from '../filters/filter';
-import { FilterConfig } from '../filters/filter-config';
-import { FilterField } from '../filters/filter-field';
-import { FilterFieldsComponent } from '../filters/filter-fields.component';
-import { FilterResultsComponent } from '../filters/filter-results.component';
+import { Filter } from '../filter/filter';
+import { FilterConfig } from '../filter/filter-config';
+import { FilterField } from '../filter/filter-field';
+import { FilterFieldsComponent } from '../filter/filter-fields.component';
+import { FilterResultsComponent } from '../filter/filter-results.component';
 import { SearchHighlightModule } from './../pipes/search-highlight.module';
 import { SortComponent } from '../sort/sort.component';
 import { SortConfig } from '../sort/sort-config';

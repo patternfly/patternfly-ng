@@ -35,4 +35,4 @@ export {
   exports: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],
   providers: [ BsDropdownConfig, TooltipConfig ]
 })
-export class FiltersModule { }
+export class FilterModule { }

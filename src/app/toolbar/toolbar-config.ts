@@ -1,5 +1,5 @@
 import { ActionConfig } from '../models/action-config';
-import { FilterConfig } from '../filters/filter-config';
+import { FilterConfig } from '../filter/filter-config';
 import { SortConfig } from '../sort/sort-config';
 import { ViewConfig } from '../models/view-config';
 

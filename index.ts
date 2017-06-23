@@ -6,15 +6,15 @@ export { EmptyStateConfig } from './src/app/empty-state/empty-state-config';
 export { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 
 // Filter
-export { Filter } from './src/app/filters/filter';
-export { FilterComponent } from './src/app/filters/filter.component';
-export { FilterConfig } from './src/app/filters/filter-config';
-export { FilterEvent } from './src/app/filters/filter-event';
-export { FilterField } from './src/app/filters/filter-field';
-export { FilterFieldsComponent } from './src/app/filters/filter-fields.component';
-export { FilterResultsComponent } from './src/app/filters/filter-results.component';
-export { FilterQuery } from './src/app/filters/filter-query';
-export { FiltersModule } from './src/app/filters/filters.module';
+export { Filter } from './src/app/filter/filter';
+export { FilterComponent } from './src/app/filter/filter.component';
+export { FilterConfig } from './src/app/filter/filter-config';
+export { FilterEvent } from './src/app/filter/filter-event';
+export { FilterField } from './src/app/filter/filter-field';
+export { FilterFieldsComponent } from './src/app/filter/filter-fields.component';
+export { FilterResultsComponent } from './src/app/filter/filter-results.component';
+export { FilterQuery } from './src/app/filter/filter-query';
+export { FilterModule } from './src/app/filter/filter.module';
 
 // List View
 export { ListViewActionsComponent } from './src/app/list-view/list-view-actions.component';

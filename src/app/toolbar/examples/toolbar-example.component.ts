@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 
 import { Action } from '../../models/action';
 import { ActionConfig } from '../../models/action-config';
-import { Filter } from '../../filters/filter';
-import { FilterConfig } from '../../filters/filter-config';
-import { FilterField } from '../../filters/filter-field';
-import { FilterEvent } from '../../filters/filter-event';
+import { Filter } from '../../filter/filter';
+import { FilterConfig } from '../../filter/filter-config';
+import { FilterField } from '../../filter/filter-field';
+import { FilterEvent } from '../../filter/filter-event';
 import { SortConfig } from '../../sort/sort-config';
 import { SortField } from '../../sort/sort-field';
 import { SortEvent } from '../../sort/sort-event';
