@@ -6,7 +6,7 @@ import { FilterExampleComponent } from '../app/filter/examples/filter-example.co
 import { ListViewExampleComponent } from '../app/list-view/examples/list-view-example.component';
 import { RemainingCharsExampleComponent } from '../app/remaining-chars/examples/remaining-chars-example.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
-import { SearchHighlightExampleComponent } from '../app/pipes/examples/search-highlight-example.component';
+import { SearchHighlightExampleComponent } from '../app/search-highlight/examples/search-highlight-example.component';
 import { SortExampleComponent } from '../app/sort/examples/sort-example.component';
 import { ToastNotificationExampleComponent } from '../app/notification/examples/toast-notification-example.component';
 import { ToolbarExampleComponent } from '../app/toolbar/examples/toolbar-example.component';

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { SearchHighlightModule } from './../pipes/search-highlight.module';
+import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
 import { Filter } from './filter';
 import { FilterComponent } from './filter.component';
 import { FilterConfig } from './filter-config';

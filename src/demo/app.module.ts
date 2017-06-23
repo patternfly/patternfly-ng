@@ -17,7 +17,7 @@ import { NotificationExampleModule } from '../app/notification/examples/notifica
 import { ListViewExampleModule } from '../app/list-view/examples/list-view-example.module';
 import { RemainingCharsExampleModule } from '../app/remaining-chars/examples/remaining-chars-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
-import { SearchHighlightExampleModule } from '../app/pipes/examples/search-highlight-example.module';
+import { SearchHighlightExampleModule } from '../app/search-highlight/examples/search-highlight-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 import { ToolbarExampleModule } from '../app/toolbar/examples/toolbar-example.module';
 import { WelcomeComponent } from './components/welcome.component';

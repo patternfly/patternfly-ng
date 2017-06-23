@@ -17,7 +17,7 @@ import { FilterConfig } from '../filter/filter-config';
 import { FilterField } from '../filter/filter-field';
 import { FilterFieldsComponent } from '../filter/filter-fields.component';
 import { FilterResultsComponent } from '../filter/filter-results.component';
-import { SearchHighlightModule } from './../pipes/search-highlight.module';
+import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
 import { SortComponent } from '../sort/sort.component';
 import { SortConfig } from '../sort/sort-config';
 import { SortEvent } from '../sort/sort-event';

@@ -47,7 +47,7 @@ export { RemainingCharsDirective } from './src/app/remaining-chars/remaining-cha
 export { SampleModule } from './src/app/sample/sample.module';
 
 // Search Highlight
-export { SearchHighlightModule } from './src/app/pipes/search-highlight.module';
+export { SearchHighlightModule } from './src/app/search-highlight/search-highlight.module';
 
 // Sort
 export { SortComponent } from './src/app/sort/sort.component';

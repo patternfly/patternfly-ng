@@ -16,7 +16,7 @@ import { FilterConfig } from './filter-config';
 import { FilterField } from './filter-field';
 import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
-import { SearchHighlightModule } from './../pipes/search-highlight.module';
+import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
 
 describe('Filter component - ', () => {
   let comp: FilterComponent;
