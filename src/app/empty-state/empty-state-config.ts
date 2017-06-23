@@ -1,16 +1,16 @@
-import { ActionsConfig } from '../models/actions-config';
+import { ActionConfig } from '../models/action-config';
 
 /*
  * An empty state config containing:
  *
- * actionsConfig - Optional configuration settings for toolbar actions
+ * actionConfig - Optional configuration settings for toolbar actions
  * icon - class for main icon. Ex. 'pficon pficon-add-circle-o'
  * info - Text for the main informational paragraph
  * title - Text for the main title
  *
  */
 export class EmptyStateConfig {
-  actions?: ActionsConfig;
+  actions?: ActionConfig;
   helpLink?: {
     label: string;
     urlLabel?: string;

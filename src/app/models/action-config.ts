@@ -9,7 +9,7 @@ import { Action } from './action';
  * moreActionsVisibleFn - Set to false to hide secondary actions kebab (list-view only)
  * primaryActions - List of primary button actions
  */
-export class ActionsConfig {
+export class ActionConfig {
   moreActions?: Action[];
   moreActionsDisabled: boolean;
   moreActionsStyleClass: string;

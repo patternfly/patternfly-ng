@@ -26,10 +26,10 @@ export { ListViewModule } from './src/app/list-view/list-view.module';
 
 // Models
 export { Action } from './src/app/models/action';
-export { ActionsConfig } from './src/app/models/actions-config';
+export { ActionConfig } from './src/app/models/action-config';
 export { ModelsModule } from './src/app/models/models.module';
 export { View } from './src/app/models/view';
-export { ViewsConfig } from './src/app/models/views-config';
+export { ViewConfig } from './src/app/models/view-config';
 
 // Notification
 export { Notification } from './src/app/notification/notification';

@@ -74,12 +74,12 @@ export class ToolbarComponent implements OnInit {
     if (this.config.sortConfig !== undefined && this.config.sortConfig.show === undefined) {
       this.config.sortConfig.show = true;
     }
-    if (this.config && this.config.viewsConfig && this.config.viewsConfig.views === undefined) {
-      this.config.viewsConfig.views = [];
+    if (this.config && this.config.viewConfig && this.config.viewConfig.views === undefined) {
+      this.config.viewConfig.views = [];
     }
-    if (this.config && this.config.viewsConfig
-        && this.config.viewsConfig.currentView === undefined) {
-      this.config.viewsConfig.currentView = this.config.viewsConfig.views[0];
+    if (this.config && this.config.viewConfig
+        && this.config.viewConfig.currentView === undefined) {
+      this.config.viewConfig.currentView = this.config.viewConfig.views[0];
     }
   }
 
@@ -143,7 +143,7 @@ export class ToolbarComponent implements OnInit {
   // View functions
 
   isViewSelected(view: View): boolean {
-    return this.config.viewsConfig && (this.config.viewsConfig.currentView.id === view.id);
+    return this.config.viewConfig && (this.config.viewConfig.currentView.id === view.id);
   }
 
   submit($event: any): void {
@@ -151,7 +151,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   viewSelected (view: View): void {
-    this.config.viewsConfig.currentView = view;
+    this.config.viewConfig.currentView = view;
     if (!view.disabled) {
       this.onViewSelect.emit(view);
     }

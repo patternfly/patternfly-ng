@@ -4,8 +4,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { TabDirective } from 'ngx-bootstrap/tabs';
-
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'filter-example',

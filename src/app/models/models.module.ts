@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 
 import { Action } from './action';
-import { ActionsConfig } from './actions-config';
+import { ActionConfig } from './action-config';
 import { View } from './view';
-import { ViewsConfig } from './views-config';
+import { ViewConfig } from './view-config';
 
 export {
   Action,
-  ActionsConfig,
+  ActionConfig,
   View,
-  ViewsConfig
+  ViewConfig
 }
 
 @NgModule({
