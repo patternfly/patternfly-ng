@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var _ = require("lodash");
 var sort_config_1 = require("./sort-config");
+var lodash_1 = require("lodash");
 var SortComponent = (function () {
     function SortComponent() {
         this.onChange = new core_1.EventEmitter();
@@ -26,16 +26,16 @@ var SortComponent = (function () {
     };
     SortComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!_.isEqual(this.config, this.prevConfig)) {
+        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
     SortComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
-            _.defaults(this.config, this.defaultConfig);
+            lodash_1.defaults(this.config, this.defaultConfig);
         }
         else {
-            this.config = _.cloneDeep(this.defaultConfig);
+            this.config = lodash_1.cloneDeep(this.defaultConfig);
         }
         if (this.config && this.config.fields && this.config.fields.length > 0) {
             if (this.currentField === undefined) {

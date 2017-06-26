@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var _ = require("lodash");
 var toolbar_config_1 = require("./toolbar-config");
+var lodash_1 = require("lodash");
 /**
  * Standard toolbar component. Includes filtering and view selection capabilities
  */
@@ -31,16 +31,16 @@ var ToolbarComponent = (function () {
     };
     ToolbarComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!_.isEqual(this.config, this.prevConfig)) {
+        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
     ToolbarComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
-            _.defaults(this.config, this.defaultConfig);
+            lodash_1.defaults(this.config, this.defaultConfig);
         }
         else {
-            this.config = _.cloneDeep(this.defaultConfig);
+            this.config = lodash_1.cloneDeep(this.defaultConfig);
         }
         if (this.config && this.config.filterConfig
             && this.config.filterConfig.appliedFilters === undefined) {
@@ -89,7 +89,7 @@ var ToolbarComponent = (function () {
         }
     };
     ToolbarComponent.prototype.filterExists = function (filter) {
-        var foundFilter = _.find(this.config.filterConfig.appliedFilters, {
+        var foundFilter = lodash_1.find(this.config.filterConfig.appliedFilters, {
             field: filter.field,
             query: filter.query,
             value: filter.value
@@ -121,7 +121,7 @@ var ToolbarComponent = (function () {
     };
     // Private
     ToolbarComponent.prototype.enforceSingleSelect = function (filter) {
-        _.remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
+        lodash_1.remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
     };
     return ToolbarComponent;
 }());

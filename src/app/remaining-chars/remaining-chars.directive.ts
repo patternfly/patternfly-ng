@@ -9,8 +9,6 @@ import {
   Renderer2
 } from '@angular/core';
 
-import * as _ from 'lodash';
-
 /**
  * Remaining Characters component for showing a characters remaining count and triggering warning and error
  * behavior when passing specified thresholds.  When the <code>charsRemainingWarning</code> threshold is passed,

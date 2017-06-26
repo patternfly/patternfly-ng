@@ -7,11 +7,11 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import * as _ from 'lodash';
-
 import { SortConfig } from './sort-config';
 import { SortField } from './sort-field';
 import { SortEvent } from './sort-event';
+
+import { cloneDeep, defaults, isEqual } from 'lodash';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -41,16 +41,16 @@ export class SortComponent implements OnInit {
 
   ngDoCheck(): void {
     // Do a deep compare on config
-    if (!_.isEqual(this.config, this.prevConfig)) {
+    if (!isEqual(this.config, this.prevConfig)) {
       this.setupConfig();
     }
   }
 
   setupConfig(): void {
     if (this.config !== undefined) {
-      _.defaults(this.config, this.defaultConfig);
+      defaults(this.config, this.defaultConfig);
     } else {
-      this.config = _.cloneDeep(this.defaultConfig);
+      this.config = cloneDeep(this.defaultConfig);
     }
 
     if (this.config && this.config.fields && this.config.fields.length > 0) {
