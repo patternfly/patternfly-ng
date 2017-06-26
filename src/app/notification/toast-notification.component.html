@@ -33,10 +33,14 @@
                  [ngTemplateOutlet]="primaryAction.template"
                  [ngOutletContext]="{ action: action }"></ng-template>
     <ng-template #showButtonName>
-      <a *ngIf="primaryAction.disabled !== true"
-         (click)="handleAction(primaryAction)">{{primaryAction?.title}}</a>
       <a *ngIf="primaryAction.disabled === true"
-         onclick="javascript:void(0);">{{primaryAction?.title}}</a>
+         href="javascript:void(0)"
+         title="{{primaryAction?.title}}"
+         (click)="handleAction(primaryAction)">{{primaryAction?.name}}</a>
+      <a *ngIf="primaryAction.disabled === true"
+         href="javascript:void(0)"
+         title="{{primaryAction?.title}}"
+         onclick="return false;">{{primaryAction?.name}}</a>
     </ng-template>
   </div>
   <span class="pficon pficon-ok" *ngIf="type === 'success'"></span>

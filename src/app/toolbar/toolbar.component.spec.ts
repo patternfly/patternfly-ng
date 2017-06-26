@@ -493,7 +493,7 @@ describe('Toolbar component - ', () => {
   it('should have correct number of secondary actions', function () {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
-    expect(fields.length).toBe(5);
+    expect(fields.length).toBe(6);
   });
 
   it('should have correct number of separators', function () {
@@ -525,7 +525,7 @@ describe('Toolbar component - ', () => {
     let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
     expect(primaryActions.length).toBe(2);
-    expect(moreActions.length).toBe(5);
+    expect(moreActions.length).toBe(6);
 
     let action: Action;
     comp.onActionSelect.subscribe((data: Action) => {
@@ -547,7 +547,7 @@ describe('Toolbar component - ', () => {
     let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
     expect(primaryActions.length).toBe(2);
-    expect(moreActions.length).toBe(5);
+    expect(moreActions.length).toBe(6);
 
     let action: Action = null;
     comp.onActionSelect.subscribe((data: Action) => {
@@ -577,7 +577,7 @@ describe('Toolbar component - ', () => {
     let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
     expect(primaryActions.length).toBe(2);
-    expect(moreActions.length).toBe(5);
+    expect(moreActions.length).toBe(6);
 
     config.actionConfig = undefined;
     comp.config = config;
