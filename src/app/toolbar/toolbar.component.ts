@@ -8,14 +8,14 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import * as _ from 'lodash';
-
 import { Action } from '../models/action';
 import { Filter } from '../filters/filter';
 import { FilterEvent } from '../filters/filter-event';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarConfig } from './toolbar-config';
 import { View } from '../models/view';
+
+import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
 /**
  * Standard toolbar component. Includes filtering and view selection capabilities
@@ -52,16 +52,16 @@ export class ToolbarComponent implements OnInit {
 
   ngDoCheck(): void {
     // Do a deep compare on config
-    if (!_.isEqual(this.config, this.prevConfig)) {
+    if (!isEqual(this.config, this.prevConfig)) {
       this.setupConfig();
     }
   }
 
   setupConfig(): void {
     if (this.config !== undefined) {
-      _.defaults(this.config, this.defaultConfig);
+      defaults(this.config, this.defaultConfig);
     } else {
-      this.config = _.cloneDeep(this.defaultConfig);
+      this.config = cloneDeep(this.defaultConfig);
     }
 
     if (this.config && this.config.filterConfig
@@ -118,7 +118,7 @@ export class ToolbarComponent implements OnInit {
   }
   
   filterExists(filter: Filter): boolean {
-    let foundFilter = _.find(this.config.filterConfig.appliedFilters, {
+    let foundFilter = find(this.config.filterConfig.appliedFilters, {
       field: filter.field,
       query: filter.query,
       value: filter.value
@@ -160,6 +160,6 @@ export class ToolbarComponent implements OnInit {
   // Private
 
   private enforceSingleSelect(filter: Filter): void {
-    _.remove(this.config.filterConfig.appliedFilters, {title: filter.field.title});
+    remove(this.config.filterConfig.appliedFilters, {title: filter.field.title});
   }
 }
