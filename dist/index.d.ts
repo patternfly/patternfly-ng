@@ -11,6 +11,12 @@ export { FilterFieldsComponent } from './src/app/filters/filter-fields.component
 export { FilterResultsComponent } from './src/app/filters/filter-results.component';
 export { FilterQuery } from './src/app/filters/filter-query';
 export { FiltersModule } from './src/app/filters/filters.module';
+export { ListViewActionsComponent } from './src/app/list-view/list-view-actions.component';
+export { ListViewConfig } from './src/app/list-view/list-view-config';
+export { ListViewComponent } from './src/app/list-view/list-view.component';
+export { ListViewCompoundToggleComponent } from './src/app/list-view/list-view-compound-toggle.component';
+export { ListViewEvent } from './src/app/list-view/list-view-event';
+export { ListViewModule } from './src/app/list-view/list-view.module';
 export { Action } from './src/app/models/action';
 export { ActionsConfig } from './src/app/models/actions-config';
 export { ModelsModule } from './src/app/models/models.module';

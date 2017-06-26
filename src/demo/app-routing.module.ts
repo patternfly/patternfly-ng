@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filters/examples/filter-example.component';
+import { ListViewExampleComponent } from '../app/list-view/examples/list-view-example.component';
 import { RemainingCharsExampleComponent } from '../app/remaining-chars/examples/remaining-chars-example.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
 import { SearchHighlightExampleComponent } from '../app/pipes/examples/search-highlight-example.component';
@@ -21,6 +22,9 @@ const routes: Routes = [{
   }, {
     path: 'filters',
     component: FilterExampleComponent
+  }, {
+    path: 'listview',
+    component: ListViewExampleComponent
   }, {
     path: 'remainingchars',
     component: RemainingCharsExampleComponent
