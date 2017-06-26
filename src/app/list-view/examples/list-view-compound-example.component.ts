@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { Action } from '../../models/action';
-import { ActionsConfig } from '../../models/actions-config';
+import { ActionConfig } from '../../models/action-config';
 import { ListViewConfig } from '../list-view-config';
 import { ListViewEvent } from '../list-view-event';
 
@@ -126,9 +126,9 @@ export class ListViewCompoundExampleComponent implements OnInit {
   /**
    * Get the ActionConfig properties for each row
    *
-   * @returns {ActionsConfig}
+   * @returns {ActionConfig}
    */
-  getActionsConfig(): ActionsConfig {
+  getActionsConfig(): ActionConfig {
     let config = {
       primaryActions: [{
         id: 'action1',
@@ -165,7 +165,7 @@ export class ListViewCompoundExampleComponent implements OnInit {
         name: 'Grouped Action 2',
         title: 'Do something similar'
       }],
-    } as ActionsConfig;
+    } as ActionConfig;
 
     return config;
   }

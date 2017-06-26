@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { FiltersModule } from '../filters/filters.module';
+import { FilterModule } from '../filter/filter.module';
 import { SortModule } from '../sort/sort.module';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarConfig } from './toolbar-config';
@@ -13,7 +13,7 @@ export {
 }
 
 @NgModule({
-  imports: [ BsDropdownModule, CommonModule, FiltersModule, SortModule ],
+  imports: [ BsDropdownModule, CommonModule, FilterModule, SortModule ],
   declarations: [ ToolbarComponent ],
   exports: [ ToolbarComponent ],
   providers: [ BsDropdownConfig ]

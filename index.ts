@@ -6,15 +6,15 @@ export { EmptyStateConfig } from './src/app/empty-state/empty-state-config';
 export { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 
 // Filter
-export { Filter } from './src/app/filters/filter';
-export { FilterComponent } from './src/app/filters/filter.component';
-export { FilterConfig } from './src/app/filters/filter-config';
-export { FilterEvent } from './src/app/filters/filter-event';
-export { FilterField } from './src/app/filters/filter-field';
-export { FilterFieldsComponent } from './src/app/filters/filter-fields.component';
-export { FilterResultsComponent } from './src/app/filters/filter-results.component';
-export { FilterQuery } from './src/app/filters/filter-query';
-export { FiltersModule } from './src/app/filters/filters.module';
+export { Filter } from './src/app/filter/filter';
+export { FilterComponent } from './src/app/filter/filter.component';
+export { FilterConfig } from './src/app/filter/filter-config';
+export { FilterEvent } from './src/app/filter/filter-event';
+export { FilterField } from './src/app/filter/filter-field';
+export { FilterFieldsComponent } from './src/app/filter/filter-fields.component';
+export { FilterModule } from './src/app/filter/filter.module';
+export { FilterResultsComponent } from './src/app/filter/filter-results.component';
+export { FilterQuery } from './src/app/filter/filter-query';
 
 // List View
 export { ListViewActionsComponent } from './src/app/list-view/list-view-actions.component';
@@ -26,10 +26,10 @@ export { ListViewModule } from './src/app/list-view/list-view.module';
 
 // Models
 export { Action } from './src/app/models/action';
-export { ActionsConfig } from './src/app/models/actions-config';
+export { ActionConfig } from './src/app/models/action-config';
 export { ModelsModule } from './src/app/models/models.module';
 export { View } from './src/app/models/view';
-export { ViewsConfig } from './src/app/models/views-config';
+export { ViewConfig } from './src/app/models/view-config';
 
 // Notification
 export { Notification } from './src/app/notification/notification';
@@ -41,13 +41,15 @@ export { ToastNotificationComponent } from './src/app/notification/toast-notific
 export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
 
 // Remaining Chars
-export { RemainingCharsDirective } from './src/app/remaining-chars/remaining-chars.directive';
+export { RemainingCharsCountDirective } from './src/app/remaining-chars-count/remaining-chars-count.directive';
+export { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
 
 // Sample
 export { SampleModule } from './src/app/sample/sample.module';
 
 // Search Highlight
-export { SearchHighlightModule } from './src/app/pipes/search-highlight.module';
+export { SearchHighlightPipe } from './src/app/search-highlight/search-highlight.pipe';
+export { SearchHighlightModule } from './src/app/search-highlight/search-highlight.module';
 
 // Sort
 export { SortComponent } from './src/app/sort/sort.component';

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'SearchHighlight'})
-export class SearchHighlight implements PipeTransform {
+export class SearchHighlightPipe implements PipeTransform {
   transform(val: string, search: string): any {
     if (search !== '' && search.length) {
       let lowerVal = val.toLowerCase();

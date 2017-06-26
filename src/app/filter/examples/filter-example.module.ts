@@ -5,16 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
-import { FiltersModule } from '../filters.module';
 import { FilterBasicExampleComponent } from './filter-basic-example.component';
 import { FilterExampleComponent } from './filter-example.component';
+import { FilterModule } from '../filter.module';
 import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DemoComponentsModule,
-    FiltersModule,
+    FilterModule,
     FormsModule,
     TabsModule.forRoot()
   ],

@@ -11,10 +11,10 @@
         <pfng-sort [config]="config.sortConfig" (onChange)="sortChange($event)"></pfng-sort>
       </div>
       <div class="form-group toolbar-actions"
-           *ngIf="config.actionsConfig !== undefined || actionsTemplate !== undefined">
-        <span *ngIf="config.actionsConfig?.primaryActions?.length > 0">
+           *ngIf="config.actionConfig !== undefined || actionsTemplate !== undefined">
+        <span *ngIf="config.actionConfig?.primaryActions?.length > 0">
           <button class="btn btn-default primary-action" type="button"
-                  *ngFor="let action of config.actionsConfig?.primaryActions"
+                  *ngFor="let action of config.actionConfig?.primaryActions"
                   title="{{action.title}}"
                   (click)="handleAction(action)"
                   [disabled]="action.disabled === true">
@@ -25,12 +25,12 @@
           <ng-template [ngTemplateOutlet]="actionsTemplate" [ngOutletContext]="{}"></ng-template>
         </div>
         <div class="dropdown dropdown-kebab-pf" dropdown
-             *ngIf="config.actionsConfig?.moreActions.length > 0">
+             *ngIf="config.actionConfig?.moreActions.length > 0">
           <button class="btn btn-link dropdown-toggle" type="button" dropdownToggle>
             <span class="fa fa-ellipsis-v"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownKebab" *dropdownMenu>
-            <li *ngFor="let action of config.actionsConfig?.moreActions"
+            <li *ngFor="let action of config.actionConfig?.moreActions"
                 [attr.role]="action.separator === true ? 'separator' : 'menuitem'"
                 [ngClass]="{'divider': action.separator === true, 'disabled': action.disabled === true}">
               <a *ngIf="action.separator !== true"
@@ -45,10 +45,10 @@
       </div>
       <div class="toolbar-pf-action-right">
         <div class="form-group toolbar-pf-view-selector"
-             *ngIf="viewsTemplate !== undefined || (config.viewsConfig?.views)">
+             *ngIf="viewsTemplate !== undefined || (config.viewConfig?.views)">
           <ng-template [ngTemplateOutlet]="viewsTemplate" [ngOutletContext]="{}"></ng-template>
-          <span *ngIf="config.viewsConfig">
-            <button *ngFor="let view of config.viewsConfig?.views" class="btn btn-link"
+          <span *ngIf="config.viewConfig">
+            <button *ngFor="let view of config.viewConfig?.views" class="btn btn-link"
                     [ngClass]="{'active': isViewSelected(view), 'disabled': view.disabled === true}"
                     title={{view.title}}  (click)="viewSelected(view)">
               <i class="{{view.iconClass}}"></i>

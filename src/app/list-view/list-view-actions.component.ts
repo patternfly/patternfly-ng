@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { Action } from '../models/action';
-import { ActionsConfig } from '../models/actions-config';
+import { ActionConfig } from '../models/action-config';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
@@ -25,16 +25,16 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   templateUrl: './list-view-actions.component.html'
 })
 export class ListViewActionsComponent implements OnInit {
-  @Input() config: ActionsConfig;
+  @Input() config: ActionConfig;
 
   @Output('onActionSelect') onActionSelect = new EventEmitter();
 
   defaultConfig = {
     moreActionsDisabled: false,
     moreActionsVisible: true
-  } as ActionsConfig;
+  } as ActionConfig;
   isMoreActionsDropup: boolean = false;
-  prevConfig: ActionsConfig;
+  prevConfig: ActionConfig;
 
   constructor(private el: ElementRef) {
   }

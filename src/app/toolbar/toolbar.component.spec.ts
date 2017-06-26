@@ -11,20 +11,20 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { Action } from '../models/action';
-import { ActionsConfig } from '../models/actions-config';
-import { Filter } from '../filters/filter';
-import { FilterConfig } from '../filters/filter-config';
-import { FilterField } from '../filters/filter-field';
-import { FilterFieldsComponent } from '../filters/filter-fields.component';
-import { FilterResultsComponent } from '../filters/filter-results.component';
-import { SearchHighlightModule } from './../pipes/search-highlight.module';
+import { ActionConfig } from '../models/action-config';
+import { Filter } from '../filter/filter';
+import { FilterConfig } from '../filter/filter-config';
+import { FilterField } from '../filter/filter-field';
+import { FilterFieldsComponent } from '../filter/filter-fields.component';
+import { FilterResultsComponent } from '../filter/filter-results.component';
+import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
 import { SortComponent } from '../sort/sort.component';
 import { SortConfig } from '../sort/sort-config';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarConfig } from './toolbar-config';
 import { View } from '../models/view';
-import { ViewsConfig } from '../models/views-config';
+import { ViewConfig } from '../models/view-config';
 
 describe('Toolbar component - ', () => {
   let comp: ToolbarComponent;
@@ -33,7 +33,7 @@ describe('Toolbar component - ', () => {
 
   beforeEach(() => {
     config = {
-      actionsConfig: {
+      actionConfig: {
         primaryActions: [{
           id: 'action1',
           name: 'Action 1',
@@ -73,7 +73,7 @@ describe('Toolbar component - ', () => {
           name: 'Grouped Action 2',
           title: 'Do something similar'
         }]
-      } as ActionsConfig,
+      } as ActionConfig,
 
       filterConfig: {
         fields: [{
@@ -123,7 +123,7 @@ describe('Toolbar component - ', () => {
           }, {
             id: 'month9',
             value: 'September'
-          },{
+          }, {
             id: 'month10',
             value: 'October'
           }, {
@@ -159,7 +159,7 @@ describe('Toolbar component - ', () => {
         isAscending: this.isAscendingSort
       } as SortConfig,
 
-      viewsConfig: {
+      viewConfig: {
         views: [{
           id: 'listView',
           title: 'List View',
@@ -169,7 +169,7 @@ describe('Toolbar component - ', () => {
           title: 'Table View',
           iconClass: 'fa fa-table'
         }],
-      } as ViewsConfig
+      } as ViewConfig
     } as ToolbarConfig;
   });
 
@@ -434,7 +434,7 @@ describe('Toolbar component - ', () => {
     expect(viewSelector).not.toBeNull();
     expect(active.length).toBe(1);
 
-    config.viewsConfig.currentView = config.viewsConfig.views[0];
+    config.viewConfig.currentView = config.viewConfig.views[0];
     fixture.detectChanges();
 
     active = fixture.debugElement.queryAll(By.css('.active'));
@@ -472,11 +472,11 @@ describe('Toolbar component - ', () => {
     expect(view).not.toBeNull();
   });
 
-  it ('should not show view selectors when no viewsConfig is supplied', function () {
+  it ('should not show view selectors when no viewConfig is supplied', function () {
     let viewSelector = fixture.debugElement.query(By.css('.toolbar-pf-view-selector'));
     expect(viewSelector).not.toBeNull();
 
-    config.viewsConfig = undefined;
+    config.viewConfig = undefined;
     fixture.detectChanges();
 
     viewSelector = fixture.debugElement.query(By.css('.toolbar-pf-view-selector'));
@@ -513,7 +513,7 @@ describe('Toolbar component - ', () => {
     let menus = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .fa-ellipsis-v'));
     expect(menus.length).toBe(1);
 
-    config.actionsConfig.moreActions.length = 0;
+    config.actionConfig.moreActions.length = 0;
     fixture.detectChanges();
 
     menus = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .fa-ellipsis-v'));
@@ -535,11 +535,11 @@ describe('Toolbar component - ', () => {
 
     primaryActions[0].triggerEventHandler('click', {});
     fixture.detectChanges();
-    expect(action).toBe(config.actionsConfig.primaryActions[0]);
+    expect(action).toBe(config.actionConfig.primaryActions[0]);
 
     moreActions[3].triggerEventHandler('click', {});
     fixture.detectChanges();
-    expect(action).toBe(config.actionsConfig.moreActions[3]);
+    expect(action).toBe(config.actionConfig.moreActions[3]);
   });
 
   it('should not call the action function when a disabled action is clicked', function (done) {
@@ -561,9 +561,9 @@ describe('Toolbar component - ', () => {
 
     primaryActions[1].triggerEventHandler('click', {});
     fixture.detectChanges();
-    expect(action).toBe(config.actionsConfig.primaryActions[1]);
+    expect(action).toBe(config.actionConfig.primaryActions[1]);
 
-    config.actionsConfig.primaryActions[1].disabled = true;
+    config.actionConfig.primaryActions[1].disabled = true;
     fixture.detectChanges();
     action = null;
 
@@ -579,7 +579,7 @@ describe('Toolbar component - ', () => {
     expect(primaryActions.length).toBe(2);
     expect(moreActions.length).toBe(6);
 
-    config.actionsConfig = undefined;
+    config.actionConfig = undefined;
     comp.config = config;
     fixture.detectChanges();
 

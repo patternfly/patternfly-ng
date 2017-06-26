@@ -6,11 +6,11 @@ import {
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'remaining-chars-example',
-  styleUrls: ['./remaining-chars-example.component.less'],
-  templateUrl: './remaining-chars-example.component.html'
+  selector: 'remaining-chars-count-example',
+  styleUrls: ['./remaining-chars-count-example.component.less'],
+  templateUrl: './remaining-chars-count-example.component.html'
 })
-export class RemainingCharsExampleComponent implements OnInit {
+export class RemainingCharsCountExampleComponent implements OnInit {
   charsMaxLimitExceeded: any = {
     'example1': false,
     'example2': false,

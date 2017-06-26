@@ -25,9 +25,9 @@ import {
  * charsRemainingWarning - Number of remaining characters to warn upon
  */
 @Directive({
-  selector: '[pfng-remaining-chars]'
+  selector: '[pfng-remaining-chars-count]'
 })
-export class RemainingCharsDirective implements OnInit {
+export class RemainingCharsCountDirective implements OnInit {
   @Input() blockInputAtMaxLimit: boolean;
   @Input() charsMaxLimit: number = 100;
   @Input() charsRemainingElement: any;
