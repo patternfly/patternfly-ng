@@ -1,0 +1,26 @@
+<div class="blank-slate-pf">
+  <div *ngIf="config.icon" class="blank-slate-pf-icon">
+    <span class="{{config.icon}}"></span>
+  </div>
+  <h1 id="title">
+    {{config.title}}
+  </h1>
+  <p id="info" *ngIf="config.info !== undefined">
+    {{config.info}}
+  </p>
+  <p id="helpLink" *ngIf="config.helpLink !== undefined">
+    {{config.helpLink.label}} <a href="{{config.helpLink.url}}">{{config.helpLink.urlLabel}}</a>.
+  </p>
+  <div *ngIf="config.actions?.primaryActions?.length > 0" class="blank-slate-pf-main-action">
+    <button class="btn btn-primary btn-lg" title="{{action.title}}"
+      *ngFor="let action of config.actions.primaryActions"
+      (click)="handleAction(action)">{{action.name}}
+    </button>
+  </div>
+  <div *ngIf="config.actions?.moreActions.length > 0" class="blank-slate-pf-secondary-action">
+    <button class="btn btn-default" title="{{action.title}}"
+      *ngFor="let action of config.actions.moreActions"
+      (click)="handleAction(action)">{{action.name}}
+    </button>
+  </div>
+</div>
