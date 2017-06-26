@@ -1,20 +1,20 @@
 import { OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Action } from '../../models/action';
-import { ActionsConfig } from '../../models/actions-config';
-import { Filter } from '../../filters/filter';
-import { FilterConfig } from '../../filters/filter-config';
-import { FilterEvent } from '../../filters/filter-event';
+import { ActionConfig } from '../../models/action-config';
+import { Filter } from '../../filter/filter';
+import { FilterConfig } from '../../filter/filter-config';
+import { FilterEvent } from '../../filter/filter-event';
 import { SortConfig } from '../../sort/sort-config';
 import { SortField } from '../../sort/sort-field';
 import { SortEvent } from '../../sort/sort-event';
 import { ToolbarConfig } from '../toolbar-config';
 import { View } from '../../models/view';
-import { ViewsConfig } from '../../models/views-config';
+import { ViewConfig } from '../../models/view-config';
 export declare class ToolbarExampleComponent implements OnInit {
     private router;
     actionsTemplate: TemplateRef<any>;
-    actionsConfig: ActionsConfig;
+    actionConfig: ActionConfig;
     actionsText: string;
     allItems: any[];
     filterConfig: FilterConfig;
@@ -25,7 +25,7 @@ export declare class ToolbarExampleComponent implements OnInit {
     sortConfig: SortConfig;
     currentSortField: SortField;
     toolbarConfig: ToolbarConfig;
-    viewsConfig: ViewsConfig;
+    viewConfig: ViewConfig;
     view: View;
     weekDayQueries: any[];
     monthVals: any;

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule }  from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { ActionsConfig } from '../models/actions-config';
+import { ActionConfig } from '../models/action-config';
 import { EmptyStateConfig } from '../empty-state/empty-state-config';
 import { EmptyStateModule } from '../empty-state/empty-state.module';
 import { ListViewComponent } from './list-view.component';
@@ -17,7 +17,7 @@ describe('List View component - ', () => {
   let comp: ListViewComponent;
   let fixture: ComponentFixture<ListViewComponent>;
 
-  let actionsConfig: ActionsConfig;
+  let actionConfig: ActionConfig;
   let config: ListViewConfig;
   let emptyStateConfig: EmptyStateConfig;
   let items: any[];
@@ -66,7 +66,7 @@ describe('List View component - ', () => {
       state: 'New York'
     }];
 
-    actionsConfig = {
+    actionConfig = {
       primaryActions: [{
         id: 'action1',
         name: 'Main Action',
@@ -85,10 +85,10 @@ describe('List View component - ', () => {
         name: 'Secondary Action 3',
         title: 'Do something special'
       }]
-    } as ActionsConfig;
+    } as ActionConfig;
 
     emptyStateConfig = {
-      actions: actionsConfig,
+      actions: actionConfig,
       icon: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +

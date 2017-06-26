@@ -1,6 +1,6 @@
 import { ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { Action } from '../models/action';
-import { ActionsConfig } from '../models/actions-config';
+import { ActionConfig } from '../models/action-config';
 /**
  * List view actions component.
  *
@@ -8,11 +8,11 @@ import { ActionsConfig } from '../models/actions-config';
  */
 export declare class ListViewActionsComponent implements OnInit {
     private el;
-    config: ActionsConfig;
+    config: ActionConfig;
     onActionSelect: EventEmitter<{}>;
-    defaultConfig: ActionsConfig;
+    defaultConfig: ActionConfig;
     isMoreActionsDropup: boolean;
-    prevConfig: ActionsConfig;
+    prevConfig: ActionConfig;
     constructor(el: ElementRef);
     ngOnInit(): void;
     ngDoCheck(): void;

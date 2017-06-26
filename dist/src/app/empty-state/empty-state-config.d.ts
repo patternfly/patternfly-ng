@@ -1,6 +1,6 @@
-import { ActionsConfig } from '../models/actions-config';
+import { ActionConfig } from '../models/action-config';
 export declare class EmptyStateConfig {
-    actions?: ActionsConfig;
+    actions?: ActionConfig;
     helpLink?: {
         label: string;
         urlLabel?: string;

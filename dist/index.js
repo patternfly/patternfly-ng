@@ -10,24 +10,24 @@ exports.EmptyStateConfig = empty_state_config_1.EmptyStateConfig;
 var empty_state_module_1 = require("./src/app/empty-state/empty-state.module");
 exports.EmptyStateModule = empty_state_module_1.EmptyStateModule;
 // Filter
-var filter_1 = require("./src/app/filters/filter");
+var filter_1 = require("./src/app/filter/filter");
 exports.Filter = filter_1.Filter;
-var filter_component_1 = require("./src/app/filters/filter.component");
+var filter_component_1 = require("./src/app/filter/filter.component");
 exports.FilterComponent = filter_component_1.FilterComponent;
-var filter_config_1 = require("./src/app/filters/filter-config");
+var filter_config_1 = require("./src/app/filter/filter-config");
 exports.FilterConfig = filter_config_1.FilterConfig;
-var filter_event_1 = require("./src/app/filters/filter-event");
+var filter_event_1 = require("./src/app/filter/filter-event");
 exports.FilterEvent = filter_event_1.FilterEvent;
-var filter_field_1 = require("./src/app/filters/filter-field");
+var filter_field_1 = require("./src/app/filter/filter-field");
 exports.FilterField = filter_field_1.FilterField;
-var filter_fields_component_1 = require("./src/app/filters/filter-fields.component");
+var filter_fields_component_1 = require("./src/app/filter/filter-fields.component");
 exports.FilterFieldsComponent = filter_fields_component_1.FilterFieldsComponent;
-var filter_results_component_1 = require("./src/app/filters/filter-results.component");
+var filter_module_1 = require("./src/app/filter/filter.module");
+exports.FilterModule = filter_module_1.FilterModule;
+var filter_results_component_1 = require("./src/app/filter/filter-results.component");
 exports.FilterResultsComponent = filter_results_component_1.FilterResultsComponent;
-var filter_query_1 = require("./src/app/filters/filter-query");
+var filter_query_1 = require("./src/app/filter/filter-query");
 exports.FilterQuery = filter_query_1.FilterQuery;
-var filters_module_1 = require("./src/app/filters/filters.module");
-exports.FiltersModule = filters_module_1.FiltersModule;
 // List View
 var list_view_actions_component_1 = require("./src/app/list-view/list-view-actions.component");
 exports.ListViewActionsComponent = list_view_actions_component_1.ListViewActionsComponent;
@@ -44,14 +44,14 @@ exports.ListViewModule = list_view_module_1.ListViewModule;
 // Models
 var action_1 = require("./src/app/models/action");
 exports.Action = action_1.Action;
-var actions_config_1 = require("./src/app/models/actions-config");
-exports.ActionsConfig = actions_config_1.ActionsConfig;
+var action_config_1 = require("./src/app/models/action-config");
+exports.ActionConfig = action_config_1.ActionConfig;
 var models_module_1 = require("./src/app/models/models.module");
 exports.ModelsModule = models_module_1.ModelsModule;
 var view_1 = require("./src/app/models/view");
 exports.View = view_1.View;
-var views_config_1 = require("./src/app/models/views-config");
-exports.ViewsConfig = views_config_1.ViewsConfig;
+var view_config_1 = require("./src/app/models/view-config");
+exports.ViewConfig = view_config_1.ViewConfig;
 // Notification
 var notification_1 = require("./src/app/notification/notification");
 exports.Notification = notification_1.Notification;
@@ -68,13 +68,17 @@ exports.ToastNotificationComponent = toast_notification_component_1.ToastNotific
 var toast_notification_list_component_1 = require("./src/app/notification/toast-notification-list.component");
 exports.ToastNotificationListComponent = toast_notification_list_component_1.ToastNotificationListComponent;
 // Remaining Chars
-var remaining_chars_directive_1 = require("./src/app/remaining-chars/remaining-chars.directive");
-exports.RemainingCharsDirective = remaining_chars_directive_1.RemainingCharsDirective;
+var remaining_chars_count_directive_1 = require("./src/app/remaining-chars-count/remaining-chars-count.directive");
+exports.RemainingCharsCountDirective = remaining_chars_count_directive_1.RemainingCharsCountDirective;
+var remaining_chars_count_module_1 = require("./src/app/remaining-chars-count/remaining-chars-count.module");
+exports.RemainingCharsCountModule = remaining_chars_count_module_1.RemainingCharsCountModule;
 // Sample
 var sample_module_1 = require("./src/app/sample/sample.module");
 exports.SampleModule = sample_module_1.SampleModule;
 // Search Highlight
-var search_highlight_module_1 = require("./src/app/pipes/search-highlight.module");
+var search_highlight_pipe_1 = require("./src/app/search-highlight/search-highlight.pipe");
+exports.SearchHighlightPipe = search_highlight_pipe_1.SearchHighlightPipe;
+var search_highlight_module_1 = require("./src/app/search-highlight/search-highlight.module");
 exports.SearchHighlightModule = search_highlight_module_1.SearchHighlightModule;
 // Sort
 var sort_component_1 = require("./src/app/sort/sort.component");

@@ -1,10 +1,10 @@
-import { ActionsConfig } from '../models/actions-config';
-import { FilterConfig } from '../filters/filter-config';
+import { ActionConfig } from '../models/action-config';
+import { FilterConfig } from '../filter/filter-config';
 import { SortConfig } from '../sort/sort-config';
-import { ViewsConfig } from '../models/views-config';
+import { ViewConfig } from '../models/view-config';
 export declare class ToolbarConfig {
-    actionsConfig?: ActionsConfig;
+    actionConfig?: ActionConfig;
     filterConfig?: FilterConfig;
     sortConfig?: SortConfig;
-    viewsConfig?: ViewsConfig;
+    viewConfig?: ViewConfig;
 }

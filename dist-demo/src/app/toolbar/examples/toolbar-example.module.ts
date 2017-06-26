@@ -5,7 +5,7 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
-import { FiltersModule } from '../../filters/filters.module';
+import { FilterModule } from '../../filter/filter.module';
 import { ToolbarModule } from '../toolbar.module';
 import { ToolbarExampleComponent } from './toolbar-example.component';
 
@@ -15,7 +15,7 @@ import { ToolbarExampleComponent } from './toolbar-example.component';
     BsDropdownModule.forRoot(),
     CommonModule,
     DemoComponentsModule,
-    FiltersModule,
+    FilterModule,
     TabsModule.forRoot(),
     ToolbarModule
   ],

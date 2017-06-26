@@ -1,7 +1,7 @@
 import { EventEmitter, OnInit, TemplateRef } from '@angular/core';
 import { Action } from '../models/action';
-import { Filter } from '../filters/filter';
-import { FilterEvent } from '../filters/filter-event';
+import { Filter } from '../filter/filter';
+import { FilterEvent } from '../filter/filter-event';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarConfig } from './toolbar-config';
 import { View } from '../models/view';

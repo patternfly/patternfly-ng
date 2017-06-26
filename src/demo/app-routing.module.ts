@@ -2,11 +2,11 @@ import { NgModule }  from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-state-example.component';
-import { FilterExampleComponent } from '../app/filters/examples/filter-example.component';
+import { FilterExampleComponent } from '../app/filter/examples/filter-example.component';
 import { ListViewExampleComponent } from '../app/list-view/examples/list-view-example.component';
-import { RemainingCharsExampleComponent } from '../app/remaining-chars/examples/remaining-chars-example.component';
+import { RemainingCharsCountExampleComponent } from '../app/remaining-chars-count/examples/remaining-chars-count-example.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
-import { SearchHighlightExampleComponent } from '../app/pipes/examples/search-highlight-example.component';
+import { SearchHighlightExampleComponent } from '../app/search-highlight/examples/search-highlight-example.component';
 import { SortExampleComponent } from '../app/sort/examples/sort-example.component';
 import { ToastNotificationExampleComponent } from '../app/notification/examples/toast-notification-example.component';
 import { ToolbarExampleComponent } from '../app/toolbar/examples/toolbar-example.component';
@@ -26,8 +26,8 @@ const routes: Routes = [{
     path: 'listview',
     component: ListViewExampleComponent
   }, {
-    path: 'remainingchars',
-    component: RemainingCharsExampleComponent
+    path: 'remainingcharscount',
+    component: RemainingCharsCountExampleComponent
   }, {
     path: 'sample',
     component: SampleExampleComponent

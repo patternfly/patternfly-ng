@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var dropdown_1 = require("ngx-bootstrap/dropdown");
-var filters_module_1 = require("../filters/filters.module");
+var filter_module_1 = require("../filter/filter.module");
 var sort_module_1 = require("../sort/sort.module");
 var toolbar_component_1 = require("./toolbar.component");
 var toolbar_config_1 = require("./toolbar-config");
@@ -21,7 +21,7 @@ var ToolbarModule = (function () {
 }());
 ToolbarModule = __decorate([
     core_1.NgModule({
-        imports: [dropdown_1.BsDropdownModule, common_1.CommonModule, filters_module_1.FiltersModule, sort_module_1.SortModule],
+        imports: [dropdown_1.BsDropdownModule, common_1.CommonModule, filter_module_1.FilterModule, sort_module_1.SortModule],
         declarations: [toolbar_component_1.ToolbarComponent],
         exports: [toolbar_component_1.ToolbarComponent],
         providers: [dropdown_1.BsDropdownConfig]

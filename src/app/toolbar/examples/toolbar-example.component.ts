@@ -9,17 +9,17 @@ import {
 import { Router } from '@angular/router';
 
 import { Action } from '../../models/action';
-import { ActionsConfig } from '../../models/actions-config';
-import { Filter } from '../../filters/filter';
-import { FilterConfig } from '../../filters/filter-config';
-import { FilterField } from '../../filters/filter-field';
-import { FilterEvent } from '../../filters/filter-event';
+import { ActionConfig } from '../../models/action-config';
+import { Filter } from '../../filter/filter';
+import { FilterConfig } from '../../filter/filter-config';
+import { FilterField } from '../../filter/filter-field';
+import { FilterEvent } from '../../filter/filter-event';
 import { SortConfig } from '../../sort/sort-config';
 import { SortField } from '../../sort/sort-field';
 import { SortEvent } from '../../sort/sort-event';
 import { ToolbarConfig } from '../toolbar-config';
 import { View } from '../../models/view';
-import { ViewsConfig } from '../../models/views-config';
+import { ViewConfig } from '../../models/view-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -29,7 +29,7 @@ import { ViewsConfig } from '../../models/views-config';
 export class ToolbarExampleComponent implements OnInit {
   @ViewChild('actions') actionsTemplate: TemplateRef<any>;
 
-  actionsConfig: ActionsConfig;
+  actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   filterConfig: FilterConfig;
@@ -40,7 +40,7 @@ export class ToolbarExampleComponent implements OnInit {
   sortConfig: SortConfig;
   currentSortField: SortField;
   toolbarConfig: ToolbarConfig;
-  viewsConfig: ViewsConfig;
+  viewConfig: ViewConfig;
   view: View;
   weekDayQueries: any[];
 
@@ -220,7 +220,7 @@ export class ToolbarExampleComponent implements OnInit {
       isAscending: this.isAscendingSort
     } as SortConfig;
 
-    this.actionsConfig = {
+    this.actionConfig = {
       primaryActions: [{
         id: 'action1',
         name: 'Action 1',
@@ -260,9 +260,9 @@ export class ToolbarExampleComponent implements OnInit {
         name: 'Grouped Action 2',
         title: 'Do something similar'
       }]
-    } as ActionsConfig;
+    } as ActionConfig;
 
-    this.viewsConfig = {
+    this.viewConfig = {
       views: [{
         id: 'listView',
         title: 'List View',
@@ -272,16 +272,16 @@ export class ToolbarExampleComponent implements OnInit {
         title: 'Table View',
         iconClass: 'fa fa-table'
       }],
-    } as ViewsConfig;
+    } as ViewConfig;
 
-    this.viewsConfig.currentView = this.viewsConfig.views[0];
-    this.view = this.viewsConfig.currentView;
+    this.viewConfig.currentView = this.viewConfig.views[0];
+    this.view = this.viewConfig.currentView;
 
     this.toolbarConfig = {
-      actionsConfig: this.actionsConfig,
+      actionConfig: this.actionConfig,
       filterConfig: this.filterConfig,
       sortConfig: this.sortConfig,
-      viewsConfig: this.viewsConfig
+      viewConfig: this.viewConfig
     } as ToolbarConfig;
   }
 

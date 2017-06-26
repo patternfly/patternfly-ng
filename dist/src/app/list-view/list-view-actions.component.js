@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var actions_config_1 = require("../models/actions-config");
+var action_config_1 = require("../models/action-config");
 var lodash_1 = require("lodash");
 /**
  * List view actions component.
@@ -106,7 +106,7 @@ var ListViewActionsComponent = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", actions_config_1.ActionsConfig)
+    __metadata("design:type", action_config_1.ActionConfig)
 ], ListViewActionsComponent.prototype, "config", void 0);
 __decorate([
     core_1.Output('onActionSelect'),

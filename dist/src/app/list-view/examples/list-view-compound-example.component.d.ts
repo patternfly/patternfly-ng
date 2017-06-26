@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Action } from '../../models/action';
-import { ActionsConfig } from '../../models/actions-config';
+import { ActionConfig } from '../../models/action-config';
 import { ListViewConfig } from '../list-view-config';
 import { ListViewEvent } from '../list-view-event';
 export declare class ListViewCompoundExampleComponent implements OnInit {
@@ -14,9 +14,9 @@ export declare class ListViewCompoundExampleComponent implements OnInit {
     /**
      * Get the ActionConfig properties for each row
      *
-     * @returns {ActionsConfig}
+     * @returns {ActionConfig}
      */
-    getActionsConfig(): ActionsConfig;
+    getActionsConfig(): ActionConfig;
     handleAction($event: Action, item: any): void;
     handleClick($event: ListViewEvent): void;
 }

@@ -9,12 +9,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var action_1 = require("./action");
 exports.Action = action_1.Action;
-var actions_config_1 = require("./actions-config");
-exports.ActionsConfig = actions_config_1.ActionsConfig;
+var action_config_1 = require("./action-config");
+exports.ActionConfig = action_config_1.ActionConfig;
 var view_1 = require("./view");
 exports.View = view_1.View;
-var views_config_1 = require("./views-config");
-exports.ViewsConfig = views_config_1.ViewsConfig;
+var view_config_1 = require("./view-config");
+exports.ViewConfig = view_config_1.ViewConfig;
 var ModelsModule = (function () {
     function ModelsModule() {
     }

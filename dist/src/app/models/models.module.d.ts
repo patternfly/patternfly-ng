@@ -1,7 +1,7 @@
 import { Action } from './action';
-import { ActionsConfig } from './actions-config';
+import { ActionConfig } from './action-config';
 import { View } from './view';
-import { ViewsConfig } from './views-config';
-export { Action, ActionsConfig, View, ViewsConfig };
+import { ViewConfig } from './view-config';
+export { Action, ActionConfig, View, ViewConfig };
 export declare class ModelsModule {
 }

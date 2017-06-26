@@ -7,7 +7,7 @@ import {
 import { Router } from '@angular/router';
 
 import { Action } from '../../models/action';
-import { ActionsConfig } from '../../models/actions-config';
+import { ActionConfig } from '../../models/action-config';
 import { EmptyStateConfig } from '../empty-state-config';
 
 @Component({
@@ -16,7 +16,7 @@ import { EmptyStateConfig } from '../empty-state-config';
   templateUrl: './empty-state-example.component.html'
 })
 export class EmptyStateExampleComponent implements OnInit {
-  actionsConfig: ActionsConfig;
+  actionConfig: ActionConfig;
   actionsText: string = '';
   emptyStateConfig: EmptyStateConfig;
 
@@ -24,7 +24,7 @@ export class EmptyStateExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.actionsConfig = {
+    this.actionConfig = {
       primaryActions: [{
         id: 'action1',
         name: 'Main Action',
@@ -43,10 +43,10 @@ export class EmptyStateExampleComponent implements OnInit {
         name: 'Secondary Action 3',
         title: 'Do something special'
       }]
-    } as ActionsConfig;
+    } as ActionConfig;
 
     this.emptyStateConfig = {
-      actions: this.actionsConfig,
+      actions: this.actionConfig,
       icon: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +

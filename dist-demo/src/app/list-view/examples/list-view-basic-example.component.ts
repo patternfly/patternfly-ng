@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 import { Action } from '../../models/action';
-import { ActionsConfig } from '../../models/actions-config';
+import { ActionConfig } from '../../models/action-config';
 import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { ListViewConfig } from '../list-view-config';
 import { ListViewEvent } from '../list-view-event';
@@ -18,7 +18,7 @@ import { ListViewEvent } from '../list-view-event';
   templateUrl: './list-view-basic-example.component.html'
 })
 export class ListViewBasicExampleComponent implements OnInit {
-  actionsConfig: ActionsConfig;
+  actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   // dragItem: any;
@@ -123,7 +123,7 @@ export class ListViewBasicExampleComponent implements OnInit {
     }];
     this.items = this.allItems;
 
-    this.actionsConfig = {
+    this.actionConfig = {
       primaryActions: [{
         id: 'action1',
         name: 'Main Action',
@@ -142,10 +142,10 @@ export class ListViewBasicExampleComponent implements OnInit {
         name: 'Secondary Action 3',
         title: 'Do something special'
       }]
-    } as ActionsConfig;
+    } as ActionConfig;
 
     this.emptyStateConfig = {
-      actions: this.actionsConfig,
+      actions: this.actionConfig,
       icon: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
@@ -180,10 +180,10 @@ export class ListViewBasicExampleComponent implements OnInit {
    * @param item The current row item
    * @param actionButtonTemplate {TemplateRef} Custom button template
    * @param startButtonTemplate {TemplateRef} Custom button template
-   * @returns {ActionsConfig}
+   * @returns {ActionConfig}
    */
   getActionsConfig(item: any, actionButtonTemplate: TemplateRef<any>,
-      startButtonTemplate: TemplateRef<any>): ActionsConfig {
+      startButtonTemplate: TemplateRef<any>): ActionConfig {
     let config = {
       primaryActions: [{
         id: 'start',
@@ -237,7 +237,7 @@ export class ListViewBasicExampleComponent implements OnInit {
       }],
       moreActionsDisabled: false,
       moreActionsVisible: true
-    } as ActionsConfig;
+    } as ActionConfig;
 
     // Set button disabled
     if (item.started === true) {

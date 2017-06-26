@@ -52,12 +52,12 @@ var ToolbarComponent = (function () {
         if (this.config.sortConfig !== undefined && this.config.sortConfig.show === undefined) {
             this.config.sortConfig.show = true;
         }
-        if (this.config && this.config.viewsConfig && this.config.viewsConfig.views === undefined) {
-            this.config.viewsConfig.views = [];
+        if (this.config && this.config.viewConfig && this.config.viewConfig.views === undefined) {
+            this.config.viewConfig.views = [];
         }
-        if (this.config && this.config.viewsConfig
-            && this.config.viewsConfig.currentView === undefined) {
-            this.config.viewsConfig.currentView = this.config.viewsConfig.views[0];
+        if (this.config && this.config.viewConfig
+            && this.config.viewConfig.currentView === undefined) {
+            this.config.viewConfig.currentView = this.config.viewConfig.views[0];
         }
     };
     // Action functions
@@ -108,13 +108,13 @@ var ToolbarComponent = (function () {
     };
     // View functions
     ToolbarComponent.prototype.isViewSelected = function (view) {
-        return this.config.viewsConfig && (this.config.viewsConfig.currentView.id === view.id);
+        return this.config.viewConfig && (this.config.viewConfig.currentView.id === view.id);
     };
     ToolbarComponent.prototype.submit = function ($event) {
         $event.preventDefault();
     };
     ToolbarComponent.prototype.viewSelected = function (view) {
-        this.config.viewsConfig.currentView = view;
+        this.config.viewConfig.currentView = view;
         if (!view.disabled) {
             this.onViewSelect.emit(view);
         }
