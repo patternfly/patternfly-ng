@@ -1,0 +1,37 @@
+<span *ngIf="config.primaryActions?.length > 0">
+  <button *ngFor="let action of config.primaryActions"
+          class="btn btn-default primary-action {{action.styleClass}}" title="{{action.title}}" type="button"
+          [ngClass]="{'invisible': action.visible === false}"
+          (click)="handleAction(action)"
+          [disabled]="action.disabled">
+    <div *ngIf="action.template; then showButtonTemplate else showButtonName"></div>
+    <ng-template #showButtonTemplate let-action="action" let-item="item"
+                 [ngTemplateOutlet]="action.template"
+                 [ngOutletContext]="{ action: action, item: item }"></ng-template>
+    <ng-template #showButtonName>
+      {{action.name}}
+    </ng-template>
+  </button>
+</span>
+<span class="dropdown dropdown-kebab-pf pull-right {{config.moreActionsStyleClass}}" dropdown
+      [ngClass]="{'dropdown': !isMoreActionsDropup, 'dropup': isMoreActionsDropup, 'invisible': config.moreActionsVisible === false}"
+      *ngIf="config.moreActions?.length > 0">
+  <button class="btn btn-link dropdown-toggle" type="button" dropdownToggle
+          [ngClass]="{'disabled': config.moreActionsDisabled}"
+          (click)="initMoreActionsDropup($event)">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul class="dropdown-menu-right dropdown-menu" aria-labelledby="dropdownKebab" *dropdownMenu>
+    <li *ngFor="let action of config.moreActions"
+        [attr.role]="action.separator === true ? 'separator' : 'menuitem'"
+        [ngClass]="{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}">
+      <a *ngIf="action.separator !== true"
+         class="dropdown-item secondary-action"
+         href="javascript:void(0)"
+         title="{{action.title}}"
+         (click)="handleAction(action)">
+        {{action.name}}
+      </a>
+    </li>
+  </ul>
+</span>
