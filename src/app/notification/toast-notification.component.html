@@ -1,30 +1,43 @@
 <div class="toast-pf alert alert-{{type}}" [ngClass]="{'alert-dismissable': showCloseButton}"
      (mouseenter)="handleEnter($event)" (mouseleave)="handleLeave($event)">
-  <div class="pull-right dropdown-kebab-pf" dropdown
-       *ngIf="moreActions?.length > 0">
+  <div *ngIf="moreActions?.length > 0"
+       class="pull-right dropdown-kebab-pf" dropdown>
     <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" dropdownToggle>
       <span class="fa fa-ellipsis-v"></span>
     </button>
     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight" *dropdownMenu>
-      <li *ngFor="let action of moreActions"
+      <li *ngFor="let action of moreActions" class="{{action.styleClass}}"
           [attr.role]="action.separator === true ? 'separator' : 'menuitem'"
-          [ngClass]="{'divider': action.separator === true, 'disabled': action.disabled === true}">
-        <a *ngIf="action.separator !== true"
+          [ngClass]="{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}">
+        <a *ngIf="action.disabled !== true && action.separator !== true"
            class="dropdown-item secondary-action"
+           href="javascript:void(0)"
            title="{{action.title}}"
-           (click)="handleAction(action)">
-          {{action.name}}
-        </a>
+           (click)="handleAction(action)">{{action.name}}</a>
+        <a *ngIf="action.disabled === true && action.separator !== true"
+           class="dropdown-item secondary-action"
+           href="javascript:void(0)"
+           title="{{action.title}}"
+           onclick="return false;">{{action.name}}</a>
       </li>
     </ul>
   </div>
   <button *ngIf="showCloseButton" type="button" class="close" aria-hidden="true" (click)="handleClose($event)">
     <span class="pficon pficon-close"></span>
   </button>
-  <div class="pull-right toast-pf-action"
-       [ngClass]="{'padding-right-15': showCloseButton == true}"
-       *ngIf="primaryAction">
-    <a (click)="handleAction(primaryAction)">{{primaryAction?.title}}</a>
+  <div *ngIf="primaryAction"
+       class="pull-right toast-pf-action {{primaryAction.styleClass}}"
+       [ngClass]="{'padding-right-15': showCloseButton == true, 'hidden': primaryAction?.visible === false}">
+    <div *ngIf="primaryAction.template; then showButtonTemplate else showButtonName"></div>
+    <ng-template #showButtonTemplate let-action="action"
+                 [ngTemplateOutlet]="primaryAction.template"
+                 [ngOutletContext]="{ action: action }"></ng-template>
+    <ng-template #showButtonName>
+      <a *ngIf="primaryAction.disabled !== true"
+         (click)="handleAction(primaryAction)">{{primaryAction?.title}}</a>
+      <a *ngIf="primaryAction.disabled === true"
+         onclick="javascript:void(0);">{{primaryAction?.title}}</a>
+    </ng-template>
   </div>
   <span class="pficon pficon-ok" *ngIf="type === 'success'"></span>
   <span class="pficon pficon-info" *ngIf="type === 'info'"></span>
