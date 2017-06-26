@@ -1,0 +1,62 @@
+<div class="row toolbar-pf">
+  <div class="col-sm-12">
+    <form class="toolbar-pf-actions" [ngClass]="{'no-filter-results': !filterFields}" (submit)="submit($event)">
+      <div class="form-group toolbar-apf-filter">
+        <pfng-filter-fields [config]="config.filterConfig" *ngIf="config.filterConfig?.fields"
+                            (onAdd)="filterAdded($event)"
+                            (onFieldSelect)="handleFilterFieldSelect($event)"
+                            (onTypeAhead)="handleFilterTypeAhead($event)"></pfng-filter-fields>
+      </div>
+      <div class="form-group" *ngIf="config.sortConfig?.fields && config.sortConfig?.show">
+        <pfng-sort [config]="config.sortConfig" (onChange)="sortChange($event)"></pfng-sort>
+      </div>
+      <div class="form-group toolbar-actions"
+           *ngIf="config.actionConfig !== undefined || actionsTemplate !== undefined">
+        <span *ngIf="config.actionConfig?.primaryActions?.length > 0">
+          <button class="btn btn-default primary-action" type="button"
+                  *ngFor="let action of config.actionConfig?.primaryActions"
+                  title="{{action.title}}"
+                  (click)="handleAction(action)"
+                  [disabled]="action.disabled === true">
+            {{action.name}}
+          </button>
+        </span>
+        <div class="toolbar-pf-include-actions">
+          <ng-template [ngTemplateOutlet]="actionsTemplate" [ngOutletContext]="{}"></ng-template>
+        </div>
+        <div class="dropdown dropdown-kebab-pf" dropdown
+             *ngIf="config.actionConfig?.moreActions.length > 0">
+          <button class="btn btn-link dropdown-toggle" type="button" dropdownToggle>
+            <span class="fa fa-ellipsis-v"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownKebab" *dropdownMenu>
+            <li *ngFor="let action of config.actionConfig?.moreActions"
+                [attr.role]="action.separator === true ? 'separator' : 'menuitem'"
+                [ngClass]="{'divider': action.separator === true, 'disabled': action.disabled === true}">
+              <a *ngIf="action.separator !== true"
+                 class="dropdown-item secondary-action"
+                 title="{{action.title}}"
+                 (click)="handleAction(action)">
+                {{action.name}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="toolbar-pf-action-right">
+        <div class="form-group toolbar-pf-view-selector"
+             *ngIf="viewsTemplate !== undefined || (config.viewConfig?.views)">
+          <ng-template [ngTemplateOutlet]="viewsTemplate" [ngOutletContext]="{}"></ng-template>
+          <span *ngIf="config.viewConfig">
+            <button *ngFor="let view of config.viewConfig?.views" class="btn btn-link"
+                    [ngClass]="{'active': isViewSelected(view), 'disabled': view.disabled === true}"
+                    title={{view.title}}  (click)="viewSelected(view)">
+              <i class="{{view.iconClass}}"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+    <pfng-filter-results [config]="config.filterConfig" (onClear)="clearFilter($event)"></pfng-filter-results>
+  </div>
+</div>
