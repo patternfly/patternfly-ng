@@ -16,6 +16,7 @@ const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplaceme
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 // ExtractTextPlugin
 const extractCSS = new ExtractTextPlugin({
@@ -173,6 +174,15 @@ module.exports = {
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       helpers.root('src') // location of your src
-    )
+    ),
+
+    new TypedocWebpackPlugin({
+      name: 'PatternFly NG',
+      mode: 'file',
+      includeDeclarations: false,
+      ignoreCompilerErrors: true,
+      excludePrivate: true,
+      exclude: '**/examples/**'
+    }, './src')
   ]
 };
