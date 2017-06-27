@@ -36,7 +36,7 @@ export class ToastNotificationListExampleComponent implements OnInit {
   ngOnInit(): void {
     this.notifications = this.notificationService.getNotifications();
 
-    this.typeMap = { 
+    this.typeMap = {
       'info': NotificationType.INFO,
       'success': NotificationType.SUCCESS,
       'warning': NotificationType.WARNING,
@@ -67,7 +67,7 @@ export class ToastNotificationListExampleComponent implements OnInit {
     }, {
       id: 'moreActions4',
       name: 'Something Else',
-      title: ''
+      title: 'Do something special'
     }, {
       id: 'moreActions5',
       separator: true
@@ -94,7 +94,7 @@ export class ToastNotificationListExampleComponent implements OnInit {
 
   handleAction($event: NotificationEvent): void {
     // Get the Action we provided and output its name
-    this.actionText = $event.action.name + '\n' + this.actionText;
+    this.actionText = $event.action.title + '\n' + this.actionText;
   }
 
   handleClose($event: NotificationEvent): void {
@@ -106,11 +106,11 @@ export class ToastNotificationListExampleComponent implements OnInit {
     this.type = item;
   }
 
-  handleViewingChange($event: NotificationEvent):void {
+  handleViewingChange($event: NotificationEvent): void {
     this.notificationService.setViewing($event.notification, $event.isViewing);
   }
 
-  notify():void {
+  notify(): void {
     this.notificationService.message(
       this.typeMap[this.type],
       this.header,

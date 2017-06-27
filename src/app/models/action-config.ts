@@ -1,18 +1,32 @@
 import { Action } from './action';
 
-/*
- * An actions config containing:
- *
- * moreActions - Optional list of secondary kebab actions
- * moreActionsDisabled - Set to true to disable secondary actions kebab
- * moreActionsStyleClass - Optional style class for secondary actions kebab
- * moreActionsVisible - Set to false to hide secondary actions kebab
- * primaryActions - List of primary button actions
+/**
+ * An action config containing properties for primary and secondary actions such as
+ * multiple buttons and kebab menu options
  */
 export class ActionConfig {
+  /**
+   * A list of secondary actions (e.g., menu options for a kebab)
+   */
   moreActions?: Action[];
+
+  /**
+   * Set to true to disable secondary actions
+   */
   moreActionsDisabled: boolean;
+
+  /**
+   * Style class for the secondary actions container
+   */
   moreActionsStyleClass: string;
+
+  /**
+   * Set to false to hide secondary actions
+   */
   moreActionsVisible: boolean;
+
+  /**
+   * List of primary actions (e.g., for buttons)
+   */
   primaryActions: Action[];
 }

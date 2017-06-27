@@ -1,6 +1,6 @@
 {
   "name": "patternfly-ng",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "description": "A collection of PatternFly Angular components and other useful things to be shared.",
   "main": "bundles/patternfly-ng.umd.js",
   "module": "index.js",

@@ -1,14 +1,24 @@
 /*
- * A notification type containing:
- *
- * SUCCESS - Success notification type
- * INFO - Information notification type
- * DANGER - Danger notification type
- * WARNING - Warning notification type
+ * An object containing properties for a notification type
  */
 export class NotificationType {
-  static readonly SUCCESS: string = 'success';
-  static readonly INFO: string = 'info';
+  /**
+   * Danger notification type
+   */
   static readonly DANGER: string = 'danger';
+
+  /**
+   * Information notification type
+   */
+  static readonly INFO: string = 'info';
+
+  /**
+   * Success notification type
+   */
+  static readonly SUCCESS: string = 'success';
+
+  /**
+   * Warning notification type
+   */
   static readonly WARNING: string = 'warning';
 }

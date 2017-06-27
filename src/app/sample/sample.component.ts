@@ -1,10 +1,12 @@
 import {
   Component,
   Input,
-  OnInit,
   ViewEncapsulation
 } from '@angular/core';
 
+/**
+ * Sample component
+ */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pf-sample-component',
@@ -18,13 +20,20 @@ import {
   `],
   templateUrl: './sample.component.html'
 })
-export class SampleComponent implements OnInit {
+export class SampleComponent {
+  /**
+   * Set to true to disable
+   */
   @Input() disabled: Boolean;
+
+  /**
+   * The label
+   */
   @Input() label: string;
 
+  /**
+   * The default constructor
+   */
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 }

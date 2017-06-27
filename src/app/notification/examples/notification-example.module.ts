@@ -9,12 +9,14 @@ import { DemoComponentsModule } from '../../../demo/components/demo-components.m
 import { NotificationModule } from '../notification.module';
 import { NotificationService } from '../notification.service';
 import { NotificationExampleService } from './notification-example.service';
+import { NotificationServiceExampleComponent } from './notification-service-example.component';
 import { ToastNotificationBasicExampleComponent } from './toast-notification-basic-example.component';
 import { ToastNotificationExampleComponent } from './toast-notification-example.component';
 import { ToastNotificationListExampleComponent } from './toast-notification-list-example.component';
 
 @NgModule({
   declarations: [
+    NotificationServiceExampleComponent,
     ToastNotificationBasicExampleComponent,
     ToastNotificationExampleComponent,
     ToastNotificationListExampleComponent

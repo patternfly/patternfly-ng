@@ -3,17 +3,27 @@ import { FilterConfig } from '../filter/filter-config';
 import { SortConfig } from '../sort/sort-config';
 import { ViewConfig } from '../models/view-config';
 
-/*
- * A toolbar config containing:
- *
- * actionConfig - Optional configuration settings for toolbar actions
- * filterConfig - Optional filter config. If undefined, no filtering capabilities are shown.
- * sortConfig  - Optional sort config. If undefined, no sort capabilities are shown.
- * viewConfig - Optional configuration settings for view type selection
+/**
+ * A config containing properties for toolbar
  */
 export class ToolbarConfig {
+  /**
+   * Config properties for toolbar actions
+   */
   actionConfig?: ActionConfig;
+
+  /**
+   * Config properties for toolbar filter. If undefined, filter features are not shown.
+   */
   filterConfig?: FilterConfig;
+
+  /**
+   * Config properties for toolbar sort. If undefined, sort features are not shown.
+   */
   sortConfig?: SortConfig;
+
+  /**
+   * Config properties for toolbar views.
+   */
   viewConfig?: ViewConfig;
 }

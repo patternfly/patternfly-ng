@@ -12,6 +12,9 @@ export {
   ToolbarConfig
 }
 
+/**
+ * A module containing objects associated with the toolbar component
+ */
 @NgModule({
   imports: [ BsDropdownModule, CommonModule, FilterModule, SortModule ],
   declarations: [ ToolbarComponent ],

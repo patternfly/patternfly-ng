@@ -22,21 +22,36 @@ import { cloneDeep, isEqual } from 'lodash';
   templateUrl: './filter-results.component.html'
 })
 export class FilterResultsComponent implements OnInit {
+  /**
+   * The filter config containing component properties
+   */
   @Input() config: FilterConfig;
 
+  /**
+   * The event emitted when the clear action is selected
+   */
   @Output('onClear') onClear = new EventEmitter();
 
-  prevConfig: FilterConfig;
+  private prevConfig: FilterConfig;
 
+  /**
+   * The default constructor
+   */
   constructor() {
   }
 
   // Initialization
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
     this.setupConfig();
   }
 
+  /**
+   *  Check if the component config has changed
+   */
   ngDoCheck(): void {
     // Do a deep compare on config
     if (!isEqual(this.config, this.prevConfig)) {
@@ -44,7 +59,7 @@ export class FilterResultsComponent implements OnInit {
     }
   }
 
-  setupConfig(): void {
+  private setupConfig(): void {
     if (this.config === undefined) {
       this.config = {} as FilterConfig;
     }
@@ -64,9 +79,9 @@ export class FilterResultsComponent implements OnInit {
     }
   }
 
-  // Result functions
+  // Actions
 
-  clearFilter(filter: Filter): void {
+  private clearFilter(filter: Filter): void {
     let newFilters: Filter[] = [];
     this.config.appliedFilters.forEach((appliedFilter) => {
       if (appliedFilter.field.title !== filter.field.title
@@ -78,7 +93,7 @@ export class FilterResultsComponent implements OnInit {
     this.onClear.emit(this.config.appliedFilters);
   }
 
-  clearAllFilters(): void {
+  private clearAllFilters(): void {
     this.config.appliedFilters = [];
     this.onClear.emit(this.config.appliedFilters);
   }

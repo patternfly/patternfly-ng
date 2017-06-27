@@ -121,15 +121,15 @@ export class FilterBasicExampleComponent implements OnInit {
         queries: [{
           id: 'bookmark',
           value: 'Bookmark',
-          iconClass: 'fa-bookmark'
+          iconStyleClass: 'fa fa-bookmark'
         }, {
           id: 'map',
           value: 'Map',
-          iconClass: 'fa-map-marker'
+          iconStyleClass: 'fa fa-map-marker'
         }, {
           id: 'gift',
           value: 'Gift',
-          iconClass: 'fa-gift'
+          iconStyleClass: 'fa fa-gift'
         }]
       }] as FilterField[],
       resultsCount: this.items.length,

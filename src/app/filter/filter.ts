@@ -1,15 +1,22 @@
 import { FilterField } from './filter-field';
 import { FilterQuery } from './filter-query';
 
-/*
- * A filter containing:
- *
- * field - A filterable field
- * query - A filterable query
- * value - Filter value
+/**
+ * An object containing filter properties
  */
 export class Filter {
+  /**
+   * A filterable field, used to select categories of filters
+   */
   field: FilterField;
-  query: FilterQuery;
+
+  /**
+   * A filterable query, if applicable
+   */
+  query?: FilterQuery;
+
+  /**
+   * Filter value
+   */
   value: string;
 }

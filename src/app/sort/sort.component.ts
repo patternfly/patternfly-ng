@@ -13,6 +13,9 @@ import { SortEvent } from './sort-event';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
+/**
+ * Sort component
+ */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-sort',
@@ -20,25 +23,39 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   templateUrl: './sort.component.html'
 })
 export class SortComponent implements OnInit {
+  /**
+   * The sort config containing component properties
+   */
   @Input() config: SortConfig;
 
+  /**
+   * The event emitted when the sort has changed
+   */
   @Output('onChange') onChange = new EventEmitter();
 
-  show: boolean = false;
-  currentField: SortField;
-  defaultConfig: SortConfig = {
+  private currentField: SortField;
+  private defaultConfig: SortConfig = {
     isAscending: true,
-    show: true
+    visible: true
   } as SortConfig;
-  prevConfig: SortConfig;
+  private prevConfig: SortConfig;
 
+  /**
+   * The default constructor
+   */
   constructor() {
   }
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
     this.setupConfig();
   }
 
+  /**
+   *  Check if the component config has changed
+   */
   ngDoCheck(): void {
     // Do a deep compare on config
     if (!isEqual(this.config, this.prevConfig)) {
@@ -46,7 +63,7 @@ export class SortComponent implements OnInit {
     }
   }
 
-  setupConfig(): void {
+  private setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -63,47 +80,36 @@ export class SortComponent implements OnInit {
     }
   }
 
-  toggle(): void {
-    this.show = !this.show;
-  }
+  // Actions
 
-  open(): void {
-    this.show = true;
-  }
-
-  close(): void {
-    this.show = false;
-  }
-
-  getSortIconClass(): string {
-    let iconClass: string;
+  private getIconStyleClass(): string {
+    let iconStyleClass: string;
     if (this.currentField && this.currentField.sortType
         && this.currentField.sortType === 'numeric') {
       if (this.config.isAscending) {
-        iconClass = 'fa fa-sort-numeric-asc';
+        iconStyleClass = 'fa fa-sort-numeric-asc';
       } else {
-        iconClass = 'fa fa-sort-numeric-desc';
+        iconStyleClass = 'fa fa-sort-numeric-desc';
       }
     } else {
       if (this.config.isAscending) {
-        iconClass = 'fa fa-sort-alpha-asc';
+        iconStyleClass = 'fa fa-sort-alpha-asc';
       } else {
-        iconClass = 'fa fa-sort-alpha-desc';
+        iconStyleClass = 'fa fa-sort-alpha-desc';
       }
     }
-    return iconClass;
+    return iconStyleClass;
   }
 
-  onChangeDirection(): void {
+  private onChangeDirection(): void {
     this.config.isAscending = !this.config.isAscending;
     this.onChange.emit({
       field: this.currentField,
       isAscending: this.config.isAscending
     } as SortEvent);
-    this.toggle();
   }
 
-  selectField(field: SortField): void {
+  private selectField(field: SortField): void {
     this.currentField = field;
     this.onChange.emit({
       field: this.currentField,

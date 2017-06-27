@@ -1,14 +1,16 @@
 import { Action } from '../models/action';
 
-/*
- * A list view evet containing:
- *
- * action - Configuration settings for given action
- * item - The item associated with the list view row
- * selectedItems - The currently selected items, if applicable
+/**
+ * An object containing properties for list view events
  */
 export class ListViewEvent {
-  action?: Action;
-  item?: any;
+  /**
+   * The item associated with the current list view row
+   */
+  item: any;
+
+  /**
+   * The currently selected items, if applicable
+   */
   selectedItems?: any[];
 }

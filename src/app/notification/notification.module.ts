@@ -14,6 +14,9 @@ export {
   NotificationType
 }
 
+/**
+ * A module containing objects associated with notification components
+ */
 @NgModule({
   imports: [ BsDropdownModule.forRoot(), CommonModule ],
   declarations: [ ToastNotificationComponent, ToastNotificationListComponent ],
