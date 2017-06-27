@@ -12,15 +12,28 @@
     {{config.helpLink.label}} <a href="{{config.helpLink.url}}">{{config.helpLink.urlLabel}}</a>.
   </p>
   <div *ngIf="config.actions?.primaryActions?.length > 0" class="blank-slate-pf-main-action">
-    <button class="btn btn-primary btn-lg" title="{{action.title}}"
-      *ngFor="let action of config.actions.primaryActions"
-      (click)="handleAction(action)">{{action.name}}
+    <button *ngFor="let action of config.actions.primaryActions"
+            class="btn btn-primary btn-lg {{action.styleClass}}" title="{{action.title}}"
+            [disabled]="action.disabled"
+            [ngClass]="{'disabled': action.disabled, 'hidden': action.visible === false}"
+            (click)="handleAction(action)">
+      <div *ngIf="action.template; then showButtonTemplate else showButtonName"></div>
+      <ng-template #showButtonTemplate let-action="action"
+                   [ngTemplateOutlet]="action.template"
+                   [ngOutletContext]="{ action: action }"></ng-template>
+      <ng-template #showButtonName>
+        {{action.name}}
+      </ng-template>
     </button>
   </div>
-  <div *ngIf="config.actions?.moreActions.length > 0" class="blank-slate-pf-secondary-action">
-    <button class="btn btn-default" title="{{action.title}}"
-      *ngFor="let action of config.actions.moreActions"
-      (click)="handleAction(action)">{{action.name}}
+    <div class="blank-slate-pf-secondary-action {{config.actions?.moreActionsStyleClass}}"
+       [ngClass]="{'hidden': config.actions?.moreActionsVisible === false}"
+       *ngIf="config.actions?.moreActions.length > 0">
+    <button *ngFor="let action of config.actions.moreActions"
+            class="btn btn-default {{action.styleClass}}" title="{{action.title}}"
+            [disabled]="action.disabled"
+            [ngClass]="{'disabled': config.actions?.moreActionsDisabled, 'hidden': action.visible === false}"
+            (click)="handleAction(action)">{{action.name}}
     </button>
   </div>
 </div>

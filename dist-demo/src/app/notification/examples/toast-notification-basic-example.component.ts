@@ -39,8 +39,8 @@ export class ToastNotificationBasicExampleComponent implements OnInit {
 
     this.primaryAction = {
       id: 'action1',
-      name: 'Primary Action',
-      title: ''
+      name: '', // left empty for input
+      title: 'Perform an action'
     } as Action;
 
     this.moreActionsDefault = [{
