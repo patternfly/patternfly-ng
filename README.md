@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master)](https://travis-ci.org/patternfly/patternfly-ng)
 
-Welcome to PatternFly-Ng.  This is a library of common Angular components for use with the PatternFly reference implementation. Below is information on how to get started using PatternFly-ng.  If you wish to contribute to PatternFly-ng, please go to our [Contributions page](#contributing).
+Welcome to PatternFly-Ng.  This is a library of common Angular components for use with the PatternFly reference implementation. Below is information on how to get started using PatternFly-ng.  If you wish to contribute to PatternFly-ng, please go to our [Contributions page][contributing].
 
 - Web site: https://www.patternfly.org
 - API Docs: https://rawgit.com/patternfly/patternfly-ng/master-dist/dist-demo/
@@ -74,4 +74,4 @@ There are a few things that can be done to resolve any questions or problems you
  - Join our patternfly-ng channel on [Slack](http://slack.patternfly.org)
  - Join our mailing-list following the instructions on [patternfly.org](http://www.patternfly.org/community/)
 
-[contributing]: https://github.com/patternfly/patternfly-NG/blob/master/CONTRIBUTING.md
+[contributing]: https://github.com/patternfly/patternfly-ng/blob/master/CONTRIBUTING.md
