@@ -34,17 +34,16 @@ This example demonstrates using the Angular-cli to get started with PatternFly-n
    npm install patternfly ngx-bootstrap --save
  ```
  
- 
 4. Add a patternfly-ng component
 - open `src/app/app.module.ts` and add
 
 ```typescript
-import { EmptyStateModule } from 'patternfly-ng';
+import { NotificationModule } from 'patternfly-ng';
 ...
 
 @NgModule({
    ...
-   imports: [EmptyStateModule, ... ],
+   imports: [NotificationModule, ... ],
     ... 
 })
 ```
@@ -74,7 +73,5 @@ There are a few things that can be done to resolve any questions or problems you
  - Search our [GitHub issues][github-issues]
  - Join our patternfly-ng channel on [Slack](http://slack.patternfly.org)
  - Join our mailing-list following the instructions on [patternfly.org](http://www.patternfly.org/community/)
-
-
 
 [contributing]: https://github.com/patternfly/patternfly-NG/blob/master/CONTRIBUTING.md
