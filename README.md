@@ -75,3 +75,4 @@ There are a few things that can be done to resolve any questions or problems you
  - Join our mailing-list following the instructions on [patternfly.org](http://www.patternfly.org/community/)
 
 [contributing]: https://github.com/patternfly/patternfly-ng/blob/master/CONTRIBUTING.md
+[github-issues]: https://github.com/patternfly/patternfly-ng/issues

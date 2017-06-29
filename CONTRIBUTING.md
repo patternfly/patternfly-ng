@@ -26,16 +26,22 @@ Please help us out if you find a bug by submitting an issue to our [GitHub Repos
 We also welcome [PR's][github-pr] if you'd like to submit a fix.
 
 ## <a name="submit"></a> Submission guidelines
-The following should be included in all PR's
+Any PatternFly-ng patterns submitted for contribution will be reviewed by designers on this repo associated with the PatternFly project to ensure that contributions match the PatternFly design standards for each component. This design review is used to make sure that it meets one of the following criteria:
+
+- Matches the "gold standard" design specifications as designed by PatternFly
+- Matches the design specifications provided for a certain project and has been made general enough to work for other projects
+- Goes through a design review and subsequent matching design documentation issues are created for PatternFly to match this contributionv
+
+The following should be included in all PR's:
  - A clear commit message describing what has been done
  - A reference to the [issue][github-issues] being addressed (whether it's a bug being fixed or a new component being added, a GitHub issue should be added to track it).
  - A unit test covering the included behavior
  - Documentation:
-  - Add a new examples folder within the component folder if it doesn't already exist
-  - Add an example component following the style of one of the existing components.  
-  - Examples should include a working sample including the ability to toggle configuration values to demonstrate the full functionality of a component
-  - Links to the example code and generated typedoc documenation should be included following the example below
- ``` angular2html
+   - Add a new examples folder within the component folder if it doesn't already exist
+   - Add an example component following the style of one of the existing components.  
+   - Examples should include a working sample including the ability to toggle configuration values to demonstrate the full functionality of a component
+   - Links to the example code and generated typedoc documenation should be included following the example below
+ ``` html
  <div>
    <tabset>
      <tab heading="api">
@@ -52,7 +58,7 @@ The following should be included in all PR's
  ```
 
 ## <a name="rules"></a> Our coding guidelines
-We follow the [Angular style guide](https://angular.io/guide/styleguide) for all Angular code.  Most general questions about how things should be named, where files should be lived and overall file structure can be answered by reviewing those guidelines.
+We follow the [Angular style guide](https://angular.io/guide/styleguide) for all Angular code.  Most general questions about how things should be named, where files should live and overall file structure can be answered by reviewing those guidelines.
 
 PatternFly also has coding guidelines that we endeavour to follow that impact HTML and CSS.  These are found at [codeguide.patternfly.org](http://codeguide.patternfly.org/).
 
