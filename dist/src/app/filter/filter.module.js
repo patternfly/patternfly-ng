@@ -25,6 +25,9 @@ var filter_fields_component_1 = require("./filter-fields.component");
 var filter_results_component_1 = require("./filter-results.component");
 var filter_query_1 = require("./filter-query");
 exports.FilterQuery = filter_query_1.FilterQuery;
+/**
+ * A module containing objects associated with filter components
+ */
 var FilterModule = (function () {
     function FilterModule() {
     }

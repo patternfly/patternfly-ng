@@ -7,6 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+/**
+ * Search highlight pipe
+ *
+ * This is currently used with the type ahead feature of the filter fields component
+ */
 var SearchHighlightPipe = (function () {
     function SearchHighlightPipe() {
     }

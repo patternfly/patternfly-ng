@@ -14,6 +14,9 @@ export {
   SortField
 }
 
+/**
+ * A module containing objects associated with the sort component
+ */
 @NgModule({
   imports: [ CommonModule, BsDropdownModule.forRoot() ],
   declarations: [ SortComponent ],

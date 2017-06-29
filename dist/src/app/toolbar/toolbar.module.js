@@ -14,6 +14,9 @@ var sort_module_1 = require("../sort/sort.module");
 var toolbar_component_1 = require("./toolbar.component");
 var toolbar_config_1 = require("./toolbar-config");
 exports.ToolbarConfig = toolbar_config_1.ToolbarConfig;
+/**
+ * A module containing objects associated with the toolbar component
+ */
 var ToolbarModule = (function () {
     function ToolbarModule() {
     }

@@ -1,14 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/*
- * A sort event containing:
- *
- * field - A filterable field
- * isAscending - True if sort is ascending
+/**
+ * An object containing properties for sort events
  */
 var SortEvent = (function () {
     function SortEvent() {
-        this.isAscending = true;
     }
     return SortEvent;
 }());

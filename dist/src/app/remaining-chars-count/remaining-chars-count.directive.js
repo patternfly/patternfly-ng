@@ -11,31 +11,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 /**
- * Remaining Characters component for showing a characters remaining count and triggering warning and error
- * behavior when passing specified thresholds.  When the <code>charsRemainingWarning</code> threshold is passed,
+ * Remaining Characters directive for showing a characters remaining count and triggering warning and error
+ * behavior when passing specified thresholds. When the <code>charsRemainingWarning</code> threshold is passed,
  * the <code>chars-warn-remaining-pf</code> css class is applied to the <code>charsRemainingElement</code>, which by
  * default, turns the remaining count number <font color='red'>red</font>. By default, characters may be entered into
  * the text field after the <code>charsMaxLimit</code> limit has been reached, the remaining count number will become a
  * negative value. Setting the <code>blockInputAtMaxLimit</code> to <em>true</em>, will block additional input into the
  * text field after the max has been reached; additionally a right-click 'paste' will only paste characters until the
  * maximum character limit is reached.
- *
- * blockInputAtMaxLimit - If true, no more characters can be entered into the text field
- * charsMaxLimit - Number representing the maximum number of characters allowed
- * charsRemainingElement - The ElementRef used to display the 'characters-remaining' count
- * charsRemainingWarning - Number of remaining characters to warn upon
  */
 var RemainingCharsCountDirective = (function () {
+    /**
+     * Default constructor
+     *
+     * @param el The element reference for this component
+     * @param renderer The renderer service
+     */
     function RemainingCharsCountDirective(el, renderer) {
         this.el = el;
         this.renderer = renderer;
+        /**
+         * Number representing the maximum number of characters allowed. Default is 100
+         */
         this.charsMaxLimit = 100;
+        /**
+         * Number of remaining characters to warn upon. Default is 5
+         */
         this.charsRemainingWarning = 5;
+        /**
+         * The event emitted when a remaining characters is over max limit
+         */
         this.onOverCharsMaxLimit = new core_1.EventEmitter();
+        /**
+         * The event emitted when a remaining characters is under max limit
+         */
         this.onUnderCharsMaxLimit = new core_1.EventEmitter();
         this.remainingChars = 0;
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     RemainingCharsCountDirective.prototype.ngOnInit = function () {
         this.remainingChars = this.charsMaxLimit;
         this.checkRemainingChars();
@@ -46,7 +62,7 @@ var RemainingCharsCountDirective = (function () {
      *
      * Note: Using the keyup event Vs keypress to include backspace/delete
      *
-     * @param $event
+     * @param $event A KeyboardEvent object
      */
     RemainingCharsCountDirective.prototype.handleKeypress = function ($event) {
         // Once the charsMaxLimit has been met or exceeded, prevent all keypresses from working
@@ -58,7 +74,6 @@ var RemainingCharsCountDirective = (function () {
         }
         this.checkRemainingChars();
     };
-    // Private
     /**
      * Helper to check remaining characters
      */

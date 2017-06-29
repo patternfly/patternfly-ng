@@ -1,20 +1,37 @@
 import { Filter } from './filter';
 import { FilterField } from './filter-field';
 
-/*
- * A filter config containing:
- *
- * appliedFilters - List of the currently applied filters
- * fileds: List of filterable fields
- * resultsCount - The number of results returned after the current applied filters have been applied
- * selectedCount - The number selected items, The 'n' in the label: 'n' of 'm' selected
- * totalCount - The total number of items before any filters have been applied.
+/**
+ * A config containing properties for filters
  */
 export class FilterConfig {
+  /**
+   * A list of the currently applied filters
+   */
   appliedFilters?: Filter[];
+
+  /**
+   * A list of filterable fields
+   */
   fields: FilterField[];
+
+  /**
+   * The number of results returned after the current applied filters have been applied
+   */
   resultsCount?: number;
+
+  /**
+   * The number selected items
+   */
   selectedCount?: number;
+
+  /**
+   * The total number of items before any filters have been applied
+   */
   totalCount?: number;
+
+  /**
+   * The tooltip placement (e.g., bottom, left, top, right)
+   */
   tooltipPlacement?: string;
 }

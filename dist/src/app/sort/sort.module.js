@@ -16,6 +16,9 @@ var sort_event_1 = require("./sort-event");
 exports.SortEvent = sort_event_1.SortEvent;
 var sort_field_1 = require("./sort-field");
 exports.SortField = sort_field_1.SortField;
+/**
+ * A module containing objects associated with the sort component
+ */
 var SortModule = (function () {
     function SortModule() {
     }

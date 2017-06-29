@@ -1,5 +1,4 @@
 import { ElementRef, EventEmitter, OnInit } from '@angular/core';
-import { Action } from '../models/action';
 import { ActionConfig } from '../models/action-config';
 /**
  * List view actions component.
@@ -8,22 +7,39 @@ import { ActionConfig } from '../models/action-config';
  */
 export declare class ListViewActionsComponent implements OnInit {
     private el;
+    /**
+     * The action config containing component properties
+     */
     config: ActionConfig;
+    /**
+     * The event emitted when an action has been selected
+     */
     onActionSelect: EventEmitter<{}>;
-    defaultConfig: ActionConfig;
-    isMoreActionsDropup: boolean;
-    prevConfig: ActionConfig;
+    private defaultConfig;
+    private isMoreActionsDropup;
+    private prevConfig;
+    /**
+     * The default constructor
+     *
+     * @param el The element reference for this component
+     */
     constructor(el: ElementRef);
+    /**
+     *  Setup component configuration upon initialization
+     */
     ngOnInit(): void;
+    /**
+     *  Check if the component config has changed
+     */
     ngDoCheck(): void;
-    setupConfig(): void;
-    handleAction(action: Action): void;
+    private setupConfig();
+    private handleAction(action);
     /**
      * Set flag indicating if kebab should be shown as a dropdown or dropup
      *
      * @param $event The MouseEvent triggering this function
      */
-    initMoreActionsDropup($event: MouseEvent): void;
+    private initMoreActionsDropup($event);
     /**
      * Get the closest ancestor based on given selector
      *

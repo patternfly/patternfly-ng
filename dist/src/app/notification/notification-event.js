@@ -1,11 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/*
- * A notification evet containing:
- *
- * action - Optional configuration settings for toolbar actions
- * notification - A notification message
- * isViewing - Flag indicating user is actively viewing notification
+/**
+ * An object containing properties for notification events
  */
 var NotificationEvent = (function () {
     function NotificationEvent() {

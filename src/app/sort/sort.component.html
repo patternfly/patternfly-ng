@@ -1,4 +1,4 @@
-<div class="sort-pf">
+<div class="sort-pf" *ngIf="config?.visible !== false">
   <div class="btn-group dropdown" dropdown>
     <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle>
       {{currentField?.title}}
@@ -12,6 +12,6 @@
     </ul>
   </div>
   <button class="btn btn-link" type="button" (click)="onChangeDirection()">
-    <span class="sort-direction" [ngClass]="getSortIconClass()"></span>
+    <span class="sort-direction" [ngClass]="getIconStyleClass()"></span>
   </button>
 </div>

@@ -13,18 +13,36 @@ var core_1 = require("@angular/core");
 var filter_config_1 = require("./filter-config");
 var lodash_1 = require("lodash");
 /**
- * Component for the filter bar's filter entry components
+ * Filter component
  */
 var FilterComponent = (function () {
+    /**
+     * The default constructor
+     */
     function FilterComponent() {
+        /**
+         * The event emitted when a filter has been changed
+         */
         this.onChange = new core_1.EventEmitter();
+        /**
+         * The event emitted when a field menu option is selected
+         */
         this.onFilterSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when the user types ahead in the query input field
+         */
         this.onTypeAhead = new core_1.EventEmitter();
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     FilterComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     FilterComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {
@@ -40,7 +58,7 @@ var FilterComponent = (function () {
             this.config.appliedFilters = [];
         }
     };
-    // Filter functions
+    // Actions
     FilterComponent.prototype.addFilter = function ($event) {
         var newFilter = {
             field: $event.field,
@@ -62,6 +80,9 @@ var FilterComponent = (function () {
             appliedFilters: $event
         });
     };
+    FilterComponent.prototype.enforceSingleSelect = function (filter) {
+        lodash_1.remove(this.config.appliedFilters, { title: filter.field.title });
+    };
     FilterComponent.prototype.fieldSelected = function ($event) {
         this.onFilterSelect.emit($event);
     };
@@ -73,10 +94,6 @@ var FilterComponent = (function () {
     };
     FilterComponent.prototype.typeAhead = function ($event) {
         this.onTypeAhead.emit($event);
-    };
-    // Private
-    FilterComponent.prototype.enforceSingleSelect = function (filter) {
-        lodash_1.remove(this.config.appliedFilters, { title: filter.field.title });
     };
     return FilterComponent;
 }());

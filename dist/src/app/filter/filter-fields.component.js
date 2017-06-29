@@ -13,19 +13,36 @@ var core_1 = require("@angular/core");
 var filter_config_1 = require("./filter-config");
 var lodash_1 = require("lodash");
 /**
- * Component for the filter bar's filter entry components
+ * Component for the filter query field and filter query dropdown
  */
 var FilterFieldsComponent = (function () {
+    /**
+     * The default constructor
+     */
     function FilterFieldsComponent() {
+        /**
+         * The event emitted when a filter has been added
+         */
         this.onAdd = new core_1.EventEmitter();
+        /**
+         * The event emitted when a field menu option is selected
+         */
         this.onFieldSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when the user types ahead in the query input field
+         */
         this.onTypeAhead = new core_1.EventEmitter();
-        this.show = false;
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     FilterFieldsComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     FilterFieldsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {

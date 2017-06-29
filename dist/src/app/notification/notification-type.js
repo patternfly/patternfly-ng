@@ -1,21 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*
- * A notification type containing:
- *
- * SUCCESS - Success notification type
- * INFO - Information notification type
- * DANGER - Danger notification type
- * WARNING - Warning notification type
+ * An object containing properties for a notification type
  */
 var NotificationType = (function () {
     function NotificationType() {
     }
     return NotificationType;
 }());
-NotificationType.SUCCESS = 'success';
-NotificationType.INFO = 'info';
+/**
+ * Danger notification type
+ */
 NotificationType.DANGER = 'danger';
+/**
+ * Information notification type
+ */
+NotificationType.INFO = 'info';
+/**
+ * Success notification type
+ */
+NotificationType.SUCCESS = 'success';
+/**
+ * Warning notification type
+ */
 NotificationType.WARNING = 'warning';
 exports.NotificationType = NotificationType;
 //# sourceMappingURL=notification-type.js.map

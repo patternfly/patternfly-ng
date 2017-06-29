@@ -1,11 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/*
- * A filter config containing:
- *
- * isAscending - True if sort is ascending
- * fields - List of sortable fields
- * show - Optional flag to show sort functionality
+/**
+ * A config containing properties for sort
  */
 var SortConfig = (function () {
     function SortConfig() {

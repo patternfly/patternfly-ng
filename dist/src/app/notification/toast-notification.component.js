@@ -12,22 +12,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var action_1 = require("../models/action");
 var notification_1 = require("./notification");
+/**
+ * Toast notifications are used to notify users of a system occurrence. Toast notifications should be transient and stay
+ * on the screen for 8 seconds, so that they do not block the information behind them for too long, but allows the user
+ * to read the message. The ToastNotification component allows status, header, message, primary action and menu actions
+ * for the notification. The notification can also allow the user to close the notification.
+ *
+ * Note: Using the kebab menu (more actions) with the close button is not currently supported. If both are specified the
+ * close button will not be shown. Add a close menu item if you want to have both capabilities.
+ */
 var ToastNotificationComponent = (function () {
+    /**
+     * The default constructor
+     */
     function ToastNotificationComponent() {
+        /**
+         * The event emitted when an action has been selected
+         */
         this.onActionSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when the close button has been selected
+         */
         this.onCloseSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when the mouse hovers over and leaves a notification
+         */
         this.onViewingChange = new core_1.EventEmitter();
         this.showCloseButton = false;
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     ToastNotificationComponent.prototype.ngOnInit = function () {
     };
+    /**
+     *  Check if the component config has changed
+     */
     ToastNotificationComponent.prototype.ngDoCheck = function () {
         this.showCloseButton = (this.showClose === true)
-            && (this.moreActions === undefined
-                || this.moreActions.length === 0);
+            && (this.moreActions === undefined || this.moreActions.length === 0);
     };
-    // Action functions
+    // Actions
     ToastNotificationComponent.prototype.handleAction = function (action) {
         if (action && action.disabled !== true) {
             this.onActionSelect.emit({

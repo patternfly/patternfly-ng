@@ -10,16 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+/**
+ * Component to display a list of toast notifications
+ */
 var ToastNotificationListComponent = (function () {
+    /**
+     * The default constructor
+     */
     function ToastNotificationListComponent() {
+        /**
+         * The event emitted when an action has been selected
+         */
         this.onActionSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when the close button has been selected
+         */
         this.onCloseSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when the mouse hovers over and leaves a notification
+         */
         this.onViewingChange = new core_1.EventEmitter();
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     ToastNotificationListComponent.prototype.ngOnInit = function () {
     };
-    // Action functions
+    // Actions
+    /**
+     *  Check if the component config has changed
+     */
     ToastNotificationListComponent.prototype.handleAction = function ($event) {
         this.onActionSelect.emit($event);
     };

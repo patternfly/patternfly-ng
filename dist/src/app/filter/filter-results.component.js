@@ -16,13 +16,25 @@ var lodash_1 = require("lodash");
  * Component for the filter results
  */
 var FilterResultsComponent = (function () {
+    /**
+     * The default constructor
+     */
     function FilterResultsComponent() {
+        /**
+         * The event emitted when the clear action is selected
+         */
         this.onClear = new core_1.EventEmitter();
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     FilterResultsComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     FilterResultsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {
@@ -47,7 +59,7 @@ var FilterResultsComponent = (function () {
             this.config.totalCount = 0;
         }
     };
-    // Result functions
+    // Actions
     FilterResultsComponent.prototype.clearFilter = function (filter) {
         var newFilters = [];
         this.config.appliedFilters.forEach(function (appliedFilter) {

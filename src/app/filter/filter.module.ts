@@ -23,6 +23,9 @@ export {
   FilterQuery
 }
 
+/**
+ * A module containing objects associated with filter components
+ */
 @NgModule({
   imports: [
     BsDropdownModule.forRoot(),
@@ -35,4 +38,4 @@ export {
   exports: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],
   providers: [ BsDropdownConfig, TooltipConfig ]
 })
-export class FilterModule { }
+export class FilterModule {}

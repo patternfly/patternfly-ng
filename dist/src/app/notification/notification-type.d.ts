@@ -1,6 +1,18 @@
 export declare class NotificationType {
-    static readonly SUCCESS: string;
-    static readonly INFO: string;
+    /**
+     * Danger notification type
+     */
     static readonly DANGER: string;
+    /**
+     * Information notification type
+     */
+    static readonly INFO: string;
+    /**
+     * Success notification type
+     */
+    static readonly SUCCESS: string;
+    /**
+     * Warning notification type
+     */
     static readonly WARNING: string;
 }

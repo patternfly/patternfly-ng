@@ -1,18 +1,31 @@
 import { FilterQuery } from './filter-query';
 
-/*
- * A filterable field containing:
- *
- * id - Optional unique Id for the filter field, useful for comparisons
- * placeholder - Optional text to display when no filter value has been entered
- * queries - Optional list of filter queries used when filterType is 'select'
- * title - The title to display for the filter field
- * type - The filter input field type ('select' for a select box, 'typeahead' to filter queries)
+/**
+ * An object containing properties for a filterable field, used to select categories of filters
  */
 export class FilterField {
+  /**
+   * A unique Id for the filter field
+   */
   id?: string;
+
+  /**
+   * Text to display when no filter value has been entered
+   */
   placeholder?: string;
+
+  /**
+   * A list of filter queries used when filterType is 'select'
+   */
   queries?: FilterQuery[];
+
+  /**
+   * The title to display for the filter field
+   */
   title?: string;
+
+  /**
+   * The filter input field type (e.g., 'select' for a select box, 'typeahead' to filter queries)
+   */
   type: string;
 }

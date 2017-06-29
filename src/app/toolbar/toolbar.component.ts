@@ -18,7 +18,7 @@ import { View } from '../models/view';
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
 /**
- * Standard toolbar component. Includes filtering and view selection capabilities
+ * Toolbar component
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -27,29 +27,72 @@ import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
   templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent implements OnInit {
+  /**
+   * The toolbar config containing component properties
+   */
   @Input() config: ToolbarConfig;
+
+  /**
+   * The name of the template containing actions
+   */
   @Input() actionsTemplate: TemplateRef<any>;
+
+  /**
+   * The name of the template containing views
+   */
   @Input() viewsTemplate: TemplateRef<any>;
 
+  /**
+   * The event emitted when an action (e.g., button, kebab, etc.) has been selected
+   */
   @Output('onActionSelect') onActionSelect = new EventEmitter();
+
+  /**
+   * The event emitted when a field menu option is selected
+   */
   @Output('onFilterFieldSelect') onFilterFiledSelect = new EventEmitter();
+
+  /**
+   * The event emitted when a filter has been changed
+   */
   @Output('onFilterChange') onFilterChange = new EventEmitter();
+
+  /**
+   * The event emitted when the user types ahead in the query input field
+   */
   @Output('onFilterTypeAhead') onFilterTypeAhead = new EventEmitter();
+
+  /**
+   * The event emitted when the sort has changed
+   */
   @Output('onSortChange') onSortChange = new EventEmitter();
+
+  /**
+   * The event emitted when a view has been selected
+   */
   @Output('onViewSelect') onViewSelect = new EventEmitter();
 
-  defaultConfig: ToolbarConfig = {} as ToolbarConfig;
-  prevConfig: ToolbarConfig;
+  private defaultConfig: ToolbarConfig = {} as ToolbarConfig;
+  private prevConfig: ToolbarConfig;
 
+  /**
+   * The default constructor
+   */
   constructor() {
   }
 
   // Initialization
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
     this.setupConfig();
   }
 
+  /**
+   *  Check if the component config has changed
+   */
   ngDoCheck(): void {
     // Do a deep compare on config
     if (!isEqual(this.config, this.prevConfig)) {
@@ -57,7 +100,7 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  setupConfig(): void {
+  private setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -71,8 +114,8 @@ export class ToolbarComponent implements OnInit {
     if (this.config && this.config.sortConfig && this.config.sortConfig.fields === undefined) {
       this.config.sortConfig.fields = [];
     }
-    if (this.config.sortConfig !== undefined && this.config.sortConfig.show === undefined) {
-      this.config.sortConfig.show = true;
+    if (this.config.sortConfig !== undefined && this.config.sortConfig.visible === undefined) {
+      this.config.sortConfig.visible = true;
     }
     if (this.config && this.config.viewConfig && this.config.viewConfig.views === undefined) {
       this.config.viewConfig.views = [];
@@ -83,24 +126,24 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  // Action functions
+  // Actions
 
-  handleAction(action: Action): void {
+  private handleAction(action: Action): void {
     if (action && action.disabled !== true) {
       this.onActionSelect.emit(action);
     }
   }
 
-  // Filter functions
+  // Filters
 
-  clearFilter($event: Filter[]): void {
+  private clearFilter($event: Filter[]): void {
     this.config.filterConfig.appliedFilters = $event;
     this.onFilterChange.emit({
       appliedFilters: $event
     } as FilterEvent);
   }
 
-  filterAdded($event: FilterEvent): void {
+  private filterAdded($event: FilterEvent): void {
     let newFilter = {
       field: $event.field,
       query: $event.query,
@@ -116,8 +159,8 @@ export class ToolbarComponent implements OnInit {
       this.onFilterChange.emit($event);
     }
   }
-  
-  filterExists(filter: Filter): boolean {
+
+  private filterExists(filter: Filter): boolean {
     let foundFilter = find(this.config.filterConfig.appliedFilters, {
       field: filter.field,
       query: filter.query,
@@ -126,38 +169,38 @@ export class ToolbarComponent implements OnInit {
     return foundFilter !== undefined;
   }
 
-  handleFilterFieldSelect($event: FilterEvent): void {
+  private handleFilterFieldSelect($event: FilterEvent): void {
     this.onFilterFiledSelect.emit($event);
   }
 
-  handleFilterTypeAhead($event: FilterEvent) {
+  private handleFilterTypeAhead($event: FilterEvent) {
     this.onFilterTypeAhead.emit($event);
   }
 
-  // Sort functions
+  // Sort
 
-  sortChange($event: SortEvent): void {
+  private sortChange($event: SortEvent): void {
     this.onSortChange.emit($event);
   }
 
-  // View functions
+  // Views
 
-  isViewSelected(view: View): boolean {
+  private isViewSelected(view: View): boolean {
     return this.config.viewConfig && (this.config.viewConfig.currentView.id === view.id);
   }
 
-  submit($event: any): void {
+  private submit($event: any): void {
     $event.preventDefault();
   }
 
-  viewSelected (view: View): void {
+  private viewSelected (view: View): void {
     this.config.viewConfig.currentView = view;
     if (!view.disabled) {
       this.onViewSelect.emit(view);
     }
   }
 
-  // Private
+  // Utils
 
   private enforceSingleSelect(filter: Filter): void {
     remove(this.config.filterConfig.appliedFilters, {title: filter.field.title});

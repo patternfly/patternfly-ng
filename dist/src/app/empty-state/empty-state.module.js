@@ -11,6 +11,9 @@ var common_1 = require("@angular/common");
 var empty_state_config_1 = require("./empty-state-config");
 exports.EmptyStateConfig = empty_state_config_1.EmptyStateConfig;
 var empty_state_component_1 = require("./empty-state.component");
+/**
+ * A module containing objects associated with the empty state component
+ */
 var EmptyStateModule = (function () {
     function EmptyStateModule() {
     }

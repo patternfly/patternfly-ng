@@ -87,10 +87,10 @@
                   [config]="getActionsConfig(item, actionButtonTemplate, startButtonTemplate)"
                   (onActionSelect)="handleAction($event, item)">
                 <ng-template #actionButtonTemplate let-action="action">
-                  <span class="fa fa-plus">&nbsp;</span>{{action.name}}
+                  <span class="fa fa-plus">&nbsp;</span>{{action.title}}
                 </ng-template>
                 <ng-template #startButtonTemplate let-action="action">
-                  {{item.started === true ? "Starting" : action.name}}
+                  {{item.started === true ? "Starting" : action.title}}
                 </ng-template>
               </pfng-list-view-actions>
             </ng-template>

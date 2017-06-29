@@ -12,18 +12,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var sort_config_1 = require("./sort-config");
 var lodash_1 = require("lodash");
+/**
+ * Sort component
+ */
 var SortComponent = (function () {
+    /**
+     * The default constructor
+     */
     function SortComponent() {
+        /**
+         * The event emitted when the sort has changed
+         */
         this.onChange = new core_1.EventEmitter();
-        this.show = false;
         this.defaultConfig = {
             isAscending: true,
-            show: true
+            visible: true
         };
     }
+    /**
+     *  Setup component configuration upon initialization
+     */
     SortComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     SortComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {
@@ -46,35 +60,27 @@ var SortComponent = (function () {
             }
         }
     };
-    SortComponent.prototype.toggle = function () {
-        this.show = !this.show;
-    };
-    SortComponent.prototype.open = function () {
-        this.show = true;
-    };
-    SortComponent.prototype.close = function () {
-        this.show = false;
-    };
-    SortComponent.prototype.getSortIconClass = function () {
-        var iconClass;
+    // Actions
+    SortComponent.prototype.getIconStyleClass = function () {
+        var iconStyleClass;
         if (this.currentField && this.currentField.sortType
             && this.currentField.sortType === 'numeric') {
             if (this.config.isAscending) {
-                iconClass = 'fa fa-sort-numeric-asc';
+                iconStyleClass = 'fa fa-sort-numeric-asc';
             }
             else {
-                iconClass = 'fa fa-sort-numeric-desc';
+                iconStyleClass = 'fa fa-sort-numeric-desc';
             }
         }
         else {
             if (this.config.isAscending) {
-                iconClass = 'fa fa-sort-alpha-asc';
+                iconStyleClass = 'fa fa-sort-alpha-asc';
             }
             else {
-                iconClass = 'fa fa-sort-alpha-desc';
+                iconStyleClass = 'fa fa-sort-alpha-desc';
             }
         }
-        return iconClass;
+        return iconStyleClass;
     };
     SortComponent.prototype.onChangeDirection = function () {
         this.config.isAscending = !this.config.isAscending;
@@ -82,7 +88,6 @@ var SortComponent = (function () {
             field: this.currentField,
             isAscending: this.config.isAscending
         });
-        this.toggle();
     };
     SortComponent.prototype.selectField = function (field) {
         this.currentField = field;

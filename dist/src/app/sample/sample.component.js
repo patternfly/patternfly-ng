@@ -10,11 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+/**
+ * Sample component
+ */
 var SampleComponent = (function () {
+    /**
+     * The default constructor
+     */
     function SampleComponent() {
     }
-    SampleComponent.prototype.ngOnInit = function () {
-    };
     return SampleComponent;
 }());
 __decorate([

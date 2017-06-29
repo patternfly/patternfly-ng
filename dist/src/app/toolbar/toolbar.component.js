@@ -13,22 +13,49 @@ var core_1 = require("@angular/core");
 var toolbar_config_1 = require("./toolbar-config");
 var lodash_1 = require("lodash");
 /**
- * Standard toolbar component. Includes filtering and view selection capabilities
+ * Toolbar component
  */
 var ToolbarComponent = (function () {
+    /**
+     * The default constructor
+     */
     function ToolbarComponent() {
+        /**
+         * The event emitted when an action (e.g., button, kebab, etc.) has been selected
+         */
         this.onActionSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when a field menu option is selected
+         */
         this.onFilterFiledSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when a filter has been changed
+         */
         this.onFilterChange = new core_1.EventEmitter();
+        /**
+         * The event emitted when the user types ahead in the query input field
+         */
         this.onFilterTypeAhead = new core_1.EventEmitter();
+        /**
+         * The event emitted when the sort has changed
+         */
         this.onSortChange = new core_1.EventEmitter();
+        /**
+         * The event emitted when a view has been selected
+         */
         this.onViewSelect = new core_1.EventEmitter();
         this.defaultConfig = {};
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     ToolbarComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     ToolbarComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {
@@ -49,8 +76,8 @@ var ToolbarComponent = (function () {
         if (this.config && this.config.sortConfig && this.config.sortConfig.fields === undefined) {
             this.config.sortConfig.fields = [];
         }
-        if (this.config.sortConfig !== undefined && this.config.sortConfig.show === undefined) {
-            this.config.sortConfig.show = true;
+        if (this.config.sortConfig !== undefined && this.config.sortConfig.visible === undefined) {
+            this.config.sortConfig.visible = true;
         }
         if (this.config && this.config.viewConfig && this.config.viewConfig.views === undefined) {
             this.config.viewConfig.views = [];
@@ -60,13 +87,13 @@ var ToolbarComponent = (function () {
             this.config.viewConfig.currentView = this.config.viewConfig.views[0];
         }
     };
-    // Action functions
+    // Actions
     ToolbarComponent.prototype.handleAction = function (action) {
         if (action && action.disabled !== true) {
             this.onActionSelect.emit(action);
         }
     };
-    // Filter functions
+    // Filters
     ToolbarComponent.prototype.clearFilter = function ($event) {
         this.config.filterConfig.appliedFilters = $event;
         this.onFilterChange.emit({
@@ -102,11 +129,11 @@ var ToolbarComponent = (function () {
     ToolbarComponent.prototype.handleFilterTypeAhead = function ($event) {
         this.onFilterTypeAhead.emit($event);
     };
-    // Sort functions
+    // Sort
     ToolbarComponent.prototype.sortChange = function ($event) {
         this.onSortChange.emit($event);
     };
-    // View functions
+    // Views
     ToolbarComponent.prototype.isViewSelected = function (view) {
         return this.config.viewConfig && (this.config.viewConfig.currentView.id === view.id);
     };
@@ -119,7 +146,7 @@ var ToolbarComponent = (function () {
             this.onViewSelect.emit(view);
         }
     };
-    // Private
+    // Utils
     ToolbarComponent.prototype.enforceSingleSelect = function (filter) {
         lodash_1.remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
     };

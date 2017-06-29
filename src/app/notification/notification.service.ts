@@ -7,32 +7,21 @@ import { NotificationType } from './notification-type';
 /**
  * Notification service used to notify user about important events in the application.
  *
- * ## Configuring the service
- *
- * You can configure the service with: setDelay, setVerbose and setPersist.
- *
- * ### Notifications.setDelay
- * Set the delay after which the notification is dismissed. The argument of this method expects miliseconds. Default
- * delay is 8000 ms.
- *
- * ### Notifications.setVerbose
- * Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.
- *
- * ### Notifications.setPersist
- * Sets persist option for particular modes. Notification with persistent mode won't be dismissed after delay, but has
- * to be closed manually with the close button. By default, the "error" and "httpError" modes are set to persistent.
- * The input is an object in format {mode: persistValue}.
+ * You may configure the service with: setDelay, setVerbose and setPersist.
  */
 @Injectable()
 export class NotificationService {
 
   // time (in ms) the notifications are shown
-  delay: number = 8000;
-  modes: any = {};
-  notifications: any = {};
-  persist: any = {'error': true, 'httpError': true};
-  verbose: boolean = false;
+  private delay: number = 8000;
+  private modes: any = {};
+  private notifications: any = {};
+  private persist: any = {'error': true, 'httpError': true};
+  private verbose: boolean = false;
 
+  /**
+   * The default constructor
+   */
   constructor() {
     this.notifications.data = [] as Notification[];
     this.modes = [
@@ -46,25 +35,19 @@ export class NotificationService {
     });
   }
 
-  private createNotifyMethod(index: number): any {
-    return (message: string, header: string, persistent: boolean, primaryAction: Action, moreActions: Action[]) => {
-      if (header != undefined) {
-        header = this.modes[index].header;
-      }
-      if (persistent != undefined) {
-        persistent = this.persist[index];
-      }
-      this.notifications.message(this.modes[index].type, header, message, persistent, primaryAction, moreActions);
-      if (this.verbose) {
-        console.log(message);
-      }
-    };
-  }
-
+  /**
+   * Get all notifications
+   */
   getNotifications(): Notification[] {
     return this.notifications.data;
   }
 
+  /**
+   * Generate a notification for the given HTTP Response
+   *
+   * @param message The notification message
+   * @param httpResponse The HTTP Response
+   */
   httpError(message: string, httpResponse: any): void {
     message += ' (' + (httpResponse.data.message || httpResponse.data.cause
         || httpResponse.data.cause || httpResponse.data.errorMessage) + ')';
@@ -74,6 +57,16 @@ export class NotificationService {
     }
   }
 
+  /**
+   * Generate a notification message
+   *
+   * @param type The notification type
+   * @param header The notification header
+   * @param message The notification message
+   * @param isPersistent True if the notification should be persistent
+   * @param primaryAction The primary action for the notifiaction
+   * @param moreActions More actions for the kebab
+   */
   message(type: string, header: string, message: string, isPersistent: boolean,
           primaryAction: Action, moreActions: Action[]): void {
     let notification = {
@@ -100,33 +93,78 @@ export class NotificationService {
     }
   }
 
+  /**
+   * Remove notification
+   *
+   * @param notification The notification to remove
+   */
   remove(notification: Notification): void {
-    var index = this.notifications.data.indexOf(notification);
+    let index = this.notifications.data.indexOf(notification);
     if (index !== -1) {
       this.removeIndex(index);
     }
   }
 
-  removeIndex(index: number): void {
-    this.notifications.data.splice(index, 1);
-  }
-
+  /**
+   * Set the delay after which the notification is dismissed. The argument of this method expects miliseconds. Default
+   * delay is 8000 ms.
+   *
+   * @param delay The delay in ms
+   */
   setDelay(delay: number): void {
     this.delay = delay;
   }
 
+  /**
+   * Sets persist option for particular modes. Notification with persistent mode won't be dismissed after delay, but has
+   * to be closed manually with the close button. By default, the "error" and "httpError" modes are set to persistent.
+   *
+   * @param persist Set to true to persist notifications
+   */
   setPersist = function (persist: boolean): void {
     this.persist = persist;
   }
 
+  /**
+   * Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.
+   *
+   * @param verbose Set to true for verbose mode
+   */
   setVerbose(verbose: boolean): void {
     this.verbose = verbose;
   }
 
+  /**
+   * Set a flag indicating user is viewing the given notification
+   *
+   * @param notification The notification currently being viewed
+   * @param isViewing True if the notification is being viewed
+   */
   setViewing(notification: Notification, isViewing: boolean): void {
     notification.isViewing = isViewing;
     if (isViewing !== true && notification.visible !== true) {
       this.remove(notification);
     }
+  }
+
+  // Private
+
+  private createNotifyMethod(index: number): any {
+    return (message: string, header: string, persistent: boolean, primaryAction: Action, moreActions: Action[]) => {
+      if (header !== undefined) {
+        header = this.modes[index].header;
+      }
+      if (persistent !== undefined) {
+        persistent = this.persist[index];
+      }
+      this.notifications.message(this.modes[index].type, header, message, persistent, primaryAction, moreActions);
+      if (this.verbose) {
+        console.log(message);
+      }
+    };
+  }
+
+  private removeIndex(index: number): void {
+    this.notifications.data.splice(index, 1);
   }
 }

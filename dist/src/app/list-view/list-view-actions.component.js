@@ -18,8 +18,16 @@ var lodash_1 = require("lodash");
  * config - The ActionsConfig object containing action properties
  */
 var ListViewActionsComponent = (function () {
+    /**
+     * The default constructor
+     *
+     * @param el The element reference for this component
+     */
     function ListViewActionsComponent(el) {
         this.el = el;
+        /**
+         * The event emitted when an action has been selected
+         */
         this.onActionSelect = new core_1.EventEmitter();
         this.defaultConfig = {
             moreActionsDisabled: false,
@@ -28,9 +36,15 @@ var ListViewActionsComponent = (function () {
         this.isMoreActionsDropup = false;
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     ListViewActionsComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     ListViewActionsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {
@@ -79,7 +93,7 @@ var ListViewActionsComponent = (function () {
             }
         });
     };
-    // Private
+    // Utils
     /**
      * Get the closest ancestor based on given selector
      *

@@ -18,6 +18,9 @@ var list_view_config_1 = require("./list-view-config");
 exports.ListViewConfig = list_view_config_1.ListViewConfig;
 var list_view_event_1 = require("./list-view-event");
 exports.ListViewEvent = list_view_event_1.ListViewEvent;
+/**
+ * A module containing objects associated with list view components
+ */
 var ListViewModule = (function () {
     function ListViewModule() {
     }

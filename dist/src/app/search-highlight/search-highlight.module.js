@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var search_highlight_pipe_1 = require("./search-highlight.pipe");
+/**
+ * A module containing objects associated with the search highlight pipe
+ */
 var SearchHighlightModule = (function () {
     function SearchHighlightModule() {
     }

@@ -12,13 +12,13 @@
         <a *ngIf="action.disabled !== true && action.separator !== true"
            class="dropdown-item secondary-action"
            href="javascript:void(0)"
-           title="{{action.title}}"
-           (click)="handleAction(action)">{{action.name}}</a>
+           title="{{action.tooltip}}"
+           (click)="handleAction(action)">{{action.title}}</a>
         <a *ngIf="action.disabled === true && action.separator !== true"
            class="dropdown-item secondary-action"
            href="javascript:void(0)"
-           title="{{action.title}}"
-           onclick="return false;">{{action.name}}</a>
+           title="{{action.tooltip}}"
+           onclick="return false;">{{action.title}}</a>
       </li>
     </ul>
   </div>
@@ -28,19 +28,19 @@
   <div *ngIf="primaryAction"
        class="pull-right toast-pf-action {{primaryAction.styleClass}}"
        [ngClass]="{'padding-right-15': showCloseButton == true, 'hidden': primaryAction?.visible === false}">
-    <div *ngIf="primaryAction.template; then showButtonTemplate else showButtonName"></div>
+    <div *ngIf="primaryAction.template; then showButtonTemplate else showButton"></div>
     <ng-template #showButtonTemplate let-action="action"
                  [ngTemplateOutlet]="primaryAction.template"
                  [ngOutletContext]="{ action: action }"></ng-template>
-    <ng-template #showButtonName>
+    <ng-template #showButton>
       <a *ngIf="primaryAction.disabled === true"
          href="javascript:void(0)"
-         title="{{primaryAction?.title}}"
-         (click)="handleAction(primaryAction)">{{primaryAction?.name}}</a>
+         title="{{primaryAction?.tooltip}}"
+         (click)="handleAction(primaryAction)">{{primaryAction?.title}}</a>
       <a *ngIf="primaryAction.disabled === true"
          href="javascript:void(0)"
-         title="{{primaryAction?.title}}"
-         onclick="return false;">{{primaryAction?.name}}</a>
+         title="{{primaryAction?.tooltip}}"
+         onclick="return false;">{{primaryAction?.title}}</a>
     </ng-template>
   </div>
   <span class="pficon pficon-ok" *ngIf="type === 'success'"></span>

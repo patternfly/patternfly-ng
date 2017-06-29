@@ -1,11 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/*
- * A filter containing:
- *
- * field - A filterable field
- * query - A filterable query
- * value - Filter value
+/**
+ * An object containing filter properties
  */
 var Filter = (function () {
     function Filter() {

@@ -10,6 +10,9 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
 var remaining_chars_count_directive_1 = require("./remaining-chars-count.directive");
+/**
+ * A module containing objects associated with the remaining characters directive
+ */
 var RemainingCharsCountModule = (function () {
     function RemainingCharsCountModule() {
     }

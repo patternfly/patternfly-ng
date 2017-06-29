@@ -13,20 +13,54 @@ var core_1 = require("@angular/core");
 var list_view_config_1 = require("./list-view-config");
 var lodash_1 = require("lodash");
 /**
- * List view component.
+ * List view component
+ *
+ * For items, use a template named itemTemplate to contain content for each row. For each item in the items array, the
+ * expansion can be disabled by setting disabled to true on the item. If using actions, use a template named
+ * actionTemplate to contain expandable content for the actions of each row. If using expanding rows, use a template
+ * named itemExpandedTemplate to contain expandable content for each row.
  */
 var ListViewComponent = (function () {
+    /**
+     * The default constructor
+     */
     function ListViewComponent() {
+        /**
+         * The event emitted when an action (e.g., button, kebab, etc.) has been selected
+         */
         this.onActionSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when a row checkbox has been selected
+         */
         this.onCheckBoxChange = new core_1.EventEmitter();
+        /**
+         * The event emitted when a row has been clicked
+         */
         this.onClick = new core_1.EventEmitter();
+        /**
+         * The event emitted when a row is double clicked
+         */
         this.onDblClick = new core_1.EventEmitter();
-        this.onDragEnd = new core_1.EventEmitter();
-        this.onDragMoved = new core_1.EventEmitter();
-        this.onDragStart = new core_1.EventEmitter();
+        /**
+         * The event emitted when a row is no longer dragged
+         */
+        // @Output('onDragEnd') onDragEnd = new EventEmitter();
+        /**
+         * The event emitted when a row is being dragged
+         */
+        // @Output('onDragMoved') onDragMoved = new EventEmitter();
+        /**
+         * The event emitted when a row begins to be dragged
+         */
+        // @Output('onDragStart') onDragStart = new EventEmitter();
+        /**
+         * The event emitted when a row has been selected
+         */
         this.onSelect = new core_1.EventEmitter();
+        /**
+         * The event emitted when a row selection has been changed
+         */
         this.onSelectionChange = new core_1.EventEmitter();
-        this.itemsEmpty = true;
         this.defaultConfig = {
             selectItems: false,
             multiSelect: false,
@@ -38,11 +72,18 @@ var ListViewComponent = (function () {
             useExpandingRows: false,
             showSelectBox: true
         };
+        this.itemsEmpty = true;
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     ListViewComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     ListViewComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {
@@ -96,23 +137,29 @@ var ListViewComponent = (function () {
     };
     // Drag and drop
     ListViewComponent.prototype.dragEnd = function () {
+        /* Todo: dnd not implemeneted
         this.onDragEnd.emit({
-            item: this.dragItem
-        });
+          item: this.dragItem
+        } as ListViewEvent);
+        */
     };
     ListViewComponent.prototype.dragMoved = function () {
+        /* Todo: dnd not implemeneted
         this.onDragMoved.emit({
-            item: this.dragItem
-        });
+          item: this.dragItem
+        } as ListViewEvent);
+        */
     };
     ListViewComponent.prototype.isDragOriginal = function (item) {
         return (item === this.dragItem);
     };
     ListViewComponent.prototype.dragStart = function (item) {
         this.dragItem = item;
+        /* Todo: dnd not implemeneted
         this.onDragStart.emit({
-            item: this.dragItem
-        });
+          item: this.dragItem
+        } as ListViewEvent);
+        */
     };
     // Row Selection
     ListViewComponent.prototype.itemClick = function ($event, item) {
@@ -226,18 +273,6 @@ __decorate([
     core_1.Output('onDblClick'),
     __metadata("design:type", Object)
 ], ListViewComponent.prototype, "onDblClick", void 0);
-__decorate([
-    core_1.Output('onDragEnd'),
-    __metadata("design:type", Object)
-], ListViewComponent.prototype, "onDragEnd", void 0);
-__decorate([
-    core_1.Output('onDragMoved'),
-    __metadata("design:type", Object)
-], ListViewComponent.prototype, "onDragMoved", void 0);
-__decorate([
-    core_1.Output('onDragStart'),
-    __metadata("design:type", Object)
-], ListViewComponent.prototype, "onDragStart", void 0);
 __decorate([
     core_1.Output('onSelect'),
     __metadata("design:type", Object)

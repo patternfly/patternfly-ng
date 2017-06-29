@@ -59,7 +59,7 @@ export class ToastNotificationBasicExampleComponent implements OnInit {
     }, {
       id: 'moreActions4',
       name: 'Something Else',
-      title: ''
+      title: 'Do something special'
     }, {
       id: 'moreActions5',
       separator: true
@@ -85,7 +85,7 @@ export class ToastNotificationBasicExampleComponent implements OnInit {
   // Action functions
 
   handleAction($event: NotificationEvent): void {
-    this.actionText = $event.action.name + '\n' + this.actionText;
+    this.actionText = $event.action.title + '\n' + this.actionText;
   }
 
   handleClose($event: NotificationEvent): void {

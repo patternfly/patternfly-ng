@@ -1,17 +1,31 @@
 import { EventEmitter, OnInit } from '@angular/core';
-import { Action } from '../models/action';
 import { EmptyStateConfig } from './empty-state-config';
 /**
- * Empty state component.
+ * Component for rendering an empty state.
  */
 export declare class EmptyStateComponent implements OnInit {
+    /**
+     * The empty state config containing component properties
+     */
     config: EmptyStateConfig;
+    /**
+     * The event emitted when an action is selected
+     */
     onActionSelect: EventEmitter<{}>;
-    defaultConfig: EmptyStateConfig;
-    prevConfig: EmptyStateConfig;
+    private defaultConfig;
+    private prevConfig;
+    /**
+     * The default constructor
+     */
     constructor();
+    /**
+     *  Setup component configuration upon initialization
+     */
     ngOnInit(): void;
+    /**
+     *  Check if the component config has changed
+     */
     ngDoCheck(): void;
-    setupConfig(): void;
-    handleAction(action: Action): void;
+    private setupConfig();
+    private handleAction(action);
 }

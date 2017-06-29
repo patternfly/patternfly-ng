@@ -1,14 +1,24 @@
-/*
- * A view available for selection containing:
- *
- * disabled - True if view is disabled
- * iconClass - Icon class to use for the view selector
- * id - Unique id for the view, used for comparisons
- * title - Optional title, uses as a tooltip for the view selector
+/**
+ * An view containing common properties
  */
 export class View {
+  /**
+   * True if view is disabled
+   */
   disabled?: boolean;
-  iconClass: string;
-  id: string;
-  title: string;
+
+  /**
+   * Style class to use for the view selector
+   */
+  iconStyleClass: string;
+
+  /**
+   * Unique id for the view
+   */
+  id?: string;
+
+  /**
+   * A tooltip for the view selector
+   */
+  tooltip?: string;
 }

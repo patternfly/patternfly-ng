@@ -36,42 +36,42 @@ describe('Toolbar component - ', () => {
       actionConfig: {
         primaryActions: [{
           id: 'action1',
-          name: 'Action 1',
-          title: 'Do the first thing'
+          title: 'Action 1',
+          tooltip: 'Do the first thing'
         }, {
           id: 'action2',
-          name: 'Action 2',
-          title: 'Do something else'
+          title: 'Action 2',
+          tooltip: 'Do something else'
         }],
         moreActions: [{
           id: 'moreActions1',
-          name: 'Action',
-          title: 'Perform an action'
+          title: 'Action',
+          tooltip: 'Perform an action'
         }, {
           id: 'moreActions2',
-          name: 'Another Action',
-          title: 'Do something else'
+          title: 'Another Action',
+          tooltip: 'Do something else'
         }, {
           disabled: true,
           id: 'moreActions3',
-          name: 'Disabled Action',
-          title: 'Unavailable action',
+          title: 'Disabled Action',
+          tooltip: 'Unavailable action',
         }, {
           id: 'moreActions4',
-          name: 'Something Else',
-          title: ''
+          title: 'Something Else',
+          tooltip: ''
         }, {
           id: 'moreActions5',
-          name: '',
+          title: '',
           separator: true
         }, {
           id: 'moreActions6',
-          name: 'Grouped Action 1',
-          title: 'Do something'
+          title: 'Grouped Action 1',
+          tooltip: 'Do something'
         }, {
           id: 'moreActions7',
-          name: 'Grouped Action 2',
-          title: 'Do something similar'
+          title: 'Grouped Action 2',
+          tooltip: 'Do something similar'
         }]
       } as ActionConfig,
 
@@ -162,12 +162,12 @@ describe('Toolbar component - ', () => {
       viewConfig: {
         views: [{
           id: 'listView',
-          title: 'List View',
-          iconClass: 'fa fa-th-list'
+          iconStyleClass: 'fa fa-th-list',
+          tooltip: 'List View'
         }, {
           id: 'tableView',
-          title: 'Table View',
-          iconClass: 'fa fa-table'
+          iconStyleClass: 'fa fa-table',
+          tooltip: 'Table View'
         }],
       } as ViewConfig
     } as ToolbarConfig;

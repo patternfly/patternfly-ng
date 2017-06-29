@@ -9,6 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var sample_component_1 = require("./sample.component");
+/**
+ * A module containing objects associated with the sample component
+ */
 var SampleModule = (function () {
     function SampleModule() {
     }

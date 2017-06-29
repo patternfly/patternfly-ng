@@ -132,38 +132,38 @@ export class ListViewCompoundExampleComponent implements OnInit {
     let config = {
       primaryActions: [{
         id: 'action1',
-        name: 'Action 1',
-        title: 'Perform an action'
+        title: 'Action 1',
+        tooltip: 'Perform an action'
       }],
       moreActions: [{
         id: 'moreActions1',
-        name: 'Action',
-        title: 'Perform an action'
+        title: 'Action',
+        tooltip: 'Perform an action'
       }, {
         id: 'moreActions2',
-        name: 'Another Action',
-        title: 'Do something else'
+        title: 'Another Action',
+        tooltip: 'Do something else'
       }, {
         disabled: true,
         id: 'moreActions3',
-        name: 'Disabled Action',
-        title: 'Unavailable action',
+        title: 'Disabled Action',
+        tooltip: 'Unavailable action',
       }, {
         id: 'moreActions4',
-        name: 'Something Else',
-        title: ''
+        title: 'Something Else',
+        tooltip: ''
       }, {
         id: 'moreActions5',
-        name: '',
+        title: '',
         separator: true
       }, {
         id: 'moreActions6',
-        name: 'Grouped Action 1',
-        title: 'Do something'
+        title: 'Grouped Action 1',
+        tooltip: 'Do something'
       }, {
         id: 'moreActions7',
-        name: 'Grouped Action 2',
-        title: 'Do something similar'
+        title: 'Grouped Action 2',
+        tooltip: 'Do something similar'
       }],
     } as ActionConfig;
 
@@ -173,10 +173,10 @@ export class ListViewCompoundExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action, item: any): void {
-    if ($event.name === 'Start') {
+    if ($event.title === 'Start') {
       item.started = true;
     }
-    this.actionsText = $event.name + ' selected\r\n' + this.actionsText;
+    this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
   }
 
   handleClick($event: ListViewEvent): void {

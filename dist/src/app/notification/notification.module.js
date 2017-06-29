@@ -16,6 +16,9 @@ exports.NotificationType = notification_type_1.NotificationType;
 var notification_service_1 = require("./notification.service");
 var toast_notification_component_1 = require("./toast-notification.component");
 var toast_notification_list_component_1 = require("./toast-notification-list.component");
+/**
+ * A module containing objects associated with notification components
+ */
 var NotificationModule = (function () {
     function NotificationModule() {
     }

@@ -1,15 +1,15 @@
 <span *ngIf="config.primaryActions?.length > 0">
-  <button class="btn btn-default primary-action {{action.styleClass}}" title="{{action.title}}" type="button"
+  <button class="btn btn-default primary-action {{action.styleClass}}" title="{{action.tooltip}}" type="button"
           *ngFor="let action of config.primaryActions"
           [disabled]="action.disabled"
           [ngClass]="{'invisible': action.visible === false}"
           (click)="handleAction(action)">
-    <div *ngIf="action.template; then showButtonTemplate else showButtonName"></div>
+    <div *ngIf="action.template; then showButtonTemplate else showButton"></div>
     <ng-template #showButtonTemplate let-action="action" let-item="item"
                  [ngTemplateOutlet]="action.template"
                  [ngOutletContext]="{ action: action, item: item }"></ng-template>
-    <ng-template #showButtonName>
-      {{action.name}}
+    <ng-template #showButton>
+      {{action.title}}
     </ng-template>
   </button>
 </span>
@@ -28,13 +28,13 @@
       <a *ngIf="action.disabled !== true && action.separator !== true"
          class="dropdown-item secondary-action"
          href="javascript:void(0)"
-         title="{{action.title}}"
-         (click)="handleAction(action)">{{action.name}}</a>
+         title="{{action.tooltip}}"
+         (click)="handleAction(action)">{{action.title}}</a>
       <a *ngIf="action.disabled === true && action.separator !== true"
          class="dropdown-item secondary-action"
          href="javascript:void(0)"
-         title="{{action.title}}"
-         onclick="return false;">{{action.name}}</a>
+         title="{{action.tooltip}}"
+         onclick="return false;">{{action.title}}</a>
     </li>
   </ul>
 </span>

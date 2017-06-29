@@ -69,17 +69,7 @@
 					<div class="lead">
 						<p>Notification service used to notify user about important events in the application.</p>
 					</div>
-					<h2 id="configuring-the-service">Configuring the service</h2>
-					<p>You can configure the service with: setDelay, setVerbose and setPersist.</p>
-					<h3 id="notifications-setdelay">Notifications.setDelay</h3>
-					<p>Set the delay after which the notification is dismissed. The argument of this method expects miliseconds. Default
-					delay is 8000 ms.</p>
-					<h3 id="notifications-setverbose">Notifications.setVerbose</h3>
-					<p>Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.</p>
-					<h3 id="notifications-setpersist">Notifications.setPersist</h3>
-					<p>Sets persist option for particular modes. Notification with persistent mode won&#39;t be dismissed after delay, but has
-						to be closed manually with the close button. By default, the &quot;error&quot; and &quot;httpError&quot; modes are set to persistent.
-					The input is an object in format {mode: persistValue}.</p>
+					<p>You may configure the service with: setDelay, setVerbose and setPersist.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -101,32 +91,16 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="notificationservice.html#delay" class="tsd-kind-icon">delay</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="notificationservice.html#modes" class="tsd-kind-icon">modes</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="notificationservice.html#notifications" class="tsd-kind-icon">notifications</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="notificationservice.html#verbose" class="tsd-kind-icon">verbose</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#getnotifications" class="tsd-kind-icon">get<wbr>Notifications</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#httperror" class="tsd-kind-icon">http<wbr>Error</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#message" class="tsd-kind-icon">message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#removeindex" class="tsd-kind-icon">remove<wbr>Index</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#setdelay" class="tsd-kind-icon">set<wbr>Delay</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#setpersist" class="tsd-kind-icon">set<wbr>Persist</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#setverbose" class="tsd-kind-icon">set<wbr>Verbose</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="notificationservice.html#setviewing" class="tsd-kind-icon">set<wbr>Viewing</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Object literals</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class"><a href="notificationservice.html#persist" class="tsd-kind-icon">persist</a></li>
 							</ul>
 						</section>
 					</div>
@@ -144,55 +118,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L34">app/notification/notification.service.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L20">app/notification/notification.service.ts:20</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The default constructor</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="notificationservice.html" class="tsd-signature-type">NotificationService</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="delay" class="tsd-anchor"></a>
-					<h3>delay</h3>
-					<div class="tsd-signature tsd-kind-icon">delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;8000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L30">app/notification/notification.service.ts:30</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="modes" class="tsd-anchor"></a>
-					<h3>modes</h3>
-					<div class="tsd-signature tsd-kind-icon">modes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L31">app/notification/notification.service.ts:31</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="notifications" class="tsd-anchor"></a>
-					<h3>notifications</h3>
-					<div class="tsd-signature tsd-kind-icon">notifications<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L32">app/notification/notification.service.ts:32</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="verbose" class="tsd-anchor"></a>
-					<h3>verbose</h3>
-					<div class="tsd-signature tsd-kind-icon">verbose<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L34">app/notification/notification.service.ts:34</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -207,9 +143,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L64">app/notification/notification.service.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L41">app/notification/notification.service.ts:41</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get all notifications</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="notification.html" class="tsd-signature-type">Notification</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
@@ -224,16 +165,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L68">app/notification/notification.service.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L51">app/notification/notification.service.ts:51</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a notification for the given HTTP Response</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The notification message</p>
+									</div>
 								</li>
 								<li>
 									<h5>httpResponse: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The HTTP Response</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -250,28 +202,51 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L77">app/notification/notification.service.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L70">app/notification/notification.service.ts:70</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a notification message</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The notification type</p>
+									</div>
 								</li>
 								<li>
 									<h5>header: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The notification header</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The notification message</p>
+									</div>
 								</li>
 								<li>
 									<h5>isPersistent: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>True if the notification should be persistent</p>
+									</div>
 								</li>
 								<li>
 									<h5>primaryAction: <a href="action.html" class="tsd-signature-type">Action</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The primary action for the notifiaction</p>
+									</div>
 								</li>
 								<li>
 									<h5>moreActions: <a href="action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>More actions for the kebab</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -288,36 +263,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L103">app/notification/notification.service.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L101">app/notification/notification.service.ts:101</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove notification</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>notification: <a href="notification.html" class="tsd-signature-type">Notification</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="removeindex" class="tsd-anchor"></a>
-					<h3>remove<wbr>Index</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Index<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L110">app/notification/notification.service.ts:110</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The notification to remove</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -334,13 +294,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L114">app/notification/notification.service.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L114">app/notification/notification.service.ts:114</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the delay after which the notification is dismissed. The argument of this method expects miliseconds. Default
+									delay is 8000 ms.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>delay: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The delay in ms</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -357,13 +326,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L118">app/notification/notification.service.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L124">app/notification/notification.service.ts:124</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets persist option for particular modes. Notification with persistent mode won&#39;t be dismissed after delay, but has
+									to be closed manually with the close button. By default, the &quot;error&quot; and &quot;httpError&quot; modes are set to persistent.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>persist: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Set to true to persist notifications</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -380,13 +360,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L122">app/notification/notification.service.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L133">app/notification/notification.service.ts:133</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>verbose: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set to true for verbose mode</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -403,54 +391,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L126">app/notification/notification.service.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/09a7eaf/src/app/notification/notification.service.ts#L143">app/notification/notification.service.ts:143</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set a flag indicating user is viewing the given notification</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>notification: <a href="notification.html" class="tsd-signature-type">Notification</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The notification currently being viewed</p>
+									</div>
 								</li>
 								<li>
 									<h5>isViewing: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>True if the notification is being viewed</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class">
-					<a name="persist" class="tsd-anchor"></a>
-					<h3>persist</h3>
-					<div class="tsd-signature tsd-kind-icon">persist<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L33">app/notification/notification.service.ts:33</a></li>
-						</ul>
-					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="persist.error" class="tsd-anchor"></a>
-						<h3>error</h3>
-						<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L33">app/notification/notification.service.ts:33</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="persist.httperror-1" class="tsd-anchor"></a>
-						<h3>http<wbr>Error</h3>
-						<div class="tsd-signature tsd-kind-icon">http<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/3c2f7c6/src/app/notification/notification.service.ts#L33">app/notification/notification.service.ts:33</a></li>
-							</ul>
-						</aside>
-					</section>
 				</section>
 			</section>
 		</div>
@@ -472,18 +438,6 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="notificationservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="notificationservice.html#delay" class="tsd-kind-icon">delay</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="notificationservice.html#modes" class="tsd-kind-icon">modes</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="notificationservice.html#notifications" class="tsd-kind-icon">notifications</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="notificationservice.html#verbose" class="tsd-kind-icon">verbose</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="notificationservice.html#getnotifications" class="tsd-kind-icon">get<wbr>Notifications</a>
 							</li>
@@ -497,9 +451,6 @@
 								<a href="notificationservice.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="notificationservice.html#removeindex" class="tsd-kind-icon">remove<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="notificationservice.html#setdelay" class="tsd-kind-icon">set<wbr>Delay</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -510,9 +461,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="notificationservice.html#setviewing" class="tsd-kind-icon">set<wbr>Viewing</a>
-							</li>
-							<li class=" tsd-kind-object-literal tsd-parent-kind-class">
-								<a href="notificationservice.html#persist" class="tsd-kind-icon">persist</a>
 							</li>
 						</ul>
 					</li>

@@ -27,36 +27,36 @@ export class EmptyStateExampleComponent implements OnInit {
     this.actionConfig = {
       primaryActions: [{
         id: 'action1',
-        name: 'Main Action',
-        title: 'Start the server'
+        title: 'Main Action',
+        tooltip: 'Start the server'
       }],
       moreActions: [{
         id: 'action2',
-        name: 'Secondary Action 1',
-        title: 'Do the first thing'
+        title: 'Secondary Action 1',
+        tooltip: 'Do the first thing'
       }, {
         id: 'action3',
-        name: 'Secondary Action 2',
-        title: 'Do something else'
+        title: 'Secondary Action 2',
+        tooltip: 'Do something else'
       }, {
         id: 'action4',
-        name: 'Secondary Action 3',
-        title: 'Do something special'
+        title: 'Secondary Action 3',
+        tooltip: 'Do something special'
       }]
     } as ActionConfig;
 
     this.emptyStateConfig = {
       actions: this.actionConfig,
-      icon: 'pficon-warning-triangle-o',
-      title: 'No Items Available',
+      iconStyleClass: 'pficon-warning-triangle-o',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
             'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
             'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
-        label: 'For more information please see the',
-        urlLabel: 'EmptyState example',
-        url: '/emptystate'
-      }
+        hypertext: 'Empty State example',
+        text: 'For more information please see the',
+        url: '#/emptystate'
+      },
+      title: 'No Items Available'
     } as EmptyStateConfig;
   }
 
@@ -66,6 +66,6 @@ export class EmptyStateExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action): void {
-    this.actionsText = $event.name + '\n' + this.actionsText;
+    this.actionsText = $event.title + '\n' + this.actionsText;
   }
 }

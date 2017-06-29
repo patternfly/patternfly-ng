@@ -1,22 +1,46 @@
 import { ActionConfig } from '../models/action-config';
 
-/*
- * An empty state config containing:
- *
- * actionConfig - Optional configuration settings for toolbar actions
- * icon - class for main icon. Ex. 'pficon pficon-add-circle-o'
- * info - Text for the main informational paragraph
- * title - Text for the main title
- *
+/**
+ * An empty state config containing component properties
  */
 export class EmptyStateConfig {
+  /**
+   * The action config containing button properties
+   */
   actions?: ActionConfig;
+
+  /**
+   * Config properties for the help link
+   */
   helpLink?: {
-    label: string;
-    urlLabel?: string;
+    /**
+     * Help link text
+     */
+    hypertext: string;
+
+    /**
+     * Help link description
+     */
+    text?: string;
+
+    /**
+     * Help link URL
+     */
     url: string;
   };
-  icon?: string;
-  info: string;
+
+  /**
+   * Style class for main icon (e.g., 'pficon pficon-add-circle-o')
+   */
+  iconStyleClass?: string;
+
+  /**
+   * Text for the main informational paragraph
+   */
+  info?: string;
+
+  /**
+   * Text for the main title
+   */
   title: string;
 }

@@ -14,7 +14,7 @@ import { FilterEvent } from './filter-event';
 import { cloneDeep, find, isEqual, remove } from 'lodash';
 
 /**
- * Component for the filter bar's filter entry components
+ * Filter component
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -23,23 +23,46 @@ import { cloneDeep, find, isEqual, remove } from 'lodash';
   templateUrl: './filter.component.html'
 })
 export class FilterComponent implements OnInit {
+  /**
+   * The filter config containing component properties
+   */
   @Input() config: FilterConfig;
 
+  /**
+   * The event emitted when a filter has been changed
+   */
   @Output('onChange') onChange = new EventEmitter();
+
+  /**
+   * The event emitted when a field menu option is selected
+   */
   @Output('onFieldSelect') onFilterSelect = new EventEmitter();
+
+  /**
+   * The event emitted when the user types ahead in the query input field
+   */
   @Output('onTypeAhead') onTypeAhead = new EventEmitter();
 
-  prevConfig: FilterConfig;
+  private prevConfig: FilterConfig;
 
+  /**
+   * The default constructor
+   */
   constructor() {
   }
 
   // Initialization
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
     this.setupConfig();
   }
 
+  /**
+   *  Check if the component config has changed
+   */
   ngDoCheck(): void {
     // Do a deep compare on config
     if (!isEqual(this.config, this.prevConfig)) {
@@ -47,7 +70,7 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  setupConfig(): void {
+  private setupConfig(): void {
     if (this.config === undefined) {
       this.config = {} as FilterConfig;
     }
@@ -58,9 +81,9 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  // Filter functions
+  // Actions
 
-  addFilter($event: FilterEvent): void {
+  private addFilter($event: FilterEvent): void {
     let newFilter = {
       field: $event.field,
       query: $event.query,
@@ -77,31 +100,29 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  clear($event: Filter[]): void {
+  private clear($event: Filter[]): void {
     this.config.appliedFilters = $event;
     this.onChange.emit({
       appliedFilters: $event
     } as FilterEvent);
   }
 
-  fieldSelected($event: FilterEvent): void {
+  private enforceSingleSelect(filter: Filter): void {
+    remove(this.config.appliedFilters, {title: filter.field.title});
+  }
+
+  private fieldSelected($event: FilterEvent): void {
     this.onFilterSelect.emit($event);
   }
 
-  filterExists(filter: Filter): boolean {
+  private filterExists(filter: Filter): boolean {
     let foundFilter = find(this.config.appliedFilters, {
       value: filter.value
     });
     return foundFilter !== undefined;
   }
 
-  typeAhead($event: any) {
+  private typeAhead($event: any) {
     this.onTypeAhead.emit($event);
-  }
-
-  // Private
-
-  private enforceSingleSelect(filter: Filter): void {
-    remove(this.config.appliedFilters, {title: filter.field.title});
   }
 }

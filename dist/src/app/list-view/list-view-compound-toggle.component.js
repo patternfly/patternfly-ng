@@ -14,9 +14,15 @@ var core_1 = require("@angular/core");
  * List view component.
  */
 var ListViewCompoundToggleComponent = (function () {
+    /**
+     * The default constructor
+     */
     function ListViewCompoundToggleComponent() {
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     ListViewCompoundToggleComponent.prototype.ngOnInit = function () {
         if (this.item === undefined) {
             throw new Error('ListViewCompoundToggleComponent: item attribute not set');

@@ -13,19 +13,31 @@ var core_1 = require("@angular/core");
 var empty_state_config_1 = require("./empty-state-config");
 var lodash_1 = require("lodash");
 /**
- * Empty state component.
+ * Component for rendering an empty state.
  */
 var EmptyStateComponent = (function () {
+    /**
+     * The default constructor
+     */
     function EmptyStateComponent() {
+        /**
+         * The event emitted when an action is selected
+         */
         this.onActionSelect = new core_1.EventEmitter();
         this.defaultConfig = {
             title: 'No Items Available'
         };
     }
     // Initialization
+    /**
+     *  Setup component configuration upon initialization
+     */
     EmptyStateComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
+    /**
+     *  Check if the component config has changed
+     */
     EmptyStateComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
         if (!lodash_1.isEqual(this.config, this.prevConfig)) {
@@ -41,7 +53,7 @@ var EmptyStateComponent = (function () {
         }
         this.prevConfig = lodash_1.cloneDeep(this.config);
     };
-    // Action functions
+    // Actions
     EmptyStateComponent.prototype.handleAction = function (action) {
         if (action && action.disabled !== true) {
             this.onActionSelect.emit(action);

@@ -1,21 +1,34 @@
 import { EventEmitter, OnInit } from '@angular/core';
 import { SortConfig } from './sort-config';
-import { SortField } from './sort-field';
+/**
+ * Sort component
+ */
 export declare class SortComponent implements OnInit {
+    /**
+     * The sort config containing component properties
+     */
     config: SortConfig;
+    /**
+     * The event emitted when the sort has changed
+     */
     onChange: EventEmitter<{}>;
-    show: boolean;
-    currentField: SortField;
-    defaultConfig: SortConfig;
-    prevConfig: SortConfig;
+    private currentField;
+    private defaultConfig;
+    private prevConfig;
+    /**
+     * The default constructor
+     */
     constructor();
+    /**
+     *  Setup component configuration upon initialization
+     */
     ngOnInit(): void;
+    /**
+     *  Check if the component config has changed
+     */
     ngDoCheck(): void;
-    setupConfig(): void;
-    toggle(): void;
-    open(): void;
-    close(): void;
-    getSortIconClass(): string;
-    onChangeDirection(): void;
-    selectField(field: SortField): void;
+    private setupConfig();
+    private getIconStyleClass();
+    private onChangeDirection();
+    private selectField(field);
 }
