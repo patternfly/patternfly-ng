@@ -22,8 +22,7 @@
     "start:demo": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base dist-demo",
     "test": "karma start",
     "transpile": "gulp transpile",
-    "semantic-release": "semantic-release pre && npm run build && cp -r .git dist && npm publish dist/ && semantic-release post",
-    "watch:library": "gulp watch"
+    "semantic-release": "semantic-release pre && npm run build && cp -r .git dist && npm publish dist/ && semantic-release post"
   },
   "license": "Apache-2.0",
   "contributors": [],
