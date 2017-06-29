@@ -15,7 +15,7 @@ import { FilterQuery } from './filter-query';
 import { cloneDeep, find, isEqual } from 'lodash';
 
 /**
- * Component for the filter bar's filter entry components
+ * Component for the filter query field and filter query dropdown
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -24,26 +24,48 @@ import { cloneDeep, find, isEqual } from 'lodash';
   templateUrl: './filter-fields.component.html'
 })
 export class FilterFieldsComponent implements OnInit {
+  /**
+   * The filter config containing component properties
+   */
   @Input() config: FilterConfig;
 
+  /**
+   * The event emitted when a filter has been added
+   */
   @Output('onAdd') onAdd = new EventEmitter();
+
+  /**
+   * The event emitted when a field menu option is selected
+   */
   @Output('onFieldSelect') onFieldSelect = new EventEmitter();
+
+  /**
+   * The event emitted when the user types ahead in the query input field
+   */
   @Output('onTypeAhead') onTypeAhead = new EventEmitter();
 
-  currentField: FilterField;
-  currentValue: string;
-  prevConfig: FilterConfig;
-  show: boolean = false;
+  private currentField: FilterField;
+  private currentValue: string;
+  private prevConfig: FilterConfig;
 
+  /**
+   * The default constructor
+   */
   constructor() {
   }
 
   // Initialization
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
     this.setupConfig();
   }
 
+  /**
+   *  Check if the component config has changed
+   */
   ngDoCheck(): void {
     // Do a deep compare on config
     if (!isEqual(this.config, this.prevConfig)) {
@@ -51,7 +73,7 @@ export class FilterFieldsComponent implements OnInit {
     }
   }
 
-  setupConfig(): void {
+  private setupConfig(): void {
     if (this.config === undefined) {
       this.config = {} as FilterConfig;
     }
@@ -85,7 +107,7 @@ export class FilterFieldsComponent implements OnInit {
 
   // Actions
 
-  fieldInputKeyPress($event: KeyboardEvent): void {
+  private fieldInputKeyPress($event: KeyboardEvent): void {
     if ($event.which === 13) {
       this.onAdd.emit({
         field: this.currentField,
@@ -95,14 +117,14 @@ export class FilterFieldsComponent implements OnInit {
     }
   }
 
-  queryInputChange(value: string) {
+  private queryInputChange(value: string) {
     this.onTypeAhead.emit({
       field: this.currentField,
       value: this.currentValue
     } as FilterEvent);
   }
 
-  selectField(field: FilterField): void {
+  private selectField(field: FilterField): void {
     this.currentField = field;
     this.currentValue = null;
     this.onFieldSelect.emit({
@@ -111,7 +133,7 @@ export class FilterFieldsComponent implements OnInit {
     } as FilterEvent);
   }
 
-  selectQuery(filterQuery: FilterQuery): void {
+  private selectQuery(filterQuery: FilterQuery): void {
     if (filterQuery != null) {
       this.onAdd.emit({
         field: this.currentField,

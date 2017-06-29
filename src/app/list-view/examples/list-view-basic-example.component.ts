@@ -126,21 +126,21 @@ export class ListViewBasicExampleComponent implements OnInit {
     this.actionConfig = {
       primaryActions: [{
         id: 'action1',
-        name: 'Main Action',
-        title: 'Start the server'
+        title: 'Main Action',
+        tooltip: 'Start the server'
       }],
       moreActions: [{
         id: 'action2',
-        name: 'Secondary Action 1',
-        title: 'Do the first thing'
+        title: 'Secondary Action 1',
+        tooltip: 'Do the first thing'
       }, {
         id: 'action3',
-        name: 'Secondary Action 2',
-        title: 'Do something else'
+        title: 'Secondary Action 2',
+        tooltip: 'Do something else'
       }, {
         id: 'action4',
-        name: 'Secondary Action 3',
-        title: 'Do something special'
+        title: 'Secondary Action 3',
+        tooltip: 'Do something special'
       }]
     } as ActionConfig;
 
@@ -152,9 +152,9 @@ export class ListViewBasicExampleComponent implements OnInit {
         'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
         'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
-        label: 'For more information please see the',
-        urlLabel: 'EmptyState example',
-        url: '/emptystate'
+        hypertext: 'List View example',
+        text: 'For more information please see the',
+        url: '#/listview'
       }
     } as EmptyStateConfig;
 
@@ -187,53 +187,53 @@ export class ListViewBasicExampleComponent implements OnInit {
     let config = {
       primaryActions: [{
         id: 'start',
-        name: 'Start',
-        title: 'Start the server',
         styleClass: 'btn-primary',
+        title: 'Start',
+        tooltip: 'Start the server',
         template: startButtonTemplate
       }, {
         id: 'action1',
-        name: 'Action 1',
-        title: 'Perform an action'
+        title: 'Action 1',
+        tooltip: 'Perform an action'
       }, {
         id: 'action2',
-        name: 'Action 2',
-        title: 'Do something else'
+        title: 'Action 2',
+        tooltip: 'Do something else'
       }, {
         id: 'action3',
-        name: 'Action 3',
-        title: 'Do something special',
+        title: 'Action 3',
+        tooltip: 'Do something special',
         template: actionButtonTemplate
       }],
       moreActions: [{
         id: 'moreActions1',
-        name: 'Action',
-        title: 'Perform an action'
+        title: 'Action',
+        tooltip: 'Perform an action'
       }, {
         id: 'moreActions2',
-        name: 'Another Action',
-        title: 'Do something else'
+        title: 'Another Action',
+        tooltip: 'Do something else'
       }, {
         disabled: true,
         id: 'moreActions3',
-        name: 'Disabled Action',
-        title: 'Unavailable action',
+        title: 'Disabled Action',
+        tooltip: 'Unavailable action',
       }, {
         id: 'moreActions4',
-        name: 'Something Else',
-        title: ''
+        title: 'Something Else',
+        tooltip: 'Do something special'
       }, {
         id: 'moreActions5',
-        name: '',
+        title: '',
         separator: true
       }, {
         id: 'moreActions6',
-        name: 'Grouped Action 1',
-        title: 'Do something'
+        title: 'Grouped Action 1',
+        tooltip: 'Do something'
       }, {
         id: 'moreActions7',
-        name: 'Grouped Action 2',
-        title: 'Do something similar'
+        title: 'Grouped Action 2',
+        tooltip: 'Do something similar'
       }],
       moreActionsDisabled: false,
       moreActionsVisible: true
@@ -266,7 +266,7 @@ export class ListViewBasicExampleComponent implements OnInit {
     if ($event.id === 'start') {
       item.started = true;
     }
-    this.actionsText = $event.name + ' selected\r\n' + this.actionsText;
+    this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
   }
 
   handleSelect($event: ListViewEvent): void {

@@ -25,26 +25,43 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   templateUrl: './list-view-actions.component.html'
 })
 export class ListViewActionsComponent implements OnInit {
+  /**
+   * The action config containing component properties
+   */
   @Input() config: ActionConfig;
 
+  /**
+   * The event emitted when an action has been selected
+   */
   @Output('onActionSelect') onActionSelect = new EventEmitter();
 
-  defaultConfig = {
+  private defaultConfig = {
     moreActionsDisabled: false,
     moreActionsVisible: true
   } as ActionConfig;
-  isMoreActionsDropup: boolean = false;
-  prevConfig: ActionConfig;
+  private isMoreActionsDropup: boolean = false;
+  private prevConfig: ActionConfig;
 
+  /**
+   * The default constructor
+   *
+   * @param el The element reference for this component
+   */
   constructor(private el: ElementRef) {
   }
 
   // Initialization
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
     this.setupConfig();
   }
 
+  /**
+   *  Check if the component config has changed
+   */
   ngDoCheck(): void {
     // Do a deep compare on config
     if (!isEqual(this.config, this.prevConfig)) {
@@ -52,7 +69,7 @@ export class ListViewActionsComponent implements OnInit {
     }
   }
 
-  setupConfig(): void {
+  private setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -62,7 +79,7 @@ export class ListViewActionsComponent implements OnInit {
 
   // Actions
 
-  handleAction(action: Action): void {
+  private handleAction(action: Action): void {
     if (action && action.disabled !== true) {
       this.onActionSelect.emit(action);
     }
@@ -73,7 +90,7 @@ export class ListViewActionsComponent implements OnInit {
    *
    * @param $event The MouseEvent triggering this function
    */
-  initMoreActionsDropup($event: MouseEvent): void {
+  private initMoreActionsDropup($event: MouseEvent): void {
     window.requestAnimationFrame(() => {
       let kebabContainer = this.closest($event.target, '.dropdown-kebab-pf.open', 'pfng-list-view-actions');
       let listViewContainer = this.closest(this.el.nativeElement, '.list-group.list-view-pf', 'pfng-list-view');
@@ -97,7 +114,7 @@ export class ListViewActionsComponent implements OnInit {
     });
   }
 
-  // Private
+  // Utils
 
   /**
    * Get the closest ancestor based on given selector

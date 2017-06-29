@@ -20,33 +20,33 @@ describe('Empty state component - ', () => {
       actions: {
         primaryActions: [{
           id: 'action1',
-          name: 'Main',
-          title: 'Start the server'
+          title: 'Main',
+          tooltip: 'Start the server'
         }],
         moreActions: [{
           id: 'action2',
-          name: 'Secondary 1',
-          title: 'Do the first thing'
+          title: 'Secondary 1',
+          tooltip: 'Do the first thing'
         }, {
           id: 'action3',
-          name: 'Secondary 2',
-          title: 'Do something else'
+          title: 'Secondary 2',
+          tooltip: 'Do something else'
         }, {
           id: 'action4',
-          name: 'Secondary 3',
-          title: 'Do something special'
+          title: 'Secondary 3',
+          tooltip: 'Do something special'
         }]
       },
-      icon: 'pficon-warning-triangle-o',
-      title: 'No Items Available',
+      iconStyleClass: 'pficon-warning-triangle-o',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
         'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
         'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
-        label: 'For more information please see the',
-        urlLabel: 'EmptyState example',
-        url: '/emptystate'
-      }
+        hypertext: 'EmptyState example',
+        text: 'For more information please see the',
+        url: '#/emptystate'
+      },
+      title: 'No Items Available'
     } as EmptyStateConfig;
   });
 

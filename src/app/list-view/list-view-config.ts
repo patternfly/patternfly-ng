@@ -1,28 +1,56 @@
 import { EmptyStateConfig } from '../empty-state/empty-state-config';
 
-/*
- * A list view config containing:
- *
- * dlbClick - Handle double clicking (item remains selected on a double click). Default is false
- * dragEnabled - Enable drag and drop. Default is false
- * emptyStateConfig - Empty state config for when no items are available
- * headingRow - Show list heading. First row shall be used to define heading text.
- * multiSelect - Allow multiple row selections, selectItems must also be set, not applicable when dblClick is true. Default is false
- * selectedItems - Current set of selected items
- * selectItems - Allow row selection, default is false
- * selectionMatchProp - Property of the items to use for determining matching, default is 'uuid'
- * showSelectBox - Show item selection boxes for each item, default is true
- * useExpandingRows - Allow row expansion for each list item
+/**
+ * A config containing properties for list view
  */
 export class ListViewConfig {
+  /**
+   * Handle double clicking (item remains selected on a double click). Default is false
+   */
   dblClick?: boolean;
-  dragEnabled?: boolean;
+
+  /**
+   * Enable drag and drop. Default is false
+   */
+  // dragEnabled?: boolean;
+
+  /**
+   *  A config containing properties for empty state when no items are available
+   */
   emptyStateConfig?: EmptyStateConfig;
+
+  /**
+   * Show list heading. First object in items array is be used to define heading text
+   */
   headingRow?: boolean;
+
+  /**
+   * Allow multiple row selections, selectItems must also be set, not applicable when dblClick is true. Default is false
+   */
   multiSelect?: boolean;
+
+  /**
+   * Current set of selected items
+   */
   selectedItems?: any[];
+
+  /**
+   * Allow row selection, default is false
+   */
   selectItems?: boolean;
+
+  /**
+   * Property of the items to use for determining matching, default is 'uuid'
+   */
   selectionMatchProp?: string;
+
+  /**
+   * Show item selection boxes for each item, default is true
+   */
   showSelectBox?: boolean;
+
+  /**
+   * Allow row expansion for each list item
+   */
   useExpandingRows?: boolean;
 }

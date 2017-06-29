@@ -182,7 +182,7 @@ module.exports = {
       includeDeclarations: false,
       ignoreCompilerErrors: true,
       excludePrivate: true,
-      exclude: '**/examples/**'
+      exclude: '**/+(examples|demo)/**'
     }, './src')
   ]
 };

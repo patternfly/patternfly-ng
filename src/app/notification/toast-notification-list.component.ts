@@ -10,6 +10,9 @@ import {
 import { Notification } from './notification';
 import { NotificationEvent } from './notification-event';
 
+/**
+ * Component to display a list of toast notifications
+ */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-toast-notification-list',
@@ -17,32 +20,59 @@ import { NotificationEvent } from './notification-event';
   templateUrl: './toast-notification-list.component.html'
 })
 export class ToastNotificationListComponent implements OnInit {
+  /**
+   * A list of notifiactions to display
+   */
   @Input() notifications: Notification[];
+
+  /**
+   * Set to true to show close button
+   */
   @Input() showClose: boolean;
 
+  /**
+   * The event emitted when an action has been selected
+   */
   @Output('onActionSelect') onActionSelect = new EventEmitter();
+
+  /**
+   * The event emitted when the close button has been selected
+   */
   @Output('onCloseSelect') onCloseSelect = new EventEmitter();
+
+  /**
+   * The event emitted when the mouse hovers over and leaves a notification
+   */
   @Output('onViewingChange') onViewingChange = new EventEmitter();
 
+  /**
+   * The default constructor
+   */
   constructor() {
   }
 
   // Initialization
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
   }
 
-  // Action functions
+  // Actions
 
-  handleAction($event: NotificationEvent): void {
+  /**
+   *  Check if the component config has changed
+   */
+  private handleAction($event: NotificationEvent): void {
     this.onActionSelect.emit($event);
   }
 
-  handleClose($event: NotificationEvent): void {
+  private handleClose($event: NotificationEvent): void {
     this.onCloseSelect.emit($event);
   }
 
-  handleViewingChange($event: NotificationEvent) {
+  private handleViewingChange($event: NotificationEvent) {
     this.onViewingChange.emit($event);
   }
 }

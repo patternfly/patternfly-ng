@@ -8,9 +8,12 @@ export {
   EmptyStateConfig
 }
 
+/**
+ * A module containing objects associated with the empty state component
+ */
 @NgModule({
   imports: [ CommonModule ],
   declarations: [ EmptyStateComponent ],
   exports: [ EmptyStateComponent ]
 })
-export class EmptyStateModule { }
+export class EmptyStateModule {}

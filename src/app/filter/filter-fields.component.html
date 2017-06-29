@@ -34,7 +34,7 @@
           <li role="menuitem" *ngFor="let query of currentField?.queries"
               [ngClass]="{'selected': query?.value === currentValue, 'divider dropdown-divider': query?.separator}">
             <a class="dropdown-item" tabindex="-1" (click)="selectQuery(query)" *ngIf="!query?.separator">
-              <span class="fa {{query?.iconClass}}" *ngIf="query?.iconClass"></span>
+              <span class="{{query?.iconStyleClass}}" *ngIf="query?.iconStyleClass"></span>
               <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
               {{query.value}}
             </a>
@@ -59,7 +59,7 @@
           <li role="menuitem" *ngFor="let query of currentField?.queries"
               [ngClass]="{'selected': query.value === currentValue, 'divider dropdown-divider': query?.separator}">
             <a class="dropdown-item" tabindex="-1" (click)="selectQuery(query)" *ngIf="!query?.separator">
-              <span class="fa {{query?.iconClass}}" *ngIf="query?.iconClass"></span>
+              <span class="{{query?.iconStyleClass}}" *ngIf="query?.iconStyleClass"></span>
               <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
               <span [innerHTML]="query.value | SearchHighlight: queryInput.value"></span>
             </a>

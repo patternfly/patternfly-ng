@@ -13,7 +13,7 @@ import { EmptyStateConfig } from './empty-state-config';
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
- * Empty state component.
+ * Component for rendering an empty state.
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -22,24 +22,39 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   templateUrl: './empty-state.component.html'
 })
 export class EmptyStateComponent implements OnInit {
+  /**
+   * The empty state config containing component properties
+   */
   @Input() config: EmptyStateConfig;
 
+  /**
+   * The event emitted when an action is selected
+   */
   @Output('onActionSelect') onActionSelect = new EventEmitter();
 
-  defaultConfig = {
+  private defaultConfig = {
     title: 'No Items Available'
   } as EmptyStateConfig;
-  prevConfig: EmptyStateConfig;
+  private prevConfig: EmptyStateConfig;
 
+  /**
+   * The default constructor
+   */
   constructor() {
   }
 
   // Initialization
 
+  /**
+   *  Setup component configuration upon initialization
+   */
   ngOnInit(): void {
     this.setupConfig();
   }
 
+  /**
+   *  Check if the component config has changed
+   */
   ngDoCheck(): void {
     // Do a deep compare on config
     if (!isEqual(this.config, this.prevConfig)) {
@@ -47,7 +62,7 @@ export class EmptyStateComponent implements OnInit {
     }
   }
 
-  setupConfig(): void {
+  private setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -56,9 +71,9 @@ export class EmptyStateComponent implements OnInit {
     this.prevConfig = cloneDeep(this.config);
   }
 
-  // Action functions
+  // Actions
 
-  handleAction(action: Action): void {
+  private handleAction(action: Action): void {
     if (action && action.disabled !== true) {
       this.onActionSelect.emit(action);
     }

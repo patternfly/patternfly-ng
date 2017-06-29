@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/examples/filter-example.component';
 import { ListViewExampleComponent } from '../app/list-view/examples/list-view-example.component';
+import { NotificationServiceExampleComponent } from '../app/notification/examples/notification-service-example.component';
 import { RemainingCharsCountExampleComponent } from '../app/remaining-chars-count/examples/remaining-chars-count-example.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
 import { SearchHighlightExampleComponent } from '../app/search-highlight/examples/search-highlight-example.component';
@@ -25,6 +26,9 @@ const routes: Routes = [{
   }, {
     path: 'listview',
     component: ListViewExampleComponent
+  }, {
+    path: 'notificationservice',
+    component: NotificationServiceExampleComponent
   }, {
     path: 'remainingcharscount',
     component: RemainingCharsCountExampleComponent

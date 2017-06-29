@@ -16,6 +16,9 @@ export {
   ListViewEvent
 }
 
+/**
+ * A module containing objects associated with list view components
+ */
 @NgModule({
   imports: [ BsDropdownModule, CommonModule, EmptyStateModule, FormsModule ],
   declarations: [ ListViewActionsComponent, ListViewComponent, ListViewCompoundToggleComponent ],

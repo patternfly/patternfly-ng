@@ -1,12 +1,16 @@
 import { SortField } from './sort-field';
 
-/*
- * A sort event containing:
- *
- * field - A filterable field
- * isAscending - True if sort is ascending
+/**
+ * An object containing properties for sort events
  */
 export class SortEvent {
+  /**
+   * The currently selected filterable field
+   */
   field: SortField;
-  isAscending: boolean = true;
+
+  /**
+   * True if sort is ascending
+   */
+  isAscending: boolean;
 }

@@ -64,7 +64,7 @@ export class SortExampleComponent implements OnInit {
     this.sortConfig = {
       fields: [{
         id: 'name',
-        title:  'Name',
+        title: 'Name',
         sortType: 'alpha'
       }, {
         id: 'address',
