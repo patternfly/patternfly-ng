@@ -16,6 +16,7 @@
 .npmignore
 .travis.yml
 config
+deploy_key.enc
 dist-demo
 gulpfile.js
 index.ts
