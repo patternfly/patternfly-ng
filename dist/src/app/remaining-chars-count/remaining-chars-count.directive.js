@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
 /**
  * Remaining Characters directive for showing a characters remaining count and triggering warning and error
  * behavior when passing specified thresholds. When the <code>charsRemainingWarning</code> threshold is passed,
@@ -41,11 +39,11 @@ var RemainingCharsCountDirective = (function () {
         /**
          * The event emitted when a remaining characters is over max limit
          */
-        this.onOverCharsMaxLimit = new core_1.EventEmitter();
+        this.onOverCharsMaxLimit = new EventEmitter();
         /**
          * The event emitted when a remaining characters is under max limit
          */
-        this.onUnderCharsMaxLimit = new core_1.EventEmitter();
+        this.onUnderCharsMaxLimit = new EventEmitter();
         this.remainingChars = 0;
     }
     // Initialization
@@ -122,41 +120,41 @@ var RemainingCharsCountDirective = (function () {
     return RemainingCharsCountDirective;
 }());
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Boolean)
 ], RemainingCharsCountDirective.prototype, "blockInputAtMaxLimit", void 0);
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Number)
 ], RemainingCharsCountDirective.prototype, "charsMaxLimit", void 0);
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Object)
 ], RemainingCharsCountDirective.prototype, "charsRemainingElement", void 0);
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Number)
 ], RemainingCharsCountDirective.prototype, "charsRemainingWarning", void 0);
 __decorate([
-    core_1.Output('onOverCharsMaxLimit'),
+    Output('onOverCharsMaxLimit'),
     __metadata("design:type", Object)
 ], RemainingCharsCountDirective.prototype, "onOverCharsMaxLimit", void 0);
 __decorate([
-    core_1.Output('onUnderCharsMaxLimit'),
+    Output('onUnderCharsMaxLimit'),
     __metadata("design:type", Object)
 ], RemainingCharsCountDirective.prototype, "onUnderCharsMaxLimit", void 0);
 __decorate([
-    core_1.HostListener('keyup', ['$event']),
+    HostListener('keyup', ['$event']),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [KeyboardEvent]),
     __metadata("design:returntype", void 0)
 ], RemainingCharsCountDirective.prototype, "handleKeypress", null);
 RemainingCharsCountDirective = __decorate([
-    core_1.Directive({
+    Directive({
         selector: '[pfng-remaining-chars-count]'
     }),
-    __metadata("design:paramtypes", [core_1.ElementRef,
-        core_1.Renderer2])
+    __metadata("design:paramtypes", [ElementRef,
+        Renderer2])
 ], RemainingCharsCountDirective);
-exports.RemainingCharsCountDirective = RemainingCharsCountDirective;
+export { RemainingCharsCountDirective };
 //# sourceMappingURL=remaining-chars-count.directive.js.map

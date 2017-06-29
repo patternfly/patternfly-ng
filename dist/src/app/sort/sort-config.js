@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * A config containing properties for sort
  */
@@ -8,5 +6,5 @@ var SortConfig = (function () {
     }
     return SortConfig;
 }());
-exports.SortConfig = SortConfig;
+export { SortConfig };
 //# sourceMappingURL=sort-config.js.map

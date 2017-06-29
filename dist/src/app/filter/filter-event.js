@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An object containing properties for filter events
  */
@@ -8,5 +6,5 @@ var FilterEvent = (function () {
     }
     return FilterEvent;
 }());
-exports.FilterEvent = FilterEvent;
+export { FilterEvent };
 //# sourceMappingURL=filter-event.js.map

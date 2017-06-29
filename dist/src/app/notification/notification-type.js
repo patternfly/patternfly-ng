@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * An object containing properties for a notification type
  */
@@ -8,6 +6,7 @@ var NotificationType = (function () {
     }
     return NotificationType;
 }());
+export { NotificationType };
 /**
  * Danger notification type
  */
@@ -24,5 +23,4 @@ NotificationType.SUCCESS = 'success';
  * Warning notification type
  */
 NotificationType.WARNING = 'warning';
-exports.NotificationType = NotificationType;
 //# sourceMappingURL=notification-type.js.map

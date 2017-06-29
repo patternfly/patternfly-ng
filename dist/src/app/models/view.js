@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An view containing common properties
  */
@@ -8,5 +6,5 @@ var View = (function () {
     }
     return View;
 }());
-exports.View = View;
+export { View };
 //# sourceMappingURL=view.js.map

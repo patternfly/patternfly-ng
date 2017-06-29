@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
+import { Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 /**
  * List view component.
  */
@@ -55,24 +53,24 @@ var ListViewCompoundToggleComponent = (function () {
     return ListViewCompoundToggleComponent;
 }());
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", String)
 ], ListViewCompoundToggleComponent.prototype, "expandingRowId", void 0);
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Object)
 ], ListViewCompoundToggleComponent.prototype, "item", void 0);
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", core_1.TemplateRef)
+    Input(),
+    __metadata("design:type", TemplateRef)
 ], ListViewCompoundToggleComponent.prototype, "template", void 0);
 ListViewCompoundToggleComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-list-view-compound-toggle',
         template: require('./list-view-compound-toggle.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], ListViewCompoundToggleComponent);
-exports.ListViewCompoundToggleComponent = ListViewCompoundToggleComponent;
+export { ListViewCompoundToggleComponent };
 //# sourceMappingURL=list-view-compound-toggle.component.js.map

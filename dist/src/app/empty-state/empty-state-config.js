@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An empty state config containing component properties
  */
@@ -8,5 +6,5 @@ var EmptyStateConfig = (function () {
     }
     return EmptyStateConfig;
 }());
-exports.EmptyStateConfig = EmptyStateConfig;
+export { EmptyStateConfig };
 //# sourceMappingURL=empty-state-config.js.map

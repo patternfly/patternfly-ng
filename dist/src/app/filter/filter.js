@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An object containing filter properties
  */
@@ -8,5 +6,5 @@ var Filter = (function () {
     }
     return Filter;
 }());
-exports.Filter = Filter;
+export { Filter };
 //# sourceMappingURL=filter.js.map

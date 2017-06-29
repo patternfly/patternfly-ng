@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var action_config_1 = require("../models/action-config");
-var lodash_1 = require("lodash");
+import { Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { ActionConfig } from '../models/action-config';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * List view actions component.
  *
@@ -28,7 +26,7 @@ var ListViewActionsComponent = (function () {
         /**
          * The event emitted when an action has been selected
          */
-        this.onActionSelect = new core_1.EventEmitter();
+        this.onActionSelect = new EventEmitter();
         this.defaultConfig = {
             moreActionsDisabled: false,
             moreActionsVisible: true
@@ -47,16 +45,16 @@ var ListViewActionsComponent = (function () {
      */
     ListViewActionsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
+        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
     ListViewActionsComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
-            lodash_1.defaults(this.config, this.defaultConfig);
+            defaults(this.config, this.defaultConfig);
         }
         else {
-            this.config = lodash_1.cloneDeep(this.defaultConfig);
+            this.config = cloneDeep(this.defaultConfig);
         }
     };
     // Actions
@@ -119,21 +117,21 @@ var ListViewActionsComponent = (function () {
     return ListViewActionsComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", action_config_1.ActionConfig)
+    Input(),
+    __metadata("design:type", ActionConfig)
 ], ListViewActionsComponent.prototype, "config", void 0);
 __decorate([
-    core_1.Output('onActionSelect'),
+    Output('onActionSelect'),
     __metadata("design:type", Object)
 ], ListViewActionsComponent.prototype, "onActionSelect", void 0);
 ListViewActionsComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-list-view-actions',
         styles: [require('./list-view-actions.component.css').toString()],
         template: require('./list-view-actions.component.html')
     }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
+    __metadata("design:paramtypes", [ElementRef])
 ], ListViewActionsComponent);
-exports.ListViewActionsComponent = ListViewActionsComponent;
+export { ListViewActionsComponent };
 //# sourceMappingURL=list-view-actions.component.js.map

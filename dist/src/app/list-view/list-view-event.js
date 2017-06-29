@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An object containing properties for list view events
  */
@@ -8,5 +6,5 @@ var ListViewEvent = (function () {
     }
     return ListViewEvent;
 }());
-exports.ListViewEvent = ListViewEvent;
+export { ListViewEvent };
 //# sourceMappingURL=list-view-event.js.map

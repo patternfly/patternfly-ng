@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var list_view_config_1 = require("./list-view-config");
-var lodash_1 = require("lodash");
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ListViewConfig } from './list-view-config';
+import { cloneDeep, defaults, isEqual, without } from 'lodash';
 /**
  * List view component
  *
@@ -28,19 +26,19 @@ var ListViewComponent = (function () {
         /**
          * The event emitted when an action (e.g., button, kebab, etc.) has been selected
          */
-        this.onActionSelect = new core_1.EventEmitter();
+        this.onActionSelect = new EventEmitter();
         /**
          * The event emitted when a row checkbox has been selected
          */
-        this.onCheckBoxChange = new core_1.EventEmitter();
+        this.onCheckBoxChange = new EventEmitter();
         /**
          * The event emitted when a row has been clicked
          */
-        this.onClick = new core_1.EventEmitter();
+        this.onClick = new EventEmitter();
         /**
          * The event emitted when a row is double clicked
          */
-        this.onDblClick = new core_1.EventEmitter();
+        this.onDblClick = new EventEmitter();
         /**
          * The event emitted when a row is no longer dragged
          */
@@ -56,11 +54,11 @@ var ListViewComponent = (function () {
         /**
          * The event emitted when a row has been selected
          */
-        this.onSelect = new core_1.EventEmitter();
+        this.onSelect = new EventEmitter();
         /**
          * The event emitted when a row selection has been changed
          */
-        this.onSelectionChange = new core_1.EventEmitter();
+        this.onSelectionChange = new EventEmitter();
         this.defaultConfig = {
             selectItems: false,
             multiSelect: false,
@@ -86,17 +84,17 @@ var ListViewComponent = (function () {
      */
     ListViewComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
+        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
         this.itemsEmpty = !(this.items !== undefined && this.items.length > 0);
     };
     ListViewComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
-            lodash_1.defaults(this.config, this.defaultConfig);
+            defaults(this.config, this.defaultConfig);
         }
         else {
-            this.config = lodash_1.cloneDeep(this.defaultConfig);
+            this.config = cloneDeep(this.defaultConfig);
         }
         if ((this.config.multiSelect === undefined || this.config.multiSelect === false)
             && this.config.selectedItems && this.config.selectedItems.length > 0) {
@@ -106,7 +104,7 @@ var ListViewComponent = (function () {
             throw new Error('ListViewComponent - Illegal use: ' +
                 'Cannot use both select box and click selection at the same time.');
         }
-        this.prevConfig = lodash_1.cloneDeep(this.config);
+        this.prevConfig = cloneDeep(this.config);
     };
     // Actions
     ListViewComponent.prototype.handleAction = function (action) {
@@ -179,7 +177,7 @@ var ListViewComponent = (function () {
                 }
                 if (alreadySelected) {
                     // already selected so deselect
-                    this.config.selectedItems = lodash_1.without(this.config.selectedItems, item);
+                    this.config.selectedItems = without(this.config.selectedItems, item);
                 }
                 else {
                     // add the item to the selected items
@@ -238,57 +236,57 @@ var ListViewComponent = (function () {
     return ListViewComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", core_1.TemplateRef)
+    Input(),
+    __metadata("design:type", TemplateRef)
 ], ListViewComponent.prototype, "actionTemplate", void 0);
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", list_view_config_1.ListViewConfig)
+    Input(),
+    __metadata("design:type", ListViewConfig)
 ], ListViewComponent.prototype, "config", void 0);
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", core_1.TemplateRef)
+    Input(),
+    __metadata("design:type", TemplateRef)
 ], ListViewComponent.prototype, "itemExpandedTemplate", void 0);
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Array)
 ], ListViewComponent.prototype, "items", void 0);
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", core_1.TemplateRef)
+    Input(),
+    __metadata("design:type", TemplateRef)
 ], ListViewComponent.prototype, "itemTemplate", void 0);
 __decorate([
-    core_1.Output('onActionSelect'),
+    Output('onActionSelect'),
     __metadata("design:type", Object)
 ], ListViewComponent.prototype, "onActionSelect", void 0);
 __decorate([
-    core_1.Output('onCheckBoxChange'),
+    Output('onCheckBoxChange'),
     __metadata("design:type", Object)
 ], ListViewComponent.prototype, "onCheckBoxChange", void 0);
 __decorate([
-    core_1.Output('onClick'),
+    Output('onClick'),
     __metadata("design:type", Object)
 ], ListViewComponent.prototype, "onClick", void 0);
 __decorate([
-    core_1.Output('onDblClick'),
+    Output('onDblClick'),
     __metadata("design:type", Object)
 ], ListViewComponent.prototype, "onDblClick", void 0);
 __decorate([
-    core_1.Output('onSelect'),
+    Output('onSelect'),
     __metadata("design:type", Object)
 ], ListViewComponent.prototype, "onSelect", void 0);
 __decorate([
-    core_1.Output('onSelectionChange'),
+    Output('onSelectionChange'),
     __metadata("design:type", Object)
 ], ListViewComponent.prototype, "onSelectionChange", void 0);
 ListViewComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-list-view',
         styles: [require('./list-view.component.css').toString()],
         template: require('./list-view.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], ListViewComponent);
-exports.ListViewComponent = ListViewComponent;
+export { ListViewComponent };
 //# sourceMappingURL=list-view.component.js.map

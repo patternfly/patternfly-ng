@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * A config containing properties for list view
  */
@@ -8,5 +6,5 @@ var ListViewConfig = (function () {
     }
     return ListViewConfig;
 }());
-exports.ListViewConfig = ListViewConfig;
+export { ListViewConfig };
 //# sourceMappingURL=list-view-config.js.map

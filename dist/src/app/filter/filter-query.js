@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An object containing properties for a filterable query, used when filterType is 'select'
  */
@@ -8,5 +6,5 @@ var FilterQuery = (function () {
     }
     return FilterQuery;
 }());
-exports.FilterQuery = FilterQuery;
+export { FilterQuery };
 //# sourceMappingURL=filter-query.js.map

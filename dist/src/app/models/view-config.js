@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * An view config containing common properties for multiple views
  */
@@ -8,5 +6,5 @@ var ViewConfig = (function () {
     }
     return ViewConfig;
 }());
-exports.ViewConfig = ViewConfig;
+export { ViewConfig };
 //# sourceMappingURL=view-config.js.map

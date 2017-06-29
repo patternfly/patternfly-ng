@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var sort_config_1 = require("./sort-config");
-var lodash_1 = require("lodash");
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { SortConfig } from './sort-config';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Sort component
  */
@@ -23,7 +21,7 @@ var SortComponent = (function () {
         /**
          * The event emitted when the sort has changed
          */
-        this.onChange = new core_1.EventEmitter();
+        this.onChange = new EventEmitter();
         this.defaultConfig = {
             isAscending: true,
             visible: true
@@ -40,16 +38,16 @@ var SortComponent = (function () {
      */
     SortComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
+        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
     SortComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
-            lodash_1.defaults(this.config, this.defaultConfig);
+            defaults(this.config, this.defaultConfig);
         }
         else {
-            this.config = lodash_1.cloneDeep(this.defaultConfig);
+            this.config = cloneDeep(this.defaultConfig);
         }
         if (this.config && this.config.fields && this.config.fields.length > 0) {
             if (this.currentField === undefined) {
@@ -99,21 +97,21 @@ var SortComponent = (function () {
     return SortComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", sort_config_1.SortConfig)
+    Input(),
+    __metadata("design:type", SortConfig)
 ], SortComponent.prototype, "config", void 0);
 __decorate([
-    core_1.Output('onChange'),
+    Output('onChange'),
     __metadata("design:type", Object)
 ], SortComponent.prototype, "onChange", void 0);
 SortComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-sort',
         styles: [require('./sort.component.css').toString()],
         template: require('./sort.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], SortComponent);
-exports.SortComponent = SortComponent;
+export { SortComponent };
 //# sourceMappingURL=sort.component.js.map

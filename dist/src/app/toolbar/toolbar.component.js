@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var toolbar_config_1 = require("./toolbar-config");
-var lodash_1 = require("lodash");
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ToolbarConfig } from './toolbar-config';
+import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 /**
  * Toolbar component
  */
@@ -23,27 +21,27 @@ var ToolbarComponent = (function () {
         /**
          * The event emitted when an action (e.g., button, kebab, etc.) has been selected
          */
-        this.onActionSelect = new core_1.EventEmitter();
+        this.onActionSelect = new EventEmitter();
         /**
          * The event emitted when a field menu option is selected
          */
-        this.onFilterFiledSelect = new core_1.EventEmitter();
+        this.onFilterFiledSelect = new EventEmitter();
         /**
          * The event emitted when a filter has been changed
          */
-        this.onFilterChange = new core_1.EventEmitter();
+        this.onFilterChange = new EventEmitter();
         /**
          * The event emitted when the user types ahead in the query input field
          */
-        this.onFilterTypeAhead = new core_1.EventEmitter();
+        this.onFilterTypeAhead = new EventEmitter();
         /**
          * The event emitted when the sort has changed
          */
-        this.onSortChange = new core_1.EventEmitter();
+        this.onSortChange = new EventEmitter();
         /**
          * The event emitted when a view has been selected
          */
-        this.onViewSelect = new core_1.EventEmitter();
+        this.onViewSelect = new EventEmitter();
         this.defaultConfig = {};
     }
     // Initialization
@@ -58,16 +56,16 @@ var ToolbarComponent = (function () {
      */
     ToolbarComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
+        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
     ToolbarComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
-            lodash_1.defaults(this.config, this.defaultConfig);
+            defaults(this.config, this.defaultConfig);
         }
         else {
-            this.config = lodash_1.cloneDeep(this.defaultConfig);
+            this.config = cloneDeep(this.defaultConfig);
         }
         if (this.config && this.config.filterConfig
             && this.config.filterConfig.appliedFilters === undefined) {
@@ -116,7 +114,7 @@ var ToolbarComponent = (function () {
         }
     };
     ToolbarComponent.prototype.filterExists = function (filter) {
-        var foundFilter = lodash_1.find(this.config.filterConfig.appliedFilters, {
+        var foundFilter = find(this.config.filterConfig.appliedFilters, {
             field: filter.field,
             query: filter.query,
             value: filter.value
@@ -148,54 +146,54 @@ var ToolbarComponent = (function () {
     };
     // Utils
     ToolbarComponent.prototype.enforceSingleSelect = function (filter) {
-        lodash_1.remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
+        remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
     };
     return ToolbarComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", toolbar_config_1.ToolbarConfig)
+    Input(),
+    __metadata("design:type", ToolbarConfig)
 ], ToolbarComponent.prototype, "config", void 0);
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", core_1.TemplateRef)
+    Input(),
+    __metadata("design:type", TemplateRef)
 ], ToolbarComponent.prototype, "actionsTemplate", void 0);
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", core_1.TemplateRef)
+    Input(),
+    __metadata("design:type", TemplateRef)
 ], ToolbarComponent.prototype, "viewsTemplate", void 0);
 __decorate([
-    core_1.Output('onActionSelect'),
+    Output('onActionSelect'),
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onActionSelect", void 0);
 __decorate([
-    core_1.Output('onFilterFieldSelect'),
+    Output('onFilterFieldSelect'),
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onFilterFiledSelect", void 0);
 __decorate([
-    core_1.Output('onFilterChange'),
+    Output('onFilterChange'),
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onFilterChange", void 0);
 __decorate([
-    core_1.Output('onFilterTypeAhead'),
+    Output('onFilterTypeAhead'),
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onFilterTypeAhead", void 0);
 __decorate([
-    core_1.Output('onSortChange'),
+    Output('onSortChange'),
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onSortChange", void 0);
 __decorate([
-    core_1.Output('onViewSelect'),
+    Output('onViewSelect'),
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onViewSelect", void 0);
 ToolbarComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-toolbar',
         styles: [require('./toolbar.component.css').toString()],
         template: require('./toolbar.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], ToolbarComponent);
-exports.ToolbarComponent = ToolbarComponent;
+export { ToolbarComponent };
 //# sourceMappingURL=toolbar.component.js.map

@@ -62,8 +62,72 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="patternfly-ng2">patternfly-ng2</h1>
-				<h1 id="getting-started">Getting Started</h1>
+				<p><a href="https://travis-ci.org/patternfly/patternfly-ng"><img src="https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master" alt="Build Status"></a></p>
+				<p>Welcome to PatternFly-Ng.  This is a library of common Angular components for use with the PatternFly reference implementation. Below is information on how to get started using PatternFly-ng.  If you wish to contribute to PatternFly-ng, please go to our <a href="https://github.com/patternfly/patternfly-ng/blob/master/CONTRIBUTING.md">Contributions page</a>.</p>
+				<ul>
+					<li>Web site: <a href="https://www.patternfly.org">https://www.patternfly.org</a></li>
+					<li>API Docs: <a href="https://rawgit.com/patternfly/patternfly-ng/master-dist/dist-demo/">https://rawgit.com/patternfly/patternfly-ng/master-dist/dist-demo/</a></li>
+					<li>Build Status: <a href="https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master">https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master</a></li>
+				</ul>
+				<h3 id="using-patternfly-ng-in-your-application">Using PatternFly-ng In Your Application</h3>
+				<p>This example demonstrates using the Angular-cli to get started with PatternFly-ng</p>
+				<ol>
+					<li><p>Installing angular-cli<br><em>Note</em>: you can skip this part if you already have generated an Angular application using <code>ng-cli</code> and webpack</p>
+						<pre><code class="lang-bash">npm i -g @angular/cli
+ng new patternfly-ng-app
+<span class="hljs-built_in">cd</span> patternfly-ng-app
+ng serve
+</code></pre>
+					</li>
+					<li><p>Install patternfly-ng</p>
+						<pre><code class="lang-bash">  npm install patternfly-ng --save
+</code></pre>
+					</li>
+					<li><p>Add patternfly-ng dependencies</p>
+						<ul>
+							<li>install <code>patternfly</code> and <code>ngx-bootstrap</code></li>
+						</ul>
+						<pre><code class="lang-bash">npm install patternfly ngx-bootstrap --save
+</code></pre>
+					</li>
+					<li><p>Add a patternfly-ng component</p>
+					</li>
+					<li>open <code>src/app/app.module.ts</code> and add</li>
+				</ol>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng'</span>;
+...
+
+<span class="hljs-meta">@NgModule</span>({
+   ...
+   imports: [NotificationModule, ... ],
+    ... 
+})
+</code></pre>
+				<ul>
+					<li>open <code>.angular-cli.json</code> and insert a new entry into the styles array </li>
+				</ul>
+				<pre><code class="lang-json">      &quot;styles&quot;: [
+         &quot;../node_modules/patternfly/dist/css/patternfly.min.css&quot;,
+         &quot;../node_modules/patternfly/dist/css/patternfly-additions.min.css&quot;,
+        &quot;styles.css&quot;,
+      ],
+</code></pre>
+				<ul>
+					<li>open <code>src/app/app.component.html</code> and add<pre><code>&lt;pfng-toast-notification
+<span class="hljs-string">[header]</span>=<span class="hljs-string">"'test header'"</span>
+<span class="hljs-string">[message]</span>=<span class="hljs-string">"'this is a notification'"</span>
+<span class="hljs-string">[showClose]</span>=<span class="hljs-string">"'true'"</span>
+<span class="hljs-string">[type]</span>=<span class="hljs-string">"'success'"</span>&gt;
+&lt;/pfng-toast-notification&gt;
+</code></pre></li>
+				</ul>
+				<h2 id="-a-name-question-a-do-you-have-a-question-"><a name="question"></a> Do you have a question?</h2>
+				<p>There are a few things that can be done to resolve any questions or problems you might have.</p>
+				<ul>
+					<li>Search our <a href="https://github.com/patternfly/patternfly-ng/issues">GitHub issues</a></li>
+					<li>Join our patternfly-ng channel on <a href="http://slack.patternfly.org">Slack</a></li>
+					<li>Join our mailing-list following the instructions on <a href="http://www.patternfly.org/community/">patternfly.org</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

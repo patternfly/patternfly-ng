@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var filter_config_1 = require("./filter-config");
-var lodash_1 = require("lodash");
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { FilterConfig } from './filter-config';
+import { cloneDeep, isEqual } from 'lodash';
 /**
  * Component for the filter results
  */
@@ -23,7 +21,7 @@ var FilterResultsComponent = (function () {
         /**
          * The event emitted when the clear action is selected
          */
-        this.onClear = new core_1.EventEmitter();
+        this.onClear = new EventEmitter();
     }
     // Initialization
     /**
@@ -37,7 +35,7 @@ var FilterResultsComponent = (function () {
      */
     FilterResultsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
+        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
@@ -45,7 +43,7 @@ var FilterResultsComponent = (function () {
         if (this.config === undefined) {
             this.config = {};
         }
-        this.prevConfig = lodash_1.cloneDeep(this.config);
+        this.prevConfig = cloneDeep(this.config);
         if (this.config && this.config.appliedFilters === undefined) {
             this.config.appliedFilters = [];
         }
@@ -78,21 +76,21 @@ var FilterResultsComponent = (function () {
     return FilterResultsComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", filter_config_1.FilterConfig)
+    Input(),
+    __metadata("design:type", FilterConfig)
 ], FilterResultsComponent.prototype, "config", void 0);
 __decorate([
-    core_1.Output('onClear'),
+    Output('onClear'),
     __metadata("design:type", Object)
 ], FilterResultsComponent.prototype, "onClear", void 0);
 FilterResultsComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-filter-results',
         styles: [require('./filter-results.component.css').toString()],
         template: require('./filter-results.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], FilterResultsComponent);
-exports.FilterResultsComponent = FilterResultsComponent;
+export { FilterResultsComponent };
 //# sourceMappingURL=filter-results.component.js.map

@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An action containing common properties for buttons, kebabs, etc.
  */
@@ -8,5 +6,5 @@ var Action = (function () {
     }
     return Action;
 }());
-exports.Action = Action;
+export { Action };
 //# sourceMappingURL=action.js.map

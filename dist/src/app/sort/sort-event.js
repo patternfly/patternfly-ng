@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An object containing properties for sort events
  */
@@ -8,5 +6,5 @@ var SortEvent = (function () {
     }
     return SortEvent;
 }());
-exports.SortEvent = SortEvent;
+export { SortEvent };
 //# sourceMappingURL=sort-event.js.map

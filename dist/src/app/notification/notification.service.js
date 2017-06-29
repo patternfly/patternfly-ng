@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,9 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var notification_type_1 = require("./notification-type");
+import { Injectable } from '@angular/core';
+import { NotificationType } from './notification-type';
 /**
  * Notification service used to notify user about important events in the application.
  *
@@ -39,10 +37,10 @@ var NotificationService = (function () {
         };
         this.notifications.data = [];
         this.modes = [
-            { info: { type: notification_type_1.NotificationType.INFO, header: 'Info!', log: 'info' } },
-            { success: { type: notification_type_1.NotificationType.SUCCESS, header: 'Success!', log: 'info' } },
-            { error: { type: notification_type_1.NotificationType.DANGER, header: 'Error!', log: 'error' } },
-            { warn: { type: notification_type_1.NotificationType.WARNING, header: 'Warning!', log: 'warn' } }
+            { info: { type: NotificationType.INFO, header: 'Info!', log: 'info' } },
+            { success: { type: NotificationType.SUCCESS, header: 'Success!', log: 'info' } },
+            { error: { type: NotificationType.DANGER, header: 'Error!', log: 'error' } },
+            { warn: { type: NotificationType.WARNING, header: 'Warning!', log: 'warn' } }
         ];
         this.modes.forEach(function (mode, index) {
             _this.notifications[index] = _this.createNotifyMethod(index);
@@ -164,8 +162,8 @@ var NotificationService = (function () {
     return NotificationService;
 }());
 NotificationService = __decorate([
-    core_1.Injectable(),
+    Injectable(),
     __metadata("design:paramtypes", [])
 ], NotificationService);
-exports.NotificationService = NotificationService;
+export { NotificationService };
 //# sourceMappingURL=notification.service.js.map

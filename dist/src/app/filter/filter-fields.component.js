@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var filter_config_1 = require("./filter-config");
-var lodash_1 = require("lodash");
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { FilterConfig } from './filter-config';
+import { cloneDeep, find, isEqual } from 'lodash';
 /**
  * Component for the filter query field and filter query dropdown
  */
@@ -23,15 +21,15 @@ var FilterFieldsComponent = (function () {
         /**
          * The event emitted when a filter has been added
          */
-        this.onAdd = new core_1.EventEmitter();
+        this.onAdd = new EventEmitter();
         /**
          * The event emitted when a field menu option is selected
          */
-        this.onFieldSelect = new core_1.EventEmitter();
+        this.onFieldSelect = new EventEmitter();
         /**
          * The event emitted when the user types ahead in the query input field
          */
-        this.onTypeAhead = new core_1.EventEmitter();
+        this.onTypeAhead = new EventEmitter();
     }
     // Initialization
     /**
@@ -45,7 +43,7 @@ var FilterFieldsComponent = (function () {
      */
     FilterFieldsComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
+        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
@@ -54,7 +52,7 @@ var FilterFieldsComponent = (function () {
         if (this.config === undefined) {
             this.config = {};
         }
-        this.prevConfig = lodash_1.cloneDeep(this.config);
+        this.prevConfig = cloneDeep(this.config);
         if (this.config && this.config.fields === undefined) {
             this.config.fields = [];
         }
@@ -63,7 +61,7 @@ var FilterFieldsComponent = (function () {
         }
         var fieldFound = false;
         if (this.currentField !== undefined) {
-            lodash_1.find(this.config.fields, function (nextField) {
+            find(this.config.fields, function (nextField) {
                 if (nextField.id === _this.currentField.id) {
                     fieldFound = true;
                     return;
@@ -115,29 +113,29 @@ var FilterFieldsComponent = (function () {
     return FilterFieldsComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", filter_config_1.FilterConfig)
+    Input(),
+    __metadata("design:type", FilterConfig)
 ], FilterFieldsComponent.prototype, "config", void 0);
 __decorate([
-    core_1.Output('onAdd'),
+    Output('onAdd'),
     __metadata("design:type", Object)
 ], FilterFieldsComponent.prototype, "onAdd", void 0);
 __decorate([
-    core_1.Output('onFieldSelect'),
+    Output('onFieldSelect'),
     __metadata("design:type", Object)
 ], FilterFieldsComponent.prototype, "onFieldSelect", void 0);
 __decorate([
-    core_1.Output('onTypeAhead'),
+    Output('onTypeAhead'),
     __metadata("design:type", Object)
 ], FilterFieldsComponent.prototype, "onTypeAhead", void 0);
 FilterFieldsComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-filter-fields',
         styles: [require('./filter-fields.component.css').toString()],
         template: require('./filter-fields.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], FilterFieldsComponent);
-exports.FilterFieldsComponent = FilterFieldsComponent;
+export { FilterFieldsComponent };
 //# sourceMappingURL=filter-fields.component.js.map

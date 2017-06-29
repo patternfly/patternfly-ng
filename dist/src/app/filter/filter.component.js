@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var filter_config_1 = require("./filter-config");
-var lodash_1 = require("lodash");
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { FilterConfig } from './filter-config';
+import { cloneDeep, find, isEqual, remove } from 'lodash';
 /**
  * Filter component
  */
@@ -23,15 +21,15 @@ var FilterComponent = (function () {
         /**
          * The event emitted when a filter has been changed
          */
-        this.onChange = new core_1.EventEmitter();
+        this.onChange = new EventEmitter();
         /**
          * The event emitted when a field menu option is selected
          */
-        this.onFilterSelect = new core_1.EventEmitter();
+        this.onFilterSelect = new EventEmitter();
         /**
          * The event emitted when the user types ahead in the query input field
          */
-        this.onTypeAhead = new core_1.EventEmitter();
+        this.onTypeAhead = new EventEmitter();
     }
     // Initialization
     /**
@@ -45,7 +43,7 @@ var FilterComponent = (function () {
      */
     FilterComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
-        if (!lodash_1.isEqual(this.config, this.prevConfig)) {
+        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
     };
@@ -53,7 +51,7 @@ var FilterComponent = (function () {
         if (this.config === undefined) {
             this.config = {};
         }
-        this.prevConfig = lodash_1.cloneDeep(this.config);
+        this.prevConfig = cloneDeep(this.config);
         if (this.config && this.config.appliedFilters === undefined) {
             this.config.appliedFilters = [];
         }
@@ -81,13 +79,13 @@ var FilterComponent = (function () {
         });
     };
     FilterComponent.prototype.enforceSingleSelect = function (filter) {
-        lodash_1.remove(this.config.appliedFilters, { title: filter.field.title });
+        remove(this.config.appliedFilters, { title: filter.field.title });
     };
     FilterComponent.prototype.fieldSelected = function ($event) {
         this.onFilterSelect.emit($event);
     };
     FilterComponent.prototype.filterExists = function (filter) {
-        var foundFilter = lodash_1.find(this.config.appliedFilters, {
+        var foundFilter = find(this.config.appliedFilters, {
             value: filter.value
         });
         return foundFilter !== undefined;
@@ -98,29 +96,29 @@ var FilterComponent = (function () {
     return FilterComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", filter_config_1.FilterConfig)
+    Input(),
+    __metadata("design:type", FilterConfig)
 ], FilterComponent.prototype, "config", void 0);
 __decorate([
-    core_1.Output('onChange'),
+    Output('onChange'),
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onChange", void 0);
 __decorate([
-    core_1.Output('onFieldSelect'),
+    Output('onFieldSelect'),
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onFilterSelect", void 0);
 __decorate([
-    core_1.Output('onTypeAhead'),
+    Output('onTypeAhead'),
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onTypeAhead", void 0);
 FilterComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-filter',
         styles: [require('./filter.component.css').toString()],
         template: require('./filter.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], FilterComponent);
-exports.FilterComponent = FilterComponent;
+export { FilterComponent };
 //# sourceMappingURL=filter.component.js.map

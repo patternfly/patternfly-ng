@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * An object containing properties for notification events
  */
@@ -8,5 +6,5 @@ var NotificationEvent = (function () {
     }
     return NotificationEvent;
 }());
-exports.NotificationEvent = NotificationEvent;
+export { NotificationEvent };
 //# sourceMappingURL=notification-event.js.map

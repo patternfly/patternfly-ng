@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 /**
  * Component to display a list of toast notifications
  */
@@ -21,15 +19,15 @@ var ToastNotificationListComponent = (function () {
         /**
          * The event emitted when an action has been selected
          */
-        this.onActionSelect = new core_1.EventEmitter();
+        this.onActionSelect = new EventEmitter();
         /**
          * The event emitted when the close button has been selected
          */
-        this.onCloseSelect = new core_1.EventEmitter();
+        this.onCloseSelect = new EventEmitter();
         /**
          * The event emitted when the mouse hovers over and leaves a notification
          */
-        this.onViewingChange = new core_1.EventEmitter();
+        this.onViewingChange = new EventEmitter();
     }
     // Initialization
     /**
@@ -53,33 +51,33 @@ var ToastNotificationListComponent = (function () {
     return ToastNotificationListComponent;
 }());
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Array)
 ], ToastNotificationListComponent.prototype, "notifications", void 0);
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Boolean)
 ], ToastNotificationListComponent.prototype, "showClose", void 0);
 __decorate([
-    core_1.Output('onActionSelect'),
+    Output('onActionSelect'),
     __metadata("design:type", Object)
 ], ToastNotificationListComponent.prototype, "onActionSelect", void 0);
 __decorate([
-    core_1.Output('onCloseSelect'),
+    Output('onCloseSelect'),
     __metadata("design:type", Object)
 ], ToastNotificationListComponent.prototype, "onCloseSelect", void 0);
 __decorate([
-    core_1.Output('onViewingChange'),
+    Output('onViewingChange'),
     __metadata("design:type", Object)
 ], ToastNotificationListComponent.prototype, "onViewingChange", void 0);
 ToastNotificationListComponent = __decorate([
-    core_1.Component({
-        encapsulation: core_1.ViewEncapsulation.None,
+    Component({
+        encapsulation: ViewEncapsulation.None,
         selector: 'pfng-toast-notification-list',
         styles: [require('./toast-notification-list.component.css').toString()],
         template: require('./toast-notification-list.component.html')
     }),
     __metadata("design:paramtypes", [])
 ], ToastNotificationListComponent);
-exports.ToastNotificationListComponent = ToastNotificationListComponent;
+export { ToastNotificationListComponent };
 //# sourceMappingURL=toast-notification-list.component.js.map
