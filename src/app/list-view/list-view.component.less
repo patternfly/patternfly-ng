@@ -1,39 +1,80 @@
 @import (reference) "../../assets/stylesheets/patternfly-ng";
 
-/* Ensure min button width (fabric8-ui fix) */
-.list-view-pf-actions {
-  .dropdown-kebab-pf {
-    .btn { min-width: initial; }
+// For displaying close button in expansion area
+.pfng-list-close {
+  &.close {
+    padding-right: 20px;
+    padding-top: 20px;
+    position: absolute;
+    right: 0;
   }
 }
 
-/* Why does PF add margin-top? */
-.list-view-pf-view {
-  margin-top: 0; // was 30
+// Checkbox placeholder for heading
+.pfng-list-cb-placeholder {
+  width: 12px;
 }
 
-.pfng-list-view-dnd-drag-container { display: flex; }
+// Row expansion toggle placeholder for heading and hidden toggles
+.pfng-list-expand-placeholder {
+  width: 8px;
+}
 
-.pfng-expand-placeholder { width: 15px; }
-.pfng-cb-placeholder { width: 38px; }
+// For displaying close button in expansion area
+.pfng-list-expansion {
+  position: relative;
+}
 
-.pfng-list-view-heading {
-  @media (max-width: 992px) { display: none; }
-  .list-group-item-heading {
+// For displaying a heading above the list
+.pfng-list-heading {
+  // Hide heading for small views
+  @media (max-width: 992px) {
+    display: none;
+  }
+  // Heading should not be clickable
+  pointer-events: none;
+
+  // Heading should not highlight on mouse hover
+  &:hover {
+    background-color: @color-pf-white;
+  }
+
+  // Allow info icons to generate events
+  i {
+    pointer-events: auto;
+  }
+
+  // Override font for normal heading text
+  .list-pf-title {
     font-size: @font-size-base;
-    font-weight: initial;
+    font-weight: normal;
+  }
+
+  // Remove the divider line for heading
+  .list-pf-chevron, .list-pf-select {
+    + .list-pf-content {
+      border-left: none;
+    }
   }
 }
 
-.list-view-pf .list-group-item {
-  &.pfng-list-view-heading-row {
-    border-top: none;
-    pointer-events: none;
-    &:hover {
-      background-color: @color-pf-white;
+// Todo: A-PF currently shows disabled rows using .list-group-item.disabled (we inherit that from Bootstrap), but
+// there is no list-pf-item.disabled equivelent.
+.pfng-list-item {
+  &.disabled,
+  &.disabled:hover,
+  &.disabled:focus {
+    background-color: @color-pf-black-150; // was #f1f1f1
+    color: @color-pf-black-400; // was #9c9c9c
+    cursor: not-allowed;
+/*
+    // Force color to inherit for custom content
+    .list-group-item-heading {
+      color: inherit;
     }
-    i {
-      pointer-events: auto;
+    .list-group-item-text {
+      color: @list-group-disabled-text-color;
     }
+    */
   }
 }

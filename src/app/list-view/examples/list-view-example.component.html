@@ -12,5 +12,8 @@
     <tab heading="Compound Expansion" (select)="tabSelected($event)">
       <list-view-compound-example *ngIf="activeTab === 'Compound Expansion'"></list-view-compound-example>
     </tab>
+    <tab heading="Heading" (select)="tabSelected($event)">
+      <list-view-heading-example *ngIf="activeTab === 'Heading'"></list-view-heading-example>
+    </tab>
   </tabset>
 </div>

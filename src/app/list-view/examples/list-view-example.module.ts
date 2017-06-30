@@ -14,6 +14,7 @@ import { ImagesContentComponent } from './images-content.component';
 import { ListViewModule } from '../list-view.module';
 import { ListViewBasicExampleComponent } from './list-view-basic-example.component';
 import { ListViewCompoundExampleComponent } from './list-view-compound-example.component';
+import { ListViewHeadingExampleComponent } from './list-view-heading-example.component';
 import { ListViewExampleComponent } from './list-view-example.component';
 import { NodesContentComponent } from './nodes-content.component';
 
@@ -25,6 +26,7 @@ import { NodesContentComponent } from './nodes-content.component';
     ImagesContentComponent,
     ListViewBasicExampleComponent,
     ListViewCompoundExampleComponent,
+    ListViewHeadingExampleComponent,
     ListViewExampleComponent,
     NodesContentComponent
   ],

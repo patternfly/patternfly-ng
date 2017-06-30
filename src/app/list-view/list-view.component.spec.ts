@@ -103,12 +103,11 @@ describe('List View component - ', () => {
 
     config = {
       dblClick: false,
-      dragEnabled: false,
       emptyStateConfig: emptyStateConfig,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
-      showSelectBox: true,
+      showCheckbox: true,
       useExpandingRows: false
     } as ListViewConfig;
   });
@@ -130,13 +129,13 @@ describe('List View component - ', () => {
   }));
 
   it('should have correct number of rows', () => {
-    let elements = fixture.debugElement.queryAll(By.css('.list-group-item'));
+    let elements = fixture.debugElement.queryAll(By.css('.list-pf-item'));
     expect(elements.length).toBe(8);
   });
 
   it('should show the select checkbox by default', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-group-item'));
-    let checkItems = fixture.debugElement.queryAll(By.css('.list-view-pf-checkbox'));
+    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
+    let checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
 
     expect(checkItems.length).toBe(items.length);
 
@@ -151,21 +150,21 @@ describe('List View component - ', () => {
     expect(selectedItems.length).toBe(0);
   });
 
-  it('should not show the select checkboxes when showSelectBox is false', function () {
-    let checkItems = fixture.debugElement.queryAll(By.css('.list-view-pf-checkbox'));
+  it('should not show the select checkboxes when showCheckbox is false', function () {
+    let checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
 
     expect(checkItems.length).toBe(items.length);
 
     // disallow checkbox selection
-    config.showSelectBox = false;
+    config.showCheckbox = false;
     fixture.detectChanges();
 
-    checkItems = fixture.debugElement.queryAll(By.css('.list-view-pf-checkbox'));
+    checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
     expect(checkItems.length).toBe(0);
   });
 
   it('should not allow selection when selectItems is false', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-group-item'));
+    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);
@@ -181,15 +180,15 @@ describe('List View component - ', () => {
     expect(selectedItems.length).toBe(0);
   });
 
-  it('should add selected class to clicked list item', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-view-pf-main-info'));
+  it('should add active class to clicked list item', function () {
+    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);
 
     // allow item selection
     config.selectItems = true;
-    config.showSelectBox = false;
+    config.showCheckbox = false;
     fixture.detectChanges();
 
     listItems[1].triggerEventHandler('click', {});
@@ -200,14 +199,14 @@ describe('List View component - ', () => {
   });
 
   it('should manage selected array', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-view-pf-main-info'));
+    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(config.selectedItems.length).toBe(0);
 
     // allow item selection
     config.selectItems = true;
-    config.showSelectBox = false;
+    config.showCheckbox = false;
     fixture.detectChanges();
 
     listItems[1].triggerEventHandler('click', {});
@@ -219,14 +218,14 @@ describe('List View component - ', () => {
   });
 
   it('should respect the multiSelect setting', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-view-pf-main-info'));
+    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);
 
     // allow item selection
     config.selectItems = true;
-    config.showSelectBox = false;
+    config.showCheckbox = false;
     config.multiSelect = false;
     fixture.detectChanges();
 
@@ -253,15 +252,15 @@ describe('List View component - ', () => {
   });
 
   it('should set disabled rows correctly', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-group-item'));
+    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
 
     // allow item selection
     config.selectItems = true;
-    config.showSelectBox = false;
+    config.showCheckbox = false;
     comp.items[2].disabled = true;
     fixture.detectChanges();
 
-    let disabledItems = fixture.debugElement.queryAll(By.css('.list-group-item.disabled'));
+    let disabledItems = fixture.debugElement.queryAll(By.css('.list-pf-item.disabled'));
     expect(disabledItems.length).toBe(1);
 
     listItems[1].triggerEventHandler('click', {});
@@ -291,13 +290,13 @@ describe('List View component - ', () => {
     config.useExpandingRows = true;
     fixture.detectChanges();
 
-    let listItems = fixture.debugElement.queryAll(By.css('.list-view-pf-expand .fa-angle-right'));
+    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-chevron .fa-angle-right'));
     expect(items.length).toBe(8);
 
     listItems[0].triggerEventHandler('click', {});
     fixture.detectChanges();
 
-    let openItem = fixture.debugElement.queryAll(By.css('.list-view-pf-expand .fa-angle-right.fa-angle-down'));
+    let openItem = fixture.debugElement.queryAll(By.css('.list-pf-chevron .fa-angle-right.fa-angle-down'));
     expect(openItem.length).toBe(1);
   });
 

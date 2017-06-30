@@ -11,57 +11,45 @@
             (onActionSelect)="handleAction($event)"
             (onClick)="handleClick($event)">
           <ng-template #itemTemplate let-item="item">
-            <div class="list-view-pf-left">
-              <span class="fa {{item.typeIcon}} list-view-pf-icon-sm"></span>
+            <div class="list-pf-left">
+              <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
             </div>
-            <div class="list-view-pf-body">
-              <div class="list-view-pf-description">
-                <div class="list-group-item-heading">
-                  {{item.name}}
-                </div>
-                <div class="list-group-item-text">
-                  {{item.address}}
-                </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">{{item.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
               </div>
-              <div class="list-view-pf-additional-info">
-                <div class="list-view-pf-additional-info-item">
-                  <pfng-list-view-compound-toggle [expandingRowId]="'hosts'" [item]="item" [template]="hostsTemplate">
-                    <ng-template #hostsTemplate>
-                      <span class="pficon pficon-screen"></span>
-                      <strong>{{item.hostCount}}</strong> Hosts
-                    </ng-template>
-                  </pfng-list-view-compound-toggle>
-                </div>
-                <div class="list-view-pf-additional-info-item">
-                  <pfng-list-view-compound-toggle [expandingRowId]="'clusters'" [item]="item" [template]="clustersTemplate">
-                    <ng-template #clustersTemplate>
-                      <span class="pficon pficon-cluster"></span>
-                      <strong>{{item.clustersCount}}</strong> Clusters
-                    </ng-template>
-                  </pfng-list-view-compound-toggle>
-                </div>
-                <div class="list-view-pf-additional-info-item">
-                  <pfng-list-view-compound-toggle [expandingRowId]="'nodes'" [item]="item" [template]="nodesTemplate">
-                    <ng-template #nodesTemplate>
-                      <span class="pficon pficon-container-node"></span>
-                      <strong>{{item.nodesCount}}</strong> Nodes
-                    </ng-template>
-                  </pfng-list-view-compound-toggle>
-                </div>
-                <div class="list-view-pf-additional-info-item">
-                  <pfng-list-view-compound-toggle [expandingRowId]="'images'" [item]="item" [template]="imagesTemplate">
-                    <ng-template #imagesTemplate>
-                      <span class="pficon pficon-image"></span>
-                      <strong>{{item.imagesCount}}</strong> Images
-                    </ng-template>
-                  </pfng-list-view-compound-toggle>
-                </div>
+              <div class="list-pf-additional-content">
+                <pfng-list-view-compound-toggle [expandingRowId]="'hosts'" [item]="item" [template]="hostsTemplate">
+                  <ng-template #hostsTemplate>
+                    <span class="pficon pficon-screen"></span>
+                    <strong>{{item.hostCount}}</strong> Hosts
+                  </ng-template>
+                </pfng-list-view-compound-toggle>
+                <pfng-list-view-compound-toggle [expandingRowId]="'clusters'" [item]="item" [template]="clustersTemplate">
+                  <ng-template #clustersTemplate>
+                    <span class="pficon pficon-cluster"></span>
+                    <strong>{{item.clustersCount}}</strong> Clusters
+                  </ng-template>
+                </pfng-list-view-compound-toggle>
+                <pfng-list-view-compound-toggle [expandingRowId]="'nodes'" [item]="item" [template]="nodesTemplate">
+                  <ng-template #nodesTemplate>
+                    <span class="pficon pficon-container-node"></span>
+                    <strong>{{item.nodesCount}}</strong> Nodes
+                  </ng-template>
+                </pfng-list-view-compound-toggle>
+                <pfng-list-view-compound-toggle [expandingRowId]="'images'" [item]="item" [template]="imagesTemplate">
+                  <ng-template #imagesTemplate>
+                    <span class="pficon pficon-image"></span>
+                    <strong>{{item.imagesCount}}</strong> Images
+                  </ng-template>
+                </pfng-list-view-compound-toggle>
               </div>
             </div>
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
             <pfng-list-view-actions
-                [config]="getActionsConfig()"
+                [config]="actionConfig"
                 (onActionSelect)="handleAction($event, item)">
             </pfng-list-view-actions>
           </ng-template>

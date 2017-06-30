@@ -1,31 +1,42 @@
 import {
   Component,
   OnInit,
+  TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 
 import { Action } from '../../models/action';
 import { ActionConfig } from '../../models/action-config';
+import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { ListViewConfig } from '../list-view-config';
 import { ListViewEvent } from '../list-view-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'list-view-compound-example',
-  templateUrl: './list-view-compound-example.component.html'
+  selector: 'list-view-heading-example',
+  styleUrls: ['./list-view-heading-example.component.less'],
+  templateUrl: './list-view-heading-example.component.html'
 })
-export class ListViewCompoundExampleComponent implements OnInit {
+export class ListViewHeadingExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
+  emptyStateConfig: EmptyStateConfig;
   items: any[];
   listViewConfig: ListViewConfig;
+  selectType: string = 'checkbox';
 
   constructor() {
   }
 
   ngOnInit(): void {
     this.allItems = [{
+      // First array item used for heading
+      name: 'NAME',
+      actions: 'ACTIONS',
+      additionalInfo: 'ADDITOINAL INFO',
+      address: 'ADDRESS'
+    }, {
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way',
       city: 'Bedrock',
@@ -111,9 +122,22 @@ export class ListViewCompoundExampleComponent implements OnInit {
 
     this.actionConfig = {
       primaryActions: [{
+        id: 'start',
+        styleClass: 'btn-primary',
+        title: 'Start',
+        tooltip: 'Start the server'
+      }, {
         id: 'action1',
         title: 'Action 1',
         tooltip: 'Perform an action'
+      }, {
+        id: 'action2',
+        title: 'Action 2',
+        tooltip: 'Do something else'
+      }, {
+        id: 'action3',
+        title: 'Action 3',
+        tooltip: 'Do something special'
       }],
       moreActions: [{
         id: 'moreActions1',
@@ -131,7 +155,7 @@ export class ListViewCompoundExampleComponent implements OnInit {
       }, {
         id: 'moreActions4',
         title: 'Something Else',
-        tooltip: ''
+        tooltip: 'Do something special'
       }, {
         id: 'moreActions5',
         title: '',
@@ -145,15 +169,19 @@ export class ListViewCompoundExampleComponent implements OnInit {
         title: 'Grouped Action 2',
         tooltip: 'Do something similar'
       }],
+      moreActionsDisabled: false,
+      moreActionsVisible: true
     } as ActionConfig;
 
     this.listViewConfig = {
       dblClick: false,
+      emptyStateConfig: this.emptyStateConfig,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
-      showCheckbox: false,
-      useExpandingRows: false
+      showCheckbox: true,
+      useExpandingRows: false,
+      useHeading: true
     } as ListViewConfig;
   }
 
@@ -163,13 +191,44 @@ export class ListViewCompoundExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action, item: any): void {
-    if ($event.title === 'Start') {
+    if ($event.id === 'start') {
       item.started = true;
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
   }
 
+  handleSelect($event: ListViewEvent): void {
+    this.actionsText = $event.item.name + ' selected\r\n' + this.actionsText;
+  }
+
+  handleSelectionChange($event: ListViewEvent): void {
+    this.actionsText = $event.selectedItems.length + ' items selected\r\n' + this.actionsText;
+  }
+
   handleClick($event: ListViewEvent): void {
     this.actionsText = $event.item.name + ' clicked\r\n' + this.actionsText;
+  }
+
+  handleDblClick($event: ListViewEvent): void {
+    this.actionsText = $event.item.name + ' double clicked\r\n' + this.actionsText;
+  }
+
+  handleCheckboxChange($event: ListViewEvent): void {
+    this.actionsText = $event.item.name + ' checked: ' + $event.item.selected + '\r\n' + this.actionsText;
+  }
+
+  // Row selection
+
+  updateSelectionType(): void {
+    if (this.selectType === 'checkbox') {
+      this.listViewConfig.selectItems = false;
+      this.listViewConfig.showCheckbox = true;
+    } else if (this.selectType === 'row') {
+      this.listViewConfig.selectItems = true;
+      this.listViewConfig.showCheckbox = false;
+    } else {
+      this.listViewConfig.selectItems = false;
+      this.listViewConfig.showCheckbox = false;
+    }
   }
 }

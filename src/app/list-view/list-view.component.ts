@@ -60,42 +60,42 @@ export class ListViewComponent implements OnInit {
   @Output('onActionSelect') onActionSelect = new EventEmitter();
 
   /**
-   * The event emitted when a row checkbox has been selected
+   * The event emitted when a checkbox has been selected
    */
-  @Output('onCheckBoxChange') onCheckBoxChange = new EventEmitter();
+  @Output('onCheckboxChange') onCheckboxChange = new EventEmitter();
 
   /**
-   * The event emitted when a row has been clicked
+   * The event emitted when an item has been clicked
    */
   @Output('onClick') onClick = new EventEmitter();
 
   /**
-   * The event emitted when a row is double clicked
+   * The event emitted when an item is double clicked
    */
   @Output('onDblClick') onDblClick = new EventEmitter();
 
   /**
-   * The event emitted when a row is no longer dragged
+   * The event emitted when an item is no longer dragged
    */
   // @Output('onDragEnd') onDragEnd = new EventEmitter();
 
   /**
-   * The event emitted when a row is being dragged
+   * The event emitted when an item is being dragged
    */
   // @Output('onDragMoved') onDragMoved = new EventEmitter();
 
   /**
-   * The event emitted when a row begins to be dragged
+   * The event emitted when an item begins to be dragged
    */
   // @Output('onDragStart') onDragStart = new EventEmitter();
 
   /**
-   * The event emitted when a row has been selected
+   * The event emitted when an item has been selected
    */
   @Output('onSelect') onSelect = new EventEmitter();
 
   /**
-   * The event emitted when a row selection has been changed
+   * The event emitted when an item selection has been changed
    */
   @Output('onSelectionChange') onSelectionChange = new EventEmitter();
 
@@ -108,7 +108,7 @@ export class ListViewComponent implements OnInit {
     selectionMatchProp: 'uuid',
     checkDisabled: false,
     useExpandingRows: false,
-    showSelectBox: true
+    showCheckbox: true
   } as ListViewConfig;
   private dragItem: any;
   private itemsEmpty: boolean = true;
@@ -150,9 +150,9 @@ export class ListViewComponent implements OnInit {
         && this.config.selectedItems && this.config.selectedItems.length > 0) {
       this.config.selectedItems = [this.config.selectedItems[0]];
     }
-    if (this.config.selectItems && this.config.showSelectBox) {
+    if (this.config.selectItems && this.config.showCheckbox) {
       throw new Error('ListViewComponent - Illegal use: ' +
-        'Cannot use both select box and click selection at the same time.');
+        'Cannot use both item select and click selection at the same time.');
     }
     this.prevConfig = cloneDeep(this.config);
   }
@@ -167,8 +167,8 @@ export class ListViewComponent implements OnInit {
 
   // Checkbox
 
-  private checkBoxChange(item: any): void {
-    this.onCheckBoxChange.emit({
+  private checkboxChange(item: any): void {
+    this.onCheckboxChange.emit({
       item: item
     } as ListViewEvent);
   }
@@ -177,7 +177,7 @@ export class ListViewComponent implements OnInit {
     let matchProp = this.config.selectionMatchProp;
     let selected = false;
 
-    if (this.config.showSelectBox) {
+    if (this.config.showCheckbox) {
       selected = item.selected;
     } else if (this.config.selectItems !== undefined) {
       this.config.selectedItems.forEach((itemObj) => {
@@ -220,7 +220,7 @@ export class ListViewComponent implements OnInit {
     */
   }
 
-  // Row Selection
+  // Item Selection
 
   private itemClick($event: MouseEvent, item: any): void {
     let alreadySelected;

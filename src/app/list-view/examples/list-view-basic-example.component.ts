@@ -18,7 +18,6 @@ import { ListViewEvent } from '../list-view-event';
   templateUrl: './list-view-basic-example.component.html'
 })
 export class ListViewBasicExampleComponent implements OnInit {
-  actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   // dragItem: any;
@@ -34,12 +33,6 @@ export class ListViewBasicExampleComponent implements OnInit {
 
   ngOnInit(): void {
     this.allItems = [{
-      // First array item used for column headings
-      name: 'NAME',
-      actions: 'ACTIONS',
-      additionalInfo: 'ADDITOINAL INFO',
-      address: 'ADDRESS'
-    }, {
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way',
       city: 'Bedrock',
@@ -123,29 +116,27 @@ export class ListViewBasicExampleComponent implements OnInit {
     }];
     this.items = this.allItems;
 
-    this.actionConfig = {
-      primaryActions: [{
-        id: 'action1',
-        title: 'Main Action',
-        tooltip: 'Start the server'
-      }],
-      moreActions: [{
-        id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
-      }, {
-        id: 'action3',
-        title: 'Secondary Action 2',
-        tooltip: 'Do something else'
-      }, {
-        id: 'action4',
-        title: 'Secondary Action 3',
-        tooltip: 'Do something special'
-      }]
-    } as ActionConfig;
-
     this.emptyStateConfig = {
-      actions: this.actionConfig,
+      actions: {
+        primaryActions: [{
+          id: 'action1',
+          title: 'Main Action',
+          tooltip: 'Start the server'
+        }],
+        moreActions: [{
+          id: 'action2',
+          title: 'Secondary Action 1',
+          tooltip: 'Do the first thing'
+        }, {
+          id: 'action3',
+          title: 'Secondary Action 2',
+          tooltip: 'Do something else'
+        }, {
+          id: 'action4',
+          title: 'Secondary Action 3',
+          tooltip: 'Do something special'
+        }]
+      } as ActionConfig,
       icon: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
@@ -160,13 +151,11 @@ export class ListViewBasicExampleComponent implements OnInit {
 
     this.listViewConfig = {
       dblClick: false,
-      dragEnabled: false,
       emptyStateConfig: this.emptyStateConfig,
-      headingRow: true,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
-      showSelectBox: true,
+      showCheckbox: true,
       useExpandingRows: false
     } as ListViewConfig;
   }
@@ -182,9 +171,9 @@ export class ListViewBasicExampleComponent implements OnInit {
    * @param startButtonTemplate {TemplateRef} Custom button template
    * @returns {ActionConfig}
    */
-  getActionsConfig(item: any, actionButtonTemplate: TemplateRef<any>,
+  getActionConfig(item: any, actionButtonTemplate: TemplateRef<any>,
       startButtonTemplate: TemplateRef<any>): ActionConfig {
-    let config = {
+    let actionConfig = {
       primaryActions: [{
         id: 'start',
         styleClass: 'btn-primary',
@@ -241,23 +230,23 @@ export class ListViewBasicExampleComponent implements OnInit {
 
     // Set button disabled
     if (item.started === true) {
-      config.primaryActions[0].disabled = true;
+      actionConfig.primaryActions[0].disabled = true;
     }
 
     // Set custom properties for row
     if (item.name === 'John Smith') {
-      config.moreActionsStyleClass = 'red'; // Set kebab option text red
-      config.primaryActions[1].visible = false; // Hide first button
-      config.primaryActions[2].disabled = true; // Set last button disabled
-      config.primaryActions[3].styleClass = 'red'; // Set last button text red
-      config.moreActions[0].visible = false; // Hide first kebab option
+      actionConfig.moreActionsStyleClass = 'red'; // Set kebab option text red
+      actionConfig.primaryActions[1].visible = false; // Hide first button
+      actionConfig.primaryActions[2].disabled = true; // Set last button disabled
+      actionConfig.primaryActions[3].styleClass = 'red'; // Set last button text red
+      actionConfig.moreActions[0].visible = false; // Hide first kebab option
     }
 
     // Hide kebab
     if (item.name === 'Frank Livingston') {
-      config.moreActionsVisible = false;
+      actionConfig.moreActionsVisible = false;
     }
-    return config;
+    return actionConfig;
   }
 
   // Actions
@@ -285,7 +274,7 @@ export class ListViewBasicExampleComponent implements OnInit {
     this.actionsText = $event.item.name + ' double clicked\r\n' + this.actionsText;
   }
 
-  handleCheckBoxChange($event: ListViewEvent): void {
+  handleCheckboxChange($event: ListViewEvent): void {
     this.actionsText = $event.item.name + ' checked: ' + $event.item.selected + '\r\n' + this.actionsText;
   }
 
@@ -330,13 +319,13 @@ export class ListViewBasicExampleComponent implements OnInit {
   updateSelectionType(): void {
     if (this.selectType === 'checkbox') {
       this.listViewConfig.selectItems = false;
-      this.listViewConfig.showSelectBox = true;
+      this.listViewConfig.showCheckbox = true;
     } else if (this.selectType === 'row') {
       this.listViewConfig.selectItems = true;
-      this.listViewConfig.showSelectBox = false;
+      this.listViewConfig.showCheckbox = false;
     } else {
       this.listViewConfig.selectItems = false;
-      this.listViewConfig.showSelectBox = false;
+      this.listViewConfig.showCheckbox = false;
     }
   }
 }
