@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <pfng-list-view
+        <pfng-list
             [actionTemplate]="actionTemplate"
-            [config]="listViewConfig"
+            [config]="listConfig"
             [items]="items"
             [itemTemplate]="itemTemplate"
             [itemExpandedTemplate]="itemExpandedTemplate"
@@ -44,7 +44,7 @@
             </div>
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
-            <pfng-list-view-actions
+            <pfng-list-actions
                 [config]="getActionConfig(item, actionButtonTemplate, startButtonTemplate)"
                 (onActionSelect)="handleAction($event, item)">
               <ng-template #actionButtonTemplate let-action="action">
@@ -53,12 +53,12 @@
               <ng-template #startButtonTemplate let-action="action">
                 {{item.started === true ? "Starting" : action.title}}
               </ng-template>
-            </pfng-list-view-actions>
+            </pfng-list-actions>
           </ng-template>
           <ng-template #itemExpandedTemplate let-item="item" let-index="index">
             <basic-content [item]="item"></basic-content>
           </ng-template>
-        </pfng-list-view>
+        </pfng-list>
       </div>
     </div>
   </div>
@@ -90,13 +90,13 @@
         <div class="form-group">
           <label class="checkbox-inline">
             <input id="dblClick" name="dblClick" type="checkbox"
-                   [(ngModel)]="listViewConfig.dblClick"
-                   (ngModelChange)="listViewConfig.multiSelect = false">Double Click
+                   [(ngModel)]="listConfig.dblClick"
+                   (ngModelChange)="listConfig.multiSelect = false">Double Click
           </label>
           <label class="checkbox-inline">
             <input id="multiSelect" name="multiSelect" type="checkbox"
-                   [(ngModel)]="listViewConfig.multiSelect"
-                   [disabled]="listViewConfig.dblClick">Multi Select
+                   [(ngModel)]="listConfig.multiSelect"
+                   [disabled]="listConfig.dblClick">Multi Select
           </label>
         </div>
       </form>
@@ -113,7 +113,7 @@
           </label>
           <label class="checkbox-inline">
             <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
-                   [(ngModel)]="listViewConfig.useExpandingRows">Show Simple Expansion
+                   [(ngModel)]="listConfig.useExpandingRows">Show Simple Expansion
           </label>
           <label class="checkbox-inline">
             <input id="itemsAvailable" name="itemsAvailable" type="checkbox"
@@ -143,13 +143,13 @@
   <div>
     <tabset>
       <tab heading="api">
-        <iframe class="demoframe" src="docs/classes/listviewcomponent.html"></iframe>
+        <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="/src/app/list-view/examples/list-view-basic-example.component.html"></include-content>
+        <include-content src="/src/app/list/examples/list-basic-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="/src/app/list-view/examples/list-view-basic-example.component.ts"></include-content>
+        <include-content src="/src/app/list/examples/list-basic-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

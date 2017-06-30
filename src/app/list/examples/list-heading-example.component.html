@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <pfng-list-view
+        <pfng-list
             [actionTemplate]="actionTemplate"
-            [config]="listViewConfig"
+            [config]="listConfig"
             [items]="items"
             [itemTemplate]="itemTemplate"
             [itemExpandedTemplate]="itemExpandedTemplate"
@@ -72,16 +72,16 @@
               <div class="actions-placeholder"></div>
             </ng-template>
             <ng-template #showActions>
-              <pfng-list-view-actions
+              <pfng-list-actions
                   [config]="actionConfig"
                   (onActionSelect)="handleAction($event, item)">
-              </pfng-list-view-actions>
+              </pfng-list-actions>
             </ng-template>
           </ng-template>
           <ng-template #itemExpandedTemplate let-item="item" let-index="index">
             <basic-content [item]="item"></basic-content>
           </ng-template>
-        </pfng-list-view>
+        </pfng-list>
       </div>
     </div>
   </div>
@@ -113,7 +113,7 @@
         <div class="form-group">
           <label class="checkbox-inline">
             <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
-                   [(ngModel)]="listViewConfig.useExpandingRows">Show Simple Expansion
+                   [(ngModel)]="listConfig.useExpandingRows">Show Simple Expansion
           </label>
         </div>
       </form>
@@ -138,13 +138,13 @@
   <div>
     <tabset>
       <tab heading="api">
-        <iframe class="demoframe" src="docs/classes/listviewcomponent.html"></iframe>
+        <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="/src/app/list-view/examples/list-view-basic-example.component.html"></include-content>
+        <include-content src="/src/app/list/examples/list-heading-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="/src/app/list-view/examples/list-view-basic-example.component.ts"></include-content>
+        <include-content src="/src/app/list/examples/list-heading-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

@@ -1,9 +1,9 @@
 import { EmptyStateConfig } from '../empty-state/empty-state-config';
 
 /**
- * A config containing properties for list view
+ * A config containing properties for list
  */
-export class ListViewConfig {
+export class ListConfig {
   /**
    * Handle double clicking (item remains selected on a double click). Default is false
    */

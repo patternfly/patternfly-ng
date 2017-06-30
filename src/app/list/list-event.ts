@@ -1,7 +1,7 @@
 /**
- * An object containing properties for list view events
+ * An object containing properties for list events
  */
-export class ListViewEvent {
+export class ListEvent {
   /**
    * The item associated with the current list row
    */

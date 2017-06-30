@@ -8,10 +8,10 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'list-view-example',
-  templateUrl: './list-view-example.component.html'
+  selector: 'list-example',
+  templateUrl: './list-example.component.html'
 })
-export class ListViewExampleComponent implements OnInit {
+export class ListExampleComponent implements OnInit {
   activeTab: string = '';
 
   constructor() {

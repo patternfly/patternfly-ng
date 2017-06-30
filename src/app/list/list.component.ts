@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 
 import { Action } from '../models/action';
-import { ListViewConfig } from './list-view-config';
-import { ListViewEvent } from './list-view-event';
+import { ListConfig } from './list-config';
+import { ListEvent } from './list-event';
 
 import { cloneDeep, defaults, isEqual, without } from 'lodash';
 
 /**
- * List view component
+ * List component
  *
  * For items, use a template named itemTemplate to contain content for each row. For each item in the items array, the
  * expansion can be disabled by setting disabled to true on the item. If using actions, use a template named
@@ -24,20 +24,20 @@ import { cloneDeep, defaults, isEqual, without } from 'lodash';
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'pfng-list-view',
-  styleUrls: ['./list-view.component.less'],
-  templateUrl: './list-view.component.html'
+  selector: 'pfng-list',
+  styleUrls: ['./list.component.less'],
+  templateUrl: './list.component.html'
 })
-export class ListViewComponent implements OnInit {
+export class ListComponent implements OnInit {
   /**
    * The name of the template containing actions for each row
    */
   @Input() actionTemplate: TemplateRef<any>;
 
   /**
-   * The list view config containing component properties
+   * The list config containing component properties
    */
-  @Input() config: ListViewConfig;
+  @Input() config: ListConfig;
 
   /**
    * The name of the template used to contain expandable content for each row
@@ -45,7 +45,7 @@ export class ListViewComponent implements OnInit {
   @Input() itemExpandedTemplate: TemplateRef<any>;
 
   /**
-   * An array of items to display in the list view
+   * An array of items to display in the list
    */
   @Input() items: any[];
 
@@ -109,10 +109,10 @@ export class ListViewComponent implements OnInit {
     checkDisabled: false,
     useExpandingRows: false,
     showCheckbox: true
-  } as ListViewConfig;
+  } as ListConfig;
   private dragItem: any;
   private itemsEmpty: boolean = true;
-  private prevConfig: ListViewConfig;
+  private prevConfig: ListConfig;
 
   /**
    * The default constructor
@@ -151,7 +151,7 @@ export class ListViewComponent implements OnInit {
       this.config.selectedItems = [this.config.selectedItems[0]];
     }
     if (this.config.selectItems && this.config.showCheckbox) {
-      throw new Error('ListViewComponent - Illegal use: ' +
+      throw new Error('ListComponent - Illegal use: ' +
         'Cannot use both item select and click selection at the same time.');
     }
     this.prevConfig = cloneDeep(this.config);
@@ -170,7 +170,7 @@ export class ListViewComponent implements OnInit {
   private checkboxChange(item: any): void {
     this.onCheckboxChange.emit({
       item: item
-    } as ListViewEvent);
+    } as ListEvent);
   }
 
   private isSelected(item: any): boolean {
@@ -195,7 +195,7 @@ export class ListViewComponent implements OnInit {
     /* Todo: dnd not implemeneted
     this.onDragEnd.emit({
       item: this.dragItem
-    } as ListViewEvent);
+    } as ListEvent);
     */
   }
 
@@ -203,7 +203,7 @@ export class ListViewComponent implements OnInit {
     /* Todo: dnd not implemeneted
     this.onDragMoved.emit({
       item: this.dragItem
-    } as ListViewEvent);
+    } as ListEvent);
     */
   }
 
@@ -216,7 +216,7 @@ export class ListViewComponent implements OnInit {
     /* Todo: dnd not implemeneted
     this.onDragStart.emit({
       item: this.dragItem
-    } as ListViewEvent);
+    } as ListEvent);
     */
   }
 
@@ -262,16 +262,16 @@ export class ListViewComponent implements OnInit {
       if (selectionChanged === true) {
         this.onSelect.emit({
           item: item
-        } as ListViewEvent);
+        } as ListEvent);
         this.onSelectionChange.emit({
           item: item,
           selectedItems: this.config.selectedItems
-        } as ListViewEvent);
+        } as ListEvent);
       }
     }
     this.onClick.emit({
       item: item
-    } as ListViewEvent);
+    } as ListEvent);
   }
 
   private dblClick($event: MouseEvent, item: any): void {
@@ -279,7 +279,7 @@ export class ListViewComponent implements OnInit {
     if (this.config.dblClick === true && item.disabled !== true) {
       this.onDblClick.emit({
         item: item
-      } as ListViewEvent);
+      } as ListEvent);
     }
   }
 

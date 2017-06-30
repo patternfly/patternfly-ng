@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <pfng-list-view
+        <pfng-list
             [actionTemplate]="actionTemplate"
-            [config]="listViewConfig"
+            [config]="listConfig"
             [items]="items"
             [itemTemplate]="itemTemplate"
             [itemExpandedTemplate]="itemExpandedTemplate"
@@ -20,38 +20,38 @@
                 <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
               </div>
               <div class="list-pf-additional-content">
-                <pfng-list-view-compound-toggle [expandingRowId]="'hosts'" [item]="item" [template]="hostsTemplate">
+                <pfng-list-compound-toggle [expandingRowId]="'hosts'" [item]="item" [template]="hostsTemplate">
                   <ng-template #hostsTemplate>
                     <span class="pficon pficon-screen"></span>
                     <strong>{{item.hostCount}}</strong> Hosts
                   </ng-template>
-                </pfng-list-view-compound-toggle>
-                <pfng-list-view-compound-toggle [expandingRowId]="'clusters'" [item]="item" [template]="clustersTemplate">
+                </pfng-list-compound-toggle>
+                <pfng-list-compound-toggle [expandingRowId]="'clusters'" [item]="item" [template]="clustersTemplate">
                   <ng-template #clustersTemplate>
                     <span class="pficon pficon-cluster"></span>
                     <strong>{{item.clustersCount}}</strong> Clusters
                   </ng-template>
-                </pfng-list-view-compound-toggle>
-                <pfng-list-view-compound-toggle [expandingRowId]="'nodes'" [item]="item" [template]="nodesTemplate">
+                </pfng-list-compound-toggle>
+                <pfng-list-compound-toggle [expandingRowId]="'nodes'" [item]="item" [template]="nodesTemplate">
                   <ng-template #nodesTemplate>
                     <span class="pficon pficon-container-node"></span>
                     <strong>{{item.nodesCount}}</strong> Nodes
                   </ng-template>
-                </pfng-list-view-compound-toggle>
-                <pfng-list-view-compound-toggle [expandingRowId]="'images'" [item]="item" [template]="imagesTemplate">
+                </pfng-list-compound-toggle>
+                <pfng-list-compound-toggle [expandingRowId]="'images'" [item]="item" [template]="imagesTemplate">
                   <ng-template #imagesTemplate>
                     <span class="pficon pficon-image"></span>
                     <strong>{{item.imagesCount}}</strong> Images
                   </ng-template>
-                </pfng-list-view-compound-toggle>
+                </pfng-list-compound-toggle>
               </div>
             </div>
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
-            <pfng-list-view-actions
+            <pfng-list-actions
                 [config]="actionConfig"
                 (onActionSelect)="handleAction($event, item)">
-            </pfng-list-view-actions>
+            </pfng-list-actions>
           </ng-template>
           <ng-template #itemExpandedTemplate let-item="item" let-index="index">
             <basic-content [item]="item" *ngIf="item.expandingRowId === undefined"></basic-content>
@@ -60,7 +60,7 @@
             <images-content *ngIf="item.expandingRowId === 'images'"></images-content>
             <nodes-content *ngIf="item.expandingRowId === 'nodes'"></nodes-content>
           </ng-template>
-        </pfng-list-view>
+        </pfng-list>
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@
         <div class="form-group">
           <label class="checkbox-inline">
             <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
-                   [(ngModel)]="listViewConfig.useExpandingRows">Show Simple Expansion
+                   [(ngModel)]="listConfig.useExpandingRows">Show Simple Expansion
           </label>
         </div>
       </form>
@@ -95,13 +95,13 @@
   <div>
     <tabset>
       <tab heading="api">
-        <iframe class="demoframe" src="docs/classes/listviewcomponent.html"></iframe>
+        <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="/src/app/list-view/examples/list-view-compound-example.component.html"></include-content>
+        <include-content src="/src/app/list/examples/list-compound-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="/src/app/list-view/examples/list-view-compound-example.component.ts"></include-content>
+        <include-content src="/src/app/list/examples/list-compound-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

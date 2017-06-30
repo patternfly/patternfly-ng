@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 //  import example modules
 import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/examples/filter-example.module';
-import { ListViewExampleModule } from '../app/list-view/examples/list-view-example.module';
+import { ListExampleModule } from '../app/list/examples/list-example.module';
 import { NotificationExampleModule } from '../app/notification/examples/notification-example.module';
 import { RemainingCharsCountExampleModule } from '../app/remaining-chars-count/examples/remaining-chars-count-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
@@ -30,7 +30,7 @@ import { WelcomeComponent } from './components/welcome.component';
     FilterExampleModule,
     FormsModule,
     HttpModule,
-    ListViewExampleModule,
+    ListExampleModule,
     NotificationExampleModule,
     RemainingCharsCountExampleModule,
     SampleExampleModule,

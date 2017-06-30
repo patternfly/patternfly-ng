@@ -7,13 +7,13 @@
   </div>
   <tabset>
     <tab heading="Basic" (select)="tabSelected($event)">
-      <list-view-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></list-view-basic-example>
+      <list-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></list-basic-example>
     </tab>
     <tab heading="Compound Expansion" (select)="tabSelected($event)">
-      <list-view-compound-example *ngIf="activeTab === 'Compound Expansion'"></list-view-compound-example>
+      <list-compound-example *ngIf="activeTab === 'Compound Expansion'"></list-compound-example>
     </tab>
     <tab heading="Heading" (select)="tabSelected($event)">
-      <list-view-heading-example *ngIf="activeTab === 'Heading'"></list-view-heading-example>
+      <list-heading-example *ngIf="activeTab === 'Heading'"></list-heading-example>
     </tab>
   </tabset>
 </div>

@@ -10,15 +10,15 @@ import { By } from '@angular/platform-browser';
 import { ActionConfig } from '../models/action-config';
 import { EmptyStateConfig } from '../empty-state/empty-state-config';
 import { EmptyStateModule } from '../empty-state/empty-state.module';
-import { ListViewComponent } from './list-view.component';
-import { ListViewConfig } from './list-view-config';
+import { ListComponent } from './list.component';
+import { ListConfig } from './list-config';
 
-describe('List View component - ', () => {
-  let comp: ListViewComponent;
-  let fixture: ComponentFixture<ListViewComponent>;
+describe('List component - ', () => {
+  let comp: ListComponent;
+  let fixture: ComponentFixture<ListComponent>;
 
   let actionConfig: ActionConfig;
-  let config: ListViewConfig;
+  let config: ListConfig;
   let emptyStateConfig: EmptyStateConfig;
   let items: any[];
 
@@ -91,7 +91,7 @@ describe('List View component - ', () => {
       actions: actionConfig,
       iconStyleClass: 'pficon-warning-triangle-o',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-        'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
+        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
         'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
         hypertext: 'EmptyState example',
@@ -109,18 +109,18 @@ describe('List View component - ', () => {
       selectionMatchProp: 'name',
       showCheckbox: true,
       useExpandingRows: false
-    } as ListViewConfig;
+    } as ListConfig;
   });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, EmptyStateModule, FormsModule],
-      declarations: [ListViewComponent],
+      declarations: [ListComponent],
       providers: []
     })
       .compileComponents()
       .then(() => {
-        fixture = TestBed.createComponent(ListViewComponent);
+        fixture = TestBed.createComponent(ListComponent);
         comp = fixture.componentInstance;
         comp.config = config;
         comp.items = items;

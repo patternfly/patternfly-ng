@@ -11,11 +11,11 @@ import { ClustersContentComponent } from './clusters-content.component';
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 import { HostsContentComponent } from './hosts-content.component';
 import { ImagesContentComponent } from './images-content.component';
-import { ListViewModule } from '../list-view.module';
-import { ListViewBasicExampleComponent } from './list-view-basic-example.component';
-import { ListViewCompoundExampleComponent } from './list-view-compound-example.component';
-import { ListViewHeadingExampleComponent } from './list-view-heading-example.component';
-import { ListViewExampleComponent } from './list-view-example.component';
+import { ListModule } from '../list.module';
+import { ListBasicExampleComponent } from './list-basic-example.component';
+import { ListCompoundExampleComponent } from './list-compound-example.component';
+import { ListHeadingExampleComponent } from './list-heading-example.component';
+import { ListExampleComponent } from './list-example.component';
 import { NodesContentComponent } from './nodes-content.component';
 
 @NgModule({
@@ -24,10 +24,10 @@ import { NodesContentComponent } from './nodes-content.component';
     ClustersContentComponent,
     HostsContentComponent,
     ImagesContentComponent,
-    ListViewBasicExampleComponent,
-    ListViewCompoundExampleComponent,
-    ListViewHeadingExampleComponent,
-    ListViewExampleComponent,
+    ListBasicExampleComponent,
+    ListCompoundExampleComponent,
+    ListHeadingExampleComponent,
+    ListExampleComponent,
     NodesContentComponent
   ],
   imports: [
@@ -35,12 +35,12 @@ import { NodesContentComponent } from './nodes-content.component';
     CommonModule,
     DemoComponentsModule,
     FormsModule,
-    ListViewModule,
+    ListModule,
     TabsModule.forRoot(),
     TooltipModule.forRoot()
   ],
   providers: [ BsDropdownConfig, TabsetConfig, TooltipConfig ]
 })
-export class ListViewExampleModule {
+export class ListExampleModule {
   constructor() {}
 }

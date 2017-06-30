@@ -6,20 +6,20 @@ import {
 
 import { Action } from '../../models/action';
 import { ActionConfig } from '../../models/action-config';
-import { ListViewConfig } from '../list-view-config';
-import { ListViewEvent } from '../list-view-event';
+import { ListConfig } from '../list-config';
+import { ListEvent } from '../list-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'list-view-compound-example',
-  templateUrl: './list-view-compound-example.component.html'
+  selector: 'list-compound-example',
+  templateUrl: './list-compound-example.component.html'
 })
-export class ListViewCompoundExampleComponent implements OnInit {
+export class ListCompoundExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   items: any[];
-  listViewConfig: ListViewConfig;
+  listConfig: ListConfig;
 
   constructor() {
   }
@@ -147,14 +147,14 @@ export class ListViewCompoundExampleComponent implements OnInit {
       }],
     } as ActionConfig;
 
-    this.listViewConfig = {
+    this.listConfig = {
       dblClick: false,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: false,
       useExpandingRows: false
-    } as ListViewConfig;
+    } as ListConfig;
   }
 
   ngDoCheck(): void {
@@ -169,7 +169,7 @@ export class ListViewCompoundExampleComponent implements OnInit {
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
   }
 
-  handleClick($event: ListViewEvent): void {
+  handleClick($event: ListEvent): void {
     this.actionsText = $event.item.name + ' clicked\r\n' + this.actionsText;
   }
 }
