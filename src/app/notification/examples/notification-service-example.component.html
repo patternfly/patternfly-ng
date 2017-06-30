@@ -2,9 +2,8 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <code>
-NotificationService.setDelay(6000).setVerbose(true);
-        </code>
+        <h2>This example sets the notification service delay to 5 seconds.</h2>
+        <pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>
       </div>
     </div>
   </div>
@@ -19,8 +18,11 @@ NotificationService.setDelay(6000).setVerbose(true);
       <tab heading="api">
         <iframe class="demoframe" src="docs/classes/notificationservice.html"></iframe>
       </tab>
+      <tab heading="html">
+        <include-content src="src/app/notification/examples/notification-service-example.component.html"></include-content>
+      </tab>
       <tab heading="typescript">
-        <include-content src="src/app/notification/examples/notification-example.service.ts"></include-content>
+        <include-content src="src/app/notification/examples/notification-service-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

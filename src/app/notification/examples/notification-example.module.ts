@@ -8,7 +8,6 @@ import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 import { NotificationModule } from '../notification.module';
 import { NotificationService } from '../notification.service';
-import { NotificationExampleService } from './notification-example.service';
 import { NotificationServiceExampleComponent } from './notification-service-example.component';
 import { ToastNotificationBasicExampleComponent } from './toast-notification-basic-example.component';
 import { ToastNotificationExampleComponent } from './toast-notification-example.component';
@@ -31,11 +30,9 @@ import { ToastNotificationListExampleComponent } from './toast-notification-list
   ],
   providers: [
     BsDropdownConfig,
-    TabsetConfig,
-  {
-    provide: NotificationService,
-    useClass: NotificationExampleService
-  }]
+    NotificationService,
+    TabsetConfig
+  ]
 })
 export class NotificationExampleModule {
   constructor() {}
