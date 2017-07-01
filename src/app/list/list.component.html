@@ -56,11 +56,15 @@
     <!-- expansion -->
     <div class="pfng-list-expansion list-pf-expansion collapse in"
          *ngIf="!(config.useHeading && i === 0) && itemExpandedTemplate && item.isRowExpanded">
-      <div class="pfng-list-close close">
-        <span class="pficon pficon-close" (click)="closeExpandingRow(item)"></span>
+      <div class="list-pf-container" tabindex="0">
+        <div class="list-pf-content">
+          <div class="close">
+            <span class="pficon pficon-close" (click)="closeExpandingRow(item)"></span>
+          </div>
+          <ng-template [ngTemplateOutlet]="itemExpandedTemplate"
+                       [ngOutletContext]="{ item: item, index: i }"></ng-template>
+        </div>
       </div>
-      <ng-template [ngTemplateOutlet]="itemExpandedTemplate"
-                   [ngOutletContext]="{ item: item, index: i }"></ng-template>
     </div>
   </div>
 </div>
