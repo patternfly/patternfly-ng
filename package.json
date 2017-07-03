@@ -1,6 +1,6 @@
 {
   "name": "patternfly-ng",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A collection of PatternFly Angular components and other useful things to be shared.",
   "main": "bundles/patternfly-ng.umd.js",
   "module": "index.js",
@@ -14,7 +14,6 @@
     "cleanup": "rimraf dist/package.json dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
     "copy-examples:demo": "gulp copy-examples",
     "minify": "uglifyjs dist/bundles/ngx-widgets.js --screw-ie8 --compress --mangle --comments --output dist/bundles/patternfly-ng.min.js",
-    "publish": "node_modules/patternfly-eng-publish/script/publish-ghpages.sh dist-demo",
     "publish-travis": "node_modules/patternfly-eng-publish/script/publish-ghpages.sh -t dist-demo",
     "reinstall": "npm run clean && npm install",
     "remove-dist": "rimraf dist dist-watch dist-demo",
