@@ -16,13 +16,13 @@ export { FilterModule } from './src/app/filter/filter.module';
 export { FilterResultsComponent } from './src/app/filter/filter-results.component';
 export { FilterQuery } from './src/app/filter/filter-query';
 
-// List View
-export { ListViewActionsComponent } from './src/app/list-view/list-view-actions.component';
-export { ListViewConfig } from './src/app/list-view/list-view-config';
-export { ListViewComponent } from './src/app/list-view/list-view.component';
-export { ListViewCompoundToggleComponent } from './src/app/list-view/list-view-compound-toggle.component';
-export { ListViewEvent } from './src/app/list-view/list-view-event';
-export { ListViewModule } from './src/app/list-view/list-view.module';
+// List
+export { ListActionsComponent } from './src/app/list/list-actions.component';
+export { ListConfig } from './src/app/list/list-config';
+export { ListComponent } from './src/app/list/list.component';
+export { ListCompoundToggleComponent } from './src/app/list/list-compound-toggle.component';
+export { ListEvent } from './src/app/list/list-event';
+export { ListModule } from './src/app/list/list.module';
 
 // Models
 export { Action } from './src/app/models/action';
