@@ -14,17 +14,16 @@ import { ActionConfig } from '../models/action-config';
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
- * List view actions component.
+ * List actions component.
  *
  * config - The ActionsConfig object containing action properties
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'pfng-list-view-actions',
-  styleUrls: ['./list-view-actions.component.less'],
-  templateUrl: './list-view-actions.component.html'
+  selector: 'pfng-list-actions',
+  templateUrl: './list-actions.component.html'
 })
-export class ListViewActionsComponent implements OnInit {
+export class ListActionsComponent implements OnInit {
   /**
    * The action config containing component properties
    */
@@ -92,9 +91,9 @@ export class ListViewActionsComponent implements OnInit {
    */
   private initMoreActionsDropup($event: MouseEvent): void {
     window.requestAnimationFrame(() => {
-      let kebabContainer = this.closest($event.target, '.dropdown-kebab-pf.open', 'pfng-list-view-actions');
-      let listViewContainer = this.closest(this.el.nativeElement, '.list-group.list-view-pf', 'pfng-list-view');
-      if (kebabContainer === null || listViewContainer === null) {
+      let kebabContainer = this.closest($event.target, '.dropdown-kebab-pf.open', 'pfng-list-actions');
+      let listContainer = this.closest(this.el.nativeElement, '.list-pf', 'pfng-list');
+      if (kebabContainer === null || listContainer === null) {
         return;
       }
 
@@ -104,7 +103,7 @@ export class ListViewActionsComponent implements OnInit {
       let menuRect = dropdownMenu.getBoundingClientRect();
       let menuTop = buttonRect.top - menuRect.height;
       let menuBottom = buttonRect.top + buttonRect.height + menuRect.height;
-      let parentRect = listViewContainer.getBoundingClientRect();
+      let parentRect = listContainer.getBoundingClientRect();
 
       if ((menuBottom <= parentRect.top + parentRect.height) || (menuTop < parentRect.top)) {
         this.isMoreActionsDropup = false;

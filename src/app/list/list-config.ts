@@ -1,9 +1,9 @@
 import { EmptyStateConfig } from '../empty-state/empty-state-config';
 
 /**
- * A config containing properties for list view
+ * A config containing properties for list
  */
-export class ListViewConfig {
+export class ListConfig {
   /**
    * Handle double clicking (item remains selected on a double click). Default is false
    */
@@ -20,12 +20,9 @@ export class ListViewConfig {
   emptyStateConfig?: EmptyStateConfig;
 
   /**
-   * Show list heading. First object in items array is be used to define heading text
-   */
-  headingRow?: boolean;
-
-  /**
-   * Allow multiple row selections, selectItems must also be set, not applicable when dblClick is true. Default is false
+   * Allow multiple item selections -- showCheckbox must also be set.
+   *
+   * Not applicable when dblClick is true. Default is false
    */
   multiSelect?: boolean;
 
@@ -35,22 +32,27 @@ export class ListViewConfig {
   selectedItems?: any[];
 
   /**
-   * Allow row selection, default is false
+   * Allow item selection. Default is false
    */
   selectItems?: boolean;
 
   /**
-   * Property of the items to use for determining matching, default is 'uuid'
+   * Property of the items to use for determining matching. Default is 'uuid'
    */
   selectionMatchProp?: string;
 
   /**
-   * Show item selection boxes for each item, default is true
+   * Show checkbox for selecting items. Default is true
    */
-  showSelectBox?: boolean;
+  showCheckbox?: boolean;
 
   /**
    * Allow row expansion for each list item
    */
   useExpandingRows?: boolean;
+
+  /**
+   * Show list heading. First object in items array is be used to define heading content
+   */
+  useHeading?: boolean;
 }

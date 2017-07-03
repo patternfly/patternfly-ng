@@ -7,21 +7,21 @@ import {
 } from '@angular/core';
 
 /**
- * List view component.
+ * List compund expansion toggle component.
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'pfng-list-view-compound-toggle',
-  templateUrl: './list-view-compound-toggle.component.html'
+  selector: 'pfng-list-compound-toggle',
+  templateUrl: './list-compound-toggle.component.html'
 })
-export class ListViewCompoundToggleComponent implements OnInit {
+export class ListCompoundToggleComponent implements OnInit {
   /**
    * The id of the template used to contain expandable content for each row
    */
   @Input() expandingRowId: string;
 
   /**
-   * The items displayed in the current list view row
+   * The items displayed in the current list row
    */
   @Input() item: any;
 
@@ -43,10 +43,10 @@ export class ListViewCompoundToggleComponent implements OnInit {
    */
   ngOnInit(): void {
     if (this.item === undefined) {
-      throw new Error('ListViewCompoundToggleComponent: item attribute not set');
+      throw new Error('ListCompoundToggleComponent: item attribute not set');
     }
     if (this.expandingRowId === undefined) {
-      throw new Error('ListViewCompoundToggleComponent: expandingRowId attribute not set');
+      throw new Error('ListCompoundToggleComponent: expandingRowId attribute not set');
     }
   }
 
