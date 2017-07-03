@@ -8,24 +8,23 @@ import {
 import { Action } from '../../models/action';
 import { ActionConfig } from '../../models/action-config';
 import { EmptyStateConfig } from '../../empty-state/empty-state-config';
-import { ListViewConfig } from '../list-view-config';
-import { ListViewEvent } from '../list-view-event';
+import { ListConfig } from '../list-config';
+import { ListEvent } from '../list-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'list-view-basic-example',
-  styleUrls: ['./list-view-basic-example.component.less'],
-  templateUrl: './list-view-basic-example.component.html'
+  selector: 'list-basic-example',
+  styleUrls: ['./list-basic-example.component.less'],
+  templateUrl: './list-basic-example.component.html'
 })
-export class ListViewBasicExampleComponent implements OnInit {
-  actionConfig: ActionConfig;
+export class ListBasicExampleComponent implements OnInit {
   actionsText: string = '';
   allItems: any[];
   // dragItem: any;
   emptyStateConfig: EmptyStateConfig;
   items: any[];
   itemsAvailable: boolean = true;
-  listViewConfig: ListViewConfig;
+  listConfig: ListConfig;
   selectType: string = 'checkbox';
   showDisabledRows: boolean = false;
 
@@ -34,12 +33,6 @@ export class ListViewBasicExampleComponent implements OnInit {
 
   ngOnInit(): void {
     this.allItems = [{
-      // First array item used for column headings
-      name: 'NAME',
-      actions: 'ACTIONS',
-      additionalInfo: 'ADDITOINAL INFO',
-      address: 'ADDRESS'
-    }, {
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way',
       city: 'Bedrock',
@@ -123,52 +116,48 @@ export class ListViewBasicExampleComponent implements OnInit {
     }];
     this.items = this.allItems;
 
-    this.actionConfig = {
-      primaryActions: [{
-        id: 'action1',
-        title: 'Main Action',
-        tooltip: 'Start the server'
-      }],
-      moreActions: [{
-        id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
-      }, {
-        id: 'action3',
-        title: 'Secondary Action 2',
-        tooltip: 'Do something else'
-      }, {
-        id: 'action4',
-        title: 'Secondary Action 3',
-        tooltip: 'Do something special'
-      }]
-    } as ActionConfig;
-
     this.emptyStateConfig = {
-      actions: this.actionConfig,
+      actions: {
+        primaryActions: [{
+          id: 'action1',
+          title: 'Main Action',
+          tooltip: 'Start the server'
+        }],
+        moreActions: [{
+          id: 'action2',
+          title: 'Secondary Action 1',
+          tooltip: 'Do the first thing'
+        }, {
+          id: 'action3',
+          title: 'Secondary Action 2',
+          tooltip: 'Do something else'
+        }, {
+          id: 'action4',
+          title: 'Secondary Action 3',
+          tooltip: 'Do something special'
+        }]
+      } as ActionConfig,
       icon: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-        'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
+        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
         'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
-        hypertext: 'List View example',
+        hypertext: 'List example',
         text: 'For more information please see the',
-        url: '#/listview'
+        url: '#/list'
       }
     } as EmptyStateConfig;
 
-    this.listViewConfig = {
+    this.listConfig = {
       dblClick: false,
-      dragEnabled: false,
       emptyStateConfig: this.emptyStateConfig,
-      headingRow: true,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
-      showSelectBox: true,
+      showCheckbox: true,
       useExpandingRows: false
-    } as ListViewConfig;
+    } as ListConfig;
   }
 
   ngDoCheck(): void {
@@ -182,9 +171,9 @@ export class ListViewBasicExampleComponent implements OnInit {
    * @param startButtonTemplate {TemplateRef} Custom button template
    * @returns {ActionConfig}
    */
-  getActionsConfig(item: any, actionButtonTemplate: TemplateRef<any>,
+  getActionConfig(item: any, actionButtonTemplate: TemplateRef<any>,
       startButtonTemplate: TemplateRef<any>): ActionConfig {
-    let config = {
+    let actionConfig = {
       primaryActions: [{
         id: 'start',
         styleClass: 'btn-primary',
@@ -241,23 +230,23 @@ export class ListViewBasicExampleComponent implements OnInit {
 
     // Set button disabled
     if (item.started === true) {
-      config.primaryActions[0].disabled = true;
+      actionConfig.primaryActions[0].disabled = true;
     }
 
     // Set custom properties for row
     if (item.name === 'John Smith') {
-      config.moreActionsStyleClass = 'red'; // Set kebab option text red
-      config.primaryActions[1].visible = false; // Hide first button
-      config.primaryActions[2].disabled = true; // Set last button disabled
-      config.primaryActions[3].styleClass = 'red'; // Set last button text red
-      config.moreActions[0].visible = false; // Hide first kebab option
+      actionConfig.moreActionsStyleClass = 'red'; // Set kebab option text red
+      actionConfig.primaryActions[1].visible = false; // Hide first button
+      actionConfig.primaryActions[2].disabled = true; // Set last button disabled
+      actionConfig.primaryActions[3].styleClass = 'red'; // Set last button text red
+      actionConfig.moreActions[0].visible = false; // Hide first kebab option
     }
 
     // Hide kebab
     if (item.name === 'Frank Livingston') {
-      config.moreActionsVisible = false;
+      actionConfig.moreActionsVisible = false;
     }
-    return config;
+    return actionConfig;
   }
 
   // Actions
@@ -269,34 +258,34 @@ export class ListViewBasicExampleComponent implements OnInit {
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
   }
 
-  handleSelect($event: ListViewEvent): void {
+  handleSelect($event: ListEvent): void {
     this.actionsText = $event.item.name + ' selected\r\n' + this.actionsText;
   }
 
-  handleSelectionChange($event: ListViewEvent): void {
+  handleSelectionChange($event: ListEvent): void {
     this.actionsText = $event.selectedItems.length + ' items selected\r\n' + this.actionsText;
   }
 
-  handleClick($event: ListViewEvent): void {
+  handleClick($event: ListEvent): void {
     this.actionsText = $event.item.name + ' clicked\r\n' + this.actionsText;
   }
 
-  handleDblClick($event: ListViewEvent): void {
+  handleDblClick($event: ListEvent): void {
     this.actionsText = $event.item.name + ' double clicked\r\n' + this.actionsText;
   }
 
-  handleCheckBoxChange($event: ListViewEvent): void {
+  handleCheckboxChange($event: ListEvent): void {
     this.actionsText = $event.item.name + ' checked: ' + $event.item.selected + '\r\n' + this.actionsText;
   }
 
 /* Not implemented
   // Drag and drop
 
-  handleDragEnd($event: ListViewEvent): void {
+  handleDragEnd($event: ListEvent): void {
     this.actionsText = 'drag end\r\n' + this.actionsText;
   }
 
-  handleDragMoved($event: ListViewEvent): void {
+  handleDragMoved($event: ListEvent): void {
     let index = -1;
 
     for (let i = 0; i < this.items.length; i++) {
@@ -311,7 +300,7 @@ export class ListViewBasicExampleComponent implements OnInit {
     this.actionsText = 'drag moved\r\n' + this.actionsText;
   }
 
-  handleDragStart($event: ListViewEvent): void {
+  handleDragStart($event: ListEvent): void {
     this.dragItem = $event.item;
     this.actionsText = $event.item.name + ': drag start\r\n' + this.actionsText;
   }
@@ -329,14 +318,14 @@ export class ListViewBasicExampleComponent implements OnInit {
 
   updateSelectionType(): void {
     if (this.selectType === 'checkbox') {
-      this.listViewConfig.selectItems = false;
-      this.listViewConfig.showSelectBox = true;
+      this.listConfig.selectItems = false;
+      this.listConfig.showCheckbox = true;
     } else if (this.selectType === 'row') {
-      this.listViewConfig.selectItems = true;
-      this.listViewConfig.showSelectBox = false;
+      this.listConfig.selectItems = true;
+      this.listConfig.showCheckbox = false;
     } else {
-      this.listViewConfig.selectItems = false;
-      this.listViewConfig.showSelectBox = false;
+      this.listConfig.selectItems = false;
+      this.listConfig.showCheckbox = false;
     }
   }
 }
