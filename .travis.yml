@@ -1,5 +1,14 @@
 language: node_js
+cache:
+  directories:
+    - node_modules
+
+notifications:
+  email: false
+
 node_js:
+  - '7'
+  - '6'
   - '4'
 
 env:
@@ -12,7 +21,7 @@ env:
 before_install:
   - rvm install 2.3.1
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-  - npm install -g bower grunt-cli
+  - npm install -g bower
   - npm install git+https://github.com/patternfly/patternfly-eng-release.git
 
 install: true
@@ -20,5 +29,12 @@ install: true
 script:
   - sh -x ./node_modules/patternfly-eng-release/scripts/_build.sh -x
 
+before_script:
+  - npm prune
 after_success:
   - npm run publish-travis
+  - npm run semantic-release
+
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
