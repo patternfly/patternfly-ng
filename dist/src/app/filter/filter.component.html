@@ -1,0 +1,7 @@
+<div class="filter-pf">
+  <pfng-filter-fields [config]="config"
+                      (onAdd)="addFilter($event)"
+                      (onFieldSelect)="fieldSelected($event)"
+                      (onTypeAhead)="typeAhead($event)"></pfng-filter-fields>
+  <pfng-filter-results [config]="config" (onClear)="clear($event)"></pfng-filter-results>
+</div>
