@@ -1,5 +1,11 @@
 export { PatternFlyNgModule } from './patternfly-ng.module';
 
+// Action
+export { Action } from './src/app/action/action';
+export { ActionConfig } from './src/app/action/action-config';
+export { ActionComponent } from './src/app/action/action.component';
+export { ActionModule } from './src/app/action/action.module';
+
 // EmptyState
 export { EmptyStateComponent } from './src/app/empty-state/empty-state.component';
 export { EmptyStateConfig } from './src/app/empty-state/empty-state-config';
@@ -17,19 +23,11 @@ export { FilterResultsComponent } from './src/app/filter/filter-results.componen
 export { FilterQuery } from './src/app/filter/filter-query';
 
 // List
-export { ListActionsComponent } from './src/app/list/list-actions.component';
 export { ListConfig } from './src/app/list/list-config';
 export { ListComponent } from './src/app/list/list.component';
-export { ListCompoundToggleComponent } from './src/app/list/list-compound-toggle.component';
 export { ListEvent } from './src/app/list/list-event';
+export { ListExpandToggleComponent } from './src/app/list/list-expand-toggle.component';
 export { ListModule } from './src/app/list/list.module';
-
-// Models
-export { Action } from './src/app/models/action';
-export { ActionConfig } from './src/app/models/action-config';
-export { ModelsModule } from './src/app/models/models.module';
-export { View } from './src/app/models/view';
-export { ViewConfig } from './src/app/models/view-config';
 
 // Notification
 export { Notification } from './src/app/notification/notification';
@@ -62,3 +60,4 @@ export { SortModule } from './src/app/sort/sort.module';
 export { ToolbarConfig } from './src/app/toolbar/toolbar-config';
 export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
 export { ToolbarModule } from './src/app/toolbar/toolbar.module';
+export { ToolbarView } from './src/app/toolbar/toolbar-view';

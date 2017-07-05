@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Action } from '../models/action';
+import { Action } from '../action/action';
 import { Notification } from './notification';
 import { NotificationType } from './notification-type';
 
