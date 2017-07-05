@@ -12,6 +12,7 @@
     "bundle": "webpack --config config/webpack.prod.js --progress --profile --bail",
     "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist distwatch bundles",
     "cleanup": "rimraf dist/package.json dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
+    "commit": "git-cz",
     "copy-examples:demo": "gulp copy-examples",
     "minify": "uglifyjs dist/bundles/ngx-widgets.js --screw-ie8 --compress --mangle --comments --output dist/bundles/patternfly-ng.min.js",
     "publish-travis": "node_modules/patternfly-eng-publish/script/publish-ghpages.sh -t dist-demo",
@@ -83,13 +84,14 @@
     "clean-css": "4.0.8",
     "clean-webpack-plugin": "0.1.15",
     "codelyzer": "3.0.0-beta.3",
+    "commitizen": "^2.9.6",
     "component-lab": "0.1.0-alpha.1",
     "copy-webpack-plugin": "4.0.1",
     "copyfiles": "1.2.0",
     "cpy-cli": "1.0.1",
     "css-loader": "0.26.2",
     "css-to-string-loader": "0.1.2",
-    "cz-conventional-changelog": "2.0.0",
+    "cz-conventional-changelog": "^2.0.0",
     "del": "2.2.2",
     "exports-loader": "0.6.4",
     "expose-loader": "0.7.3",
@@ -176,5 +178,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   }
 }
