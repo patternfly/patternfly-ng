@@ -1,6 +1,6 @@
 {
   "name": "patternfly-ng",
-  "version": "0.0.5",
+  "version": "0.0.0-semantic-release",
   "description": "A collection of PatternFly Angular components and other useful things to be shared.",
   "main": "bundles/patternfly-ng.umd.js",
   "module": "index.js",
@@ -21,7 +21,7 @@
     "start:demo": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base dist-demo",
     "test": "karma start",
     "transpile": "gulp transpile",
-    "semantic-release": "semantic-release pre && npm run build && cp -r .git dist && npm publish dist/ && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish dist/ && semantic-release post"
   },
   "license": "Apache-2.0",
   "contributors": [],
@@ -148,7 +148,7 @@
     "rollup-plugin-angular-aot": "0.0.4",
     "run-sequence": "1.2.2",
     "script-ext-html-webpack-plugin": "1.7.1",
-    "semantic-release": "6.3.2",
+    "semantic-release": "^6.3.6",
     "source-map-loader": "0.1.6",
     "string-replace-loader": "1.0.5",
     "style-loader": "0.13.2",
