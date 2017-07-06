@@ -1,6 +1,6 @@
 {
   "name": "patternfly-ng",
-  "version": "0.0.0-semantic-release",
+  "version": "0.0.7",
   "description": "A collection of PatternFly Angular components and other useful things to be shared.",
   "main": "bundles/patternfly-ng.umd.js",
   "module": "index.js",
@@ -173,6 +173,10 @@
     "webpack-md5-hash": "0.0.5",
     "webpack-merge": "3.0.0",
     "webpack-validator": "2.3.0"
+  },
+  "release": {
+    "branch": "master",
+    "debug": false
   },
   "config": {
     "commitizen": {
