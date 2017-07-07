@@ -5,8 +5,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../../models/action';
-import { ActionConfig } from '../../models/action-config';
+import { Action } from '../../action/action';
+import { ActionConfig } from '../../action/action-config';
 import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { ListConfig } from '../list-config';
 import { ListEvent } from '../list-event';
@@ -52,7 +52,7 @@ export class ListBasicExampleComponent implements OnInit {
       clusterCount: 6,
       nodeCount: 10,
       imageCount: 8,
-      hideExpandingRowToggle: true
+      hideExpandToggle: true
     }, {
       name: 'Frank Livingston',
       address: '234 Elm Street',
@@ -156,7 +156,7 @@ export class ListBasicExampleComponent implements OnInit {
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: true,
-      useExpandingRows: false
+      useExpandItems: false
     } as ListConfig;
   }
 
@@ -307,10 +307,6 @@ export class ListBasicExampleComponent implements OnInit {
 */
 
   // Row selection
-
-  updateDisabledRows(): void {
-    this.items[1].disabled = this.showDisabledRows;
-  }
 
   updateItemsAvailable(): void {
     this.items = (this.itemsAvailable) ? this.allItems : [];

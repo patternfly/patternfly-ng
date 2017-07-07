@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule }  from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { ActionConfig } from '../models/action-config';
+import { ActionConfig } from '../action/action-config';
 import { EmptyStateConfig } from '../empty-state/empty-state-config';
 import { EmptyStateModule } from '../empty-state/empty-state.module';
 import { ListComponent } from './list.component';
@@ -251,25 +251,6 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(2);
   });
 
-  it('should set disabled rows correctly', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
-
-    // allow item selection
-    config.selectItems = true;
-    config.showCheckbox = false;
-    comp.items[2].disabled = true;
-    fixture.detectChanges();
-
-    let disabledItems = fixture.debugElement.queryAll(By.css('.list-pf-item.disabled'));
-    expect(disabledItems.length).toBe(1);
-
-    listItems[1].triggerEventHandler('click', {});
-    fixture.detectChanges();
-
-    let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
-    expect(selectedItems.length).toBe(0);
-  });
-
   it('should not allow both row and checkbox selection', function () {
     let exceptionRaised = false;
     let badConfig = {
@@ -286,8 +267,8 @@ describe('List component - ', () => {
     expect(exceptionRaised).toBe(true);
   });
 
-  it('should allow expanding rows', function () {
-    config.useExpandingRows = true;
+  it('should allow expand items', function () {
+    config.useExpandItems = true;
     fixture.detectChanges();
 
     let listItems = fixture.debugElement.queryAll(By.css('.list-pf-chevron .fa-angle-right'));

@@ -5,29 +5,35 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../models/action';
-import { ActionConfig } from '../models/action-config';
+import { Action } from './action';
+import { ActionConfig } from './action-config';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * List actions component.
  *
- * config - The ActionsConfig object containing action properties
+ * By default, buttons and kebab have no padding so they may inherit stying from components such as list and toolbar.
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'pfng-list-actions',
-  templateUrl: './list-actions.component.html'
+  selector: 'pfng-action',
+  templateUrl: './action.component.html'
 })
-export class ListActionsComponent implements OnInit {
+export class ActionComponent implements OnInit {
   /**
    * The action config containing component properties
    */
   @Input() config: ActionConfig;
+
+  /**
+   * Action template for custom actions
+   */
+  @Input() template: TemplateRef<any>;
 
   /**
    * The event emitted when an action has been selected

@@ -4,8 +4,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../../models/action';
-import { ActionConfig } from '../../models/action-config';
+import { Action } from '../../action/action';
+import { ActionConfig } from '../../action/action-config';
 import { ListConfig } from '../list-config';
 import { ListEvent } from '../list-event';
 
@@ -45,7 +45,7 @@ export class ListCompoundExampleComponent implements OnInit {
       clusterCount: 6,
       nodeCount: 10,
       imageCount: 8,
-      hideExpandingRowToggle: true
+      hideExpandToggle: true
     }, {
       name: 'Frank Livingston',
       address: '234 Elm Street',
@@ -153,7 +153,7 @@ export class ListCompoundExampleComponent implements OnInit {
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: false,
-      useExpandingRows: false
+      useExpandItems: false
     } as ListConfig;
   }
 

@@ -10,8 +10,9 @@ import { By } from '@angular/platform-browser';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { Action } from '../models/action';
-import { ActionConfig } from '../models/action-config';
+import { Action } from '../action/action';
+import { ActionConfig } from '../action/action-config';
+import { ActionModule } from '../action/action.module';
 import { Filter } from '../filter/filter';
 import { FilterConfig } from '../filter/filter-config';
 import { FilterField } from '../filter/filter-field';
@@ -23,8 +24,7 @@ import { SortConfig } from '../sort/sort-config';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarConfig } from './toolbar-config';
-import { View } from '../models/view';
-import { ViewConfig } from '../models/view-config';
+import { ToolbarView } from './toolbar-view';
 
 describe('Toolbar component - ', () => {
   let comp: ToolbarComponent;
@@ -159,23 +159,22 @@ describe('Toolbar component - ', () => {
         isAscending: this.isAscendingSort
       } as SortConfig,
 
-      viewConfig: {
-        views: [{
-          id: 'listView',
-          iconStyleClass: 'fa fa-th-list',
-          tooltip: 'List View'
-        }, {
-          id: 'tableView',
-          iconStyleClass: 'fa fa-table',
-          tooltip: 'Table View'
-        }],
-      } as ViewConfig
+      views: [{
+        id: 'listView',
+        iconStyleClass: 'fa fa-th-list',
+        tooltip: 'List View'
+      }, {
+        id: 'tableView',
+        iconStyleClass: 'fa fa-table',
+        tooltip: 'Table View'
+      }]
     } as ToolbarConfig;
   });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        ActionModule,
         BsDropdownModule.forRoot(),
         BrowserAnimationsModule,
         FormsModule,
@@ -236,10 +235,9 @@ describe('Toolbar component - ', () => {
     filterSelect = fixture.debugElement.query(By.css('.filter-select'));
     expect(filterSelect).not.toBeNull();
 
-    /* Todo: ngx-bootstrap no longer renders children for this test?
-    let items = filterSelect.queryAll(By.css('li'));
-    expect(items.length).toBe(config.filterConfig.fields[3].queries.length + 1); // +1 for the null value
-    */
+    // Todo: ngx-bootstrap no longer renders children for this test?
+    // let items = filterSelect.queryAll(By.css('li'));
+    // expect(items.length).toBe(config.filterConfig.fields[3].queries.length + 1); // +1 for the null value
   });
 
   it ('should clear a filter when the close button is clicked', function () {
@@ -434,7 +432,7 @@ describe('Toolbar component - ', () => {
     expect(viewSelector).not.toBeNull();
     expect(active.length).toBe(1);
 
-    config.viewConfig.currentView = config.viewConfig.views[0];
+    config.view = config.views[0];
     fixture.detectChanges();
 
     active = fixture.debugElement.queryAll(By.css('.active'));
@@ -461,8 +459,8 @@ describe('Toolbar component - ', () => {
     let listSelectors = fixture.debugElement.queryAll(By.css('.toolbar-pf-view-selector .btn-link'));
     expect(listSelectors.length).toBe(2);
 
-    let view: View;
-    comp.onViewSelect.subscribe((data: View) => {
+    let view: ToolbarView;
+    comp.onViewSelect.subscribe((data: ToolbarView) => {
       view = data;
       done();
     });
@@ -470,17 +468,6 @@ describe('Toolbar component - ', () => {
     listSelectors[0].triggerEventHandler('click', {});
     fixture.detectChanges();
     expect(view).not.toBeNull();
-  });
-
-  it ('should not show view selectors when no viewConfig is supplied', function () {
-    let viewSelector = fixture.debugElement.query(By.css('.toolbar-pf-view-selector'));
-    expect(viewSelector).not.toBeNull();
-
-    config.viewConfig = undefined;
-    fixture.detectChanges();
-
-    viewSelector = fixture.debugElement.query(By.css('.toolbar-pf-view-selector'));
-    expect(viewSelector).toBeNull();
   });
 
   // Action tests

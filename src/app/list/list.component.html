@@ -1,24 +1,23 @@
 <div class="list-pf" *ngIf="!itemsEmpty">
-  <div class="pfng-list-item list-pf-item {{item?.rowClass}}"
+  <div class="pfng-list-item list-pf-item {{item?.itemStyleClass}}"
        *ngFor="let item of items; let i = index"
-       [ngClass]="{'active': isSelected(item) || item.isRowExpanded,
-                   'disabled': item.disabled,
+       [ngClass]="{'active': isSelected(item) || item.isItemExpanded,
                    'pfng-list-heading': config.useHeading && i === 0}">
     <div class="list-pf-container">
       <!-- list header -->
       <div *ngIf="config.useHeading && i === 0; then showExpandHeader else showExpand"></div>
       <ng-template #showExpandHeader>
-        <div class="list-pf-chevron" *ngIf="config.useExpandingRows">
+        <div class="list-pf-chevron" *ngIf="config.useExpandItems">
           <div class="pfng-list-expand-placeholder"></div>
         </div>
       </ng-template>
       <ng-template #showExpand>
-        <div class="list-pf-chevron" *ngIf="config.useExpandingRows">
-          <div class="pfng-list-expand-placeholder" *ngIf="item.hideExpandingRowToggle === true"></div>
+        <div class="list-pf-chevron" *ngIf="config.useExpandItems">
+          <div class="pfng-list-expand-placeholder" *ngIf="item.hideExpandToggle === true"></div>
           <span class="fa fa-angle-right"
-                *ngIf="item.hideExpandingRowToggle !== true"
-                (click)="toggleExpandingRow(item)"
-                [ngClass]="{'fa-angle-down': item.isRowExpanded && item.expandingRowId === undefined}"></span>
+                *ngIf="item.hideExpandToggle !== true"
+                (click)="toggleExpandArea(item)"
+                [ngClass]="{'fa-angle-down': item.isItemExpanded && item.expandId === undefined}"></span>
         </div>
       </ng-template>
       <!-- checkbox -->
@@ -32,7 +31,6 @@
         <div class="list-pf-select" *ngIf="config.showCheckbox">
           <input type="checkbox" value="item.selected"
                  [(ngModel)]="item.selected"
-                 [disabled]="item.disabled"
                  (ngModelChange)="checkboxChange(item)">
         </div>
       </ng-template>
@@ -47,21 +45,23 @@
           </ng-template>
         </div>
         <!-- actions -->
-        <ng-template *ngIf="actionTemplate"
-                     [ngTemplateOutlet]="actionTemplate"
-                     [ngOutletContext]="{ item: item, index: i }">
-        </ng-template>
+        <div class="list-pf-actions">
+          <ng-template *ngIf="actionTemplate"
+                       [ngTemplateOutlet]="actionTemplate"
+                       [ngOutletContext]="{ item: item, index: i }">
+          </ng-template>
+        </div>
       </div>
     </div>
     <!-- expansion -->
     <div class="pfng-list-expansion list-pf-expansion collapse in"
-         *ngIf="!(config.useHeading && i === 0) && itemExpandedTemplate && item.isRowExpanded">
+         *ngIf="!(config.useHeading && i === 0) && expandTemplate && item.isItemExpanded">
       <div class="list-pf-container" tabindex="0">
         <div class="list-pf-content">
-          <div class="close">
-            <span class="pficon pficon-close" (click)="closeExpandingRow(item)"></span>
+          <div class="close" *ngIf="config.hideClose !== true">
+            <span class="pficon pficon-close" (click)="closeExpandArea(item)"></span>
           </div>
-          <ng-template [ngTemplateOutlet]="itemExpandedTemplate"
+          <ng-template [ngTemplateOutlet]="expandTemplate"
                        [ngOutletContext]="{ item: item, index: i }"></ng-template>
         </div>
       </div>

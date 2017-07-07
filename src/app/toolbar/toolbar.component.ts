@@ -8,12 +8,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../models/action';
+import { Action } from '../action/action';
 import { Filter } from '../filter/filter';
 import { FilterEvent } from '../filter/filter-event';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarConfig } from './toolbar-config';
-import { View } from '../models/view';
+import { ToolbarView } from './toolbar-view';
 
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
@@ -35,7 +35,7 @@ export class ToolbarComponent implements OnInit {
   /**
    * The name of the template containing actions
    */
-  @Input() actionsTemplate: TemplateRef<any>;
+  @Input() actionTemplate: TemplateRef<any>;
 
   /**
    * The name of the template containing views
@@ -117,12 +117,11 @@ export class ToolbarComponent implements OnInit {
     if (this.config.sortConfig !== undefined && this.config.sortConfig.visible === undefined) {
       this.config.sortConfig.visible = true;
     }
-    if (this.config && this.config.viewConfig && this.config.viewConfig.views === undefined) {
-      this.config.viewConfig.views = [];
+    if (this.config && this.config.views === undefined) {
+      this.config.views = [];
     }
-    if (this.config && this.config.viewConfig
-        && this.config.viewConfig.currentView === undefined) {
-      this.config.viewConfig.currentView = this.config.viewConfig.views[0];
+    if (this.config && this.config.view === undefined) {
+      this.config.view = this.config.views[0];
     }
   }
 
@@ -185,18 +184,18 @@ export class ToolbarComponent implements OnInit {
 
   // Views
 
-  private isViewSelected(view: View): boolean {
-    return this.config.viewConfig && (this.config.viewConfig.currentView.id === view.id);
+  private isViewSelected(currentView: ToolbarView): boolean {
+    return this.config.view && this.config.view.id === currentView.id;
   }
 
   private submit($event: any): void {
     $event.preventDefault();
   }
 
-  private viewSelected (view: View): void {
-    this.config.viewConfig.currentView = view;
-    if (!view.disabled) {
-      this.onViewSelect.emit(view);
+  private viewSelected (currentView: ToolbarView): void {
+    this.config.view = currentView;
+    if (!currentView.disabled) {
+      this.onViewSelect.emit(currentView);
     }
   }
 
