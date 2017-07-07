@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Main areas
 //  import example modules
+import { ActionExampleModule } from '../app/action/examples/action-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/examples/filter-example.module';
 import { ListExampleModule } from '../app/list/examples/list-example.module';
@@ -24,6 +25,7 @@ import { WelcomeComponent } from './components/welcome.component';
 
 @NgModule({
   imports: [
+    ActionExampleModule,
     AppRoutingModule,
     BrowserModule,
     EmptyStateExampleModule,

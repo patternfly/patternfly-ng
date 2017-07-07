@@ -1,4 +1,4 @@
-import { Action } from '../models/action';
+import { Action } from '../action/action';
 import { Notification } from './notification';
 /**
  * Notification service used to notify user about important events in the application.

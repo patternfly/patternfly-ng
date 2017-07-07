@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import { ActionModule } from '../action/action.module';
 import { FilterModule } from '../filter/filter.module';
 import { SortModule } from '../sort/sort.module';
 import { ToolbarComponent } from './toolbar.component';
@@ -16,7 +17,7 @@ export {
  * A module containing objects associated with the toolbar component
  */
 @NgModule({
-  imports: [ BsDropdownModule, CommonModule, FilterModule, SortModule ],
+  imports: [ ActionModule, BsDropdownModule, CommonModule, FilterModule, SortModule ],
   declarations: [ ToolbarComponent ],
   exports: [ ToolbarComponent ],
   providers: [ BsDropdownConfig ]

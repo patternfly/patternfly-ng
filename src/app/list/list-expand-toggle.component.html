@@ -1,5 +1,5 @@
-<div class="list-pf-chevron" (click)="toggleExpandingRow(item, 'hosts')">
-  <span class="fa fa-angle-right" [ngClass]="{'fa-angle-down': isRowExpanded()}"></span>
+<div class="list-pf-chevron" (click)="toggleExpand(item, 'hosts')">
+  <span class="fa fa-angle-right" [ngClass]="{'fa-angle-down': isItemExpanded()}"></span>
   <ng-template *ngIf="template" let-item="item"
                [ngTemplateOutlet]="template"
                [ngOutletContext]="{ item: item }"></ng-template>

@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { Action } from '../../models/action';
+import { Action } from '../../action/action';
 import { NotificationEvent } from '../notification-event';
 export declare class ToastNotificationBasicExampleComponent implements OnInit {
     actionText: string;

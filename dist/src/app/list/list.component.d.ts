@@ -3,14 +3,14 @@ import { ListConfig } from './list-config';
 /**
  * List component
  *
- * For items, use a template named itemTemplate to contain content for each row. For each item in the items array, the
+ * For items, use a template named itemTemplate to contain content for each item. For each item in the items array, the
  * expansion can be disabled by setting disabled to true on the item. If using actions, use a template named
- * actionTemplate to contain expandable content for the actions of each row. If using expanding rows, use a template
- * named itemExpandedTemplate to contain expandable content for each row.
+ * actionTemplate to contain expandable content for the actions of each item. If using expand items, use a template
+ * named itemExpandedTemplate to contain expandable content for each item.
  */
 export declare class ListComponent implements OnInit {
     /**
-     * The name of the template containing actions for each row
+     * The name of the template containing actions for each item
      */
     actionTemplate: TemplateRef<any>;
     /**
@@ -18,17 +18,17 @@ export declare class ListComponent implements OnInit {
      */
     config: ListConfig;
     /**
-     * The name of the template used to contain expandable content for each row
-     */
-    itemExpandedTemplate: TemplateRef<any>;
-    /**
      * An array of items to display in the list
      */
     items: any[];
     /**
-     * The name of the template containing items for each row
+     * The name of the template containing items for each item
      */
     itemTemplate: TemplateRef<any>;
+    /**
+     * The name of the template used to contain expandable content for each item
+     */
+    expandTemplate: TemplateRef<any>;
     /**
      * The event emitted when an action (e.g., button, kebab, etc.) has been selected
      */
@@ -88,6 +88,6 @@ export declare class ListComponent implements OnInit {
     private dragStart(item);
     private itemClick($event, item);
     private dblClick($event, item);
-    private closeExpandingRow(item);
-    private toggleExpandingRow(item);
+    private closeExpandArea(item);
+    private toggleExpandArea(item);
 }

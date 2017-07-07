@@ -77,12 +77,11 @@ var ToolbarComponent = (function () {
         if (this.config.sortConfig !== undefined && this.config.sortConfig.visible === undefined) {
             this.config.sortConfig.visible = true;
         }
-        if (this.config && this.config.viewConfig && this.config.viewConfig.views === undefined) {
-            this.config.viewConfig.views = [];
+        if (this.config && this.config.views === undefined) {
+            this.config.views = [];
         }
-        if (this.config && this.config.viewConfig
-            && this.config.viewConfig.currentView === undefined) {
-            this.config.viewConfig.currentView = this.config.viewConfig.views[0];
+        if (this.config && this.config.view === undefined) {
+            this.config.view = this.config.views[0];
         }
     };
     // Actions
@@ -132,16 +131,16 @@ var ToolbarComponent = (function () {
         this.onSortChange.emit($event);
     };
     // Views
-    ToolbarComponent.prototype.isViewSelected = function (view) {
-        return this.config.viewConfig && (this.config.viewConfig.currentView.id === view.id);
+    ToolbarComponent.prototype.isViewSelected = function (currentView) {
+        return this.config.view && this.config.view.id === currentView.id;
     };
     ToolbarComponent.prototype.submit = function ($event) {
         $event.preventDefault();
     };
-    ToolbarComponent.prototype.viewSelected = function (view) {
-        this.config.viewConfig.currentView = view;
-        if (!view.disabled) {
-            this.onViewSelect.emit(view);
+    ToolbarComponent.prototype.viewSelected = function (currentView) {
+        this.config.view = currentView;
+        if (!currentView.disabled) {
+            this.onViewSelect.emit(currentView);
         }
     };
     // Utils
@@ -157,7 +156,7 @@ __decorate([
 __decorate([
     Input(),
     __metadata("design:type", TemplateRef)
-], ToolbarComponent.prototype, "actionsTemplate", void 0);
+], ToolbarComponent.prototype, "actionTemplate", void 0);
 __decorate([
     Input(),
     __metadata("design:type", TemplateRef)

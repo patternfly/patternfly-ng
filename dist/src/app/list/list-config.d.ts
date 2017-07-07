@@ -15,6 +15,10 @@ export declare class ListConfig {
      */
     emptyStateConfig?: EmptyStateConfig;
     /**
+     * Set to true to hide the close button in the expansion area. Default is false
+     */
+    hideClose?: boolean;
+    /**
      * Allow multiple item selections -- showCheckbox must also be set.
      *
      * Not applicable when dblClick is true. Default is false
@@ -37,9 +41,9 @@ export declare class ListConfig {
      */
     showCheckbox?: boolean;
     /**
-     * Allow row expansion for each list item
+     * Allow expansion for each list item
      */
-    useExpandingRows?: boolean;
+    useExpandItems?: boolean;
     /**
      * Show list heading. First object in items array is be used to define heading content
      */

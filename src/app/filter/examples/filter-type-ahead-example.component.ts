@@ -235,7 +235,7 @@ export class FilterTypeAheadExampleComponent implements OnInit {
 
   // Filter queries for type ahead
   filterQueries($event: FilterEvent) {
-    const index = this.filterConfig.fields.findIndex(i => i.id === $event.field.id);
+    const index = (this.filterConfig.fields as any).findIndex((i: any) => i.id === $event.field.id);
     let val = $event.value.trim();
 
     if (this.filterConfig.fields[index].id === 'birthMonth') {

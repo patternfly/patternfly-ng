@@ -7,7 +7,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../models/action';
+import { Action } from '../action/action';
 import { Notification } from './notification';
 import { NotificationEvent } from './notification-event';
 

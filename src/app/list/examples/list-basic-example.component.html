@@ -5,9 +5,9 @@
         <pfng-list
             [actionTemplate]="actionTemplate"
             [config]="listConfig"
+            [expandTemplate]="expandTemplate"
             [items]="items"
             [itemTemplate]="itemTemplate"
-            [itemExpandedTemplate]="itemExpandedTemplate"
             (onActionSelect)="handleAction($event)"
             (onCheckboxChange)="handleCheckboxChange($event)"
             (onClick)="handleClick($event)"
@@ -44,7 +44,7 @@
             </div>
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
-            <pfng-list-actions
+            <pfng-action class="list-pf-actions"
                 [config]="getActionConfig(item, actionButtonTemplate, startButtonTemplate)"
                 (onActionSelect)="handleAction($event, item)">
               <ng-template #actionButtonTemplate let-action="action">
@@ -53,9 +53,9 @@
               <ng-template #startButtonTemplate let-action="action">
                 {{item.started === true ? "Starting" : action.title}}
               </ng-template>
-            </pfng-list-actions>
+            </pfng-action>
           </ng-template>
-          <ng-template #itemExpandedTemplate let-item="item" let-index="index">
+          <ng-template #expandTemplate let-item="item" let-index="index">
             <basic-content [item]="item"></basic-content>
           </ng-template>
         </pfng-list>
@@ -107,13 +107,8 @@
       <form role="form">
         <div class="form-group">
           <label class="checkbox-inline">
-            <input id="showDisabledRows" name="showDisabledRows" type="checkbox"
-                   [(ngModel)]="showDisabledRows"
-                   (ngModelChange)="updateDisabledRows()">Show Disabled Rows
-          </label>
-          <label class="checkbox-inline">
             <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
-                   [(ngModel)]="listConfig.useExpandingRows">Show Simple Expansion
+                   [(ngModel)]="listConfig.useExpandItems">Show Simple Expansion
           </label>
           <label class="checkbox-inline">
             <input id="itemsAvailable" name="itemsAvailable" type="checkbox"

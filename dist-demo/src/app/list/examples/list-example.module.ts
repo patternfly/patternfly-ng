@@ -6,6 +6,7 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
+import { ActionModule } from '../../action/action.module';
 import { BasicContentComponent } from './basic-content.component';
 import { ClustersContentComponent } from './clusters-content.component';
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
@@ -31,6 +32,7 @@ import { NodesContentComponent } from './nodes-content.component';
     NodesContentComponent
   ],
   imports: [
+    ActionModule,
     BsDropdownModule.forRoot(),
     CommonModule,
     DemoComponentsModule,

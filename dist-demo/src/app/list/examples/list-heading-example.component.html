@@ -5,9 +5,9 @@
         <pfng-list
             [actionTemplate]="actionTemplate"
             [config]="listConfig"
+            [expandTemplate]="expandTemplate"
             [items]="items"
             [itemTemplate]="itemTemplate"
-            [itemExpandedTemplate]="itemExpandedTemplate"
             (onActionSelect)="handleAction($event)"
             (onCheckboxChange)="handleCheckboxChange($event)"
             (onClick)="handleClick($event)"
@@ -72,13 +72,13 @@
               <div class="actions-placeholder"></div>
             </ng-template>
             <ng-template #showActions>
-              <pfng-list-actions
+              <pfng-action class="list-pf-actions"
                   [config]="actionConfig"
                   (onActionSelect)="handleAction($event, item)">
-              </pfng-list-actions>
+              </pfng-action>
             </ng-template>
           </ng-template>
-          <ng-template #itemExpandedTemplate let-item="item" let-index="index">
+          <ng-template #expandTemplate let-item="item" let-index="index">
             <basic-content [item]="item"></basic-content>
           </ng-template>
         </pfng-list>
@@ -113,7 +113,7 @@
         <div class="form-group">
           <label class="checkbox-inline">
             <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
-                   [(ngModel)]="listConfig.useExpandingRows">Show Simple Expansion
+                   [(ngModel)]="listConfig.useExpandItems">Show Simple Expansion
           </label>
         </div>
       </form>

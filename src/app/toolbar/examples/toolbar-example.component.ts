@@ -1,15 +1,11 @@
 import {
   Component,
   OnInit,
-  TemplateRef,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
-import { Router } from '@angular/router';
-
-import { Action } from '../../models/action';
-import { ActionConfig } from '../../models/action-config';
+import { Action } from '../../action/action';
+import { ActionConfig } from '../../action/action-config';
 import { Filter } from '../../filter/filter';
 import { FilterConfig } from '../../filter/filter-config';
 import { FilterField } from '../../filter/filter-field';
@@ -18,8 +14,7 @@ import { SortConfig } from '../../sort/sort-config';
 import { SortField } from '../../sort/sort-field';
 import { SortEvent } from '../../sort/sort-event';
 import { ToolbarConfig } from '../toolbar-config';
-import { View } from '../../models/view';
-import { ViewConfig } from '../../models/view-config';
+import { ToolbarView } from '../toolbar-view';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -27,8 +22,6 @@ import { ViewConfig } from '../../models/view-config';
   templateUrl: './toolbar-example.component.html'
 })
 export class ToolbarExampleComponent implements OnInit {
-  @ViewChild('actions') actionsTemplate: TemplateRef<any>;
-
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
@@ -40,8 +33,6 @@ export class ToolbarExampleComponent implements OnInit {
   sortConfig: SortConfig;
   currentSortField: SortField;
   toolbarConfig: ToolbarConfig;
-  viewConfig: ViewConfig;
-  view: View;
   weekDayQueries: any[];
 
   monthVals: any = {
@@ -69,7 +60,7 @@ export class ToolbarExampleComponent implements OnInit {
     'Saturday': 7
   };
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -262,7 +253,10 @@ export class ToolbarExampleComponent implements OnInit {
       }]
     } as ActionConfig;
 
-    this.viewConfig = {
+    this.toolbarConfig = {
+      actionConfig: this.actionConfig,
+      filterConfig: this.filterConfig,
+      sortConfig: this.sortConfig,
       views: [{
         id: 'listView',
         iconStyleClass: 'fa fa-th-list',
@@ -271,21 +265,11 @@ export class ToolbarExampleComponent implements OnInit {
         id: 'tableView',
         iconStyleClass: 'fa fa-table',
         tooltip: 'Table View'
-      }],
-    } as ViewConfig;
-
-    this.viewConfig.currentView = this.viewConfig.views[0];
-    this.view = this.viewConfig.currentView;
-
-    this.toolbarConfig = {
-      actionConfig: this.actionConfig,
-      filterConfig: this.filterConfig,
-      sortConfig: this.sortConfig,
-      viewConfig: this.viewConfig
+      }]
     } as ToolbarConfig;
   }
 
-  // Action functions
+  // Actions
 
   doAdd(): void {
     this.actionsText = 'Add Action\n' + this.actionsText;
@@ -300,7 +284,7 @@ export class ToolbarExampleComponent implements OnInit {
     this.actionsText = 'Option ' + option + ' selected\n' + this.actionsText;
   }
 
-  // Filter functions
+  // Filter
 
   applyFilters(filters: Filter[]): void {
     this.items = [];
@@ -364,7 +348,7 @@ export class ToolbarExampleComponent implements OnInit {
 
   // Filter queries for type ahead
   filterQueries($event: FilterEvent) {
-    const index = this.filterConfig.fields.findIndex(i => i.id === $event.field.id);
+    const index = (this.filterConfig.fields as any).findIndex((i: any) => i.id === $event.field.id);
     let val = $event.value.trim();
 
     if (this.filterConfig.fields[index].id === 'weekDay') {
@@ -380,7 +364,7 @@ export class ToolbarExampleComponent implements OnInit {
     }
   }
 
-  // Sort functions
+  // Sort
 
   compare(item1: any, item2: any): number {
     let compValue = 0;
@@ -407,10 +391,9 @@ export class ToolbarExampleComponent implements OnInit {
     this.items.sort((item1: any, item2: any) => this.compare(item1, item2));
   }
 
-  // View functions
+  // View
 
-  viewSelected(view: View): void {
-    this.view = view;
-    this.sortConfig.visible = (this.view.id === 'tableView' ? false : true);
+  viewSelected(currentView: ToolbarView): void {
+    this.sortConfig.visible = (currentView.id === 'tableView' ? false : true);
   }
 }

@@ -1,7 +1,7 @@
-import { ActionConfig } from '../models/action-config';
+import { ActionConfig } from '../action/action-config';
 import { FilterConfig } from '../filter/filter-config';
 import { SortConfig } from '../sort/sort-config';
-import { ViewConfig } from '../models/view-config';
+import { ToolbarView } from './toolbar-view';
 
 /**
  * A config containing properties for toolbar
@@ -23,7 +23,12 @@ export class ToolbarConfig {
   sortConfig?: SortConfig;
 
   /**
-   * Config properties for toolbar views.
+   * The currently selected view
    */
-  viewConfig?: ViewConfig;
+  view?: ToolbarView;
+
+  /**
+   * List of available views.
+   */
+  views: ToolbarView[];
 }

@@ -13,10 +13,10 @@ import { cloneDeep, defaults, isEqual, without } from 'lodash';
 /**
  * List component
  *
- * For items, use a template named itemTemplate to contain content for each row. For each item in the items array, the
+ * For items, use a template named itemTemplate to contain content for each item. For each item in the items array, the
  * expansion can be disabled by setting disabled to true on the item. If using actions, use a template named
- * actionTemplate to contain expandable content for the actions of each row. If using expanding rows, use a template
- * named itemExpandedTemplate to contain expandable content for each row.
+ * actionTemplate to contain expandable content for the actions of each item. If using expand items, use a template
+ * named itemExpandedTemplate to contain expandable content for each item.
  */
 var ListComponent = (function () {
     /**
@@ -60,15 +60,16 @@ var ListComponent = (function () {
          */
         this.onSelectionChange = new EventEmitter();
         this.defaultConfig = {
-            selectItems: false,
-            multiSelect: false,
+            checkDisabled: false,
             dblClick: false,
             dragEnabled: false,
+            hideClose: false,
+            multiSelect: false,
             selectedItems: [],
             selectionMatchProp: 'uuid',
-            checkDisabled: false,
-            useExpandingRows: false,
-            showCheckbox: true
+            selectItems: false,
+            showCheckbox: true,
+            useExpandItems: false
         };
         this.itemsEmpty = true;
     }
@@ -220,18 +221,18 @@ var ListComponent = (function () {
         }
     };
     // Toggle
-    ListComponent.prototype.closeExpandingRow = function (item) {
-        item.expandingRowId = undefined;
-        item.isRowExpanded = false;
+    ListComponent.prototype.closeExpandArea = function (item) {
+        item.expandId = undefined;
+        item.isItemExpanded = false;
     };
-    ListComponent.prototype.toggleExpandingRow = function (item) {
-        // Row may already be open due to compound expansion
-        if (item.isRowExpanded && item.expandingRowId !== undefined) {
-            item.expandingRowId = undefined;
+    ListComponent.prototype.toggleExpandArea = function (item) {
+        // Item may already be open due to compound expansion
+        if (item.isItemExpanded && item.expandId !== undefined) {
+            item.expandId = undefined;
             return;
         }
-        item.expandingRowId = undefined;
-        item.isRowExpanded = !item.isRowExpanded;
+        item.expandId = undefined;
+        item.isItemExpanded = !item.isItemExpanded;
     };
     return ListComponent;
 }());
@@ -245,16 +246,16 @@ __decorate([
 ], ListComponent.prototype, "config", void 0);
 __decorate([
     Input(),
-    __metadata("design:type", TemplateRef)
-], ListComponent.prototype, "itemExpandedTemplate", void 0);
-__decorate([
-    Input(),
     __metadata("design:type", Array)
 ], ListComponent.prototype, "items", void 0);
 __decorate([
     Input(),
     __metadata("design:type", TemplateRef)
 ], ListComponent.prototype, "itemTemplate", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", TemplateRef)
+], ListComponent.prototype, "expandTemplate", void 0);
 __decorate([
     Output('onActionSelect'),
     __metadata("design:type", Object)

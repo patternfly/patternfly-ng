@@ -1,7 +1,7 @@
 /**
  * An view containing common properties
  */
-export class View {
+export class ToolbarView {
   /**
    * True if view is disabled
    */

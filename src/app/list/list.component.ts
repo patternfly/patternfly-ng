@@ -8,7 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../models/action';
+import { Action } from '../action/action';
 import { ListConfig } from './list-config';
 import { ListEvent } from './list-event';
 
@@ -17,10 +17,10 @@ import { cloneDeep, defaults, isEqual, without } from 'lodash';
 /**
  * List component
  *
- * For items, use a template named itemTemplate to contain content for each row. For each item in the items array, the
+ * For items, use a template named itemTemplate to contain content for each item. For each item in the items array, the
  * expansion can be disabled by setting disabled to true on the item. If using actions, use a template named
- * actionTemplate to contain expandable content for the actions of each row. If using expanding rows, use a template
- * named itemExpandedTemplate to contain expandable content for each row.
+ * actionTemplate to contain expandable content for the actions of each item. If using expand items, use a template
+ * named itemExpandedTemplate to contain expandable content for each item.
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -30,7 +30,7 @@ import { cloneDeep, defaults, isEqual, without } from 'lodash';
 })
 export class ListComponent implements OnInit {
   /**
-   * The name of the template containing actions for each row
+   * The name of the template containing actions for each item
    */
   @Input() actionTemplate: TemplateRef<any>;
 
@@ -40,19 +40,19 @@ export class ListComponent implements OnInit {
   @Input() config: ListConfig;
 
   /**
-   * The name of the template used to contain expandable content for each row
-   */
-  @Input() itemExpandedTemplate: TemplateRef<any>;
-
-  /**
    * An array of items to display in the list
    */
   @Input() items: any[];
 
   /**
-   * The name of the template containing items for each row
+   * The name of the template containing items for each item
    */
   @Input() itemTemplate: TemplateRef<any>;
+
+  /**
+   * The name of the template used to contain expandable content for each item
+   */
+  @Input() expandTemplate: TemplateRef<any>;
 
   /**
    * The event emitted when an action (e.g., button, kebab, etc.) has been selected
@@ -100,15 +100,16 @@ export class ListComponent implements OnInit {
   @Output('onSelectionChange') onSelectionChange = new EventEmitter();
 
   private defaultConfig = {
-    selectItems: false,
-    multiSelect: false,
+    checkDisabled: false,
     dblClick: false,
     dragEnabled: false,
+    hideClose: false,
+    multiSelect: false,
     selectedItems: [],
     selectionMatchProp: 'uuid',
-    checkDisabled: false,
-    useExpandingRows: false,
-    showCheckbox: true
+    selectItems: false,
+    showCheckbox: true,
+    useExpandItems: false
   } as ListConfig;
   private dragItem: any;
   private itemsEmpty: boolean = true;
@@ -285,18 +286,18 @@ export class ListComponent implements OnInit {
 
   // Toggle
 
-  private closeExpandingRow(item: any): void {
-    item.expandingRowId = undefined;
-    item.isRowExpanded = false;
+  private closeExpandArea(item: any): void {
+    item.expandId = undefined;
+    item.isItemExpanded = false;
   }
 
-  private toggleExpandingRow(item: any): void {
-    // Row may already be open due to compound expansion
-    if (item.isRowExpanded && item.expandingRowId !== undefined) {
-      item.expandingRowId = undefined;
+  private toggleExpandArea(item: any): void {
+    // Item may already be open due to compound expansion
+    if (item.isItemExpanded && item.expandId !== undefined) {
+      item.expandId = undefined;
       return;
     }
-    item.expandingRowId = undefined;
-    item.isRowExpanded = !item.isRowExpanded;
+    item.expandId = undefined;
+    item.isItemExpanded = !item.isItemExpanded;
   }
 }

@@ -11,7 +11,7 @@ export declare class ToolbarComponent implements OnInit {
     /**
      * The name of the template containing actions
      */
-    actionsTemplate: TemplateRef<any>;
+    actionTemplate: TemplateRef<any>;
     /**
      * The name of the template containing views
      */
@@ -62,8 +62,8 @@ export declare class ToolbarComponent implements OnInit {
     private handleFilterFieldSelect($event);
     private handleFilterTypeAhead($event);
     private sortChange($event);
-    private isViewSelected(view);
+    private isViewSelected(currentView);
     private submit($event);
-    private viewSelected(view);
+    private viewSelected(currentView);
     private enforceSingleSelect(filter);
 }

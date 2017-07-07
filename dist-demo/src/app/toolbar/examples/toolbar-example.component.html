@@ -9,17 +9,17 @@
     <div class="col-sm-12">
       <div class="form-group">
         <pfng-toolbar [config]="toolbarConfig"
-                      [actionsTemplate]="actionsTemplate"
+                      [actionTemplate]="actionTemplate"
                       (onActionSelect)="handleAction($event)"
                       (onFilterChange)="filterChanged($event)"
                       (onFilterFieldSelect)="filterFieldSelected()"
                       (onFilterTypeAhead)="filterQueries($event)"
                       (onSortChange)="sortChanged($event)"
                       (onViewSelect)="viewSelected($event)">
-          <ng-template #actions>
+          <ng-template #actionTemplate>
             <span class="dropdown primary-action" dropdown>
               <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
-               Menu Action<span class="caret"></span>
+                Menu Action<span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" *dropdownMenu>
                 <li role="menuitem">
@@ -71,12 +71,12 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="view.id !== 'tableView'">
+  <div class="row" *ngIf="toolbarConfig.view?.id !== 'tableView'">
     <div class="col-md-12">
       <label class="events-label">Current Filters: </label>
     </div>
   </div>
-  <div class="row" *ngIf="view.id !== 'tableView'">
+  <div class="row" *ngIf="toolbarConfig.view?.id !== 'tableView'">
     <div class="col-md-12">
       <textarea rows="5" class="col-md-12">{{filtersText}}</textarea>
     </div>

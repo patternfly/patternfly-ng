@@ -1,4 +1,4 @@
-import { ActionConfig } from '../models/action-config';
+import { ActionConfig } from '../action/action-config';
 /**
  * An empty state config containing component properties
  */

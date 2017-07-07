@@ -1,4 +1,4 @@
-import { Action } from '../models/action';
+import { Action } from '../action/action';
 import { Notification } from './notification';
 /**
  * An object containing properties for notification events

@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { Action } from '../models/action';
+import { Action } from '../action/action';
 import { Notification } from './notification';
 /**
  * Toast notifications are used to notify users of a system occurrence. Toast notifications should be transient and stay

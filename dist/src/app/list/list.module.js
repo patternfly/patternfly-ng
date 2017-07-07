@@ -9,11 +9,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { EmptyStateModule } from '../empty-state/empty-state.module';
-import { ListActionsComponent } from './list-actions.component';
 import { ListComponent } from './list.component';
-import { ListCompoundToggleComponent } from './list-compound-toggle.component';
 import { ListConfig } from './list-config';
 import { ListEvent } from './list-event';
+import { ListExpandToggleComponent } from './list-expand-toggle.component';
 export { ListConfig, ListEvent };
 /**
  * A module containing objects associated with list components
@@ -26,8 +25,8 @@ var ListModule = (function () {
 ListModule = __decorate([
     NgModule({
         imports: [BsDropdownModule, CommonModule, EmptyStateModule, FormsModule],
-        declarations: [ListActionsComponent, ListComponent, ListCompoundToggleComponent],
-        exports: [ListActionsComponent, ListComponent, ListCompoundToggleComponent],
+        declarations: [ListComponent, ListExpandToggleComponent],
+        exports: [ListComponent, ListExpandToggleComponent],
         providers: [BsDropdownConfig]
     })
 ], ListModule);
