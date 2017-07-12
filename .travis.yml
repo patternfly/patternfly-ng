@@ -23,15 +23,12 @@ before_install:
 install: true
 
 script:
-  - npm run semantic-release-pre
   - sh -x ./node_modules/patternfly-eng-release/scripts/_build.sh -x
 
 before_script:
   - npm prune
 after_success:
-  - npm run semantic-release-copy
-  - npm run semantic-release-release
-  - npm run semantic-release-post
+  - npm run semantic-release
   - npm run publish-travis
 
 branches:
