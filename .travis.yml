@@ -29,7 +29,6 @@ before_script:
   - npm prune
 after_success:
   - npm run publish-travis
-  - npm run semantic-release
 
 branches:
   except:
