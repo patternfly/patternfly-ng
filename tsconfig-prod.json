@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "declaration": true,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "noEmitHelpers": false, // Planner and demo won't run when true
+    "strictNullChecks": false,
+    "noImplicitAny": true,
+    "allowUnreachableCode": false,
+    "baseUrl": ".",
+    "rootDir": "build",
+    "outDir": "dist",
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "@angular/common": ["node_modules/@angular/common"],
+      "@angular/forms": ["node_modules/@angular/forms"],
+      "rxjs/*": ["node_modules/rxjs/*"],
+      "moment": ["node_modules/moment"]
+    },
+    "lib": [
+      "es2015",
+      "dom"
+    ]
+  },
+  "files": [
+    "build/index.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "genDir": "compiled"
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
+}

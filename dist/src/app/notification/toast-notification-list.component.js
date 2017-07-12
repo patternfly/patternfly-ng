@@ -74,8 +74,8 @@ ToastNotificationListComponent = __decorate([
     Component({
         encapsulation: ViewEncapsulation.None,
         selector: 'pfng-toast-notification-list',
-        styles: [require('./toast-notification-list.component.css').toString()],
-        template: require('./toast-notification-list.component.html')
+        styles: [""],
+        template: "<div class=\"toast-notifications-list-pf\" *ngIf=\"notifications?.length > 0\"><div *ngFor=\"let notification of notifications\"><pfng-toast-notification [header]=\"notification.header\" [message]=\"notification.message\" [notification]=\"notification\" [moreActions]=\"notification.moreActions\" [primaryAction]=\"notification.primaryAction\" [showClose]=\"showClose === true || notification.isPersistent === true\" [type]=\"notification.type\" (onActionSelect)=\"handleAction($event)\" (onCloseSelect)=\"handleClose($event)\" (onViewingChange)=\"handleViewingChange($event)\"></pfng-toast-notification></div></div>"
     }),
     __metadata("design:paramtypes", [])
 ], ToastNotificationListComponent);
