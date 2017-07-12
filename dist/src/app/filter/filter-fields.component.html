@@ -14,7 +14,7 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="!currentField?.type || currentField?.type === 'text' || currentField === 'default'">
+    <div *ngIf="!currentField?.type || currentField?.type === 'text' || currentField.type === 'default'">
       <input class="form-control" type="{{currentField?.type}}" [(ngModel)]="currentValue"
              placeholder="{{currentField?.placeholder}}"
              (keypress)="fieldInputKeyPress($event)"/>

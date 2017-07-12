@@ -36,7 +36,7 @@ var ToastNotificationComponent = (function () {
          * The event emitted when the mouse hovers over and leaves a notification
          */
         this.onViewingChange = new EventEmitter();
-        this.showCloseButton = false;
+        this._showCloseButton = false;
     }
     // Initialization
     /**
@@ -48,21 +48,23 @@ var ToastNotificationComponent = (function () {
      *  Check if the component config has changed
      */
     ToastNotificationComponent.prototype.ngDoCheck = function () {
-        this.showCloseButton = (this.showClose === true)
+        this._showCloseButton = (this.showClose === true)
             && (this.moreActions === undefined || this.moreActions.length === 0);
     };
+    Object.defineProperty(ToastNotificationComponent.prototype, "showCloseButton", {
+        // Getters & setters
+        /**
+         * Get the flag indicating that the close button should be shown
+         *
+         * @returns {FilterField} The flag indicating that the close button should be shown
+         */
+        get: function () {
+            return this._showCloseButton;
+        },
+        enumerable: true,
+        configurable: true
+    });
     // Actions
-    ToastNotificationComponent.prototype.handleAction = function (action) {
-        if (action && action.disabled !== true) {
-            this.onActionSelect.emit({
-                action: action,
-                notification: this.notification
-            });
-        }
-    };
-    ToastNotificationComponent.prototype.handleClose = function ($event) {
-        this.onCloseSelect.emit({ notification: this.notification });
-    };
     ToastNotificationComponent.prototype.handleEnter = function ($event) {
         this.onViewingChange.emit({
             notification: this.notification,
@@ -74,6 +76,18 @@ var ToastNotificationComponent = (function () {
             notification: this.notification,
             isViewing: false
         });
+    };
+    // Private
+    ToastNotificationComponent.prototype.handleAction = function (action) {
+        if (action && action.disabled !== true) {
+            this.onActionSelect.emit({
+                action: action,
+                notification: this.notification
+            });
+        }
+    };
+    ToastNotificationComponent.prototype.handleClose = function ($event) {
+        this.onCloseSelect.emit({ notification: this.notification });
     };
     return ToastNotificationComponent;
 }());

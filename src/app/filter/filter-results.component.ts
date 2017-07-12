@@ -10,7 +10,7 @@ import {
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 
-import { cloneDeep, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Component for the filter results
@@ -32,6 +32,7 @@ export class FilterResultsComponent implements OnInit {
    */
   @Output('onClear') onClear = new EventEmitter();
 
+  private defaultConfig = {} as FilterConfig;
   private prevConfig: FilterConfig;
 
   /**
@@ -59,9 +60,14 @@ export class FilterResultsComponent implements OnInit {
     }
   }
 
-  private setupConfig(): void {
-    if (this.config === undefined) {
-      this.config = {} as FilterConfig;
+  /**
+   * Set up default config
+   */
+  protected setupConfig(): void {
+    if (this.config !== undefined) {
+      defaults(this.config, this.defaultConfig);
+    } else {
+      this.config = cloneDeep(this.defaultConfig);
     }
     this.prevConfig = cloneDeep(this.config);
 
@@ -79,7 +85,7 @@ export class FilterResultsComponent implements OnInit {
     }
   }
 
-  // Actions
+  // Private
 
   private clearFilter(filter: Filter): void {
     let newFilters: Filter[] = [];

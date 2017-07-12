@@ -60,6 +60,9 @@ var ToolbarComponent = (function () {
             this.setupConfig();
         }
     };
+    /**
+     * Set up default config
+     */
     ToolbarComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
             defaults(this.config, this.defaultConfig);
@@ -84,19 +87,20 @@ var ToolbarComponent = (function () {
             this.config.view = this.config.views[0];
         }
     };
+    // Getters & setters
     // Actions
-    ToolbarComponent.prototype.handleAction = function (action) {
-        if (action && action.disabled !== true) {
-            this.onActionSelect.emit(action);
-        }
-    };
-    // Filters
+    /**
+     * Handle clear filter event
+     *
+     * @param $event An array of current Filter objects
+     */
     ToolbarComponent.prototype.clearFilter = function ($event) {
         this.config.filterConfig.appliedFilters = $event;
         this.onFilterChange.emit({
             appliedFilters: $event
         });
     };
+    // Private
     ToolbarComponent.prototype.filterAdded = function ($event) {
         var newFilter = {
             field: $event.field,
@@ -120,22 +124,22 @@ var ToolbarComponent = (function () {
         });
         return foundFilter !== undefined;
     };
+    ToolbarComponent.prototype.handleAction = function (action) {
+        if (action && action.disabled !== true) {
+            this.onActionSelect.emit(action);
+        }
+    };
     ToolbarComponent.prototype.handleFilterFieldSelect = function ($event) {
         this.onFilterFiledSelect.emit($event);
     };
     ToolbarComponent.prototype.handleFilterTypeAhead = function ($event) {
         this.onFilterTypeAhead.emit($event);
     };
-    // Sort
     ToolbarComponent.prototype.sortChange = function ($event) {
         this.onSortChange.emit($event);
     };
-    // Views
     ToolbarComponent.prototype.isViewSelected = function (currentView) {
         return this.config.view && this.config.view.id === currentView.id;
-    };
-    ToolbarComponent.prototype.submit = function ($event) {
-        $event.preventDefault();
     };
     ToolbarComponent.prototype.viewSelected = function (currentView) {
         this.config.view = currentView;

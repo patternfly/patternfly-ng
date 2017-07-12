@@ -42,6 +42,9 @@ var SortComponent = (function () {
             this.setupConfig();
         }
     };
+    /**
+     * Set up default config
+     */
     SortComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
             defaults(this.config, this.defaultConfig);

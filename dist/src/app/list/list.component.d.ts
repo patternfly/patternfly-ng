@@ -64,7 +64,7 @@ export declare class ListComponent implements OnInit {
     onSelectionChange: EventEmitter<{}>;
     private defaultConfig;
     private dragItem;
-    private itemsEmpty;
+    private _itemsEmpty;
     private prevConfig;
     /**
      * The default constructor
@@ -78,7 +78,16 @@ export declare class ListComponent implements OnInit {
      *  Check if the component config has changed
      */
     ngDoCheck(): void;
-    private setupConfig();
+    /**
+     * Set up default config
+     */
+    protected setupConfig(): void;
+    /**
+     * Get the flag indicating list has no items
+     *
+     * @returns {boolean} The flag indicating list has no items
+     */
+    readonly itemsEmpty: boolean;
     private handleAction(action);
     private checkboxChange(item);
     private isSelected(item);

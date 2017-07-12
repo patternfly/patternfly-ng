@@ -27,7 +27,10 @@ export declare class SortComponent implements OnInit {
      *  Check if the component config has changed
      */
     ngDoCheck(): void;
-    private setupConfig();
+    /**
+     * Set up default config
+     */
+    protected setupConfig(): void;
     private getIconStyleClass();
     private onChangeDirection();
     private selectField(field);

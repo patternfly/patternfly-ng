@@ -30,9 +30,9 @@ export declare class ListExpandToggleComponent implements OnInit {
      *
      * @returns {boolean} True if item is expanded
      */
-    private isItemExpanded();
+    readonly isExpanded: boolean;
     /**
      * Toggle expand item open/close
      */
-    private toggleExpand();
+    toggleExpand(): void;
 }

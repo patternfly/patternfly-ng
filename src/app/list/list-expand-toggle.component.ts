@@ -59,20 +59,20 @@ export class ListExpandToggleComponent implements OnInit {
    *
    * @returns {boolean} True if item is expanded
    */
-  private isItemExpanded(): boolean {
-    return (this.item.isItemExpanded === true && this.item.expandId === this.expandId);
+  get isExpanded(): boolean {
+    return (this.item.expanded === true && this.item.expandId === this.expandId);
   }
 
   /**
    * Toggle expand item open/close
    */
-  private toggleExpand(): void {
+  toggleExpand(): void {
     // Item may already be open
-    if (this.item.isItemExpanded && this.item.expandId !== this.expandId) {
+    if (this.item.expanded && this.item.expandId !== this.expandId) {
       this.item.expandId = this.expandId;
       return;
     }
     this.item.expandId = this.expandId;
-    this.item.isItemExpanded = !this.item.isItemExpanded;
+    this.item.expanded = !this.item.expanded;
   }
 }

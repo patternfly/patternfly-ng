@@ -31,26 +31,30 @@ var ListExpandToggleComponent = (function () {
             throw new Error('ListCompoundToggleComponent: expandId attribute not set');
         }
     };
-    // Actions
-    /**
-     * Test if item is expanded based on given expand item ID
-     *
-     * @returns {boolean} True if item is expanded
-     */
-    ListExpandToggleComponent.prototype.isItemExpanded = function () {
-        return (this.item.isItemExpanded === true && this.item.expandId === this.expandId);
-    };
+    Object.defineProperty(ListExpandToggleComponent.prototype, "isExpanded", {
+        // Actions
+        /**
+         * Test if item is expanded based on given expand item ID
+         *
+         * @returns {boolean} True if item is expanded
+         */
+        get: function () {
+            return (this.item.expanded === true && this.item.expandId === this.expandId);
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Toggle expand item open/close
      */
     ListExpandToggleComponent.prototype.toggleExpand = function () {
         // Item may already be open
-        if (this.item.isItemExpanded && this.item.expandId !== this.expandId) {
+        if (this.item.expanded && this.item.expandId !== this.expandId) {
             this.item.expandId = this.expandId;
             return;
         }
         this.item.expandId = this.expandId;
-        this.item.isItemExpanded = !this.item.isItemExpanded;
+        this.item.expanded = !this.item.expanded;
     };
     return ListExpandToggleComponent;
 }());

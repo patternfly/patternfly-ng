@@ -74,7 +74,10 @@ export class ActionComponent implements OnInit {
     }
   }
 
-  private setupConfig(): void {
+  /**
+   * Set up default config
+   */
+  protected setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -82,7 +85,7 @@ export class ActionComponent implements OnInit {
     }
   }
 
-  // Actions
+  // Private
 
   private handleAction(action: Action): void {
     if (action && action.disabled !== true) {

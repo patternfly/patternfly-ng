@@ -100,7 +100,10 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  private setupConfig(): void {
+  /**
+   * Set up default config
+   */
+  protected setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -125,22 +128,25 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
+  // Getters & setters
+
+
+
   // Actions
 
-  private handleAction(action: Action): void {
-    if (action && action.disabled !== true) {
-      this.onActionSelect.emit(action);
-    }
-  }
-
-  // Filters
-
-  private clearFilter($event: Filter[]): void {
+  /**
+   * Handle clear filter event
+   *
+   * @param $event An array of current Filter objects
+   */
+  clearFilter($event: Filter[]): void {
     this.config.filterConfig.appliedFilters = $event;
     this.onFilterChange.emit({
       appliedFilters: $event
     } as FilterEvent);
   }
+
+  // Private
 
   private filterAdded($event: FilterEvent): void {
     let newFilter = {
@@ -168,6 +174,12 @@ export class ToolbarComponent implements OnInit {
     return foundFilter !== undefined;
   }
 
+  private handleAction(action: Action): void {
+    if (action && action.disabled !== true) {
+      this.onActionSelect.emit(action);
+    }
+  }
+
   private handleFilterFieldSelect($event: FilterEvent): void {
     this.onFilterFiledSelect.emit($event);
   }
@@ -176,20 +188,12 @@ export class ToolbarComponent implements OnInit {
     this.onFilterTypeAhead.emit($event);
   }
 
-  // Sort
-
   private sortChange($event: SortEvent): void {
     this.onSortChange.emit($event);
   }
 
-  // Views
-
   private isViewSelected(currentView: ToolbarView): boolean {
     return this.config.view && this.config.view.id === currentView.id;
-  }
-
-  private submit($event: any): void {
-    $event.preventDefault();
   }
 
   private viewSelected (currentView: ToolbarView): void {

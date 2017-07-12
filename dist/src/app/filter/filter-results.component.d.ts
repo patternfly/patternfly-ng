@@ -12,6 +12,7 @@ export declare class FilterResultsComponent implements OnInit {
      * The event emitted when the clear action is selected
      */
     onClear: EventEmitter<{}>;
+    private defaultConfig;
     private prevConfig;
     /**
      * The default constructor
@@ -25,7 +26,10 @@ export declare class FilterResultsComponent implements OnInit {
      *  Check if the component config has changed
      */
     ngDoCheck(): void;
-    private setupConfig();
+    /**
+     * Set up default config
+     */
+    protected setupConfig(): void;
     private clearFilter(filter);
     private clearAllFilters();
 }

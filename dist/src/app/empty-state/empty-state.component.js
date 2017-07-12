@@ -42,6 +42,9 @@ var EmptyStateComponent = (function () {
             this.setupConfig();
         }
     };
+    /**
+     * Set up default config
+     */
     EmptyStateComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
             defaults(this.config, this.defaultConfig);
@@ -51,7 +54,7 @@ var EmptyStateComponent = (function () {
         }
         this.prevConfig = cloneDeep(this.config);
     };
-    // Actions
+    // Private
     EmptyStateComponent.prototype.handleAction = function (action) {
         if (action && action.disabled !== true) {
             this.onActionSelect.emit(action);

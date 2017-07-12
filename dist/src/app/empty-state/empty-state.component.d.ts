@@ -26,6 +26,9 @@ export declare class EmptyStateComponent implements OnInit {
      *  Check if the component config has changed
      */
     ngDoCheck(): void;
-    private setupConfig();
+    /**
+     * Set up default config
+     */
+    protected setupConfig(): void;
     private handleAction(action);
 }

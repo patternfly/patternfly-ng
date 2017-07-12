@@ -49,6 +49,9 @@ var ActionComponent = (function () {
             this.setupConfig();
         }
     };
+    /**
+     * Set up default config
+     */
     ActionComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
             defaults(this.config, this.defaultConfig);
@@ -57,7 +60,7 @@ var ActionComponent = (function () {
             this.config = cloneDeep(this.defaultConfig);
         }
     };
-    // Actions
+    // Private
     ActionComponent.prototype.handleAction = function (action) {
         if (action && action.disabled !== true) {
             this.onActionSelect.emit(action);

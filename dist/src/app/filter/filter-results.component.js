@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FilterConfig } from './filter-config';
-import { cloneDeep, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Component for the filter results
  */
@@ -22,6 +22,7 @@ var FilterResultsComponent = (function () {
          * The event emitted when the clear action is selected
          */
         this.onClear = new EventEmitter();
+        this.defaultConfig = {};
     }
     // Initialization
     /**
@@ -39,9 +40,15 @@ var FilterResultsComponent = (function () {
             this.setupConfig();
         }
     };
+    /**
+     * Set up default config
+     */
     FilterResultsComponent.prototype.setupConfig = function () {
-        if (this.config === undefined) {
-            this.config = {};
+        if (this.config !== undefined) {
+            defaults(this.config, this.defaultConfig);
+        }
+        else {
+            this.config = cloneDeep(this.defaultConfig);
         }
         this.prevConfig = cloneDeep(this.config);
         if (this.config && this.config.appliedFilters === undefined) {
@@ -57,7 +64,7 @@ var FilterResultsComponent = (function () {
             this.config.totalCount = 0;
         }
     };
-    // Actions
+    // Private
     FilterResultsComponent.prototype.clearFilter = function (filter) {
         var newFilters = [];
         this.config.appliedFilters.forEach(function (appliedFilter) {

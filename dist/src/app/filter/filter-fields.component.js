@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FilterConfig } from './filter-config';
-import { cloneDeep, find, isEqual } from 'lodash';
+import { cloneDeep, defaults, find, isEqual } from 'lodash';
 /**
  * Component for the filter query field and filter query dropdown
  */
@@ -30,6 +30,7 @@ var FilterFieldsComponent = (function () {
          * The event emitted when the user types ahead in the query input field
          */
         this.onTypeAhead = new EventEmitter();
+        this.defaultConfig = {};
     }
     // Initialization
     /**
@@ -47,10 +48,16 @@ var FilterFieldsComponent = (function () {
             this.setupConfig();
         }
     };
+    /**
+     * Set up default config
+     */
     FilterFieldsComponent.prototype.setupConfig = function () {
         var _this = this;
-        if (this.config === undefined) {
-            this.config = {};
+        if (this.config !== undefined) {
+            defaults(this.config, this.defaultConfig);
+        }
+        else {
+            this.config = cloneDeep(this.defaultConfig);
         }
         this.prevConfig = cloneDeep(this.config);
         if (this.config && this.config.fields === undefined) {
@@ -60,54 +67,87 @@ var FilterFieldsComponent = (function () {
             this.config.tooltipPlacement = 'top';
         }
         var fieldFound = false;
-        if (this.currentField !== undefined) {
+        if (this._currentField !== undefined) {
             find(this.config.fields, function (nextField) {
-                if (nextField.id === _this.currentField.id) {
+                if (nextField.id === _this._currentField.id) {
                     fieldFound = true;
                     return;
                 }
             });
         }
         if (!fieldFound) {
-            this.currentField = this.config.fields[0];
-            this.currentValue = null;
+            this._currentField = this.config.fields[0];
+            this._currentValue = null;
         }
-        if (this.currentValue === undefined) {
-            this.currentValue = null;
+        if (this._currentValue === undefined) {
+            this._currentValue = null;
         }
     };
-    // Actions
+    Object.defineProperty(FilterFieldsComponent.prototype, "currentField", {
+        // Getters & setters
+        /**
+         * Get the current filter field
+         *
+         * @returns {FilterField} The current filter field
+         */
+        get: function () {
+            return this._currentField;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FilterFieldsComponent.prototype, "currentValue", {
+        /**
+         * Get the current filter field value
+         *
+         * @returns {string} The current filter field value
+         */
+        get: function () {
+            return this._currentValue;
+        },
+        /**
+         * Set the current filter field value
+         *
+         * @param val The current filter field value
+         */
+        set: function (val) {
+            this._currentValue = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // Private
     FilterFieldsComponent.prototype.fieldInputKeyPress = function ($event) {
         if ($event.which === 13) {
             this.onAdd.emit({
-                field: this.currentField,
-                value: this.currentValue
+                field: this._currentField,
+                value: this._currentValue
             });
-            this.currentValue = undefined;
+            this._currentValue = undefined;
         }
     };
     FilterFieldsComponent.prototype.queryInputChange = function (value) {
         this.onTypeAhead.emit({
-            field: this.currentField,
-            value: this.currentValue
+            field: this._currentField,
+            value: this._currentValue
         });
     };
     FilterFieldsComponent.prototype.selectField = function (field) {
-        this.currentField = field;
-        this.currentValue = null;
+        this._currentField = field;
+        this._currentValue = null;
         this.onFieldSelect.emit({
-            field: this.currentField,
-            value: this.currentValue
+            field: this._currentField,
+            value: this._currentValue
         });
     };
     FilterFieldsComponent.prototype.selectQuery = function (filterQuery) {
         if (filterQuery != null) {
             this.onAdd.emit({
-                field: this.currentField,
+                field: this._currentField,
                 query: filterQuery,
                 value: filterQuery.value
             });
-            this.currentValue = null;
+            this._currentValue = null;
         }
     };
     return FilterFieldsComponent;

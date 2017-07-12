@@ -105,9 +105,16 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="listexpandtogglecomponent.html#isexpanded" class="tsd-kind-icon">is<wbr>Expanded</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="listexpandtogglecomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="listexpandtogglecomponent.html#toggleexpand" class="tsd-kind-icon">toggle<wbr>Expand</a></li>
 							</ul>
 						</section>
 					</div>
@@ -125,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/f739707/src/app/list/list-expand-toggle.component.ts#L33">app/list/list-expand-toggle.component.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e3ce44c/src/app/list/list-expand-toggle.component.ts#L33">app/list/list-expand-toggle.component.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -146,7 +153,7 @@
 					<div class="tsd-signature tsd-kind-icon">expand<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/f739707/src/app/list/list-expand-toggle.component.ts#L23">app/list/list-expand-toggle.component.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e3ce44c/src/app/list/list-expand-toggle.component.ts#L23">app/list/list-expand-toggle.component.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -161,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/f739707/src/app/list/list-expand-toggle.component.ts#L28">app/list/list-expand-toggle.component.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e3ce44c/src/app/list/list-expand-toggle.component.ts#L28">app/list/list-expand-toggle.component.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -176,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/f739707/src/app/list/list-expand-toggle.component.ts#L33">app/list/list-expand-toggle.component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e3ce44c/src/app/list/list-expand-toggle.component.ts#L33">app/list/list-expand-toggle.component.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -184,6 +191,32 @@
 							<p>The name of the template containing elements shown in the toggle body</p>
 						</div>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="isexpanded" class="tsd-anchor"></a>
+					<h3>is<wbr>Expanded</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isExpanded<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e3ce44c/src/app/list/list-expand-toggle.component.ts#L62">app/list/list-expand-toggle.component.ts:62</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Test if item is expanded based on given expand item ID</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if item is expanded</p>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -198,12 +231,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/f739707/src/app/list/list-expand-toggle.component.ts#L46">app/list/list-expand-toggle.component.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e3ce44c/src/app/list/list-expand-toggle.component.ts#L46">app/list/list-expand-toggle.component.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p> Setup component configuration upon initialization</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="toggleexpand" class="tsd-anchor"></a>
+					<h3>toggle<wbr>Expand</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">toggle<wbr>Expand<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e3ce44c/src/app/list/list-expand-toggle.component.ts#L69">app/list/list-expand-toggle.component.ts:69</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Toggle expand item open/close</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -239,8 +294,14 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="listexpandtogglecomponent.html#template" class="tsd-kind-icon">template</a>
 							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="listexpandtogglecomponent.html#isexpanded" class="tsd-kind-icon">is<wbr>Expanded</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="listexpandtogglecomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="listexpandtogglecomponent.html#toggleexpand" class="tsd-kind-icon">toggle<wbr>Expand</a>
 							</li>
 						</ul>
 					</li>

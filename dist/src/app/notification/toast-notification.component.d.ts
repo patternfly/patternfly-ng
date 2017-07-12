@@ -51,7 +51,7 @@ export declare class ToastNotificationComponent implements OnInit {
      * The event emitted when the mouse hovers over and leaves a notification
      */
     onViewingChange: EventEmitter<{}>;
-    private showCloseButton;
+    private _showCloseButton;
     /**
      * The default constructor
      */
@@ -64,8 +64,14 @@ export declare class ToastNotificationComponent implements OnInit {
      *  Check if the component config has changed
      */
     ngDoCheck(): void;
+    /**
+     * Get the flag indicating that the close button should be shown
+     *
+     * @returns {FilterField} The flag indicating that the close button should be shown
+     */
+    readonly showCloseButton: boolean;
+    handleEnter($event: MouseEvent): void;
+    handleLeave($event: MouseEvent): void;
     private handleAction(action);
     private handleClose($event);
-    private handleEnter($event);
-    private handleLeave($event);
 }

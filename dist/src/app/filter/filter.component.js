@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FilterConfig } from './filter-config';
-import { cloneDeep, find, isEqual, remove } from 'lodash';
+import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 /**
  * Filter component
  */
@@ -30,6 +30,7 @@ var FilterComponent = (function () {
          * The event emitted when the user types ahead in the query input field
          */
         this.onTypeAhead = new EventEmitter();
+        this.defaultConfig = {};
     }
     // Initialization
     /**
@@ -47,9 +48,15 @@ var FilterComponent = (function () {
             this.setupConfig();
         }
     };
+    /**
+     * Set up default config
+     */
     FilterComponent.prototype.setupConfig = function () {
-        if (this.config === undefined) {
-            this.config = {};
+        if (this.config !== undefined) {
+            defaults(this.config, this.defaultConfig);
+        }
+        else {
+            this.config = cloneDeep(this.defaultConfig);
         }
         this.prevConfig = cloneDeep(this.config);
         if (this.config && this.config.appliedFilters === undefined) {
@@ -57,6 +64,11 @@ var FilterComponent = (function () {
         }
     };
     // Actions
+    /**
+     * Handle add filter event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
     FilterComponent.prototype.addFilter = function ($event) {
         var newFilter = {
             field: $event.field,
@@ -72,26 +84,42 @@ var FilterComponent = (function () {
             this.onChange.emit($event);
         }
     };
+    /**
+     * Handle clear filter event
+     *
+     * @param $event An array of current Filter objects
+     */
     FilterComponent.prototype.clear = function ($event) {
         this.config.appliedFilters = $event;
         this.onChange.emit({
             appliedFilters: $event
         });
     };
-    FilterComponent.prototype.enforceSingleSelect = function (filter) {
-        remove(this.config.appliedFilters, { title: filter.field.title });
-    };
+    /**
+     * Handle filter field selected event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
     FilterComponent.prototype.fieldSelected = function ($event) {
         this.onFilterSelect.emit($event);
+    };
+    /**
+     * Handle type ahead event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
+    FilterComponent.prototype.typeAhead = function ($event) {
+        this.onTypeAhead.emit($event);
+    };
+    // Private
+    FilterComponent.prototype.enforceSingleSelect = function (filter) {
+        remove(this.config.appliedFilters, { title: filter.field.title });
     };
     FilterComponent.prototype.filterExists = function (filter) {
         var foundFilter = find(this.config.appliedFilters, {
             value: filter.value
         });
         return foundFilter !== undefined;
-    };
-    FilterComponent.prototype.typeAhead = function ($event) {
-        this.onTypeAhead.emit($event);
     };
     return FilterComponent;
 }());

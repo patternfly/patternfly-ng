@@ -33,7 +33,7 @@
                  [ngTemplateOutlet]="primaryAction.template"
                  [ngOutletContext]="{ action: action }"></ng-template>
     <ng-template #showButton>
-      <a *ngIf="primaryAction.disabled === true"
+      <a *ngIf="primaryAction.disabled !== true"
          href="javascript:void(0)"
          title="{{primaryAction?.tooltip}}"
          (click)="handleAction(primaryAction)">{{primaryAction?.title}}</a>

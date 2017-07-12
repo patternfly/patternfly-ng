@@ -36,7 +36,10 @@ export declare class ActionComponent implements OnInit {
      *  Check if the component config has changed
      */
     ngDoCheck(): void;
-    private setupConfig();
+    /**
+     * Set up default config
+     */
+    protected setupConfig(): void;
     private handleAction(action);
     /**
      * Set flag indicating if kebab should be shown as a dropdown or dropup

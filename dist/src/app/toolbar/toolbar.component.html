@@ -1,6 +1,8 @@
 <div class="row toolbar-pf">
   <div class="col-sm-12">
-    <form class="toolbar-pf-actions" [ngClass]="{'no-filter-results': !filterFields}" (submit)="submit($event)">
+    <form class="toolbar-pf-actions"
+          [ngClass]="{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}"
+          (submit)="$event.preventDefault()">
       <div class="form-group toolbar-apf-filter">
         <pfng-filter-fields [config]="config.filterConfig" *ngIf="config.filterConfig?.fields"
                             (onAdd)="filterAdded($event)"

@@ -1,4 +1,5 @@
 import { EventEmitter, OnInit, TemplateRef } from '@angular/core';
+import { Filter } from '../filter/filter';
 import { ToolbarConfig } from './toolbar-config';
 /**
  * Toolbar component
@@ -54,16 +55,23 @@ export declare class ToolbarComponent implements OnInit {
      *  Check if the component config has changed
      */
     ngDoCheck(): void;
-    private setupConfig();
-    private handleAction(action);
-    private clearFilter($event);
+    /**
+     * Set up default config
+     */
+    protected setupConfig(): void;
+    /**
+     * Handle clear filter event
+     *
+     * @param $event An array of current Filter objects
+     */
+    clearFilter($event: Filter[]): void;
     private filterAdded($event);
     private filterExists(filter);
+    private handleAction(action);
     private handleFilterFieldSelect($event);
     private handleFilterTypeAhead($event);
     private sortChange($event);
     private isViewSelected(currentView);
-    private submit($event);
     private viewSelected(currentView);
     private enforceSingleSelect(filter);
 }

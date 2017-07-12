@@ -71,7 +71,7 @@ var ListComponent = (function () {
             showCheckbox: true,
             useExpandItems: false
         };
-        this.itemsEmpty = true;
+        this._itemsEmpty = true;
     }
     // Initialization
     /**
@@ -88,8 +88,11 @@ var ListComponent = (function () {
         if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
-        this.itemsEmpty = !(this.items !== undefined && this.items.length > 0);
+        this._itemsEmpty = !(this.items !== undefined && this.items.length > 0);
     };
+    /**
+     * Set up default config
+     */
     ListComponent.prototype.setupConfig = function () {
         if (this.config !== undefined) {
             defaults(this.config, this.defaultConfig);
@@ -107,6 +110,19 @@ var ListComponent = (function () {
         }
         this.prevConfig = cloneDeep(this.config);
     };
+    Object.defineProperty(ListComponent.prototype, "itemsEmpty", {
+        // Getters & setters
+        /**
+         * Get the flag indicating list has no items
+         *
+         * @returns {boolean} The flag indicating list has no items
+         */
+        get: function () {
+            return this._itemsEmpty;
+        },
+        enumerable: true,
+        configurable: true
+    });
     // Actions
     ListComponent.prototype.handleAction = function (action) {
         if (action && action.disabled !== true) {
@@ -223,16 +239,16 @@ var ListComponent = (function () {
     // Toggle
     ListComponent.prototype.closeExpandArea = function (item) {
         item.expandId = undefined;
-        item.isItemExpanded = false;
+        item.expanded = false;
     };
     ListComponent.prototype.toggleExpandArea = function (item) {
         // Item may already be open due to compound expansion
-        if (item.isItemExpanded && item.expandId !== undefined) {
+        if (item.expanded && item.expandId !== undefined) {
             item.expandId = undefined;
             return;
         }
         item.expandId = undefined;
-        item.isItemExpanded = !item.isItemExpanded;
+        item.expanded = !item.expanded;
     };
     return ListComponent;
 }());
