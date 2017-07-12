@@ -63,7 +63,10 @@ export class SortComponent implements OnInit {
     }
   }
 
-  private setupConfig(): void {
+  /**
+   * Set up default config
+   */
+  protected setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {

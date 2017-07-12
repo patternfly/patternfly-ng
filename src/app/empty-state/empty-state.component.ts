@@ -62,7 +62,10 @@ export class EmptyStateComponent implements OnInit {
     }
   }
 
-  private setupConfig(): void {
+  /**
+   * Set up default config
+   */
+  protected setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -71,7 +74,7 @@ export class EmptyStateComponent implements OnInit {
     this.prevConfig = cloneDeep(this.config);
   }
 
-  // Actions
+  // Private
 
   private handleAction(action: Action): void {
     if (action && action.disabled !== true) {
