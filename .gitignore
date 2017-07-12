@@ -2,3 +2,5 @@
 dist
 node_modules
 dist-demo
+src
+build
