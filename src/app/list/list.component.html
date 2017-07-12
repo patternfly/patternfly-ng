@@ -1,7 +1,7 @@
 <div class="list-pf" *ngIf="!itemsEmpty">
   <div class="pfng-list-item list-pf-item {{item?.itemStyleClass}}"
        *ngFor="let item of items; let i = index"
-       [ngClass]="{'active': isSelected(item) || item.isItemExpanded,
+       [ngClass]="{'active': isSelected(item) || item.expanded,
                    'pfng-list-heading': config.useHeading && i === 0}">
     <div class="list-pf-container">
       <!-- list header -->
@@ -17,7 +17,7 @@
           <span class="fa fa-angle-right"
                 *ngIf="item.hideExpandToggle !== true"
                 (click)="toggleExpandArea(item)"
-                [ngClass]="{'fa-angle-down': item.isItemExpanded && item.expandId === undefined}"></span>
+                [ngClass]="{'fa-angle-down': item.expanded && item.expandId === undefined}"></span>
         </div>
       </ng-template>
       <!-- checkbox -->
@@ -55,7 +55,7 @@
     </div>
     <!-- expansion -->
     <div class="pfng-list-expansion list-pf-expansion collapse in"
-         *ngIf="!(config.useHeading && i === 0) && expandTemplate && item.isItemExpanded">
+         *ngIf="!(config.useHeading && i === 0) && expandTemplate && item.expanded">
       <div class="list-pf-container" tabindex="0">
         <div class="list-pf-content">
           <div class="close" *ngIf="config.hideClose !== true">

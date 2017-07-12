@@ -112,7 +112,7 @@ export class ListComponent implements OnInit {
     useExpandItems: false
   } as ListConfig;
   private dragItem: any;
-  private itemsEmpty: boolean = true;
+  private _itemsEmpty: boolean = true;
   private prevConfig: ListConfig;
 
   /**
@@ -138,10 +138,13 @@ export class ListComponent implements OnInit {
     if (!isEqual(this.config, this.prevConfig)) {
       this.setupConfig();
     }
-    this.itemsEmpty = !(this.items !== undefined && this.items.length > 0);
+    this._itemsEmpty = !(this.items !== undefined && this.items.length > 0);
   }
 
-  private setupConfig(): void {
+  /**
+   * Set up default config
+   */
+  protected setupConfig(): void {
     if (this.config !== undefined) {
       defaults(this.config, this.defaultConfig);
     } else {
@@ -156,6 +159,17 @@ export class ListComponent implements OnInit {
         'Cannot use both item select and click selection at the same time.');
     }
     this.prevConfig = cloneDeep(this.config);
+  }
+
+  // Getters & setters
+
+  /**
+   * Get the flag indicating list has no items
+   *
+   * @returns {boolean} The flag indicating list has no items
+   */
+  get itemsEmpty(): boolean {
+    return this._itemsEmpty;
   }
 
   // Actions
@@ -288,16 +302,16 @@ export class ListComponent implements OnInit {
 
   private closeExpandArea(item: any): void {
     item.expandId = undefined;
-    item.isItemExpanded = false;
+    item.expanded = false;
   }
 
   private toggleExpandArea(item: any): void {
     // Item may already be open due to compound expansion
-    if (item.isItemExpanded && item.expandId !== undefined) {
+    if (item.expanded && item.expandId !== undefined) {
       item.expandId = undefined;
       return;
     }
     item.expandId = undefined;
-    item.isItemExpanded = !item.isItemExpanded;
+    item.expanded = !item.expanded;
   }
 }

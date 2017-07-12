@@ -12,7 +12,7 @@ import { FilterEvent } from './filter-event';
 import { FilterField } from './filter-field';
 import { FilterQuery } from './filter-query';
 
-import { cloneDeep, find, isEqual } from 'lodash';
+import { cloneDeep, defaults, find, isEqual } from 'lodash';
 
 /**
  * Component for the filter query field and filter query dropdown
@@ -44,8 +44,9 @@ export class FilterFieldsComponent implements OnInit {
    */
   @Output('onTypeAhead') onTypeAhead = new EventEmitter();
 
-  private currentField: FilterField;
-  private currentValue: string;
+  private _currentField: FilterField;
+  private _currentValue: string;
+  private defaultConfig = {} as FilterConfig;
   private prevConfig: FilterConfig;
 
   /**
@@ -73,9 +74,14 @@ export class FilterFieldsComponent implements OnInit {
     }
   }
 
-  private setupConfig(): void {
-    if (this.config === undefined) {
-      this.config = {} as FilterConfig;
+  /**
+   * Set up default config
+   */
+  protected setupConfig(): void {
+    if (this.config !== undefined) {
+      defaults(this.config, this.defaultConfig);
+    } else {
+      this.config = cloneDeep(this.defaultConfig);
     }
     this.prevConfig = cloneDeep(this.config);
 
@@ -87,60 +93,89 @@ export class FilterFieldsComponent implements OnInit {
     }
 
     let fieldFound: boolean = false;
-    if (this.currentField !== undefined) {
+    if (this._currentField !== undefined) {
       find(this.config.fields, (nextField) => {
-        if (nextField.id === this.currentField.id) {
+        if (nextField.id === this._currentField.id) {
           fieldFound = true;
           return;
         }
       });
     }
     if (!fieldFound) {
-      this.currentField = this.config.fields[0];
-      this.currentValue = null;
+      this._currentField = this.config.fields[0];
+      this._currentValue = null;
     }
 
-    if (this.currentValue === undefined) {
-      this.currentValue = null;
+    if (this._currentValue === undefined) {
+      this._currentValue = null;
     }
   }
 
-  // Actions
+  // Getters & setters
+
+  /**
+   * Get the current filter field
+   *
+   * @returns {FilterField} The current filter field
+   */
+  get currentField(): FilterField {
+    return this._currentField;
+  }
+
+  /**
+   * Get the current filter field value
+   *
+   * @returns {string} The current filter field value
+   */
+  get currentValue(): string {
+    return this._currentValue;
+  }
+
+  /**
+   * Set the current filter field value
+   *
+   * @param val The current filter field value
+   */
+  set currentValue(val: string) {
+    this._currentValue = val;
+  }
+
+  // Private
 
   private fieldInputKeyPress($event: KeyboardEvent): void {
     if ($event.which === 13) {
       this.onAdd.emit({
-        field: this.currentField,
-        value: this.currentValue
+        field: this._currentField,
+        value: this._currentValue
       } as FilterEvent);
-      this.currentValue = undefined;
+      this._currentValue = undefined;
     }
   }
 
   private queryInputChange(value: string) {
     this.onTypeAhead.emit({
-      field: this.currentField,
-      value: this.currentValue
+      field: this._currentField,
+      value: this._currentValue
     } as FilterEvent);
   }
 
   private selectField(field: FilterField): void {
-    this.currentField = field;
-    this.currentValue = null;
+    this._currentField = field;
+    this._currentValue = null;
     this.onFieldSelect.emit({
-      field: this.currentField,
-      value: this.currentValue
+      field: this._currentField,
+      value: this._currentValue
     } as FilterEvent);
   }
 
   private selectQuery(filterQuery: FilterQuery): void {
     if (filterQuery != null) {
       this.onAdd.emit({
-        field: this.currentField,
+        field: this._currentField,
         query: filterQuery,
         value: filterQuery.value
       } as FilterEvent);
-      this.currentValue = null;
+      this._currentValue = null;
     }
   }
 }

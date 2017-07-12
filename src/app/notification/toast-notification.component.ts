@@ -77,7 +77,7 @@ export class ToastNotificationComponent implements OnInit {
    */
   @Output('onViewingChange') onViewingChange = new EventEmitter();
 
-  private showCloseButton: boolean = false;
+  private _showCloseButton: boolean = false;
 
   /**
    * The default constructor
@@ -97,11 +97,38 @@ export class ToastNotificationComponent implements OnInit {
    *  Check if the component config has changed
    */
   ngDoCheck(): void {
-    this.showCloseButton = (this.showClose === true)
+    this._showCloseButton = (this.showClose === true)
       && (this.moreActions === undefined || this.moreActions.length === 0);
   }
 
+  // Getters & setters
+
+  /**
+   * Get the flag indicating that the close button should be shown
+   *
+   * @returns {FilterField} The flag indicating that the close button should be shown
+   */
+  get showCloseButton(): boolean {
+    return this._showCloseButton;
+  }
+
   // Actions
+
+  handleEnter($event: MouseEvent): void {
+    this.onViewingChange.emit({
+      notification: this.notification,
+      isViewing: true
+    } as NotificationEvent);
+  }
+
+  handleLeave($event: MouseEvent): void {
+    this.onViewingChange.emit({
+      notification: this.notification,
+      isViewing: false
+    } as NotificationEvent);
+  }
+
+  // Private
 
   private handleAction(action: Action): void {
     if (action && action.disabled !== true) {
@@ -114,19 +141,5 @@ export class ToastNotificationComponent implements OnInit {
 
   private handleClose($event: MouseEvent): void {
     this.onCloseSelect.emit({notification: this.notification} as NotificationEvent);
-  }
-
-  private handleEnter($event: MouseEvent): void {
-    this.onViewingChange.emit({
-      notification: this.notification,
-      isViewing: true
-    } as NotificationEvent);
-  }
-
-  private handleLeave($event: MouseEvent): void {
-    this.onViewingChange.emit({
-      notification: this.notification,
-      isViewing: false
-    } as NotificationEvent);
   }
 }
