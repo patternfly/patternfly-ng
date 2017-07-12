@@ -69,7 +69,6 @@ import { NotificationModule } from 'patternfly-ng';
 ```
 
 ## <a name="question"></a> Do you have a question?
-There are a few things that can be done to resolve any questions or problems you might have.
  - Search our [GitHub issues][github-issues]
  - Join our patternfly-ng channel on [Slack](http://slack.patternfly.org)
  - Join our mailing-list following the instructions on [patternfly.org](http://www.patternfly.org/community/)
