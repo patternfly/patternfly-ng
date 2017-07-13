@@ -27,7 +27,6 @@ script:
 before_script:
   - npm prune
 after_success:
-  - printf "$NPM_USER\n$NPM_PWD\n$NPM_USER@redhat.com" | npm login
   - npm run semantic-release
   - npm run publish-travis
 
