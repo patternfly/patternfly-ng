@@ -19,6 +19,9 @@
 // For displaying close button in expansion area
 .pfng-list-expansion {
   position: relative;
+  .list-pf-content {
+    flex-grow: 1;
+  }
 }
 
 // For displaying a heading above the list
@@ -40,9 +43,14 @@
     pointer-events: auto;
   }
 
+  // Override top border for heading
+  &.list-pf-item {
+    border-top: none;
+  }
+
   // Override font for normal heading text
   .list-pf-title {
-    font-size: @font-size-base;
+    font-size: inherit;
     font-weight: normal;
   }
 
