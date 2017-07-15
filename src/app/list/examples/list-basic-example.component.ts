@@ -137,7 +137,7 @@ export class ListBasicExampleComponent implements OnInit {
           tooltip: 'Do something special'
         }]
       } as ActionConfig,
-      icon: 'pficon-warning-triangle-o',
+      iconStyleClass: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
         'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
