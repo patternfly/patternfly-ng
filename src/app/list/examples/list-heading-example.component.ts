@@ -6,7 +6,6 @@ import {
 
 import { Action } from '../../action/action';
 import { ActionConfig } from '../../action/action-config';
-import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { ListConfig } from '../list-config';
 import { ListEvent } from '../list-event';
 
@@ -20,7 +19,6 @@ export class ListHeadingExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
-  emptyStateConfig: EmptyStateConfig;
   items: any[];
   listConfig: ListConfig;
   selectType: string = 'checkbox';
@@ -174,7 +172,6 @@ export class ListHeadingExampleComponent implements OnInit {
 
     this.listConfig = {
       dblClick: false,
-      emptyStateConfig: this.emptyStateConfig,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
