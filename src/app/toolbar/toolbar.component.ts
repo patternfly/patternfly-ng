@@ -40,7 +40,7 @@ export class ToolbarComponent implements OnInit {
   /**
    * The name of the template containing views
    */
-  @Input() viewsTemplate: TemplateRef<any>;
+  @Input() viewTemplate: TemplateRef<any>;
 
   /**
    * The event emitted when an action (e.g., button, kebab, etc.) has been selected
