@@ -50,7 +50,7 @@ export class ToolbarComponent implements OnInit {
   /**
    * The event emitted when a field menu option is selected
    */
-  @Output('onFilterFieldSelect') onFilterFiledSelect = new EventEmitter();
+  @Output('onFilterFieldSelect') onFilterFieldSelect = new EventEmitter();
 
   /**
    * The event emitted when a filter has been changed
@@ -181,7 +181,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   private handleFilterFieldSelect($event: FilterEvent): void {
-    this.onFilterFiledSelect.emit($event);
+    this.onFilterFieldSelect.emit($event);
   }
 
   private handleFilterTypeAhead($event: FilterEvent) {
