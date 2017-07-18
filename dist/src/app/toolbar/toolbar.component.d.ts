@@ -24,7 +24,7 @@ export declare class ToolbarComponent implements OnInit {
     /**
      * The event emitted when a field menu option is selected
      */
-    onFilterFiledSelect: EventEmitter<{}>;
+    onFilterFieldSelect: EventEmitter<{}>;
     /**
      * The event emitted when a filter has been changed
      */

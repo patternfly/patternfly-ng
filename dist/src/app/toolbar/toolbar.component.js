@@ -25,7 +25,7 @@ var ToolbarComponent = (function () {
         /**
          * The event emitted when a field menu option is selected
          */
-        this.onFilterFiledSelect = new EventEmitter();
+        this.onFilterFieldSelect = new EventEmitter();
         /**
          * The event emitted when a filter has been changed
          */
@@ -130,7 +130,7 @@ var ToolbarComponent = (function () {
         }
     };
     ToolbarComponent.prototype.handleFilterFieldSelect = function ($event) {
-        this.onFilterFiledSelect.emit($event);
+        this.onFilterFieldSelect.emit($event);
     };
     ToolbarComponent.prototype.handleFilterTypeAhead = function ($event) {
         this.onFilterTypeAhead.emit($event);
@@ -172,7 +172,7 @@ __decorate([
 __decorate([
     Output('onFilterFieldSelect'),
     __metadata("design:type", Object)
-], ToolbarComponent.prototype, "onFilterFiledSelect", void 0);
+], ToolbarComponent.prototype, "onFilterFieldSelect", void 0);
 __decorate([
     Output('onFilterChange'),
     __metadata("design:type", Object)
