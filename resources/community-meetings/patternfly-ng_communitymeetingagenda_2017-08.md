@@ -1,6 +1,6 @@
-# patternfy-ng Community Meeting - August 2, 2017
+# patternfly-ng Community Meeting - August 2, 2017
 
-This will be our first community meeting for patternfly-ng!  Please join us to learn about this community, what we are doing, and how you can get involved.
+This will be our first community meeting for patternfly-ng, the Angular-ng implementation of PatternFly!  Please join us to learn about this community, what we are doing, and how you can get involved.
 
 ## Agenda:
 1. Welcome & Introductions
