@@ -13,6 +13,7 @@ import { SortExampleComponent } from '../app/sort/examples/sort-example.componen
 import { ToastNotificationExampleComponent } from '../app/notification/examples/toast-notification-example.component';
 import { ToolbarExampleComponent } from '../app/toolbar/examples/toolbar-example.component';
 import { WelcomeComponent } from './components/welcome.component';
+import { WizardExampleComponent } from '../app/wizard/examples/wizard-example.component';
 
 const routes: Routes = [{
     path: '',
@@ -51,6 +52,9 @@ const routes: Routes = [{
   }, {
     path: 'toolbar',
     component: ToolbarExampleComponent
+  }, {
+    path: 'wizard',
+    component: WizardExampleComponent
 }];
 
 @NgModule({
