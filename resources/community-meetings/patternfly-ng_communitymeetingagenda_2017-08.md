@@ -14,7 +14,7 @@ You can also dial in using 888-847-2201 (United States - Toll Free, or [See all 
   * Release and consumption information
   * Contribution process established
   * Showcase
-  * Semantic release explanation - this could fit in the top point if you’d like
+  * Semantic release explanation
 3. Consumption process demo
 4. Contribution process
 5. Next steps & how to get involved
