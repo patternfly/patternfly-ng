@@ -229,7 +229,7 @@ export class WizardComponent extends WizardBase implements OnInit {
     // Completed property set on ctrl which is used to add class/remove class from progress bar
     this.selectedStep.config.completed = true;
 
-    // Check to see if this is the last step.  If it is next behaves the same as finish()
+    // Check to see if this is the last step.
     if (index === enabledSteps.length - 1) {
       this.finish();
     } else {
