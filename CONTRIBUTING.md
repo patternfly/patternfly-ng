@@ -9,7 +9,7 @@ today!  Below is information on how to get started as a contributor to PatternFl
  - [Submission Guidelines](#submit)
  - [Coding Rules](#rules)
  - [Building the Code](#coding)
- - [Releasing](#releasing)
+ - [Git Commit Guidelines](#commits)
 
 ## <a name="coc"></a> Code of Conduct
 An open community is important to us, please help us maintain that by following our [Code of Conduct][coc].
@@ -83,26 +83,38 @@ PatternFly-ng uses npm, webpack and gulp.  With the exception of node.js, all de
  - npm run reinstall - this clears your npm packages and installs them fresh
    
 
-## <a name="releasing"></a> Releasing
+## <a name="commits"></a> Git Commit Guidelines
 
-(TODO - add semantic release guidelines here)
+PatternFly-ng uses a semantic release process to automate package publishing, based on the following commit message format.
 
-PatternFly-ng is released through npm. To release a new version version of PatternFly-ng, edit `package.json` accordingly.
+Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special
+format that includes a **type**, a **scope** and a **subject** ([full explanation](https://github.com/stevemao/conventional-changelog-angular/blob/master/convention.md)):
 
-
-Update the version listed in `package.json` by editing the file and changing the line:
 ```
-"version": "<new_version>"
-```
-
-Commit the version bump:
-```shell
-$ git commit -m "Version bump to <new_version>"
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
 ```
 
-Publish a new set of release notes with ```new version``` as the tag version:
-https://github.com/patternfly/patternfly-ng/releases/new
+##### Patch Release
 
+```
+fix(pencil): stop graphite breaking when too much pressure applied
+```
+
+##### Feature Release
+
+```
+feat(pencil): add 'graphiteWidth' option
+```
+
+##### Breaking Release
+
+```
+perf(pencil): remove graphiteWidth option
+```
 
 [coc]: https://github.com/patternfly/patternfly/blob/master/CODE_OF_CONDUCT.md
 [github]: https://github.com/patternfly/patternfly-ng/
