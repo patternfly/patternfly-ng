@@ -19,7 +19,7 @@
         <a (click)="stepClick(step)"
            [ngClass]="{'disabled': !allowStepIndicatorClick(step)}">
           <span class="wizard-pf-step-number">{{i + 1}}</span>
-          <span class="wizard-pf-step-title">{{step.title}}</span>
+          <span class="wizard-pf-step-title">{{step.config?.title}}</span>
         </a>
       </li>
     </ul>
