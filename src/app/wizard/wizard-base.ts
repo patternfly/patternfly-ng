@@ -28,11 +28,11 @@ export class WizardBase {
   /**
    * Returns the selected wizard step or substep number
    *
-   * @returns {number} The step number
+   * @returns {number} The step index
    */
-  get selectedStepNumber(): number {
+  get selectedStepIndex(): number {
     // Retrieve selected step number
-    return this.stepIdx(this.selectedStep) + 1;
+    return this.stepIndex(this.selectedStep) + 1;
   }
 
   /**
@@ -93,13 +93,13 @@ export class WizardBase {
   }
 
   /**
-   * Returns the step number for the given wizard step or substep
+   * Returns the step index for the given wizard step or substep
    *
    * @param {WizardStep} step The wizard step or substep
    * @returns {number} The step number
    */
-  getStepNumber(step: WizardStep): number {
-    return this.stepIdx(step) + 1;
+  getStepIndex(step: WizardStep): number {
+    return this.stepIndex(step) + 1;
   }
 
   /**
@@ -119,12 +119,12 @@ export class WizardBase {
   }
 
   /**
-   * Returns the order number for the given wizard step or substep
+   * Returns the index for the given wizard step or substep
    *
    * @param {WizardStep} step The wizard step or substep
-   * @returns {number} The wizard step or substep order number
+   * @returns {number} The wizard step or substep index
    */
-  protected stepIdx(step: WizardStep): number {
+  protected stepIndex(step: WizardStep): number {
     let idx = 0;
     let res = -1;
     this.getEnabledSteps().forEach((currStep) => {

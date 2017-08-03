@@ -8,6 +8,11 @@ export class WizardStepConfig {
   allowClickNav?: boolean;
 
   /**
+   * Indicates that the user may navigate away from this wizard step or substep
+   */
+  allowNavAway?: boolean;
+
+  /**
    * Indicates that this step has been completed
    */
   completed?: boolean;
@@ -50,14 +55,10 @@ export class WizardStepConfig {
 
   /**
    * The text to display as a tooltip for the next button when the wizard step is displayed.
-   * Not applicable for substeps.
+   *
+   * Not applicable for the wizard-substep component.
    */
   nextTooltip?: string;
-
-  /**
-   * Indicates that the user may navigate away from this wizard step or substep
-   */
-  okToNavAway?: boolean;
 
   /**
    * Indicates that the previous button is enabled when the wizard step or substep is displayed
@@ -66,7 +67,8 @@ export class WizardStepConfig {
 
   /**
    * The text to display as a tooltip for the previous button when the wizard step is displayed
-   * Not applicable for substeps.
+   *
+   * Not applicable for the wizard-substep component.
    */
   previousTooltip?: string;
 

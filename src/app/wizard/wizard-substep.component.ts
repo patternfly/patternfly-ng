@@ -44,6 +44,7 @@ export class WizardSubstepComponent implements OnInit, WizardStep {
 
   private defaultConfig = {
     allowClickNav: true,
+    allowNavAway: true,
     completed: false,
     data: {},
     disabled: false,
@@ -77,7 +78,7 @@ export class WizardSubstepComponent implements OnInit, WizardStep {
     if (this.step !== undefined) {
       this.step.config.allowClickNav = this.config.allowClickNav;
       this.step.config.nextEnabled = this.config.nextEnabled;
-      this.step.config.okToNavAway = this.config.okToNavAway;
+      this.step.config.allowNavAway = this.config.allowNavAway;
       this.step.config.previousEnabled = this.config.previousEnabled;
 
       this.step.addStep(this);

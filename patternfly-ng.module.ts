@@ -11,12 +11,11 @@ import { SampleModule } from './src/app/sample/sample.module';
 import { SearchHighlightModule } from './src/app/search-highlight/search-highlight.module';
 import { SortModule } from './src/app/sort/sort.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
+import { WizardModule } from './src/app/wizard/wizard.module';
 
 @NgModule({
   imports: [
     FormsModule
-  ],
-  declarations: [
   ],
   exports: [
     ActionModule,
@@ -28,7 +27,8 @@ import { ToolbarModule } from './src/app/toolbar/toolbar.module';
     SampleModule,
     SearchHighlightModule,
     SortModule,
-    ToolbarModule
+    ToolbarModule,
+    WizardModule
   ]
 })
 export class PatternFlyNgModule {
