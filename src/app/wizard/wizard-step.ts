@@ -15,56 +15,57 @@ export interface WizardStep {
   config: WizardStepConfig;
 
   /**
-   * Returns the step number to be displayed for the given wizard step.
-   * Not applicable for substeps.
+   * Returns the step number to be displayed for the given wizard step or substep.
    */
   getDisplayNumber?: Function;
 
   /**
    * Returns only wizard steps with review templates.
-   * Not applicable for substeps.
    */
   getReviewSteps?: Function;
 
   /**
    * Navigate to the first wizard substep.
-   * Not applicable for substeps.
    */
-  goToFirst?: Function;
+  goToFirstStep?: Function;
 
   /**
    * Navigate to the last wizard substep.
-   * Not applicable for substeps.
    */
-  goToLast?: Function;
+  goToLastStep?: Function;
+
+  /**
+   * Navigate to the next wizard step or substep
+   */
+  goToNextStep?: Function;
+
+  /**
+   * Navigate to the previous wizard step or substep
+   */
+  goToPreviousStep?: Function;
 
   /**
    * Indicates that this wizard step has substeps.
-   * Not applicable for substeps.
    */
   hasSubsteps?: boolean;
 
   /**
-   * Navigate to the next wizard step.
-   * Not applicable for substeps.
+   * Called when the next button has been selected.
    */
   next?: Function;
 
   /**
    * Indicates that the next button is enabled when the wizard step is displayed.
-   * Not applicable for substeps.
    */
   nextEnabled?: boolean;
 
   /**
-   * Navigate to the previous wizard step or substep.
-   * Not applicable for substeps.
+   * Called when the previous button has been selected.
    */
   previous?: Function;
 
   /**
    * Indicates that the previous button is enabled when the wizard step is displayed.
-   * Not applicable for substeps.
    */
   previousEnabled?: boolean;
 
@@ -79,10 +80,9 @@ export interface WizardStep {
   selected: boolean;
 
   /**
-   * Returns the selected wizard step or substep number.
-   * Not applicable for substeps.
+   * Returns the selected wizard step or substep index.
    */
-  selectedStepNumber?: number;
+  selectedStepIndex?: number;
 
   /**
    * Emits an event when a wizard step or substep is shown

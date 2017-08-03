@@ -5,7 +5,7 @@ import { WizardStep } from './wizard-step';
  */
 export class WizardEvent {
   /**
-   * The order of the wizard step of substep within its parent
+   * The order of the wizard step of substep
    */
   index?: number;
 

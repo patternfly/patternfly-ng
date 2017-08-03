@@ -139,7 +139,7 @@ export class WizardComponent extends WizardBase implements OnInit {
   /**
    * Indicates that the selected step is also the first wizard step or substep
    *
-   * @returns {boolean}
+   * @returns {boolean} True if the selected step is the first wizard step or substep
    */
   get firstStep(): boolean {
     return this._firstStep;
@@ -148,7 +148,7 @@ export class WizardComponent extends WizardBase implements OnInit {
   /**
    * Set a flag indicating that the selected step is also the first wizard step or substep
    *
-   * @param {boolean} step True if the selected step is the first wizard step or substep
+   * @param {boolean} firstStep True if the selected step is the first wizard step or substep
    */
   set firstStep(firstStep: boolean) {
     this._firstStep = firstStep;
@@ -166,7 +166,7 @@ export class WizardComponent extends WizardBase implements OnInit {
 
     let enabledSteps: WizardStep[] = this.getEnabledSteps();
     if (this.config.ready && (enabledSteps.length > 0) && (step === enabledSteps[0])) {
-      this.goToStep(enabledSteps[0], true, false);
+      this.goTo(enabledSteps[0], true, false);
     }
   };
 
@@ -183,79 +183,99 @@ export class WizardComponent extends WizardBase implements OnInit {
   }
 
   /**
-   * Navigate to the given wizard step number
-   *
-   * @param {number} stepNumber The step number to navigate to
-   * @param {boolean} goToFirstSubstep True if the first substep (if exists) should be selected
-   */
-  goToStepNumber(stepNumber: number, goToFirstSubstep: boolean): void {
-    let enabledSteps: WizardStep[] = this.getEnabledSteps();
-    if (stepNumber < enabledSteps.length) {
-      this.goToStep(enabledSteps[stepNumber], goToFirstSubstep, false);
-    }
-  }
-
-  /**
-   * Navigate to the given wizard step title
-   *
-   * @param {string} stepTitle The step title to navigate to
-   * @param {boolean} goToFirstSubstep True if the first substep (if exists) should be selected
-   */
-  goToStepTitle(stepTitle: string, goToFirstSubstep: boolean): void {
-    let stepTo = this.stepByTitle(stepTitle);
-    if (stepTo !== undefined) {
-      this.goToStep(stepTo, goToFirstSubstep, false);
-    }
-  }
-
-  /**
    * Navigate to the next wizard step or substep
    */
-  next(): void {
-    let enabledSteps: WizardStep[] = this.getEnabledSteps();
-
-    // Save the step you were on when next() was invoked
-    let index = this.stepIdx(this.selectedStep);
-
-    if (this.selectedStep.hasSubsteps && this.selectedStep.next()) {
-      return;
-    } else {
-      this.onNext.emit({
-        index: index,
-        step: this.selectedStep
-      });
-    }
-
-    // Completed property set on ctrl which is used to add class/remove class from progress bar
-    this.selectedStep.config.completed = true;
-
-    // Check to see if this is the last step.
-    if (index === enabledSteps.length - 1) {
-      this.finish();
-    } else {
-      // Go to the next step
-      this.goToStep(enabledSteps[index + 1], true, false);
-    }
+  goToNextStep(): void {
+    this.next(false);
   }
 
   /**
    * Navigate to the previous wizard step or substep
    */
-  previous(): void {
-    let index = this.stepIdx(this.selectedStep);
+  goToPreviousStep(): void {
+    this.previous(false);
+  }
 
-    if (this.selectedStep.hasSubsteps && this.selectedStep.previous()) {
-      return;
-    } else {
-      this.onPrevious.emit({
-        index: index,
-        step: this.selectedStep
-      } as WizardEvent);
+  /**
+   * Navigate to the given wizard step index
+   *
+   * @param {number} stepIndex The step number to navigate to
+   * @param {boolean} resetStepNav True if the first substep (if exists) should be selected
+   */
+  goToStep(stepIndex: number, resetStepNav: boolean): void {
+    let enabledSteps: WizardStep[] = this.getEnabledSteps();
+    if (stepIndex < enabledSteps.length) {
+      this.goTo(enabledSteps[stepIndex], resetStepNav, false);
     }
-    if (index === 0) {
-      throw new Error("Can't go back. It's already in step 0");
+  }
+
+  /**
+   * Called when the next button has been selected.
+   *
+   * @param {boolean} emitEvent True to emit the onNext event
+   */
+  next(emitEvent: boolean): void {
+    let enabledSteps: WizardStep[] = this.getEnabledSteps();
+
+    // Save the step you were on when next() was invoked
+    let index = this.stepIndex(this.selectedStep);
+
+    let wizEvent = {
+      index: index,
+      step: this.selectedStep
+    } as WizardEvent;
+
+    if (this.selectedStep.hasSubsteps) {
+      // Handle navigation in substep
+      if (this.selectedStep.next(emitEvent)) {
+        return;
+      }
     } else {
-      this.goToStep(this.getEnabledSteps()[index - 1], false, true);
+      if (emitEvent !== false) {
+        this.onNext.emit(wizEvent);
+      }
+    }
+
+    // Set completed property, which may be used to add/remove a style class from progress bar
+    this.selectedStep.config.completed = true;
+
+    // Ensure this is not the last step
+    if (index === enabledSteps.length - 1) {
+      this.finish();
+    } else {
+      this.goTo(enabledSteps[index + 1], true, false);
+    }
+  }
+
+  /**
+   * Called when the previous button has been selected.
+   *
+   * @param {boolean} emitEvent True to emit the onNext event
+   */
+  previous(emitEvent: boolean): void {
+    let index = this.stepIndex(this.selectedStep);
+
+    let wizEvent = {
+      index: index,
+      step: this.selectedStep
+    } as WizardEvent;
+
+    if (this.selectedStep.hasSubsteps) {
+      // Handle navigation in substep
+      if (this.selectedStep.previous(emitEvent)) {
+        return;
+      }
+    } else {
+      if (emitEvent  !== false) {
+        this.onPrevious.emit(wizEvent);
+      }
+    }
+
+    // Ensure this is not the first step
+    if (index === 0) {
+      throw new Error("Can't go back. Already at first step");
+    } else {
+      this.goTo(this.getEnabledSteps()[index - 1], false, true);
     }
   }
 
@@ -275,10 +295,10 @@ export class WizardComponent extends WizardBase implements OnInit {
   /**
    * Set a flag indicating that the selected step is also the first wizard step or substep
    *
-   * @param {number} index The step number
+   * @param {number} stepIndex The step index
    */
-  updateStepNumber(index: number): void {
-    this.firstStep = this.stepIdx(this.selectedStep) === 0 && index === 0;
+  updateStepIndex(stepIndex: number): void {
+    this.firstStep = this.stepIndex(this.selectedStep) === 0 && stepIndex === 0;
   };
 
   // Private
@@ -290,7 +310,7 @@ export class WizardComponent extends WizardBase implements OnInit {
     }
     return !this.config.done
       && step.config.allowClickNav
-      && this.selectedStep.config.okToNavAway
+      && this.selectedStep.config.allowNavAway
       && (this.selectedStep.config.nextEnabled || (step.config.priority < this.selectedStep.config.priority))
       && (this.selectedStep.config.previousEnabled || (step.config.priority > this.selectedStep.config.priority));
   }
@@ -298,7 +318,7 @@ export class WizardComponent extends WizardBase implements OnInit {
   // Emits an event inidcating that the cancel button has been selected
   private cancel(): void {
     this.onCancel.emit({
-      index: this.stepIdx(this.selectedStep),
+      index: this.stepIndex(this.selectedStep),
       step: this.selectedStep
     } as WizardEvent);
     this.reset();
@@ -307,37 +327,37 @@ export class WizardComponent extends WizardBase implements OnInit {
   // Emits an event inidcating that all wizard steps and substeps have finished
   private finish(): void {
     this.onFinish.emit({
-      index: this.stepIdx(this.selectedStep),
+      index: this.stepIndex(this.selectedStep),
       step: this.selectedStep
     } as WizardEvent);
     this.reset();
   }
 
   // Navigate to the given substep
-  private goToStep(step: WizardStep, goToFirstSubstep: boolean, goToLastSubstep: boolean): void {
+  private goTo(step: WizardStep, goToFirstSubstep: boolean, goToLastSubstep: boolean): void {
     if (step === undefined || this.config.done
-        || (this.selectedStep !== undefined && !this.selectedStep.config.okToNavAway)) {
+        || (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)) {
       return;
     }
-    if (this.init || (this.getStepNumber(step) < this.selectedStepNumber && this.selectedStep.previousEnabled)
+    if (this.init || (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.previousEnabled)
         || this.selectedStep.nextEnabled) {
       this.unselectAll();
       if (step.hasSubsteps && goToFirstSubstep) {
-        step.goToFirst();
+        step.goToFirstStep();
       } else if (step.hasSubsteps && goToLastSubstep) {
-        step.goToLast();
+        step.goToLastStep();
       } else {
-        step.show(this.stepIdx(step));
-        this.stepChanged(step, this.stepIdx(step));
+        step.show(this.stepIndex(step));
+        this.stepChanged(step, this.stepIndex(step));
       }
       this.selectedStep = step;
       step.selected = true;
     }
 
     if (!this.selectedStep.hasSubsteps) {
-      this.firstStep = this.stepIdx(this.selectedStep) === 0;
+      this.firstStep = this.stepIndex(this.selectedStep) === 0;
     } else {
-      this.firstStep = this.stepIdx(this.selectedStep) === 0 && this.selectedStep.selectedStepNumber === 1;
+      this.firstStep = this.stepIndex(this.selectedStep) === 0 && this.selectedStep.selectedStepIndex === 1;
     }
   }
 
@@ -347,10 +367,10 @@ export class WizardComponent extends WizardBase implements OnInit {
     if (this.config !== undefined && this.config.currentStep !== undefined
         && !isEqual(this.config.currentStep, this.prevConfig.currentStep)
         && (this.selectedStep !== undefined && this.selectedStep.config.title !== this.config.currentStep)) {
-      this.goToStep(this.stepByTitle(this.config.currentStep), true, false);
+      this.goTo(this.stepByTitle(this.config.currentStep), true, false);
     } else {
       let enabledSteps: WizardStep[] = this.getEnabledSteps();
-      this.goToStep(enabledSteps[0], true, false);
+      this.goTo(enabledSteps[0], true, false);
     }
     this.init = false;
   }
@@ -362,13 +382,13 @@ export class WizardComponent extends WizardBase implements OnInit {
       step.config.completed = false;
     });
     // Go to first step
-    this.goToStepNumber(0, false);
+    this.goToStep(0, true);
   }
 
   // Handle step navigation
   private stepClick(step: WizardStep): void {
     if (step.config.allowClickNav) {
-      this.goToStep(step, true, false);
+      this.goTo(step, true, false);
     }
   }
 }
