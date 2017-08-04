@@ -39,14 +39,14 @@
         </div>
       </div>
     </tab>
-    <tab heading="Pause Navigation" (select)="tabSelected($event)">
-      <div class="padding-15" *ngIf="activeTab === 'Pause Navigation' || activeTab === ''">
+    <tab heading="Disabled Navigation" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Disabled Navigation' || activeTab === ''">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
               <button (click)="openModal(navTemplate)" class="btn btn-default">Launch Wizard</button>
               <div class="padding-top-15">
-                This example does not allow users to navigate away from the first substep until a simulated process is complete.
+                This example disables navigation until simulated processes are complete.
               </div>
               <ng-template #navTemplate>
                 <wizard-nav-example></wizard-nav-example>

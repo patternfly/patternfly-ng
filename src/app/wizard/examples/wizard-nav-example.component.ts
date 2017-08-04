@@ -117,7 +117,7 @@ export class WizardNavExampleComponent implements OnInit {
     // Simulate a delay
     setTimeout(() => {
       this.wizardConfig.ready = true;
-    }, 1000);
+    }, 2500);
 
     this.setNavAway(false);
   }
@@ -134,7 +134,7 @@ export class WizardNavExampleComponent implements OnInit {
         this.fetchComplete = true;
         this.setNavAway(true);
         this.wizard.goToNextStep();
-      }, 5000);
+      }, 2500);
     } else if ($event.step.config.id === 'step3b') {
       this.wizardExample.closeModal($event);
     }
