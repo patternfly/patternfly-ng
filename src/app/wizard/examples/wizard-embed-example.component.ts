@@ -109,15 +109,9 @@ export class WizardEmbedExampleComponent implements OnInit {
       loadingTitle: 'Wizard loading',
       loadingSecondaryInfo: 'ipsum dolor sit amet, porta at suspendisse ac, ut wisi vivamus, lorem sociosqu.',
       title: 'Wizard Title',
-      ready: false,
       sidebarStyleClass: 'example-wizard-sidebar',
       stepStyleClass: 'example-wizard-step'
     } as WizardConfig;
-
-    // Simulate a delay
-    setTimeout(() => {
-      this.wizardConfig.ready = true;
-    }, 1000);
 
     this.setNavAway(false);
   }
