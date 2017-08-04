@@ -3,7 +3,7 @@ This will be our first community meeting for patternfly-ng, the Angular-ng imple
 
 ## Recording & Slides:
 * [Recording](https://bluejeans.com/s/23_w6)
-* [Slides](resources/community-meetings/2017-08-02_communitymtg_slides.pdf)
+* [Slides](https://github.com/patternfly/patternfly-ng/blob/master/resources/community-meetings/2017-08-02_communitymtg_slides.pdf)
 
 
 ## Call in information:
