@@ -165,7 +165,7 @@
     "tslint-loader": "3.4.3",
     "typedoc": "^0.5.7",
     "typedoc-webpack-plugin": "^1.1.4",
-    "typescript": "2.2.2",
+    "typescript": "2.3.4",
     "uglify-js": "2.8.7",
     "url-loader": "0.5.8",
     "webpack": "2.2.1",
