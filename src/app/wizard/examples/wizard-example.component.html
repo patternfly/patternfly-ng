@@ -39,14 +39,14 @@
         </div>
       </div>
     </tab>
-    <tab heading="Navigation" (select)="tabSelected($event)">
-      <div class="padding-15" *ngIf="activeTab === 'Navigation' || activeTab === ''">
+    <tab heading="Pause Navigation" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Pause Navigation' || activeTab === ''">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
               <button (click)="openModal(navTemplate)" class="btn btn-default">Launch Wizard</button>
               <div class="padding-top-15">
-                This example will not allow users to navigate away from the first substep until a simulated process is complete.
+                This example does not allow users to navigate away from the first substep until a simulated process is complete.
               </div>
               <ng-template #navTemplate>
                 <wizard-nav-example></wizard-nav-example>
@@ -70,6 +70,36 @@
             </tab>
             <tab heading="typescript">
               <include-content src="src/app/wizard/examples/wizard-nav-example.component.ts"></include-content>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Embed in Page" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Embed in Page' || activeTab === ''">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group example-wizard-embed">
+              <wizard-embed-example></wizard-embed-example>
+            </div>
+          </div>
+        </div>
+        <div class="row padding-bottom-15 padding-top-15">
+          <div class="col-xs-12">
+            <h4>Code</h4>
+            <hr/>
+          </div>
+        </div>
+        <div>
+          <tabset>
+            <tab heading="api">
+              <iframe class="demoframe" src="docs/classes/wizardcomponent.html"></iframe>
+            </tab>
+            <tab heading="html">
+              <include-content src="src/app/wizard/examples/wizard-embed-example.component.html"></include-content>
+            </tab>
+            <tab heading="typescript">
+              <include-content src="src/app/wizard/examples/wizard-embed-example.component.ts"></include-content>
             </tab>
           </tabset>
         </div>
