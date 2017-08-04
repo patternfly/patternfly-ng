@@ -1,6 +1,10 @@
 # patternfly-ng Community Meeting - August 2, 2017
+This will be our first community meeting for patternfly-ng, the Angular-ng implementation of PatternFly!  Please join us to learn about this community, what we are doing, and how you can get involved.  
 
-This will be our first community meeting for patternfly-ng, the Angular-ng implementation of PatternFly!  Please join us to learn about this community, what we are doing, and how you can get involved.
+## Recording & Slides:
+* [Recording](https://bluejeans.com/s/23_w6)
+* [Slides](resources/community-meetings/2017-08-02_communitymtg_slides.pdf)
+
 
 ## Call in information:
 Join on bluejeans with your browser by using the following link:
