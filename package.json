@@ -70,7 +70,7 @@
     "ngx-bootstrap": "1.8.0",
     "patternfly": "^3.26.1",
     "rxjs": "5.0.1",
-    "zone.js": "0.7.7"
+    "zone.js": "0.8.4"
   },
   "devDependencies": {
     "@types/jasmine": "2.5.43",
