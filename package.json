@@ -22,7 +22,7 @@
     "start:demo": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base dist-demo",
     "test": "karma start",
     "transpile": "gulp transpile",
-    "semantic-release": "semantic-release pre && cp package.json dist && npm publish dist/ && semantic-release post",
+    "semantic-release": "semantic-release pre && cp package.json npm-shrinkwrap.json dist && npm publish dist/ && semantic-release post",
     "semantic-release-build": "npm run build"
   },
   "license": "Apache-2.0",
@@ -133,6 +133,7 @@
     "mocha": "3.2.0",
     "ng-router-loader": "2.1.0",
     "npm-run-all": "4.0.2",
+    "nsp": "2.7.0",
     "null-loader": "0.1.1",
     "opt-cli": "1.5.1",
     "optimize-js-plugin": "0.0.4",
