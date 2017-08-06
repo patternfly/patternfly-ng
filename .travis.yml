@@ -1,13 +1,13 @@
 language: node_js
+node_js:
+  - '6'
+
 cache:
   directories:
     - node_modules
 
 notifications:
   email: false
-
-node_js:
-  - '6'
 
 env:
   global:
@@ -24,9 +24,10 @@ install: true
 script:
   - sh -x ./node_modules/patternfly-eng-release/scripts/_build.sh -x
 
-before_script:
-  - npm prune
 after_success:
+  - if [[ -s package.json ]]; then cp package.json dist; fi
+  - if [[ -s npm-shrinkwrap.json ]]; then cp package.json dist; fi
+  - npm prune
   - npm run semantic-release
   - npm run publish-travis
 

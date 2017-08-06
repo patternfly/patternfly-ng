@@ -22,6 +22,7 @@ import { SearchHighlightExampleModule } from '../app/search-highlight/examples/s
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 import { ToolbarExampleModule } from '../app/toolbar/examples/toolbar-example.module';
 import { WelcomeComponent } from './components/welcome.component';
+import { WizardExampleModule } from '../app/wizard/examples/wizard-example.module';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { WelcomeComponent } from './components/welcome.component';
     SampleExampleModule,
     SearchHighlightExampleModule,
     SortExampleModule,
-    ToolbarExampleModule
+    ToolbarExampleModule,
+    WizardExampleModule
   ],
   declarations: [
     AppComponent,

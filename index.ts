@@ -61,3 +61,15 @@ export { ToolbarConfig } from './src/app/toolbar/toolbar-config';
 export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
 export { ToolbarModule } from './src/app/toolbar/toolbar.module';
 export { ToolbarView } from './src/app/toolbar/toolbar-view';
+
+// Wizard
+export { WizardBase } from './src/app/wizard/wizard-base';
+export { WizardComponent } from './src/app/wizard/wizard.component';
+export { WizardConfig } from './src/app/wizard/wizard-config';
+export { WizardEvent } from './src/app/wizard/wizard-event';
+export { WizardModule } from './src/app/wizard/wizard.module';
+export { WizardReviewComponent } from './src/app/wizard/wizard-review.component';
+export { WizardStep } from './src/app/wizard/wizard-step';
+export { WizardStepComponent } from './src/app/wizard/wizard-step.component';
+export { WizardStepConfig } from './src/app/wizard/wizard-step-config';
+export { WizardSubstepComponent } from './src/app/wizard/wizard-substep.component';
