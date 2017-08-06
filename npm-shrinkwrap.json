@@ -1,0 +1,298 @@
+{
+  "name": "patternfly-ng",
+  "version": "0.0.2-semantically-released",
+  "dependencies": {
+    "@angular/animations": {
+      "version": "4.3.2",
+      "from": "@angular/animations@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/animations/-/animations-4.3.2.tgz"
+    },
+    "@angular/common": {
+      "version": "4.3.2",
+      "from": "@angular/common@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/common/-/common-4.3.2.tgz"
+    },
+    "@angular/compiler": {
+      "version": "4.3.2",
+      "from": "@angular/compiler@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-4.3.2.tgz"
+    },
+    "@angular/compiler-cli": {
+      "version": "4.3.2",
+      "from": "@angular/compiler-cli@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-4.3.2.tgz"
+    },
+    "@angular/core": {
+      "version": "4.3.2",
+      "from": "@angular/core@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/core/-/core-4.3.2.tgz"
+    },
+    "@angular/forms": {
+      "version": "4.3.2",
+      "from": "@angular/forms@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/forms/-/forms-4.3.2.tgz"
+    },
+    "@angular/http": {
+      "version": "4.3.2",
+      "from": "@angular/http@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/http/-/http-4.3.2.tgz"
+    },
+    "@angular/platform-browser": {
+      "version": "4.3.2",
+      "from": "@angular/platform-browser@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-4.3.2.tgz"
+    },
+    "@angular/platform-browser-dynamic": {
+      "version": "4.3.2",
+      "from": "@angular/platform-browser-dynamic@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.3.2.tgz"
+    },
+    "@angular/platform-server": {
+      "version": "4.3.2",
+      "from": "@angular/platform-server@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/platform-server/-/platform-server-4.3.2.tgz",
+      "dependencies": {
+        "parse5": {
+          "version": "3.0.2",
+          "from": "parse5@>=3.0.1 <4.0.0",
+          "resolved": "https://registry.npmjs.org/parse5/-/parse5-3.0.2.tgz"
+        }
+      }
+    },
+    "@angular/router": {
+      "version": "4.3.2",
+      "from": "@angular/router@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/@angular/router/-/router-4.3.2.tgz"
+    },
+    "@angular/tsc-wrapped": {
+      "version": "4.3.2",
+      "from": "@angular/tsc-wrapped@4.3.2",
+      "resolved": "https://registry.npmjs.org/@angular/tsc-wrapped/-/tsc-wrapped-4.3.2.tgz"
+    },
+    "@types/node": {
+      "version": "6.0.85",
+      "from": "@types/node@^6.0.46",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.85.tgz"
+    },
+    "core-js": {
+      "version": "2.4.1",
+      "from": "core-js@2.4.1",
+      "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.4.1.tgz"
+    },
+    "minimist": {
+      "version": "1.2.0",
+      "from": "minimist@>=1.2.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
+    },
+    "mkdirp": {
+      "version": "0.5.1",
+      "from": "mkdirp@>=0.5.1 <0.6.0",
+      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz",
+      "dependencies": {
+        "minimist": {
+          "version": "0.0.8",
+          "from": "minimist@0.0.8",
+          "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.8.tgz"
+        }
+      }
+    },
+    "moment": {
+      "version": "2.17.1",
+      "from": "moment@2.17.1",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.17.1.tgz"
+    },
+    "ngx-bootstrap": {
+      "version": "1.8.0",
+      "from": "ngx-bootstrap@1.8.0",
+      "resolved": "https://registry.npmjs.org/ngx-bootstrap/-/ngx-bootstrap-1.8.0.tgz",
+      "dependencies": {
+        "moment": {
+          "version": "2.18.1",
+          "from": "moment@2.18.1",
+          "resolved": "https://registry.npmjs.org/moment/-/moment-2.18.1.tgz"
+        }
+      }
+    },
+    "patternfly": {
+      "version": "3.26.1",
+      "from": "patternfly@>=3.24.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/patternfly/-/patternfly-3.26.1.tgz",
+      "dependencies": {
+        "bootstrap": {
+          "version": "3.3.7",
+          "from": "bootstrap@>=3.3.7 <3.4.0",
+          "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-3.3.7.tgz"
+        },
+        "bootstrap-datepicker": {
+          "version": "1.6.4",
+          "from": "bootstrap-datepicker@>=1.6.4 <1.7.0",
+          "resolved": "https://registry.npmjs.org/bootstrap-datepicker/-/bootstrap-datepicker-1.6.4.tgz",
+          "optional": true
+        },
+        "bootstrap-select": {
+          "version": "1.12.4",
+          "from": "bootstrap-select@^1.12.2",
+          "resolved": "https://registry.npmjs.org/bootstrap-select/-/bootstrap-select-1.12.4.tgz",
+          "optional": true
+        },
+        "bootstrap-switch": {
+          "version": "3.3.4",
+          "from": "bootstrap-switch@>=3.3.4 <3.4.0",
+          "resolved": "https://registry.npmjs.org/bootstrap-switch/-/bootstrap-switch-3.3.4.tgz",
+          "optional": true
+        },
+        "bootstrap-touchspin": {
+          "version": "3.1.1",
+          "from": "bootstrap-touchspin@>=3.1.1 <3.2.0",
+          "resolved": "https://registry.npmjs.org/bootstrap-touchspin/-/bootstrap-touchspin-3.1.1.tgz",
+          "optional": true
+        },
+        "c3": {
+          "version": "0.4.15",
+          "from": "c3@~0.4.11",
+          "resolved": "https://registry.npmjs.org/c3/-/c3-0.4.15.tgz",
+          "optional": true
+        },
+        "d3": {
+          "version": "3.5.17",
+          "from": "d3@>=3.5.17 <3.6.0",
+          "resolved": "https://registry.npmjs.org/d3/-/d3-3.5.17.tgz",
+          "optional": true
+        },
+        "datatables.net": {
+          "version": "1.10.15",
+          "from": "datatables.net@>=1.10.9",
+          "resolved": "https://registry.npmjs.org/datatables.net/-/datatables.net-1.10.15.tgz"
+        },
+        "datatables.net-colreorder": {
+          "version": "1.3.3",
+          "from": "datatables.net-colreorder@>=1.3.2 <1.4.0",
+          "resolved": "https://registry.npmjs.org/datatables.net-colreorder/-/datatables.net-colreorder-1.3.3.tgz",
+          "optional": true
+        },
+        "datatables.net-colreorder-bs": {
+          "version": "1.3.3",
+          "from": "datatables.net-colreorder-bs@>=1.3.2 <1.4.0",
+          "resolved": "https://registry.npmjs.org/datatables.net-colreorder-bs/-/datatables.net-colreorder-bs-1.3.3.tgz",
+          "optional": true,
+          "dependencies": {
+            "datatables.net-bs": {
+              "version": "1.10.15",
+              "from": "datatables.net-bs@>=1.10.9",
+              "resolved": "https://registry.npmjs.org/datatables.net-bs/-/datatables.net-bs-1.10.15.tgz",
+              "optional": true
+            }
+          }
+        },
+        "datatables.net-select": {
+          "version": "1.2.2",
+          "from": "datatables.net-select@>=1.2.0 <1.3.0",
+          "resolved": "https://registry.npmjs.org/datatables.net-select/-/datatables.net-select-1.2.2.tgz",
+          "optional": true
+        },
+        "drmonty-datatables-colvis": {
+          "version": "1.1.2",
+          "from": "drmonty-datatables-colvis@>=1.1.2 <1.2.0",
+          "resolved": "https://registry.npmjs.org/drmonty-datatables-colvis/-/drmonty-datatables-colvis-1.1.2.tgz",
+          "optional": true
+        },
+        "eonasdan-bootstrap-datetimepicker": {
+          "version": "4.17.47",
+          "from": "eonasdan-bootstrap-datetimepicker@>=4.17.47 <5.0.0",
+          "resolved": "https://registry.npmjs.org/eonasdan-bootstrap-datetimepicker/-/eonasdan-bootstrap-datetimepicker-4.17.47.tgz",
+          "optional": true
+        },
+        "font-awesome": {
+          "version": "4.7.0",
+          "from": "font-awesome@4.7.0",
+          "resolved": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.7.0.tgz"
+        },
+        "google-code-prettify": {
+          "version": "1.0.5",
+          "from": "google-code-prettify@>=1.0.5 <1.1.0",
+          "resolved": "https://registry.npmjs.org/google-code-prettify/-/google-code-prettify-1.0.5.tgz",
+          "optional": true
+        },
+        "jquery": {
+          "version": "3.2.1",
+          "from": "jquery@>=3.2.1 <3.3.0",
+          "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.2.1.tgz"
+        },
+        "jquery-match-height": {
+          "version": "0.7.2",
+          "from": "jquery-match-height@>=0.7.0 <0.8.0",
+          "resolved": "https://registry.npmjs.org/jquery-match-height/-/jquery-match-height-0.7.2.tgz",
+          "optional": true
+        },
+        "moment": {
+          "version": "2.14.1",
+          "from": "moment@>=2.14.1 <2.15.0",
+          "resolved": "https://registry.npmjs.org/moment/-/moment-2.14.1.tgz"
+        },
+        "moment-timezone": {
+          "version": "0.4.1",
+          "from": "moment-timezone@>=0.4.1 <0.5.0",
+          "resolved": "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.4.1.tgz",
+          "optional": true
+        },
+        "patternfly-bootstrap-combobox": {
+          "version": "1.1.7",
+          "from": "patternfly-bootstrap-combobox@>=1.1.7 <1.2.0",
+          "resolved": "https://registry.npmjs.org/patternfly-bootstrap-combobox/-/patternfly-bootstrap-combobox-1.1.7.tgz",
+          "optional": true
+        },
+        "patternfly-bootstrap-treeview": {
+          "version": "2.1.5",
+          "from": "patternfly-bootstrap-treeview@~2.1.0",
+          "resolved": "https://registry.npmjs.org/patternfly-bootstrap-treeview/-/patternfly-bootstrap-treeview-2.1.5.tgz",
+          "optional": true
+        }
+      }
+    },
+    "reflect-metadata": {
+      "version": "0.1.10",
+      "from": "reflect-metadata@>=0.1.2 <0.2.0",
+      "resolved": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.10.tgz"
+    },
+    "rxjs": {
+      "version": "5.0.1",
+      "from": "rxjs@5.0.1",
+      "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-5.0.1.tgz"
+    },
+    "source-map": {
+      "version": "0.5.6",
+      "from": "source-map@>=0.5.6 <0.6.0",
+      "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.5.6.tgz"
+    },
+    "source-map-support": {
+      "version": "0.4.15",
+      "from": "source-map-support@>=0.4.2 <0.5.0",
+      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.15.tgz"
+    },
+    "symbol-observable": {
+      "version": "1.0.4",
+      "from": "symbol-observable@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.4.tgz"
+    },
+    "tsickle": {
+      "version": "0.21.6",
+      "from": "tsickle@>=0.21.0 <0.22.0",
+      "resolved": "https://registry.npmjs.org/tsickle/-/tsickle-0.21.6.tgz"
+    },
+    "tslib": {
+      "version": "1.7.1",
+      "from": "tslib@>=1.7.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/tslib/-/tslib-1.7.1.tgz"
+    },
+    "xhr2": {
+      "version": "0.1.4",
+      "from": "xhr2@>=0.1.4 <0.2.0",
+      "resolved": "https://registry.npmjs.org/xhr2/-/xhr2-0.1.4.tgz"
+    },
+    "zone.js": {
+      "version": "0.8.4",
+      "from": "zone.js@0.8.4",
+      "resolved": "https://registry.npmjs.org/zone.js/-/zone.js-0.8.4.tgz"
+    }
+  }
+}
