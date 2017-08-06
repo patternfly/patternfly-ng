@@ -1,6 +1,6 @@
 {
   "name": "patternfly-ng",
-  "version": "0.0.2-semantically-released",
+  "version": "0.0.0-semantically-released",
   "dependencies": {
     "@angular/animations": {
       "version": "4.3.2",
