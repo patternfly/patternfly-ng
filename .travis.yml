@@ -25,7 +25,6 @@ script:
   - sh -x ./node_modules/patternfly-eng-release/scripts/_build.sh -x
 
 after_success:
-  - if [[ -s package.json ]]; then cp package.json dist; fi
   - if [[ -s npm-shrinkwrap.json ]]; then cp package.json dist; fi
   - npm prune
   - npm run semantic-release
