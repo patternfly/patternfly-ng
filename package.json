@@ -1,6 +1,6 @@
 {
   "name": "patternfly-ng",
-  "version": "0.0.2-semantically-released",
+  "version": "0.0.0-semantically-released",
   "description": "A collection of PatternFly Angular components and other useful things to be shared.",
   "main": "bundles/patternfly-ng.umd.js",
   "module": "index.js",
@@ -22,7 +22,7 @@
     "start:demo": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base dist-demo",
     "test": "karma start",
     "transpile": "gulp transpile",
-    "semantic-release": "semantic-release pre && npm publish dist/ && semantic-release post",
+    "semantic-release": "semantic-release pre && cp package.json dist && npm publish dist/ && semantic-release post",
     "semantic-release-build": "npm run build"
   },
   "license": "Apache-2.0",
