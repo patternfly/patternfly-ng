@@ -17,7 +17,7 @@ env:
     - TRIGGER_REPO_BRANCH: "master"
 
 before_install:
-  - npm install git+https://github.com/patternfly/patternfly-eng-release.git
+  - npm install patternfly-eng-release
 
 install: true
 
@@ -25,9 +25,10 @@ script:
   - sh -x ./node_modules/patternfly-eng-release/scripts/_build.sh -x
 
 after_success:
-  - if [[ -s npm-shrinkwrap.json ]]; then cp package.json dist; fi
-  - npm prune
-  - npm run semantic-release
+  - 'if [[ "$TRAVIS_SECURE_ENV_VARS" = "true" && "$TRAVIS_BRANCH" = "master-dist" ]]; then
+       npm prune;
+       npm run semantic-release;
+     fi'
   - npm run publish-travis
 
 branches:
