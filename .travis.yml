@@ -27,7 +27,6 @@ script:
 after_success:
   - git show-ref --head --heads | while IFS=' ' read -r hash name; do test ! -e "${GIT_DIR:-.git}/$name" && echo $hash > "${GIT_DIR:-.git}/$name"; done
   - 'if [[ "$TRAVIS_SECURE_ENV_VARS" = "true" && "$TRAVIS_BRANCH" = "master-dist" ]]; then
-       npm prune;
        npm run semantic-release;
      fi'
   - npm run publish-travis
