@@ -26,7 +26,9 @@ script:
 
 after_success:
   - 'if [[ "$TRAVIS_SECURE_ENV_VARS" = "true" && "$TRAVIS_BRANCH" = "master-dist" ]]; then
+       npm run semantic-release-pre;
        sh -x ./node_modules/patternfly-eng-release/scripts/semantic-release/_publish-npm.sh -d;
+       npm run semantic-release-post;
      fi'
   - npm run publish-travis
 
