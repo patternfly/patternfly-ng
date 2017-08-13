@@ -164,8 +164,7 @@ gulp.task('copy-examples', function () {
 gulp.task('copy-static-assets', function () {
   return gulp.src([
     'LICENSE',
-    'README.md',
-    'package.json',
+    'README.md'
   ])
     .pipe(gulp.dest(libraryDist));
 });
