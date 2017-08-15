@@ -16,14 +16,23 @@ export abstract class ChartBase {
    */
   @Output() chartLoaded: EventEmitter<any> = new EventEmitter();
 
-  public prevConfig: any;
+
+  /**
+   * Stored previous config to check for any changes
+   */
+  protected prevConfig: ChartConfig;
   // store the chart object
   private chart: any;
 
   constructor() {
   }
 
-  generateChart (chartId: string, reload?: boolean): void {
+  /**
+   * Protected method called when configuration or data changes by any class that inherits from this
+   * @param chartId
+   * @param reload
+   */
+  protected generateChart (chartId: string, reload?: boolean): void {
     setTimeout(() => {
       let c3Config = this.config;
       if (c3Config) {

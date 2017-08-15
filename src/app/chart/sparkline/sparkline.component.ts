@@ -22,8 +22,14 @@ export class SparklineComponent extends ChartBase implements OnInit, DoCheck {
    * Configuration object containing details about how to render the chart
    */
   @Input() config: SparklineConfig;
-  private prevChartData: any;
+
+  /**
+   * The chart id created during initialization
+   */
   public sparklineChartId: any;
+
+
+  private prevChartData: any;
   private defaultConfig: SparklineConfig;
 
   /**
@@ -64,90 +70,6 @@ export class SparklineComponent extends ChartBase implements OnInit, DoCheck {
       this.setupConfig();
       this.generateChart(this.sparklineChartId, true);
     }
-  }
-
-  protected setupConfig(): void {
-    this.defaultConfig = this.chartDefaults.getDefaultSparklineConfig();
-    this.defaultConfig.axis = {
-      x: {
-        show: this.config.showXAxis === true,
-        type: 'timeseries',
-        tick: {
-          format: () => {
-            return ''; //change to lambda ?
-          }
-        }
-      },
-      y: {
-        show: this.config.showYAxis === true,
-        tick: {
-          format: () => {
-            return ''; //change to lambda ?
-          }
-        }
-      }
-    };
-
-    // Setup the default configuration
-    this.defaultConfig.tooltip = this.sparklineTooltip();
-    this.defaultConfig.units = '';
-
-    // Override defaults with callers specifications
-    defaults(this.config, this.defaultConfig);
-
-    if (this.config.chartHeight) {
-      this.defaultConfig.size.height = this.config.chartHeight;
-      this.config.size.height = this.config.chartHeight;
-    }
-
-    /*
-     * Setup Axis options. Default is to not show either axis. This can be overridden in two ways:
-     *   1) in the config, setting showAxis to true will show both axes
-     *   2) in the attributes showXAxis and showYAxis will override the config if set
-     *
-     * By default only line and the tick marks are shown, no labels. This is a sparkline and should be used
-     * only to show a brief idea of trending. This can be overridden by setting the config.axis options per C3
-     */
-    if (this.config.axis) {
-      this.config.axis.x.show = this.config.showXAxis === true;
-      this.config.axis.y.show = this.config.showYAxis === true;
-    }
-  }
-
-  protected updateAll(): void {
-    // Need to deep watch changes in chart data
-    this.prevChartData = cloneDeep(this.chartData);
-    // Convert the given data to C3 chart format
-    this.config.data = merge(this.config.data, this.getSparklineData(this.chartData));
-  }
-
-  /*
-   * Convert the config data to C3 Data
-   */
-  protected getSparklineData(chartData: any): any {
-    let sparklineData: any  = {
-      type: 'area'
-    };
-
-    if (chartData && chartData.dataAvailable !== false && chartData.xData && chartData.yData) {
-      sparklineData.x = chartData.xData[0];
-      sparklineData.columns = [
-        chartData.xData,
-        chartData.yData
-      ];
-    }
-
-    return sparklineData;
-  };
-
-  protected getTooltipTableHTML(tipRows: any): string {
-    return '<div class="module-triangle-bottom">' +
-      '  <table class="c3-tooltip">' +
-      '    <tbody>' +
-      tipRows +
-      '    </tbody>' +
-      '  </table>' +
-      '</div>';
   }
 
   /**
@@ -221,4 +143,88 @@ export class SparklineComponent extends ChartBase implements OnInit, DoCheck {
     };
   }
 
+
+  /*
+   * Convert the config data to C3 Data
+   */
+  protected getSparklineData(chartData: any): any {
+    let sparklineData: any  = {
+      type: 'area'
+    };
+
+    if (chartData && chartData.dataAvailable !== false && chartData.xData && chartData.yData) {
+      sparklineData.x = chartData.xData[0];
+      sparklineData.columns = [
+        chartData.xData,
+        chartData.yData
+      ];
+    }
+
+    return sparklineData;
+  };
+
+  private setupConfig(): void {
+    this.defaultConfig = this.chartDefaults.getDefaultSparklineConfig();
+    this.defaultConfig.axis = {
+      x: {
+        show: this.config.showXAxis === true,
+        type: 'timeseries',
+        tick: {
+          format: () => {
+            return ''; //change to lambda ?
+          }
+        }
+      },
+      y: {
+        show: this.config.showYAxis === true,
+        tick: {
+          format: () => {
+            return ''; //change to lambda ?
+          }
+        }
+      }
+    };
+
+    // Setup the default configuration
+    this.defaultConfig.tooltip = this.sparklineTooltip();
+    this.defaultConfig.units = '';
+
+    // Override defaults with callers specifications
+    defaults(this.config, this.defaultConfig);
+
+    if (this.config.chartHeight) {
+      this.defaultConfig.size.height = this.config.chartHeight;
+      this.config.size.height = this.config.chartHeight;
+    }
+
+    /*
+     * Setup Axis options. Default is to not show either axis. This can be overridden in two ways:
+     *   1) in the config, setting showAxis to true will show both axes
+     *   2) in the attributes showXAxis and showYAxis will override the config if set
+     *
+     * By default only line and the tick marks are shown, no labels. This is a sparkline and should be used
+     * only to show a brief idea of trending. This can be overridden by setting the config.axis options per C3
+     */
+    if (this.config.axis) {
+      this.config.axis.x.show = this.config.showXAxis === true;
+      this.config.axis.y.show = this.config.showYAxis === true;
+    }
+  }
+
+  private updateAll(): void {
+    // Need to deep watch changes in chart data
+    this.prevChartData = cloneDeep(this.chartData);
+    // Convert the given data to C3 chart format
+    this.config.data = merge(this.config.data, this.getSparklineData(this.chartData));
+  }
+
+  private getTooltipTableHTML(tipRows: any): string {
+    return '<div class="module-triangle-bottom">' +
+      '  <table class="c3-tooltip">' +
+      '    <tbody>' +
+      tipRows +
+      '    </tbody>' +
+      '  </table>' +
+      '</div>';
+  }
 }
