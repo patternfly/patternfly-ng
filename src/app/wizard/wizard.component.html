@@ -37,7 +37,7 @@
     <ng-content></ng-content>
   </div>
 </div>
-<div class="modal-footer wizard-pf-footer pfng-wizard-position-override"
+<div class="modal-footer wizard-pf-footer pfng-wizard-position-override" *ngIf="!config?.hideFooter"
      [ngClass]="{'pfng-footer-inline': config?.embedInPage}">
   <button class="btn btn-default btn-cancel wizard-pf-cancel" type="button"
           [ngClass]="{'wizard-pf-cancel-no-back': config?.hidePreviousButton}"

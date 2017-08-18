@@ -45,6 +45,11 @@ export class WizardConfig {
   hideHeader?: boolean;
 
   /**
+   * Flag indicating to hide the button bar. Default is false
+   */
+  hideFooter?: boolean;
+
+  /**
    * Flag indicating to hide the back button, useful in 2 step wizards. Default is false
    */
   hidePreviousButton?: boolean;
