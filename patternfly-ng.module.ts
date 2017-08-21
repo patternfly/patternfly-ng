@@ -12,6 +12,7 @@ import { SearchHighlightModule } from './src/app/search-highlight/search-highlig
 import { SortModule } from './src/app/sort/sort.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
 import { WizardModule } from './src/app/wizard/wizard.module';
+import { ChartModule } from './src/app/chart/chart.module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { WizardModule } from './src/app/wizard/wizard.module';
     ActionModule,
     EmptyStateModule,
     FilterModule,
+    ChartModule,
     ListModule,
     NotificationModule,
     RemainingCharsCountModule,

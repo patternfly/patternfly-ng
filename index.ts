@@ -6,6 +6,14 @@ export { ActionConfig } from './src/app/action/action-config';
 export { ActionComponent } from './src/app/action/action.component';
 export { ActionModule } from './src/app/action/action.module';
 
+// Charts
+export { SparklineComponent } from './src/app/chart/sparkline/sparkline.component';
+export { SparklineConfig } from './src/app/chart/sparkline/sparkline-config';
+export { ChartConfig } from './src/app/chart/chart-config';
+export { ChartDefaults } from './src/app/chart/chart.defaults';
+export { ChartBase } from './src/app/chart/chart.base';
+export { ChartModule } from './src/app/chart/chart.module';
+
 // EmptyState
 export { EmptyStateComponent } from './src/app/empty-state/empty-state.component';
 export { EmptyStateConfig } from './src/app/empty-state/empty-state-config';
