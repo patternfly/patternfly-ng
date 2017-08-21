@@ -14,14 +14,15 @@ import { WizardStepConfig } from '../wizard-step-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'wizard-basic-example',
-  templateUrl: './wizard-basic-example.component.html'
+  selector: 'wizard-dynamic-example',
+  templateUrl: './wizard-dynamic-example.component.html'
 })
-export class WizardBasicExampleComponent implements OnInit {
+export class WizardDynamicExampleComponent implements OnInit {
   @ViewChild('wizard') wizard: WizardComponent;
 
   data: any = {};
   deployComplete: boolean = true;
+  showMoreSteps: boolean = false;
 
   // Wizard Step 1
   step1Config: WizardStepConfig;
@@ -116,7 +117,13 @@ export class WizardBasicExampleComponent implements OnInit {
   // Methods
 
   nextClicked($event: WizardEvent): void {
-    if ($event.step.config.id === 'step3b') {
+    if ($event.step.config.id === 'step1b' && this.showMoreSteps === false) {
+      this.showMoreSteps = true;
+      this.wizard.ngOnInit();
+      setTimeout(() => {
+        this.wizard.goToStep(1, true);
+      }, 10);
+    } else if ($event.step.config.id === 'step3b') {
       this.wizardExample.closeModal($event);
     }
   }
