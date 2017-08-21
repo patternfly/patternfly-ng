@@ -23,6 +23,7 @@ import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 import { ToolbarExampleModule } from '../app/toolbar/examples/toolbar-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleModule } from '../app/wizard/examples/wizard-example.module';
+import { SparklineExampleModule } from '../app/chart/sparkline/examples/sparkline-example.module';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { WizardExampleModule } from '../app/wizard/examples/wizard-example.modul
     SearchHighlightExampleModule,
     SortExampleModule,
     ToolbarExampleModule,
-    WizardExampleModule
+    WizardExampleModule,
+    SparklineExampleModule
   ],
   declarations: [
     AppComponent,

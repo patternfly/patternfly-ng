@@ -17,6 +17,7 @@ import { SearchHighlightModule } from './src/app/search-highlight/search-highlig
 import { SortModule } from './src/app/sort/sort.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
 import { WizardModule } from './src/app/wizard/wizard.module';
+import { ChartModule } from './src/app/chart/chart.module';
 var PatternFlyNgModule = (function () {
     function PatternFlyNgModule() {
     }
@@ -31,6 +32,7 @@ PatternFlyNgModule = __decorate([
             ActionModule,
             EmptyStateModule,
             FilterModule,
+            ChartModule,
             ListModule,
             NotificationModule,
             RemainingCharsCountModule,

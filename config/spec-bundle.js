@@ -31,6 +31,8 @@ require('zone.js/dist/fake-async-test');
 // RxJS
 require('rxjs/Rx');
 
+require ('patternfly/dist/js/patternfly-settings');
+
 var testing = require('@angular/core/testing');
 var browser = require('@angular/platform-browser-dynamic/testing');
 

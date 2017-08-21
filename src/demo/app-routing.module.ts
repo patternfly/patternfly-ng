@@ -14,6 +14,7 @@ import { ToastNotificationExampleComponent } from '../app/notification/examples/
 import { ToolbarExampleComponent } from '../app/toolbar/examples/toolbar-example.component';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/examples/wizard-example.component';
+import { SparklineExampleComponent } from '../app/chart/sparkline/examples/sparkline-example.component';
 
 const routes: Routes = [{
     path: '',
@@ -25,6 +26,9 @@ const routes: Routes = [{
   }, {
     path: 'emptystate',
     component: EmptyStateExampleComponent
+  }, {
+    path: 'sparkline',
+    component: SparklineExampleComponent
   }, {
     path: 'filters',
     component: FilterExampleComponent

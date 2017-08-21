@@ -14,3 +14,5 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 import 'patternfly/dist/css/patternfly.css';
 import 'patternfly/dist/css/patternfly-additions.css';
+
+require('patternfly/dist/js/patternfly-settings');
