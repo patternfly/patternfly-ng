@@ -1,6 +1,6 @@
 .idea
 dist
-node_modules
 dist-demo
+node_modules
 build
-*.css
+src/**/*.css

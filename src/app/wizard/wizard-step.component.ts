@@ -48,12 +48,12 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
     allowClickNav: true,
     allowNavAway: true,
     completed: false,
-    data: {},
     disabled: false,
     expandReview: true,
     expandReviewDetails: false,
-    priority: 999,
     nextEnabled: true,
+    previousEnabled: true,
+    priority: 999,
     title: ''
   } as WizardStepConfig;
   private init: boolean = true;
