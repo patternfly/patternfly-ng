@@ -136,7 +136,7 @@ export class WizardEmbedExampleComponent implements OnInit {
 
   stepChanged($event: WizardEvent) {
     if ($event.step.config.id === 'step1a') {
-      this.setNavAway(false);
+      this.updateName();
     } else if ($event.step.config.id === 'step3a') {
       this.wizardConfig.nextTitle = 'Deploy';
     } else if ($event.step.config.id === 'step3b') {

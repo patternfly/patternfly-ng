@@ -45,12 +45,12 @@ var WizardStepComponent = (function (_super) {
             allowClickNav: true,
             allowNavAway: true,
             completed: false,
-            data: {},
             disabled: false,
             expandReview: true,
             expandReviewDetails: false,
-            priority: 999,
             nextEnabled: true,
+            previousEnabled: true,
+            priority: 999,
             title: ''
         };
         _this.init = true;

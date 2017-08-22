@@ -43,12 +43,6 @@ export class WizardStepConfig {
   id?: string;
 
   /**
-   * Indicates the priority of this wizard step or substep relative to other wizard steps. Steps are expected to be
-   * numbered sequentially in the order they should be viewed.
-   */
-  priority?: number;
-
-  /**
    * Indicates that the next button is enabled when the wizard step or substep is displayed
    */
   nextEnabled?: boolean;
@@ -71,6 +65,12 @@ export class WizardStepConfig {
    * Not applicable for the wizard-substep component.
    */
   previousTooltip?: string;
+
+  /**
+   * Indicates the priority of this wizard step or substep relative to other wizard steps. Steps are expected to be
+   * numbered sequentially in the order they should be viewed.
+   */
+  priority?: number;
 
   /**
    * The title for the wizard step or substep to be displayed in the header and review page
