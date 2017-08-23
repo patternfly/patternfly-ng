@@ -4,28 +4,36 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../../action/action';
-import { ActionConfig } from '../../action/action-config';
+import { Action } from '../../../action/action';
+import { ActionConfig } from '../../../action/action-config';
+import { ListEvent } from '../../list-event';
 import { ListConfig } from '../list-config';
-import { ListEvent } from '../list-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'list-compound-example',
-  templateUrl: './list-compound-example.component.html'
+  selector: 'list-heading-example',
+  styleUrls: ['./list-heading-example.component.less'],
+  templateUrl: './list-heading-example.component.html'
 })
-export class ListCompoundExampleComponent implements OnInit {
+export class ListHeadingExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   items: any[];
   listConfig: ListConfig;
+  selectType: string = 'checkbox';
 
   constructor() {
   }
 
   ngOnInit(): void {
     this.allItems = [{
+      // First array item used for heading
+      name: 'NAME',
+      actions: 'ACTIONS',
+      additionalInfo: 'ADDITOINAL INFO',
+      address: 'ADDRESS'
+    }, {
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way',
       city: 'Bedrock',
@@ -45,7 +53,7 @@ export class ListCompoundExampleComponent implements OnInit {
       clusterCount: 6,
       nodeCount: 10,
       imageCount: 8,
-      hideExpandToggle: true
+      hideExpandingRowToggle: true
     }, {
       name: 'Frank Livingston',
       address: '234 Elm Street',
@@ -111,9 +119,22 @@ export class ListCompoundExampleComponent implements OnInit {
 
     this.actionConfig = {
       primaryActions: [{
+        id: 'start',
+        styleClass: 'btn-primary',
+        title: 'Start',
+        tooltip: 'Start the server'
+      }, {
         id: 'action1',
         title: 'Action 1',
         tooltip: 'Perform an action'
+      }, {
+        id: 'action2',
+        title: 'Action 2',
+        tooltip: 'Do something else'
+      }, {
+        id: 'action3',
+        title: 'Action 3',
+        tooltip: 'Do something special'
       }],
       moreActions: [{
         id: 'moreActions1',
@@ -131,7 +152,7 @@ export class ListCompoundExampleComponent implements OnInit {
       }, {
         id: 'moreActions4',
         title: 'Something Else',
-        tooltip: ''
+        tooltip: 'Do something special'
       }, {
         id: 'moreActions5',
         title: '',
@@ -145,6 +166,8 @@ export class ListCompoundExampleComponent implements OnInit {
         title: 'Grouped Action 2',
         tooltip: 'Do something similar'
       }],
+      moreActionsDisabled: false,
+      moreActionsVisible: true
     } as ActionConfig;
 
     this.listConfig = {
@@ -152,8 +175,9 @@ export class ListCompoundExampleComponent implements OnInit {
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
-      showCheckbox: false,
-      useExpandItems: false
+      showCheckbox: true,
+      useExpandItems: false,
+      useHeading: true
     } as ListConfig;
   }
 
@@ -163,13 +187,36 @@ export class ListCompoundExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action, item: any): void {
-    if ($event.title === 'Start') {
+    if ($event.id === 'start') {
       item.started = true;
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
   }
 
+  handleSelectionChange($event: ListEvent): void {
+    this.actionsText = $event.selectedItems.length + ' items selected\r\n' + this.actionsText;
+  }
+
   handleClick($event: ListEvent): void {
     this.actionsText = $event.item.name + ' clicked\r\n' + this.actionsText;
+  }
+
+  handleDblClick($event: ListEvent): void {
+    this.actionsText = $event.item.name + ' double clicked\r\n' + this.actionsText;
+  }
+
+  // Row selection
+
+  updateSelectionType(): void {
+    if (this.selectType === 'checkbox') {
+      this.listConfig.selectItems = false;
+      this.listConfig.showCheckbox = true;
+    } else if (this.selectType === 'row') {
+      this.listConfig.selectItems = true;
+      this.listConfig.showCheckbox = false;
+    } else {
+      this.listConfig.selectItems = false;
+      this.listConfig.showCheckbox = false;
+    }
   }
 }

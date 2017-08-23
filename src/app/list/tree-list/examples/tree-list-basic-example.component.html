@@ -2,63 +2,57 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <pfng-list
-            [actionTemplate]="actionTemplate"
-            [config]="listConfig"
-            [expandTemplate]="expandTemplate"
-            [items]="items"
-            [itemTemplate]="itemTemplate"
-            (onActionSelect)="handleAction($event)"
-            (onCheckboxChange)="handleCheckboxChange($event)"
-            (onClick)="handleClick($event)"
-            (onDblClick)="handleDblClick($event)"
-            (onSelect)="handleSelect($event)"
-            (onSelectionChange)="handleSelectionChange($event)">
-          <ng-template #itemTemplate let-item="item" let-index="index">
+        <pfng-tree-list #treeList
+                        [actionTemplate]="actionTemplate"
+                        [config]="treeListConfig"
+                        [itemTemplate]="itemTemplate"
+                        [items]="items"
+                        [loadTemplate]="loadTemplate"
+                        (onActionSelect)="handleAction($event)"
+                        (onClick)="handleClick($event)"
+                        (onDblClick)="handleDblClick($event)"
+                        (onMoveNode)="handleMoveNode($event)"
+                        (onToggleExpanded)="handleToggleExpanded($event)"
+                        (onSelectionChange)="handleSelectionChange($event)">
+          <ng-template #loadTemplate let-node="node" let-index="index">
+            <span>Loading...</span>
+          </ng-template>
+          <ng-template #itemTemplate let-node="node" let-index="index">
             <div class="list-pf-left">
-              <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
+              <span class="fa {{node.data.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
             </div>
             <div class="list-pf-content-wrapper">
               <div class="list-pf-main-content">
-                <div class="list-pf-title">{{item.name}}</div>
-                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+                <div class="list-pf-title">{{node.data.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{node.data.address}}</div>
               </div>
               <div class="list-pf-additional-content">
                 <div>
                   <span class="pficon pficon-screen"></span>
-                  <strong>{{item.hostCount}}</strong> Hosts
+                  <strong>{{node.data.hostCount}}</strong> Hosts
                 </div>
                 <div>
                   <span class="pficon pficon-cluster"></span>
-                  <strong>{{item.clusterCount}}</strong> Clusters
+                  <strong>{{node.data.clusterCount}}</strong> Clusters
                 </div>
                 <div>
                   <span class="pficon pficon-container-node"></span>
-                  <strong>{{item.nodeCount}}</strong> Nodes
+                  <strong>{{node.data.nodeCount}}</strong> Nodes
                 </div>
                 <div>
                   <span class="pficon pficon-image"></span>
-                  <strong>{{item.imageCount}}</strong> Images
+                  <strong>{{node.data.imageCount}}</strong> Images
                 </div>
               </div>
             </div>
           </ng-template>
-          <ng-template #actionTemplate let-item="item" let-index="index">
+          <ng-template #actionTemplate let-node="node" let-index="index">
             <pfng-action class="list-pf-actions"
-                [config]="getActionConfig(item, actionButtonTemplate, startButtonTemplate)"
-                (onActionSelect)="handleAction($event, item)">
-              <ng-template #actionButtonTemplate let-action="action">
-                <span class="fa fa-plus">&nbsp;</span>{{action.title}}
-              </ng-template>
-              <ng-template #startButtonTemplate let-action="action">
-                {{item.started === true ? "Starting" : action.title}}
-              </ng-template>
+                         [config]="actionConfig"
+                         (onActionSelect)="handleAction($event, node)">
             </pfng-action>
           </ng-template>
-          <ng-template #expandTemplate let-item="item" let-index="index">
-            <basic-content [item]="item"></basic-content>
-          </ng-template>
-        </pfng-list>
+        </pfng-tree-list>
       </div>
     </div>
   </div>
@@ -90,13 +84,13 @@
         <div class="form-group">
           <label class="checkbox-inline">
             <input id="dblClick" name="dblClick" type="checkbox"
-                   [(ngModel)]="listConfig.dblClick"
-                   (ngModelChange)="listConfig.multiSelect = false">Double Click
+                   [(ngModel)]="treeListConfig.dblClick"
+                   (ngModelChange)="treeListConfig.multiSelect = false">Double Click
           </label>
           <label class="checkbox-inline">
             <input id="multiSelect" name="multiSelect" type="checkbox"
-                   [(ngModel)]="listConfig.multiSelect"
-                   [disabled]="listConfig.dblClick">Multi Select
+                   [(ngModel)]="treeListConfig.multiSelect"
+                   [disabled]="treeListConfig.dblClick">Multi Select
           </label>
         </div>
       </form>
@@ -107,13 +101,25 @@
       <form role="form">
         <div class="form-group">
           <label class="checkbox-inline">
-            <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
-                   [(ngModel)]="listConfig.useExpandItems">Show Simple Expansion
+            <input id="dragAndDrop" name="dragAndDrop" type="checkbox"
+                   [(ngModel)]="treeListConfig.treeOptions.allowDrag">Drag and Drop
           </label>
           <label class="checkbox-inline">
             <input id="itemsAvailable" name="itemsAvailable" type="checkbox"
                    [(ngModel)]="itemsAvailable"
                    (ngModelChange)="updateItemsAvailable()">Items Available
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <button class="btn btn-default primary-action"type="button"
+                    (click)="addNode(treeList)">Add Child</button>
           </label>
         </div>
       </form>
@@ -138,13 +144,13 @@
   <div>
     <tabset>
       <tab heading="api">
-        <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
+        <iframe class="demoframe" src="docs/classes/treelistcomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="src/app/list/examples/list-basic-example.component.html"></include-content>
+        <include-content src="src/app/list/tree-list/examples/tree-list-basic-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="src/app/list/examples/list-basic-example.component.ts"></include-content>
+        <include-content src="src/app/list/tree-list/examples/tree-list-basic-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

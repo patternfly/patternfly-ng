@@ -1,7 +1,7 @@
 <div class="list-pf" *ngIf="!itemsEmpty">
-  <div class="pfng-list-item list-pf-item {{item?.itemStyleClass}}"
+  <div class="list-pf-item {{item?.itemStyleClass}}"
        *ngFor="let item of items; let i = index"
-       [ngClass]="{'active': isSelected(item) || item.isItemExpanded, 'pfng-list-heading': config.useHeading && i === 0}">
+       [ngClass]="{'active': item.selected || item.isItemExpanded, 'pfng-list-heading': config.useHeading && i === 0}">
     <div class="list-pf-container">
       <!-- list header -->
       <div *ngIf="config.useHeading && i === 0; then showExpandHeader else showExpand"></div>
@@ -36,7 +36,7 @@
       <!-- content -->
       <div class="list-pf-content list-pf-content-flex">
         <div class="pfng-list-content"
-             (click)="itemClick($event, item)"
+             (click)="toggleSelection($event, item)"
              (dblclick)="dblClick($event, item)">
           <ng-template *ngIf="itemTemplate"
                        [ngTemplateOutlet]="itemTemplate"

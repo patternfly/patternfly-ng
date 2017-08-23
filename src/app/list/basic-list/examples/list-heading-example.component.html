@@ -9,10 +9,8 @@
             [items]="items"
             [itemTemplate]="itemTemplate"
             (onActionSelect)="handleAction($event)"
-            (onCheckboxChange)="handleCheckboxChange($event)"
             (onClick)="handleClick($event)"
             (onDblClick)="handleDblClick($event)"
-            (onSelect)="handleSelect($event)"
             (onSelectionChange)="handleSelectionChange($event)">
           <ng-template #itemTemplate let-item="item" let-index="index">
             <div *ngIf="index === 0; then showContentHeader else showContent"></div>
@@ -141,10 +139,10 @@
         <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="src/app/list/examples/list-heading-example.component.html"></include-content>
+        <include-content src="src/app/list/list/examples/list-heading-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="src/app/list/examples/list-heading-example.component.ts"></include-content>
+        <include-content src="src/app/list/list/examples/list-heading-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

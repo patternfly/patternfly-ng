@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule }  from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { ActionConfig } from '../action/action-config';
-import { EmptyStateConfig } from '../empty-state/empty-state-config';
-import { EmptyStateModule } from '../empty-state/empty-state.module';
+import { ActionConfig } from '../../action/action-config';
+import { ActionModule } from '../../action/action.module';
+import { EmptyStateConfig } from '../../empty-state/empty-state-config';
+import { EmptyStateModule } from '../../empty-state/empty-state.module';
 import { ListComponent } from './list.component';
 import { ListConfig } from './list-config';
 
@@ -114,7 +115,12 @@ describe('List component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, EmptyStateModule, FormsModule],
+      imports: [
+        ActionModule,
+        BrowserAnimationsModule,
+        EmptyStateModule,
+        FormsModule
+      ],
       declarations: [ListComponent],
       providers: []
     })
@@ -198,11 +204,9 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(1);
   });
 
-  it('should manage selected array', function () {
+  it('should manage selected items', function () {
     let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
-
-    expect(config.selectedItems.length).toBe(0);
 
     // allow item selection
     config.selectItems = true;
@@ -214,7 +218,6 @@ describe('List component - ', () => {
 
     selectedItems = fixture.debugElement.queryAll(By.css('.active'));
     expect(selectedItems.length).toBe(1);
-    expect(config.selectedItems.length).toBe(1);
   });
 
   it('should respect the multiSelect setting', function () {
@@ -255,7 +258,7 @@ describe('List component - ', () => {
     let exceptionRaised = false;
     let badConfig = {
       selectItems: true,
-      showSelectBox: true
+      showCheckbox: true
     };
 
     try {
