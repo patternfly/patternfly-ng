@@ -1,4 +1,4 @@
-@import (reference) "../../assets/stylesheets/patternfly-ng";
+@import (reference) "../../../assets/stylesheets/patternfly-ng";
 
 // Checkbox placeholder for heading
 .pfng-list-cb-placeholder {
@@ -59,19 +59,5 @@
     + .list-pf-content {
       border-left: none;
     }
-  }
-}
-
-// Todo: A-PF currently shows disabled rows using .list-group-item.disabled (we inherit that from Bootstrap), but
-// there is no list-pf-item.disabled equivelent.
-//
-// See: https://github.com/patternfly/patternfly/issues/676
-.pfng-list-item {
-  &.disabled,
-  &.disabled:hover,
-  &.disabled:focus {
-    background-color: @color-pf-black-150; // was #f1f1f1
-    color: @color-pf-black-400; // was #9c9c9c
-    cursor: not-allowed;
   }
 }

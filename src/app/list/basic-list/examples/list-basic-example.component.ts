@@ -5,11 +5,13 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../../action/action';
-import { ActionConfig } from '../../action/action-config';
-import { EmptyStateConfig } from '../../empty-state/empty-state-config';
+import { Action } from '../../../action/action';
+import { ActionConfig } from '../../../action/action-config';
+import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
+import { ListEvent } from '../../list-event';
 import { ListConfig } from '../list-config';
-import { ListEvent } from '../list-event';
+
+import { cloneDeep } from 'lodash';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -20,13 +22,11 @@ import { ListEvent } from '../list-event';
 export class ListBasicExampleComponent implements OnInit {
   actionsText: string = '';
   allItems: any[];
-  // dragItem: any;
   emptyStateConfig: EmptyStateConfig;
   items: any[];
   itemsAvailable: boolean = true;
   listConfig: ListConfig;
   selectType: string = 'checkbox';
-  showDisabledRows: boolean = false;
 
   constructor() {
   }
@@ -114,7 +114,7 @@ export class ListBasicExampleComponent implements OnInit {
       nodeCount: 10,
       imageCount: 8
     }];
-    this.items = this.allItems;
+    this.items = cloneDeep(this.allItems);
 
     this.emptyStateConfig = {
       actions: {
@@ -258,10 +258,6 @@ export class ListBasicExampleComponent implements OnInit {
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
   }
 
-  handleSelect($event: ListEvent): void {
-    this.actionsText = $event.item.name + ' selected\r\n' + this.actionsText;
-  }
-
   handleSelectionChange($event: ListEvent): void {
     this.actionsText = $event.selectedItems.length + ' items selected\r\n' + this.actionsText;
   }
@@ -274,42 +270,10 @@ export class ListBasicExampleComponent implements OnInit {
     this.actionsText = $event.item.name + ' double clicked\r\n' + this.actionsText;
   }
 
-  handleCheckboxChange($event: ListEvent): void {
-    this.actionsText = $event.item.name + ' checked: ' + $event.item.selected + '\r\n' + this.actionsText;
-  }
-
-/* Not implemented
-  // Drag and drop
-
-  handleDragEnd($event: ListEvent): void {
-    this.actionsText = 'drag end\r\n' + this.actionsText;
-  }
-
-  handleDragMoved($event: ListEvent): void {
-    let index = -1;
-
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i] === this.dragItem) {
-        index = i;
-        break;
-      }
-    }
-    if (index >= 0) {
-      this.items.splice(index, 1);
-    }
-    this.actionsText = 'drag moved\r\n' + this.actionsText;
-  }
-
-  handleDragStart($event: ListEvent): void {
-    this.dragItem = $event.item;
-    this.actionsText = $event.item.name + ': drag start\r\n' + this.actionsText;
-  }
-*/
-
   // Row selection
 
   updateItemsAvailable(): void {
-    this.items = (this.itemsAvailable) ? this.allItems : [];
+    this.items = (this.itemsAvailable) ? cloneDeep(this.allItems) : [];
   }
 
   updateSelectionType(): void {
