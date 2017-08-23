@@ -52,7 +52,7 @@
           tooltip="{{selectedStep?.config?.nextTooltip}}" placement="left"
           [disabled]="!config?.ready || !selectedStep?.nextEnabled"
           (click)="next(true)">{{config?.nextTitle}}</button>
-  <button class="btn btn-default btn-cancel wizard-btn-cancel pfng-cancel-inline" type="button"
+  <button class="btn btn-default btn-cancel pfng-cancel-inline" type="button"
           [disabled]="config?.done"
           (click)="cancel()"
           *ngIf="config?.embedInPage">{{config?.cancelTitle}}</button>
