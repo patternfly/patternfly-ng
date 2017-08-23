@@ -1,0 +1,51 @@
+<div class="padding-15">
+  <div class="row padding-bottom-15">
+    <div class="col-xs-12">
+      <h4>Sample Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <pf-sample-component [label]="componentLabel" [disabled]="disableComponent"></pf-sample-component>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-xs-12">
+      <h4>Component Options</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 sample-form">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label" for="labelText">Label: </label>
+          <input id="labelText" name="labelText" type="text" [(ngModel)]="componentLabel"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="disableLabel">Disable Component: </label>
+        <input id="disableLabel" name="disableLabel" type="checkbox" [(ngModel)]="disableComponent"/>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-xs-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="html">
+        <include-content src="src/app/sample/examples/sample-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/sample/examples/sample-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
