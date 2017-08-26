@@ -14,10 +14,10 @@ import { WizardStepConfig } from '../wizard-step-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'wizard-dynamic-example',
-  templateUrl: './wizard-dynamic-example.component.html'
+  selector: 'wizard-lazy-example',
+  templateUrl: './wizard-lazy-example.component.html'
 })
-export class WizardDynamicExampleComponent implements OnInit {
+export class WizardLazyExampleComponent implements OnInit {
   @ViewChild('wizard') wizard: WizardComponent;
 
   data: any = {};
