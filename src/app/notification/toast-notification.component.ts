@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
@@ -26,7 +27,7 @@ import { NotificationEvent } from './notification-event';
   styleUrls: ['./toast-notification.component.less'],
   templateUrl: './toast-notification.component.html'
 })
-export class ToastNotificationComponent implements OnInit {
+export class ToastNotificationComponent implements DoCheck, OnInit {
   /**
    * The notification header
    */

@@ -60,9 +60,6 @@ export class EmptyStateExampleComponent implements OnInit {
     } as EmptyStateConfig;
   }
 
-  ngDoCheck(): void {
-  }
-
   // Actions
 
   handleAction($event: Action): void {

@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
@@ -26,7 +27,7 @@ import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
   styleUrls: ['./toolbar.component.less'],
   templateUrl: './toolbar.component.html'
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent implements DoCheck, OnInit {
   /**
    * The toolbar config containing component properties
    */

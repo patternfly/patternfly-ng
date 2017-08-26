@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
@@ -21,7 +22,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   styleUrls: ['./filter-results.component.less'],
   templateUrl: './filter-results.component.html'
 })
-export class FilterResultsComponent implements OnInit {
+export class FilterResultsComponent implements DoCheck, OnInit {
   /**
    * The filter config containing component properties
    */
