@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
@@ -21,7 +22,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   styleUrls: ['./empty-state.component.less'],
   templateUrl: './empty-state.component.html'
 })
-export class EmptyStateComponent implements OnInit {
+export class EmptyStateComponent implements DoCheck, OnInit {
   /**
    * The empty state config containing component properties
    */
