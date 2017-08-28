@@ -30,12 +30,15 @@ export { FilterModule } from './src/app/filter/filter.module';
 export { FilterResultsComponent } from './src/app/filter/filter-results.component';
 export { FilterQuery } from './src/app/filter/filter-query';
 
-// List
-export { ListConfig } from './src/app/list/list-config';
-export { ListComponent } from './src/app/list/list.component';
+// Lists
+export { ListBase } from './src/app/list/list-base';
+export { ListBaseConfig } from './src/app/list/list-base-config';
+export { ListComponent } from './src/app/list/basic-list/list.component';
 export { ListEvent } from './src/app/list/list-event';
-export { ListExpandToggleComponent } from './src/app/list/list-expand-toggle.component';
 export { ListModule } from './src/app/list/list.module';
+export { ListExpandToggleComponent } from './src/app/list/basic-list/list-expand-toggle.component';
+export { TreeListComponent } from './src/app/list/tree-list/tree-list.component';
+export { TreeListConfig } from './src/app/list/tree-list/tree-list-config';
 
 // Notification
 export { Notification } from './src/app/notification/notification';

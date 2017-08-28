@@ -1,0 +1,63 @@
+@import (reference) "../../../assets/stylesheets/patternfly-ng";
+
+// Checkbox placeholder for heading
+.pfng-list-cb-placeholder {
+  width: 12px;
+}
+
+// Container for item click events
+.pfng-list-content {
+  display: flex;
+  flex-grow: 1;
+}
+
+// Row expansion toggle placeholder for heading and hidden toggles
+.pfng-list-expand-placeholder {
+  width: 8px;
+}
+
+// For displaying close button in expansion area
+.pfng-list-expansion {
+  position: relative;
+  .list-pf-content {
+    flex-grow: 1;
+  }
+}
+
+// For displaying a heading above the list
+.pfng-list-heading {
+  // Hide heading for small screens
+  @media (max-width: 992px) {
+    display: none;
+  }
+  // Heading should not be clickable
+  pointer-events: none;
+
+  // Heading should not highlight on mouse hover
+  &:hover {
+    background-color: @color-pf-white;
+  }
+
+  // Allow info icons to generate events
+  i {
+    pointer-events: auto;
+  }
+
+  // Override top border for heading
+  &.list-pf-item {
+    border-top: none;
+  }
+
+  // Override font for normal heading text
+  .list-pf-title {
+    font-size: inherit;
+    font-weight: normal;
+  }
+
+  // Remove the divider line for heading
+  .list-pf-chevron, .list-pf-select {
+    + .list-pf-content {
+      border-left: none;
+    }
+  }
+}

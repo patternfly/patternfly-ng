@@ -1,6 +1,9 @@
-import { ListConfig } from './list-config';
+import { ListBase } from './list-base';
+import { ListBaseConfig } from './list-base-config';
 import { ListEvent } from './list-event';
-export { ListConfig, ListEvent };
+import { ListConfig } from './basic-list/list-config';
+import { TreeListConfig } from './tree-list/tree-list-config';
+export { ListBase, ListBaseConfig, ListConfig, ListEvent, TreeListConfig };
 /**
  * A module containing objects associated with list components
  */

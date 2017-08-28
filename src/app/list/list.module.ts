@@ -3,25 +3,39 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TreeModule } from 'angular-tree-component';
 
 import { EmptyStateModule } from '../empty-state/empty-state.module';
-import { ListComponent } from './list.component';
-import { ListConfig } from './list-config';
+import { ListBase } from './list-base';
+import { ListBaseConfig } from './list-base-config';
 import { ListEvent } from './list-event';
-import { ListExpandToggleComponent } from './list-expand-toggle.component';
+import { ListComponent } from './basic-list/list.component';
+import { ListConfig } from './basic-list/list-config';
+import { ListExpandToggleComponent } from './basic-list/list-expand-toggle.component';
+import { TreeListComponent } from './tree-list/tree-list.component';
+import { TreeListConfig } from './tree-list/tree-list-config';
 
 export {
+  ListBase,
+  ListBaseConfig,
   ListConfig,
-  ListEvent
+  ListEvent,
+  TreeListConfig
 }
 
 /**
  * A module containing objects associated with list components
  */
 @NgModule({
-  imports: [ BsDropdownModule, CommonModule, EmptyStateModule, FormsModule ],
-  declarations: [ ListComponent, ListExpandToggleComponent ],
-  exports: [ ListComponent, ListExpandToggleComponent ],
+  imports: [
+    BsDropdownModule,
+    CommonModule,
+    EmptyStateModule,
+    FormsModule,
+    TreeModule
+  ],
+  declarations: [ ListComponent, ListExpandToggleComponent, TreeListComponent ],
+  exports: [ ListComponent, ListExpandToggleComponent, TreeListComponent ],
   providers: [ BsDropdownConfig ]
 })
 export class ListModule { }

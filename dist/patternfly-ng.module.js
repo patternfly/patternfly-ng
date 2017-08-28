@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActionModule } from './src/app/action/action.module';
+import { ChartModule } from './src/app/chart/chart.module';
 import { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 import { FilterModule } from './src/app/filter/filter.module';
 import { ListModule } from './src/app/list/list.module';
@@ -17,7 +18,6 @@ import { SearchHighlightModule } from './src/app/search-highlight/search-highlig
 import { SortModule } from './src/app/sort/sort.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
 import { WizardModule } from './src/app/wizard/wizard.module';
-import { ChartModule } from './src/app/chart/chart.module';
 var PatternFlyNgModule = (function () {
     function PatternFlyNgModule() {
     }

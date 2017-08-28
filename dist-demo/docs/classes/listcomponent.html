@@ -73,19 +73,27 @@
 						expansion can be disabled by setting disabled to true on the item. If using actions, use a template named
 						actionTemplate to contain expandable content for the actions of each item. If using expand items, use a template
 					named itemExpandedTemplate to contain expandable content for each item.</p>
+					<p>Cannot use both multi-select and double click selection at the same time
+					Cannot use both checkbox and click selection at the same time</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ListComponent</span>
+						<a href="listbase.html" class="tsd-signature-type">ListBase</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ListComponent</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">DoCheck</span></li>
 					<li><span class="tsd-signature-type">OnInit</span></li>
 				</ul>
 			</section>
@@ -96,37 +104,44 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="listcomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="listcomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#actiontemplate" class="tsd-kind-icon">action<wbr>Template</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#actiontemplate" class="tsd-kind-icon">action<wbr>Template</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#config" class="tsd-kind-icon">config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#expandtemplate" class="tsd-kind-icon">expand<wbr>Template</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#itemtemplate" class="tsd-kind-icon">item<wbr>Template</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#items" class="tsd-kind-icon">items</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#onactionselect" class="tsd-kind-icon">on<wbr>Action<wbr>Select</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#oncheckboxchange" class="tsd-kind-icon">on<wbr>Checkbox<wbr>Change</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#onclick" class="tsd-kind-icon">on<wbr>Click</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#ondblclick" class="tsd-kind-icon">on<wbr>Dbl<wbr>Click</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#onselect" class="tsd-kind-icon">on<wbr>Select</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="listcomponent.html#onselectionchange" class="tsd-kind-icon">on<wbr>Selection<wbr>Change</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#itemtemplate" class="tsd-kind-icon">item<wbr>Template</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#items" class="tsd-kind-icon">items</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#onactionselect" class="tsd-kind-icon">on<wbr>Action<wbr>Select</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#onclick" class="tsd-kind-icon">on<wbr>Click</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#ondblclick" class="tsd-kind-icon">on<wbr>Dbl<wbr>Click</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#onselectionchange" class="tsd-kind-icon">on<wbr>Selection<wbr>Change</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="listcomponent.html#itemsempty" class="tsd-kind-icon">items<wbr>Empty</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#itemsempty" class="tsd-kind-icon">items<wbr>Empty</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#checkboxchange" class="tsd-kind-icon">checkbox<wbr>Change</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#dblclick" class="tsd-kind-icon">dbl<wbr>Click</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#deselectitems" class="tsd-kind-icon">deselect<wbr>Items</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="listcomponent.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#getselecteditems" class="tsd-kind-icon">get<wbr>Selected<wbr>Items</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#handleaction" class="tsd-kind-icon">handle<wbr>Action</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="listcomponent.html#ngdocheck" class="tsd-kind-icon">ng<wbr>DoCheck</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="listcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="listcomponent.html#setupconfig" class="tsd-kind-icon">setup<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="listcomponent.html#selectitem" class="tsd-kind-icon">select<wbr>Item</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#selectsingleitem" class="tsd-kind-icon">select<wbr>Single<wbr>Item</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="listcomponent.html#setupconfig" class="tsd-kind-icon">setup<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#toggleselection" class="tsd-kind-icon">toggle<wbr>Selection</a></li>
 							</ul>
 						</section>
 					</div>
@@ -134,17 +149,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">new <wbr>List<wbr>Component<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="listcomponent.html" class="tsd-signature-type">ListComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="listbase.html">ListBase</a>.<a href="listbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L116">app/list/list.component.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/basic-list/list.component.ts#L53">app/list/basic-list/list.component.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -159,13 +175,14 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="actiontemplate" class="tsd-anchor"></a>
 					<h3>action<wbr>Template</h3>
 					<div class="tsd-signature tsd-kind-icon">action<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#actiontemplate">actionTemplate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L35">app/list/list.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L19">app/list/list-base.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="listconfig.html" class="tsd-signature-type">ListConfig</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L40">app/list/list.component.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/basic-list/list.component.ts#L36">app/list/basic-list/list.component.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -195,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">expand<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L55">app/list/list.component.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/basic-list/list.component.ts#L41">app/list/basic-list/list.component.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -204,28 +221,30 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="itemtemplate" class="tsd-anchor"></a>
 					<h3>item<wbr>Template</h3>
 					<div class="tsd-signature tsd-kind-icon">item<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#itemtemplate">itemTemplate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L50">app/list/list.component.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L29">app/list/list-base.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The name of the template containing items for each item</p>
+							<p>The name of the template containing item layout</p>
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="items" class="tsd-anchor"></a>
 					<h3>items</h3>
 					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#items">items</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L45">app/list/list.component.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L24">app/list/list-base.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -234,13 +253,14 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="onactionselect" class="tsd-anchor"></a>
 					<h3>on<wbr>Action<wbr>Select</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Action<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#onactionselect">onActionSelect</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L60">app/list/list.component.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L34">app/list/list-base.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -249,28 +269,14 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="oncheckboxchange" class="tsd-anchor"></a>
-					<h3>on<wbr>Checkbox<wbr>Change</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Checkbox<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L65">app/list/list.component.ts:65</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The event emitted when a checkbox has been selected</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="onclick" class="tsd-anchor"></a>
 					<h3>on<wbr>Click</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#onclick">onClick</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L70">app/list/list.component.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L39">app/list/list-base.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -279,13 +285,14 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="ondblclick" class="tsd-anchor"></a>
 					<h3>on<wbr>Dbl<wbr>Click</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Dbl<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#ondblclick">onDblClick</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L75">app/list/list.component.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L44">app/list/list-base.ts:44</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -294,28 +301,14 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="onselect" class="tsd-anchor"></a>
-					<h3>on<wbr>Select</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L95">app/list/list.component.ts:95</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The event emitted when an item has been selected</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="onselectionchange" class="tsd-anchor"></a>
 					<h3>on<wbr>Selection<wbr>Change</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Selection<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#onselectionchange">onSelectionChange</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L100">app/list/list.component.ts:100</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L49">app/list/list-base.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -325,19 +318,20 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 					<a name="itemsempty" class="tsd-anchor"></a>
 					<h3>items<wbr>Empty</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> itemsEmpty<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#itemsempty">itemsEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L171">app/list/list.component.ts:171</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L94">app/list/list-base.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -353,6 +347,197 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="checkboxchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> checkbox<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">checkbox<wbr>Change<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#checkboxchange">checkboxChange</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L118">app/list/list-base.ts:118</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper to generate selection change event</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>item: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The selected item</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="dblclick" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> dbl<wbr>Click</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">dbl<wbr>Click<span class="tsd-signature-symbol">(</span>$event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MouseEvent</span>, item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#dblclick">dblClick</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L131">app/list/list-base.ts:131</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper to generate double click event</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>$event: <span class="tsd-signature-type">MouseEvent</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The triggered event</p>
+									</div>
+								</li>
+								<li>
+									<h5>item: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The double clicked item</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="deselectitems" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> deselect<wbr>Items</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">deselect<wbr>Items<span class="tsd-signature-symbol">(</span>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#deselectitems">deselectItems</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L145">app/list/list-base.ts:145</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper to deselect given items items and children</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>items: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The items to be deselected</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a name="getconfig" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="listconfig.html" class="tsd-signature-type">ListConfig</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="listbase.html">ListBase</a>.<a href="listbase.html#getconfig">getConfig</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/basic-list/list.component.ts#L99">app/list/basic-list/list.component.ts:99</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return component config</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="listconfig.html" class="tsd-signature-type">ListConfig</a></h4>
+							<p>ListConfig The component config</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="getselecteditems" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Selected<wbr>Items</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Selected<wbr>Items<span class="tsd-signature-symbol">(</span>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#getselecteditems">getSelectedItems</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L160">app/list/list-base.ts:160</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper to retrieve selected items</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>items: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The items containing possible selections</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>A list of selected items</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="handleaction" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Action</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Action<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><a href="action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#handleaction">handleAction</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L105">app/list/list-base.ts:105</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper to generate action select event</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>action: <a href="action.html" class="tsd-signature-type">Action</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The selected action</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="ngdocheck" class="tsd-anchor"></a>
 					<h3>ng<wbr>DoCheck</h3>
@@ -363,7 +548,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L136">app/list/list.component.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/basic-list/list.component.ts#L74">app/list/basic-list/list.component.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -385,7 +570,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L129">app/list/list.component.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/basic-list/list.component.ts#L67">app/list/basic-list/list.component.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -397,17 +582,88 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="selectitem" class="tsd-anchor"></a>
+					<h3>select<wbr>Item</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">select<wbr>Item<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, selected<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#selectitem">selectItem</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L190">app/list/list-base.ts:190</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Select or deselect an item</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>item: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The item to select or deselect</p>
+									</div>
+								</li>
+								<li>
+									<h5>selected: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>True if item should be selected</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="selectsingleitem" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> select<wbr>Single<wbr>Item</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">select<wbr>Single<wbr>Item<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#selectsingleitem">selectSingleItem</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L179">app/list/list-base.ts:179</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper to select a single item and deselect all others</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>item: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The item to select</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 					<a name="setupconfig" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> setup<wbr>Config</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 						<li class="tsd-signature tsd-kind-icon">setup<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="listbase.html">ListBase</a>.<a href="listbase.html#setupconfig">setupConfig</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/8bd1d1b/src/app/list/list.component.ts#L147">app/list/list.component.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/basic-list/list.component.ts#L84">app/list/basic-list/list.component.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -415,6 +671,44 @@
 									<p>Set up default config</p>
 								</div>
 							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="toggleselection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> toggle<wbr>Selection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">toggle<wbr>Selection<span class="tsd-signature-symbol">(</span>$event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MouseEvent</span>, item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#toggleselection">toggleSelection</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5535abd/src/app/list/list-base.ts#L215">app/list/list-base.ts:215</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper to toggle item selection</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>$event: <span class="tsd-signature-type">MouseEvent</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The triggered event</p>
+									</div>
+								</li>
+								<li>
+									<h5>item: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The item to select</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -436,10 +730,10 @@
 					<li class="current tsd-kind-class">
 						<a href="listcomponent.html" class="tsd-kind-icon">List<wbr>Component</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="listcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#actiontemplate" class="tsd-kind-icon">action<wbr>Template</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -448,32 +742,44 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="listcomponent.html#expandtemplate" class="tsd-kind-icon">expand<wbr>Template</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#itemtemplate" class="tsd-kind-icon">item<wbr>Template</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#items" class="tsd-kind-icon">items</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#onactionselect" class="tsd-kind-icon">on<wbr>Action<wbr>Select</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="listcomponent.html#oncheckboxchange" class="tsd-kind-icon">on<wbr>Checkbox<wbr>Change</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#onclick" class="tsd-kind-icon">on<wbr>Click</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#ondblclick" class="tsd-kind-icon">on<wbr>Dbl<wbr>Click</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="listcomponent.html#onselect" class="tsd-kind-icon">on<wbr>Select</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#onselectionchange" class="tsd-kind-icon">on<wbr>Selection<wbr>Change</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 								<a href="listcomponent.html#itemsempty" class="tsd-kind-icon">items<wbr>Empty</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="listcomponent.html#checkboxchange" class="tsd-kind-icon">checkbox<wbr>Change</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="listcomponent.html#dblclick" class="tsd-kind-icon">dbl<wbr>Click</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="listcomponent.html#deselectitems" class="tsd-kind-icon">deselect<wbr>Items</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+								<a href="listcomponent.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="listcomponent.html#getselecteditems" class="tsd-kind-icon">get<wbr>Selected<wbr>Items</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="listcomponent.html#handleaction" class="tsd-kind-icon">handle<wbr>Action</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="listcomponent.html#ngdocheck" class="tsd-kind-icon">ng<wbr>DoCheck</a>
@@ -481,8 +787,17 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="listcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="listcomponent.html#selectitem" class="tsd-kind-icon">select<wbr>Item</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="listcomponent.html#selectsingleitem" class="tsd-kind-icon">select<wbr>Single<wbr>Item</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 								<a href="listcomponent.html#setupconfig" class="tsd-kind-icon">setup<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="listcomponent.html#toggleselection" class="tsd-kind-icon">toggle<wbr>Selection</a>
 							</li>
 						</ul>
 					</li>
