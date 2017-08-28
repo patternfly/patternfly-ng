@@ -1,11 +1,11 @@
-import { EventEmitter, OnInit } from '@angular/core';
+import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 /**
  * Filter component
  */
-export declare class FilterComponent implements OnInit {
+export declare class FilterComponent implements DoCheck, OnInit {
     /**
      * The filter config containing component properties
      */

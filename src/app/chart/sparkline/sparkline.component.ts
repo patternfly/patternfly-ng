@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, DoCheck } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 
 import { cloneDeep, defaults, isEqual, merge } from 'lodash';
 import { ChartDefaults } from '../chart.defaults';
@@ -12,7 +12,7 @@ import { SparklineConfig } from './sparkline-config';
   selector: 'pfng-chart-sparkline',
   templateUrl: './sparkline.component.html'
 })
-export class SparklineComponent extends ChartBase implements OnInit, DoCheck {
+export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
   /**
    * Chart data for the chart
    */

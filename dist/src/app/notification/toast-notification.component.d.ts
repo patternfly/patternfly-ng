@@ -1,4 +1,4 @@
-import { EventEmitter, OnInit } from '@angular/core';
+import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { Action } from '../action/action';
 import { Notification } from './notification';
 /**
@@ -10,7 +10,7 @@ import { Notification } from './notification';
  * Note: Using the kebab menu (more actions) with the close button is not currently supported. If both are specified the
  * close button will not be shown. Add a close menu item if you want to have both capabilities.
  */
-export declare class ToastNotificationComponent implements OnInit {
+export declare class ToastNotificationComponent implements DoCheck, OnInit {
     /**
      * The notification header
      */

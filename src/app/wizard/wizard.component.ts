@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
@@ -23,7 +24,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   styleUrls: ['./wizard.component.less'],
   templateUrl: './wizard.component.html'
 })
-export class WizardComponent extends WizardBase implements OnInit {
+export class WizardComponent extends WizardBase implements DoCheck, OnInit {
   /**
    * The wizard config containing component properties
    */

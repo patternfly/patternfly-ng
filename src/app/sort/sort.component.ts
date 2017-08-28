@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
@@ -22,7 +23,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   styleUrls: ['./sort.component.less'],
   templateUrl: './sort.component.html'
 })
-export class SortComponent implements OnInit {
+export class SortComponent implements DoCheck, OnInit {
   /**
    * The sort config containing component properties
    */

@@ -1,11 +1,11 @@
-import { ElementRef, EventEmitter, OnInit, TemplateRef } from '@angular/core';
+import { DoCheck, ElementRef, EventEmitter, OnInit, TemplateRef } from '@angular/core';
 import { ActionConfig } from './action-config';
 /**
  * List actions component.
  *
  * By default, buttons and kebab have no padding so they may inherit stying from components such as list and toolbar.
  */
-export declare class ActionComponent implements OnInit {
+export declare class ActionComponent implements DoCheck, OnInit {
     private el;
     /**
      * The action config containing component properties

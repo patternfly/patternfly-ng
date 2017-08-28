@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   ElementRef,
   EventEmitter,
   Input,
@@ -24,7 +25,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
   selector: 'pfng-action',
   templateUrl: './action.component.html'
 })
-export class ActionComponent implements OnInit {
+export class ActionComponent implements DoCheck, OnInit {
   /**
    * The action config containing component properties
    */

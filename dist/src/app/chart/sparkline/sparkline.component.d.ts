@@ -1,11 +1,11 @@
-import { OnInit, DoCheck } from '@angular/core';
+import { DoCheck, OnInit } from '@angular/core';
 import { ChartDefaults } from '../chart.defaults';
 import { ChartBase } from '../chart.base';
 import { SparklineConfig } from './sparkline-config';
 /**
  * Sparkline chart component based on C3
  */
-export declare class SparklineComponent extends ChartBase implements OnInit, DoCheck {
+export declare class SparklineComponent extends ChartBase implements DoCheck, OnInit {
     private chartDefaults;
     /**
      * Chart data for the chart

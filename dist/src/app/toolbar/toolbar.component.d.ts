@@ -1,10 +1,10 @@
-import { EventEmitter, OnInit, TemplateRef } from '@angular/core';
+import { DoCheck, EventEmitter, OnInit, TemplateRef } from '@angular/core';
 import { Filter } from '../filter/filter';
 import { ToolbarConfig } from './toolbar-config';
 /**
  * Toolbar component
  */
-export declare class ToolbarComponent implements OnInit {
+export declare class ToolbarComponent implements DoCheck, OnInit {
     /**
      * The toolbar config containing component properties
      */

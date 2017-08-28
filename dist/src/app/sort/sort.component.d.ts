@@ -1,9 +1,9 @@
-import { EventEmitter, OnInit } from '@angular/core';
+import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { SortConfig } from './sort-config';
 /**
  * Sort component
  */
-export declare class SortComponent implements OnInit {
+export declare class SortComponent implements DoCheck, OnInit {
     /**
      * The sort config containing component properties
      */

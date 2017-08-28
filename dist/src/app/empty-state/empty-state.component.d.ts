@@ -1,9 +1,9 @@
-import { EventEmitter, OnInit } from '@angular/core';
+import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { EmptyStateConfig } from './empty-state-config';
 /**
  * Component for rendering an empty state.
  */
-export declare class EmptyStateComponent implements OnInit {
+export declare class EmptyStateComponent implements DoCheck, OnInit {
     /**
      * The empty state config containing component properties
      */

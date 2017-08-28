@@ -1,11 +1,11 @@
-import { EventEmitter, OnInit } from '@angular/core';
+import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { WizardBase } from './wizard-base';
 import { WizardConfig } from './wizard-config';
 import { WizardStep } from './wizard-step';
 /**
  * Wizard component
  */
-export declare class WizardComponent extends WizardBase implements OnInit {
+export declare class WizardComponent extends WizardBase implements DoCheck, OnInit {
     /**
      * The wizard config containing component properties
      */
