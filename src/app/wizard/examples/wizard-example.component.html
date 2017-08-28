@@ -105,17 +105,17 @@
         </div>
       </div>
     </tab>
-    <tab heading="Dynamic" (select)="tabSelected($event)">
-      <div class="padding-15" *ngIf="activeTab === 'Dynamic' || activeTab === ''">
+    <tab heading="Lazy Loading" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Lazy Loading' || activeTab === ''">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <button (click)="openModal(dynamicTemplate)" class="btn btn-default">Launch Wizard</button>
-              <ng-template #dynamicTemplate>
-                <wizard-dynamic-example></wizard-dynamic-example>
+              <button (click)="openModal(lazyTemplate)" class="btn btn-default">Launch Wizard</button>
+              <ng-template #lazyTemplate>
+                <wizard-lazy-example></wizard-lazy-example>
               </ng-template>
               <div class="padding-top-15">
-                This example adds additional steps after the initial step is complete.
+                This example lazily adds additional steps after the initial step is complete.
               </div>
             </div>
           </div>
@@ -132,10 +132,10 @@
               <iframe class="demoframe" src="docs/classes/wizardcomponent.html"></iframe>
             </tab>
             <tab heading="html">
-              <include-content src="src/app/wizard/examples/wizard-dynamic-example.component.html"></include-content>
+              <include-content src="src/app/wizard/examples/wizard-lazy-example.component.html"></include-content>
             </tab>
             <tab heading="typescript">
-              <include-content src="src/app/wizard/examples/wizard-dynamic-example.component.ts"></include-content>
+              <include-content src="src/app/wizard/examples/wizard-lazy-example.component.ts"></include-content>
             </tab>
           </tabset>
         </div>
