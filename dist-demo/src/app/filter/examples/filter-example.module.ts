@@ -7,7 +7,6 @@ import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 import { FilterBasicExampleComponent } from './filter-basic-example.component';
 import { FilterExampleComponent } from './filter-example.component';
-import { FilterLazyExampleComponent } from './filter-lazy-example.component';
 import { FilterModule } from '../filter.module';
 import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.component';
 
@@ -19,11 +18,7 @@ import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.com
     FormsModule,
     TabsModule.forRoot()
   ],
-  declarations: [
-    FilterBasicExampleComponent,
-    FilterExampleComponent,
-    FilterLazyExampleComponent,
-    FilterTypeAheadExampleComponent ],
+  declarations: [ FilterBasicExampleComponent, FilterExampleComponent, FilterTypeAheadExampleComponent ],
   providers: [ TabsetConfig ]
 })
 export class FilterExampleModule {
