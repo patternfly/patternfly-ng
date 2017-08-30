@@ -118,7 +118,7 @@ var FilterFieldsComponent = (function () {
     });
     // Private
     FilterFieldsComponent.prototype.fieldInputKeyPress = function ($event) {
-        if ($event.which === 13) {
+        if ($event.which === 13 && this._currentValue && this._currentValue.length > 0) {
             this.onAdd.emit({
                 field: this._currentField,
                 value: this._currentValue

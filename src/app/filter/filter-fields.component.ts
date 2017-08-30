@@ -144,7 +144,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   // Private
 
   private fieldInputKeyPress($event: KeyboardEvent): void {
-    if ($event.which === 13) {
+    if ($event.which === 13 && this._currentValue && this._currentValue.length > 0) {
       this.onAdd.emit({
         field: this._currentField,
         value: this._currentValue
