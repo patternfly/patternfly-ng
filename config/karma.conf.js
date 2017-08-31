@@ -101,7 +101,7 @@ module.exports = function(config) {
           },
         },
         flags: ['--load-images=true'],
-        debug: true
+        debug: false
       }
     },
     phantomjsLauncher: {
