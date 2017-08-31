@@ -23,6 +23,7 @@ export { FilterResultsComponent } from './src/app/filter/filter-results.componen
 export { FilterQuery } from './src/app/filter/filter-query';
 export { ListBase } from './src/app/list/list-base';
 export { ListBaseConfig } from './src/app/list/list-base-config';
+export { ListConfig } from './src/app/list/basic-list/list-config';
 export { ListComponent } from './src/app/list/basic-list/list.component';
 export { ListEvent } from './src/app/list/list-event';
 export { ListModule } from './src/app/list/list.module';
