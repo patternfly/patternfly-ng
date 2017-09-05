@@ -12,9 +12,11 @@ import { NotificationServiceExampleComponent } from './notification-service-exam
 import { ToastNotificationBasicExampleComponent } from './toast-notification-basic-example.component';
 import { ToastNotificationExampleComponent } from './toast-notification-example.component';
 import { ToastNotificationListExampleComponent } from './toast-notification-list-example.component';
+import { InlineNotificationExampleComponent } from './inline-notification-example.component';
 
 @NgModule({
   declarations: [
+    InlineNotificationExampleComponent,
     NotificationServiceExampleComponent,
     ToastNotificationBasicExampleComponent,
     ToastNotificationExampleComponent,

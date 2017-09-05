@@ -37,6 +37,7 @@ export { NotificationType } from './src/app/notification/notification-type';
 export { NotificationService } from './src/app/notification/notification.service';
 export { ToastNotificationComponent } from './src/app/notification/toast-notification.component';
 export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
+export { InlineNotificationComponent } from './src/app/notification/inline-notification.component';
 export { RemainingCharsCountDirective } from './src/app/remaining-chars-count/remaining-chars-count.directive';
 export { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
 export { SampleModule } from './src/app/sample/sample.module';

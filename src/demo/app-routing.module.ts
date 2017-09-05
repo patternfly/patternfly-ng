@@ -16,6 +16,7 @@ import { ToolbarExampleComponent } from '../app/toolbar/examples/toolbar-example
 import { TreeListExampleComponent } from '../app/list/tree-list/examples/tree-list-example.component';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/examples/wizard-example.component';
+import { InlineNotificationExampleComponent } from '../app/notification/examples/inline-notification-example.component';
 
 const routes: Routes = [{
     path: '',
@@ -30,6 +31,9 @@ const routes: Routes = [{
   }, {
     path: 'filters',
     component: FilterExampleComponent
+  }, {
+    path: 'inlinenotification',
+    component: InlineNotificationExampleComponent
   }, {
     path: 'list',
     component: ListExampleComponent
