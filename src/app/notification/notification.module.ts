@@ -8,6 +8,7 @@ import { NotificationType } from './notification-type';
 import { NotificationService } from './notification.service';
 import { ToastNotificationComponent } from './toast-notification.component';
 import { ToastNotificationListComponent } from './toast-notification-list.component';
+import { InlineNotificationComponent } from './inline-notification.component';
 
 export {
   NotificationEvent,
@@ -19,8 +20,8 @@ export {
  */
 @NgModule({
   imports: [ BsDropdownModule.forRoot(), CommonModule ],
-  declarations: [ ToastNotificationComponent, ToastNotificationListComponent ],
-  exports: [ ToastNotificationComponent, ToastNotificationListComponent ],
+  declarations: [ ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent ],
+  exports: [ ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent ],
   providers: [ BsDropdownConfig, NotificationService ]
 })
 export class NotificationModule { }
