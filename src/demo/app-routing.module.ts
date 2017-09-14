@@ -2,6 +2,7 @@ import { NgModule }  from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ActionExampleComponent } from '../app/action/examples/action-example.component';
+import { CardExampleComponent } from '../app/card/basic-card/examples/card-example.component';
 import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/examples/filter-example.component';
 import { ListExampleComponent } from '../app/list/basic-list/examples/list-example.component';
@@ -25,6 +26,9 @@ const routes: Routes = [{
   }, {
     path: 'action',
     component: ActionExampleComponent
+  }, {
+    path: 'card',
+    component: CardExampleComponent
   }, {
     path: 'emptystate',
     component: EmptyStateExampleComponent
