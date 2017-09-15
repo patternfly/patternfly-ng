@@ -5,7 +5,7 @@ import { find } from 'lodash';
 /**
  * A base class with common functionality for wizard and wizard-step
  */
-export class WizardBase {
+export abstract class WizardBase {
   private _selectedStep: WizardStep;
   private _steps: WizardStep[] = [];
 
