@@ -2,7 +2,7 @@ import { WizardStep } from './wizard-step';
 /**
  * A base class with common functionality for wizard and wizard-step
  */
-export declare class WizardBase {
+export declare abstract class WizardBase {
     private _selectedStep;
     private _steps;
     /**

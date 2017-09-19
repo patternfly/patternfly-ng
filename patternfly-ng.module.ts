@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { ActionModule } from './src/app/action/action.module';
+import { CardModule } from './src/app/card/card.module';
 import { ChartModule } from './src/app/chart/chart.module';
 import { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 import { FilterModule } from './src/app/filter/filter.module';
@@ -20,9 +21,10 @@ import { WizardModule } from './src/app/wizard/wizard.module';
   ],
   exports: [
     ActionModule,
+    CardModule,
+    ChartModule,
     EmptyStateModule,
     FilterModule,
-    ChartModule,
     ListModule,
     NotificationModule,
     RemainingCharsCountModule,

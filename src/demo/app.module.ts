@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 // Main areas
 //  import example modules
 import { ActionExampleModule } from '../app/action/examples/action-example.module';
+import { CardExampleModule } from '../app/card/basic-card/examples/card-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/examples/filter-example.module';
 import { ListExampleModule } from '../app/list/basic-list/examples/list-example.module';
@@ -31,6 +32,7 @@ import { WizardExampleModule } from '../app/wizard/examples/wizard-example.modul
     ActionExampleModule,
     AppRoutingModule,
     BrowserModule,
+    CardExampleModule,
     EmptyStateExampleModule,
     FilterExampleModule,
     FormsModule,
