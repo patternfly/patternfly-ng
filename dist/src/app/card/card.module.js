@@ -29,7 +29,7 @@ var CardModule = (function () {
 CardModule = __decorate([
     NgModule({
         imports: [
-            BsDropdownModule,
+            BsDropdownModule.forRoot(),
             CommonModule,
             FormsModule
         ],

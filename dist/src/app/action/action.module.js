@@ -22,7 +22,11 @@ var ActionModule = (function () {
 }());
 ActionModule = __decorate([
     NgModule({
-        imports: [BsDropdownModule, CommonModule, FormsModule],
+        imports: [
+            BsDropdownModule.forRoot(),
+            CommonModule,
+            FormsModule
+        ],
         declarations: [ActionComponent],
         exports: [ActionComponent],
         providers: [BsDropdownConfig]

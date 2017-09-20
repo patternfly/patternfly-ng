@@ -23,7 +23,13 @@ var ToolbarModule = (function () {
 }());
 ToolbarModule = __decorate([
     NgModule({
-        imports: [ActionModule, BsDropdownModule, CommonModule, FilterModule, SortModule],
+        imports: [
+            ActionModule,
+            BsDropdownModule.forRoot(),
+            CommonModule,
+            FilterModule,
+            SortModule
+        ],
         declarations: [ToolbarComponent],
         exports: [ToolbarComponent],
         providers: [BsDropdownConfig]

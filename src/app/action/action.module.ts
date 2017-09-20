@@ -17,7 +17,11 @@ export {
  * A module containing objects associated with action components
  */
 @NgModule({
-  imports: [ BsDropdownModule, CommonModule, FormsModule ],
+  imports: [
+    BsDropdownModule.forRoot(),
+    CommonModule,
+    FormsModule
+  ],
   declarations: [ ActionComponent ],
   exports: [ ActionComponent ],
   providers: [ BsDropdownConfig ]

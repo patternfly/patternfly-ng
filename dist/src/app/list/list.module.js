@@ -30,7 +30,7 @@ var ListModule = (function () {
 ListModule = __decorate([
     NgModule({
         imports: [
-            BsDropdownModule,
+            BsDropdownModule.forRoot(),
             CommonModule,
             EmptyStateModule,
             FormsModule,
