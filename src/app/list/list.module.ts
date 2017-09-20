@@ -28,7 +28,7 @@ export {
  */
 @NgModule({
   imports: [
-    BsDropdownModule,
+    BsDropdownModule.forRoot(),
     CommonModule,
     EmptyStateModule,
     FormsModule,
