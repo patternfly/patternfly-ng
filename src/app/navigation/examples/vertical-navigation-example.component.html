@@ -1,0 +1,16 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Vertical Navigation Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <simple-vertical-navigation-example *ngIf="activeTab === 'Basic' || activeTab === ''"></simple-vertical-navigation-example>
+    </tab>
+    <tab heading="Router" (select)="tabSelected($event)">
+      <simple-vertical-navigation-example *ngIf="activeTab === 'Router'"></simple-vertical-navigation-example>
+    </tab>
+  </tabset>
+</div>

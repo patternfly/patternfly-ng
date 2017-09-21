@@ -18,6 +18,9 @@ import { TreeListExampleComponent } from '../app/list/tree-list/examples/tree-li
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/examples/wizard-example.component';
 import { InlineNotificationExampleComponent } from '../app/notification/examples/inline-notification-example.component';
+import { VerticalNavigationExampleComponent } from '../app/navigation/examples/vertical-navigation-example.component';
+import { Observable } from 'rxjs/Observable';
+import { SimpleVerticalNavigationExampleComponent } from '../app/navigation/examples/simple-vertical-navigation-example.component';
 
 const routes: Routes = [{
     path: '',
@@ -41,6 +44,15 @@ const routes: Routes = [{
   }, {
     path: 'list',
     component: ListExampleComponent
+  }, {
+    path: 'navigation',
+    component: SimpleVerticalNavigationExampleComponent,
+    children: [
+      {
+        path: '**',
+        component: SimpleVerticalNavigationExampleComponent,
+      }
+    ]
   }, {
     path: 'notificationservice',
     component: NotificationServiceExampleComponent
@@ -68,7 +80,7 @@ const routes: Routes = [{
   }, {
     path: 'treelist',
     component: TreeListExampleComponent
-  }, {
+  },  {
     path: 'wizard',
     component: WizardExampleComponent
 }];

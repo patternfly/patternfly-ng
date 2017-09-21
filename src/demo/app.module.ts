@@ -26,6 +26,7 @@ import { ToolbarExampleModule } from '../app/toolbar/examples/toolbar-example.mo
 import { TreeListExampleModule } from '../app/list/tree-list/examples/tree-list-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleModule } from '../app/wizard/examples/wizard-example.module';
+import { NavigationExampleModule } from '../app/navigation/examples/navigation-example.module';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { WizardExampleModule } from '../app/wizard/examples/wizard-example.modul
     SparklineExampleModule,
     ToolbarExampleModule,
     TreeListExampleModule,
+    NavigationExampleModule,
     WizardExampleModule
   ],
   declarations: [
