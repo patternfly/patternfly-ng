@@ -87,6 +87,11 @@ export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
 export { ToolbarModule } from './src/app/toolbar/toolbar.module';
 export { ToolbarView } from './src/app/toolbar/toolbar-view';
 
+// Vertical Navigation
+export { NavigationItemConfig } from './src/app/navigation/navigation-item-config';
+export { VerticalNavigationComponent } from './src/app/navigation/vertical-navigation.component';
+export { NavigationModule } from './src/app/navigation/navigation.module';
+
 // Wizard
 export { WizardBase } from './src/app/wizard/wizard-base';
 export { WizardComponent } from './src/app/wizard/wizard.component';
