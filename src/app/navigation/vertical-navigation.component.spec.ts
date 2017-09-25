@@ -214,7 +214,6 @@ describe('Component:  pfVerticalNavigation - ', () => {
 
         comp.items = navigationItems;
         comp.brandAlt = "ANGULAR PATTERNFLY";
-        comp.brandSrc = "images/test.svg";
         comp.pinnableMenus = true;
         comp.showBadges = true;
         comp.updateActiveItemsOnClick = true;
@@ -318,18 +317,13 @@ describe('Component:  pfVerticalNavigation - ', () => {
   });
 
   it('should show the alternate text when specified', () => {
-    let brandIcon = fixture.debugElement.queryAll(By.css('.navbar-brand-icon'));
-    expect(brandIcon.length).toBe(1);
-    let brandText = fixture.debugElement.queryAll(By.css('.navbar-brand-txt'));
-    expect(brandText.length).toBe(0);
-
     comp.brandSrc = "";
     comp.hiddenIcons = true;
     fixture.detectChanges();
 
-    brandIcon = fixture.debugElement.queryAll(By.css('.navbar-brand-icon'));
+    let brandIcon = fixture.debugElement.queryAll(By.css('.navbar-brand-icon'));
     expect(brandIcon.length).toBe(0);
-    brandText = fixture.debugElement.queryAll(By.css('.navbar-brand-txt'));
+    let brandText = fixture.debugElement.queryAll(By.css('.navbar-brand-txt'));
     expect(brandText.length).toBe(1);
   });
 

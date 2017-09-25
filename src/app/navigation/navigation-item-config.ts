@@ -57,4 +57,14 @@ export class NavigationItemConfig {
    * Indicates if this is a mobile item
    */
   isMobileItem?: boolean;
+
+  /**
+   * Internal variable used for hovering timeout
+   */
+  navHoverTimeout?: any;
+
+  /**
+   * Internal variable used for unhovering timeout
+   */
+  navUnHoverTimeout?: any;
 }

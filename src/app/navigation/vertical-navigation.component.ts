@@ -143,12 +143,12 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     this.routeChangeListener.unsubscribe();
   }
 
-  private addClass(className): void {
+  private addClass(className: string): void {
     let element = this.elementRef.nativeElement;
     this.renderer.addClass(element, className);
   }
 
-  private removeClass(className): void {
+  private removeClass(className: string): void {
     let element = this.elementRef.nativeElement;
     this.renderer.removeClass(element, className);
   }
@@ -165,7 +165,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-  private updateMobileMenu(selected?, secondaryItem?): void {
+  private updateMobileMenu(selected?: NavigationItemConfig, secondaryItem?: NavigationItemConfig): void {
     this.items.forEach((item) => {
       item.isMobileItem = false;
       if (item.children) {
@@ -256,7 +256,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
-  private setParentActive(item) {
+  private setParentActive(item: NavigationItemConfig) {
     this.items.forEach((topLevel) => {
       if (topLevel.children) {
         topLevel.children.forEach((secondLevel) => {
@@ -276,7 +276,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getFirstNavigateChild(item) {
+  private getFirstNavigateChild(item: NavigationItemConfig): NavigationItemConfig {
     var firstChild;
     if (!item.children || item.children.length < 1) {
       firstChild = item;
@@ -307,7 +307,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-  private navigateToItem(item: any): void {
+  private navigateToItem(item: NavigationItemConfig): void {
     let navItem = this.getFirstNavigateChild(item);
     let navTo;
     if (navItem) {
@@ -358,7 +358,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     return hover;
   }
 
-  private updateSecondaryCollapsedState(setCollapsed, collapsedItem?) {
+  private updateSecondaryCollapsedState(setCollapsed: boolean, collapsedItem?: NavigationItemConfig) {
     if (collapsedItem) {
       collapsedItem.secondaryCollapsed = setCollapsed;
     }
@@ -379,7 +379,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-  private updateTertiaryCollapsedState(setCollapsed, collapsedItem?): void {
+  private updateTertiaryCollapsedState(setCollapsed: boolean, collapsedItem?: NavigationItemConfig): void {
     if (collapsedItem) {
       collapsedItem.tertiaryCollapsed = setCollapsed;
     }
@@ -458,7 +458,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Public resize event called when the window size changes
    * @param event
    */
-  public onResize(event): void {
+  public onResize(event: any): void {
     this.checkNavState();
   }
 
@@ -505,7 +505,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param primary
    * @param secondary
    */
-  public handleSecondaryClick(primary: any, secondary: any): void {
+  public handleSecondaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig): void {
     if (this.inMobileState) {
       if (secondary.children && secondary.children.length > 0) {
         this.updateMobileMenu(primary, secondary);
@@ -524,7 +524,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param secondary
    * @param tertiary
    */
-  public handleTertiaryClick(primary, secondary, tertiary): void {
+  public handleTertiaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig, tertiary: NavigationItemConfig): void {
     if (this.inMobileState) {
       this.updateMobileMenu();
     }
@@ -536,7 +536,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    *  Show secondary nav bar on hover of primary nav items
    * @param item
    */
-  public handlePrimaryHover(item): void {
+  public handlePrimaryHover(item: NavigationItemConfig): void {
     if (item.children && item.children.length > 0) {
       if (!this.inMobileState) {
         if (item.navUnHoverTimeout !== undefined) {
@@ -557,7 +557,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Hides menus on unhover
    * @param item
    */
-  public handlePrimaryUnHover(item: any): void {
+  public handlePrimaryUnHover(item: NavigationItemConfig): void {
     if (item.children && item.children.length > 0) {
       if (item.navHoverTimeout !== undefined) {
         clearTimeout(item.navHoverTimeout);
@@ -599,7 +599,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Hides menus on unhover
    * @param item
    */
-  public handleSecondaryUnHover(item: any): void {
+  public handleSecondaryUnHover(item: NavigationItemConfig): void {
     if (item.children && item.children.length > 0) {
       if (item.navHoverTimeout !== undefined) {
         clearTimeout(item.navHoverTimeout);
@@ -620,7 +620,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Collapse secondary navigation
    * @param item
    */
-  public collapseSecondaryNav(item): void {
+  public collapseSecondaryNav(item: NavigationItemConfig): void {
     if (this.inMobileState) {
       this.updateMobileMenu();
     } else {
@@ -639,7 +639,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Collapse tertiary navigation
    * @param item
    */
-  public collapseTertiaryNav(item): void {
+  public collapseTertiaryNav(item: NavigationItemConfig): void {
     if (this.inMobileState) {
       this.items.forEach((primaryItem) => {
         if (primaryItem.children) {

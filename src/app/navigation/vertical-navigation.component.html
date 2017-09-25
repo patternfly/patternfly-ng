@@ -1,5 +1,5 @@
 <div>
-  <nav class="navbar navbar-pf-vertical pfng-vertical-container">
+  <nav class="navbar navbar-pf-vertical pfng-vertical-container" [ngClass]="{'pfng-vertical-hide-nav': hideTopBanner}">
     <ng-container *ngIf="!hideTopBanner">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" (click)="handleNavBarToggleClick()">
