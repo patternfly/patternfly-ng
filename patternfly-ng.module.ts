@@ -8,6 +8,7 @@ import { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 import { FilterModule } from './src/app/filter/filter.module';
 import { ListModule } from './src/app/list/list.module';
 import { NotificationModule } from './src/app/notification/notification.module';
+import { PaginationModule } from './src/app/pagination/pagination.module';
 import { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
 import { SampleModule } from './src/app/sample/sample.module';
 import { SearchHighlightModule } from './src/app/search-highlight/search-highlight.module';
@@ -27,6 +28,7 @@ import { WizardModule } from './src/app/wizard/wizard.module';
     FilterModule,
     ListModule,
     NotificationModule,
+    PaginationModule,
     RemainingCharsCountModule,
     SampleModule,
     SearchHighlightModule,
