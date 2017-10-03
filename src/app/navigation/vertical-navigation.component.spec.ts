@@ -11,6 +11,7 @@ import { VerticalNavigationComponent } from './vertical-navigation.component';
 import { TooltipModule } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationItemConfig } from './navigation-item-config';
+import { WindowReference } from '../utilities/window.reference';
 
 describe('Vertical Navigation component - ', () => {
   let comp: VerticalNavigationComponent;
@@ -197,7 +198,7 @@ describe('Vertical Navigation component - ', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, TooltipModule.forRoot(), RouterTestingModule],
       declarations: [VerticalNavigationComponent],
-      providers: []
+      providers: [WindowReference]
     })
       .compileComponents()
       .then(() => {

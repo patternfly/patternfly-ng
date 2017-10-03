@@ -87,6 +87,9 @@ export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
 export { ToolbarModule } from './src/app/toolbar/toolbar.module';
 export { ToolbarView } from './src/app/toolbar/toolbar-view';
 
+// Utilities
+export { WindowReference } from './src/app/utilities/window.reference';
+
 // Vertical Navigation
 export { NavigationItemConfig } from './src/app/navigation/navigation-item-config';
 export { VerticalNavigationComponent } from './src/app/navigation/vertical-navigation.component';

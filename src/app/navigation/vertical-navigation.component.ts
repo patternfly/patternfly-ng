@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NavigationItemConfig } from './navigation-item-config';
+import { WindowReference } from '../utilities/window.reference';
 
 /**
  * Vertical navigation component
@@ -13,10 +14,7 @@ import { NavigationItemConfig } from './navigation-item-config';
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-vertical-navigation',
   styleUrls: ['./vertical-navigation.component.less'],
-  templateUrl: './vertical-navigation.component.html',
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
+  templateUrl: './vertical-navigation.component.html'
 })
 export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
@@ -102,14 +100,19 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   private explicitCollapse: boolean = false;
   private hoverDelay: number = 500;
   private hideDelay: number = this.hoverDelay + 200;
+  private windowListener: any;
 
   /**
    * The default constructor
    */
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private router: Router) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private router: Router, private windowRef: WindowReference) {
   }
 
   ngOnInit() {
+    this.windowListener = this.windowRef.nativeWindow.addEventListener("resize", (event) => {
+      this.onResize(event);
+    });
+
     this.routeChangeListener = this.router.events.subscribe((val) => {
       if(val instanceof NavigationEnd) {
         if (!this.updateActiveItemsOnClick) {
@@ -130,6 +133,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.routeChangeListener.unsubscribe();
+    this.windowRef.nativeWindow.removeEventListener("resize");
   }
 
   private addClass(className: string): void {
@@ -181,8 +185,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
    private checkNavState() {
-    window.innerWidth;
-    let width = window.innerWidth;
+    let width = this.windowRef.nativeWindow.innerWidth;
 
     // Check to see if we need to enter/exit the mobile state
     if (!this.ignoreMobile && width < this.breakpoints.tablet) {
@@ -235,7 +238,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
     // Dispatch a resize event when showing the expanding then menu to
     // allow content to adjust to the menu sizing
-    window.dispatchEvent(new Event('resize'));
+    this.windowRef.nativeWindow.dispatchEvent(new Event('resize'));
   }
 
   private forceHideSecondaryMenu() {
