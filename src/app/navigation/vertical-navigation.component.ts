@@ -78,21 +78,74 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    */
   @Output('onItemClickEvent') itemClickEvent = new EventEmitter();
 
-  private activeSecondary: boolean = false;
-  private showMobileNav: boolean = false;
-  private showMobileSecondary: boolean = false;
-  private showMobileTertiary: boolean = false;
-  private hoverSecondaryNav: boolean = false;
-  private hoverTertiaryNav: boolean = false;
-  private collapsedSecondaryNav: boolean = false;
-  private collapsedTertiaryNav: boolean = false;
-  private navCollapsed: boolean = false;
-  private hoverTimeout: number;
-  private forceHidden: boolean = false;
-  private inMobileState: boolean;
-  private routeChangeListener: any;
+  /**
+   * Internal boolean to track if secondary menu is active
+   * @type {boolean}
+   */
+  public activeSecondary: boolean = false;
 
-  // Private internal functions
+  /**
+   * Internal boolean to track if mobile nav should be shown
+   * @type {boolean}
+   */
+  public showMobileNav: boolean = false;
+
+  /**
+   * Internal boolean to track if mobile secondary should be shown
+   * @type {boolean}
+   */
+  public showMobileSecondary: boolean = false;
+
+  /**
+   * Internal boolean to track if mobile tertiary should be shown
+   * @type {boolean}
+   */
+  public showMobileTertiary: boolean = false;
+
+  /**
+   * Track if secondary nav is being hovered over
+   * @type {boolean}
+   */
+  public hoverSecondaryNav: boolean = false;
+
+  /**
+   * Track if tertiary nav is being hovered over
+   * @type {boolean}
+   */
+  public hoverTertiaryNav: boolean = false;
+
+  /**
+   * Track if secondary nav is collapsed
+   * @type {boolean}
+   */
+  public collapsedSecondaryNav: boolean = false;
+
+  /**
+   * Track if tertiary nav is collapsed
+   * @type {boolean}
+   */
+  public collapsedTertiaryNav: boolean = false;
+
+  /**
+   * Internal boolean to track if nav is collapsed
+   * @type {boolean}
+   */
+  public navCollapsed: boolean = false;
+
+  /**
+   * Internal boolean to track if nav should be entirely hidden when screen is below desktop resolution
+   * @type {boolean}
+   */
+  public forceHidden: boolean = false;
+
+  /**
+   * Internal boolean to track if the navigation is in a mobile state
+   */
+  public inMobileState: boolean;
+
+  // Private internal variables
+  private hoverTimeout: number;
+  private routeChangeListener: any;
   private breakpoints: any = {
     'tablet': 768,
     'desktop': 1200
@@ -109,7 +162,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.windowListener = this.windowRef.nativeWindow.addEventListener("resize", (event) => {
+    this.windowListener = this.windowRef.nativeWindow.addEventListener("resize", (event: any) => {
       this.onResize(event);
     });
 
