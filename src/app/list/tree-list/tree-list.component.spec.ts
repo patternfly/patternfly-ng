@@ -159,7 +159,7 @@ describe('Tree List component - ', () => {
   });
 */
 
-  it('Should run consolidated tests', function () {
+  xit('Should run consolidated tests', function () {
     // Test 1: 'Should have at least one node'
     let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
     expect(elements.length).toBe(4);
