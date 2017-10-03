@@ -20,7 +20,7 @@ import { WizardExampleComponent } from '../app/wizard/examples/wizard-example.co
 import { InlineNotificationExampleComponent } from '../app/notification/examples/inline-notification-example.component';
 import { VerticalNavigationExampleComponent } from '../app/navigation/examples/vertical-navigation-example.component';
 import { Observable } from 'rxjs/Observable';
-import { SimpleVerticalNavigationExampleComponent } from '../app/navigation/examples/simple-vertical-navigation-example.component';
+import { SampleComponent } from '../app/sample/sample.component';
 
 const routes: Routes = [{
     path: '',
@@ -46,12 +46,12 @@ const routes: Routes = [{
     component: ListExampleComponent
   }, {
     path: 'navigation',
-    component: SimpleVerticalNavigationExampleComponent,
+    component: VerticalNavigationExampleComponent,
     children: [
       {
         path: '**',
-        component: SimpleVerticalNavigationExampleComponent,
-      }
+        component: SampleComponent,
+      },
     ]
   }, {
     path: 'notificationservice',

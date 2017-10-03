@@ -37,13 +37,13 @@
       <ul class="list-group">
         <li *ngFor="let item of items" class="list-group-item"
             [ngClass]="{'secondary-nav-item-pf': item.children && item.children.length > 0,
-                       'active': item.isActive,
-                       'is-hover': item.isHover,
-                       'mobile-nav-item-pf': item.isMobileItem && showMobileSecondary,
-                       'mobile-secondary-item-pf': item.isMobileItem && showMobileTertiary}"
-            (mouseenter)="handlePrimaryHover(item)" (mouseleave)="handlePrimaryUnHover(item)">
+                       'active': item.trackActiveState,
+                       'is-hover': item.trackHoverState,
+                       'mobile-nav-item-pf': item.mobileItem && showMobileSecondary,
+                       'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}"
+            (mouseenter)="handlePrimaryHover(item)" (mouseleave)="handlePrimaryBlur(item)">
           <a (click)="handlePrimaryClick(item)">
-            <span class="{{item.iconClass}}" *ngIf="item.iconClass" [ngClass]="{hidden: hiddenIcons}"
+            <span class="{{item.iconStyleClass}}" *ngIf="item.iconStyleClass" [ngClass]="{hidden: hiddenIcons}"
                   tooltip="{{item.title}}"
                   container="body"
                   placement="bottom"
@@ -56,7 +56,7 @@
                    tooltip="{{badge.tooltip}}"
                    container="body"
                    placement="right">
-                <span *ngIf="badge.count && badge.iconClass" class="{{badge.iconClass}}"></span>
+                <span *ngIf="badge.count && badge.iconStyleClass" class="{{badge.iconStyleClass}}"></span>
                 <span *ngIf="badge.count">{{badge.count}}</span>
               </div>
             </div>
@@ -69,10 +69,10 @@
             <ul class="list-group">
               <li *ngFor="let secondaryItem of item.children" class="list-group-item"
                   [ngClass]="{'tertiary-nav-item-pf': secondaryItem.children && secondaryItem.children.length > 0,
-                             'active': secondaryItem.isActive,
-                             'is-hover': secondaryItem.isHover,
-                             'mobile-nav-item-pf': secondaryItem.isMobileItem}"
-                  (mouseenter)="handleSecondaryHover(secondaryItem)" (mouseleave)="handleSecondaryUnHover(secondaryItem)">
+                             'active': secondaryItem.trackActiveState,
+                             'is-hover': secondaryItem.trackHoverState,
+                             'mobile-nav-item-pf': secondaryItem.mobileItem}"
+                  (mouseenter)="handleSecondaryHover(secondaryItem)" (mouseleave)="handleSecondaryBlur(secondaryItem)">
                 <a (click)="handleSecondaryClick(item, secondaryItem)">
                   <span class="list-group-item-value">{{secondaryItem.title}}</span>
                   <div *ngIf="showBadges && secondaryItem.badges" class="badge-container-pf">
@@ -80,7 +80,7 @@
                          tooltip="{{badge.tooltip}}"
                          container="body"
                          placement="right">
-                      <span *ngIf="badge.count && badge.iconClass" class="{{badge.iconClass}}"></span>
+                      <span *ngIf="badge.count && badge.iconStyleClass" class="{{badge.iconStyleClass}}"></span>
                       <span *ngIf="badge.count">{{badge.count}}</span>
                     </div>
                   </div>
@@ -91,7 +91,7 @@
                     <span>{{secondaryItem.title}}</span>
                   </div>
                   <ul class="list-group">
-                    <li *ngFor="let tertiaryItem of secondaryItem.children" class="list-group-item" [ngClass]="{'active': tertiaryItem.isActive}">
+                    <li *ngFor="let tertiaryItem of secondaryItem.children" class="list-group-item" [ngClass]="{'active': tertiaryItem.trackActiveState}">
                       <a (click)="handleTertiaryClick(item, secondaryItem, tertiaryItem)">
                         <span class="list-group-item-value">{{tertiaryItem.title}}</span>
                         <div *ngIf="showBadges && tertiaryItem.badges" class="badge-container-pf">
@@ -99,7 +99,7 @@
                               tooltip="{{badge.tooltip}}"
                               container="body"
                               placement="right">
-                            <span *ngIf="badge.count && badge.iconClass" class="{{badge.iconClass}}"></span>
+                            <span *ngIf="badge.count && badge.iconStyleClass" class="{{badge.iconStyleClass}}"></span>
                             <span *ngIf="badge.count">{{badge.count}}</span>
                           </div>
                         </div>

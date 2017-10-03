@@ -11,12 +11,12 @@ export class NavigationItemConfig {
   /**
    * The icon class to use for icons displayed to the left of text
    */
-  iconClass?: string;
+  iconStyleClass?: string;
 
   /**
    * Link to navigate to
    */
-  href?: string;
+  url?: string;
 
   /**
    * Badges to display information about the navigation item
@@ -31,17 +31,17 @@ export class NavigationItemConfig {
   /**
    * Indicate if the item should be active on load
    */
-  active?: boolean;
+  activeOnLoad?: boolean;
 
   /**
    * Track the active state of the navigation item
    */
-  isActive?: boolean;
+  trackActiveState?: boolean;
 
   /**
    * Track the hover state of the navigation item
    */
-  isHover?: boolean;
+  trackHoverState?: boolean;
 
   /**
    * Indicates if the child secondary menu is opened
@@ -56,15 +56,15 @@ export class NavigationItemConfig {
   /**
    * Indicates if this is a mobile item
    */
-  isMobileItem?: boolean;
+  mobileItem?: boolean;
 
   /**
    * Internal variable used for hovering timeout
    */
-  navHoverTimeout?: any;
+  hoverTimeout?: any;
 
   /**
-   * Internal variable used for unhovering timeout
+   * Internal variable used for blur timeout
    */
-  navUnHoverTimeout?: any;
+  blurTimeout?: any;
 }

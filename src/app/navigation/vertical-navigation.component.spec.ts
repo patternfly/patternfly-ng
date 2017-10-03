@@ -12,19 +12,19 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationItemConfig } from './navigation-item-config';
 
-describe('Component:  pfVerticalNavigation - ', () => {
+describe('Vertical Navigation component - ', () => {
   let comp: VerticalNavigationComponent;
   let fixture: ComponentFixture<VerticalNavigationComponent>;
   let navigationItems: NavigationItemConfig[] = [
     {
       title: "Dashboard",
-      iconClass: "fa fa-dashboard",
-      href: "#/dashboard"
+      iconStyleClass: "fa fa-dashboard",
+      url: "#/dashboard"
     },
     {
       title: "Dolor",
-      iconClass : "fa fa-shield",
-      href: "#/dolor",
+      iconStyleClass : "fa fa-shield",
+      url: "#/dolor",
       badges: [
         {
           count: 1283,
@@ -34,16 +34,16 @@ describe('Component:  pfVerticalNavigation - ', () => {
     },
     {
       title: "Ipsum",
-      iconClass: "fa fa-space-shuttle",
-      active: true,
+      iconStyleClass: "fa fa-space-shuttle",
+      activeOnLoad: true,
       children: [
         {
           title: "Intellegam",
-          active: true,
+          activeOnLoad: true,
           children: [
             {
               title: "Recteque",
-              href: "#/ipsum/intellegam/recteque",
+              url: "#/ipsum/intellegam/recteque",
               badges: [
                 {
                   count: 6,
@@ -54,7 +54,7 @@ describe('Component:  pfVerticalNavigation - ', () => {
             },
             {
               title: "Suavitate",
-              href: "#/ipsum/intellegam/suavitate",
+              url: "#/ipsum/intellegam/suavitate",
               badges: [
                 {
                   count: 0,
@@ -65,7 +65,7 @@ describe('Component:  pfVerticalNavigation - ', () => {
             },
             {
               title: "Vituperatoribus",
-              href: "#/ipsum/intellegam/vituperatoribus",
+              url: "#/ipsum/intellegam/vituperatoribus",
               badges: [
                 {
                   count: 18,
@@ -81,15 +81,15 @@ describe('Component:  pfVerticalNavigation - ', () => {
           children: [
             {
               title: "Exerci",
-              href: "#/ipsum/copiosae/exerci"
+              url: "#/ipsum/copiosae/exerci"
             },
             {
               title: "Quaeque",
-              href: "#/ipsum/copiosae/quaeque"
+              url: "#/ipsum/copiosae/quaeque"
             },
             {
               title: "Utroque",
-              href: "#/ipsum/copiosae/utroque"
+              url: "#/ipsum/copiosae/utroque"
             }
           ]
         },
@@ -98,42 +98,42 @@ describe('Component:  pfVerticalNavigation - ', () => {
           children: [
             {
               title: "Novum",
-              href: "#/ipsum/patrioque/novum"
+              url: "#/ipsum/patrioque/novum"
             },
             {
               title: "Pericula",
-              href: "#/ipsum/patrioque/pericula"
+              url: "#/ipsum/patrioque/pericula"
             },
             {
               title: "Gubergren",
-              href: "#/ipsum/patrioque/gubergren"
+              url: "#/ipsum/patrioque/gubergren"
             }
           ]
         },
         {
           title: "Accumsan",
-          href: "#/ipsum/Accumsan"
+          url: "#/ipsum/Accumsan"
         }
       ]
     },
     {
       title: "Amet",
-      iconClass: "fa fa-paper-plane",
+      iconStyleClass: "fa fa-paper-plane",
       children: [
         {
           title: "Detracto",
           children: [
             {
               title: "Delicatissimi",
-              href: "#/amet/detracto/delicatissimi"
+              url: "#/amet/detracto/delicatissimi"
             },
             {
               title: "Aliquam",
-              href: "#/amet/detracto/aliquam"
+              url: "#/amet/detracto/aliquam"
             },
             {
               title: "Principes",
-              href: "#/amet/detracto/principes"
+              url: "#/amet/detracto/principes"
             }
           ]
         },
@@ -142,15 +142,15 @@ describe('Component:  pfVerticalNavigation - ', () => {
           children: [
             {
               title: "Convenire",
-              href: "#/amet/mediocrem/convenire"
+              url: "#/amet/mediocrem/convenire"
             },
             {
               title: "Nonumy",
-              href: "#/amet/mediocrem/nonumy"
+              url: "#/amet/mediocrem/nonumy"
             },
             {
               title: "Deserunt",
-              href: "#/amet/mediocrem/deserunt"
+              url: "#/amet/mediocrem/deserunt"
             }
           ]
         },
@@ -159,33 +159,33 @@ describe('Component:  pfVerticalNavigation - ', () => {
           children: [
             {
               title: "Aeque",
-              href: "#/amet/corrumpit/aeque"
+              url: "#/amet/corrumpit/aeque"
             },
             {
               title: "Delenit",
-              href: "#/amet/corrumpit/delenit"
+              url: "#/amet/corrumpit/delenit"
             },
             {
               title: "Qualisque",
-              href: "#/amet/corrumpit/qualisque"
+              url: "#/amet/corrumpit/qualisque"
             }
           ]
         },
         {
           title: "urbanitas",
-          href: "#/amet/urbanitas"
+          url: "#/amet/urbanitas"
         }
       ]
     },
     {
       title: "Adipscing",
-      iconClass: "fa fa-graduation-cap",
-      href: "#/adipscing"
+      iconStyleClass: "fa fa-graduation-cap",
+      url: "#/adipscing"
     },
     {
       title: "Lorem",
-      iconClass: "fa fa-gamepad",
-      href: "#/lorem"
+      iconStyleClass: "fa fa-gamepad",
+      url: "#/lorem"
     }
   ];
 
@@ -204,7 +204,7 @@ describe('Component:  pfVerticalNavigation - ', () => {
         fixture = TestBed.createComponent(VerticalNavigationComponent);
         comp = fixture.componentInstance;
 
-        comp.navigatedEvent.subscribe((item: any) => {
+        comp.navigationEvent.subscribe((item: any) => {
           navigateItem = item.title;
         });
 

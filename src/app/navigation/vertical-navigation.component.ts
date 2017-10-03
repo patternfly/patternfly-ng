@@ -73,24 +73,24 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   /**
    * This event is fired any time the user has initiated navigation
    */
-  @Output('onNavigatedEvent') navigatedEvent = new EventEmitter();
+  @Output('onNavigationEvent') navigationEvent = new EventEmitter();
 
   /**
    * This event is fired any time an item in the navigation is clicked
    */
   @Output('onItemClickEvent') itemClickEvent = new EventEmitter();
 
-  private activeSecondary: boolean;
-  private showMobileNav: boolean;
-  private showMobileSecondary: boolean;
-  private showMobileTertiary: boolean;
-  private hoverSecondaryNav: boolean;
-  private hoverTertiaryNav: boolean;
-  private collapsedSecondaryNav: boolean;
-  private collapsedTertiaryNav: boolean;
-  private navCollapsed: boolean;
-  private navHoverTimeout: number;
-  private forceHidden: boolean;
+  private activeSecondary: boolean = false;
+  private showMobileNav: boolean = false;
+  private showMobileSecondary: boolean = false;
+  private showMobileTertiary: boolean = false;
+  private hoverSecondaryNav: boolean = false;
+  private hoverTertiaryNav: boolean = false;
+  private collapsedSecondaryNav: boolean = false;
+  private collapsedTertiaryNav: boolean = false;
+  private navCollapsed: boolean = false;
+  private hoverTimeout: number;
+  private forceHidden: boolean = false;
   private inMobileState: boolean;
   private routeChangeListener: any;
 
@@ -110,29 +110,18 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.activeSecondary = false;
-    this.showMobileNav = false;
-    this.showMobileSecondary = false;
-    this.showMobileTertiary = false;
-    this.hoverSecondaryNav = false;
-    this.hoverTertiaryNav = false;
-    this.collapsedSecondaryNav = false;
-    this.collapsedTertiaryNav = false;
-    this.navCollapsed = false;
-    this.forceHidden = false;
-
     this.routeChangeListener = this.router.events.subscribe((val) => {
-      if(val  instanceof NavigationEnd) {
+      if(val instanceof NavigationEnd) {
         if (!this.updateActiveItemsOnClick) {
           this.clearActiveItems();
-          this.setActiveItems();
+          this.initActiveItems();
         }
       }
     });
 
     if (!this.updateActiveItemsOnClick) {
       this.clearActiveItems();
-      this.setActiveItems();
+      this.initActiveItems();
     }
 
     this.initBodyElement();
@@ -167,18 +156,18 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   private updateMobileMenu(selected?: NavigationItemConfig, secondaryItem?: NavigationItemConfig): void {
     this.items.forEach((item) => {
-      item.isMobileItem = false;
+      item.mobileItem = false;
       if (item.children) {
         item.children.forEach((nextSecondary) => {
-          nextSecondary.isMobileItem = false;
+          nextSecondary.mobileItem = false;
         });
       }
     });
 
     if (selected) {
-      selected.isMobileItem = true;
+      selected.mobileItem = true;
       if (secondaryItem) {
-        secondaryItem.isMobileItem = true;
+        secondaryItem.mobileItem = true;
         this.showMobileSecondary = false;
         this.showMobileTertiary = true;
       } else {
@@ -261,13 +250,13 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       if (topLevel.children) {
         topLevel.children.forEach((secondLevel) => {
           if (secondLevel === item) {
-            topLevel.isActive = true;
+            topLevel.trackActiveState = true;
           }
           if (secondLevel.children) {
             secondLevel.children.forEach((thirdLevel) => {
               if (thirdLevel === item) {
-                topLevel.isActive = true;
-                secondLevel.isActive = true;
+                topLevel.trackActiveState = true;
+                secondLevel.trackActiveState = true;
               }
             });
           }
@@ -293,7 +282,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       this.items.forEach((topLevel) => {
         if (topLevel.children) {
           topLevel.children.forEach((secondLevel) => {
-            if (secondLevel.isActive) {
+            if (secondLevel.trackActiveState) {
               this.activeSecondary = true;
             }
           });
@@ -312,12 +301,12 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     let navTo;
     if (navItem) {
       this.showMobileNav = false;
-      navTo = navItem.href;
+      navTo = navItem.url;
       if (navTo) {
         this.router.navigateByUrl(navTo);
       }
-      if(this.navigatedEvent) {
-        this.navigatedEvent.emit(navItem);
+      if(this.navigationEvent) {
+        this.navigationEvent.emit(navItem);
       }
     }
 
@@ -327,7 +316,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
     if (this.updateActiveItemsOnClick ) {
       this.clearActiveItems();
-      navItem.isActive = true;
+      navItem.trackActiveState = true;
       this.setParentActive(navItem);
       this.setSecondaryItemVisible();
     }
@@ -337,7 +326,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   private primaryHover(): boolean {
     let hover = false;
     this.items.forEach( (item) => {
-      if (item.isHover) {
+      if (item.trackHoverState) {
         hover = true;
       }
     });
@@ -349,7 +338,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     this.items.forEach((item) => {
       if (item.children && item.children.length > 0) {
         item.children.forEach( (secondaryItem) => {
-          if (secondaryItem.isHover) {
+          if (secondaryItem.trackHoverState) {
             hover = true;
           }
         });
@@ -410,13 +399,13 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    */
   public clearActiveItems(): void{
     this.items.forEach( (item) => {
-      item.isActive = false;
+      item.trackActiveState = false;
       if (item.children) {
         item.children.forEach( (secondary) => {
-          secondary.isActive = false;
+          secondary.trackActiveState = false;
           if (secondary.children) {
             secondary.children.forEach( (tertiary) => {
-              tertiary.isActive = false;
+              tertiary.trackActiveState = false;
             });
           }
         });
@@ -425,27 +414,27 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Sets the active items in the vertical navigation
+   * Initialize the active items in the vertical navigation
    */
-  public setActiveItems(): void {
+  public initActiveItems(): void {
     let updatedRoute = this.router.url;
     // //Setting active state on load
     this.items.forEach( (topLevel)  => {
-      if (updatedRoute.indexOf(topLevel.href) > -1) {
-        topLevel.isActive = true;
+      if (updatedRoute.indexOf(topLevel.url) > -1) {
+        topLevel.trackActiveState = true;
       }
       if (topLevel.children) {
         topLevel.children.forEach( (secondLevel) => {
-          if (updatedRoute.indexOf(secondLevel.href) > -1) {
-            secondLevel.isActive = true;
-            topLevel.isActive = true;
+          if (updatedRoute.indexOf(secondLevel.url) > -1) {
+            secondLevel.trackActiveState = true;
+            topLevel.trackActiveState = true;
           }
           if (secondLevel.children) {
             secondLevel.children.forEach( (thirdLevel) => {
-              if (updatedRoute.indexOf(thirdLevel.href) > -1) {
-                thirdLevel.isActive = true;
-                secondLevel.isActive = true;
-                topLevel.isActive = true;
+              if (updatedRoute.indexOf(thirdLevel.url) > -1) {
+                thirdLevel.trackActiveState = true;
+                secondLevel.trackActiveState = true;
+                topLevel.trackActiveState = true;
               }
             });
           }
@@ -539,14 +528,14 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   public handlePrimaryHover(item: NavigationItemConfig): void {
     if (item.children && item.children.length > 0) {
       if (!this.inMobileState) {
-        if (item.navUnHoverTimeout !== undefined) {
-          clearTimeout(item.navUnHoverTimeout);
-          item.navUnHoverTimeout = undefined;
-        } else if (this.navHoverTimeout === undefined && !item.isHover) {
-          item.navHoverTimeout = setTimeout(() => {
+        if (item.blurTimeout !== undefined) {
+          clearTimeout(item.blurTimeout);
+          item.blurTimeout = undefined;
+        } else if (this.hoverTimeout === undefined && !item.trackHoverState) {
+          item.hoverTimeout = setTimeout(() => {
             this.hoverSecondaryNav = true;
-            item.isHover = true;
-            item.navHoverTimeout = undefined;
+            item.trackHoverState = true;
+            item.hoverTimeout = undefined;
           }, this.hoverDelay);
         }
       }
@@ -554,21 +543,21 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Hides menus on unhover
+   * Hides menus on blur
    * @param item
    */
-  public handlePrimaryUnHover(item: NavigationItemConfig): void {
+  public handlePrimaryBlur(item: NavigationItemConfig): void {
     if (item.children && item.children.length > 0) {
-      if (item.navHoverTimeout !== undefined) {
-        clearTimeout(item.navHoverTimeout);
-        item.navHoverTimeout = undefined;
-      } else if (item.navUnHoverTimeout === undefined && item.isHover) {
-        item.navUnHoverTimeout = setTimeout(() => {
-          item.isHover = false;
+      if (item.hoverTimeout !== undefined) {
+        clearTimeout(item.hoverTimeout);
+        item.hoverTimeout = undefined;
+      } else if (item.blurTimeout === undefined && item.trackHoverState) {
+        item.blurTimeout = setTimeout(() => {
+          item.trackHoverState = false;
           if (!this.primaryHover()) {
             this.hoverSecondaryNav = false;
           }
-          item.navUnHoverTimeout = undefined;
+          item.blurTimeout = undefined;
         }, this.hideDelay);
       }
     }
@@ -581,13 +570,13 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   public handleSecondaryHover(item: any): void {
     if (item.children && item.children.length > 0) {
       if (!this.inMobileState) {
-        if (item.navUnHoverTimeout !== undefined) {
-          clearTimeout(item.navUnHoverTimeout);
-          item.navUnHoverTimeout = undefined;
-        } else if (this.navHoverTimeout === undefined) {
+        if (item.blurTimeout !== undefined) {
+          clearTimeout(item.blurTimeout);
+          item.blurTimeout = undefined;
+        } else if (this.hoverTimeout === undefined) {
           item.navHoverTimeout = setTimeout( () => {
             this.hoverTertiaryNav = true;
-            item.isHover = true;
+            item.trackHoverState = true;
             item.navHoverTimeout = undefined;
           }, this.hoverDelay);
         }
@@ -596,21 +585,21 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Hides menus on unhover
+   * Hides menus on blur
    * @param item
    */
-  public handleSecondaryUnHover(item: NavigationItemConfig): void {
+  public handleSecondaryBlur(item: NavigationItemConfig): void {
     if (item.children && item.children.length > 0) {
-      if (item.navHoverTimeout !== undefined) {
-        clearTimeout(item.navHoverTimeout);
-        item.navHoverTimeout = undefined;
-      } else if (item.navUnHoverTimeout === undefined) {
-        item.navUnHoverTimeout = setTimeout( () => {
-          item.isHover = false;
+      if (item.hoverTimeout !== undefined) {
+        clearTimeout(item.hoverTimeout);
+        item.hoverTimeout = undefined;
+      } else if (item.blurTimeout === undefined) {
+        item.blurTimeout = setTimeout( () => {
+          item.trackHoverState = false;
           if (!this.secondaryHover()) {
             this.hoverTertiaryNav = false;
           }
-          item.navUnHoverTimeout = undefined;
+          item.blurTimeout = undefined;
         }, this.hideDelay);
       }
     }
