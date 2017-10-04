@@ -126,9 +126,10 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
   get nextEnabled() {
     let enabled = this.config.nextEnabled;
     if (this.hasSubsteps) {
-      this.getEnabledSteps().forEach((step: WizardStep) => {
-        enabled = enabled && step.config.nextEnabled;
-      });
+      let selectedSubstep = this.getEnabledSteps().find(step => step.selected)
+      if (selectedSubstep) {
+        enabled = selectedSubstep.config.nextEnabled;
+      }
     }
     return enabled;
   }
@@ -141,9 +142,10 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
   get previousEnabled() {
     let enabled = this.config.previousEnabled;
     if (this.hasSubsteps) {
-      this.getEnabledSteps().forEach((step: WizardStep) => {
-        enabled = enabled && step.config.previousEnabled;
-      });
+      let selectedSubstep = this.getEnabledSteps().find(step => step.selected)
+      if (selectedSubstep) {
+        enabled = selectedSubstep.config.previousEnabled;
+      }
     }
     return enabled;
   }
