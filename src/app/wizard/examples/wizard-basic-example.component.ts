@@ -5,7 +5,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-
+import { WizardStep } from '../wizard-step';
+import { WizardStepComponent } from '../wizard-step.component';
 import { WizardConfig } from '../wizard-config';
 import { WizardComponent } from '../wizard.component';
 import { WizardExampleComponent } from './wizard-example.component';
@@ -63,6 +64,7 @@ export class WizardBasicExampleComponent implements OnInit {
     this.step1bConfig = {
       id: 'step1b',
       expandReviewDetails: true,
+      nextEnabled: false,
       priority: 1,
       title: 'Settings'
     } as WizardStepConfig;
@@ -76,12 +78,14 @@ export class WizardBasicExampleComponent implements OnInit {
     this.step2aConfig = {
       id: 'step2a',
       expandReviewDetails: true,
+      nextEnabled: false,
       priority: 0,
       title: 'Details'
     } as WizardStepConfig;
     this.step2bConfig = {
       id: 'step2b',
       expandReviewDetails: true,
+      nextEnabled: false,
       priority: 1,
       title: 'Settings'
     } as WizardStepConfig;
@@ -94,11 +98,13 @@ export class WizardBasicExampleComponent implements OnInit {
     } as WizardStepConfig;
     this.step3aConfig = {
       id: 'step3a',
+      nextEnabled: false,
       priority: 0,
       title: 'Summary'
     } as WizardStepConfig;
     this.step3bConfig = {
       id: 'step3b',
+      nextEnabled: false,
       priority: 1,
       title: 'Deploy'
     } as WizardStepConfig;
@@ -132,6 +138,11 @@ export class WizardBasicExampleComponent implements OnInit {
   }
 
   stepChanged($event: WizardEvent) {
+    let flatSteps = flattenWizardSteps(this.wizard);
+    let currentStep = flatSteps.find(step => step.config.id === $event.step.config.id)
+    if (currentStep) {
+      currentStep.config.nextEnabled = true;
+    }
     if ($event.step.config.id === 'step1a') {
       this.updateName();
     } else if ($event.step.config.id === 'step3a') {
@@ -165,4 +176,18 @@ export class WizardBasicExampleComponent implements OnInit {
     this.step3aConfig.allowClickNav = allow;
     this.step3bConfig.allowClickNav = allow;
   }
+}
+
+function flattenWizardSteps(wizard: WizardComponent): WizardStep[] {
+  let flatWizard: WizardStep[] = [];
+  wizard.steps.forEach((step: WizardStepComponent) => {
+    if (step.hasSubsteps) {
+      step.steps.forEach(substep => {
+        flatWizard.push(substep);
+      });
+    } else {
+      flatWizard.push(step);
+    }
+  });
+  return flatWizard;
 }
