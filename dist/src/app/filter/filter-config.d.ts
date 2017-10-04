@@ -1,0 +1,31 @@
+import { Filter } from './filter';
+import { FilterField } from './filter-field';
+/**
+ * A config containing properties for filters
+ */
+export declare class FilterConfig {
+    /**
+     * A list of the currently applied filters
+     */
+    appliedFilters?: Filter[];
+    /**
+     * A list of filterable fields
+     */
+    fields: FilterField[];
+    /**
+     * The number of results returned after the current applied filters have been applied
+     */
+    resultsCount?: number;
+    /**
+     * The number selected items
+     */
+    selectedCount?: number;
+    /**
+     * The total number of items before any filters have been applied
+     */
+    totalCount?: number;
+    /**
+     * The tooltip placement (e.g., bottom, left, top, right)
+     */
+    tooltipPlacement?: string;
+}
