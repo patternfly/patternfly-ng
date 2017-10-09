@@ -12,7 +12,7 @@ export class PaginationConfig {
   /**
    * The total number of items in the data set.
    */
-  numTotalItems?: number;
+  totalItems?: number;
 
   /**
    * Page size increments for the 'per page' dropdown

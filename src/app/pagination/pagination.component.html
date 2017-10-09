@@ -2,30 +2,31 @@
   <div class="form-group">
     <div class="padding-right-10">
       <div class="btn-group dropdown" dropdown>
-        <button class="btn btn-default dropdown-toggle" dropdownToggle>
+        <button #pageSizeMenu class="btn btn-default dropdown-toggle" dropdownToggle>
         {{config.pageSize}}
         <span class="caret"></span>  
       </button>
         <ul class="dropdown-menu" *dropdownMenu>
-          <li *ngFor="let increment of config.pageSizeIncrements" [ngClass]="{'selected': increment === config.pageSize}" class="display-length-increment">
-            <a role="menuitem" (click)="onPageSizeChange(increment)">{{increment}}</a></li>
+          <li *ngFor="let increment of config?.pageSizeIncrements" [ngClass]="{'selected': increment === config?.pageSize}" class="display-length-increment">
+            <a role="menuitem" (click)="onPageSizeChange($event, increment)">{{increment}}</a></li>
         </ul>
       </div>
     </div>
-    <span class="per-page-label">per page</span>
+    <span for="pageSizeMenu" class="per-page-label">per page</span>
   </div>
   <div class="form-group">
-    <span><span class="pagination-pf-item-current">{{getStartIndex()}} - {{getEndIndex()}}</span> of <span class="pagination-pf-items-total">{{config.numTotalItems}}</span></span>
+    <span><span class="pagination-pf-item-current">{{getCurrentPage()}}</span> of <span class="pagination-pf-items-total">{{config.totalItems}}</span></span>
     <ul class="pagination pagination-pf-back">
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="First Page" (click)="gotoFirstPage()" class="goto-first-page"><span class="i fa fa-angle-double-left"></span></a></li>
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="Previous Page" (click)="gotoPreviousPage()" class="goto-prev-page"><span class="i fa fa-angle-left"></span></a></li>
     </ul>
-    <input type="text" #pageNoInput [ngModel]="config.pageNumber" (keyup.enter)="onPageNumberChange(pageNoInput.value)" class="pagination-pf-page"
+    <input type="text" #pInput [ngModel]="config.pageNumber" (keyup.enter)="onPageNumberChange($event, pInput.value)" class="pagination-pf-page"
       name="page" />
-    <span>of <span class="pagination-pf-pages"> {{ lastPageNumber }} </span></span>
+    <span>of&nbsp;<span class="pagination-pf-pages">{{ lastPageNumber }}</span></span>
     <ul class="pagination pagination-pf-forward">
       <li [ngClass]="{'disabled': config.pageNumber === lastPageNumber}"><a title="Next Page" (click)="gotoNextPage()" class="goto-next-page"><span class="i fa fa-angle-right"></span></a></li>
       <li [ngClass]="{'disabled': config.pageNumber === lastPageNumber}"><a title="Last Page" (click)="gotoLastPage()" class="goto-last-page"><span class="i fa fa-angle-double-right"></span></a></li>
     </ul>
   </div>
 </div>
+

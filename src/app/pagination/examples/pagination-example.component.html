@@ -7,8 +7,11 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <div *ngFor="let item of items | slice:(paginationConfig.pageNumber - 1)*paginationConfig.pageSize:paginationConfig.numTotalItems | slice:0:paginationConfig.pageSize"
-        class="col-md-12">
+      <div class="col-md-12"
+          *ngFor="let item of items |
+           slice:(paginationConfig.pageNumber - 1) *
+           paginationConfig.pageSize:paginationConfig.totalItems |
+           slice:0:paginationConfig.pageSize">
         <div class="row">
           <div class="col-md-3">
             <span>{{item.id}}</span>

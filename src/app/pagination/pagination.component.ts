@@ -47,7 +47,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
     pageSize: 5
   } as PaginationConfig
   private prevConfig: PaginationConfig;
-  lastPageNumber: number;
+  public lastPageNumber: number;
 
   /**
    * The default constructor
@@ -79,7 +79,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
    * @param changes obj of type SimpleChanges containing old and new value
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.numTotalItems && !changes.numTotalItems.isFirstChange()) {
+    if (changes.totalItems && !changes.totalItems.isFirstChange()) {
       this.lastPageNumber = this.getLastPageNumber();
       this.gotoFirstPage();
     }
@@ -101,7 +101,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
    * Page size is changed
    * @param newPageSize new page size
    */
-  private onPageSizeChange(newPageSize: number): void {
+  private onPageSizeChange($event: Event, newPageSize: number): void {
     this.config.pageSize = newPageSize;
     this.lastPageNumber = this.getLastPageNumber();
     this.gotoFirstPage();
@@ -112,9 +112,8 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
 
   /**
    * Page number is changed using input field
-   * @param value new page number
    */
-  private onPageNumberChange(value: any): void {
+  public onPageNumberChange($event: Event, value: string): void {
     let newPageNumber = parseInt(value, 10);
     if (newPageNumber > this.lastPageNumber) {
       this.updatePageNumber(this.lastPageNumber);
@@ -128,7 +127,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   /**
    * Jump to First Page
    */
-  private gotoFirstPage(): void {
+  public gotoFirstPage(): void {
     if (this.config.pageNumber !== 1) {
       this.updatePageNumber(1);
     }
@@ -137,7 +136,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   /**
    * Go to Previous Page
    */
-  private gotoPreviousPage(): void {
+  public gotoPreviousPage(): void {
     if (this.config.pageNumber !== 1) {
       this.updatePageNumber(this.config.pageNumber - 1);
     }
@@ -146,7 +145,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   /**
    * Go to Next Page
    */
-  private gotoNextPage(): void {
+  public gotoNextPage(): void {
     if (this.config.pageNumber < this.lastPageNumber) {
       this.updatePageNumber(this.config.pageNumber + 1);
     }
@@ -155,27 +154,31 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   /**
    * Jump to Last Page
    */
-  private gotoLastPage(): void {
+  public gotoLastPage(): void {
     if (this.config.pageNumber < this.lastPageNumber) {
       this.updatePageNumber(this.lastPageNumber);
     }
   }
 
+  public getCurrentPage() {
+    return this.getStartIndex() + " - " + this.getEndIndex();
+  }
+
   /**
    * Start Index of Current Page
    */
-  private getStartIndex(): number {
-    return this.config.numTotalItems ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
+  public getStartIndex(): number {
+    return this.config.totalItems ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
   }
 
   /**
    * End Index of Current Page
    */
-  private getEndIndex(): number {
-    let numFullPages = Math.floor(this.config.numTotalItems / this.config.pageSize);
-    let numItemsOnLastPage = this.config.numTotalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
+  public getEndIndex(): number {
+    let numFullPages = Math.floor(this.config.totalItems / this.config.pageSize);
+    let numItemsOnLastPage = this.config.totalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
     let numItemsOnPage = this.isLastPage() ? numItemsOnLastPage : this.config.pageSize;
-    return this.config.numTotalItems ? this.getStartIndex() + numItemsOnPage - 1 : 0;
+    return this.config.totalItems ? this.getStartIndex() + numItemsOnPage - 1 : 0;
   }
 
   /**
@@ -193,7 +196,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
    * Get Last Page Number
    */
   private getLastPageNumber(): number {
-    return Math.ceil(this.config.numTotalItems / this.config.pageSize);
+    return Math.ceil(this.config.totalItems / this.config.pageSize);
   }
 
   /**
