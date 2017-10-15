@@ -10,8 +10,9 @@ import {
 
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
+import { FilterEvent } from './filter-event';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { clone, cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Component for the filter results
@@ -33,8 +34,14 @@ export class FilterResultsComponent implements DoCheck, OnInit {
    */
   @Output('onClear') onClear = new EventEmitter();
 
+  /**
+   * The event emitted when the save action is selected
+   */
+  @Output('onSave') onSave = new EventEmitter();
+
   private defaultConfig = {} as FilterConfig;
   private prevConfig: FilterConfig;
+  private saveFilterName: string;
 
   /**
    * The default constructor
@@ -103,5 +110,13 @@ export class FilterResultsComponent implements DoCheck, OnInit {
   private clearAllFilters(): void {
     this.config.appliedFilters = [];
     this.onClear.emit(this.config.appliedFilters);
+  }
+
+  private saveAllFilters(): void {
+    this.onSave.emit({
+      appliedFilters: this.config.appliedFilters,
+      value: clone(this.saveFilterName)
+    } as FilterEvent);
+    this.saveFilterName = ''; // Reset
   }
 }

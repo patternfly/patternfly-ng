@@ -3,3 +3,34 @@
 .filter-pf {
   a { cursor: pointer; }
 }
+
+.pfng-save-filter-close {
+  font-size: 12px;
+}
+
+.pfng-save-filter {
+  input {
+    @media (min-width: 480px) {
+      width: 10em;
+    }
+    @media (min-width: 768px) {
+      width: 20em;
+    }
+  }
+  .popover {
+    max-width: initial;
+  }
+}
+
+.pfng-save-filter-divider {
+  border-top: 1px solid @color-pf-black-300;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: 10px;
+}
+
+.pfng-save-filter-footer {
+  float: right;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}

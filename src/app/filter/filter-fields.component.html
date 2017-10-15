@@ -7,10 +7,14 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" *dropdownMenu>
-        <li role="menuitem" *ngFor="let field of config?.fields">
-          <a class="filter-field dropdown-item" role="menuitem" tabindex="-1" (click)="selectField(field)">
-            {{field?.title}}
-          </a>
+        <li role="menuitem" *ngFor="let field of config?.fields"
+            [ngClass]="{'disabled': isFieldDisabled(field), 'divider dropdown-divider': field.separator}">
+          <a class="filter-field dropdown-item" role="menuitem" tabindex="-1" (click)="selectField(field)"
+             *ngIf="!field?.separator && !isFieldDisabled(field)">{{field?.title}}</a>
+          <a class="filter-field dropdown-item" role="menuitem"
+             href="javascript:void(0)"
+             onclick="return false;"
+             *ngIf="!field?.separator && isFieldDisabled(field)">{{field?.title}}</a>
         </li>
       </ul>
     </div>
@@ -62,6 +66,9 @@
               <span class="{{query?.iconStyleClass}}" *ngIf="query?.iconStyleClass"></span>
               <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
               <span [innerHTML]="query.value | SearchHighlight: queryInput.value"></span>
+              <span class="pfng-remove-filter close" *ngIf="query?.showRemove">
+                <span class="pficon pficon-close" (click)="removeQuery(query)"></span>
+              </span>
             </a>
           </li>
         </ul>

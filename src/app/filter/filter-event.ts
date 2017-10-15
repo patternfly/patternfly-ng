@@ -14,7 +14,7 @@ export class FilterEvent {
   /**
    * The currently selected filter field
    */
-  field: FilterField;
+  field?: FilterField;
 
   /**
    * The currently selected filter query, if applicable
