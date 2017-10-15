@@ -8,6 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 import { FilterField } from './filter-field';
@@ -34,6 +35,11 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
    * The event emitted when a filter has been added
    */
   @Output('onAdd') onAdd = new EventEmitter();
+
+  /**
+   * The event emitted when a saved filter has been removed
+   */
+  @Output('onRemove') onRemove = new EventEmitter();
 
   /**
    * The event emitted when a field menu option is selected
@@ -92,7 +98,13 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
     if (this.config && this.config.tooltipPlacement === undefined) {
       this.config.tooltipPlacement = 'top';
     }
+    this.initCurrentField();
+  }
 
+  /**
+   * Initialize current field and value
+   */
+  protected initCurrentField(): void {
     let fieldFound: boolean = false;
     if (this._currentField !== undefined) {
       find(this.config.fields, (nextField) => {
@@ -106,10 +118,17 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
       this._currentField = this.config.fields[0];
       this._currentValue = null;
     }
-
     if (this._currentValue === undefined) {
       this._currentValue = null;
     }
+  }
+
+  /**
+   * Reset current field and value
+   */
+  reset(): void {
+    this._currentField = undefined;
+    this.initCurrentField();
   }
 
   // Getters & setters
@@ -153,11 +172,27 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
     }
   }
 
+  private isFieldDisabled(field: FilterField): boolean {
+    if (field.type === undefined || field.type === 'text') {
+      return false;
+    }
+    return (field.queries === undefined || field.queries.length === 0);
+  }
+
   private queryInputChange(value: string) {
     this.onTypeAhead.emit({
       field: this._currentField,
       value: this._currentValue
     } as FilterEvent);
+  }
+
+  private removeQuery(filterQuery: FilterQuery): void {
+    this.onRemove.emit({
+      field: this._currentField,
+      query: filterQuery,
+      value: filterQuery.value
+    } as FilterEvent);
+    this._currentValue = null;
   }
 
   private selectField(field: FilterField): void {
@@ -170,13 +205,11 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   }
 
   private selectQuery(filterQuery: FilterQuery): void {
-    if (filterQuery != null) {
-      this.onAdd.emit({
-        field: this._currentField,
-        query: filterQuery,
-        value: filterQuery.value
-      } as FilterEvent);
-      this._currentValue = null;
-    }
+    this.onAdd.emit({
+      field: this._currentField,
+      query: filterQuery,
+      value: filterQuery.value
+    } as FilterEvent);
+    this._currentValue = null;
   }
 }

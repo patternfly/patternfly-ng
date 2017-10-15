@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { Action } from '../action/action';
@@ -18,6 +19,7 @@ import { FilterConfig } from '../filter/filter-config';
 import { FilterField } from '../filter/filter-field';
 import { FilterFieldsComponent } from '../filter/filter-fields.component';
 import { FilterResultsComponent } from '../filter/filter-results.component';
+import { FilterType } from '../filter/filter-type';
 import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
 import { SortComponent } from '../sort/sort.component';
 import { SortConfig } from '../sort/sort-config';
@@ -80,22 +82,22 @@ describe('Toolbar component - ', () => {
           id: 'name',
           title:  'Name',
           placeholder: 'Filter by Name...',
-          type: 'text'
+          type: FilterType.TEXT
         }, {
           id: 'age',
           title:  'Age',
           placeholder: 'Filter by Age...',
-          type: 'text'
+          type: FilterType.TEXT
         }, {
           id: 'address',
           title:  'Address',
           placeholder: 'Filter by Address...',
-          type: 'text'
+          type: FilterType.TEXT
         }, {
           id: 'birthMonth',
           title:  'Birth Month',
           placeholder: 'Filter by Birth Month...',
-          type: 'select',
+          type: FilterType.SELECT,
           queries: [{
             id: 'month1',
             value: 'January'
@@ -178,6 +180,7 @@ describe('Toolbar component - ', () => {
         BsDropdownModule.forRoot(),
         BrowserAnimationsModule,
         FormsModule,
+        PopoverModule.forRoot(),
         TooltipModule.forRoot(),
         SearchHighlightModule
       ],

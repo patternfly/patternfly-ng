@@ -2,10 +2,25 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <pfng-filter [config]="filterConfig"
+        <pfng-filter #filter
+                     [config]="filterConfig"
                      (onChange)="filterChanged($event)"
-                     (onFieldSelect)="filterFieldSelected($event)"
+                     (onFieldSelect)="filterFieldSelected()"
+                     (onRemove)="removeSavedFilter($event)"
+                     (onSave)="saveFilter($event)"
                      (onTypeAhead)="filterQueries($event)"></pfng-filter>
+        <div class="padding-top-15">
+          This example lazily loads filters in addition to saving a custom filter.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="padding-top-15">
+        <button class="btn btn-default primary-action" type="button"
+                (click)="loadSavedFilters()">Load Saved Filters
+        </button>
       </div>
     </div>
   </div>
@@ -57,10 +72,10 @@
         <iframe class="demoframe" src="docs/classes/filtercomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="src/app/filter/examples/filter-type-ahead-example.component.html"></include-content>
+        <include-content src="src/app/filter/examples/filter-save-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="src/app/filter/examples/filter-type-ahead-example.component.ts"></include-content>
+        <include-content src="src/app/filter/examples/filter-save-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

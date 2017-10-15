@@ -5,12 +5,15 @@ import {
   Input,
   OnInit,
   Output,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
+import { FilterFieldsComponent } from './filter-fields.component';
+import { FilterType } from './filter-type';
 
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
@@ -40,9 +43,24 @@ export class FilterComponent implements DoCheck, OnInit {
   @Output('onFieldSelect') onFilterSelect = new EventEmitter();
 
   /**
+   * The event emitted when a query (i.e., saved filter) has been removed
+   */
+  @Output('onRemove') onRemove = new EventEmitter();
+
+  /**
+   * The event emitted when a filter has been changed
+   */
+  @Output('onSave') onSave = new EventEmitter();
+
+  /**
    * The event emitted when the user types ahead in the query input field
    */
   @Output('onTypeAhead') onTypeAhead = new EventEmitter();
+
+  /**
+   * A reference to the underlying filter fields component
+   */
+  @ViewChild('filterFields') private filterFields: FilterFieldsComponent;
 
   private defaultConfig = {} as FilterConfig;
   private prevConfig: FilterConfig;
@@ -103,7 +121,7 @@ export class FilterComponent implements DoCheck, OnInit {
     } as Filter;
 
     if (!this.filterExists(newFilter)) {
-      if (newFilter.field.type === 'select') {
+      if (newFilter.field.type === FilterType.SELECT) {
         this.enforceSingleSelect(newFilter);
       }
       this.config.appliedFilters.push(newFilter);
@@ -117,7 +135,7 @@ export class FilterComponent implements DoCheck, OnInit {
    *
    * @param $event An array of current Filter objects
    */
-  clear($event: Filter[]): void {
+  clearFilter($event: Filter[]): void {
     this.config.appliedFilters = $event;
     this.onChange.emit({
       appliedFilters: $event
@@ -131,6 +149,31 @@ export class FilterComponent implements DoCheck, OnInit {
    */
   fieldSelected($event: FilterEvent): void {
     this.onFilterSelect.emit($event);
+  }
+
+  /**
+   * Handle remove query (i.e., saved filter) event
+   *
+   * @param $event The FilterEvent contining properties for this event
+   */
+  removeQuery($event: FilterEvent): void {
+    this.onRemove.emit($event);
+  }
+
+  /**
+   * Reset current field
+   */
+  resetCurrentField(): void {
+    this.filterFields.reset();
+  }
+
+  /**
+   * Handle save filter event
+   *
+   * @param $event An array of current Filter objects
+   */
+  saveFilter($event: FilterEvent): void {
+    this.onSave.emit($event);
   }
 
   /**
@@ -150,6 +193,7 @@ export class FilterComponent implements DoCheck, OnInit {
 
   private filterExists(filter: Filter): boolean {
     let foundFilter = find(this.config.appliedFilters, {
+      field: filter.field,
       value: filter.value
     });
     return foundFilter !== undefined;

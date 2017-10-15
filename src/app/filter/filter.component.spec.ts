@@ -8,6 +8,7 @@ import { FormsModule }  from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { Filter } from './filter';
@@ -16,6 +17,7 @@ import { FilterConfig } from './filter-config';
 import { FilterField } from './filter-field';
 import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
+import { FilterType } from './filter-type';
 import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
 
 describe('Filter component - ', () => {
@@ -29,22 +31,22 @@ describe('Filter component - ', () => {
         id: 'name',
         title:  'Name',
         placeholder: 'Filter by Name...',
-        type: 'text'
+        type: FilterType.TEXT
       }, {
         id: 'age',
         title:  'Age',
         placeholder: 'Filter by Age...',
-        type: 'text'
+        type: FilterType.TEXT
       }, {
         id: 'address',
         title:  'Address',
         placeholder: 'Filter by Address...',
-        type: 'text'
+        type: FilterType.TEXT
       }, {
         id: 'birthMonth',
         title:  'Birth Month',
         placeholder: 'Filter by Birth Month...',
-        type: 'select',
+        type: FilterType.SELECT,
         queries: [{
           id: 'month1',
           value: 'January'
@@ -86,7 +88,7 @@ describe('Filter component - ', () => {
         id: 'weekDay',
         title:  'Week Day',
         placeholder: 'Filter by Week Day...',
-        type: 'typeahead',
+        type: FilterType.TYPEAHEAD,
         queries: [{
           id: 'day1',
           value: 'Sunday'
@@ -121,6 +123,7 @@ describe('Filter component - ', () => {
         BsDropdownModule.forRoot(),
         BrowserAnimationsModule,
         FormsModule,
+        PopoverModule.forRoot(),
         TooltipModule.forRoot(),
         SearchHighlightModule
       ],

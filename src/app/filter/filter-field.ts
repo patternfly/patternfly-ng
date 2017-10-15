@@ -27,5 +27,10 @@ export class FilterField {
   /**
    * The filter input field type (e.g., 'select' for a select box, 'typeahead' to filter queries)
    */
-  type: string;
+  type?: string;
+
+  /**
+   * Set to true when a separator should be shown instead of a menu option
+   */
+  separator?: boolean;
 }

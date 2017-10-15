@@ -41,6 +41,7 @@ export { FilterFieldsComponent } from './src/app/filter/filter-fields.component'
 export { FilterModule } from './src/app/filter/filter.module';
 export { FilterResultsComponent } from './src/app/filter/filter-results.component';
 export { FilterQuery } from './src/app/filter/filter-query';
+export { FilterType } from './src/app/filter/filter-type';
 
 // Lists
 export { ListBase } from './src/app/list/list-base';

@@ -1,27 +1,35 @@
 import {
   Component,
   OnInit,
+  ViewChild
 } from '@angular/core';
 
 import { Filter } from '../filter';
+import { FilterComponent } from '../filter.component';
 import { FilterConfig } from '../filter-config';
 import { FilterField } from '../filter-field';
 import { FilterEvent } from '../filter-event';
+import { FilterQuery } from '../filter-query';
 import { FilterType } from '../filter-type';
 
+import { cloneDeep, find } from 'lodash';
+
 @Component({
-  selector: 'filter-lazy-example',
-  templateUrl: './filter-lazy-example.component.html'
+  selector: 'filter-save-example',
+  templateUrl: './filter-save-example.component.html'
 })
-export class FilterLazyExampleComponent implements OnInit {
+export class FilterSaveExampleComponent implements OnInit {
+  @ViewChild('filter') filter: FilterComponent;
+
   allItems: any[];
   items: any[];
   filterConfig: FilterConfig;
   filterFields: FilterField[];
   filtersText: string = '';
-  lazyFilterFields: FilterField[];
   monthQueries: any[];
   monthQueriesFixed: any[];
+  savedFilters: Map<string, Filter[]>;
+  savedQueries: FilterQuery[];
   separator: Object;
   weekDayQueries: any[];
 
@@ -29,6 +37,8 @@ export class FilterLazyExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.savedFilters = new Map<string, Filter[]>();
+
     this.allItems = [{
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way, Bedrock, Washingstone',
@@ -158,18 +168,6 @@ export class FilterLazyExampleComponent implements OnInit {
         this.separator,
         ...this.monthQueries
       ]
-    }];
-
-    this.lazyFilterFields = [{
-      id: 'name',
-      title:  'Name',
-      placeholder: 'Filter by Name...',
-      type: FilterType.TEXT
-    }, {
-      id: 'address',
-      title: 'Address',
-      placeholder: 'Filter by Address...',
-      type: FilterType.TEXT,
     }, {
       id: 'weekDay',
       title: 'Week Day',
@@ -178,26 +176,30 @@ export class FilterLazyExampleComponent implements OnInit {
       queries: [
         ...this.weekDayQueries
       ]
+    }, this.separator, {
+      id: 'saved',
+      title: 'My Filters',
+      placeholder: 'Select from custom filters...',
+      type: FilterType.TYPEAHEAD
+    }];
+
+    this.savedQueries = [{
+      showRemove: true,
+      value: 'Test1'
+    }, {
+      showRemove: true,
+      value: 'Test2'
     }];
 
     this.filterConfig = {
-      fields: [
-        ...this.filterFields
-      ] as FilterField[],
+      appliedFilters: [],
+      fields: this.filterFields,
       resultsCount: this.items.length,
-      appliedFilters: []
+      showSaveFilter: true
     } as FilterConfig;
   }
 
   // Filter functions
-
-  loadFilters(): void {
-    this.filterConfig.fields = this.filterFields.concat(this.lazyFilterFields);
-  }
-
-  replaceFilters(): void {
-    this.filterConfig.fields = this.lazyFilterFields;
-  }
 
   applyFilters(filters: Filter[]): void {
     this.items = [];
@@ -210,15 +212,32 @@ export class FilterLazyExampleComponent implements OnInit {
     } else {
       this.items = this.allItems;
     }
-    this.filterConfig.resultsCount = this.items.length;
+    this.filterConfig.resultsCount = this.items.length; // for table views
   }
 
   filterChanged($event: FilterEvent): void {
     this.filtersText = '';
-    $event.appliedFilters.forEach((filter) => {
-      this.filtersText += filter.field.title + ' : ' + filter.value + '\n';
+    let filters = [];
+    $event.appliedFilters.forEach((appliedFilter) => {
+      this.filtersText += appliedFilter.field.title + ' : ' + appliedFilter.value + '\n';
+
+      // Flatten saved filters
+      if (appliedFilter.field.id === 'saved') {
+        this.savedFilters.get(appliedFilter.value).forEach((filter) => {
+          // Prune duplicates
+          if (!this.filterExists(filters, filter)) {
+            filters.push(filter);
+          }
+        });
+      } else {
+        // Prune duplicates
+        if (!this.filterExists(filters, appliedFilter)) {
+          filters.push(appliedFilter);
+        }
+      }
     });
-    this.applyFilters($event.appliedFilters);
+    this.applyFilters(filters);
+    this.filterConfig.appliedFilters = filters; // Results should show the pruned list of filters
     this.filterFieldSelected($event);
   }
 
@@ -235,17 +254,21 @@ export class FilterLazyExampleComponent implements OnInit {
         field.queries = [
           ...this.weekDayQueries
         ];
+      } else if (field.id === 'saved') {
+        field.queries = [];
+        this.savedFilters.forEach((value, key, map) => {
+          field.queries.push({
+            showRemove: true,
+            value: key
+          });
+        });
       }
     });
   }
 
   matchesFilter(item: any, filter: Filter): boolean {
     let match = true;
-    if (filter.field.id === 'name') {
-      match = item.name.match(filter.value) !== null;
-    } else if (filter.field.id === 'address') {
-      match = item.address.match(filter.value) !== null;
-    } else if (filter.field.id === 'birthMonth') {
+    if (filter.field.id === 'birthMonth') {
       match = item.birthMonth === filter.value;
     } else if (filter.field.id === 'weekDay') {
       match = item.weekDay === filter.value;
@@ -291,6 +314,77 @@ export class FilterLazyExampleComponent implements OnInit {
           }
         })
       ];
+    } else if (this.filterConfig.fields[index].id === 'saved') {
+      let queries = [];
+      this.savedFilters.forEach((value, key, map) => {
+        queries.push({
+          showRemove: true,
+          value: key
+        });
+      });
+      this.filterConfig.fields[index].queries = [
+        ...queries.filter((item: any) => {
+          if (item.value) {
+            return (item.value.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          } else {
+            return true;
+          }
+        })
+      ];
     }
+  }
+
+  // Helper to prune duplicate filters
+  filterExists(filters: any[], filter: Filter): boolean {
+    let foundFilter = find(filters, {
+      field: filter.field,
+      value: filter.value
+    });
+    return foundFilter !== undefined;
+  }
+
+  // Load saved filters
+  loadSavedFilters() {
+    let filter1 = {
+      field: this.filterConfig.fields[0], // Birth Month
+      query: this.monthQueriesFixed[1], // February
+      value: this.monthQueriesFixed[1].value
+    } as Filter;
+    let filter2 = {
+      field: this.filterConfig.fields[1], // Week Day
+      query: this.weekDayQueries[0], // Sunday
+      value: this.weekDayQueries[0].value
+    } as Filter;
+
+    // Load filters
+    this.savedFilters.set('Test1', [filter1]); // Filter values matching February
+    this.savedFilters.set('Test2', [filter1, filter2]); // Filter values matching February and Sunday
+    this.filterFieldSelected(null); // Refresh queries
+  }
+
+  // Remove saved filter
+  removeSavedFilter($event: FilterEvent): void {
+    this.savedFilters.delete($event.value); // Remove saved filter
+    this.filterFieldSelected($event); // Refresh queries
+    if (this.savedFilters.size === 0) {
+      this.filter.resetCurrentField(); // Reset
+    }
+  }
+
+  // Save filter
+  saveFilter($event: FilterEvent): void {
+    let filters = [];
+    $event.appliedFilters.forEach((filter) => {
+      // Flatten saved filters
+      if (filter.field.id === 'saved') {
+        this.savedFilters.get(filter.value).forEach((item) => {
+          filters.push(item);
+        });
+      } else {
+        filters.push(filter);
+      }
+    });
+    this.savedFilters.set($event.value, filters);
+    this.filterFieldSelected($event); // Refresh queries
   }
 }
