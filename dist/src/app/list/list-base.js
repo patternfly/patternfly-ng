@@ -40,9 +40,9 @@ var ListBase = (function () {
     ListBase.prototype.setupConfig = function () {
         var config = this.getConfig();
         if (config.multiSelect === undefined || config.multiSelect === false) {
-            var items = this.getSelectedItems(this.items);
-            if (items.length > 0) {
-                this.selectSingleItem(items[0]);
+            var selectedItems = this.getSelectedItems(this.items);
+            if (selectedItems.length > 0) {
+                this.selectSingleItem(selectedItems[0]);
             }
         }
         if (config.multiSelect && config.dblClick) {
@@ -110,10 +110,12 @@ var ListBase = (function () {
      * @param {any[]} items The items to be deselected
      */
     ListBase.prototype.deselectItems = function (items) {
-        for (var i = 0; i < items.length; i++) {
-            items[i].selected = false;
-            if (Array.isArray(items[i].children)) {
-                this.deselectItems(items[i].children);
+        if (items !== undefined) {
+            for (var i = 0; i < items.length; i++) {
+                items[i].selected = false;
+                if (Array.isArray(items[i].children)) {
+                    this.deselectItems(items[i].children);
+                }
             }
         }
     };
@@ -125,13 +127,15 @@ var ListBase = (function () {
      */
     ListBase.prototype.getSelectedItems = function (items) {
         var selectedItems = [];
-        for (var i = 0; i < items.length; i++) {
-            if (items[i].selected) {
-                selectedItems.push(items[i]);
-            }
-            if (Array.isArray(items[i].children)) {
-                var selectedChildren = this.getSelectedItems(items[i].children);
-                selectedItems = selectedItems.concat(selectedChildren);
+        if (items !== undefined) {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].selected) {
+                    selectedItems.push(items[i]);
+                }
+                if (Array.isArray(items[i].children)) {
+                    var selectedChildren = this.getSelectedItems(items[i].children);
+                    selectedItems = selectedItems.concat(selectedChildren);
+                }
             }
         }
         return selectedItems;
