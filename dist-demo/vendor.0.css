@@ -13677,6 +13677,32 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
   stroke: #d1d1d1;
   stroke-width: 1px;
 }
+.pct-donut-chart-pf .pct-donut-chart-pf-label {
+  display: block;
+}
+.pct-donut-chart-pf.pct-donut-chart-pf-left,
+.pct-donut-chart-pf.pct-donut-chart-pf-right,
+.pct-donut-chart-pf .pct-donut-chart-pf-left,
+.pct-donut-chart-pf .pct-donut-chart-pf-right {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.pct-donut-chart-pf.pct-donut-chart-pf-left,
+.pct-donut-chart-pf.pct-donut-chart-pf-right {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+.pct-donut-chart-pf.pct-donut-chart-pf-left,
+.pct-donut-chart-pf .pct-donut-chart-pf-left {
+  -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+}
 .close {
   text-shadow: none;
   z-index: 1;
@@ -13849,6 +13875,53 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
   width: 1px;
   z-index: 201;
 }
+.experimental-pf > * {
+  border: 2px solid #92d400;
+}
+.experimental-pf-bar {
+  background-color: #92d400;
+  border: none;
+  text-align: center;
+  position: relative;
+}
+.experimental-pf-more-info {
+  background-color: #92d400;
+  border: 0;
+  color: #030303;
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: static;
+}
+@media (min-width: 992px) {
+  .experimental-pf-more-info {
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+  }
+}
+@media (min-width: 992px) {
+  .experimental-pf-text {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
+.experimental-pf-text a {
+  color: #030303;
+  text-decoration: underline;
+}
+.experimental-pf-text a:hover {
+  color: #030303;
+  cursor: pointer;
+}
+.btn-experimental-pf {
+  background-color: #92d400;
+  background-image: linear-gradient(to bottom, #ace12e 0, #92d400 100%);
+  border-color: #92d400;
+}
 .footer-pf-alt,
 .footer-pf {
   background-color: #030303;
@@ -13892,11 +13965,17 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-add-circle-o:before {
   content: "\E61B";
 }
+.pficon-applications:before {
+  content: "\E936";
+}
 .pficon-arrow:before {
   content: "\E929";
 }
 .pficon-asleep:before {
   content: "\E925";
+}
+.pficon-automation:before {
+  content: "\E937";
 }
 .pficon-build:before {
   content: "\E902";
@@ -13925,6 +14004,9 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-cluster:before {
   content: "\E620";
 }
+.pficon-connected:before {
+  content: "\E938";
+}
 .pficon-container-node:before {
   content: "\E621";
 }
@@ -13936,6 +14018,9 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .pficon-delete:before {
   content: "\E611";
+}
+.pficon-disconnected:before {
+  content: "\E939";
 }
 .pficon-domain:before {
   content: "\E919";
@@ -13990,14 +14075,14 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-info:before {
   content: "\E92B";
 }
+.pficon-infrastructure:before {
+  content: "\E93D";
+}
 .pficon-key:before {
   content: "\E924";
 }
 .pficon-locked:before {
   content: "\E923";
-}
-.pficon-unlocked:before {
-  content: "\E922";
 }
 .pficon-maintenance:before {
   content: "\E92D";
@@ -14020,6 +14105,12 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-on-running:before {
   content: "\E930";
 }
+.pficon-optimize:before {
+  content: "\E93E";
+}
+.pficon-orders:before {
+  content: "\E93F";
+}
 .pficon-off:before {
   content: "\E92F";
 }
@@ -14032,6 +14123,9 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .pficon-pending:before {
   content: "\E933";
+}
+.pficon-plugged:before {
+  content: "\E940";
 }
 .pficon-print:before {
   content: "\E612";
@@ -14103,6 +14197,9 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-service:before {
   content: "\E61E";
 }
+.pficon-service-catalog:before {
+  content: "\E941";
+}
 .pficon-settings:before {
   content: "\E610";
 }
@@ -14138,6 +14235,12 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .pficon-users:before {
   content: "\E91F";
+}
+.pficon-unlocked:before {
+  content: "\E922";
+}
+.pficon-unplugged:before {
+  content: "\E942";
 }
 .pficon-virtual-machine:before {
   content: "\E90F";
@@ -14447,6 +14550,9 @@ a.disabled {
     -ms-flex-align: center;
         align-items: center;
   }
+}
+.list-pf-chevron {
+  min-width: 1.2em;
 }
 .list-pf-chevron,
 .list-pf-select {
@@ -15143,15 +15249,27 @@ a.disabled {
 .navbar-pf .navbar-nav .badge {
   background-color: #0088ce;
   border-radius: 20px;
-  border: 1px solid #030303;
   color: #fff;
   cursor: pointer;
   font-size: 9px;
   font-weight: 700;
+  left: 26px;
+  margin: 0;
   padding: 2px 4px;
-  margin-top: -12px;
-  margin-left: -9px;
+  position: absolute;
+  min-width: 10px;
   min-height: 10px;
+  top: 6px;
+}
+@media (min-width: 768px) {
+  .navbar-pf .navbar-nav .badge {
+    left: auto;
+    right: 6px;
+    top: 3px;
+  }
+}
+.navbar-pf .navbar-nav .badge.badge-pf-bordered {
+  border: 1px solid #030303;
 }
 @media (max-width: 767px) {
   .navbar-pf .navbar-nav .active .dropdown-menu,
@@ -15812,11 +15930,16 @@ a.disabled {
   cursor: pointer;
   font-size: 9px;
   font-weight: 700;
-  margin-top: -15px;
-  margin-left: -12px;
+  left: 20px;
+  margin: 0;
   padding: 2px 4px;
+  position: absolute;
   min-width: 10px;
   min-height: 10px;
+  top: 18px;
+}
+.navbar-pf-vertical .nav .nav-item-iconic .badge.badge-pf-bordered {
+  border: 1px solid #1d1d1d;
 }
 .navbar-pf-vertical .nav .nav-item-iconic .caret,
 .navbar-pf-vertical .nav .nav-item-iconic .fa,
@@ -16058,8 +16181,18 @@ a.disabled {
   display: block;
 }
 .drawer-pf.drawer-pf-expanded {
-  left: 270px;
   width: inherit;
+}
+@media (max-width: 767px) {
+  .drawer-pf.drawer-pf-expanded {
+    left: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 767px) {
+  .drawer-pf.drawer-pf-expanded {
+    left: 270px;
+  }
 }
 .drawer-pf.drawer-pf-expanded .drawer-pf-toggle-expand:before {
   content: "\F101";
@@ -16083,7 +16216,7 @@ a.disabled {
   color: inherit;
   cursor: pointer;
   line-height: inherit;
-  padding: 2px 5px;
+  padding: 2px 10px;
   position: absolute;
 }
 .drawer-pf-close:hover,
@@ -16201,6 +16334,12 @@ a.disabled {
   display: -ms-flexbox;
   display: flex;
 }
+@media (max-width: 991px) {
+  .drawer-pf-notification.expanded-notification .drawer-pf-notification-content {
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
+}
 .drawer-pf-notification.expanded-notification .drawer-pf-notification-content .drawer-pf-notification-message {
   -ms-flex: 1 1;
       flex: 1 1;
@@ -16209,6 +16348,12 @@ a.disabled {
 .navbar-pf-vertical .drawer-pf {
   height: calc(100vh - 80px);
   top: 58px;
+}
+@media (max-width: 767px) {
+  .navbar-pf-vertical .drawer-pf {
+    width: 100%;
+    height: calc(100vh - 58px);
+  }
 }
 .navbar-pf-vertical .nav .drawer-pf-trigger .drawer-pf-trigger-icon {
   border-left: 1px solid #2b2b2b;
@@ -16223,6 +16368,13 @@ a.disabled {
 .navbar-pf .drawer-pf {
   height: calc(100vh - 46px);
   top: 26px;
+}
+@media (max-width: 767px) {
+  .navbar-pf .drawer-pf {
+    width: 100%;
+    height: calc(100vh - 58px);
+    top: 34px;
+  }
 }
 .navbar-pf .drawer-pf-trigger-icon {
   cursor: pointer;
@@ -16836,7 +16988,7 @@ table.dataTable th:active {
   margin-left: 20px;
   position: fixed;
   right: 20px;
-  top: 20px;
+  top: 80px;
   z-index: 1055;
 }
 .toast-notifications-list-pf .toast-pf {
@@ -17105,7 +17257,6 @@ table.dataTable th:active {
   font-weight: 400;
   height: 63px;
   line-height: 26px;
-  outline: 0;
   padding: 17px 20px 17px 25px;
   position: relative;
   white-space: nowrap;
@@ -17888,16 +18039,16 @@ table.dataTable th:active {
   transition: visibility 100ms, opacity 100ms linear;
 }
 .wizard-pf {
-  height: 100%;
+  padding: 10px;
   margin: 0 auto;
   max-height: 900px;
-  padding: 10px;
   width: auto;
 }
 .wizard-pf .modal-content {
-  height: 100%;
+  min-height: 100%;
 }
 .wizard-pf-body {
+  background: #fff;
   padding: 0;
   position: static;
 }
@@ -17905,70 +18056,74 @@ table.dataTable th:active {
 .wizard-pf-sidebar {
   background: #fafafa;
   border-right: 1px solid #d1d1d1;
-  bottom: 0;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: absolute;
-  top: 0;
+  display: none;
 }
-.wizard-pf-sidebar .list-group {
-  border-top: 0;
-  margin-bottom: 0;
-}
-.wizard-pf-sidebar .list-group-item {
-  background-color: transparent;
-  border-color: #ededed;
-  padding: 0;
-}
-.wizard-pf-sidebar .list-group-item > a {
-  color: #030303;
-  cursor: pointer;
-  display: block;
-  font-size: 14px;
-  font-weight: 700;
-  height: 50px;
-  outline: 0;
-  padding-top: 11px;
-  padding-left: 20px;
-  position: relative;
-  white-space: nowrap;
-  width: 14em;
-}
-.wizard-pf-sidebar .list-group-item > a:hover {
-  text-decoration: none;
-}
-.wizard-pf-sidebar .list-group-item.active {
-  background-color: #ededed;
-}
-.wizard-pf-sidebar .list-group-item.active:hover {
-  border-color: #ededed;
-}
-.wizard-pf-sidebar .list-group-item.active > a {
-  color: #39a5dc;
-  cursor: default;
-}
-.wizard-pf-sidebar .list-group-item.active > a:before {
-  background: #39a5dc;
-  content: " ";
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 3px;
-}
-.wizard-pf-sidebar .list-group-item.active > a:after {
-  color: #39a5dc;
-  content: "\F105";
-  display: block;
-  font-family: FontAwesome;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 30px;
-  padding-top: 10px;
-  position: absolute;
-  right: 23px;
-  top: 0;
+@media (min-width: 768px) {
+  .wizard-pf-sidebar {
+    display: inherit;
+    -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .wizard-pf-sidebar .list-group {
+    border-top: 0;
+    margin-bottom: 0;
+  }
+  .wizard-pf-sidebar .list-group-item {
+    background-color: transparent;
+    border-color: #ededed;
+    padding: 0;
+  }
+  .wizard-pf-sidebar .list-group-item > a {
+    color: #030303;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    height: 50px;
+    outline: 0;
+    padding-top: 11px;
+    padding-left: 20px;
+    position: relative;
+    white-space: nowrap;
+    width: 14em;
+  }
+  .wizard-pf-sidebar .list-group-item > a:hover {
+    text-decoration: none;
+  }
+  .wizard-pf-sidebar .list-group-item.active {
+    background-color: #ededed;
+  }
+  .wizard-pf-sidebar .list-group-item.active:hover {
+    border-color: #ededed;
+  }
+  .wizard-pf-sidebar .list-group-item.active > a {
+    color: #39a5dc;
+    cursor: default;
+  }
+  .wizard-pf-sidebar .list-group-item.active > a:before {
+    content: " ";
+    background: #39a5dc;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 3px;
+  }
+  .wizard-pf-sidebar .list-group-item.active > a:after {
+    color: #39a5dc;
+    content: "\F105";
+    display: block;
+    font-family: FontAwesome;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
+    padding-top: 10px;
+    position: absolute;
+    right: 23px;
+    top: 0;
+  }
 }
 .wizard-pf-substep-number {
   display: inline-block;
@@ -17985,19 +18140,32 @@ table.dataTable th:active {
 /* styles the steps indicator across the top of the wizard */
 .wizard-pf-steps {
   border-bottom: solid 1px #d1d1d1;
-  text-align: center;
+}
+@media (min-width: 768px) {
+  .wizard-pf-steps {
+    text-align: center;
+  }
 }
 .wizard-pf-steps-indicator {
-  font-size: 16px;
+  background: #ededed;
+  border-top: 1px solid #d1d1d1;
   display: inline-block;
   display: -ms-flexbox;
   display: flex;
-  height: 120px;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  font-size: 16px;
   list-style: none;
-  padding: 38px 0 0;
+  margin-bottom: 0;
+  padding: 15px 0;
   /* draw the step number in the circle */
+}
+@media (min-width: 768px) {
+  .wizard-pf-steps-indicator {
+    background: #fff;
+    height: 120px;
+    padding: 38px 0 0;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
 }
 .wizard-pf-steps-indicator li {
   counter-increment: section;
@@ -18013,32 +18181,77 @@ table.dataTable th:active {
   position: relative;
   text-align: center;
   /* draw the line between the circles */
-  /* don't draw the line between the circles on the ends */
 }
-.wizard-pf-steps-indicator li:before {
-  background-color: #bbb;
-  content: "";
-  height: 2px;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 40px;
+.wizard-pf-steps-indicator li:not(.active) {
+  display: none;
 }
-.wizard-pf-steps-indicator li:first-child:before {
-  left: 50%;
-  right: 0;
+@media (min-width: 768px) {
+  .wizard-pf-steps-indicator li:not(.active) {
+    display: block;
+  }
 }
-.wizard-pf-steps-indicator li:last-child:before {
-  left: 0;
-  right: 50%;
+.wizard-pf-steps-indicator li a {
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 700;
 }
-.wizard-pf-steps-indicator li:only-of-type:before {
-  background-color: transparent;
+@media (min-width: 768px) {
+  .wizard-pf-steps-indicator li a {
+    font-weight: normal;
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
+}
+.wizard-pf-steps-indicator li a .wizard-pf-step-title {
+  margin-left: 10px;
+}
+.wizard-pf-steps-indicator li a .wizard-pf-step-title-substep {
+  font-weight: normal;
+  margin-left: 10px;
+  text-transform: capitalize;
+}
+.wizard-pf-steps-indicator li a .wizard-pf-step-title-substep:before {
+  content: "\BB";
+  font-size: 20px;
+  margin-right: 10px;
+}
+.wizard-pf-steps-indicator li a .wizard-pf-step-title-substep:not(.active) {
+  display: none;
+}
+@media (min-width: 768px) {
+  .wizard-pf-steps-indicator li {
+    /* don't draw the line between the circles on the ends */
+  }
+  .wizard-pf-steps-indicator li .wizard-pf-step-title-substep {
+    display: none;
+  }
+  .wizard-pf-steps-indicator li:before {
+    background-color: #bbb;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 40px;
+  }
+  .wizard-pf-steps-indicator li:first-child:before {
+    left: 50%;
+    right: 0;
+  }
+  .wizard-pf-steps-indicator li:last-child:before {
+    left: 0;
+    right: 50%;
+  }
+  .wizard-pf-steps-indicator li:only-of-type:before {
+    background-color: transparent;
+  }
 }
 .wizard-pf-steps-indicator li a {
   color: #030303;
-  font-size: 16px;
   cursor: pointer;
+  font-size: 16px;
   margin-left: 1em;
   margin-right: 1em;
   text-decoration: none;
@@ -18056,31 +18269,41 @@ table.dataTable th:active {
   font-size: 12px;
   font-weight: 700;
   height: 25px;
-  left: calc(50% - 13px);
   line-height: 22px;
-  position: absolute;
-  top: 27px;
   width: 25px;
 }
+@media (min-width: 768px) {
+  .wizard-pf-steps-indicator .wizard-pf-step-number {
+    left: calc(50% - 13px);
+    position: absolute;
+    top: 27px;
+  }
+}
 .wizard-pf-steps-indicator .active .wizard-pf-step-number {
-  cursor: default;
   background-color: #39a5dc;
   border-color: #39a5dc;
+  cursor: default;
   color: #fff;
 }
 .wizard-pf-steps-indicator .viewed-pf .wizard-pf-step-number {
+  color: #030303;
   background-color: #fff;
   border-color: #39a5dc;
-  color: #030303;
 }
 /* styles the main content portion of the wizard */
 .wizard-pf-main {
   height: 100%;
-  margin-left: 253px;
-  /* this value is updated by js */
-  overflow: auto;
-  padding: 3em;
+  padding: 1em;
   vertical-align: top;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .wizard-pf-main {
+    overflow: auto;
+    padding: 3em;
+    -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+  }
 }
 .wizard-pf-main .blank-slate-pf {
   background-color: transparent;
@@ -18197,25 +18420,22 @@ table.dataTable th:active {
 }
 /* styles the footer */
 .wizard-pf-footer {
+  background: #fff;
   border-top: 1px solid #d1d1d1;
-  bottom: 0;
-  left: 0;
   margin-top: 0;
   padding-bottom: 17px;
-  position: absolute;
-  right: 0;
 }
 .wizard-pf-footer .btn-cancel {
   margin-right: 25px;
 }
-.wizard-pf-row {
-  bottom: 58px;
-  /* this value is updated by js */
-  position: absolute;
-  overflow: hidden;
-  top: 172px;
-  /* this value is updated by js */
-  width: 100%;
+@media (min-width: 768px) {
+  .wizard-pf-row {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 900px;
+    max-height: 65vh;
+  }
 }
 @media (min-width: 992px) {
   .wizard-pf {
