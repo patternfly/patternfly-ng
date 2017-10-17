@@ -1,12 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
@@ -53,8 +45,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
@@ -95,7 +86,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
 
     let fieldFound: boolean = false;
     if (this._currentField !== undefined) {
-      find(this.config.fields, (nextField) => {
+      find(this.config.fields, nextField => {
         if (nextField.id === this._currentField.id) {
           fieldFound = true;
           return;

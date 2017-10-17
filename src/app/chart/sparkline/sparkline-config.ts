@@ -2,8 +2,7 @@ import { ChartConfig } from '../chart-config';
 /**
  * A config containing properties for the sparkline chart
  */
-export class SparklineConfig extends ChartConfig{
-
+export class SparklineConfig extends ChartConfig {
   /**
    * An optional function for displaying tooltip content
    */

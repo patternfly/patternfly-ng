@@ -1,17 +1,13 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { SortComponent } from './sort.component';
 import { SortConfig } from './sort-config';
 import { SortEvent } from './sort-event';
+import { SortComponent } from './sort.component';
 
 describe('Sort component - ', () => {
   let comp: SortComponent;
@@ -20,62 +16,69 @@ describe('Sort component - ', () => {
 
   beforeEach(() => {
     config = {
-      fields: [{
-        id: 'name',
-        title:  'Name',
-        sortType: 'alpha'
-      }, {
-        id: 'age',
-        title:  'Age',
-        sortType: 'numeric'
-      }, {
-        id: 'address',
-        title:  'Address',
-        sortType: 'alpha'
-      }, {
-        id: 'birthMonth',
-        title:  'Birth Month',
-        sortType: 'alpha'
-      }]
+      fields: [
+        {
+          id: 'name',
+          title: 'Name',
+          sortType: 'alpha'
+        },
+        {
+          id: 'age',
+          title: 'Age',
+          sortType: 'numeric'
+        },
+        {
+          id: 'address',
+          title: 'Address',
+          sortType: 'alpha'
+        },
+        {
+          id: 'birthMonth',
+          title: 'Birth Month',
+          sortType: 'alpha'
+        }
+      ]
     } as SortConfig;
   });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, BsDropdownModule.forRoot(), FormsModule],
-      declarations: [SortComponent],
-      providers: [BsDropdownConfig]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [BrowserAnimationsModule, BsDropdownModule.forRoot(), FormsModule],
+        declarations: [SortComponent],
+        providers: [BsDropdownConfig]
+      })
+        .compileComponents()
+        .then(() => {
+          fixture = TestBed.createComponent(SortComponent);
+          comp = fixture.componentInstance;
+          comp.config = config;
+          fixture.detectChanges();
+        });
     })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(SortComponent);
-        comp = fixture.componentInstance;
-        comp.config = config;
-        fixture.detectChanges();
-      });
-  }));
+  );
 
   it('should have correct number of sort fields', () => {
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let elements = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    const elements = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
     expect(elements.length).toBe(4);
   });
 
   it('should have default to the first sort field', () => {
-    let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
+    const results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
     expect(results).not.toBeNull();
     expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
   });
 
-  it('should default to ascending sort', function () {
-    let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
+  it('should default to ascending sort', function() {
+    const sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
     expect(sortIcon).not.toBeNull();
   });
 
-  it('should update the current sort when one is selected', function () {
+  it('should update the current sort when one is selected', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    const fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
 
     expect(results).not.toBeNull();
     expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
@@ -85,14 +88,13 @@ describe('Sort component - ', () => {
     fixture.detectChanges();
 
     results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    expect(results.nativeElement.textContent.trim().slice(0, 'Address'.length))
-      .toBe('Address');
+    expect(results.nativeElement.textContent.trim().slice(0, 'Address'.length)).toBe('Address');
   });
 
-  it('should update the direction icon when the sort type changes', function () {
+  it('should update the direction icon when the sort type changes', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    const fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
     let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
 
     expect(results).not.toBeNull();
@@ -108,11 +110,10 @@ describe('Sort component - ', () => {
     expect(results).not.toBeNull();
     expect(results.nativeElement.textContent.trim().slice(0, 'Age'.length)).toBe('Age');
     expect(sortIcon).not.toBeNull();
-
   });
 
-  it('should reverse the sort direction when the direction button is clicked', function () {
-    let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
+  it('should reverse the sort direction when the direction button is clicked', function() {
+    const sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
     let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
     expect(sortButton).not.toBeNull();
     expect(sortIcon).not.toBeNull();
@@ -124,9 +125,9 @@ describe('Sort component - ', () => {
     expect(sortIcon).not.toBeNull();
   });
 
-  it ('should notify when a new sort field is chosen', function(done) {
+  it('should notify when a new sort field is chosen', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    const fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
 
     comp.onChange.subscribe((data: SortEvent) => {
       expect(data.field).toBe(config.fields[1]);
@@ -139,9 +140,8 @@ describe('Sort component - ', () => {
     fixture.detectChanges();
   });
 
-  it ('should notify when the sort direction changes', function(done) {
-
-    let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
+  it('should notify when the sort direction changes', function(done) {
+    const sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
 
     comp.onChange.subscribe((data: SortEvent) => {
       expect(data.isAscending).toBe(false);

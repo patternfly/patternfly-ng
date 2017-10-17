@@ -1,16 +1,10 @@
-import {
-  Component,
-  Host,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Host, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { WizardConfig } from '../wizard-config';
-import { WizardComponent } from '../wizard.component';
-import { WizardExampleComponent } from './wizard-example.component';
 import { WizardEvent } from '../wizard-event';
 import { WizardStepConfig } from '../wizard-step-config';
+import { WizardComponent } from '../wizard.component';
+import { WizardExampleComponent } from './wizard-example.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -163,7 +157,7 @@ export class WizardNavExampleComponent implements OnInit {
   }
 
   updateName(): void {
-    this.step1aConfig.nextEnabled = (this.data.name !== undefined && this.data.name.length > 0);
+    this.step1aConfig.nextEnabled = this.data.name !== undefined && this.data.name.length > 0;
   }
 
   // Private

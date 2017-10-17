@@ -1,17 +1,17 @@
-import { NgModule }  from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
-import { ActionModule } from '../../action/action.module';
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
+import { ActionModule } from '../../action/action.module';
 import { FilterModule } from '../../filter/filter.module';
-import { ToolbarExampleComponent } from './toolbar-example.component';
 import { ToolbarModule } from '../toolbar.module';
+import { ToolbarExampleComponent } from './toolbar-example.component';
 
 @NgModule({
-  declarations: [ ToolbarExampleComponent ],
+  declarations: [ToolbarExampleComponent],
   imports: [
     ActionModule,
     BsDropdownModule.forRoot(),
@@ -21,7 +21,7 @@ import { ToolbarModule } from '../toolbar.module';
     TabsModule.forRoot(),
     ToolbarModule
   ],
-  providers: [ BsDropdownConfig, TabsetConfig ]
+  providers: [BsDropdownConfig, TabsetConfig]
 })
 export class ToolbarExampleModule {
   constructor() {}

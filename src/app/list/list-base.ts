@@ -1,9 +1,4 @@
-import {
-  EventEmitter,
-  Input,
-  Output,
-  TemplateRef,
-} from '@angular/core';
+import { EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 import { Action } from '../action/action';
 import { ListBaseConfig } from './list-base-config';
@@ -51,8 +46,7 @@ export abstract class ListBase {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
@@ -60,20 +54,22 @@ export abstract class ListBase {
    * Set up default config
    */
   protected setupConfig(): void {
-    let config = this.getConfig();
+    const config = this.getConfig();
     if (config.multiSelect === undefined || config.multiSelect === false) {
-      let selectedItems = this.getSelectedItems(this.items);
+      const selectedItems = this.getSelectedItems(this.items);
       if (selectedItems.length > 0) {
         this.selectSingleItem(selectedItems[0]);
       }
     }
     if (config.multiSelect && config.dblClick) {
-      throw new Error('ListComponent - Illegal use: ' +
-        'Cannot use both multi-select and double click selection at the same time.');
+      throw new Error(
+        'ListComponent - Illegal use: ' + 'Cannot use both multi-select and double click selection at the same time.'
+      );
     }
     if (config.selectItems && config.showCheckbox) {
-      throw new Error('ListComponent - Illegal use: ' +
-        'Cannot use both checkbox and click selection at the same time.');
+      throw new Error(
+        'ListComponent - Illegal use: ' + 'Cannot use both checkbox and click selection at the same time.'
+      );
     }
   }
 
@@ -117,7 +113,7 @@ export abstract class ListBase {
    */
   protected checkboxChange(item: any): void {
     this.onSelectionChange.emit({
-      item: item,
+      item,
       selectedItems: this.getSelectedItems(this.items)
     } as ListEvent);
   }
@@ -129,10 +125,10 @@ export abstract class ListBase {
    * @param item The double clicked item
    */
   protected dblClick($event: MouseEvent, item: any): void {
-    let config = this.getConfig();
+    const config = this.getConfig();
     if (config.dblClick === true) {
       this.onDblClick.emit({
-        item: item
+        item
       } as ListEvent);
     }
   }
@@ -167,7 +163,7 @@ export abstract class ListBase {
           selectedItems.push(items[i]);
         }
         if (Array.isArray(items[i].children)) {
-          let selectedChildren = this.getSelectedItems(items[i].children);
+          const selectedChildren = this.getSelectedItems(items[i].children);
           selectedItems = selectedItems.concat(selectedChildren);
         }
       }
@@ -192,7 +188,7 @@ export abstract class ListBase {
    * @param {boolean} selected True if item should be selected
    */
   selectItem(item: any, selected: boolean): void {
-    let config = this.getConfig();
+    const config = this.getConfig();
 
     // Are we using checkboxes?
     if (config.showCheckbox) {
@@ -217,12 +213,12 @@ export abstract class ListBase {
    * @param item The item to select
    */
   protected toggleSelection($event: MouseEvent, item: any): void {
-    let config = this.getConfig();
+    const config = this.getConfig();
     let selectionChanged = false;
 
     // Always emit click event
     this.onClick.emit({
-      item: item
+      item
     } as ListEvent);
 
     // Go no further if click selection isn't enabled
@@ -256,7 +252,7 @@ export abstract class ListBase {
     // Emit event only if selection changed
     if (selectionChanged === true) {
       this.onSelectionChange.emit({
-        item: item,
+        item,
         selectedItems: this.getSelectedItems(this.items)
       } as ListEvent);
     }

@@ -1,12 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { WizardBase } from './wizard-base';
 import { WizardConfig } from './wizard-config';
@@ -122,7 +114,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
       }
     } else {
       this.contentStyle = {
-        'height': this.config.contentHeight,
+        height: this.config.contentHeight,
         'max-height': this.config.contentHeight,
         'overflow-y': 'auto'
       };
@@ -163,13 +155,13 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    * @param {WizardStep} step The wizard step or substep
    */
   addStep(step: WizardStep): void {
-    super.addStep(step)
+    super.addStep(step);
 
-    let enabledSteps: WizardStep[] = this.getEnabledSteps();
-    if (this.config.ready && (enabledSteps.length > 0) && (step === enabledSteps[0])) {
+    const enabledSteps: WizardStep[] = this.getEnabledSteps();
+    if (this.config.ready && enabledSteps.length > 0 && step === enabledSteps[0]) {
       this.goTo(enabledSteps[0], true, false);
     }
-  };
+  }
 
   /**
    * Returns only wizard steps with review templates
@@ -177,8 +169,8 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    * @returns {WizardStep[]} The wizard stepd or substepd
    */
   getReviewSteps(): WizardStep[] {
-    let reviewSteps = this.getEnabledSteps().filter((step: WizardStep) => {
-      return (step.reviewTemplate !== undefined || step.getReviewSteps().length > 0);
+    const reviewSteps = this.getEnabledSteps().filter((step: WizardStep) => {
+      return step.reviewTemplate !== undefined || step.getReviewSteps().length > 0;
     });
     return reviewSteps;
   }
@@ -204,7 +196,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    * @param {boolean} resetStepNav True if the first substep (if exists) should be selected
    */
   goToStep(stepIndex: number, resetStepNav: boolean): void {
-    let enabledSteps: WizardStep[] = this.getEnabledSteps();
+    const enabledSteps: WizardStep[] = this.getEnabledSteps();
     if (stepIndex < enabledSteps.length) {
       this.goTo(enabledSteps[stepIndex], resetStepNav, false);
     }
@@ -216,13 +208,13 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    * @param {boolean} emitEvent True to emit the onNext event
    */
   next(emitEvent: boolean): void {
-    let enabledSteps: WizardStep[] = this.getEnabledSteps();
+    const enabledSteps: WizardStep[] = this.getEnabledSteps();
 
     // Save the step you were on when next() was invoked
-    let index = this.stepIndex(this.selectedStep);
+    const index = this.stepIndex(this.selectedStep);
 
-    let wizEvent = {
-      index: index,
+    const wizEvent = {
+      index,
       step: this.selectedStep
     } as WizardEvent;
 
@@ -254,10 +246,10 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    * @param {boolean} emitEvent True to emit the onNext event
    */
   previous(emitEvent: boolean): void {
-    let index = this.stepIndex(this.selectedStep);
+    const index = this.stepIndex(this.selectedStep);
 
-    let wizEvent = {
-      index: index,
+    const wizEvent = {
+      index,
       step: this.selectedStep
     } as WizardEvent;
 
@@ -267,7 +259,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
         return;
       }
     } else {
-      if (emitEvent  !== false) {
+      if (emitEvent !== false) {
         this.onPrevious.emit(wizEvent);
       }
     }
@@ -288,8 +280,8 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    */
   stepChanged(step: WizardStep, index: number): void {
     this.onStepChange.emit({
-      index: index,
-      step: step
+      index,
+      step
     } as WizardEvent);
   }
 
@@ -300,7 +292,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    */
   updateStepIndex(stepIndex: number): void {
     this.firstStep = this.stepIndex(this.selectedStep) === 0 && stepIndex === 0;
-  };
+  }
 
   // Private
 
@@ -309,11 +301,13 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
     if (step === undefined || this.selectedStep === undefined) {
       return false;
     }
-    return !this.config.done
-      && step.config.allowClickNav
-      && this.selectedStep.config.allowNavAway
-      && (this.selectedStep.config.nextEnabled || (step.config.priority < this.selectedStep.config.priority))
-      && (this.selectedStep.config.previousEnabled || (step.config.priority > this.selectedStep.config.priority));
+    return (
+      !this.config.done &&
+      step.config.allowClickNav &&
+      this.selectedStep.config.allowNavAway &&
+      (this.selectedStep.config.nextEnabled || step.config.priority < this.selectedStep.config.priority) &&
+      (this.selectedStep.config.previousEnabled || step.config.priority > this.selectedStep.config.priority)
+    );
   }
 
   // Emits an event inidcating that the cancel button has been selected
@@ -336,12 +330,18 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
 
   // Navigate to the given substep
   private goTo(step: WizardStep, goToFirstSubstep: boolean, goToLastSubstep: boolean): void {
-    if (step === undefined || this.config.done
-        || (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)) {
+    if (
+      step === undefined ||
+      this.config.done ||
+      (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)
+    ) {
       return;
     }
-    if (this.init || (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.previousEnabled)
-        || this.selectedStep.nextEnabled) {
+    if (
+      this.init ||
+      (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.previousEnabled) ||
+      this.selectedStep.nextEnabled
+    ) {
       this.unselectAll();
       if (step.hasSubsteps && goToFirstSubstep) {
         step.goToFirstStep();
@@ -365,12 +365,15 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
   // Initializes the first step based on the ready state and whether a current step has been provided
   private initFirstStep(): void {
     // Set currentStep equal to selected step title
-    if (this.config !== undefined && this.config.currentStep !== undefined
-        && !isEqual(this.config.currentStep, this.prevConfig.currentStep)
-        && (this.selectedStep !== undefined && this.selectedStep.config.title !== this.config.currentStep)) {
+    if (
+      this.config !== undefined &&
+      this.config.currentStep !== undefined &&
+      !isEqual(this.config.currentStep, this.prevConfig.currentStep) &&
+      (this.selectedStep !== undefined && this.selectedStep.config.title !== this.config.currentStep)
+    ) {
       this.goTo(this.stepByTitle(this.config.currentStep), true, false);
     } else {
-      let enabledSteps: WizardStep[] = this.getEnabledSteps();
+      const enabledSteps: WizardStep[] = this.getEnabledSteps();
       this.goTo(enabledSteps[0], true, false);
     }
     this.init = false;

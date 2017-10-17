@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { CardConfig } from '../card-config';
 
@@ -15,8 +11,7 @@ import { CardConfig } from '../card-config';
 export class CardCustomExampleComponent implements OnInit {
   config: CardConfig;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.config = {

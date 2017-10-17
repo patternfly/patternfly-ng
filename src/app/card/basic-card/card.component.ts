@@ -1,18 +1,10 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { CardAction } from '../card-action/card-action';
 import { CardBase } from '../card-base';
-import { CardConfig } from './card-config';
 import { CardFilter } from '../card-filter/card-filter';
 import { CardFilterPosition } from '../card-filter/card-filter-position';
+import { CardConfig } from './card-config';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
@@ -117,9 +109,10 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
    * @returns {boolean} True if the footer should be shown in the footer
    */
   protected get showFilterInFooter(): boolean {
-    return (this.config.filters && this.config.filterPosition
-      && this.config.filterPosition === CardFilterPosition.FOOTER);
-  };
+    return (
+      this.config.filters && this.config.filterPosition && this.config.filterPosition === CardFilterPosition.FOOTER
+    );
+  }
 
   /**
    * Indicates that the footer should be shown in the header
@@ -127,9 +120,10 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
    * @returns {boolean} True if the footer should be shown in the header
    */
   protected get showFilterInHeader(): boolean {
-    return (this.config.filters && this.config.filterPosition
-      && this.config.filterPosition === CardFilterPosition.HEADER);
-  };
+    return (
+      this.config.filters && this.config.filterPosition && this.config.filterPosition === CardFilterPosition.HEADER
+    );
+  }
 
   /**
    * Indicates that the footer should be shown
@@ -137,8 +131,8 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
    * @returns {boolean} True if the footer should be shown
    */
   get showFooter(): boolean {
-    return (this.footerTemplate !== undefined || this.showFilterInFooter || this.config.action !== undefined);
-  };
+    return this.footerTemplate !== undefined || this.showFilterInFooter || this.config.action !== undefined;
+  }
 
   /**
    * Indicates that the header should be shown
@@ -146,6 +140,6 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
    * @returns {boolean} True if the header should be shown
    */
   get showHeader(): boolean {
-    return (this.headerTemplate !== undefined || this.showFilterInHeader || this.config.title !== undefined);
-  };
+    return this.headerTemplate !== undefined || this.showFilterInHeader || this.config.title !== undefined;
+  }
 }

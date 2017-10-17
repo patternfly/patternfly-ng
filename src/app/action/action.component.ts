@@ -53,8 +53,7 @@ export class ActionComponent implements DoCheck, OnInit {
    *
    * @param el The element reference for this component
    */
-  constructor(private el: ElementRef) {
-  }
+  constructor(private el: ElementRef) {}
 
   // Initialization
 
@@ -101,21 +100,21 @@ export class ActionComponent implements DoCheck, OnInit {
    */
   private initMoreActionsDropup($event: MouseEvent): void {
     window.requestAnimationFrame(() => {
-      let kebabContainer = this.closest($event.target, '.dropdown-kebab-pf.open', 'pfng-list-actions');
-      let listContainer = this.closest(this.el.nativeElement, '.list-pf', 'pfng-list');
+      const kebabContainer = this.closest($event.target, '.dropdown-kebab-pf.open', 'pfng-list-actions');
+      const listContainer = this.closest(this.el.nativeElement, '.list-pf', 'pfng-list');
       if (kebabContainer === null || listContainer === null) {
         return;
       }
 
-      let dropdownButton = kebabContainer.querySelector('.dropdown-toggle');
-      let dropdownMenu =  kebabContainer.querySelector('.dropdown-menu');
-      let buttonRect = dropdownButton.getBoundingClientRect();
-      let menuRect = dropdownMenu.getBoundingClientRect();
-      let menuTop = buttonRect.top - menuRect.height;
-      let menuBottom = buttonRect.top + buttonRect.height + menuRect.height;
-      let parentRect = listContainer.getBoundingClientRect();
+      const dropdownButton = kebabContainer.querySelector('.dropdown-toggle');
+      const dropdownMenu = kebabContainer.querySelector('.dropdown-menu');
+      const buttonRect = dropdownButton.getBoundingClientRect();
+      const menuRect = dropdownMenu.getBoundingClientRect();
+      const menuTop = buttonRect.top - menuRect.height;
+      const menuBottom = buttonRect.top + buttonRect.height + menuRect.height;
+      const parentRect = listContainer.getBoundingClientRect();
 
-      if ((menuBottom <= parentRect.top + parentRect.height) || (menuTop < parentRect.top)) {
+      if (menuBottom <= parentRect.top + parentRect.height || menuTop < parentRect.top) {
         this.isMoreActionsDropup = false;
       } else {
         this.isMoreActionsDropup = true;

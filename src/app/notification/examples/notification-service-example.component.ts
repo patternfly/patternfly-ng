@@ -1,12 +1,8 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Notification } from '../notification';
-import { NotificationService } from '../notification.service';
 import { NotificationType } from '../notification-type';
+import { NotificationService } from '../notification.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -29,6 +25,7 @@ export class NotificationServiceExampleComponent implements OnInit {
       'Default Message.',
       false,
       null,
-      null);
+      null
+    );
   }
 }

@@ -1,9 +1,7 @@
-import {
-  TemplateRef
-} from '@angular/core';
+import { TemplateRef } from '@angular/core';
 
-import { WizardComponent } from './wizard.component';
 import { WizardStepConfig } from './wizard-step-config';
+import { WizardComponent } from './wizard.component';
 
 /**
  * Wizard step

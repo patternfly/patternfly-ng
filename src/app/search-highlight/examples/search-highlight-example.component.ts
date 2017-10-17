@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -10,10 +6,7 @@ import {
   templateUrl: './search-highlight-example.component.html'
 })
 export class SearchHighlightExampleComponent implements OnInit {
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

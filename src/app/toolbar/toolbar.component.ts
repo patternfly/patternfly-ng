@@ -1,13 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  TemplateRef,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 import { Action } from '../action/action';
 import { Filter } from '../filter/filter';
@@ -79,8 +70,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
@@ -111,8 +101,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
       this.config = cloneDeep(this.defaultConfig);
     }
 
-    if (this.config && this.config.filterConfig
-        && this.config.filterConfig.appliedFilters === undefined) {
+    if (this.config && this.config.filterConfig && this.config.filterConfig.appliedFilters === undefined) {
       this.config.filterConfig.appliedFilters = [];
     }
     if (this.config && this.config.sortConfig && this.config.sortConfig.fields === undefined) {
@@ -131,8 +120,6 @@ export class ToolbarComponent implements DoCheck, OnInit {
 
   // Getters & setters
 
-
-
   // Actions
 
   /**
@@ -150,7 +137,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
   // Private
 
   private filterAdded($event: FilterEvent): void {
-    let newFilter = {
+    const newFilter = {
       field: $event.field,
       query: $event.query,
       value: $event.value
@@ -167,7 +154,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
   }
 
   private filterExists(filter: Filter): boolean {
-    let foundFilter = find(this.config.filterConfig.appliedFilters, {
+    const foundFilter = find(this.config.filterConfig.appliedFilters, {
       field: filter.field,
       query: filter.query,
       value: filter.value
@@ -197,7 +184,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
     return this.config.view && this.config.view.id === currentView.id;
   }
 
-  private viewSelected (currentView: ToolbarView): void {
+  private viewSelected(currentView: ToolbarView): void {
     this.config.view = currentView;
     if (!currentView.disabled) {
       this.onViewSelect.emit(currentView);
@@ -207,6 +194,8 @@ export class ToolbarComponent implements DoCheck, OnInit {
   // Utils
 
   private enforceSingleSelect(filter: Filter): void {
-    remove(this.config.filterConfig.appliedFilters, {title: filter.field.title});
+    remove(this.config.filterConfig.appliedFilters, {
+      title: filter.field.title
+    });
   }
 }

@@ -1,17 +1,8 @@
-import {
-  Component,
-  EventEmitter,
-  Host,
-  Input,
-  OnInit,
-  Output,
-  TemplateRef,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, Host, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 import { WizardEvent } from './wizard-event';
 import { WizardStep } from './wizard-step';
-import { WizardStepConfig } from './wizard-step-config'
+import { WizardStepConfig } from './wizard-step-config';
 import { WizardStepComponent } from './wizard-step.component';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
@@ -134,7 +125,7 @@ export class WizardSubstepComponent implements OnInit, WizardStep {
    */
   show(index: number) {
     this.onShow.emit({
-      index: index,
+      index,
       step: this
     } as WizardEvent);
   }

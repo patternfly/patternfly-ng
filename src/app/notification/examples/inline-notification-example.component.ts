@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NotificationType } from '../notification-type';
 
 @Component({
@@ -19,16 +15,10 @@ export class InlineNotificationExampleComponent implements OnInit {
   hidden: string;
   actionText: string = '';
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    this.types = [
-      NotificationType.SUCCESS,
-      NotificationType.INFO,
-      NotificationType.DANGER,
-      NotificationType.WARNING
-    ];
+    this.types = [NotificationType.SUCCESS, NotificationType.INFO, NotificationType.DANGER, NotificationType.WARNING];
     this.type = this.types[0];
   }
 

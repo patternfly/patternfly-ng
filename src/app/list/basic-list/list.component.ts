@@ -1,11 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, Input, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';

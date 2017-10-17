@@ -1,17 +1,17 @@
-import { NgModule }  from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
+import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
+import { ChartModule } from '../../../chart/chart.module';
 import { CardModule } from '../../card.module';
 import { CardBasicExampleComponent } from './card-basic-example.component';
 import { CardCustomExampleComponent } from './card-custom-example.component';
 import { CardExampleComponent } from './card-example.component';
 import { CardTrendExampleComponent } from './card-trend-example.component';
-import { ChartModule } from '../../../chart/chart.module';
-import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { DemoComponentsModule } from '../../../../demo/components/demo-component
     FormsModule,
     TabsModule.forRoot()
   ],
-  providers: [ BsDropdownConfig, TabsetConfig ]
+  providers: [BsDropdownConfig, TabsetConfig]
 })
 export class CardExampleModule {
   constructor() {}

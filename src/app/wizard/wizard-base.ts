@@ -71,7 +71,7 @@ export abstract class WizardBase {
    */
   addStep(step: WizardStep): void {
     // Insert the step into step array
-    let insertBefore = find(this.steps, (nextStep) => {
+    const insertBefore = find(this.steps, nextStep => {
       return nextStep.config.priority > step.config.priority;
     });
     if (insertBefore) {
@@ -88,7 +88,7 @@ export abstract class WizardBase {
    */
   protected getEnabledSteps(): WizardStep[] {
     return this.steps.filter((step: WizardStep) => {
-      return (step.config.disabled !== true);
+      return step.config.disabled !== true;
     });
   }
 
@@ -127,7 +127,7 @@ export abstract class WizardBase {
   protected stepIndex(step: WizardStep): number {
     let idx = 0;
     let res = -1;
-    this.getEnabledSteps().forEach((currStep) => {
+    this.getEnabledSteps().forEach(currStep => {
       if (currStep === step) {
         res = idx;
       }

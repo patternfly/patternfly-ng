@@ -1,14 +1,9 @@
-import {
-  Component,
-  Host,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, Host, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { WizardComponent } from './wizard.component';
+import { WizardStep } from './wizard-step';
 import { WizardStepComponent } from './wizard-step.component';
 import { WizardSubstepComponent } from './wizard-substep.component';
-import { WizardStep } from './wizard-step';
+import { WizardComponent } from './wizard.component';
 
 /**
  * Wizard review component
@@ -35,8 +30,7 @@ export class WizardReviewComponent implements OnInit {
   /**
    *  Setup component configuration upon initialization
    */
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // Methods
 
@@ -64,10 +58,10 @@ export class WizardReviewComponent implements OnInit {
   // Toggles the review step control
   private toggleReview(step: WizardStep): void {
     step.config.expandReview = !step.config.expandReview;
-  };
+  }
 
   // Toggles the review details control
   private toggleReviewDetails(step: WizardStep): void {
     step.config.expandReviewDetails = !step.config.expandReviewDetails;
-  };
+  }
 }

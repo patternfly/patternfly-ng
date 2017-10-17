@@ -1,12 +1,8 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { CardAction } from '../../card-action/card-action';
-import { CardConfig } from '../card-config';
 import { CardFilter } from '../../card-filter/card-filter';
+import { CardConfig } from '../card-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -26,8 +22,28 @@ export class CardTrendExampleComponent implements OnInit {
     total: 250,
     xData: this.chartDates,
     yData: [
-      'used', '90', '20', '30', '20', '20', '10', '14', '20', '25',
-      '68', '44', '56', '78', '56', '67', '88', '76', '65', '87', '76']
+      'used',
+      '90',
+      '20',
+      '30',
+      '20',
+      '20',
+      '10',
+      '14',
+      '20',
+      '25',
+      '68',
+      '44',
+      '56',
+      '78',
+      '56',
+      '67',
+      '88',
+      '76',
+      '65',
+      '87',
+      '76'
+    ]
   };
   chartConfigPhysical: any = {
     chartHeight: 60,
@@ -39,8 +55,28 @@ export class CardTrendExampleComponent implements OnInit {
     total: 250,
     xData: this.chartDates,
     yData: [
-      'used', '20', '20', '35', '20', '20', '87', '14', '20', '25',
-      '28', '44', '56', '78', '56', '67', '88', '76', '65', '87', '16']
+      'used',
+      '20',
+      '20',
+      '35',
+      '20',
+      '20',
+      '87',
+      '14',
+      '20',
+      '25',
+      '28',
+      '44',
+      '56',
+      '78',
+      '56',
+      '67',
+      '88',
+      '76',
+      '65',
+      '87',
+      '16'
+    ]
   };
   chartConfigMemory: any = {
     chartHeight: 60,
@@ -52,13 +88,32 @@ export class CardTrendExampleComponent implements OnInit {
     total: 250,
     xData: this.chartDates,
     yData: [
-      'used', '20', '20', '35', '70', '20', '87', '14', '95', '25',
-      '28', '44', '56', '66', '16', '67', '88', '76', '65', '87', '56']
+      'used',
+      '20',
+      '20',
+      '35',
+      '70',
+      '20',
+      '87',
+      '14',
+      '95',
+      '25',
+      '28',
+      '44',
+      '56',
+      '66',
+      '16',
+      '67',
+      '88',
+      '76',
+      '65',
+      '87',
+      '56'
+    ]
   };
   config: CardConfig;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.config = {
@@ -72,9 +127,9 @@ export class CardTrendExampleComponent implements OnInit {
       subTitle: 'Last 30 Days'
     } as CardConfig;
 
-    let today = new Date();
+    const today = new Date();
     for (let d = 20 - 1; d >= 0; d--) {
-      this.chartDates.push(new Date(today.getTime() - (d * 24 * 60 * 60 * 1000)));
+      this.chartDates.push(new Date(today.getTime() - d * 24 * 60 * 60 * 1000));
     }
   }
 

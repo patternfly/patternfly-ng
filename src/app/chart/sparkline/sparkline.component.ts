@@ -1,8 +1,8 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
 
 import { cloneDeep, defaults, isEqual, merge } from 'lodash';
-import { ChartDefaults } from '../chart.defaults';
 import { ChartBase } from '../chart.base';
+import { ChartDefaults } from '../chart.defaults';
 import { SparklineConfig } from './sparkline-config';
 
 /**
@@ -27,7 +27,6 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
    * The chart id created during initialization
    */
   public sparklineChartId: any;
-
 
   private prevChartData: any;
   private defaultConfig: SparklineConfig;
@@ -92,26 +91,39 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
               }
               tipRows =
                 '<tr>' +
-                '  <th colspan="2">' + d[0].x.toLocaleDateString() + '</th>' +
+                '  <th colspan="2">' +
+                d[0].x.toLocaleDateString() +
+                '</th>' +
                 '</tr>' +
                 '<tr>' +
-                '  <td class="name">' + percentUsed + '%:' + '</td>' +
-                '  <td class="value text-nowrap">' + d[0].value + ' ' +  (this.config.units ? this.config.units + ' ' : '') + d[0].name + '</td>' +
+                '  <td class="name">' +
+                percentUsed +
+                '%:' +
+                '</td>' +
+                '  <td class="value text-nowrap">' +
+                d[0].value +
+                ' ' +
+                (this.config.units ? this.config.units + ' ' : '') +
+                d[0].name +
+                '</td>' +
                 '</tr>';
               break;
             case 'valuePerDay':
               tipRows =
                 '<tr>' +
-                '  <td class="value">' +  d[0].x.toLocaleDateString() + '</td>' +
-                '  <td class="value text-nowrap">' +  d[0].value + ' ' + d[0].name + '</td>' +
+                '  <td class="value">' +
+                d[0].x.toLocaleDateString() +
+                '</td>' +
+                '  <td class="value text-nowrap">' +
+                d[0].value +
+                ' ' +
+                d[0].name +
+                '</td>' +
                 '</tr>';
               break;
             case 'percentage':
               percentUsed = Math.round(d[0].value / this.chartData.total * 100.0);
-              tipRows =
-                '<tr>' +
-                '  <td class="name">' + percentUsed + '%' + '</td>' +
-                '</tr>';
+              tipRows = '<tr>' + '  <td class="name">' + percentUsed + '%' + '</td>' + '</tr>';
               break;
             default:
               tipRows = this.chartDefaults.getDefaultSparklineTooltip().contents(d);
@@ -130,38 +142,34 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
           center = parseInt(element.getAttribute('x'));
           top = parseInt(element.getAttribute('y'));
           chartBox = document.querySelector('#' + this.sparklineChartId).getBoundingClientRect();
-          graphOffsetX = document.querySelector('#' + this.sparklineChartId + ' g.c3-axis-y').getBoundingClientRect().right;
+          graphOffsetX = document.querySelector('#' + this.sparklineChartId + ' g.c3-axis-y').getBoundingClientRect()
+            .right;
           x = Math.max(0, center + graphOffsetX - chartBox.left - Math.floor(width / 2));
 
           return {
             top: top - height,
             left: Math.min(x, chartBox.width - width)
           };
-        } catch (e) {
-        }
+        } catch (e) {}
       }
     };
   }
-
 
   /*
    * Convert the config data to C3 Data
    */
   protected getSparklineData(chartData: any): any {
-    let sparklineData: any  = {
+    const sparklineData: any = {
       type: 'area'
     };
 
     if (chartData && chartData.dataAvailable !== false && chartData.xData && chartData.yData) {
       sparklineData.x = chartData.xData[0];
-      sparklineData.columns = [
-        chartData.xData,
-        chartData.yData
-      ];
+      sparklineData.columns = [chartData.xData, chartData.yData];
     }
 
     return sparklineData;
-  };
+  }
 
   private setupConfig(): void {
     this.defaultConfig = this.chartDefaults.getDefaultSparklineConfig();
@@ -219,12 +227,14 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
   }
 
   private getTooltipTableHTML(tipRows: any): string {
-    return '<div class="module-triangle-bottom">' +
+    return (
+      '<div class="module-triangle-bottom">' +
       '  <table class="c3-tooltip">' +
       '    <tbody>' +
       tipRows +
       '    </tbody>' +
       '  </table>' +
-      '</div>';
+      '</div>'
+    );
   }
 }

@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -12,16 +8,14 @@ import {
 })
 export class RemainingCharsCountExampleComponent implements OnInit {
   charsMaxLimitExceeded: any = {
-    'example1': false,
-    'example2': false,
-    'example3': false
-  }
+    example1: false,
+    example2: false,
+    example3: false
+  };
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // Actions
 

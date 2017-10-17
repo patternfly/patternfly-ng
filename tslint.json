@@ -3,6 +3,10 @@
     "node_modules/codelyzer",
     "node_modules/tslint/lib/rules"
   ],
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier"
+  ],
   "rules": {
     "member-access": false,
     "member-ordering": [
@@ -38,6 +42,7 @@
     "curly": false,
     "forin": true,
     "label-position": true,
+    "only-arrow-functions": false,
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,

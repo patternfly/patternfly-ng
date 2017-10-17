@@ -2,7 +2,6 @@
  * A config containing properties for navigation items
  */
 export class NavigationItemConfig {
-
   /**
    * Title for the navigation item
    */

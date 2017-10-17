@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -10,13 +6,9 @@ import {
   templateUrl: './clusters-content.component.html'
 })
 export class ClustersContentComponent implements OnInit {
+  constructor() {}
 
-  constructor() {
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  ngDoCheck(): void {
-  }
+  ngDoCheck(): void {}
 }

@@ -1,11 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'sample-example',
-  styles: [`
+  styles: [
+    `
     .sample-form .form-horizontal .form-group {
       margin-left: 0px;
     }
@@ -17,17 +15,15 @@ import {
     .padding-bottom-15 {
       padding-bottom: 15px;
     }
-  `],
+  `
+  ],
   templateUrl: './sample-example.component.html'
 })
 export class SampleExampleComponent implements OnInit {
-
   disableComponent: Boolean = false;
   componentLabel: string = 'label here';
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

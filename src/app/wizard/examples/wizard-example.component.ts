@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
@@ -24,11 +18,9 @@ export class WizardExampleComponent implements OnInit {
   activeTab: string = '';
   modalRef: BsModalRef;
 
-  constructor(private modalService: BsModalService) {
-  }
+  constructor(private modalService: BsModalService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // Methods
 
@@ -37,7 +29,7 @@ export class WizardExampleComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
   }
 
   tabSelected($event: TabDirective): void {

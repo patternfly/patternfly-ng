@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Action } from '../../action/action';
 import { NotificationEvent } from '../notification-event';
@@ -25,16 +21,10 @@ export class ToastNotificationBasicExampleComponent implements OnInit {
   type: string;
   types: string[];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    this.types = [
-      NotificationType.SUCCESS,
-      NotificationType.INFO,
-      NotificationType.DANGER,
-      NotificationType.WARNING
-    ];
+    this.types = [NotificationType.SUCCESS, NotificationType.INFO, NotificationType.DANGER, NotificationType.WARNING];
     this.type = this.types[0];
 
     this.primaryAction = {
@@ -43,35 +33,43 @@ export class ToastNotificationBasicExampleComponent implements OnInit {
       title: 'Perform an action'
     } as Action;
 
-    this.moreActionsDefault = [{
-      id: 'moreActions1',
-      name: 'Action',
-      title: 'Perform an action'
-    }, {
-      id: 'moreActions2',
-      name: 'Another Action',
-      title: 'Do something else'
-    }, {
-      disabled: true,
-      id: 'moreActions3',
-      name: 'Disabled Action',
-      title: 'Unavailable action'
-    }, {
-      id: 'moreActions4',
-      name: 'Something Else',
-      title: 'Do something special'
-    }, {
-      id: 'moreActions5',
-      separator: true
-    }, {
-      id: 'moreActions6',
-      name: 'Grouped Action 1',
-      title: 'Do something'
-    }, {
-      id: 'moreActions7',
-      name: 'Grouped Action 2',
-      title: 'Do something similar'
-    }] as Action[];
+    this.moreActionsDefault = [
+      {
+        id: 'moreActions1',
+        name: 'Action',
+        title: 'Perform an action'
+      },
+      {
+        id: 'moreActions2',
+        name: 'Another Action',
+        title: 'Do something else'
+      },
+      {
+        disabled: true,
+        id: 'moreActions3',
+        name: 'Disabled Action',
+        title: 'Unavailable action'
+      },
+      {
+        id: 'moreActions4',
+        name: 'Something Else',
+        title: 'Do something special'
+      },
+      {
+        id: 'moreActions5',
+        separator: true
+      },
+      {
+        id: 'moreActions6',
+        name: 'Grouped Action 1',
+        title: 'Do something'
+      },
+      {
+        id: 'moreActions7',
+        name: 'Grouped Action 2',
+        title: 'Do something similar'
+      }
+    ] as Action[];
   }
 
   ngDoCheck(): void {
