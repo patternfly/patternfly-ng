@@ -10,7 +10,7 @@ import {
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pf-sample-component',
-  styles: [ `
+  styles: [`
     .pfng__samplecomponent { 
       color: blueviolet; 
     }

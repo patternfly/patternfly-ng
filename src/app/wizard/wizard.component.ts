@@ -163,7 +163,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    * @param {WizardStep} step The wizard step or substep
    */
   addStep(step: WizardStep): void {
-    super.addStep(step)
+    super.addStep(step);
 
     let enabledSteps: WizardStep[] = this.getEnabledSteps();
     if (this.config.ready && (enabledSteps.length > 0) && (step === enabledSteps[0])) {
@@ -267,7 +267,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
         return;
       }
     } else {
-      if (emitEvent  !== false) {
+      if (emitEvent !== false) {
         this.onPrevious.emit(wizEvent);
       }
     }
@@ -337,11 +337,11 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
   // Navigate to the given substep
   private goTo(step: WizardStep, goToFirstSubstep: boolean, goToLastSubstep: boolean): void {
     if (step === undefined || this.config.done
-        || (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)) {
+      || (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)) {
       return;
     }
     if (this.init || (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.previousEnabled)
-        || this.selectedStep.nextEnabled) {
+      || this.selectedStep.nextEnabled) {
       this.unselectAll();
       if (step.hasSubsteps && goToFirstSubstep) {
         step.goToFirstStep();
@@ -366,8 +366,8 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
   private initFirstStep(): void {
     // Set currentStep equal to selected step title
     if (this.config !== undefined && this.config.currentStep !== undefined
-        && !isEqual(this.config.currentStep, this.prevConfig.currentStep)
-        && (this.selectedStep !== undefined && this.selectedStep.config.title !== this.config.currentStep)) {
+      && !isEqual(this.config.currentStep, this.prevConfig.currentStep)
+      && (this.selectedStep !== undefined && this.selectedStep.config.title !== this.config.currentStep)) {
       this.goTo(this.stepByTitle(this.config.currentStep), true, false);
     } else {
       let enabledSteps: WizardStep[] = this.getEnabledSteps();

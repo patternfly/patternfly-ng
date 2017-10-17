@@ -26,7 +26,7 @@ export class WizardReviewComponent implements OnInit {
   /**
    * The default constructor
    */
-  constructor(@Host() wizard: WizardComponent) {
+  constructor( @Host() wizard: WizardComponent) {
     this.wizard = wizard;
   }
 

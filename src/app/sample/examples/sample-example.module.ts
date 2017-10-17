@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
@@ -15,10 +15,10 @@ import { SampleExampleComponent } from './sample-example.component';
     SampleModule,
     TabsModule.forRoot()
   ],
-  declarations: [ SampleExampleComponent ],
-  exports: [ SampleExampleComponent ],
-  providers: [ TabsetConfig ]
+  declarations: [SampleExampleComponent],
+  exports: [SampleExampleComponent],
+  providers: [TabsetConfig]
 })
 export class SampleExampleModule {
-  constructor() {}
+  constructor() { }
 }

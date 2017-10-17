@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ActionExampleComponent } from '../app/action/examples/action-example.component';
@@ -23,70 +23,70 @@ import { Observable } from 'rxjs/Observable';
 import { SampleComponent } from '../app/sample/sample.component';
 
 const routes: Routes = [{
-    path: '',
-    component: WelcomeComponent,
-    pathMatch: 'full'
-  }, {
-    path: 'action',
-    component: ActionExampleComponent
-  }, {
-    path: 'card',
-    component: CardExampleComponent
-  }, {
-    path: 'emptystate',
-    component: EmptyStateExampleComponent
-  }, {
-    path: 'filters',
-    component: FilterExampleComponent
-  }, {
-    path: 'inlinenotification',
-    component: InlineNotificationExampleComponent
-  }, {
-    path: 'list',
-    component: ListExampleComponent
-  }, {
-    path: 'navigation',
-    component: VerticalNavigationExampleComponent,
-    children: [
-      {
-        path: '**',
-        component: SampleComponent,
-      },
-    ]
-  }, {
-    path: 'notificationservice',
-    component: NotificationServiceExampleComponent
-  }, {
-    path: 'remainingcharscount',
-    component: RemainingCharsCountExampleComponent
-  }, {
-    path: 'sample',
-    component: SampleExampleComponent
-  }, {
-    path: 'searchhighlight',
-    component: SearchHighlightExampleComponent
-  }, {
-    path: 'sort',
-    component: SortExampleComponent
-  }, {
-    path: 'sparkline',
-    component: SparklineExampleComponent
-  }, {
-    path: 'toastnotification',
-    component: ToastNotificationExampleComponent
-  }, {
-    path: 'toolbar',
-    component: ToolbarExampleComponent
-  }, {
-    path: 'treelist',
-    component: TreeListExampleComponent
-  },  {
-    path: 'wizard',
-    component: WizardExampleComponent
+  path: '',
+  component: WelcomeComponent,
+  pathMatch: 'full'
+}, {
+  path: 'action',
+  component: ActionExampleComponent
+}, {
+  path: 'card',
+  component: CardExampleComponent
+}, {
+  path: 'emptystate',
+  component: EmptyStateExampleComponent
+}, {
+  path: 'filters',
+  component: FilterExampleComponent
+}, {
+  path: 'inlinenotification',
+  component: InlineNotificationExampleComponent
+}, {
+  path: 'list',
+  component: ListExampleComponent
+}, {
+  path: 'navigation',
+  component: VerticalNavigationExampleComponent,
+  children: [
+    {
+      path: '**',
+      component: SampleComponent,
+    },
+  ]
+}, {
+  path: 'notificationservice',
+  component: NotificationServiceExampleComponent
+}, {
+  path: 'remainingcharscount',
+  component: RemainingCharsCountExampleComponent
+}, {
+  path: 'sample',
+  component: SampleExampleComponent
+}, {
+  path: 'searchhighlight',
+  component: SearchHighlightExampleComponent
+}, {
+  path: 'sort',
+  component: SortExampleComponent
+}, {
+  path: 'sparkline',
+  component: SparklineExampleComponent
+}, {
+  path: 'toastnotification',
+  component: ToastNotificationExampleComponent
+}, {
+  path: 'toolbar',
+  component: ToolbarExampleComponent
+}, {
+  path: 'treelist',
+  component: TreeListExampleComponent
+}, {
+  path: 'wizard',
+  component: WizardExampleComponent
 }];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, {useHash: true}) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -4,7 +4,7 @@ import {
   TestBed
 } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { ActionConfig } from '../../action/action-config';
@@ -92,8 +92,8 @@ describe('List component - ', () => {
       actions: actionConfig,
       iconStyleClass: 'pficon-warning-triangle-o',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
-        'objects exists and you want to guide the user to perform specific actions.',
+      'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
+      'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
         hypertext: 'EmptyState example',
         text: 'For more information please see the',
@@ -139,7 +139,7 @@ describe('List component - ', () => {
     expect(elements.length).toBe(8);
   });
 
-  it('should show the select checkbox by default', function () {
+  it('should show the select checkbox by default', function() {
     let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
     let checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
 
@@ -156,7 +156,7 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(0);
   });
 
-  it('should not show the select checkboxes when showCheckbox is false', function () {
+  it('should not show the select checkboxes when showCheckbox is false', function() {
     let checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
 
     expect(checkItems.length).toBe(items.length);
@@ -169,7 +169,7 @@ describe('List component - ', () => {
     expect(checkItems.length).toBe(0);
   });
 
-  it('should not allow selection when selectItems is false', function () {
+  it('should not allow selection when selectItems is false', function() {
     let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
@@ -186,7 +186,7 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(0);
   });
 
-  it('should add active class to clicked list item', function () {
+  it('should add active class to clicked list item', function() {
     let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
@@ -204,7 +204,7 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(1);
   });
 
-  it('should manage selected items', function () {
+  it('should manage selected items', function() {
     let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
@@ -220,7 +220,7 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(1);
   });
 
-  it('should respect the multiSelect setting', function () {
+  it('should respect the multiSelect setting', function() {
     let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
@@ -254,7 +254,7 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(2);
   });
 
-  it('should not allow both row and checkbox selection', function () {
+  it('should not allow both row and checkbox selection', function() {
     let exceptionRaised = false;
     let badConfig = {
       selectItems: true,
@@ -270,7 +270,7 @@ describe('List component - ', () => {
     expect(exceptionRaised).toBe(true);
   });
 
-  it('should allow expand items', function () {
+  it('should allow expand items', function() {
     config.useExpandItems = true;
     fixture.detectChanges();
 
@@ -284,7 +284,7 @@ describe('List component - ', () => {
     expect(openItem.length).toBe(1);
   });
 
-  it('should show the empty state when specified', function () {
+  it('should show the empty state when specified', function() {
     comp.items = [];
     fixture.detectChanges();
 

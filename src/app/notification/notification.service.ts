@@ -16,7 +16,7 @@ export class NotificationService {
   private delay: number = 8000;
   private modes: any = {};
   private notifications: any = {};
-  private persist: any = {'error': true, 'httpError': true};
+  private persist: any = { 'error': true, 'httpError': true };
   private verbose: boolean = false;
 
   /**
@@ -25,10 +25,10 @@ export class NotificationService {
   constructor() {
     this.notifications.data = [] as Notification[];
     this.modes = [
-      {info: { type: NotificationType.INFO, header: 'Info!', log: 'info'}},
-      {success: { type: NotificationType.SUCCESS, header: 'Success!', log: 'info'}},
-      {error: { type: NotificationType.DANGER, header: 'Error!', log: 'error'}},
-      {warn: { type: NotificationType.WARNING, header: 'Warning!', log: 'warn'}}
+      { info: { type: NotificationType.INFO, header: 'Info!', log: 'info' } },
+      { success: { type: NotificationType.SUCCESS, header: 'Success!', log: 'info' } },
+      { error: { type: NotificationType.DANGER, header: 'Error!', log: 'error' } },
+      { warn: { type: NotificationType.WARNING, header: 'Warning!', log: 'warn' } }
     ];
     this.modes.forEach((mode: any, index: number) => {
       this.notifications[index] = this.createNotifyMethod(index);
@@ -50,7 +50,7 @@ export class NotificationService {
    */
   httpError(message: string, httpResponse: any): void {
     message += ' (' + (httpResponse.data.message || httpResponse.data.cause
-        || httpResponse.data.cause || httpResponse.data.errorMessage) + ')';
+      || httpResponse.data.cause || httpResponse.data.errorMessage) + ')';
     this.message('danger', 'Error!', message, this.persist.httpError, null, null);
     if (this.verbose) {
       console.log(message);
@@ -68,12 +68,12 @@ export class NotificationService {
    * @param moreActions More actions for the kebab
    */
   message(type: string, header: string, message: string, isPersistent: boolean,
-          primaryAction: Action, moreActions: Action[]): void {
+    primaryAction: Action, moreActions: Action[]): void {
     let notification = {
       header: header,
       isPersistent: isPersistent,
       isViewing: false,
-      message : message,
+      message: message,
       moreActions: moreActions,
       primaryAction: primaryAction,
       showClose: false,
@@ -121,9 +121,9 @@ export class NotificationService {
    *
    * @param persist Set to true to persist notifications
    */
-  setPersist = function (persist: boolean): void {
+  setPersist = function(persist: boolean): void {
     this.persist = persist;
-  }
+  };
 
   /**
    * Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.

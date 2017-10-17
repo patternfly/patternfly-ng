@@ -62,7 +62,7 @@ export class RemainingCharsCountDirective implements OnInit {
    * @param renderer The renderer service
    */
   constructor(private el: ElementRef,
-              private renderer: Renderer2) {
+    private renderer: Renderer2) {
   }
 
   // Initialization

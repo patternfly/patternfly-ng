@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -29,8 +29,8 @@ import { DemoComponentsModule } from '../../../../demo/components/demo-component
     FormsModule,
     TabsModule.forRoot()
   ],
-  providers: [ BsDropdownConfig, TabsetConfig ]
+  providers: [BsDropdownConfig, TabsetConfig]
 })
 export class CardExampleModule {
-  constructor() {}
+  constructor() { }
 }

@@ -65,7 +65,7 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
   /**
    * The default constructor
    */
-  constructor(@Host() wizard: WizardComponent) {
+  constructor( @Host() wizard: WizardComponent) {
     super();
     this.wizard = wizard;
   }
@@ -291,11 +291,11 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
   // Navigate to the given wizard substep
   private goTo(step: WizardStep): void {
     if (step === undefined || this.wizard === undefined || this.wizard.config.done
-        || (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)) {
+      || (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)) {
       return;
     }
     if (this.init || this.isPreviousStepsComplete(step)
-        || (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.config.previousEnabled)) {
+      || (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.config.previousEnabled)) {
       this.unselectAll();
       this.selectedStep = step;
       step.selected = true;
@@ -311,7 +311,7 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
     let nextIdx = this.stepIndex(nextStep);
     let complete = true;
     this.getEnabledSteps().forEach((step: WizardStep, stepIndex) => {
-      if (stepIndex <  nextIdx) {
+      if (stepIndex < nextIdx) {
         complete = complete && step.config.nextEnabled;
       }
     });

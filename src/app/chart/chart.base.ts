@@ -32,7 +32,7 @@ export abstract class ChartBase {
    * @param chartId
    * @param reload
    */
-  protected generateChart (chartId: string, reload?: boolean): void {
+  protected generateChart(chartId: string, reload?: boolean): void {
     setTimeout(() => {
       let c3Config = this.config;
       if (c3Config) {
