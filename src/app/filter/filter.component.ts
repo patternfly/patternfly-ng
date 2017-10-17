@@ -145,7 +145,7 @@ export class FilterComponent implements DoCheck, OnInit {
   // Private
 
   private enforceSingleSelect(filter: Filter): void {
-    remove(this.config.appliedFilters, {title: filter.field.title});
+    remove(this.config.appliedFilters, { title: filter.field.title });
   }
 
   private filterExists(filter: Filter): boolean {

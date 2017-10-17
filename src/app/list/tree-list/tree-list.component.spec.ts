@@ -3,8 +3,8 @@ import {
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
-import { FormsModule }  from '@angular/forms';
-import { By }           from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import {
   TreeModule
@@ -142,24 +142,24 @@ describe('Tree List component - ', () => {
    * Also see:
    * https://github.com/mobxjs/mobx/issues/462
    */
-/*
-  it('Should have at least one node', function () {
-    let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
-    expect(elements.length).toBe(2);
-  });
+  /*
+    it('Should have at least one node', function () {
+      let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
+      expect(elements.length).toBe(2);
+    });
+  
+    it('Should have collapsed toggle', function () {
+      let elements = fixture.debugElement.queryAll(By.css('.tree-node-collapsed'));
+      expect(elements.length).toBe(1);
+    });
+  
+    it('Should have expanded toggle', function () {
+      let elements = fixture.debugElement.queryAll(By.css('.tree-node-expanded'));
+      expect(elements.length).toBe(1);
+    });
+  */
 
-  it('Should have collapsed toggle', function () {
-    let elements = fixture.debugElement.queryAll(By.css('.tree-node-collapsed'));
-    expect(elements.length).toBe(1);
-  });
-
-  it('Should have expanded toggle', function () {
-    let elements = fixture.debugElement.queryAll(By.css('.tree-node-expanded'));
-    expect(elements.length).toBe(1);
-  });
-*/
-
-  xit('Should run consolidated tests', function () {
+  xit('Should run consolidated tests', function() {
     // Test 1: 'Should have at least one node'
     let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
     expect(elements.length).toBe(4);

@@ -22,8 +22,8 @@ export {
     CommonModule,
     FormsModule
   ],
-  declarations: [ ActionComponent ],
-  exports: [ ActionComponent ],
-  providers: [ BsDropdownConfig ]
+  declarations: [ActionComponent],
+  exports: [ActionComponent],
+  providers: [BsDropdownConfig]
 })
 export class ActionModule { }

@@ -56,6 +56,6 @@ import { NavigationExampleModule } from '../app/navigation/examples/navigation-e
   ],
   providers: [
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

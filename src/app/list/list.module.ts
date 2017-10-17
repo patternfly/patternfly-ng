@@ -34,8 +34,8 @@ export {
     FormsModule,
     TreeModule
   ],
-  declarations: [ ListComponent, ListExpandToggleComponent, TreeListComponent ],
-  exports: [ ListComponent, ListExpandToggleComponent, TreeListComponent ],
-  providers: [ BsDropdownConfig ]
+  declarations: [ListComponent, ListExpandToggleComponent, TreeListComponent],
+  exports: [ListComponent, ListExpandToggleComponent, TreeListComponent],
+  providers: [BsDropdownConfig]
 })
 export class ListModule { }

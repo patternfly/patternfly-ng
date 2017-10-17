@@ -30,7 +30,7 @@ export class SparklineExampleComponent implements OnInit {
     let today = new Date();
 
     for (let d = 20 - 1; d >= 0; d--) {
-     this.dates.push(new Date(today.getTime() - (d * 24 * 60 * 60 * 1000)));
+      this.dates.push(new Date(today.getTime() - (d * 24 * 60 * 60 * 1000)));
     }
   }
 

@@ -161,7 +161,7 @@ export class FilterLazyExampleComponent implements OnInit {
 
     this.lazyFilterFields = [{
       id: 'name',
-      title:  'Name',
+      title: 'Name',
       placeholder: 'Filter by Name...',
       type: 'text'
     }, {

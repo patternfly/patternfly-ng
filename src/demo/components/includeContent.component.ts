@@ -1,6 +1,6 @@
 import {
   Component, Input, ViewContainerRef, OnInit, ViewChild
-} from "@angular/core";
+} from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 @Component({
@@ -19,11 +19,11 @@ export class IncludeContentComponent implements OnInit {
   private templateContent: string;
   private page: string;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   ngOnInit() {
     this.http.get(this.templateUrl).subscribe((out: any) => {
-      this.templateContent = out["_body"];
+      this.templateContent = out['_body'];
       this.page = out.url.slice(out.url.lastIndexOf('/') + 1, out.url.length);
     });
   }

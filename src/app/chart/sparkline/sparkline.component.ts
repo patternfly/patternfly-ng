@@ -96,14 +96,14 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
                 '</tr>' +
                 '<tr>' +
                 '  <td class="name">' + percentUsed + '%:' + '</td>' +
-                '  <td class="value text-nowrap">' + d[0].value + ' ' +  (this.config.units ? this.config.units + ' ' : '') + d[0].name + '</td>' +
+                '  <td class="value text-nowrap">' + d[0].value + ' ' + (this.config.units ? this.config.units + ' ' : '') + d[0].name + '</td>' +
                 '</tr>';
               break;
             case 'valuePerDay':
               tipRows =
                 '<tr>' +
-                '  <td class="value">' +  d[0].x.toLocaleDateString() + '</td>' +
-                '  <td class="value text-nowrap">' +  d[0].value + ' ' + d[0].name + '</td>' +
+                '  <td class="value">' + d[0].x.toLocaleDateString() + '</td>' +
+                '  <td class="value text-nowrap">' + d[0].value + ' ' + d[0].name + '</td>' +
                 '</tr>';
               break;
             case 'percentage':
@@ -148,7 +148,7 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
    * Convert the config data to C3 Data
    */
   protected getSparklineData(chartData: any): any {
-    let sparklineData: any  = {
+    let sparklineData: any = {
       type: 'area'
     };
 

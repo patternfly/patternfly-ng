@@ -6,7 +6,7 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "npm-run-all --serial remove-dist build:library build:demo copy-examples:demo",
+    "build": "npm-run-all --serial remove-dist ts:format:verify ts:lint build:library build:demo copy-examples:demo",
     "build:demo": "webpack --config config/webpack.demo.js --progress --profile --bail",
     "build:library": "gulp build",
     "bundle": "webpack --config config/webpack.prod.js --progress --profile --bail",
@@ -23,6 +23,10 @@
     "test": "karma start",
     "test:debug": "karma --browsers Chrome --no-single-run start",
     "transpile": "gulp transpile",
+    "ts:format:verify": "tsfmt --verify --useTsconfig tsconfig-tsfmt.json --useTslint tslint.json",
+    "ts:format:fix": "tsfmt -r --useTsconfig tsconfig-tsfmt.json --useTslint tslint.json",
+    "ts:lint": "tslint \"index.ts\" \"src/**/*.ts\"",
+    "ts:lint:fix": "npm run ts:lint -- --fix",
     "semantic-release": "semantic-release pre && copy package.json npm-shrinkwrap.json dist && npm publish dist && semantic-release post",
     "semantic-release-post": "semantic-release post",
     "semantic-release-pre": "semantic-release pre"
@@ -77,9 +81,9 @@
     "zone.js": "0.8.4"
   },
   "devDependencies": {
+    "@types/c3": "^0.4.44",
     "@types/jasmine": "2.5.43",
     "@types/lodash": "4.14.54",
-    "@types/c3": "^0.4.44",
     "angular2-load-children-loader": "0.1.3",
     "angular2-router-loader": "0.3.5",
     "angular2-template-loader": "0.6.2",
@@ -172,6 +176,7 @@
     "typedoc": "^0.5.7",
     "typedoc-webpack-plugin": "^1.1.4",
     "typescript": "2.3.4",
+    "typescript-formatter": "^6.0.0",
     "uglify-js": "2.8.7",
     "url-loader": "0.5.8",
     "webpack": "2.2.1",

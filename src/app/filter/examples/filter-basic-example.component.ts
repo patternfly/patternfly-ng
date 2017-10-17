@@ -63,17 +63,17 @@ export class FilterBasicExampleComponent implements OnInit {
     this.filterConfig = {
       fields: [{
         id: 'name',
-        title:  'Name',
+        title: 'Name',
         placeholder: 'Filter by Name...',
         type: 'text'
       }, {
         id: 'address',
-        title:  'Address',
+        title: 'Address',
         placeholder: 'Filter by Address...',
         type: 'text'
       }, {
         id: 'birthMonth',
-        title:  'Birth Month',
+        title: 'Birth Month',
         placeholder: 'Filter by Birth Month...',
         type: 'select',
         queries: [{

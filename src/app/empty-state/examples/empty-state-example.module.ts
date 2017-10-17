@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 
@@ -7,15 +7,15 @@ import { EmptyStateModule } from '../empty-state.module';
 import { EmptyStateExampleComponent } from './empty-state-example.component';
 
 @NgModule({
-  declarations: [ EmptyStateExampleComponent ],
+  declarations: [EmptyStateExampleComponent],
   imports: [
     CommonModule,
     DemoComponentsModule,
     EmptyStateModule,
     TabsModule.forRoot()
   ],
-  providers: [ TabsetConfig ]
+  providers: [TabsetConfig]
 })
 export class EmptyStateExampleModule {
-  constructor() {}
+  constructor() { }
 }

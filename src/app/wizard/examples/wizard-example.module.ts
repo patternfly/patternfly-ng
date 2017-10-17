@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -29,8 +29,8 @@ import { WizardModule } from '../wizard.module';
     TabsModule.forRoot(),
     WizardModule
   ],
-  providers: [ TabsetConfig ]
+  providers: [TabsetConfig]
 })
 export class WizardExampleModule {
-  constructor() {}
+  constructor() { }
 }

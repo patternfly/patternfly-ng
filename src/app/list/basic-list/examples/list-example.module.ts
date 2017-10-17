@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -41,8 +41,8 @@ import { NodesContentComponent } from './nodes-content.component';
     TabsModule.forRoot(),
     TooltipModule.forRoot()
   ],
-  providers: [ BsDropdownConfig, TabsetConfig, TooltipConfig ]
+  providers: [BsDropdownConfig, TabsetConfig, TooltipConfig]
 })
 export class ListExampleModule {
-  constructor() {}
+  constructor() { }
 }

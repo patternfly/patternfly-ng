@@ -140,8 +140,8 @@ export class ListBasicExampleComponent implements OnInit {
       iconStyleClass: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
-        'objects exists and you want to guide the user to perform specific actions.',
+      'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
+      'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
         hypertext: 'List example',
         text: 'For more information please see the',
@@ -172,7 +172,7 @@ export class ListBasicExampleComponent implements OnInit {
    * @returns {ActionConfig}
    */
   getActionConfig(item: any, actionButtonTemplate: TemplateRef<any>,
-      startButtonTemplate: TemplateRef<any>): ActionConfig {
+    startButtonTemplate: TemplateRef<any>): ActionConfig {
     let actionConfig = {
       primaryActions: [{
         id: 'start',
