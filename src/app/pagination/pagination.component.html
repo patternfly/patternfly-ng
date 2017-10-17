@@ -8,7 +8,7 @@
       </button>
         <ul class="dropdown-menu" *dropdownMenu>
           <li *ngFor="let increment of config?.pageSizeIncrements" [ngClass]="{'selected': increment === config?.pageSize}" class="display-length-increment">
-            <a role="menuitem" (click)="onPageSizeChange($event, increment)">{{increment}}</a></li>
+            <a role="menuitem" (click)="onPageSizeUpdate($event, increment)">{{increment}}</a></li>
         </ul>
       </div>
     </div>
@@ -20,8 +20,8 @@
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="First Page" (click)="gotoFirstPage()" class="goto-first-page"><span class="i fa fa-angle-double-left"></span></a></li>
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="Previous Page" (click)="gotoPreviousPage()" class="goto-prev-page"><span class="i fa fa-angle-left"></span></a></li>
     </ul>
-    <input type="text" #pInput [ngModel]="config.pageNumber" (keyup.enter)="onPageNumberChange($event, pInput.value)" class="pagination-pf-page"
-      name="page" />
+    <input type="text" #pInput [ngModel]="config.pageNumber" on-change="onPageNumberUpdate($event, pInput.value)" class="pagination-pf-page"
+      name="config.pageNumber" />
     <span>of&nbsp;<span class="pagination-pf-pages">{{ lastPageNumber }}</span></span>
     <ul class="pagination pagination-pf-forward">
       <li [ngClass]="{'disabled': config.pageNumber === lastPageNumber}"><a title="Next Page" (click)="gotoNextPage()" class="goto-next-page"><span class="i fa fa-angle-right"></span></a></li>

@@ -4,42 +4,28 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { PaginationConfig } from '../pagination-config';
+import { TabDirective } from 'ngx-bootstrap/tabs';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pagination-example',
   templateUrl: './pagination-example.component.html'
 })
-
 export class PaginationExampleComponent implements OnInit {
+  activeTab: string = '';
 
-  paginationConfig: PaginationConfig;
-  actionsText: String = '';
-  items: Array<any> = [];
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.data();
-    this.paginationConfig = {
-      pageSize: 10,
-      pageNumber: 1,
-      totalItems: this.items.length
-    } as PaginationConfig;
   }
 
-  data() {
-    for (let i = 1; i < 126; i++) {
-      this.items.push({ id: i, status: 'Ok', value: Math.floor(Math.random() * (1000 - 1 + 1)) + 1 });
-    }
+  ngDoCheck(): void {
   }
 
-  handlePageSize(event) {
-    this.actionsText = "Page Size: " + event.pageSize + " Selected" + "\n" + this.actionsText;
-  }
+  // Actions
 
-  handlePageNumber(event) {
-    this.actionsText = "Page Number: " + event.pageNumber + " Selected" + "\n" + this.actionsText;
+  tabSelected($event: TabDirective): void {
+    this.activeTab = $event.heading;
   }
-
 }
-

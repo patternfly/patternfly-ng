@@ -33,12 +33,12 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   /**
    * The Event is emitted when Page Size is changed
    */
-  @Output('onPageSizeSelect') onPageSizeSelect = new EventEmitter();
+  @Output('onPageSizeChange') onPageSizeChange = new EventEmitter();
 
   /**
    * The Event is emitted when Page Number is Changed
    */
-  @Output('onPageNumberSelect') onPageNumberSelect = new EventEmitter();
+  @Output('onPageNumberChange') onPageNumberChange = new EventEmitter();
 
 
   private defaultConfig = {
@@ -47,12 +47,12 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
     pageSize: 5
   } as PaginationConfig
   private prevConfig: PaginationConfig;
-  public lastPageNumber: number;
+  private _lastPageNumber: number;
 
   /**
    * The default constructor
    */
-  constructor() {}
+  constructor() { }
 
   // Initialization
 
@@ -98,14 +98,28 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   }
 
   /**
+   * get _lastPageNumber
+   */
+  get lastPageNumber(): number {
+    return this._lastPageNumber;
+  }
+
+  /**
+   * set _lastPageNumber
+   */
+  set lastPageNumber(value: number) {
+    this._lastPageNumber = value;
+  }
+
+  /**
    * Page size is changed
    * @param newPageSize new page size
    */
-  private onPageSizeChange($event: Event, newPageSize: number): void {
+  private onPageSizeUpdate($event: Event, newPageSize: number): void {
     this.config.pageSize = newPageSize;
     this.lastPageNumber = this.getLastPageNumber();
     this.gotoFirstPage();
-    this.onPageSizeSelect.emit({
+    this.onPageSizeChange.emit({
       pageSize: newPageSize
     });
   }
@@ -113,15 +127,15 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   /**
    * Page number is changed using input field
    */
-  public onPageNumberChange($event: Event, value: string): void {
-    let newPageNumber = parseInt(value, 10);
-    if (newPageNumber > this.lastPageNumber) {
-      this.updatePageNumber(this.lastPageNumber);
-    } else if (newPageNumber < 1 || isNaN(this.config.pageNumber)) {
-      this.updatePageNumber(1);
-    } else {
-      this.updatePageNumber(newPageNumber);
-    }
+  public onPageNumberUpdate($event: KeyboardEvent, value: string): void {
+      let newPageNumber = parseInt(value, 10);
+      if (newPageNumber > this.lastPageNumber) {
+        this.updatePageNumber(this.lastPageNumber);
+      } else if (newPageNumber < 1 || isNaN(this.config.pageNumber)) {
+        this.updatePageNumber(1);
+      } else {
+        this.updatePageNumber(newPageNumber);
+      }
   }
 
   /**
@@ -187,7 +201,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
    */
   private updatePageNumber(newPageNumber: number): void {
     this.config.pageNumber = newPageNumber;
-    this.onPageNumberSelect.emit({
+    this.onPageNumberChange.emit({
       pageNumber: newPageNumber
     });
   }
