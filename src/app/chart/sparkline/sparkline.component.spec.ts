@@ -178,7 +178,7 @@ describe('Component: sparkline chart', () => {
   // TODO - add when empty chart is available
   // it("should show empty chart when the dataAvailable is set to false", function() {
   //   element = compileChart('<pf-sparkline-chart config="config" chart-data="data"></pf-sparkline-chart>', $scope);
-  //   var emptyChart = element.find('.empty-chart-content');
+  //   let emptyChart = element.find('.empty-chart-content');
   //   expect(emptyChart.length).toBe(0);
   //
   //   $scope.data.dataAvailable = false;
