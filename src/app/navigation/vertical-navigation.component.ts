@@ -322,7 +322,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   private getFirstNavigateChild(item: NavigationItemConfig): NavigationItemConfig {
-    var firstChild;
+    let firstChild;
     if (!item.children || item.children.length < 1) {
       firstChild = item;
     } else {
