@@ -20,7 +20,7 @@
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="First Page" (click)="gotoFirstPage()" class="goto-first-page"><span class="i fa fa-angle-double-left"></span></a></li>
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="Previous Page" (click)="gotoPreviousPage()" class="goto-prev-page"><span class="i fa fa-angle-left"></span></a></li>
     </ul>
-    <input type="text" #pInput [ngModel]="config.pageNumber" on-change="onPageNumberUpdate($event, pInput.value)" class="pagination-pf-page"
+    <input type="text" #pInput [ngModel]="config.pageNumber" (onchange)="onPageNumberUpdate($event, pInput.value)" class="pagination-pf-page"
       name="config.pageNumber" />
     <span>of&nbsp;<span class="pagination-pf-pages">{{ lastPageNumber }}</span></span>
     <ul class="pagination pagination-pf-forward">

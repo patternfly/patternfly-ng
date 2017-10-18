@@ -45,7 +45,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
     pageNumber: 1,
     pageSizeIncrements: [5, 10, 20, 40, 80, 100],
     pageSize: 5
-  } as PaginationConfig
+  } as PaginationConfig;
   private prevConfig: PaginationConfig;
   private _lastPageNumber: number;
 
@@ -98,17 +98,92 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   }
 
   /**
-   * get _lastPageNumber
+   * Return last page number
    */
   get lastPageNumber(): number {
     return this._lastPageNumber;
   }
 
   /**
-   * set _lastPageNumber
+   * Update Last page Number
    */
   set lastPageNumber(value: number) {
     this._lastPageNumber = value;
+  }
+
+  /**
+   * Page number is changed using input field
+   */
+  onPageNumberUpdate($event: KeyboardEvent, value: string): void {
+    console.log('event keycode:', $event.which, '\n', 'event: ', $event);  
+    let newPageNumber = parseInt(value);
+      if (newPageNumber > this.lastPageNumber) {
+        this.updatePageNumber(this.lastPageNumber);
+      } else if (newPageNumber < 1 || isNaN(this.config.pageNumber)) {
+        this.updatePageNumber(1);
+      } else {
+        this.updatePageNumber(newPageNumber);
+      }
+  }
+
+  /**
+   * Jump to First Page
+   */
+  gotoFirstPage(): void {
+    if (this.config.pageNumber !== 1) {
+      this.updatePageNumber(1);
+    }
+  }
+
+  /**
+   * Go to Previous Page
+   */
+  gotoPreviousPage(): void {
+    if (this.config.pageNumber !== 1) {
+      this.updatePageNumber(this.config.pageNumber - 1);
+    }
+  }
+
+  /**
+   * Go to Next Page
+   */
+  gotoNextPage(): void {
+    if (this.config.pageNumber < this.lastPageNumber) {
+      this.updatePageNumber(this.config.pageNumber + 1);
+    }
+  }
+
+  /**
+   * Jump to Last Page
+   */
+  gotoLastPage(): void {
+    if (this.config.pageNumber < this.lastPageNumber) {
+      this.updatePageNumber(this.lastPageNumber);
+    }
+  }
+
+  /**
+   * Return start index and end index of current page
+   */
+  getCurrentPage() {
+    return this.getStartIndex() + ' - ' + this.getEndIndex();
+  }
+
+  /**
+   * Start Index of Current Page
+   */
+  getStartIndex(): number {
+    return this.config.totalItems ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
+  }
+
+  /**
+   * End Index of Current Page
+   */
+  getEndIndex(): number {
+    let numFullPages = Math.floor(this.config.totalItems / this.config.pageSize);
+    let numItemsOnLastPage = this.config.totalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
+    let numItemsOnPage = this.isLastPage() ? numItemsOnLastPage : this.config.pageSize;
+    return this.config.totalItems ? this.getStartIndex() + numItemsOnPage - 1 : 0;
   }
 
   /**
@@ -122,77 +197,6 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
     this.onPageSizeChange.emit({
       pageSize: newPageSize
     });
-  }
-
-  /**
-   * Page number is changed using input field
-   */
-  public onPageNumberUpdate($event: KeyboardEvent, value: string): void {
-      let newPageNumber = parseInt(value, 10);
-      if (newPageNumber > this.lastPageNumber) {
-        this.updatePageNumber(this.lastPageNumber);
-      } else if (newPageNumber < 1 || isNaN(this.config.pageNumber)) {
-        this.updatePageNumber(1);
-      } else {
-        this.updatePageNumber(newPageNumber);
-      }
-  }
-
-  /**
-   * Jump to First Page
-   */
-  public gotoFirstPage(): void {
-    if (this.config.pageNumber !== 1) {
-      this.updatePageNumber(1);
-    }
-  }
-
-  /**
-   * Go to Previous Page
-   */
-  public gotoPreviousPage(): void {
-    if (this.config.pageNumber !== 1) {
-      this.updatePageNumber(this.config.pageNumber - 1);
-    }
-  }
-
-  /**
-   * Go to Next Page
-   */
-  public gotoNextPage(): void {
-    if (this.config.pageNumber < this.lastPageNumber) {
-      this.updatePageNumber(this.config.pageNumber + 1);
-    }
-  }
-
-  /**
-   * Jump to Last Page
-   */
-  public gotoLastPage(): void {
-    if (this.config.pageNumber < this.lastPageNumber) {
-      this.updatePageNumber(this.lastPageNumber);
-    }
-  }
-
-  public getCurrentPage() {
-    return this.getStartIndex() + " - " + this.getEndIndex();
-  }
-
-  /**
-   * Start Index of Current Page
-   */
-  public getStartIndex(): number {
-    return this.config.totalItems ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
-  }
-
-  /**
-   * End Index of Current Page
-   */
-  public getEndIndex(): number {
-    let numFullPages = Math.floor(this.config.totalItems / this.config.pageSize);
-    let numItemsOnLastPage = this.config.totalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
-    let numItemsOnPage = this.isLastPage() ? numItemsOnLastPage : this.config.pageSize;
-    return this.config.totalItems ? this.getStartIndex() + numItemsOnPage - 1 : 0;
   }
 
   /**
@@ -220,3 +224,4 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
     return this.config.pageNumber === this.lastPageNumber;
   }
 }
+

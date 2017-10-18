@@ -79,7 +79,7 @@ describe('Pagination component - ', () => {
   it('should change page by using input', () => {
     let input = fixture.debugElement.query(By.css(".pagination-pf-page"));
     input.nativeNode.value = 6;
-    input.triggerEventHandler('keyup.enter', null);
+    input.triggerEventHandler('enter', null);
     expect(comp.config.pageNumber).toEqual(6);
   });
 });

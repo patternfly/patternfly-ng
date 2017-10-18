@@ -4,12 +4,10 @@
       <div class="form-group">
        <pfng-list [actionTemplate] = "actionTemplate"
                   [config]="listConfig" 
-                  [expandTemplate]="expandTemplate" 
                   [items]="items" 
                   [itemTemplate]="itemTemplate"
                   (onActionSelect)="handleAction($event)" 
-                  (onClick)="handleClick($event)" 
-                  (onDblClick)="handleDblClick($event)" 
+                  (onClick)="handleClick($event)"
                   (onSelectionChange)="handleSelectionChange($event)">
                   <ng-template #itemTemplate 
                         let-item="item"
@@ -43,15 +41,11 @@
             </div>
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
-            <pfng-action class="list-pf-actions" [config]="getActionConfig(item, actionButtonTemplate, startButtonTemplate)" (onActionSelect)="handleAction($event, item)">
-              <ng-template #actionButtonTemplate let-action="action">
-                <span class="fa fa-plus">&nbsp;</span>{{action.title}}
-              </ng-template>
-              <ng-template #startButtonTemplate let-action="action">
-                {{item.started === true ? "Starting" : action.title}}
-              </ng-template>
+            <pfng-action class="list-pf-actions"
+              [config]="actionConfig"
+              (onActionSelect)="handleAction($event, item)">
             </pfng-action>
-          </ng-template>
+        </ng-template>
         </pfng-list>
       </div>
     </div>

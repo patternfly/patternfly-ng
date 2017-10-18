@@ -24,3 +24,4 @@ export class PaginationConfig {
    */
   pageSize?: number;
 }
+
