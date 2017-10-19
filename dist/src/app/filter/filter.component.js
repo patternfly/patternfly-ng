@@ -143,7 +143,7 @@ FilterComponent = __decorate([
     Component({
         encapsulation: ViewEncapsulation.None,
         selector: 'pfng-filter',
-        styles: [".filter-pf a{cursor:pointer}.filter-select .btn{border-left:0}.dropdown-menu{min-width:176px}"],
+        styles: [".filter-pf a{cursor:pointer}.dropdown-menu{min-width:176px}"],
         template: "<div class=\"filter-pf\"><pfng-filter-fields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clear($event)\"></pfng-filter-results></div>"
     }),
     __metadata("design:paramtypes", [])

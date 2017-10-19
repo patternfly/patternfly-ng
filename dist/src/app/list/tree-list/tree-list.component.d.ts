@@ -1,4 +1,5 @@
 import { DoCheck, EventEmitter, OnInit, TemplateRef } from '@angular/core';
+import { TreeComponent } from 'angular-tree-component';
 import { ListBase } from '../list-base';
 import { TreeListConfig } from './tree-list-config';
 /**
@@ -37,7 +38,7 @@ export declare class TreeListComponent extends ListBase implements DoCheck, OnIn
     /**
      * The underlying tree for angular-tree-component
      */
-    private tree;
+    tree: TreeComponent;
     private defaultConfig;
     private prevConfig;
     /**

@@ -52,10 +52,12 @@ var WizardReviewComponent = (function () {
     WizardReviewComponent.prototype.toggleReview = function (step) {
         step.config.expandReview = !step.config.expandReview;
     };
+    ;
     // Toggles the review details control
     WizardReviewComponent.prototype.toggleReviewDetails = function (step) {
         step.config.expandReviewDetails = !step.config.expandReviewDetails;
     };
+    ;
     return WizardReviewComponent;
 }());
 WizardReviewComponent = __decorate([

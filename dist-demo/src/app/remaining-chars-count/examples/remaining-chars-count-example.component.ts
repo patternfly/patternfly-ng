@@ -15,7 +15,7 @@ export class RemainingCharsCountExampleComponent implements OnInit {
     'example1': false,
     'example2': false,
     'example3': false
-  };
+  }
 
   constructor() {
   }

@@ -277,6 +277,7 @@ export class ToolbarExampleComponent implements OnInit {
 
   handleAction(action: Action): void {
     this.actionsText = action.title + '\n' + this.actionsText;
+    let test = '';
   }
 
   optionSelected(option: number): void {

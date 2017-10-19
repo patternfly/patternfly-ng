@@ -109,6 +109,7 @@ var CardComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    ;
     Object.defineProperty(CardComponent.prototype, "showFilterInHeader", {
         /**
          * Indicates that the footer should be shown in the header
@@ -122,6 +123,7 @@ var CardComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    ;
     Object.defineProperty(CardComponent.prototype, "showFooter", {
         /**
          * Indicates that the footer should be shown
@@ -134,6 +136,7 @@ var CardComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    ;
     Object.defineProperty(CardComponent.prototype, "showHeader", {
         /**
          * Indicates that the header should be shown
@@ -146,6 +149,7 @@ var CardComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    ;
     return CardComponent;
 }(CardBase));
 __decorate([
