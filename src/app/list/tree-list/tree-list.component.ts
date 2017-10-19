@@ -67,7 +67,7 @@ export class TreeListComponent extends ListBase implements DoCheck, OnInit {
   /**
    * The underlying tree for angular-tree-component
    */
-  @ViewChild(TreeComponent) tree: TreeComponent;
+  @ViewChild(TreeComponent) private tree: TreeComponent;
 
   private defaultConfig = {
     dblClick: false,
