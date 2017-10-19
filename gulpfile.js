@@ -13,6 +13,7 @@ var gulp = require('gulp'),
   postcss = require('postcss'),
   replace = require('gulp-replace'),
   sourcemaps = require('gulp-sourcemaps'),
+  stylelint = require('gulp-stylelint'),
   stylus = require('stylus');
 
 var appSrc = 'src';
@@ -59,9 +60,6 @@ function transpileLESS(src) {
     .pipe(sourcemaps.init())
     .pipe(lessCompiler({
       paths: [ path.join(__dirname, 'less', 'includes') ]
-    }).on('error', function (err) {
-      // this will prevent our future watch-task from crashing on sass-errors
-      console.log(err);
     }))
     .pipe(cssmin().on('error', function(err) {
       console.log(err);
@@ -100,8 +98,20 @@ function minifyTemplate(file) {
  * TASKS
  */
 
+// Stylelint task
+gulp.task('lint-css', function lintCssTask() {
+  return gulp
+    .src(['./src/assets/stylesheets/*.less', './src/app/**/*.less'])
+    .pipe(stylelint({
+      failAfterError: true,
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
+});
+
 //Less compilation and minifiction - adopted from sass compilation, needs work
-gulp.task('transpile-less', function () {
+gulp.task('transpile-less', ['lint-css'], function () {
   return transpileLESS(appSrc + '/**/*.less');
 });
 
@@ -181,7 +191,7 @@ gulp.task('watch', ['build', 'copy-watch-all'], function () {
   gulp.watch([appSrc + '/app/**/*.ts', '!' + appSrc + '/app/**/*.spec.ts'], ['transpile', 'post-transpile', 'copy-watch']).on('change', function (e) {
     console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
   });
-  gulp.watch([appSrc + '/app/**/*.css']).on('change', function (e) {
+  gulp.watch([appSrc + '/app/**/*.less'], ['transpile-less']).on('change', function (e) {
     console.log(e.path + ' has been changed. Updating.');
     transpileLESS(e.path);
     updateWatchDist();
