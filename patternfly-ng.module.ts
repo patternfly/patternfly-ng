@@ -7,6 +7,7 @@ import { ChartModule } from './src/app/chart/chart.module';
 import { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 import { FilterModule } from './src/app/filter/filter.module';
 import { ListModule } from './src/app/list/list.module';
+import { NavigationModule } from './src/app/navigation/navigation.module';
 import { NotificationModule } from './src/app/notification/notification.module';
 import { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
 import { SampleModule } from './src/app/sample/sample.module';
@@ -26,6 +27,7 @@ import { WizardModule } from './src/app/wizard/wizard.module';
     EmptyStateModule,
     FilterModule,
     ListModule,
+    NavigationModule,
     NotificationModule,
     RemainingCharsCountModule,
     SampleModule,

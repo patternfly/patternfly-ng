@@ -72,7 +72,6 @@ export class ActionExampleComponent implements OnInit {
 
   handleAction(action: Action): void {
     this.actionsText = action.title + '\n' + this.actionsText;
-    let test = '';
   }
 
   optionSelected(option: number): void {

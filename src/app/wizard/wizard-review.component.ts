@@ -64,10 +64,10 @@ export class WizardReviewComponent implements OnInit {
   // Toggles the review step control
   private toggleReview(step: WizardStep): void {
     step.config.expandReview = !step.config.expandReview;
-  };
+  }
 
   // Toggles the review details control
   private toggleReviewDetails(step: WizardStep): void {
     step.config.expandReviewDetails = !step.config.expandReviewDetails;
-  };
+  }
 }

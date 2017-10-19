@@ -119,7 +119,7 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
   protected get showFilterInFooter(): boolean {
     return (this.config.filters && this.config.filterPosition
       && this.config.filterPosition === CardFilterPosition.FOOTER);
-  };
+  }
 
   /**
    * Indicates that the footer should be shown in the header
@@ -129,7 +129,7 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
   protected get showFilterInHeader(): boolean {
     return (this.config.filters && this.config.filterPosition
       && this.config.filterPosition === CardFilterPosition.HEADER);
-  };
+  }
 
   /**
    * Indicates that the footer should be shown
@@ -138,7 +138,7 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
    */
   get showFooter(): boolean {
     return (this.footerTemplate !== undefined || this.showFilterInFooter || this.config.action !== undefined);
-  };
+  }
 
   /**
    * Indicates that the header should be shown
@@ -147,5 +147,5 @@ export class CardComponent extends CardBase implements DoCheck, OnInit {
    */
   get showHeader(): boolean {
     return (this.headerTemplate !== undefined || this.showFilterInHeader || this.config.title !== undefined);
-  };
+  }
 }
