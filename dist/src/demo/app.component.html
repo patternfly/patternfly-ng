@@ -1,0 +1,107 @@
+<main class="container-fluid">
+  <nav class="navbar navbar-default navbar-pf">
+    <div class="navbar-header">
+      <div class="navbar-brand">
+        PatternFly NG - Component Demo
+      </div>
+    </div>
+  </nav>
+  <div>
+    <div id="lefthand-nav" style="position: fixed; width: 200px; height: 100%; border-right: 1px solid gray;">
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="active">Home</a>
+        </li>
+      </ul>
+      <hr/>
+      <h3>Components</h3>
+      <ul>
+        <li>
+          <a routerLink="/action" routerLinkActive="active">Action</a>
+        </li>
+        <li>
+          <a routerLink="/emptystate" routerLinkActive="active">Empty State</a>
+        </li>
+        <li>Cards
+          <ul>
+            <li>
+              <a routerLink="/card" routerLinkActive="active">Basic Card</a>
+            </li>
+          </ul>
+        </li>
+        <li>Charts
+          <ul>
+            <li>
+              <a routerLink="/sparkline" routerLinkActive="active">Sparkline</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="/filters" routerLinkActive="active">Filter</a>
+        </li>
+        <li>Lists
+          <ul>
+            <li>
+              <a routerLink="/list" routerLinkActive="active">Basic List</a>
+            </li>
+            <li>
+              <a routerLink="/treelist" routerLinkActive="active">Tree List</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="/sample" routerLinkActive="active">Sample</a>
+        </li>
+        <li>
+          <a routerLink="/sort" routerLinkActive="active">Sort</a>
+        </li>
+        <li>Navigation
+          <ul>
+            <li>
+              <a routerLink="/navigation" routerLinkActive="active">Vertical Navigation</a>
+            </li>
+          </ul>
+        </li>
+        <li>Notifications
+          <ul>
+            <li>
+              <a routerLink="/inlinenotification" routerLinkActive="active">Inline Notification</a>
+            </li>
+            <li>
+              <a routerLink="/toastnotification" routerLinkActive="active">Toast Notification</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="/toolbar" routerLinkActive="active">Toolbar</a>
+        </li>
+        <li>
+          <a routerLink="/wizard" routerLinkActive="active">Wizard</a>
+        </li>
+      </ul>
+
+      <hr/>
+      <h3>Directives</h3>
+      <ul>
+        <li>
+          <a routerLink="/remainingcharscount" routerLinkActive="active">Remaining Chars Count</a>
+        </li>
+      </ul>
+      <h3>Pipes</h3>
+      <ul>
+        <li>
+          <a routerLink="/searchhighlight" routerLinkActive="active">Search Highlight</a>
+        </li>
+      </ul>
+      <h3>Services</h3>
+      <ul>
+        <li>
+          <a routerLink="/notificationservice" routerLinkActive="active">Notification Service</a>
+        </li>
+      </ul>
+    </div>
+    <div style="margin-left: 200px;" class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,91 @@
+<div class="padding-15">
+  <div class="row padding-bottom-15">
+    <div class="col-xs-12">
+      <h4>Sparkline Chart Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <pfng-chart-sparkline [config]="config" [chartData]="data" ></pfng-chart-sparkline>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-xs-12">
+      <h4>Actions:</h4>
+      <hr/>
+    </div>
+  </div>
+
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label>Tooltip Type</label>
+          <br />
+          <label class="radio-inline">
+            <input type="radio" name="tooltipType" [(ngModel)]="config.tooltipType" value="default">Default
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="tooltipType" [(ngModel)]="config.tooltipType" value="usagePerDay" >Usage Per Day
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="tooltipType" [(ngModel)]="config.tooltipType" value="valuePerDay" >Value Per Day
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="tooltipType" [(ngModel)]="config.tooltipType" value="percentage" >Percentage
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <form role="form">
+      <div class="form-group">
+        <label>Show</label>
+        <br />
+        <label class="checkbox-inline">
+          <input type="checkbox" name="custShowX" [(ngModel)]="config.showXAxis">X Axis
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="custShowY" [(ngModel)]="config.showYAxis">Y Axis
+        </label>
+      </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <form role="form" >
+        <div class="form-group">
+          <label>Chart Height</label>
+          <br />
+          <input style="height:25px; width:60px;" name="chartHeight" type="number" [(ngModel)]="config.chartHeight"/>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <button (click)="addDataPoint()">Add Data Point</button>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-xs-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/sparklinecomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/chart/sparkline/examples/sparkline-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/chart/sparkline/examples/sparkline-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
