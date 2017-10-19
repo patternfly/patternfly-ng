@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 /**
  * List compund expansion toggle component.
@@ -35,8 +29,7 @@ export class ListExpandToggleComponent implements OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
@@ -60,7 +53,7 @@ export class ListExpandToggleComponent implements OnInit {
    * @returns {boolean} True if item is expanded
    */
   get isExpanded(): boolean {
-    return (this.item.expanded === true && this.item.expandId === this.expandId);
+    return this.item.expanded === true && this.item.expandId === this.expandId;
   }
 
   /**

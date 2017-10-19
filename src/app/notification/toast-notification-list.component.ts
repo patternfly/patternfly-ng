@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { Notification } from './notification';
 import { NotificationEvent } from './notification-event';
@@ -48,16 +41,14 @@ export class ToastNotificationListComponent implements OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
   /**
    *  Setup component configuration upon initialization
    */
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // Actions
 

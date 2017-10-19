@@ -1,18 +1,14 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule }  from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ActionConfig } from '../../action/action-config';
 import { ActionModule } from '../../action/action.module';
 import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { EmptyStateModule } from '../../empty-state/empty-state.module';
-import { ListComponent } from './list.component';
 import { ListConfig } from './list-config';
+import { ListComponent } from './list.component';
 
 describe('List component - ', () => {
   let comp: ListComponent;
@@ -24,74 +20,90 @@ describe('List component - ', () => {
   let items: any[];
 
   beforeEach(() => {
-    items = [{
-      name: 'Fred Flintstone',
-      address: '20 Dinosaur Way',
-      city: 'Bedrock',
-      state: 'Washingstone'
-    }, {
-      name: 'John Smith',
-      address: '415 East Main Street',
-      city: 'Norfolk',
-      state: 'Virginia',
-      rowExpansionDisabled: true
-    }, {
-      name: 'Frank Livingston',
-      address: '234 Elm Street',
-      city: 'Pittsburgh',
-      state: 'Pennsylvania'
-    }, {
-      name: 'Linda McGovern',
-      address: '22 Oak Street',
-      city: 'Denver',
-      state: 'Colorado'
-    }, {
-      name: 'Jim Brown',
-      address: '72 Bourbon Way',
-      city: 'Nashville',
-      state: 'Tennessee'
-    }, {
-      name: 'Holly Nichols',
-      address: '21 Jump Street',
-      city: 'Hollywood',
-      state: 'California'
-    }, {
-      name: 'Marie Edwards',
-      address: '17 Cross Street',
-      city: 'Boston',
-      state: 'Massachusetts'
-    }, {
-      name: 'Pat Thomas',
-      address: '50 Second Street',
-      city: 'New York',
-      state: 'New York'
-    }];
+    items = [
+      {
+        name: 'Fred Flintstone',
+        address: '20 Dinosaur Way',
+        city: 'Bedrock',
+        state: 'Washingstone'
+      },
+      {
+        name: 'John Smith',
+        address: '415 East Main Street',
+        city: 'Norfolk',
+        state: 'Virginia',
+        rowExpansionDisabled: true
+      },
+      {
+        name: 'Frank Livingston',
+        address: '234 Elm Street',
+        city: 'Pittsburgh',
+        state: 'Pennsylvania'
+      },
+      {
+        name: 'Linda McGovern',
+        address: '22 Oak Street',
+        city: 'Denver',
+        state: 'Colorado'
+      },
+      {
+        name: 'Jim Brown',
+        address: '72 Bourbon Way',
+        city: 'Nashville',
+        state: 'Tennessee'
+      },
+      {
+        name: 'Holly Nichols',
+        address: '21 Jump Street',
+        city: 'Hollywood',
+        state: 'California'
+      },
+      {
+        name: 'Marie Edwards',
+        address: '17 Cross Street',
+        city: 'Boston',
+        state: 'Massachusetts'
+      },
+      {
+        name: 'Pat Thomas',
+        address: '50 Second Street',
+        city: 'New York',
+        state: 'New York'
+      }
+    ];
 
     actionConfig = {
-      primaryActions: [{
-        id: 'action1',
-        title: 'Main Action',
-        tooltip: 'Start the server'
-      }],
-      moreActions: [{
-        id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
-      }, {
-        id: 'action3',
-        title: 'Secondary Action 2',
-        tooltip: 'Do something else'
-      }, {
-        id: 'action4',
-        title: 'Secondary Action 3',
-        tooltip: 'Do something special'
-      }]
+      primaryActions: [
+        {
+          id: 'action1',
+          title: 'Main Action',
+          tooltip: 'Start the server'
+        }
+      ],
+      moreActions: [
+        {
+          id: 'action2',
+          title: 'Secondary Action 1',
+          tooltip: 'Do the first thing'
+        },
+        {
+          id: 'action3',
+          title: 'Secondary Action 2',
+          tooltip: 'Do something else'
+        },
+        {
+          id: 'action4',
+          title: 'Secondary Action 3',
+          tooltip: 'Do something special'
+        }
+      ]
     } as ActionConfig;
 
     emptyStateConfig = {
       actions: actionConfig,
       iconStyleClass: 'pficon-warning-triangle-o',
-      info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
+      info:
+        'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
         'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
         'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
@@ -104,7 +116,7 @@ describe('List component - ', () => {
 
     config = {
       dblClick: false,
-      emptyStateConfig: emptyStateConfig,
+      emptyStateConfig,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
@@ -113,35 +125,32 @@ describe('List component - ', () => {
     } as ListConfig;
   });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ActionModule,
-        BrowserAnimationsModule,
-        EmptyStateModule,
-        FormsModule
-      ],
-      declarations: [ListComponent],
-      providers: []
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [ActionModule, BrowserAnimationsModule, EmptyStateModule, FormsModule],
+        declarations: [ListComponent],
+        providers: []
+      })
+        .compileComponents()
+        .then(() => {
+          fixture = TestBed.createComponent(ListComponent);
+          comp = fixture.componentInstance;
+          comp.config = config;
+          comp.items = items;
+          fixture.detectChanges();
+        });
     })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ListComponent);
-        comp = fixture.componentInstance;
-        comp.config = config;
-        comp.items = items;
-        fixture.detectChanges();
-      });
-  }));
+  );
 
   it('should have correct number of rows', () => {
-    let elements = fixture.debugElement.queryAll(By.css('.list-pf-item'));
+    const elements = fixture.debugElement.queryAll(By.css('.list-pf-item'));
     expect(elements.length).toBe(8);
   });
 
-  it('should show the select checkbox by default', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
-    let checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
+  it('should show the select checkbox by default', function() {
+    const listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
+    const checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
 
     expect(checkItems.length).toBe(items.length);
 
@@ -152,11 +161,11 @@ describe('List component - ', () => {
     listItems[1].triggerEventHandler('click', {});
     fixture.detectChanges();
 
-    let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
+    const selectedItems = fixture.debugElement.queryAll(By.css('.active'));
     expect(selectedItems.length).toBe(0);
   });
 
-  it('should not show the select checkboxes when showCheckbox is false', function () {
+  it('should not show the select checkboxes when showCheckbox is false', function() {
     let checkItems = fixture.debugElement.queryAll(By.css('.list-pf-select'));
 
     expect(checkItems.length).toBe(items.length);
@@ -169,8 +178,8 @@ describe('List component - ', () => {
     expect(checkItems.length).toBe(0);
   });
 
-  it('should not allow selection when selectItems is false', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
+  it('should not allow selection when selectItems is false', function() {
+    const listItems = fixture.debugElement.queryAll(By.css('.list-pf-item'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);
@@ -186,8 +195,8 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(0);
   });
 
-  it('should add active class to clicked list item', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
+  it('should add active class to clicked list item', function() {
+    const listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);
@@ -204,8 +213,8 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(1);
   });
 
-  it('should manage selected items', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
+  it('should manage selected items', function() {
+    const listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     // allow item selection
@@ -220,8 +229,8 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(1);
   });
 
-  it('should respect the multiSelect setting', function () {
-    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
+  it('should respect the multiSelect setting', function() {
+    const listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);
@@ -254,9 +263,9 @@ describe('List component - ', () => {
     expect(selectedItems.length).toBe(2);
   });
 
-  it('should not allow both row and checkbox selection', function () {
+  it('should not allow both row and checkbox selection', function() {
     let exceptionRaised = false;
-    let badConfig = {
+    const badConfig = {
       selectItems: true,
       showCheckbox: true
     };
@@ -270,25 +279,25 @@ describe('List component - ', () => {
     expect(exceptionRaised).toBe(true);
   });
 
-  it('should allow expand items', function () {
+  it('should allow expand items', function() {
     config.useExpandItems = true;
     fixture.detectChanges();
 
-    let listItems = fixture.debugElement.queryAll(By.css('.list-pf-chevron .fa-angle-right'));
+    const listItems = fixture.debugElement.queryAll(By.css('.list-pf-chevron .fa-angle-right'));
     expect(items.length).toBe(8);
 
     listItems[0].triggerEventHandler('click', {});
     fixture.detectChanges();
 
-    let openItem = fixture.debugElement.queryAll(By.css('.list-pf-chevron .fa-angle-right.fa-angle-down'));
+    const openItem = fixture.debugElement.queryAll(By.css('.list-pf-chevron .fa-angle-right.fa-angle-down'));
     expect(openItem.length).toBe(1);
   });
 
-  it('should show the empty state when specified', function () {
+  it('should show the empty state when specified', function() {
     comp.items = [];
     fixture.detectChanges();
 
-    let title = fixture.debugElement.query(By.css('#title'));
+    const title = fixture.debugElement.query(By.css('#title'));
     expect(title.nativeElement.textContent.trim().slice(0, 'No Items Available'.length)).toBe('No Items Available');
   });
 });

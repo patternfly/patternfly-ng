@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { CardFilter } from '../card-filter/card-filter';
 
@@ -33,8 +26,7 @@ export class CardFilterComponent implements OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
@@ -44,7 +36,7 @@ export class CardFilterComponent implements OnInit {
   ngOnInit(): void {
     if (this.filters !== undefined && this.filters.length > 0) {
       this.currentFilter = this.filters[0];
-      this.filters.forEach((filter) => {
+      this.filters.forEach(filter => {
         if (filter.default === true) {
           this.currentFilter = filter;
           return;

@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { CardAction } from './card-action';
 
@@ -31,16 +24,14 @@ export class CardActionComponent implements OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
   /**
    *  Setup component configuration upon initialization
    */
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // Actions
 

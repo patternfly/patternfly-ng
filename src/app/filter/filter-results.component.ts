@@ -1,12 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
@@ -39,8 +31,7 @@ export class FilterResultsComponent implements DoCheck, OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
@@ -89,10 +80,9 @@ export class FilterResultsComponent implements DoCheck, OnInit {
   // Private
 
   private clearFilter(filter: Filter): void {
-    let newFilters: Filter[] = [];
-    this.config.appliedFilters.forEach((appliedFilter) => {
-      if (appliedFilter.field.title !== filter.field.title
-          || appliedFilter.value !== filter.value) {
+    const newFilters: Filter[] = [];
+    this.config.appliedFilters.forEach(appliedFilter => {
+      if (appliedFilter.field.title !== filter.field.title || appliedFilter.value !== filter.value) {
         newFilters.push(appliedFilter);
       }
     });

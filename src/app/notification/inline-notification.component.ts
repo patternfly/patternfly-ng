@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { NotificationType } from './notification-type';
 
 /**
@@ -48,19 +42,16 @@ export class InlineNotificationComponent {
    */
   @Output('hiddenChange') hiddenChange = new EventEmitter<boolean>();
 
-
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * Function called from the view when the notification is removed
    */
-  public notificationRemove(): void  {
+  public notificationRemove(): void {
     this.hidden = true;
     this.hiddenChange.emit(this.hidden);
   }
-
 }

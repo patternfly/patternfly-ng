@@ -1,12 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { Action } from '../action/action';
 import { Notification } from './notification';
@@ -83,23 +75,21 @@ export class ToastNotificationComponent implements DoCheck, OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
   /**
    *  Setup component configuration upon initialization
    */
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   /**
    *  Check if the component config has changed
    */
   ngDoCheck(): void {
-    this._showCloseButton = (this.showClose === true)
-      && (this.moreActions === undefined || this.moreActions.length === 0);
+    this._showCloseButton =
+      this.showClose === true && (this.moreActions === undefined || this.moreActions.length === 0);
   }
 
   // Getters & setters
@@ -134,13 +124,15 @@ export class ToastNotificationComponent implements DoCheck, OnInit {
   private handleAction(action: Action): void {
     if (action && action.disabled !== true) {
       this.onActionSelect.emit({
-        action: action,
+        action,
         notification: this.notification
       } as NotificationEvent);
     }
   }
 
   private handleClose($event: MouseEvent): void {
-    this.onCloseSelect.emit({notification: this.notification} as NotificationEvent);
+    this.onCloseSelect.emit({
+      notification: this.notification
+    } as NotificationEvent);
   }
 }

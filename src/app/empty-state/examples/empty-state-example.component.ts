@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -20,37 +16,43 @@ export class EmptyStateExampleComponent implements OnInit {
   actionsText: string = '';
   emptyStateConfig: EmptyStateConfig;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.actionConfig = {
-      primaryActions: [{
-        id: 'action1',
-        title: 'Main Action',
-        tooltip: 'Start the server'
-      }],
-      moreActions: [{
-        id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
-      }, {
-        id: 'action3',
-        title: 'Secondary Action 2',
-        tooltip: 'Do something else'
-      }, {
-        id: 'action4',
-        title: 'Secondary Action 3',
-        tooltip: 'Do something special'
-      }]
+      primaryActions: [
+        {
+          id: 'action1',
+          title: 'Main Action',
+          tooltip: 'Start the server'
+        }
+      ],
+      moreActions: [
+        {
+          id: 'action2',
+          title: 'Secondary Action 1',
+          tooltip: 'Do the first thing'
+        },
+        {
+          id: 'action3',
+          title: 'Secondary Action 2',
+          tooltip: 'Do something else'
+        },
+        {
+          id: 'action4',
+          title: 'Secondary Action 3',
+          tooltip: 'Do something special'
+        }
+      ]
     } as ActionConfig;
 
     this.emptyStateConfig = {
       actions: this.actionConfig,
       iconStyleClass: 'pficon-warning-triangle-o',
-      info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-            'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
-            'objects exists and you want to guide the user to perform specific actions.',
+      info:
+        'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
+        'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
+        'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
         hypertext: 'Empty State example',
         text: 'For more information please see the',

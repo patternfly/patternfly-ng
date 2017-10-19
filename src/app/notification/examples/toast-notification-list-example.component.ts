@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Action } from '../../action/action';
 import { Notification } from '../notification';
@@ -30,17 +26,16 @@ export class ToastNotificationListExampleComponent implements OnInit {
   types: string[];
   typeMap: any;
 
-  constructor(private notificationService: NotificationService) {
-  }
+  constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
     this.notifications = this.notificationService.getNotifications();
 
     this.typeMap = {
-      'info': NotificationType.INFO,
-      'success': NotificationType.SUCCESS,
-      'warning': NotificationType.WARNING,
-      'danger': NotificationType.DANGER
+      info: NotificationType.INFO,
+      success: NotificationType.SUCCESS,
+      warning: NotificationType.WARNING,
+      danger: NotificationType.DANGER
     };
     this.types = Object.keys(this.typeMap);
     this.type = this.types[0];
@@ -51,35 +46,43 @@ export class ToastNotificationListExampleComponent implements OnInit {
       title: 'Perform an action'
     } as Action;
 
-    this.moreActionsDefault = [{
-      id: 'moreActions1',
-      name: 'Action',
-      title: 'Perform an action'
-    }, {
-      id: 'moreActions2',
-      name: 'Another Action',
-      title: 'Do something else'
-    }, {
-      disabled: true,
-      id: 'moreActions3',
-      name: 'Disabled Action',
-      title: 'Unavailable action'
-    }, {
-      id: 'moreActions4',
-      name: 'Something Else',
-      title: 'Do something special'
-    }, {
-      id: 'moreActions5',
-      separator: true
-    }, {
-      id: 'moreActions6',
-      name: 'Grouped Action 1',
-      title: 'Do something'
-    }, {
-      id: 'moreActions7',
-      name: 'Grouped Action 2',
-      title: 'Do something similar'
-    }] as Action[];
+    this.moreActionsDefault = [
+      {
+        id: 'moreActions1',
+        name: 'Action',
+        title: 'Perform an action'
+      },
+      {
+        id: 'moreActions2',
+        name: 'Another Action',
+        title: 'Do something else'
+      },
+      {
+        disabled: true,
+        id: 'moreActions3',
+        name: 'Disabled Action',
+        title: 'Unavailable action'
+      },
+      {
+        id: 'moreActions4',
+        name: 'Something Else',
+        title: 'Do something special'
+      },
+      {
+        id: 'moreActions5',
+        separator: true
+      },
+      {
+        id: 'moreActions6',
+        name: 'Grouped Action 1',
+        title: 'Do something'
+      },
+      {
+        id: 'moreActions7',
+        name: 'Grouped Action 2',
+        title: 'Do something similar'
+      }
+    ] as Action[];
   }
 
   ngDoCheck(): void {
@@ -117,6 +120,7 @@ export class ToastNotificationListExampleComponent implements OnInit {
       this.message,
       this.isPersistent,
       this.primaryAction,
-      this.moreActions);
+      this.moreActions
+    );
   }
 }

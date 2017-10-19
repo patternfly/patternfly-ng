@@ -1,29 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { Action } from './action';
-import { ActionComponent } from './action.component';
 import { ActionConfig } from './action-config';
+import { ActionComponent } from './action.component';
 
-export {
-  Action,
-  ActionConfig
-}
+export { Action, ActionConfig };
 
 /**
  * A module containing objects associated with action components
  */
 @NgModule({
-  imports: [
-    BsDropdownModule.forRoot(),
-    CommonModule,
-    FormsModule
-  ],
-  declarations: [ ActionComponent ],
-  exports: [ ActionComponent ],
-  providers: [ BsDropdownConfig ]
+  imports: [BsDropdownModule.forRoot(), CommonModule, FormsModule],
+  declarations: [ActionComponent],
+  exports: [ActionComponent],
+  providers: [BsDropdownConfig]
 })
-export class ActionModule { }
+export class ActionModule {}

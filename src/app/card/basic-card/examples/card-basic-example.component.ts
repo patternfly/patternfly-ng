@@ -1,12 +1,8 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { CardAction } from '../../card-action/card-action';
-import { CardConfig } from '../card-config';
 import { CardFilter } from '../../card-filter/card-filter';
+import { CardConfig } from '../card-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -29,8 +25,7 @@ export class CardBasicExampleComponent implements OnInit {
   };
   config: CardConfig;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.config = {
@@ -38,23 +33,27 @@ export class CardBasicExampleComponent implements OnInit {
         hypertext: 'View All Events',
         iconStyleClass: 'fa fa-flag'
       },
-      filters: [{
+      filters: [
+        {
           title: 'Last 30 Days',
           value: '30'
-        }, {
+        },
+        {
           default: true,
           title: 'Last 15 Days',
           value: '15'
-        }, {
+        },
+        {
           title: 'Today',
           value: 'today'
-      }],
-      title: 'Cluster Utilization',
+        }
+      ],
+      title: 'Cluster Utilization'
     } as CardConfig;
 
-    let today = new Date();
+    const today = new Date();
     for (let d = 20 - 1; d >= 0; d--) {
-      this.chartDates.push(new Date(today.getTime() - (d * 24 * 60 * 60 * 1000)));
+      this.chartDates.push(new Date(today.getTime() - d * 24 * 60 * 60 * 1000));
     }
   }
 

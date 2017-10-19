@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { TabDirective } from 'ngx-bootstrap/tabs';
 
@@ -14,14 +10,11 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 export class TreeListExampleComponent implements OnInit {
   activeTab: string = '';
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  ngDoCheck(): void {
-  }
+  ngDoCheck(): void {}
 
   // Actions
 

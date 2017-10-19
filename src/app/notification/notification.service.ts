@@ -11,12 +11,11 @@ import { NotificationType } from './notification-type';
  */
 @Injectable()
 export class NotificationService {
-
   // time (in ms) the notifications are shown
   private delay: number = 8000;
   private modes: any = {};
   private notifications: any = {};
-  private persist: any = {'error': true, 'httpError': true};
+  private persist: any = { error: true, httpError: true };
   private verbose: boolean = false;
 
   /**
@@ -25,10 +24,24 @@ export class NotificationService {
   constructor() {
     this.notifications.data = [] as Notification[];
     this.modes = [
-      {info: { type: NotificationType.INFO, header: 'Info!', log: 'info'}},
-      {success: { type: NotificationType.SUCCESS, header: 'Success!', log: 'info'}},
-      {error: { type: NotificationType.DANGER, header: 'Error!', log: 'error'}},
-      {warn: { type: NotificationType.WARNING, header: 'Warning!', log: 'warn'}}
+      { info: { type: NotificationType.INFO, header: 'Info!', log: 'info' } },
+      {
+        success: {
+          type: NotificationType.SUCCESS,
+          header: 'Success!',
+          log: 'info'
+        }
+      },
+      {
+        error: { type: NotificationType.DANGER, header: 'Error!', log: 'error' }
+      },
+      {
+        warn: {
+          type: NotificationType.WARNING,
+          header: 'Warning!',
+          log: 'warn'
+        }
+      }
     ];
     this.modes.forEach((mode: any, index: number) => {
       this.notifications[index] = this.createNotifyMethod(index);
@@ -49,8 +62,13 @@ export class NotificationService {
    * @param httpResponse The HTTP Response
    */
   httpError(message: string, httpResponse: any): void {
-    message += ' (' + (httpResponse.data.message || httpResponse.data.cause
-        || httpResponse.data.cause || httpResponse.data.errorMessage) + ')';
+    message +=
+      ' (' +
+      (httpResponse.data.message ||
+        httpResponse.data.cause ||
+        httpResponse.data.cause ||
+        httpResponse.data.errorMessage) +
+      ')';
     this.message('danger', 'Error!', message, this.persist.httpError, null, null);
     if (this.verbose) {
       console.log(message);
@@ -67,17 +85,23 @@ export class NotificationService {
    * @param primaryAction The primary action for the notifiaction
    * @param moreActions More actions for the kebab
    */
-  message(type: string, header: string, message: string, isPersistent: boolean,
-          primaryAction: Action, moreActions: Action[]): void {
-    let notification = {
-      header: header,
-      isPersistent: isPersistent,
+  message(
+    type: string,
+    header: string,
+    message: string,
+    isPersistent: boolean,
+    primaryAction: Action,
+    moreActions: Action[]
+  ): void {
+    const notification = {
+      header,
+      isPersistent,
       isViewing: false,
-      message : message,
-      moreActions: moreActions,
-      primaryAction: primaryAction,
+      message,
+      moreActions,
+      primaryAction,
       showClose: false,
-      type: type,
+      type,
       visible: true
     } as Notification;
     this.notifications.data.push(notification);
@@ -99,7 +123,7 @@ export class NotificationService {
    * @param notification The notification to remove
    */
   remove(notification: Notification): void {
-    let index = this.notifications.data.indexOf(notification);
+    const index = this.notifications.data.indexOf(notification);
     if (index !== -1) {
       this.removeIndex(index);
     }
@@ -121,9 +145,9 @@ export class NotificationService {
    *
    * @param persist Set to true to persist notifications
    */
-  setPersist = function (persist: boolean): void {
+  setPersist = function(persist: boolean): void {
     this.persist = persist;
-  }
+  };
 
   /**
    * Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.

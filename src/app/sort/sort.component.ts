@@ -1,16 +1,8 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { SortConfig } from './sort-config';
-import { SortField } from './sort-field';
 import { SortEvent } from './sort-event';
+import { SortField } from './sort-field';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
@@ -44,8 +36,7 @@ export class SortComponent implements DoCheck, OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   /**
    *  Setup component configuration upon initialization
@@ -88,8 +79,7 @@ export class SortComponent implements DoCheck, OnInit {
 
   private getIconStyleClass(): string {
     let iconStyleClass: string;
-    if (this.currentField && this.currentField.sortType
-        && this.currentField.sortType === 'numeric') {
+    if (this.currentField && this.currentField.sortType && this.currentField.sortType === 'numeric') {
       if (this.config.isAscending) {
         iconStyleClass = 'fa fa-sort-numeric-asc';
       } else {

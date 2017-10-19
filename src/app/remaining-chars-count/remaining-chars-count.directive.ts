@@ -1,13 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2 } from '@angular/core';
 
 /**
  * Remaining Characters directive for showing a characters remaining count and triggering warning and error
@@ -61,9 +52,7 @@ export class RemainingCharsCountDirective implements OnInit {
    * @param el The element reference for this component
    * @param renderer The renderer service
    */
-  constructor(private el: ElementRef,
-              private renderer: Renderer2) {
-  }
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   // Initialization
 
@@ -84,7 +73,8 @@ export class RemainingCharsCountDirective implements OnInit {
    *
    * @param $event A KeyboardEvent object
    */
-  @HostListener('keyup', ['$event']) private handleKeypress($event: KeyboardEvent): void {
+  @HostListener('keyup', ['$event'])
+  private handleKeypress($event: KeyboardEvent): void {
     // Once the charsMaxLimit has been met or exceeded, prevent all keypresses from working
     if (this.blockInputAtMaxLimit && this.el.nativeElement.value.length >= this.charsMaxLimit) {
       // Except backspace

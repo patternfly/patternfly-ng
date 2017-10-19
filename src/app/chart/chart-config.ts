@@ -2,7 +2,6 @@
  * A base config containing properties for the  chart
  */
 export abstract class ChartConfig {
-
   /**
    * The id of the chart used in the markup
    */

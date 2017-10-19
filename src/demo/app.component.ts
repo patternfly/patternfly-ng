@@ -6,13 +6,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
-  host: {'class': ''},
+  host: { class: '' },
   selector: 'demo-app',
   styleUrls: ['./app.component.less'],
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-
   constructor() {}
 
   ngOnInit() {}

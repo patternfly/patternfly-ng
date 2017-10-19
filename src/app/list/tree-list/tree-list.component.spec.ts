@@ -1,21 +1,15 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from '@angular/core/testing';
-import { FormsModule }  from '@angular/forms';
-import { By }           from '@angular/platform-browser';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
-import {
-  TreeModule
-} from 'angular-tree-component';
+import { TreeModule } from 'angular-tree-component';
 
 import { ActionConfig } from '../../action/action-config';
 import { ActionModule } from '../../action/action.module';
 import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { EmptyStateModule } from '../../empty-state/empty-state.module';
-import { TreeListComponent } from './tree-list.component';
 import { TreeListConfig } from './tree-list-config';
+import { TreeListComponent } from './tree-list.component';
 
 describe('Tree List component - ', () => {
   let comp: TreeListComponent;
@@ -27,65 +21,83 @@ describe('Tree List component - ', () => {
   let items: any[];
 
   beforeEach(() => {
-    items = [{
-      expanded: true,
-      name: 'root expanded',
-      subTitle: 'the root',
-      children: [{
-        name: 'child1',
-        subTitle: 'a good child',
-        hasChildren: false
-      }, {
-        name: 'child2',
-        subTitle: 'a bad child',
-        hasChildren: false
-      }]
-    }, {
-      expanded: false,
-      name: 'root2',
-      subTitle: 'the second root',
-      children: [{
-        name: 'child2.1',
-        subTitle: 'new and improved',
-        hasChildren: false
-      }, {
-        name: 'child2.2',
-        subTitle: 'new and improved2',
-        children: [{
-          name: 'subsub',
-          subTitle: 'subsub',
-          hasChildren: false
-        }]
-      }]
-    }];
+    items = [
+      {
+        expanded: true,
+        name: 'root expanded',
+        subTitle: 'the root',
+        children: [
+          {
+            name: 'child1',
+            subTitle: 'a good child',
+            hasChildren: false
+          },
+          {
+            name: 'child2',
+            subTitle: 'a bad child',
+            hasChildren: false
+          }
+        ]
+      },
+      {
+        expanded: false,
+        name: 'root2',
+        subTitle: 'the second root',
+        children: [
+          {
+            name: 'child2.1',
+            subTitle: 'new and improved',
+            hasChildren: false
+          },
+          {
+            name: 'child2.2',
+            subTitle: 'new and improved2',
+            children: [
+              {
+                name: 'subsub',
+                subTitle: 'subsub',
+                hasChildren: false
+              }
+            ]
+          }
+        ]
+      }
+    ];
 
     actionConfig = {
-      primaryActions: [{
-        id: 'action1',
-        title: 'Main Action',
-        tooltip: 'Start the server'
-      }],
-      moreActions: [{
-        id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
-      }, {
-        id: 'action3',
-        title: 'Secondary Action 2',
-        tooltip: 'Do something else'
-      }, {
-        id: 'action4',
-        title: 'Secondary Action 3',
-        tooltip: 'Do something special'
-      }]
+      primaryActions: [
+        {
+          id: 'action1',
+          title: 'Main Action',
+          tooltip: 'Start the server'
+        }
+      ],
+      moreActions: [
+        {
+          id: 'action2',
+          title: 'Secondary Action 1',
+          tooltip: 'Do the first thing'
+        },
+        {
+          id: 'action3',
+          title: 'Secondary Action 2',
+          tooltip: 'Do something else'
+        },
+        {
+          id: 'action4',
+          title: 'Secondary Action 3',
+          tooltip: 'Do something special'
+        }
+      ]
     } as ActionConfig;
 
     emptyStateConfig = {
       actions: actionConfig,
       iconStyleClass: 'pficon-warning-triangle-o',
-      info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-      'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
-      'objects exists and you want to guide the user to perform specific actions.',
+      info:
+        'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
+        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
+        'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
         hypertext: 'EmptyState example',
         text: 'For more information please see the',
@@ -108,25 +120,22 @@ describe('Tree List component - ', () => {
     } as TreeListConfig;
   });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ActionModule,
-        EmptyStateModule,
-        FormsModule,
-        TreeModule
-      ],
-      declarations: [TreeListComponent]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [ActionModule, EmptyStateModule, FormsModule, TreeModule],
+        declarations: [TreeListComponent]
+      })
+        .compileComponents()
+        .then(() => {
+          fixture = TestBed.createComponent(TreeListComponent);
+          comp = fixture.componentInstance;
+          comp.config = config;
+          comp.items = items;
+          fixture.detectChanges();
+        });
     })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(TreeListComponent);
-        comp = fixture.componentInstance;
-        comp.config = config;
-        comp.items = items;
-        fixture.detectChanges();
-      });
-  }));
+  );
 
   /**
    * Temporarily disabling individual tests.
@@ -142,7 +151,7 @@ describe('Tree List component - ', () => {
    * Also see:
    * https://github.com/mobxjs/mobx/issues/462
    */
-/*
+  /*
   it('Should have at least one node', function () {
     let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
     expect(elements.length).toBe(2);
@@ -159,7 +168,7 @@ describe('Tree List component - ', () => {
   });
 */
 
-  xit('Should run consolidated tests', function () {
+  xit('Should run consolidated tests', function() {
     // Test 1: 'Should have at least one node'
     let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
     expect(elements.length).toBe(4);

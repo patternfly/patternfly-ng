@@ -1,12 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
@@ -50,8 +42,7 @@ export class FilterComponent implements DoCheck, OnInit {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 
   // Initialization
 
@@ -96,7 +87,7 @@ export class FilterComponent implements DoCheck, OnInit {
    * @param $event The FilterEvent contining properties for this event
    */
   addFilter($event: FilterEvent): void {
-    let newFilter = {
+    const newFilter = {
       field: $event.field,
       query: $event.query,
       value: $event.value
@@ -145,11 +136,11 @@ export class FilterComponent implements DoCheck, OnInit {
   // Private
 
   private enforceSingleSelect(filter: Filter): void {
-    remove(this.config.appliedFilters, {title: filter.field.title});
+    remove(this.config.appliedFilters, { title: filter.field.title });
   }
 
   private filterExists(filter: Filter): boolean {
-    let foundFilter = find(this.config.appliedFilters, {
+    const foundFilter = find(this.config.appliedFilters, {
       value: filter.value
     });
     return foundFilter !== undefined;

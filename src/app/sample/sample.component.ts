@@ -1,8 +1,4 @@
-import {
-  Component,
-  Input,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 /**
  * Sample component
@@ -10,14 +6,16 @@ import {
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pf-sample-component',
-  styles: [ `
+  styles: [
+    `
     .pfng__samplecomponent { 
       color: blueviolet; 
     }
     .pfng__samplecomponent--disabled  { 
       color: grey; 
     }
-  `],
+  `
+  ],
   templateUrl: './sample.component.html'
 })
 export class SampleComponent {
@@ -34,6 +32,5 @@ export class SampleComponent {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 }

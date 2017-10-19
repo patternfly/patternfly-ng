@@ -1,17 +1,11 @@
-import {
-  Component,
-  Host,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
-import { WizardStep } from '../wizard-step';
-import { WizardStepComponent } from '../wizard-step.component';
+import { Component, Host, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { WizardConfig } from '../wizard-config';
+import { WizardEvent } from '../wizard-event';
+import { WizardStep } from '../wizard-step';
+import { WizardStepConfig } from '../wizard-step-config';
+import { WizardStepComponent } from '../wizard-step.component';
 import { WizardComponent } from '../wizard.component';
 import { WizardExampleComponent } from './wizard-example.component';
-import { WizardEvent } from '../wizard-event';
-import { WizardStepConfig } from '../wizard-step-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -138,8 +132,8 @@ export class WizardBasicExampleComponent implements OnInit {
   }
 
   stepChanged($event: WizardEvent) {
-    let flatSteps = flattenWizardSteps(this.wizard);
-    let currentStep = flatSteps.find(step => step.config.id === $event.step.config.id)
+    const flatSteps = flattenWizardSteps(this.wizard);
+    const currentStep = flatSteps.find(step => step.config.id === $event.step.config.id);
     if (currentStep) {
       currentStep.config.nextEnabled = true;
     }
@@ -155,7 +149,7 @@ export class WizardBasicExampleComponent implements OnInit {
   }
 
   updateName(): void {
-    this.step1aConfig.nextEnabled = (this.data.name !== undefined && this.data.name.length > 0);
+    this.step1aConfig.nextEnabled = this.data.name !== undefined && this.data.name.length > 0;
     this.setNavAway(this.step1aConfig.nextEnabled);
   }
 
@@ -179,7 +173,7 @@ export class WizardBasicExampleComponent implements OnInit {
 }
 
 function flattenWizardSteps(wizard: WizardComponent): WizardStep[] {
-  let flatWizard: WizardStep[] = [];
+  const flatWizard: WizardStep[] = [];
   wizard.steps.forEach((step: WizardStepComponent) => {
     if (step.hasSubsteps) {
       step.steps.forEach(substep => {

@@ -1,7 +1,4 @@
-import {
-  Input,
-  TemplateRef
-} from '@angular/core';
+import { Input, TemplateRef } from '@angular/core';
 
 /**
  * Card base component
@@ -22,6 +19,5 @@ export abstract class CardBase {
   /**
    * The default constructor
    */
-  constructor() {
-  }
+  constructor() {}
 }

@@ -1,19 +1,10 @@
-import {
-  Component,
-  EventEmitter,
-  Host,
-  Input,
-  OnInit,
-  Output,
-  TemplateRef,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, Host, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 import { WizardBase } from './wizard-base';
-import { WizardComponent } from './wizard.component';
 import { WizardEvent } from './wizard-event';
 import { WizardStep } from './wizard-step';
 import { WizardStepConfig } from './wizard-step-config';
+import { WizardComponent } from './wizard.component';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
@@ -126,7 +117,7 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
   get nextEnabled() {
     let enabled = this.config.nextEnabled;
     if (this.hasSubsteps) {
-      let selectedSubstep = this.getEnabledSteps().find(step => step.selected);
+      const selectedSubstep = this.getEnabledSteps().find(step => step.selected);
       if (selectedSubstep) {
         enabled = selectedSubstep.config.nextEnabled;
       }
@@ -142,7 +133,7 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
   get previousEnabled() {
     let enabled = this.config.previousEnabled;
     if (this.hasSubsteps) {
-      let selectedSubstep = this.getEnabledSteps().find(step => step.selected);
+      const selectedSubstep = this.getEnabledSteps().find(step => step.selected);
       if (selectedSubstep) {
         enabled = selectedSubstep.config.previousEnabled;
       }
@@ -186,8 +177,8 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
    * @returns {WizardStep[]} The wizard stepd or substepd
    */
   getReviewSteps(): WizardStep[] {
-    let reviewSteps = this.getEnabledSteps().filter((step: WizardStep) => {
-      return (step.reviewTemplate !== undefined);
+    const reviewSteps = this.getEnabledSteps().filter((step: WizardStep) => {
+      return step.reviewTemplate !== undefined;
     });
     return reviewSteps;
   }
@@ -203,7 +194,7 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
    * Navigate to the last wizard substep
    */
   goToLastStep(): void {
-    let enabledSteps = this.getEnabledSteps();
+    const enabledSteps = this.getEnabledSteps();
     this.goTo(enabledSteps[enabledSteps.length - 1]);
   }
 
@@ -227,13 +218,13 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
    * @param {boolean} emitEvent True to emit the wizard's onNext event
    */
   next(emitEvent: boolean): boolean {
-    let enabledSteps: WizardStep[] = this.getEnabledSteps();
+    const enabledSteps: WizardStep[] = this.getEnabledSteps();
 
     // Save the step you were on when next() was invoked
-    let index = this.stepIndex(this.selectedStep);
+    const index = this.stepIndex(this.selectedStep);
 
-    let wizEvent = {
-      index: index,
+    const wizEvent = {
+      index,
       step: this.selectedStep
     } as WizardEvent;
 
@@ -258,9 +249,9 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
    * @param {boolean} emitEvent True to emit the wizard's onPrevious event
    */
   previous(emitEvent: boolean): boolean {
-    let index = this.stepIndex(this.selectedStep);
-    let wizEvent = {
-      index: index,
+    const index = this.stepIndex(this.selectedStep);
+    const wizEvent = {
+      index,
       step: this.selectedStep
     } as WizardEvent;
 
@@ -281,7 +272,7 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
    */
   show(index: number) {
     this.onShow.emit({
-      index: index,
+      index,
       step: this
     } as WizardEvent);
   }
@@ -290,12 +281,19 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
 
   // Navigate to the given wizard substep
   private goTo(step: WizardStep): void {
-    if (step === undefined || this.wizard === undefined || this.wizard.config.done
-        || (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)) {
+    if (
+      step === undefined ||
+      this.wizard === undefined ||
+      this.wizard.config.done ||
+      (!this.init && this.selectedStep !== undefined && !this.selectedStep.config.allowNavAway)
+    ) {
       return;
     }
-    if (this.init || this.isPreviousStepsComplete(step)
-        || (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.config.previousEnabled)) {
+    if (
+      this.init ||
+      this.isPreviousStepsComplete(step) ||
+      (this.getStepIndex(step) < this.selectedStepIndex && this.selectedStep.config.previousEnabled)
+    ) {
       this.unselectAll();
       this.selectedStep = step;
       step.selected = true;
@@ -308,10 +306,10 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
 
   // Indicates all previous substeps are complete for this wizard step
   private isPreviousStepsComplete(nextStep: WizardStep): boolean {
-    let nextIdx = this.stepIndex(nextStep);
+    const nextIdx = this.stepIndex(nextStep);
     let complete = true;
     this.getEnabledSteps().forEach((step: WizardStep, stepIndex) => {
-      if (stepIndex <  nextIdx) {
+      if (stepIndex < nextIdx) {
         complete = complete && step.config.nextEnabled;
       }
     });

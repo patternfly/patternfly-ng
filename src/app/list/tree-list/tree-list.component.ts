@@ -10,9 +10,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import {
-  TreeComponent
-} from 'angular-tree-component';
+import { TreeComponent } from 'angular-tree-component';
 
 import { ListBase } from '../list-base';
 import { TreeListConfig } from './tree-list-config';
@@ -37,7 +35,6 @@ import { cloneDeep, defaults, isEqual, without } from 'lodash';
   styleUrls: ['./tree-list.component.less'],
   templateUrl: './tree-list.component.html'
 })
-
 export class TreeListComponent extends ListBase implements DoCheck, OnInit {
   /**
    * The tree list config containing component properties
@@ -171,6 +168,6 @@ export class TreeListComponent extends ListBase implements DoCheck, OnInit {
    * @returns {string} The indent in pixels
    */
   private getIndentChildren(nodeLevel: number): string {
-    return (nodeLevel > 1) ? (nodeLevel - 1) * this.config.indentChildren + '' : '';
+    return nodeLevel > 1 ? (nodeLevel - 1) * this.config.indentChildren + '' : '';
   }
 }
