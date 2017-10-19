@@ -8,6 +8,7 @@ var gulp = require('gulp'),
   fs = require("fs"),
   htmlMinifier = require('html-minifier'),
   lessCompiler = require('gulp-less'),
+  lessHint = require('gulp-lesshint'),
   ngc = require('gulp-ngc'),
   path = require('path'),
   postcss = require('postcss'),
@@ -52,6 +53,12 @@ function updateWatchDist() {
     .src([libraryDist + '/**'].concat(globalExcludes))
     .pipe(changed(watchDist))
     .pipe(gulp.dest(watchDist));
+}
+
+function lintLESS(src) {
+  return gulp.src(src)
+    .pipe(lessHint())
+    .pipe(lessHint.reporter());
 }
 
 function transpileLESS(src) {
@@ -101,6 +108,11 @@ function minifyTemplate(file) {
  */
 
 //Less compilation and minifiction - adopted from sass compilation, needs work
+gulp.task('lint-less', function () {
+  return lintLESS(appSrc + '/**/*.less');
+});
+
+//Less compilation and minifiction - adopted from sass compilation, needs work
 gulp.task('transpile-less', function () {
   return transpileLESS(appSrc + '/**/*.less');
 });
@@ -108,11 +120,14 @@ gulp.task('transpile-less', function () {
 // Put the files back to normal
 gulp.task('build',
   [
+    'lint',
     'transpile',
     'copy-css',
     'copy-html',
     'copy-static-assets'
   ]);
+
+gulp.task('lint', ['lint-less']);
 
 gulp.task('transpile', ['copy-root', 'inline-template'], function () {
   return ngc('tsconfig-prod.json');
