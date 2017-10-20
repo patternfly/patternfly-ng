@@ -2,8 +2,8 @@
   <pfng-filter-fields #filterFields
                       [config]="config"
                       (onAdd)="addFilter($event)"
+                      (onDelete)="deleteQuery($event)"
                       (onFieldSelect)="fieldSelected($event)"
-                      (onRemove)="removeQuery($event)"
                       (onTypeAhead)="typeAhead($event)"></pfng-filter-fields>
   <pfng-filter-results [config]="config"
                        (onClear)="clearFilter($event)"

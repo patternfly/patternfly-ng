@@ -94,6 +94,10 @@ export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
 export { ToolbarModule } from './src/app/toolbar/toolbar.module';
 export { ToolbarView } from './src/app/toolbar/toolbar-view';
 
+// Truncate
+export { TruncatePipe } from './src/app/truncate/truncate.pipe';
+export { TruncateModule } from './src/app/truncate/truncate.module';
+
 // Utilities
 export { WindowReference } from './src/app/utilities/window.reference';
 

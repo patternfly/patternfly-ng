@@ -38,14 +38,14 @@ export class FilterComponent implements DoCheck, OnInit {
   @Output('onChange') onChange = new EventEmitter();
 
   /**
+   * The event emitted when a query (i.e., saved filter) has been deleted
+   */
+  @Output('onDelete') onDelete = new EventEmitter();
+
+  /**
    * The event emitted when a field menu option is selected
    */
   @Output('onFieldSelect') onFilterSelect = new EventEmitter();
-
-  /**
-   * The event emitted when a query (i.e., saved filter) has been removed
-   */
-  @Output('onRemove') onRemove = new EventEmitter();
 
   /**
    * The event emitted when a filter has been changed
@@ -143,21 +143,21 @@ export class FilterComponent implements DoCheck, OnInit {
   }
 
   /**
+   * Handle delete query (i.e., saved filter) event
+   *
+   * @param $event The FilterEvent contining properties for this event
+   */
+  deleteQuery($event: FilterEvent): void {
+    this.onDelete.emit($event);
+  }
+
+  /**
    * Handle filter field selected event
    *
    * @param $event The FilterEvent contining properties for this event
    */
   fieldSelected($event: FilterEvent): void {
     this.onFilterSelect.emit($event);
-  }
-
-  /**
-   * Handle remove query (i.e., saved filter) event
-   *
-   * @param $event The FilterEvent contining properties for this event
-   */
-  removeQuery($event: FilterEvent): void {
-    this.onRemove.emit($event);
   }
 
   /**

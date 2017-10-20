@@ -17,11 +17,11 @@
       </p>
       <p class="pfng-save-filter margin-left-10">
         <ng-template #saveFilterTemplate>
-          <div class="pfng-save-filter-close close">
+          <label class="control-label required-pf margin-right-15" for="saveFilterName">Name your filter</label>
+          <span class="pfng-save-filter-close close">
             <span class="pficon pficon-close" (click)="saveFilterPop.hide(); saveFilterName = ''"></span>
-          </div>
-          <div class="margin-top-20">
-            <label class="control-label required-pf margin-right-15" for="saveFilterName">Name your filter</label>
+          </span>
+          <div class="margin-top-5">
             <input class="form-control" id="saveFilterName" name="saveFilterName" type="text"
                    [(ngModel)]="saveFilterName">
           </div>

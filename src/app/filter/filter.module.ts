@@ -6,7 +6,6 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
 import { Filter } from './filter';
 import { FilterComponent } from './filter.component';
 import { FilterConfig } from './filter-config';
@@ -16,6 +15,8 @@ import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
 import { FilterQuery } from './filter-query';
 import { FilterType } from './filter-type';
+import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
+import { TruncateModule } from './../truncate/truncate.module';
 
 export {
   Filter,
@@ -36,7 +37,8 @@ export {
     FormsModule,
     PopoverModule.forRoot(),
     TooltipModule.forRoot(),
-    SearchHighlightModule
+    SearchHighlightModule,
+    TruncateModule
   ],
   declarations: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],
   exports: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],

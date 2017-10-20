@@ -28,7 +28,7 @@ export class FilterQuery {
   separator?: boolean;
 
   /**
-   * Show the control to remove a filter query
+   * Show the control to delete a filter query
    */
-  showRemove?: boolean;
+  showDelete?: boolean;
 }
