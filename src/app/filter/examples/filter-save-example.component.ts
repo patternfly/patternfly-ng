@@ -184,10 +184,10 @@ export class FilterSaveExampleComponent implements OnInit {
     }];
 
     this.savedQueries = [{
-      showRemove: true,
+      showDelete: true,
       value: 'Test1'
     }, {
-      showRemove: true,
+      showDelete: true,
       value: 'Test2'
     }];
 
@@ -258,7 +258,7 @@ export class FilterSaveExampleComponent implements OnInit {
         field.queries = [];
         this.savedFilters.forEach((value, key, map) => {
           field.queries.push({
-            showRemove: true,
+            showDelete: true,
             value: key
           });
         });
@@ -318,7 +318,7 @@ export class FilterSaveExampleComponent implements OnInit {
       let queries = [];
       this.savedFilters.forEach((value, key, map) => {
         queries.push({
-          showRemove: true,
+          showDelete: true,
           value: key
         });
       });
@@ -343,6 +343,17 @@ export class FilterSaveExampleComponent implements OnInit {
     return foundFilter !== undefined;
   }
 
+  // Save filter functionality
+
+  // Delete saved filter
+  deleteSavedFilter($event: FilterEvent): void {
+    this.savedFilters.delete($event.value); // Delete saved filter
+    this.filterFieldSelected($event); // Refresh queries
+    if (this.savedFilters.size === 0) {
+      this.filter.resetCurrentField(); // Reset
+    }
+  }
+
   // Load saved filters
   loadSavedFilters() {
     let filter1 = {
@@ -360,15 +371,6 @@ export class FilterSaveExampleComponent implements OnInit {
     this.savedFilters.set('Test1', [filter1]); // Filter values matching February
     this.savedFilters.set('Test2', [filter1, filter2]); // Filter values matching February and Sunday
     this.filterFieldSelected(null); // Refresh queries
-  }
-
-  // Remove saved filter
-  removeSavedFilter($event: FilterEvent): void {
-    this.savedFilters.delete($event.value); // Remove saved filter
-    this.filterFieldSelected($event); // Refresh queries
-    if (this.savedFilters.size === 0) {
-      this.filter.resetCurrentField(); // Reset
-    }
   }
 
   // Save filter

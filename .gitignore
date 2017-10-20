@@ -4,3 +4,4 @@ dist-demo
 node_modules
 build
 src/**/*.css
+.DS_Store

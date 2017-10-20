@@ -19,6 +19,7 @@ import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
 import { FilterType } from './filter-type';
 import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
+import { TruncateModule } from './../truncate/truncate.module';
 
 describe('Filter component - ', () => {
   let comp: FilterComponent;
@@ -125,7 +126,8 @@ describe('Filter component - ', () => {
         FormsModule,
         PopoverModule.forRoot(),
         TooltipModule.forRoot(),
-        SearchHighlightModule
+        SearchHighlightModule,
+        TruncateModule
       ],
       declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
       providers: [BsDropdownConfig, TooltipConfig]

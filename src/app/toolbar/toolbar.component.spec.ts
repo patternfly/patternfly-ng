@@ -27,6 +27,7 @@ import { SortEvent } from '../sort/sort-event';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarConfig } from './toolbar-config';
 import { ToolbarView } from './toolbar-view';
+import { TruncateModule } from './../truncate/truncate.module';
 
 describe('Toolbar component - ', () => {
   let comp: ToolbarComponent;
@@ -182,7 +183,8 @@ describe('Toolbar component - ', () => {
         FormsModule,
         PopoverModule.forRoot(),
         TooltipModule.forRoot(),
-        SearchHighlightModule
+        SearchHighlightModule,
+        TruncateModule
       ],
       declarations: [
         ToolbarComponent, FilterFieldsComponent,

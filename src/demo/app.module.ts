@@ -25,6 +25,7 @@ import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 import { SparklineExampleModule } from '../app/chart/sparkline/examples/sparkline-example.module';
 import { ToolbarExampleModule } from '../app/toolbar/examples/toolbar-example.module';
 import { TreeListExampleModule } from '../app/list/tree-list/examples/tree-list-example.module';
+import { TruncateExampleModule } from '../app/truncate/examples/truncate-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleModule } from '../app/wizard/examples/wizard-example.module';
 import { NavigationExampleModule } from '../app/navigation/examples/navigation-example.module';
@@ -49,6 +50,7 @@ import { NavigationExampleModule } from '../app/navigation/examples/navigation-e
     SparklineExampleModule,
     ToolbarExampleModule,
     TreeListExampleModule,
+    TruncateExampleModule,
     NavigationExampleModule,
     WizardExampleModule
   ],
