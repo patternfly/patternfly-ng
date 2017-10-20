@@ -21,7 +21,9 @@
             <span class="pficon pficon-close" (click)="saveFilterPop.hide(); saveFilterName = ''"></span>
           </div>
           <div class="margin-top-20">
-            <input name="saveFilterName" type="text" [(ngModel)]="saveFilterName">
+            <label class="control-label required-pf margin-right-15" for="saveFilterName">Name your filter</label>
+            <input class="form-control" id="saveFilterName" name="saveFilterName" type="text"
+                   [(ngModel)]="saveFilterName">
           </div>
           <div class="pfng-save-filter-divider"></div>
           <div class="pfng-save-filter-footer">
