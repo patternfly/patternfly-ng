@@ -1,0 +1,72 @@
+<div class="list-pf" *ngIf="!itemsEmpty">
+  <div class="list-pf-item {{item?.itemStyleClass}}"
+       *ngFor="let item of items; let i = index"
+       [ngClass]="{'active': item.selected || item.isItemExpanded, 'pfng-list-heading': config.useHeading && i === 0}">
+    <div class="list-pf-container">
+      <!-- list header -->
+      <div *ngIf="config.useHeading && i === 0; then showExpandHeader else showExpand"></div>
+      <ng-template #showExpandHeader>
+        <div class="list-pf-chevron" *ngIf="config.useExpandItems">
+          <div class="pfng-list-expand-placeholder"></div>
+        </div>
+      </ng-template>
+      <ng-template #showExpand>
+        <div class="list-pf-chevron" *ngIf="config.useExpandItems">
+          <div class="pfng-list-expand-placeholder" *ngIf="item.hideExpandToggle === true"></div>
+          <span class="fa fa-angle-right"
+                *ngIf="item.hideExpandToggle !== true"
+                (click)="toggleExpandArea(item)"
+                [ngClass]="{'fa-angle-down': item.expanded && item.expandId === undefined}"></span>
+        </div>
+      </ng-template>
+      <!-- checkbox -->
+      <div *ngIf="(config.useHeading && i === 0); then showCheckboxHeader else showCheckbox"></div>
+      <ng-template #showCheckboxHeader>
+        <div class="list-pf-select" *ngIf="config.showCheckbox">
+          <div class="pfng-list-cb-placeholder"></div>
+        </div>
+      </ng-template>
+      <ng-template #showCheckbox>
+        <div class="list-pf-select" *ngIf="config.showCheckbox">
+          <input type="checkbox" value="item.selected"
+                 [(ngModel)]="item.selected"
+                 (ngModelChange)="checkboxChange(item)">
+        </div>
+      </ng-template>
+      <!-- content -->
+      <div class="list-pf-content list-pf-content-flex">
+        <div class="pfng-list-content"
+             (click)="toggleSelection($event, item)"
+             (dblclick)="dblClick($event, item)">
+          <ng-template *ngIf="itemTemplate"
+                       [ngTemplateOutlet]="itemTemplate"
+                       [ngOutletContext]="{ item: item, index: i }">
+          </ng-template>
+        </div>
+        <!-- actions -->
+        <div class="list-pf-actions">
+          <ng-template *ngIf="actionTemplate"
+                       [ngTemplateOutlet]="actionTemplate"
+                       [ngOutletContext]="{ item: item, index: i }">
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <!-- expansion -->
+    <div class="pfng-list-expansion list-pf-expansion collapse in"
+         *ngIf="!(config.useHeading && i === 0) && expandTemplate && item.expanded">
+      <div class="list-pf-container" tabindex="0">
+        <div class="list-pf-content">
+          <div class="close" *ngIf="config.hideClose !== true">
+            <span class="pficon pficon-close" (click)="closeExpandArea(item)"></span>
+          </div>
+          <ng-template [ngTemplateOutlet]="expandTemplate"
+                       [ngOutletContext]="{ item: item, index: i }"></ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<pfng-empty-state *ngIf="itemsEmpty"
+                  [config]="config.emptyStateConfig"
+                  (onActionSelect)="handleAction($event)"></pfng-empty-state>
