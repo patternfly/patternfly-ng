@@ -40,7 +40,6 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
    */
   @Output('onPageNumberChange') onPageNumberChange = new EventEmitter();
 
-
   private defaultConfig = {
     pageNumber: 1,
     pageSizeIncrements: [5, 10, 20, 40, 80, 100],
@@ -114,9 +113,12 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   /**
    * Page number is changed using input field
    */
-  onPageNumberUpdate($event: KeyboardEvent, value: string): void {
-    console.log('event keycode:', $event.which, '\n', 'event: ', $event);  
-    let newPageNumber = parseInt(value);
+  onPageNumberUpdate(event: KeyboardEvent): void {
+    console.log('event keycode:', event.keyCode, event.ctrlKey, '\n', 'event: ', event);
+    let keycode = event.keyCode ? event.keyCode : event.which;
+    console.log('key is: ', keycode);
+   // if (keycode === 13) {
+      let newPageNumber = parseInt(String(this.config.pageNumber), 10);
       if (newPageNumber > this.lastPageNumber) {
         this.updatePageNumber(this.lastPageNumber);
       } else if (newPageNumber < 1 || isNaN(this.config.pageNumber)) {
@@ -124,6 +126,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
       } else {
         this.updatePageNumber(newPageNumber);
       }
+    // }
   }
 
   /**

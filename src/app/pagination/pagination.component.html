@@ -1,8 +1,8 @@
-<div class="content-view-pf-pagination list-view-pf-pagination clearfix">
+<form class="content-view-pf-pagination list-view-pf-pagination clearfix">
   <div class="form-group">
     <div class="padding-right-10">
       <div class="btn-group dropdown" dropdown>
-        <button #pageSizeMenu class="btn btn-default dropdown-toggle" dropdownToggle>
+        <button #pageSizeMenu type="button" class="btn btn-default dropdown-toggle" dropdownToggle>
         {{config.pageSize}}
         <span class="caret"></span>  
       </button>
@@ -20,13 +20,12 @@
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="First Page" (click)="gotoFirstPage()" class="goto-first-page"><span class="i fa fa-angle-double-left"></span></a></li>
       <li [ngClass]="{'disabled': config.pageNumber === 1}"><a title="Previous Page" (click)="gotoPreviousPage()" class="goto-prev-page"><span class="i fa fa-angle-left"></span></a></li>
     </ul>
-    <input type="text" #pInput [ngModel]="config.pageNumber" (onchange)="onPageNumberUpdate($event, pInput.value)" class="pagination-pf-page"
-      name="config.pageNumber" />
+    <input type="text" [(ngModel)]="config.pageNumber" [ngModelOptions]="{updateOn: 'blur'}" (change)="onPageNumberUpdate($event)" class="pagination-pf-page" name="pageNumber" />
     <span>of&nbsp;<span class="pagination-pf-pages">{{ lastPageNumber }}</span></span>
     <ul class="pagination pagination-pf-forward">
       <li [ngClass]="{'disabled': config.pageNumber === lastPageNumber}"><a title="Next Page" (click)="gotoNextPage()" class="goto-next-page"><span class="i fa fa-angle-right"></span></a></li>
       <li [ngClass]="{'disabled': config.pageNumber === lastPageNumber}"><a title="Last Page" (click)="gotoLastPage()" class="goto-last-page"><span class="i fa fa-angle-double-right"></span></a></li>
     </ul>
   </div>
-</div>
+</form>
 

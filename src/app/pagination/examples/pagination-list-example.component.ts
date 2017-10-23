@@ -162,7 +162,9 @@ export class PaginationListExampleComponent implements OnInit {
       pageSizeIncrements: [2, 3, 4],
       totalItems: this.allItems.length
     } as PaginationConfig;
-    this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize, this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize));
+    this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
+                           this.paginationConfig.totalItems)
+                           .slice(0, this.paginationConfig.pageSize));
   }
 
   ngDoCheck(): void {
@@ -175,7 +177,9 @@ export class PaginationListExampleComponent implements OnInit {
    * Check if Pagination config is changed
    */
   checkPaginationConfig() {
-    this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize, this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize));
+    this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
+                            this.paginationConfig.totalItems)
+                           .slice(0, this.paginationConfig.pageSize));
     this.prevConfig = cloneDeep(this.paginationConfig);
   }
 
