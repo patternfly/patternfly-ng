@@ -141,6 +141,6 @@ export class ToastNotificationComponent implements DoCheck, OnInit {
   }
 
   private handleClose($event: MouseEvent): void {
-    this.onCloseSelect.emit({notification: this.notification} as NotificationEvent);
+    this.onCloseSelect.emit({ notification: this.notification } as NotificationEvent);
   }
 }

@@ -92,7 +92,7 @@ export class FilterResultsComponent implements DoCheck, OnInit {
     let newFilters: Filter[] = [];
     this.config.appliedFilters.forEach((appliedFilter) => {
       if (appliedFilter.field.title !== filter.field.title
-          || appliedFilter.value !== filter.value) {
+        || appliedFilter.value !== filter.value) {
         newFilters.push(appliedFilter);
       }
     });

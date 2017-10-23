@@ -24,8 +24,8 @@ export {
     FilterModule,
     SortModule
   ],
-  declarations: [ ToolbarComponent ],
-  exports: [ ToolbarComponent ],
-  providers: [ BsDropdownConfig ]
+  declarations: [ToolbarComponent],
+  exports: [ToolbarComponent],
+  providers: [BsDropdownConfig]
 })
 export class ToolbarModule { }

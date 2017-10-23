@@ -89,7 +89,7 @@ export class SortComponent implements DoCheck, OnInit {
   private getIconStyleClass(): string {
     let iconStyleClass: string;
     if (this.currentField && this.currentField.sortType
-        && this.currentField.sortType === 'numeric') {
+      && this.currentField.sortType === 'numeric') {
       if (this.config.isAscending) {
         iconStyleClass = 'fa fa-sort-numeric-asc';
       } else {

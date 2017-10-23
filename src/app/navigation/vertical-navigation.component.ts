@@ -162,12 +162,12 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.windowListener = this.windowRef.nativeWindow.addEventListener("resize", (event: any) => {
+    this.windowListener = this.windowRef.nativeWindow.addEventListener('resize', (event: any) => {
       this.onResize(event);
     });
 
     this.routeChangeListener = this.router.events.subscribe((val) => {
-      if(val instanceof NavigationEnd) {
+      if (val instanceof NavigationEnd) {
         if (!this.updateActiveItemsOnClick) {
           this.clearActiveItems();
           this.initActiveItems();
@@ -186,7 +186,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.routeChangeListener.unsubscribe();
-    this.windowRef.nativeWindow.removeEventListener("resize");
+    this.windowRef.nativeWindow.removeEventListener('resize');
   }
 
   private addClass(className: string): void {
@@ -237,7 +237,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-   private checkNavState() {
+  private checkNavState() {
     let width = this.windowRef.nativeWindow.innerWidth;
 
     // Check to see if we need to enter/exit the mobile state
@@ -255,7 +255,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
         this.explicitCollapse = false;
       }
-    } else  {
+    } else {
       this.inMobileState = false;
       this.showMobileNav = false;
 
@@ -361,7 +361,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       if (navTo) {
         this.router.navigateByUrl(navTo);
       }
-      if(this.navigationEvent) {
+      if (this.navigationEvent) {
         this.navigationEvent.emit(navItem);
       }
     }
@@ -370,7 +370,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       this.itemClickEvent.emit(item);
     }
 
-    if (this.updateActiveItemsOnClick ) {
+    if (this.updateActiveItemsOnClick) {
       this.clearActiveItems();
       navItem.trackActiveState = true;
       this.setParentActive(navItem);
@@ -381,7 +381,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   private primaryHover(): boolean {
     let hover = false;
-    this.items.forEach( (item) => {
+    this.items.forEach((item) => {
       if (item.trackHoverState) {
         hover = true;
       }
@@ -393,7 +393,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     let hover = false;
     this.items.forEach((item) => {
       if (item.children && item.children.length > 0) {
-        item.children.forEach( (secondaryItem) => {
+        item.children.forEach((secondaryItem) => {
           if (secondaryItem.trackHoverState) {
             hover = true;
           }
@@ -414,7 +414,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     } else {
       // Remove any collapsed secondary menus
       if (this.items) {
-        this.items.forEach( (item)  => {
+        this.items.forEach((item) => {
           item.secondaryCollapsed = false;
         });
       }
@@ -436,9 +436,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     } else {
       // Remove any collapsed secondary menus
       if (this.items) {
-        this.items.forEach( (item) => {
+        this.items.forEach((item) => {
           if (item.children && item.children.length > 0) {
-            item.children.forEach( (secondaryItem) => {
+            item.children.forEach((secondaryItem) => {
               secondaryItem.tertiaryCollapsed = false;
             });
           }
@@ -453,14 +453,14 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   /**
    * Clear all active items
    */
-  public clearActiveItems(): void{
-    this.items.forEach( (item) => {
+  public clearActiveItems(): void {
+    this.items.forEach((item) => {
       item.trackActiveState = false;
       if (item.children) {
-        item.children.forEach( (secondary) => {
+        item.children.forEach((secondary) => {
           secondary.trackActiveState = false;
           if (secondary.children) {
-            secondary.children.forEach( (tertiary) => {
+            secondary.children.forEach((tertiary) => {
               tertiary.trackActiveState = false;
             });
           }
@@ -475,18 +475,18 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   public initActiveItems(): void {
     let updatedRoute = this.router.url;
     // //Setting active state on load
-    this.items.forEach( (topLevel)  => {
+    this.items.forEach((topLevel) => {
       if (updatedRoute.indexOf(topLevel.url) > -1) {
         topLevel.trackActiveState = true;
       }
       if (topLevel.children) {
-        topLevel.children.forEach( (secondLevel) => {
+        topLevel.children.forEach((secondLevel) => {
           if (updatedRoute.indexOf(secondLevel.url) > -1) {
             secondLevel.trackActiveState = true;
             topLevel.trackActiveState = true;
           }
           if (secondLevel.children) {
-            secondLevel.children.forEach( (thirdLevel) => {
+            secondLevel.children.forEach((thirdLevel) => {
               if (updatedRoute.indexOf(thirdLevel.url) > -1) {
                 thirdLevel.trackActiveState = true;
                 secondLevel.trackActiveState = true;
@@ -510,7 +510,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   /**
    * Handles the navbar hamburger toggle click
    */
-  public handleNavBarToggleClick(): void{
+  public handleNavBarToggleClick(): void {
 
     if (this.inMobileState) {
       // Toggle the mobile nav
@@ -630,7 +630,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
           clearTimeout(item.blurTimeout);
           item.blurTimeout = undefined;
         } else if (this.hoverTimeout === undefined) {
-          item.navHoverTimeout = setTimeout( () => {
+          item.navHoverTimeout = setTimeout(() => {
             this.hoverTertiaryNav = true;
             item.trackHoverState = true;
             item.navHoverTimeout = undefined;
@@ -650,7 +650,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
         clearTimeout(item.hoverTimeout);
         item.hoverTimeout = undefined;
       } else if (item.blurTimeout === undefined) {
-        item.blurTimeout = setTimeout( () => {
+        item.blurTimeout = setTimeout(() => {
           item.trackHoverState = false;
           if (!this.secondaryHover()) {
             this.hoverTertiaryNav = false;

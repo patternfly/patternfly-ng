@@ -7,7 +7,7 @@ export class ChartDefaults {
 
   public getDefaultColors = this.patternflyDefaults.getDefaultColors;
   public getDefaultDonut = this.patternflyDefaults.getDefaultDonut;
-  public getDefaultDonutSize =  this.patternflyDefaults.getDefaultDonutSize;
+  public getDefaultDonutSize = this.patternflyDefaults.getDefaultDonutSize;
   public getDefaultDonutColor = this.patternflyDefaults.getDefaultDonutColors;
   public getDefaultDonutLegend = this.patternflyDefaults.getDefaultDonutLegend;
   public getDefaultDonutConfig = this.patternflyDefaults.getDefaultDonutConfig;

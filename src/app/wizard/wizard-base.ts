@@ -12,7 +12,7 @@ export abstract class WizardBase {
   /**
    * The default constructor
    */
-  constructor() {}
+  constructor() { }
 
   // Accessors
 

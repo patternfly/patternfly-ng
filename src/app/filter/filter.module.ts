@@ -34,8 +34,8 @@ export {
     TooltipModule.forRoot(),
     SearchHighlightModule
   ],
-  declarations: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],
-  exports: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],
-  providers: [ BsDropdownConfig, TooltipConfig ]
+  declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+  exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+  providers: [BsDropdownConfig, TooltipConfig]
 })
-export class FilterModule {}
+export class FilterModule { }
