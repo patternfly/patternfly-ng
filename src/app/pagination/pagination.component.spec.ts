@@ -1,12 +1,12 @@
 import { TestBed, ComponentFixture, async } from "@angular/core/testing";
 
-import { FormsModule } from "@angular/forms";
-import { By } from "@angular/platform-browser";
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { PaginationComponent } from "./pagination.component";
-import { PaginationConfig } from "./pagination-config";
+import { PaginationComponent } from './pagination.component';
+import { PaginationConfig } from './pagination-config';
 
 describe('Pagination component - ', () => {
   let comp: PaginationComponent;
@@ -72,12 +72,13 @@ describe('Pagination component - ', () => {
 
     let item =  fixture.debugElement.queryAll(By.css('ul.dropdown-menu > li > a'));
     // click on menu option with value 20
-    item[2].triggerEventHandler('click',null);
+    item[2].triggerEventHandler('click', null);
     expect(comp.config.pageSize).toEqual(20);
   });
 
+  // Todo: Please fix this test
   /*it('should change page by using input', () => {
-    let input = fixture.debugElement.query(By.css(".pagination-pf-page"));
+    let input = fixture.debugElement.query(By.css('.pagination-pf-page'));
     input.nativeNode.value = 6;
     input.triggerEventHandler('change', null);
     expect(comp.config.pageNumber).toEqual(6);

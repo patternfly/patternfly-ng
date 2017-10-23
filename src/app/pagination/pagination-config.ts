@@ -1,9 +1,7 @@
 /**
  * A config containing properties for Pagination
  */
-
 export class PaginationConfig {
-
   /**
    * The current page number
    */
@@ -24,4 +22,3 @@ export class PaginationConfig {
    */
   pageSize?: number;
 }
-

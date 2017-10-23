@@ -20,9 +20,6 @@ export class PaginationExampleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngDoCheck(): void {
-  }
-
   // Actions
 
   tabSelected($event: TabDirective): void {

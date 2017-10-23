@@ -1,14 +1,11 @@
 import {
   Component,
   OnInit,
-  TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 
 import { Action } from '../../action/action';
 import { ActionConfig } from '../../action/action-config';
-import { EmptyStateConfig } from '../../empty-state/empty-state-config';
-import { ListComponent } from '../../list/basic-list/list.component';
 import { ListEvent } from '../../list/list-event';
 import { ListConfig } from '../../list/basic-list/list-config';
 import { PaginationConfig } from '../pagination-config';
@@ -162,9 +159,9 @@ export class PaginationListExampleComponent implements OnInit {
       pageSizeIncrements: [2, 3, 4],
       totalItems: this.allItems.length
     } as PaginationConfig;
+
     this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
-                           this.paginationConfig.totalItems)
-                           .slice(0, this.paginationConfig.pageSize));
+      this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize));
   }
 
   ngDoCheck(): void {
@@ -178,8 +175,7 @@ export class PaginationListExampleComponent implements OnInit {
    */
   checkPaginationConfig() {
     this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
-                            this.paginationConfig.totalItems)
-                           .slice(0, this.paginationConfig.pageSize));
+      this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize));
     this.prevConfig = cloneDeep(this.paginationConfig);
   }
 

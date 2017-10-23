@@ -34,11 +34,10 @@ export class PaginationBasicExampleComponent implements OnInit {
   }
 
   handlePageSize(event) {
-    this.actionsText = "Page Size: " + event.pageSize + " Selected" + "\n" + this.actionsText;
+    this.actionsText = 'Page Size: ' + event.pageSize + ' Selected' + '\n' + this.actionsText;
   }
 
   handlePageNumber(event) {
-    this.actionsText = "Page Number: " + event.pageNumber + " Selected" + "\n" + this.actionsText;
+    this.actionsText = 'Page Number: ' + event.pageNumber + ' Selected' + '\n' + this.actionsText;
   }
-
 }

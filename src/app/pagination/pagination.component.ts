@@ -1,7 +1,6 @@
 import {
   Component,
   DoCheck,
-  OnChanges,
   SimpleChanges,
   Input,
   Output,
@@ -22,9 +21,7 @@ import { PaginationConfig } from './pagination-config';
   selector: 'pfng-pagination',
   templateUrl: './pagination.component.html'
 })
-
-export class PaginationComponent implements OnInit, DoCheck, OnChanges {
-
+export class PaginationComponent implements DoCheck, OnInit {
   /**
    * The Pagination config contaning component properties
    */
@@ -45,6 +42,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
     pageSizeIncrements: [5, 10, 20, 40, 80, 100],
     pageSize: 5
   } as PaginationConfig;
+  private _pageNumber: number;
   private prevConfig: PaginationConfig;
   private _lastPageNumber: number;
 
@@ -74,17 +72,6 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   }
 
   /**
-   * Called when properties value are changed
-   * @param changes obj of type SimpleChanges containing old and new value
-   */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.totalItems && !changes.totalItems.isFirstChange()) {
-      this.lastPageNumber = this.getLastPageNumber();
-      this.gotoFirstPage();
-    }
-  }
-
-  /**
    * Setup default config
    */
   protected setupConfig(): void {
@@ -94,6 +81,17 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
       this.config = cloneDeep(this.defaultConfig);
     }
     this.prevConfig = cloneDeep(this.config);
+    this.pageNumber = this.config.pageNumber;
+  }
+
+  // Getters and setters
+
+  get pageNumber(): number {
+    return this._pageNumber;
+  }
+
+  set pageNumber(pageNumber: number) {
+    this._pageNumber = pageNumber;
   }
 
   /**
@@ -110,24 +108,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
     this._lastPageNumber = value;
   }
 
-  /**
-   * Page number is changed using input field
-   */
-  onPageNumberUpdate(event: KeyboardEvent): void {
-    console.log('event keycode:', event.keyCode, event.ctrlKey, '\n', 'event: ', event);
-    let keycode = event.keyCode ? event.keyCode : event.which;
-    console.log('key is: ', keycode);
-   // if (keycode === 13) {
-      let newPageNumber = parseInt(String(this.config.pageNumber), 10);
-      if (newPageNumber > this.lastPageNumber) {
-        this.updatePageNumber(this.lastPageNumber);
-      } else if (newPageNumber < 1 || isNaN(this.config.pageNumber)) {
-        this.updatePageNumber(1);
-      } else {
-        this.updatePageNumber(newPageNumber);
-      }
-    // }
-  }
+  // Actions
 
   /**
    * Jump to First Page
@@ -190,6 +171,36 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
   }
 
   /**
+   * Page number is changed via input field's focus event
+   */
+  onPageNumberBlur($event: FocusEvent) {
+    let newPageNumber: number = parseInt(String(this.pageNumber), 10);
+    if (isNaN(newPageNumber)) {
+      newPageNumber = this.pageNumber = this.config.pageNumber;
+    }
+
+    if (newPageNumber > this.lastPageNumber) {
+      this.updatePageNumber(this.lastPageNumber);
+    } else if (newPageNumber < 1) {
+      this.updatePageNumber(1);
+    } else {
+      this.updatePageNumber(newPageNumber);
+    }
+  }
+
+  /**
+   * Page number is changed via input field's keyboard event
+   */
+  onPageNumberKeyup($event: KeyboardEvent): void {
+    let keycode = $event.keyCode ? $event.keyCode : $event.which;
+    if (keycode === 13) {
+      this.onPageNumberBlur(null);
+    }
+  }
+
+  // Private
+
+  /**
    * Page size is changed
    * @param newPageSize new page size
    */
@@ -207,7 +218,7 @@ export class PaginationComponent implements OnInit, DoCheck, OnChanges {
    * @param newPageNumber new page number
    */
   private updatePageNumber(newPageNumber: number): void {
-    this.config.pageNumber = newPageNumber;
+    this.config.pageNumber = this.pageNumber = newPageNumber;
     this.onPageNumberChange.emit({
       pageNumber: newPageNumber
     });
