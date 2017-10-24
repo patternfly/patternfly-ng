@@ -63,6 +63,11 @@ export { ToastNotificationComponent } from './src/app/notification/toast-notific
 export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
 export { InlineNotificationComponent } from './src/app/notification/inline-notification.component';
 
+// Pagination
+export { PaginationComponent } from './src/app/pagination/pagination.component';
+export { PaginationConfig } from './src/app/pagination/pagination-config';
+export { PaginationModule } from './src/app/pagination/pagination.module';
+
 // Remaining Chars
 export { RemainingCharsCountDirective } from './src/app/remaining-chars-count/remaining-chars-count.directive';
 export { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
