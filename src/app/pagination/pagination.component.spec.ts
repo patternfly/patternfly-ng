@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture, async } from "@angular/core/testing";
+import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -76,12 +76,21 @@ describe('Pagination component - ', () => {
     expect(comp.config.pageSize).toEqual(20);
   });
 
-  // Todo: Please fix this test
-  /*it('should change page by using input', () => {
-    let input = fixture.debugElement.query(By.css('.pagination-pf-page'));
-    input.nativeNode.value = 6;
-    input.triggerEventHandler('change', null);
-    expect(comp.config.pageNumber).toEqual(6);
-  });*/
+  it('should call the method "onPageNumberKeyup" on Enter key to change page by using input', () => {
+    spyOn(comp, 'onPageNumberKeyup');
+    let input = fixture.debugElement.query(By.css('input.pagination-pf-page'));
+    input.nativeElement.value = 6;
+    input.nativeElement.dispatchEvent(new Event('input'));
+    input.triggerEventHandler('keyup.enter', null);
+    expect(comp.onPageNumberKeyup).toHaveBeenCalled();
+  });
+
+  it('should change the page on blur by using input', () => {
+    let input = fixture.debugElement.query(By.css('input.pagination-pf-page'));
+    input.nativeElement.value = 6;
+    input.nativeElement.dispatchEvent(new Event('input'));
+    input.triggerEventHandler('blur', null);
+    expect(comp.config.pageNumber).toBe(6);
+  });
 });
 
