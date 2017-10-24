@@ -7,6 +7,7 @@ import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-st
 import { FilterExampleComponent } from '../app/filter/examples/filter-example.component';
 import { ListExampleComponent } from '../app/list/basic-list/examples/list-example.component';
 import { NotificationServiceExampleComponent } from '../app/notification/examples/notification-service-example.component';
+import { PaginationExampleComponent } from '../app/pagination/examples/pagination-example.component';
 import { RemainingCharsCountExampleComponent } from '../app/remaining-chars-count/examples/remaining-chars-count-example.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
 import { SearchHighlightExampleComponent } from '../app/search-highlight/examples/search-highlight-example.component';
@@ -56,6 +57,9 @@ const routes: Routes = [{
   }, {
     path: 'notificationservice',
     component: NotificationServiceExampleComponent
+  }, {
+    path: 'pagination',
+    component: PaginationExampleComponent
   }, {
     path: 'remainingcharscount',
     component: RemainingCharsCountExampleComponent

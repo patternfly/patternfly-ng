@@ -17,6 +17,7 @@ import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state
 import { FilterExampleModule } from '../app/filter/examples/filter-example.module';
 import { ListExampleModule } from '../app/list/basic-list/examples/list-example.module';
 import { NotificationExampleModule } from '../app/notification/examples/notification-example.module';
+import { PaginationExampleModule } from '../app/pagination/examples/pagination-example.module';
 import { RemainingCharsCountExampleModule } from '../app/remaining-chars-count/examples/remaining-chars-count-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 import { SearchHighlightExampleModule } from '../app/search-highlight/examples/search-highlight-example.module';
@@ -40,6 +41,7 @@ import { NavigationExampleModule } from '../app/navigation/examples/navigation-e
     HttpModule,
     ListExampleModule,
     NotificationExampleModule,
+    PaginationExampleModule,
     RemainingCharsCountExampleModule,
     SampleExampleModule,
     SearchHighlightExampleModule,
