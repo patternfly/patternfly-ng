@@ -70,12 +70,12 @@
                  *ngIf="query?.showDelete">
               <span class="pfng-filter-delete-text">Delete filter?</span>
               <span class="pfng-filter-delete-confirm close">
-                <span class="pficon pficon-close padding-right-5" tabindex="-1"
-                      (click)="deleteQueryCancel($event, query)"></span>
+                <span class="fa fa-check padding-right-5" tabindex="-1"
+                      (click)="deleteQueryConfirm($event, query)"></span>
               </span>
               <span class="pfng-filter-delete-confirm close">
-                <span class="pficon pficon-ok padding-right-5" tabindex="-1"
-                      (click)="deleteQueryConfirm($event, query)"></span>
+                <span class="fa fa-remove padding-right-5" tabindex="-1"
+                      (click)="deleteQueryCancel($event, query)"></span>
               </span>
             </div>
             <a #blurable class="dropdown-item" tabindex="-1"
