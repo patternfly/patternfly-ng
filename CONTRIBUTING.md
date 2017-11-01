@@ -20,7 +20,6 @@ There are a few things that can be done to resolve any questions or problems you
  - Join our patternfly-ng channel on [Slack](http://slack.patternfly.org)
  - Join our mailing-list following the instructions on [patternfly.org](http://www.patternfly.org/community/)
 
-
 ## <a name="issue"></a> Found a bug or issue?
 Please help us out if you find a bug by submitting an issue to our [GitHub Repository][github-issues].
 We also welcome [PR's][github-pr] if you'd like to submit a fix.
@@ -62,7 +61,6 @@ We follow the [Angular style guide](https://angular.io/guide/styleguide) for all
 
 PatternFly also has coding guidelines that we endeavour to follow that impact HTML and CSS.  These are found at [codeguide.patternfly.org](http://codeguide.patternfly.org/).
 
-
 ## <a name="coding"></a> Working with the code
 PatternFly-ng uses npm, webpack and gulp.  With the exception of node.js, all dependencies should be present in the package.json file.
 
@@ -76,12 +74,25 @@ PatternFly-ng uses npm, webpack and gulp.  With the exception of node.js, all de
  - Within the patternfly-ng directory, run:   
    npm install
    
- ##### The following commands will help you work with the code:  
+##### The following commands will help you work with the code:  
  - npm run start:demo (runs a live demo on http://localhost:8001)
  - npm run build - run this before you submit a PR to make sure all tests pass
  - npm run test - run the karma tests
  - npm run reinstall - this clears your npm packages and installs them fresh
-   
+
+##### The following commands will help you run the demo via RawGit:
+
+ - If you are developing on PatternFly-ng and would like to provide a link to the demo from your fork, TravisCI can be configured to create a copy of your branch with the dist files generated for you.  No code changes are necessary to enable this, all that is needed is to login to [TravisCI](https://travis-ci.org/) and configure it to point at your PatternFly fork.  The first three steps at their [Getting Started page](https://docs.travis-ci.com/user/for-beginners) provide instructions on how to do this.  You will also need to add an AUTH_TOKEN variable to Travis generated in your GitHub account to allow Travis to connect to your fork.
+
+##### The following commands will help you test AOT compilation:
+The demo app uses an AOT webpack plugin to test compilation, which is also run during Travis builds. However, if you still want to test manually, please follow these steps.
+
+ - npm run build - build patternfly-ng   
+   cp package.json dist
+
+ - Follow the PatternFly-ng get started instructions to create an Angular-cli application   
+   npm install &lt;path to patternfly-ng&gt;/dist   
+   ng build --prod
 
 ## <a name="commits"></a> Git Commit Guidelines
 
