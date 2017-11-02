@@ -31,6 +31,10 @@ var ToolbarComponent = (function () {
          */
         this.onFilterChange = new EventEmitter();
         /**
+         * The event emitted when a filter has been saved
+         */
+        this.onFilterSave = new EventEmitter();
+        /**
          * The event emitted when the user types ahead in the query input field
          */
         this.onFilterTypeAhead = new EventEmitter();
@@ -132,6 +136,9 @@ var ToolbarComponent = (function () {
     ToolbarComponent.prototype.handleFilterFieldSelect = function ($event) {
         this.onFilterFieldSelect.emit($event);
     };
+    ToolbarComponent.prototype.handleFilterSave = function ($event) {
+        this.onFilterSave.emit($event);
+    };
     ToolbarComponent.prototype.handleFilterTypeAhead = function ($event) {
         this.onFilterTypeAhead.emit($event);
     };
@@ -178,6 +185,10 @@ __decorate([
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onFilterChange", void 0);
 __decorate([
+    Output('onFilterSave'),
+    __metadata("design:type", Object)
+], ToolbarComponent.prototype, "onFilterSave", void 0);
+__decorate([
     Output('onFilterTypeAhead'),
     __metadata("design:type", Object)
 ], ToolbarComponent.prototype, "onFilterTypeAhead", void 0);
@@ -194,7 +205,7 @@ ToolbarComponent = __decorate([
         encapsulation: ViewEncapsulation.None,
         selector: 'pfng-toolbar',
         styles: [".dropdown-kebab-pf.invisible{opacity:0;pointer-events:none}.toolbar-pf-actions .btn{min-width:unset}.toolbar-pf-actions .dropdown-menu a,.toolbar-pf-actions .toolbar-pf-view-selector a{cursor:pointer}.toolbar-pf-actions .dropdown-kebab-pf{float:right}.toolbar-pf-actions .toolbar-apf-filter{padding-left:0!important}@media (min-width:768px){.toolbar-pf-actions .toolbar-apf-filter{padding-left:0}}.toolbar-pf-include-actions{display:inline-block;margin:0 5px}.toolbar-pf-actions.no-filter-results{margin-bottom:10px}"],
-        template: "<div class=\"row toolbar-pf\"><div class=\"col-sm-12\"><form class=\"toolbar-pf-actions\" [ngClass]=\"{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}\" (submit)=\"$event.preventDefault()\"><div class=\"form-group toolbar-apf-filter\"><pfng-filter-fields [config]=\"config.filterConfig\" *ngIf=\"config.filterConfig?.fields\" (onAdd)=\"filterAdded($event)\" (onFieldSelect)=\"handleFilterFieldSelect($event)\" (onTypeAhead)=\"handleFilterTypeAhead($event)\"></pfng-filter-fields></div><div class=\"form-group\" *ngIf=\"config.sortConfig?.fields && config.sortConfig?.visible !== false\"><pfng-sort [config]=\"config.sortConfig\" (onChange)=\"sortChange($event)\"></pfng-sort></div><div class=\"form-group toolbar-actions\" *ngIf=\"config.actionConfig !== undefined || actionTemplate !== undefined\"><pfng-action [config]=\"config.actionConfig\" [template]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\"></pfng-action></div><div class=\"toolbar-pf-action-right\"><div class=\"form-group toolbar-pf-view-selector\" *ngIf=\"viewTemplate !== undefined || (config.views)\"><ng-template [ngTemplateOutlet]=\"viewTemplate\" [ngOutletContext]=\"{}\"></ng-template><span *ngIf=\"config.views\"><button *ngFor=\"let view of config.views\" class=\"btn btn-link\" [ngClass]=\"{'active': isViewSelected(view), 'disabled': view.disabled === true}\" title=\"{{view.tooltip}}\" (click)=\"viewSelected(view)\"><i class=\"{{view.iconStyleClass}}\"></i></button></span></div></div></form><pfng-filter-results [config]=\"config.filterConfig\" (onClear)=\"clearFilter($event)\"></pfng-filter-results></div></div>"
+        template: "<div class=\"row toolbar-pf\"><div class=\"col-sm-12\"><form class=\"toolbar-pf-actions\" [ngClass]=\"{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}\" (submit)=\"$event.preventDefault()\"><div class=\"form-group toolbar-apf-filter\"><pfng-filter-fields [config]=\"config.filterConfig\" *ngIf=\"config.filterConfig?.fields\" (onAdd)=\"filterAdded($event)\" (onFieldSelect)=\"handleFilterFieldSelect($event)\" (onSave)=\"handleFilterSave($event)\" (onTypeAhead)=\"handleFilterTypeAhead($event)\"></pfng-filter-fields></div><div class=\"form-group\" *ngIf=\"config.sortConfig?.fields && config.sortConfig?.visible !== false\"><pfng-sort [config]=\"config.sortConfig\" (onChange)=\"sortChange($event)\"></pfng-sort></div><div class=\"form-group toolbar-actions\" *ngIf=\"config.actionConfig !== undefined || actionTemplate !== undefined\"><pfng-action [config]=\"config.actionConfig\" [template]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\"></pfng-action></div><div class=\"toolbar-pf-action-right\"><div class=\"form-group toolbar-pf-view-selector\" *ngIf=\"viewTemplate !== undefined || (config.views)\"><ng-template [ngTemplateOutlet]=\"viewTemplate\" [ngOutletContext]=\"{}\"></ng-template><span *ngIf=\"config.views\"><button *ngFor=\"let view of config.views\" class=\"btn btn-link\" [ngClass]=\"{'active': isViewSelected(view), 'disabled': view.disabled === true}\" title=\"{{view.tooltip}}\" (click)=\"viewSelected(view)\"><i class=\"{{view.iconStyleClass}}\"></i></button></span></div></div></form><pfng-filter-results [config]=\"config.filterConfig\" (onClear)=\"clearFilter($event)\"></pfng-filter-results></div></div>"
     }),
     __metadata("design:paramtypes", [])
 ], ToolbarComponent);

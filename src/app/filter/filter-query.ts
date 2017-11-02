@@ -26,4 +26,9 @@ export class FilterQuery {
    * Set to true when a separator should be shown instead of a menu option
    */
   separator?: boolean;
+
+  /**
+   * Show the control to delete a filter query
+   */
+  showDelete?: boolean;
 }

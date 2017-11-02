@@ -30,6 +30,10 @@ export declare class ToolbarComponent implements DoCheck, OnInit {
      */
     onFilterChange: EventEmitter<{}>;
     /**
+     * The event emitted when a filter has been saved
+     */
+    onFilterSave: EventEmitter<{}>;
+    /**
      * The event emitted when the user types ahead in the query input field
      */
     onFilterTypeAhead: EventEmitter<{}>;
@@ -69,6 +73,7 @@ export declare class ToolbarComponent implements DoCheck, OnInit {
     private filterExists(filter);
     private handleAction(action);
     private handleFilterFieldSelect($event);
+    private handleFilterSave($event);
     private handleFilterTypeAhead($event);
     private sortChange($event);
     private isViewSelected(currentView);

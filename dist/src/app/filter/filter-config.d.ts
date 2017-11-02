@@ -21,6 +21,10 @@ export declare class FilterConfig {
      */
     selectedCount?: number;
     /**
+     * Show the control to save the currently applied filter
+     */
+    showSaveFilter?: boolean;
+    /**
      * The total number of items before any filters have been applied
      */
     totalCount?: number;

@@ -12,8 +12,13 @@ export declare class FilterResultsComponent implements DoCheck, OnInit {
      * The event emitted when the clear action is selected
      */
     onClear: EventEmitter<{}>;
+    /**
+     * The event emitted when the save action is selected
+     */
+    onSave: EventEmitter<{}>;
     private defaultConfig;
     private prevConfig;
+    private saveFilterName;
     /**
      * The default constructor
      */
@@ -32,4 +37,5 @@ export declare class FilterResultsComponent implements DoCheck, OnInit {
     protected setupConfig(): void;
     private clearFilter(filter);
     private clearAllFilters();
+    private saveAllFilters();
 }

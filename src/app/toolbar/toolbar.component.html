@@ -7,6 +7,7 @@
         <pfng-filter-fields [config]="config.filterConfig" *ngIf="config.filterConfig?.fields"
                             (onAdd)="filterAdded($event)"
                             (onFieldSelect)="handleFilterFieldSelect($event)"
+                            (onSave)="handleFilterSave($event)"
                             (onTypeAhead)="handleFilterTypeAhead($event)"></pfng-filter-fields>
       </div>
       <div class="form-group" *ngIf="config.sortConfig?.fields && config.sortConfig?.visible !== false">

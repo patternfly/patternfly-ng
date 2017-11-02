@@ -7,6 +7,7 @@ import { Filter } from '../filter';
 import { FilterConfig } from '../filter-config';
 import { FilterField } from '../filter-field';
 import { FilterEvent } from '../filter-event';
+import { FilterType } from '../filter-type';
 
 @Component({
   selector: 'filter-type-ahead-example',
@@ -150,7 +151,7 @@ export class FilterTypeAheadExampleComponent implements OnInit {
         id: 'birthMonth',
         title: 'Birth Month',
         placeholder: 'Filter by Birth Month...',
-        type: 'typeahead',
+        type: FilterType.TYPEAHEAD,
         queries: [
           ...this.monthQueriesFixed,
           this.separator,
@@ -160,7 +161,7 @@ export class FilterTypeAheadExampleComponent implements OnInit {
         id: 'weekDay',
         title: 'Week Day',
         placeholder: 'Filter by Week Day...',
-        type: 'typeahead',
+        type: FilterType.TYPEAHEAD,
         queries: [
           ...this.weekDayQueries
         ]

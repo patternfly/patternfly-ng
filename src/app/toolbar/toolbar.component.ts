@@ -59,6 +59,11 @@ export class ToolbarComponent implements DoCheck, OnInit {
   @Output('onFilterChange') onFilterChange = new EventEmitter();
 
   /**
+   * The event emitted when a filter has been saved
+   */
+  @Output('onFilterSave') onFilterSave = new EventEmitter();
+
+  /**
    * The event emitted when the user types ahead in the query input field
    */
   @Output('onFilterTypeAhead') onFilterTypeAhead = new EventEmitter();
@@ -183,6 +188,10 @@ export class ToolbarComponent implements DoCheck, OnInit {
 
   private handleFilterFieldSelect($event: FilterEvent): void {
     this.onFilterFieldSelect.emit($event);
+  }
+
+  private handleFilterSave($event: FilterEvent) {
+    this.onFilterSave.emit($event);
   }
 
   private handleFilterTypeAhead($event: FilterEvent) {

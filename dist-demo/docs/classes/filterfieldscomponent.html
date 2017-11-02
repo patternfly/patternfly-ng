@@ -101,6 +101,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="filterfieldscomponent.html#config" class="tsd-kind-icon">config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="filterfieldscomponent.html#onadd" class="tsd-kind-icon">on<wbr>Add</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="filterfieldscomponent.html#ondelete" class="tsd-kind-icon">on<wbr>Delete</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="filterfieldscomponent.html#onfieldselect" class="tsd-kind-icon">on<wbr>Field<wbr>Select</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="filterfieldscomponent.html#ontypeahead" class="tsd-kind-icon">on<wbr>Type<wbr>Ahead</a></li>
 							</ul>
@@ -115,8 +116,10 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="filterfieldscomponent.html#initcurrentfield" class="tsd-kind-icon">init<wbr>Current<wbr>Field</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="filterfieldscomponent.html#ngdocheck" class="tsd-kind-icon">ng<wbr>DoCheck</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="filterfieldscomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="filterfieldscomponent.html#reset" class="tsd-kind-icon">reset</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="filterfieldscomponent.html#setupconfig" class="tsd-kind-icon">setup<wbr>Config</a></li>
 							</ul>
 						</section>
@@ -135,7 +138,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L51">app/filter/filter-fields.component.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L57">app/filter/filter-fields.component.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="filterconfig.html" class="tsd-signature-type">FilterConfig</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L31">app/filter/filter-fields.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L32">app/filter/filter-fields.component.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Add<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L36">app/filter/filter-fields.component.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L37">app/filter/filter-fields.component.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -181,12 +184,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="ondelete" class="tsd-anchor"></a>
+					<h3>on<wbr>Delete</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L42">app/filter/filter-fields.component.ts:42</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The event emitted when a saved filter has been deleted</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="onfieldselect" class="tsd-anchor"></a>
 					<h3>on<wbr>Field<wbr>Select</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Field<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L41">app/filter/filter-fields.component.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L47">app/filter/filter-fields.component.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -201,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Type<wbr>Ahead<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L46">app/filter/filter-fields.component.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L52">app/filter/filter-fields.component.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -223,7 +241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L122">app/filter/filter-fields.component.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L141">app/filter/filter-fields.component.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L131">app/filter/filter-fields.component.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L150">app/filter/filter-fields.component.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -261,7 +279,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L140">app/filter/filter-fields.component.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L159">app/filter/filter-fields.component.ts:159</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,6 +306,28 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="initcurrentfield" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> init<wbr>Current<wbr>Field</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">init<wbr>Current<wbr>Field<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L107">app/filter/filter-fields.component.ts:107</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initialize current field and value</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="ngdocheck" class="tsd-anchor"></a>
 					<h3>ng<wbr>DoCheck</h3>
@@ -298,7 +338,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L71">app/filter/filter-fields.component.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L77">app/filter/filter-fields.component.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,12 +360,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L64">app/filter/filter-fields.component.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L70">app/filter/filter-fields.component.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p> Setup component configuration upon initialization</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="reset" class="tsd-anchor"></a>
+					<h3>reset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L129">app/filter/filter-fields.component.ts:129</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Reset current field and value</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -342,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/0ad4f48/src/app/filter/filter-fields.component.ts#L81">app/filter/filter-fields.component.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/fd84d64/src/app/filter/filter-fields.component.ts#L87">app/filter/filter-fields.component.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -381,6 +443,9 @@
 								<a href="filterfieldscomponent.html#onadd" class="tsd-kind-icon">on<wbr>Add</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="filterfieldscomponent.html#ondelete" class="tsd-kind-icon">on<wbr>Delete</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="filterfieldscomponent.html#onfieldselect" class="tsd-kind-icon">on<wbr>Field<wbr>Select</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -392,11 +457,17 @@
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="filterfieldscomponent.html#currentvalue" class="tsd-kind-icon">current<wbr>Value</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="filterfieldscomponent.html#initcurrentfield" class="tsd-kind-icon">init<wbr>Current<wbr>Field</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="filterfieldscomponent.html#ngdocheck" class="tsd-kind-icon">ng<wbr>DoCheck</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="filterfieldscomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="filterfieldscomponent.html#reset" class="tsd-kind-icon">reset</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="filterfieldscomponent.html#setupconfig" class="tsd-kind-icon">setup<wbr>Config</a>

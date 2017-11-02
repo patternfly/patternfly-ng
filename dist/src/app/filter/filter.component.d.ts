@@ -15,13 +15,25 @@ export declare class FilterComponent implements DoCheck, OnInit {
      */
     onChange: EventEmitter<{}>;
     /**
+     * The event emitted when a query (i.e., saved filter) has been deleted
+     */
+    onDelete: EventEmitter<{}>;
+    /**
      * The event emitted when a field menu option is selected
      */
     onFilterSelect: EventEmitter<{}>;
     /**
+     * The event emitted when a filter has been changed
+     */
+    onSave: EventEmitter<{}>;
+    /**
      * The event emitted when the user types ahead in the query input field
      */
     onTypeAhead: EventEmitter<{}>;
+    /**
+     * A reference to the underlying filter fields component
+     */
+    private filterFields;
     private defaultConfig;
     private prevConfig;
     /**
@@ -51,13 +63,29 @@ export declare class FilterComponent implements DoCheck, OnInit {
      *
      * @param $event An array of current Filter objects
      */
-    clear($event: Filter[]): void;
+    clearFilter($event: Filter[]): void;
+    /**
+     * Handle delete query (i.e., saved filter) event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
+    deleteQuery($event: FilterEvent): void;
     /**
      * Handle filter field selected event
      *
      * @param $event The FilterEvent contining properties for this event
      */
     fieldSelected($event: FilterEvent): void;
+    /**
+     * Reset current field
+     */
+    resetCurrentField(): void;
+    /**
+     * Handle save filter event
+     *
+     * @param $event An array of current Filter objects
+     */
+    saveFilter($event: FilterEvent): void;
     /**
      * Handle type ahead event
      *

@@ -7,8 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FilterConfig } from './filter-config';
+import { FilterFieldsComponent } from './filter-fields.component';
+import { FilterType } from './filter-type';
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 /**
  * Filter component
@@ -23,9 +25,17 @@ var FilterComponent = (function () {
          */
         this.onChange = new EventEmitter();
         /**
+         * The event emitted when a query (i.e., saved filter) has been deleted
+         */
+        this.onDelete = new EventEmitter();
+        /**
          * The event emitted when a field menu option is selected
          */
         this.onFilterSelect = new EventEmitter();
+        /**
+         * The event emitted when a filter has been changed
+         */
+        this.onSave = new EventEmitter();
         /**
          * The event emitted when the user types ahead in the query input field
          */
@@ -76,7 +86,7 @@ var FilterComponent = (function () {
             value: $event.value
         };
         if (!this.filterExists(newFilter)) {
-            if (newFilter.field.type === 'select') {
+            if (newFilter.field.type === FilterType.SELECT) {
                 this.enforceSingleSelect(newFilter);
             }
             this.config.appliedFilters.push(newFilter);
@@ -89,11 +99,19 @@ var FilterComponent = (function () {
      *
      * @param $event An array of current Filter objects
      */
-    FilterComponent.prototype.clear = function ($event) {
+    FilterComponent.prototype.clearFilter = function ($event) {
         this.config.appliedFilters = $event;
         this.onChange.emit({
             appliedFilters: $event
         });
+    };
+    /**
+     * Handle delete query (i.e., saved filter) event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
+    FilterComponent.prototype.deleteQuery = function ($event) {
+        this.onDelete.emit($event);
     };
     /**
      * Handle filter field selected event
@@ -102,6 +120,20 @@ var FilterComponent = (function () {
      */
     FilterComponent.prototype.fieldSelected = function ($event) {
         this.onFilterSelect.emit($event);
+    };
+    /**
+     * Reset current field
+     */
+    FilterComponent.prototype.resetCurrentField = function () {
+        this.filterFields.reset();
+    };
+    /**
+     * Handle save filter event
+     *
+     * @param $event An array of current Filter objects
+     */
+    FilterComponent.prototype.saveFilter = function ($event) {
+        this.onSave.emit($event);
     };
     /**
      * Handle type ahead event
@@ -117,6 +149,7 @@ var FilterComponent = (function () {
     };
     FilterComponent.prototype.filterExists = function (filter) {
         var foundFilter = find(this.config.appliedFilters, {
+            field: filter.field,
             value: filter.value
         });
         return foundFilter !== undefined;
@@ -132,19 +165,31 @@ __decorate([
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onChange", void 0);
 __decorate([
+    Output('onDelete'),
+    __metadata("design:type", Object)
+], FilterComponent.prototype, "onDelete", void 0);
+__decorate([
     Output('onFieldSelect'),
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onFilterSelect", void 0);
 __decorate([
+    Output('onSave'),
+    __metadata("design:type", Object)
+], FilterComponent.prototype, "onSave", void 0);
+__decorate([
     Output('onTypeAhead'),
     __metadata("design:type", Object)
 ], FilterComponent.prototype, "onTypeAhead", void 0);
+__decorate([
+    ViewChild('filterFields'),
+    __metadata("design:type", FilterFieldsComponent)
+], FilterComponent.prototype, "filterFields", void 0);
 FilterComponent = __decorate([
     Component({
         encapsulation: ViewEncapsulation.None,
         selector: 'pfng-filter',
         styles: [".filter-pf a{cursor:pointer}.filter-select .btn{border-left:0}.dropdown-menu{min-width:176px}"],
-        template: "<div class=\"filter-pf\"><pfng-filter-fields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clear($event)\"></pfng-filter-results></div>"
+        template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
     }),
     __metadata("design:paramtypes", [])
 ], FilterComponent);

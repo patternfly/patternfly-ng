@@ -41,6 +41,7 @@ export { FilterFieldsComponent } from './src/app/filter/filter-fields.component'
 export { FilterModule } from './src/app/filter/filter.module';
 export { FilterResultsComponent } from './src/app/filter/filter-results.component';
 export { FilterQuery } from './src/app/filter/filter-query';
+export { FilterType } from './src/app/filter/filter-type';
 
 // Lists
 export { ListBase } from './src/app/list/list-base';
@@ -92,6 +93,10 @@ export { ToolbarConfig } from './src/app/toolbar/toolbar-config';
 export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
 export { ToolbarModule } from './src/app/toolbar/toolbar.module';
 export { ToolbarView } from './src/app/toolbar/toolbar-view';
+
+// Truncate
+export { TruncatePipe } from './src/app/truncate/truncate.pipe';
+export { TruncateModule } from './src/app/truncate/truncate.module';
 
 // Utilities
 export { WindowReference } from './src/app/utilities/window.reference';

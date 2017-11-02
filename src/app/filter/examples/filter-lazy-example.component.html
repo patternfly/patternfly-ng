@@ -7,7 +7,7 @@
                      (onFieldSelect)="filterFieldSelected($event)"
                      (onTypeAhead)="filterQueries($event)"></pfng-filter>
         <div class="padding-top-15">
-          This example lazily adds additional filters.
+          This example lazily loads additional filters.
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="col-md-12">
       <div class="padding-top-15">
         <button class="btn btn-default primary-action" type="button"
-                (click)="addFilters()">Add Filters
+                (click)="loadFilters()">Load Filters
         </button>
       </div>
     </div>
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row padding-top-15">
     <div class="col-md-12">
       <label class="events-label">Current Filters: </label>
     </div>

@@ -10,6 +10,7 @@ import { Filter } from '../../filter/filter';
 import { FilterConfig } from '../../filter/filter-config';
 import { FilterField } from '../../filter/filter-field';
 import { FilterEvent } from '../../filter/filter-event';
+import { FilterType } from '../../filter/filter-type';
 import { SortConfig } from '../../sort/sort-config';
 import { SortField } from '../../sort/sort-field';
 import { SortEvent } from '../../sort/sort-event';
@@ -129,17 +130,17 @@ export class ToolbarExampleComponent implements OnInit {
         id: 'name',
         title:  'Name',
         placeholder: 'Filter by Name...',
-        type: 'text'
+        type: FilterType.TEXT
       }, {
         id: 'address',
         title:  'Address',
         placeholder: 'Filter by Address...',
-        type: 'text'
+        type: FilterType.TEXT
       }, {
         id: 'birthMonth',
         title:  'Birth Month',
         placeholder: 'Filter by Birth Month...',
-        type: 'select',
+        type: FilterType.SELECT,
         queries: [{
           id: 'month1',
           value: 'January'
@@ -181,7 +182,7 @@ export class ToolbarExampleComponent implements OnInit {
         id: 'weekDay',
         title: 'Week Day',
         placeholder: 'Filter by Week Day...',
-        type: 'typeahead',
+        type: FilterType.TYPEAHEAD,
         queries: [
           ...this.weekDayQueries
         ]

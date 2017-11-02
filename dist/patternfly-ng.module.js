@@ -20,6 +20,7 @@ import { SampleModule } from './src/app/sample/sample.module';
 import { SearchHighlightModule } from './src/app/search-highlight/search-highlight.module';
 import { SortModule } from './src/app/sort/sort.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
+import { TruncateModule } from './src/app/truncate/truncate.module';
 import { WizardModule } from './src/app/wizard/wizard.module';
 var PatternFlyNgModule = (function () {
     function PatternFlyNgModule() {
@@ -46,6 +47,7 @@ PatternFlyNgModule = __decorate([
             SearchHighlightModule,
             SortModule,
             ToolbarModule,
+            TruncateModule,
             WizardModule
         ]
     })

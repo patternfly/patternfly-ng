@@ -8,6 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 import { FilterField } from './filter-field';
@@ -34,6 +35,11 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
    * The event emitted when a filter has been added
    */
   @Output('onAdd') onAdd = new EventEmitter();
+
+  /**
+   * The event emitted when a saved filter has been deleted
+   */
+  @Output('onDelete') onDelete = new EventEmitter();
 
   /**
    * The event emitted when a field menu option is selected
@@ -92,7 +98,13 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
     if (this.config && this.config.tooltipPlacement === undefined) {
       this.config.tooltipPlacement = 'top';
     }
+    this.initCurrentField();
+  }
 
+  /**
+   * Initialize current field and value
+   */
+  protected initCurrentField(): void {
     let fieldFound: boolean = false;
     if (this._currentField !== undefined) {
       find(this.config.fields, (nextField) => {
@@ -106,10 +118,17 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
       this._currentField = this.config.fields[0];
       this._currentValue = null;
     }
-
     if (this._currentValue === undefined) {
       this._currentValue = null;
     }
+  }
+
+  /**
+   * Reset current field and value
+   */
+  reset(): void {
+    this._currentField = undefined;
+    this.initCurrentField();
   }
 
   // Getters & setters
@@ -143,6 +162,46 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
 
   // Private
 
+  private deleteQuery($event: MouseEvent, filterQuery: FilterQuery, el: HTMLElement): void {
+    // Unset focus
+    if (el !== undefined) {
+      el.blur();
+    }
+
+    // Close previous open confirmation
+    this.hideDeleteConfirm(false);
+
+    // Show delete query confirmation
+    (filterQuery as any).showDeleteConfirm = true;
+
+    // Menu should remain open
+    $event.stopPropagation();
+  }
+
+  private deleteQueryCancel($event: MouseEvent, filterQuery: FilterQuery): void {
+    // Hide delete query confirmation
+    (filterQuery as any).showDeleteConfirm = false;
+
+    // Menu should remain open
+    $event.stopPropagation();
+  }
+
+  private deleteQueryConfirm($event: MouseEvent, filterQuery: FilterQuery): void {
+    // Hide delete query confirmation
+    (filterQuery as any).showDeleteConfirm = false;
+
+    // Menu should remain open
+    if (this._currentField.queries.length > 1) {
+      $event.stopPropagation();
+    }
+    this.onDelete.emit({
+      field: this._currentField,
+      query: filterQuery,
+      value: filterQuery.value
+    } as FilterEvent);
+    this._currentValue = null;
+  }
+
   private fieldInputKeyPress($event: KeyboardEvent): void {
     if ($event.which === 13 && this._currentValue && this._currentValue.length > 0) {
       this.onAdd.emit({
@@ -151,6 +210,20 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
       } as FilterEvent);
       this._currentValue = undefined;
     }
+  }
+
+  // Hide all delete confirm
+  private hideDeleteConfirm(isOpen: boolean): void {
+    this._currentField.queries.forEach(query => {
+      (query as any).showDeleteConfirm = false;
+    });
+  }
+
+  private isFieldDisabled(field: FilterField): boolean {
+    if (field.type === undefined || field.type === 'text') {
+      return false;
+    }
+    return (field.queries === undefined || field.queries.length === 0);
   }
 
   private queryInputChange(value: string) {
@@ -170,13 +243,22 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   }
 
   private selectQuery(filterQuery: FilterQuery): void {
-    if (filterQuery != null) {
-      this.onAdd.emit({
-        field: this._currentField,
-        query: filterQuery,
-        value: filterQuery.value
-      } as FilterEvent);
-      this._currentValue = null;
-    }
+    this.onAdd.emit({
+      field: this._currentField,
+      query: filterQuery,
+      value: filterQuery.value
+    } as FilterEvent);
+    this._currentValue = null;
+  }
+
+  private showDelete(): boolean {
+    let result = false;
+    this._currentField.queries.forEach(query => {
+      if (query.showDelete === true) {
+        result = true;
+        return;
+      }
+    });
+    return result;
   }
 }

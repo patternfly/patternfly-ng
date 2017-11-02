@@ -7,6 +7,7 @@ import { Filter } from '../filter';
 import { FilterConfig } from '../filter-config';
 import { FilterField } from '../filter-field';
 import { FilterEvent } from '../filter-event';
+import { FilterType } from '../filter-type';
 
 @Component({
   selector: 'filter-lazy-example',
@@ -151,7 +152,7 @@ export class FilterLazyExampleComponent implements OnInit {
       id: 'birthMonth',
       title: 'Birth Month',
       placeholder: 'Filter by Birth Month...',
-      type: 'typeahead',
+      type: FilterType.TYPEAHEAD,
       queries: [
         ...this.monthQueriesFixed,
         this.separator,
@@ -163,17 +164,17 @@ export class FilterLazyExampleComponent implements OnInit {
       id: 'name',
       title:  'Name',
       placeholder: 'Filter by Name...',
-      type: 'text'
+      type: FilterType.TEXT
     }, {
       id: 'address',
       title: 'Address',
       placeholder: 'Filter by Address...',
-      type: 'text',
+      type: FilterType.TEXT,
     }, {
       id: 'weekDay',
       title: 'Week Day',
       placeholder: 'Filter by Week Day...',
-      type: 'typeahead',
+      type: FilterType.TYPEAHEAD,
       queries: [
         ...this.weekDayQueries
       ]
@@ -190,7 +191,7 @@ export class FilterLazyExampleComponent implements OnInit {
 
   // Filter functions
 
-  addFilters(): void {
+  loadFilters(): void {
     this.filterConfig.fields = this.filterFields.concat(this.lazyFilterFields);
   }
 

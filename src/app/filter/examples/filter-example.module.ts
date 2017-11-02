@@ -9,6 +9,7 @@ import { FilterBasicExampleComponent } from './filter-basic-example.component';
 import { FilterExampleComponent } from './filter-example.component';
 import { FilterLazyExampleComponent } from './filter-lazy-example.component';
 import { FilterModule } from '../filter.module';
+import { FilterSaveExampleComponent } from './filter-save-example.component';
 import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.component';
 
 @NgModule({
@@ -23,7 +24,9 @@ import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.com
     FilterBasicExampleComponent,
     FilterExampleComponent,
     FilterLazyExampleComponent,
-    FilterTypeAheadExampleComponent ],
+    FilterSaveExampleComponent,
+    FilterTypeAheadExampleComponent
+  ],
   providers: [ TabsetConfig ]
 })
 export class FilterExampleModule {

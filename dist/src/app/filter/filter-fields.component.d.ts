@@ -14,6 +14,10 @@ export declare class FilterFieldsComponent implements DoCheck, OnInit {
      */
     onAdd: EventEmitter<{}>;
     /**
+     * The event emitted when a saved filter has been deleted
+     */
+    onDelete: EventEmitter<{}>;
+    /**
      * The event emitted when a field menu option is selected
      */
     onFieldSelect: EventEmitter<{}>;
@@ -42,6 +46,14 @@ export declare class FilterFieldsComponent implements DoCheck, OnInit {
      */
     protected setupConfig(): void;
     /**
+     * Initialize current field and value
+     */
+    protected initCurrentField(): void;
+    /**
+     * Reset current field and value
+     */
+    reset(): void;
+    /**
      * Get the current filter field
      *
      * @returns {FilterField} The current filter field
@@ -58,8 +70,14 @@ export declare class FilterFieldsComponent implements DoCheck, OnInit {
      * @param val The current filter field value
      */
     currentValue: string;
+    private deleteQuery($event, filterQuery, el);
+    private deleteQueryCancel($event, filterQuery);
+    private deleteQueryConfirm($event, filterQuery);
     private fieldInputKeyPress($event);
+    private hideDeleteConfirm(isOpen);
+    private isFieldDisabled(field);
     private queryInputChange(value);
     private selectField(field);
     private selectQuery(filterQuery);
+    private showDelete();
 }
