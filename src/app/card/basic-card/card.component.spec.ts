@@ -4,7 +4,7 @@ import {
   TestBed
 } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -69,17 +69,17 @@ describe('Card component - ', () => {
       });
   }));
 
-  it('should have a body', function () {
+  it('should have a body', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-body'));
     expect(element.length).toBe(1);
   });
 
-  it('should have a footer', function () {
+  it('should have a footer', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-footer'));
     expect(element.length).toBe(1);
   });
 
-  it('should not have a footer', function () {
+  it('should not have a footer', function() {
     config.filters = config.action = undefined;
     fixture.detectChanges();
 
@@ -87,17 +87,17 @@ describe('Card component - ', () => {
     expect(element.length).toBe(0);
   });
 
-  it('should have a header', function () {
+  it('should have a header', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-heading'));
     expect(element.length).toBe(1);
   });
 
-  it('should have a top border', function () {
+  it('should have a top border', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-accented'));
     expect(element.length).toBe(1);
   });
 
-  it('should not have a top border', function () {
+  it('should not have a top border', function() {
     config.topBorder = false;
     fixture.detectChanges();
 
@@ -105,17 +105,17 @@ describe('Card component - ', () => {
     expect(element.length).toBe(0);
   });
 
-  it('should have a title', function () {
+  it('should have a title', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-title'));
     expect(element.length).toBe(1);
   });
 
-  it('should have a sub-title', function () {
+  it('should have a sub-title', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-subtitle'));
     expect(element.length).toBe(1);
   });
 
-  it('should not have a title border', function () {
+  it('should not have a title border', function() {
     config.titleBorder = false;
     fixture.detectChanges();
 
@@ -126,12 +126,12 @@ describe('Card component - ', () => {
     expect(element.length).toBe(1);
   });
 
-  it('should have a filter menu', function () {
+  it('should have a filter menu', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-time-frame-filter'));
     expect(element.length).toBe(1);
   });
 
-  it('should call function when filter is selected', function (done) {
+  it('should call function when filter is selected', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let elements = fixture.debugElement.queryAll(By.css('.card-pf-time-frame-filter .dropdown-item'));
     expect(elements.length).toBe(3);
@@ -147,12 +147,12 @@ describe('Card component - ', () => {
     expect(filter).toBe(config.filters[0]);
   });
 
-  it('should have an action', function () {
+  it('should have an action', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-link-with-icon'));
     expect(element.length).toBe(1);
   });
 
-  it('should call function when an action is clicked', function (done) {
+  it('should call function when an action is clicked', function(done) {
     let element = fixture.debugElement.query(By.css('.card-pf-link-with-icon'));
     expect(element).not.toBeNull();
 

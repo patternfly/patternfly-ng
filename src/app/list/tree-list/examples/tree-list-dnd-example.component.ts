@@ -190,8 +190,8 @@ export class TreeListDndExampleComponent implements OnInit {
   // Events
 
   handleMoveNode($event: any): void {
-   this.actionsText = 'Event name: ' + $event.eventName +
-     ', node: ' + $event.node.name +
-     ', to index: ' + $event.to.index + '\n' + this.actionsText;
+    this.actionsText = 'Event name: ' + $event.eventName +
+      ', node: ' + $event.node.name +
+      ', to index: ' + $event.to.index + '\n' + this.actionsText;
   }
 }

@@ -311,7 +311,7 @@ export class WizardStepComponent extends WizardBase implements OnInit, WizardSte
     let nextIdx = this.stepIndex(nextStep);
     let complete = true;
     this.getEnabledSteps().forEach((step: WizardStep, stepIndex) => {
-      if (stepIndex <  nextIdx) {
+      if (stepIndex < nextIdx) {
         complete = complete && step.config.nextEnabled;
       }
     });

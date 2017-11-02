@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
@@ -15,9 +15,9 @@ import { SortExampleComponent } from './sort-example.component';
     SortModule,
     TabsModule.forRoot()
   ],
-  declarations: [ SortExampleComponent ],
-  exports: [ SortExampleComponent ],
-  providers: [ TabsetConfig ]
+  declarations: [SortExampleComponent],
+  exports: [SortExampleComponent],
+  providers: [TabsetConfig]
 })
 export class SortExampleModule {
   constructor() {}

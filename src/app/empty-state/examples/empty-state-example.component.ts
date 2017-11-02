@@ -49,8 +49,8 @@ export class EmptyStateExampleComponent implements OnInit {
       actions: this.actionConfig,
       iconStyleClass: 'pficon-warning-triangle-o',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-            'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
-            'objects exists and you want to guide the user to perform specific actions.',
+        'impression that helps users to achieve their goals. It should be used when a view is empty because no ' +
+        'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
         hypertext: 'Empty State example',
         text: 'For more information please see the',

@@ -43,7 +43,7 @@ export class WizardBasicExampleComponent implements OnInit {
   wizardConfig: WizardConfig;
   wizardExample: WizardExampleComponent;
 
-  constructor(@Host() wizardExample: WizardExampleComponent) {
+  constructor( @Host() wizardExample: WizardExampleComponent) {
     this.wizardExample = wizardExample;
   }
 
@@ -139,7 +139,7 @@ export class WizardBasicExampleComponent implements OnInit {
 
   stepChanged($event: WizardEvent) {
     let flatSteps = flattenWizardSteps(this.wizard);
-    let currentStep = flatSteps.find(step => step.config.id === $event.step.config.id)
+    let currentStep = flatSteps.find(step => step.config.id === $event.step.config.id);
     if (currentStep) {
       currentStep.config.nextEnabled = true;
     }

@@ -229,8 +229,8 @@ export class TreeListBasicExampleComponent implements OnInit {
       iconStyleClass: 'pficon-warning-triangle-o',
       title: 'No Items Available',
       info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-      'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
-      'objects exists and you want to guide the user to perform specific actions.',
+        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
+        'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
         hypertext: 'List example',
         text: 'For more information please see the',
@@ -299,9 +299,9 @@ export class TreeListBasicExampleComponent implements OnInit {
   // Events
 
   handleMoveNode($event: any): void {
-   this.actionsText = 'Event name: ' + $event.eventName +
-     ', node: ' + $event.node.name +
-     ', to index: ' + $event.to.index + '\n' + this.actionsText;
+    this.actionsText = 'Event name: ' + $event.eventName +
+      ', node: ' + $event.node.name +
+      ', to index: ' + $event.to.index + '\n' + this.actionsText;
   }
 
   handleToggleExpanded($event: any): void {

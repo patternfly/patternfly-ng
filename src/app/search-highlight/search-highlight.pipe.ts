@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  *
  * This is currently used with the type ahead feature of the filter fields component
  */
-@Pipe({ name: 'SearchHighlight'})
+@Pipe({ name: 'SearchHighlight' })
 export class SearchHighlightPipe implements PipeTransform {
   transform(val: string, search: string): any {
     if (search !== '' && search.length) {

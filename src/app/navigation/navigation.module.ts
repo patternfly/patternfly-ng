@@ -9,15 +9,15 @@ import { WindowReference } from '../utilities/window.reference';
 
 export {
   NavigationItemConfig
-}
+};
 
 /**
  * A module containing objects associated with the navigation components
  */
 @NgModule({
-  imports: [ CommonModule, TooltipModule.forRoot()],
-  declarations: [ VerticalNavigationComponent ],
-  exports: [ VerticalNavigationComponent ],
-  providers: [ TooltipConfig, WindowReference ]
+  imports: [CommonModule, TooltipModule.forRoot()],
+  declarations: [VerticalNavigationComponent],
+  exports: [VerticalNavigationComponent],
+  providers: [TooltipConfig, WindowReference]
 })
-export class NavigationModule { }
+export class NavigationModule {}

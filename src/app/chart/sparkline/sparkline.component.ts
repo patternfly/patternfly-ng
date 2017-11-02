@@ -28,7 +28,6 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
    */
   public sparklineChartId: any;
 
-
   private prevChartData: any;
   private defaultConfig: SparklineConfig;
 
@@ -74,7 +73,8 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
 
   /**
    * Tooltip function for sparklines
-   * @returns {{contents: ((d:any)=>string), position: ((data:any, width:number, height:number, element:any)=>{top: number, left: number})}}
+   * @returns {{contents: ((d:any)=>string), position: ((data:any, width:number,
+   * height:number, element:any)=>{top: number, left: number})}}
    */
   public sparklineTooltip() {
     return {
@@ -96,14 +96,15 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
                 '</tr>' +
                 '<tr>' +
                 '  <td class="name">' + percentUsed + '%:' + '</td>' +
-                '  <td class="value text-nowrap">' + d[0].value + ' ' +  (this.config.units ? this.config.units + ' ' : '') + d[0].name + '</td>' +
+                '  <td class="value text-nowrap">' + d[0].value + ' '
+                  + (this.config.units ? this.config.units + ' ' : '') + d[0].name + '</td>' +
                 '</tr>';
               break;
             case 'valuePerDay':
               tipRows =
                 '<tr>' +
-                '  <td class="value">' +  d[0].x.toLocaleDateString() + '</td>' +
-                '  <td class="value text-nowrap">' +  d[0].value + ' ' + d[0].name + '</td>' +
+                '  <td class="value">' + d[0].x.toLocaleDateString() + '</td>' +
+                '  <td class="value text-nowrap">' + d[0].value + ' ' + d[0].name + '</td>' +
                 '</tr>';
               break;
             case 'percentage':
@@ -127,10 +128,11 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
         let x;
 
         try {
-          center = parseInt(element.getAttribute('x'));
-          top = parseInt(element.getAttribute('y'));
+          center = parseInt(element.getAttribute('x'), 10);
+          top = parseInt(element.getAttribute('y'), 10);
           chartBox = document.querySelector('#' + this.sparklineChartId).getBoundingClientRect();
-          graphOffsetX = document.querySelector('#' + this.sparklineChartId + ' g.c3-axis-y').getBoundingClientRect().right;
+          graphOffsetX = document.querySelector('#' + this.sparklineChartId + ' g.c3-axis-y')
+            .getBoundingClientRect().right;
           x = Math.max(0, center + graphOffsetX - chartBox.left - Math.floor(width / 2));
 
           return {
@@ -148,7 +150,7 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
    * Convert the config data to C3 Data
    */
   protected getSparklineData(chartData: any): any {
-    let sparklineData: any  = {
+    let sparklineData: any = {
       type: 'area'
     };
 
@@ -161,7 +163,7 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
     }
 
     return sparklineData;
-  };
+  }
 
   private setupConfig(): void {
     this.defaultConfig = this.chartDefaults.getDefaultSparklineConfig();
@@ -171,7 +173,7 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
         type: 'timeseries',
         tick: {
           format: () => {
-            return ''; //change to lambda ?
+            return ''; // change to lambda ?
           }
         }
       },
@@ -179,7 +181,7 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
         show: this.config.showYAxis === true,
         tick: {
           format: () => {
-            return ''; //change to lambda ?
+            return ''; // change to lambda ?
           }
         }
       }

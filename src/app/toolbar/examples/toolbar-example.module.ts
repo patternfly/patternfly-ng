@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -11,7 +11,7 @@ import { ToolbarExampleComponent } from './toolbar-example.component';
 import { ToolbarModule } from '../toolbar.module';
 
 @NgModule({
-  declarations: [ ToolbarExampleComponent ],
+  declarations: [ToolbarExampleComponent],
   imports: [
     ActionModule,
     BsDropdownModule.forRoot(),
@@ -21,7 +21,7 @@ import { ToolbarModule } from '../toolbar.module';
     TabsModule.forRoot(),
     ToolbarModule
   ],
-  providers: [ BsDropdownConfig, TabsetConfig ]
+  providers: [BsDropdownConfig, TabsetConfig]
 })
 export class ToolbarExampleModule {
   constructor() {}

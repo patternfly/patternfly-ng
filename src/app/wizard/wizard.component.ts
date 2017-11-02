@@ -163,13 +163,13 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    * @param {WizardStep} step The wizard step or substep
    */
   addStep(step: WizardStep): void {
-    super.addStep(step)
+    super.addStep(step);
 
     let enabledSteps: WizardStep[] = this.getEnabledSteps();
     if (this.config.ready && (enabledSteps.length > 0) && (step === enabledSteps[0])) {
       this.goTo(enabledSteps[0], true, false);
     }
-  };
+  }
 
   /**
    * Returns only wizard steps with review templates
@@ -267,7 +267,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
         return;
       }
     } else {
-      if (emitEvent  !== false) {
+      if (emitEvent !== false) {
         this.onPrevious.emit(wizEvent);
       }
     }
@@ -300,7 +300,7 @@ export class WizardComponent extends WizardBase implements DoCheck, OnInit {
    */
   updateStepIndex(stepIndex: number): void {
     this.firstStep = this.stepIndex(this.selectedStep) === 0 && stepIndex === 0;
-  };
+  }
 
   // Private
 

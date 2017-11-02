@@ -64,7 +64,7 @@ describe('Inline notification component - ', () => {
     expect(results).toBeNull();
   });
 
-  it ('close button should fire event and update hidden value', function(done) {
+  it('close button should fire event and update hidden value', function(done) {
     expect(comp.hidden).toBe(false);
 
     comp.hiddenChange.subscribe((data: boolean) => {

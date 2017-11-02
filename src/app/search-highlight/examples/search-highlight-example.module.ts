@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
@@ -8,7 +8,7 @@ import { SearchHighlightModule } from '../search-highlight.module';
 import { SearchHighlightExampleComponent } from './search-highlight-example.component';
 
 @NgModule({
-  declarations: [ SearchHighlightExampleComponent ],
+  declarations: [SearchHighlightExampleComponent],
   imports: [
     CommonModule,
     DemoComponentsModule,
@@ -16,7 +16,7 @@ import { SearchHighlightExampleComponent } from './search-highlight-example.comp
     SearchHighlightModule,
     TabsModule.forRoot(),
   ],
-  providers: [ TabsetConfig ]
+  providers: [TabsetConfig]
 })
 export class SearchHighlightExampleModule {
   constructor() {}

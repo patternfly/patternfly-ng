@@ -172,7 +172,7 @@ export class ListBasicExampleComponent implements OnInit {
    * @returns {ActionConfig}
    */
   getActionConfig(item: any, actionButtonTemplate: TemplateRef<any>,
-      startButtonTemplate: TemplateRef<any>): ActionConfig {
+    startButtonTemplate: TemplateRef<any>): ActionConfig {
     let actionConfig = {
       primaryActions: [{
         id: 'start',

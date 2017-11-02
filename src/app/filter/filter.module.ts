@@ -25,7 +25,7 @@ export {
   FilterField,
   FilterQuery,
   FilterType
-}
+};
 
 /**
  * A module containing objects associated with filter components
@@ -40,8 +40,8 @@ export {
     SearchHighlightModule,
     TruncateModule
   ],
-  declarations: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],
-  exports: [ FilterComponent, FilterFieldsComponent, FilterResultsComponent ],
-  providers: [ BsDropdownConfig, TooltipConfig ]
+  declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+  exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+  providers: [BsDropdownConfig, TooltipConfig]
 })
 export class FilterModule {}

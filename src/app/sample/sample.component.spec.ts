@@ -23,9 +23,9 @@ describe('Sample component - ', () => {
       .then(() => {
         fixture = TestBed.createComponent(SampleComponent);
         comp = fixture.componentInstance;
-        //comp.config = config;
+        // comp.config = config;
         comp.label = 'Name';
-        //todo - set inputs here
+        // todo - set inputs here
         fixture.detectChanges();
       });
   }));

@@ -11,7 +11,7 @@ import { ToolbarConfig } from './toolbar-config';
 
 export {
   ToolbarConfig
-}
+};
 
 /**
  * A module containing objects associated with the toolbar component
@@ -24,8 +24,8 @@ export {
     FilterModule,
     SortModule
   ],
-  declarations: [ ToolbarComponent ],
-  exports: [ ToolbarComponent ],
-  providers: [ BsDropdownConfig ]
+  declarations: [ToolbarComponent],
+  exports: [ToolbarComponent],
+  providers: [BsDropdownConfig]
 })
-export class ToolbarModule { }
+export class ToolbarModule {}

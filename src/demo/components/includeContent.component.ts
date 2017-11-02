@@ -1,6 +1,6 @@
 import {
   Component, Input, ViewContainerRef, OnInit, ViewChild
-} from "@angular/core";
+} from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 @Component({
