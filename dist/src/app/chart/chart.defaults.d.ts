@@ -1,5 +1,5 @@
 export declare class ChartDefaults {
-    private patternflyDefaults;
+    protected patternflyDefaults: any;
     getDefaultColors: any;
     getDefaultDonut: any;
     getDefaultDonutSize: any;

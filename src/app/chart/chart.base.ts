@@ -4,7 +4,6 @@ import { cloneDeep } from 'lodash';
 import { ChartConfig } from './chart-config';
 
 export abstract class ChartBase {
-
   /**
    * Chart configuration object with data
    */
@@ -16,11 +15,11 @@ export abstract class ChartBase {
    */
   @Output() chartLoaded: EventEmitter<any> = new EventEmitter();
 
-
   /**
    * Stored previous config to check for any changes
    */
   protected prevConfig: ChartConfig;
+
   // store the chart object
   private chart: any;
 
@@ -32,7 +31,7 @@ export abstract class ChartBase {
    * @param chartId
    * @param reload
    */
-  protected generateChart (chartId: string, reload?: boolean): void {
+  protected generateChart(chartId: string, reload?: boolean): void {
     setTimeout(() => {
       let c3Config = this.config;
       if (c3Config) {
@@ -42,7 +41,7 @@ export abstract class ChartBase {
         if (!this.chart || reload || chartId.indexOf('donutPctChart') > -1) {
           this.chart = c3.generate(c3Config);
         } else {
-          //if chart is already created, then we only need to re-load data
+          // if chart is already created, then we only need to re-load data
           this.chart.load(this.config.data);
         }
 

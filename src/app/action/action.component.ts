@@ -108,7 +108,7 @@ export class ActionComponent implements DoCheck, OnInit {
       }
 
       let dropdownButton = kebabContainer.querySelector('.dropdown-toggle');
-      let dropdownMenu =  kebabContainer.querySelector('.dropdown-menu');
+      let dropdownMenu = kebabContainer.querySelector('.dropdown-menu');
       let buttonRect = dropdownButton.getBoundingClientRect();
       let menuRect = dropdownMenu.getBoundingClientRect();
       let menuTop = buttonRect.top - menuRect.height;

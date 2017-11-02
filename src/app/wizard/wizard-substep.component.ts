@@ -11,7 +11,7 @@ import {
 
 import { WizardEvent } from './wizard-event';
 import { WizardStep } from './wizard-step';
-import { WizardStepConfig } from './wizard-step-config'
+import { WizardStepConfig } from './wizard-step-config';
 import { WizardStepComponent } from './wizard-step.component';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';

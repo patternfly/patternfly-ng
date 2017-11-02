@@ -64,7 +64,7 @@ describe('Empty state component - ', () => {
       });
   }));
 
-  it('should display correct information from config and actionButtons', function () {
+  it('should display correct information from config and actionButtons', function() {
     let icon = fixture.debugElement.query(By.css('.pficon-warning-triangle-o'));
     let title = fixture.debugElement.query(By.css('#title'));
     let info = fixture.debugElement.query(By.css('#info'));
@@ -88,7 +88,7 @@ describe('Empty state component - ', () => {
     expect(buttons[3].nativeElement.textContent.trim().slice(0, 'Secondary 3'.length)).toBe('Secondary 3');
   });
 
-  it('should only display main default title when no config defined', function () {
+  it('should only display main default title when no config defined', function() {
     comp.config = undefined;
     fixture.detectChanges();
 

@@ -125,22 +125,6 @@ export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
     constructor(elementRef: ElementRef, renderer: Renderer2, router: Router, windowRef: WindowReference);
     ngOnInit(): void;
     ngOnDestroy(): void;
-    private addClass(className);
-    private removeClass(className);
-    private initBodyElement();
-    private updateMobileMenu(selected?, secondaryItem?);
-    private checkNavState();
-    private collapseMenu();
-    private expandMenu();
-    private forceHideSecondaryMenu();
-    private setParentActive(item);
-    private getFirstNavigateChild(item);
-    private setSecondaryItemVisible();
-    private navigateToItem(item);
-    private primaryHover();
-    private secondaryHover();
-    private updateSecondaryCollapsedState(setCollapsed, collapsedItem?);
-    private updateTertiaryCollapsedState(setCollapsed, collapsedItem?);
     /**
      * Clear all active items
      */
@@ -206,4 +190,20 @@ export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
      * @param item
      */
     collapseTertiaryNav(item: NavigationItemConfig): void;
+    private addClass(className);
+    private removeClass(className);
+    private initBodyElement();
+    private updateMobileMenu(selected?, secondaryItem?);
+    private checkNavState();
+    private collapseMenu();
+    private expandMenu();
+    private forceHideSecondaryMenu();
+    private setParentActive(item);
+    private getFirstNavigateChild(item);
+    private setSecondaryItemVisible();
+    private navigateToItem(item);
+    private primaryHover();
+    private secondaryHover();
+    private updateSecondaryCollapsedState(setCollapsed, collapsedItem?);
+    private updateTertiaryCollapsedState(setCollapsed, collapsedItem?);
 }

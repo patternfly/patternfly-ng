@@ -154,7 +154,6 @@ var WizardComponent = (function (_super) {
             this.goTo(enabledSteps[0], true, false);
         }
     };
-    ;
     /**
      * Returns only wizard steps with review templates
      *
@@ -274,7 +273,6 @@ var WizardComponent = (function (_super) {
     WizardComponent.prototype.updateStepIndex = function (stepIndex) {
         this.firstStep = this.stepIndex(this.selectedStep) === 0 && stepIndex === 0;
     };
-    ;
     // Private
     // Indicates that the user can click on numeric step indicators to navigate directly to a step
     WizardComponent.prototype.allowStepIndicatorClick = function (step) {

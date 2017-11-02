@@ -153,8 +153,7 @@ RemainingCharsCountDirective = __decorate([
     Directive({
         selector: '[pfng-remaining-chars-count]'
     }),
-    __metadata("design:paramtypes", [ElementRef,
-        Renderer2])
+    __metadata("design:paramtypes", [ElementRef, Renderer2])
 ], RemainingCharsCountDirective);
 export { RemainingCharsCountDirective };
 //# sourceMappingURL=remaining-chars-count.directive.js.map

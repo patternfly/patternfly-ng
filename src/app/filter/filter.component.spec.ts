@@ -4,7 +4,7 @@ import {
   TestBed
 } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -30,22 +30,22 @@ describe('Filter component - ', () => {
     config = {
       fields: [{
         id: 'name',
-        title:  'Name',
+        title: 'Name',
         placeholder: 'Filter by Name...',
         type: FilterType.TEXT
       }, {
         id: 'age',
-        title:  'Age',
+        title: 'Age',
         placeholder: 'Filter by Age...',
         type: FilterType.TEXT
       }, {
         id: 'address',
-        title:  'Address',
+        title: 'Address',
         placeholder: 'Filter by Address...',
         type: FilterType.TEXT
       }, {
         id: 'birthMonth',
-        title:  'Birth Month',
+        title: 'Birth Month',
         placeholder: 'Filter by Birth Month...',
         type: FilterType.SELECT,
         queries: [{
@@ -87,7 +87,7 @@ describe('Filter component - ', () => {
         }]
       }, {
         id: 'weekDay',
-        title:  'Week Day',
+        title: 'Week Day',
         placeholder: 'Filter by Week Day...',
         type: FilterType.TYPEAHEAD,
         queries: [{
@@ -141,13 +141,13 @@ describe('Filter component - ', () => {
       });
   }));
 
-  it('should have correct number of filter fields', function () {
-     fixture.detectChanges(); // Workaround to fix dropdown tests
+  it('should have correct number of filter fields', function() {
+    fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
     expect(fields.length).toBe(5);
   });
 
-  it('should have correct number of results', function () {
+  it('should have correct number of results', function() {
     let results = fixture.debugElement.query(By.css('h5'));
     expect(results).toBeNull();
 
@@ -168,7 +168,7 @@ describe('Filter component - ', () => {
     ).toBe('10 Results');
   });
 
-  it('should show active filters and clear filters button when there are filters', function () {
+  it('should show active filters and clear filters button when there are filters', function() {
     let activeFilters = fixture.debugElement.queryAll(By.css('.active-filter'));
     let clearFilters = fixture.debugElement.query(By.css('.clear-filters'));
     expect(activeFilters.length).toBe(0);
@@ -189,7 +189,7 @@ describe('Filter component - ', () => {
     expect(clearFilters).not.toBeNull();
   });
 
-  it ('should add a dropdown select when a select type is chosen', function() {
+  it('should add a dropdown select when a select type is chosen', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let filterSelect = fixture.debugElement.query(By.css('.filter-select'));
     let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
@@ -207,7 +207,7 @@ describe('Filter component - ', () => {
     */
   });
 
-  it ('should clear a filter when the close button is clicked', function () {
+  it('should clear a filter when the close button is clicked', function() {
     let closeButtons = fixture.debugElement.queryAll(By.css('.pficon-close'));
     expect(closeButtons.length).toBe(0);
 
@@ -230,7 +230,7 @@ describe('Filter component - ', () => {
     expect(closeButtons.length).toBe(0);
   });
 
-  it ('should clear all filters when the clear all filters button is clicked', function () {
+  it('should clear all filters when the clear all filters button is clicked', function() {
     let activeFilters = fixture.debugElement.queryAll(By.css('.active-filter'));
     let clearButton = fixture.debugElement.query(By.css('.clear-filters'));
     expect(activeFilters.length).toBe(0);

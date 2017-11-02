@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { SparklineExampleComponent } from './sparkline-example.component';
 import { ChartModule } from '../../chart.module';
 
 @NgModule({
-  declarations: [ SparklineExampleComponent ],
+  declarations: [SparklineExampleComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -16,7 +16,7 @@ import { ChartModule } from '../../chart.module';
     ChartModule,
     TabsModule.forRoot()
   ],
-  providers: [ TabsetConfig ]
+  providers: [TabsetConfig]
 })
 export class SparklineExampleModule {
   constructor() {}

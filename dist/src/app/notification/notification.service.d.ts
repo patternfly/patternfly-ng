@@ -56,7 +56,7 @@ export declare class NotificationService {
      *
      * @param persist Set to true to persist notifications
      */
-    setPersist: (persist: boolean) => void;
+    setPersist(persist: boolean): void;
     /**
      * Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.
      *

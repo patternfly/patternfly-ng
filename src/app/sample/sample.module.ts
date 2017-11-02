@@ -7,8 +7,8 @@ import { SampleComponent } from './sample.component';
  * A module containing objects associated with the sample component
  */
 @NgModule({
-  imports: [ CommonModule ],
-  declarations: [ SampleComponent ],
-  exports: [ SampleComponent ]
+  imports: [CommonModule],
+  declarations: [SampleComponent],
+  exports: [SampleComponent]
 })
-export class SampleModule { }
+export class SampleModule {}

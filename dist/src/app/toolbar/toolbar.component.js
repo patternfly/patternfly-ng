@@ -91,7 +91,6 @@ var ToolbarComponent = (function () {
             this.config.view = this.config.views[0];
         }
     };
-    // Getters & setters
     // Actions
     /**
      * Handle clear filter event

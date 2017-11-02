@@ -36,7 +36,7 @@ var ChartBase = (function () {
                     _this.chart = c3.generate(c3Config);
                 }
                 else {
-                    //if chart is already created, then we only need to re-load data
+                    // if chart is already created, then we only need to re-load data
                     _this.chart.load(_this.config.data);
                 }
                 _this.chartLoaded.emit(_this.chart);

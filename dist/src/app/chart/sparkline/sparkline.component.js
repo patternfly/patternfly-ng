@@ -66,7 +66,8 @@ var SparklineComponent = (function (_super) {
     };
     /**
      * Tooltip function for sparklines
-     * @returns {{contents: ((d:any)=>string), position: ((data:any, width:number, height:number, element:any)=>{top: number, left: number})}}
+     * @returns {{contents: ((d:any)=>string), position: ((data:any, width:number,
+     * height:number, element:any)=>{top: number, left: number})}}
      */
     SparklineComponent.prototype.sparklineTooltip = function () {
         var _this = this;
@@ -89,7 +90,8 @@ var SparklineComponent = (function (_super) {
                                     '</tr>' +
                                     '<tr>' +
                                     '  <td class="name">' + percentUsed + '%:' + '</td>' +
-                                    '  <td class="value text-nowrap">' + d[0].value + ' ' + (_this.config.units ? _this.config.units + ' ' : '') + d[0].name + '</td>' +
+                                    '  <td class="value text-nowrap">' + d[0].value + ' '
+                                    + (_this.config.units ? _this.config.units + ' ' : '') + d[0].name + '</td>' +
                                     '</tr>';
                             break;
                         case 'valuePerDay':
@@ -119,10 +121,11 @@ var SparklineComponent = (function (_super) {
                 var graphOffsetX;
                 var x;
                 try {
-                    center = parseInt(element.getAttribute('x'));
-                    top = parseInt(element.getAttribute('y'));
+                    center = parseInt(element.getAttribute('x'), 10);
+                    top = parseInt(element.getAttribute('y'), 10);
                     chartBox = document.querySelector('#' + _this.sparklineChartId).getBoundingClientRect();
-                    graphOffsetX = document.querySelector('#' + _this.sparklineChartId + ' g.c3-axis-y').getBoundingClientRect().right;
+                    graphOffsetX = document.querySelector('#' + _this.sparklineChartId + ' g.c3-axis-y')
+                        .getBoundingClientRect().right;
                     x = Math.max(0, center + graphOffsetX - chartBox.left - Math.floor(width / 2));
                     return {
                         top: top - height,
@@ -150,7 +153,6 @@ var SparklineComponent = (function (_super) {
         }
         return sparklineData;
     };
-    ;
     SparklineComponent.prototype.setupConfig = function () {
         this.defaultConfig = this.chartDefaults.getDefaultSparklineConfig();
         this.defaultConfig.axis = {
@@ -159,7 +161,7 @@ var SparklineComponent = (function (_super) {
                 type: 'timeseries',
                 tick: {
                     format: function () {
-                        return ''; //change to lambda ?
+                        return ''; // change to lambda ?
                     }
                 }
             },
@@ -167,7 +169,7 @@ var SparklineComponent = (function (_super) {
                 show: this.config.showYAxis === true,
                 tick: {
                     format: function () {
-                        return ''; //change to lambda ?
+                        return ''; // change to lambda ?
                     }
                 }
             }

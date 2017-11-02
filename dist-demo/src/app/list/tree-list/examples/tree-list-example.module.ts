@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -27,7 +27,7 @@ import { ListModule } from '../../list.module';
     ListModule,
     TreeModule
   ],
-  providers: [ TabsetConfig ]
+  providers: [TabsetConfig]
 })
 export class TreeListExampleModule {
   constructor() {}

@@ -134,10 +134,6 @@ export class ToolbarComponent implements DoCheck, OnInit {
     }
   }
 
-  // Getters & setters
-
-
-
   // Actions
 
   /**
@@ -206,7 +202,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
     return this.config.view && this.config.view.id === currentView.id;
   }
 
-  private viewSelected (currentView: ToolbarView): void {
+  private viewSelected(currentView: ToolbarView): void {
     this.config.view = currentView;
     if (!currentView.disabled) {
       this.onViewSelect.emit(currentView);
@@ -216,6 +212,6 @@ export class ToolbarComponent implements DoCheck, OnInit {
   // Utils
 
   private enforceSingleSelect(filter: Filter): void {
-    remove(this.config.filterConfig.appliedFilters, {title: filter.field.title});
+    remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
   }
 }

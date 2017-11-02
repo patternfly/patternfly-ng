@@ -18,59 +18,59 @@ describe('Vertical Navigation component - ', () => {
   let fixture: ComponentFixture<VerticalNavigationComponent>;
   let navigationItems: NavigationItemConfig[] = [
     {
-      title: "Dashboard",
-      iconStyleClass: "fa fa-dashboard",
-      url: "#/dashboard"
+      title: 'Dashboard',
+      iconStyleClass: 'fa fa-dashboard',
+      url: '#/dashboard'
     },
     {
-      title: "Dolor",
-      iconStyleClass : "fa fa-shield",
-      url: "#/dolor",
+      title: 'Dolor',
+      iconStyleClass: 'fa fa-shield',
+      url: '#/dolor',
       badges: [
         {
           count: 1283,
-          tooltip: "Total number of items"
+          tooltip: 'Total number of items'
         }
       ]
     },
     {
-      title: "Ipsum",
-      iconStyleClass: "fa fa-space-shuttle",
+      title: 'Ipsum',
+      iconStyleClass: 'fa fa-space-shuttle',
       activeOnLoad: true,
       children: [
         {
-          title: "Intellegam",
+          title: 'Intellegam',
           activeOnLoad: true,
           children: [
             {
-              title: "Recteque",
-              url: "#/ipsum/intellegam/recteque",
+              title: 'Recteque',
+              url: '#/ipsum/intellegam/recteque',
               badges: [
                 {
                   count: 6,
-                  tooltip: "Total number of error items",
+                  tooltip: 'Total number of error items',
                   badgeClass: 'example-error-background'
                 }
               ]
             },
             {
-              title: "Suavitate",
-              url: "#/ipsum/intellegam/suavitate",
+              title: 'Suavitate',
+              url: '#/ipsum/intellegam/suavitate',
               badges: [
                 {
                   count: 0,
-                  tooltip: "Total number of items",
+                  tooltip: 'Total number of items',
                   badgeClass: 'example-ok-background'
                 }
               ]
             },
             {
-              title: "Vituperatoribus",
-              url: "#/ipsum/intellegam/vituperatoribus",
+              title: 'Vituperatoribus',
+              url: '#/ipsum/intellegam/vituperatoribus',
               badges: [
                 {
                   count: 18,
-                  tooltip: "Total number of warning items",
+                  tooltip: 'Total number of warning items',
                   badgeClass: 'example-warning-background'
                 }
               ]
@@ -78,115 +78,115 @@ describe('Vertical Navigation component - ', () => {
           ]
         },
         {
-          title: "Copiosae",
+          title: 'Copiosae',
           children: [
             {
-              title: "Exerci",
-              url: "#/ipsum/copiosae/exerci"
+              title: 'Exerci',
+              url: '#/ipsum/copiosae/exerci'
             },
             {
-              title: "Quaeque",
-              url: "#/ipsum/copiosae/quaeque"
+              title: 'Quaeque',
+              url: '#/ipsum/copiosae/quaeque'
             },
             {
-              title: "Utroque",
-              url: "#/ipsum/copiosae/utroque"
+              title: 'Utroque',
+              url: '#/ipsum/copiosae/utroque'
             }
           ]
         },
         {
-          title: "Patrioque",
+          title: 'Patrioque',
           children: [
             {
-              title: "Novum",
-              url: "#/ipsum/patrioque/novum"
+              title: 'Novum',
+              url: '#/ipsum/patrioque/novum'
             },
             {
-              title: "Pericula",
-              url: "#/ipsum/patrioque/pericula"
+              title: 'Pericula',
+              url: '#/ipsum/patrioque/pericula'
             },
             {
-              title: "Gubergren",
-              url: "#/ipsum/patrioque/gubergren"
+              title: 'Gubergren',
+              url: '#/ipsum/patrioque/gubergren'
             }
           ]
         },
         {
-          title: "Accumsan",
-          url: "#/ipsum/Accumsan"
+          title: 'Accumsan',
+          url: '#/ipsum/Accumsan'
         }
       ]
     },
     {
-      title: "Amet",
-      iconStyleClass: "fa fa-paper-plane",
+      title: 'Amet',
+      iconStyleClass: 'fa fa-paper-plane',
       children: [
         {
-          title: "Detracto",
+          title: 'Detracto',
           children: [
             {
-              title: "Delicatissimi",
-              url: "#/amet/detracto/delicatissimi"
+              title: 'Delicatissimi',
+              url: '#/amet/detracto/delicatissimi'
             },
             {
-              title: "Aliquam",
-              url: "#/amet/detracto/aliquam"
+              title: 'Aliquam',
+              url: '#/amet/detracto/aliquam'
             },
             {
-              title: "Principes",
-              url: "#/amet/detracto/principes"
+              title: 'Principes',
+              url: '#/amet/detracto/principes'
             }
           ]
         },
         {
-          title: "Mediocrem",
+          title: 'Mediocrem',
           children: [
             {
-              title: "Convenire",
-              url: "#/amet/mediocrem/convenire"
+              title: 'Convenire',
+              url: '#/amet/mediocrem/convenire'
             },
             {
-              title: "Nonumy",
-              url: "#/amet/mediocrem/nonumy"
+              title: 'Nonumy',
+              url: '#/amet/mediocrem/nonumy'
             },
             {
-              title: "Deserunt",
-              url: "#/amet/mediocrem/deserunt"
+              title: 'Deserunt',
+              url: '#/amet/mediocrem/deserunt'
             }
           ]
         },
         {
-          title: "Corrumpit",
+          title: 'Corrumpit',
           children: [
             {
-              title: "Aeque",
-              url: "#/amet/corrumpit/aeque"
+              title: 'Aeque',
+              url: '#/amet/corrumpit/aeque'
             },
             {
-              title: "Delenit",
-              url: "#/amet/corrumpit/delenit"
+              title: 'Delenit',
+              url: '#/amet/corrumpit/delenit'
             },
             {
-              title: "Qualisque",
-              url: "#/amet/corrumpit/qualisque"
+              title: 'Qualisque',
+              url: '#/amet/corrumpit/qualisque'
             }
           ]
         },
         {
-          title: "urbanitas",
-          url: "#/amet/urbanitas"
+          title: 'urbanitas',
+          url: '#/amet/urbanitas'
         }
       ]
     },
     {
-      title: "Adipscing",
-      iconStyleClass: "fa fa-graduation-cap",
-      url: "#/adipscing"
+      title: 'Adipscing',
+      iconStyleClass: 'fa fa-graduation-cap',
+      url: '#/adipscing'
     },
     {
-      title: "Lorem",
-      iconStyleClass: "fa fa-gamepad",
-      url: "#/lorem"
+      title: 'Lorem',
+      iconStyleClass: 'fa fa-gamepad',
+      url: '#/lorem'
     }
   ];
 
@@ -214,7 +214,7 @@ describe('Vertical Navigation component - ', () => {
         });
 
         comp.items = navigationItems;
-        comp.brandAlt = "ANGULAR PATTERNFLY";
+        comp.brandAlt = 'PATTERNFLY';
         comp.pinnableMenus = true;
         comp.showBadges = true;
         comp.updateActiveItemsOnClick = true;
@@ -227,13 +227,15 @@ describe('Vertical Navigation component - ', () => {
     let primaryMenu = fixture.debugElement.query(By.css('.nav-pf-vertical'));
     expect(primaryMenu).not.toBeNull();
 
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item'));
     expect(primaryItems.length).toBe(6);
 
     let secondaryMenu = primaryItems[2].query(By.css('.nav-pf-secondary-nav'));
     expect(secondaryMenu).not.toBeNull();
 
-    let secondaryItems = secondaryMenu.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
+    let secondaryItems = secondaryMenu.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
     expect(secondaryItems.length).toBe(4);
 
     let tertiaryMenu = secondaryItems[0].query(By.css('.nav-pf-tertiary-nav'));
@@ -250,7 +252,8 @@ describe('Vertical Navigation component - ', () => {
     collased = fixture.debugElement.query(By.css('.collapsed-tertiary-nav-pf'));
     expect(collased).toBeNull();
 
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item'));
     expect(primaryItems.length).toBe(6);
 
     // third item is active, use it to check for pin icon
@@ -269,7 +272,8 @@ describe('Vertical Navigation component - ', () => {
     collased = fixture.debugElement.query(By.css('.collapsed-tertiary-nav-pf'));
     expect(collased).toBeNull();
 
-    let secondaryItems = secondaryMenu.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
+    let secondaryItems = secondaryMenu.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
     expect(secondaryItems.length).toBe(4);
 
     let tertiaryMenu = secondaryItems[0].queryAll(By.css('.nav-pf-tertiary-nav'));
@@ -290,7 +294,8 @@ describe('Vertical Navigation component - ', () => {
     comp.hiddenIcons = true;
     fixture.detectChanges();
 
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item'));
     expect(primaryItems.length).toBe(6);
 
     let iconSpan = primaryItems[0].query(By.css('.list-group-item > a > span'));
@@ -318,7 +323,7 @@ describe('Vertical Navigation component - ', () => {
   });
 
   it('should show the alternate text when specified', () => {
-    comp.brandSrc = "";
+    comp.brandSrc = '';
     comp.hiddenIcons = true;
     fixture.detectChanges();
 
@@ -332,7 +337,8 @@ describe('Vertical Navigation component - ', () => {
   it('should invoke the navigateCallback when an item is clicked', () => {
     expect(navigateItem).toBeUndefined();
 
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
     expect(primaryItems.length).toBe(6);
 
     primaryItems[0].triggerEventHandler('click', {});
@@ -350,7 +356,8 @@ describe('Vertical Navigation component - ', () => {
   it('should invoke the itemClickCallback when any item is clicked', () => {
     expect(clickItem).toBeUndefined();
 
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
     expect(primaryItems.length).toBe(6);
 
     primaryItems[0].triggerEventHandler('click', {});
@@ -366,7 +373,8 @@ describe('Vertical Navigation component - ', () => {
   });
 
   it('should set active items on primary item click when updateActiveItemsOnClick is true', () => {
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
     expect(primaryItems.length).toBe(6);
 
     primaryItems[0].triggerEventHandler('click', {});
@@ -374,13 +382,16 @@ describe('Vertical Navigation component - ', () => {
 
     expect(clickItem).toBe(navigationItems[0].title);
 
-    let activePrimary =  fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
+    let activePrimary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
     expect(activePrimary.length).toBe(1);
 
-    let activeSecondary =  fixture.debugElement.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
+    let activeSecondary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
     expect(activeSecondary.length).toBe(0);
 
-    let activeTertiary =  fixture.debugElement.queryAll(By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
+    let activeTertiary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
     expect(activeTertiary.length).toBe(0);
 
     expect(navigateItem).toBe(navigationItems[0].title);
@@ -391,75 +402,92 @@ describe('Vertical Navigation component - ', () => {
 
     expect(clickItem).toBe(navigationItems[2].title);
 
-    activePrimary =  fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
+    activePrimary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
     expect(activePrimary.length).toBe(1);
 
-    activeSecondary =  fixture.debugElement.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
+    activeSecondary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
     expect(activeSecondary.length).toBe(1);
 
-    activeTertiary =  fixture.debugElement.queryAll(By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
+    activeTertiary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
     expect(activeTertiary.length).toBe(1);
 
     expect(navigateItem).toBe(navigationItems[2].children[0].children[0].title);
   });
 
   it('should set active items on secondary item click when updateActiveItemsOnClick is true', () => {
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item'));
     expect(primaryItems.length).toBe(6);
 
-    let secondaryItems = primaryItems[2].queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item > a'));
+    let secondaryItems = primaryItems[2].queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item > a'));
     expect(secondaryItems.length).toBe(4);
 
     // Clicking a non-final item will set active items on self, parent, and first sub item
     secondaryItems[2].triggerEventHandler('click', {});
     fixture.detectChanges();
 
-    let activePrimary =  fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
+    let activePrimary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
     expect(activePrimary.length).toBe(1);
 
-    let activeSecondary =  fixture.debugElement.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
+    let activeSecondary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
     expect(activeSecondary.length).toBe(1);
 
-    let activeTertiary =  fixture.debugElement.queryAll(By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
+    let activeTertiary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
     expect(activeTertiary.length).toBe(1);
 
     // Clicking a final item will set active items on self and parent
     secondaryItems[3].triggerEventHandler('click', {});
     fixture.detectChanges();
 
-    activePrimary =  fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
+    activePrimary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
     expect(activePrimary.length).toBe(1);
 
-    activeSecondary =  fixture.debugElement.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
+    activeSecondary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
     expect(activeSecondary.length).toBe(1);
 
-    activeTertiary = fixture.debugElement.queryAll(By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
+    activeTertiary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
     expect(activeTertiary.length).toBe(0);
 
     expect(navigateItem).toBe(navigationItems[2].children[3].title);
   });
 
   it('should set active items on tertiary item click when updateActiveItemsOnClick is true', () => {
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item'));
     expect(primaryItems.length).toBe(6);
 
-    let secondaryItems = primaryItems[2].queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
+    let secondaryItems = primaryItems[2].queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
     expect(secondaryItems.length).toBe(4);
 
-    let tertiaryItems = secondaryItems[2].queryAll(By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item > a'));
+    let tertiaryItems = secondaryItems[2].queryAll(
+      By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item > a'));
     expect(tertiaryItems.length).toBe(3);
 
     // Clicking a non-final item will set active items on self, parent, and first sub item
     tertiaryItems[1].triggerEventHandler('click', {});
     fixture.detectChanges();
 
-    let activePrimary =  fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
+    let activePrimary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item.active'));
     expect(activePrimary.length).toBe(1);
 
-    let activeSecondary =  fixture.debugElement.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
+    let activeSecondary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item.active'));
     expect(activeSecondary.length).toBe(1);
 
-    let activeTertiary =  fixture.debugElement.queryAll(By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
+    let activeTertiary = fixture.debugElement.queryAll(
+      By.css('.nav-pf-tertiary-nav > .list-group > .list-group-item.active'));
     expect(activeTertiary.length).toBe(1);
 
     expect(navigateItem).toBe(navigationItems[2].children[2].children[1].title);
@@ -469,12 +497,13 @@ describe('Vertical Navigation component - ', () => {
     fixture.detectChanges();
   });
 
-  it('should not update active items when updateActiveItemsOnClick is not true', function () {
+  it('should not update active items when updateActiveItemsOnClick is not true', function() {
 
     comp.updateActiveItemsOnClick = false;
     fixture.detectChanges();
 
-    let primaryItems = fixture.debugElement.queryAll(By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
+    let primaryItems = fixture.debugElement.queryAll(
+      By.css('.nav-pf-vertical > .list-group > .list-group-item > a'));
     expect(primaryItems.length).toBe(6);
 
     primaryItems[0].triggerEventHandler('click', {});
@@ -492,7 +521,7 @@ describe('Vertical Navigation component - ', () => {
     expect(navigateItem).toBe(navigationItems[2].children[0].children[0].title);
   });
 
-  it('should add badges', function () {
+  it('should add badges', function() {
     let primaryMenu = fixture.debugElement.query(By.css('.nav-pf-vertical'));
     expect(primaryMenu).not.toBeNull();
 
@@ -505,7 +534,8 @@ describe('Vertical Navigation component - ', () => {
     let secondaryMenu = primaryItems[2].query(By.css('.nav-pf-secondary-nav'));
     expect(secondaryMenu).not.toBeNull();
 
-    let secondaryItems = secondaryMenu.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
+    let secondaryItems = secondaryMenu.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
     expect(secondaryItems.length).toBe(4);
 
     let tertiaryMenu = secondaryItems[0].query(By.css('.nav-pf-tertiary-nav'));
@@ -515,7 +545,7 @@ describe('Vertical Navigation component - ', () => {
     expect(tertiaryBadges.length).toBe(3);
   });
 
-  it('should set classes on badges', function () {
+  it('should set classes on badges', function() {
     let primaryMenu = fixture.debugElement.query(By.css('.nav-pf-vertical'));
     expect(primaryMenu).not.toBeNull();
 
@@ -525,7 +555,8 @@ describe('Vertical Navigation component - ', () => {
     let secondaryMenu = primaryItems[2].query(By.css('.nav-pf-secondary-nav'));
     expect(secondaryMenu).not.toBeNull();
 
-    let secondaryItems = secondaryMenu.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
+    let secondaryItems = secondaryMenu.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
     expect(secondaryItems.length).toBe(4);
 
     let tertiaryMenu = secondaryItems[0].query(By.css('.nav-pf-tertiary-nav'));
@@ -538,7 +569,7 @@ describe('Vertical Navigation component - ', () => {
     expect(warningBadge.length).toBe(1);
   });
 
-  it('should not show badges with a 0 count', function () {
+  it('should not show badges with a 0 count', function() {
     let primaryMenu = fixture.debugElement.query(By.css('.nav-pf-vertical'));
     expect(primaryMenu).not.toBeNull();
 
@@ -548,7 +579,8 @@ describe('Vertical Navigation component - ', () => {
     let secondaryMenu = primaryItems[2].query(By.css('.nav-pf-secondary-nav'));
     expect(secondaryMenu).not.toBeNull();
 
-    let secondaryItems = secondaryMenu.queryAll(By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
+    let secondaryItems = secondaryMenu.queryAll(
+      By.css('.nav-pf-secondary-nav > .list-group > .list-group-item'));
     expect(secondaryItems.length).toBe(4);
 
     let tertiaryMenu = secondaryItems[0].query(By.css('.nav-pf-tertiary-nav'));
@@ -564,7 +596,7 @@ describe('Vertical Navigation component - ', () => {
     expect(warningBadge.length).toBe(0);
   });
 
-  it('should not show badges when show-badges is not set', function () {
+  it('should not show badges when show-badges is not set', function() {
     let badgesMenu = fixture.debugElement.query(By.css('.nav-pf-vertical.nav-pf-vertical-with-badges'));
     expect(badgesMenu).not.toBeNull();
 

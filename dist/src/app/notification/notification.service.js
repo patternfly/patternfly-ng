@@ -26,15 +26,6 @@ var NotificationService = (function () {
         this.notifications = {};
         this.persist = { 'error': true, 'httpError': true };
         this.verbose = false;
-        /**
-         * Sets persist option for particular modes. Notification with persistent mode won't be dismissed after delay, but has
-         * to be closed manually with the close button. By default, the "error" and "httpError" modes are set to persistent.
-         *
-         * @param persist Set to true to persist notifications
-         */
-        this.setPersist = function (persist) {
-            this.persist = persist;
-        };
         this.notifications.data = [];
         this.modes = [
             { info: { type: NotificationType.INFO, header: 'Info!', log: 'info' } },
@@ -119,6 +110,15 @@ var NotificationService = (function () {
      */
     NotificationService.prototype.setDelay = function (delay) {
         this.delay = delay;
+    };
+    /**
+     * Sets persist option for particular modes. Notification with persistent mode won't be dismissed after delay, but has
+     * to be closed manually with the close button. By default, the "error" and "httpError" modes are set to persistent.
+     *
+     * @param persist Set to true to persist notifications
+     */
+    NotificationService.prototype.setPersist = function (persist) {
+        this.persist = persist;
     };
     /**
      * Set the verbose mode to on (default) or off. During the verbose mode, each notification is printed in the console.

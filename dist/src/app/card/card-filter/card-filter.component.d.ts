@@ -4,7 +4,6 @@ import { CardFilter } from '../card-filter/card-filter';
  * Card filter component
  */
 export declare class CardFilterComponent implements OnInit {
-    private _currentFilter;
     /**
      * The card filters
      */
@@ -13,6 +12,7 @@ export declare class CardFilterComponent implements OnInit {
      * The event emitted when a filter is selected
      */
     onSelect: EventEmitter<{}>;
+    private _currentFilter;
     /**
      * The default constructor
      */

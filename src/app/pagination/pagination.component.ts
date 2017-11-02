@@ -50,7 +50,7 @@ export class PaginationComponent implements DoCheck, OnInit {
   /**
    * The default constructor
    */
-  constructor() { }
+  constructor() {}
 
   // Initialization
 

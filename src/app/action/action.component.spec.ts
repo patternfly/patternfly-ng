@@ -85,30 +85,30 @@ describe('Action component - ', () => {
       });
   }));
 
-  it('should have correct number of primary actions', function () {
+  it('should have correct number of primary actions', function() {
     let fields = fixture.debugElement.queryAll(By.css('.primary-action'));
     expect(fields.length).toBe(2);
   });
 
-  it('should have correct number of secondary actions', function () {
+  it('should have correct number of secondary actions', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.secondary-action'));
     expect(fields.length).toBe(6);
   });
 
-  it('should have correct number of separators', function () {
+  it('should have correct number of separators', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.divider'));
     expect(fields.length).toBe(1);
   });
 
-  it('should correctly disable actions', function () {
+  it('should correctly disable actions', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.disabled'));
     expect(fields.length).toBe(1);
   });
 
-  it('should not show more actions menu when there are no more actions', function () {
+  it('should not show more actions menu when there are no more actions', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let menus = fixture.debugElement.queryAll(By.css('.fa-ellipsis-v'));
     expect(menus.length).toBe(1);
@@ -120,7 +120,7 @@ describe('Action component - ', () => {
     expect(menus.length).toBe(0);
   });
 
-  it('should call the action function with the appropriate action when an action is clicked', function (done) {
+  it('should call the action function with the appropriate action when an action is clicked', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let primaryActions = fixture.debugElement.queryAll(By.css('.primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.secondary-action'));
@@ -142,7 +142,7 @@ describe('Action component - ', () => {
     expect(action).toBe(config.moreActions[3]);
   });
 
-  it('should not call the action function when a disabled action is clicked', function (done) {
+  it('should not call the action function when a disabled action is clicked', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let primaryActions = fixture.debugElement.queryAll(By.css('.primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.secondary-action'));

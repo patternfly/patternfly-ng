@@ -36,7 +36,8 @@ export declare class SparklineComponent extends ChartBase implements DoCheck, On
     ngDoCheck(): void;
     /**
      * Tooltip function for sparklines
-     * @returns {{contents: ((d:any)=>string), position: ((data:any, width:number, height:number, element:any)=>{top: number, left: number})}}
+     * @returns {{contents: ((d:any)=>string), position: ((data:any, width:number,
+     * height:number, element:any)=>{top: number, left: number})}}
      */
     sparklineTooltip(): {
         contents: (d: any) => string;

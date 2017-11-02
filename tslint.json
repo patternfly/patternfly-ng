@@ -123,6 +123,8 @@
       "check-operator",
       "check-separator",
       "check-type"
-    ]
+    ],
+    "space-before-function-paren": [true, "never"],
+    "space-within-parens": 0
   }
 }

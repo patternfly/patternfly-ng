@@ -11,7 +11,7 @@ import { ActionConfig } from './action-config';
 export {
   Action,
   ActionConfig
-}
+};
 
 /**
  * A module containing objects associated with action components
@@ -22,8 +22,8 @@ export {
     CommonModule,
     FormsModule
   ],
-  declarations: [ ActionComponent ],
-  exports: [ ActionComponent ],
-  providers: [ BsDropdownConfig ]
+  declarations: [ActionComponent],
+  exports: [ActionComponent],
+  providers: [BsDropdownConfig]
 })
-export class ActionModule { }
+export class ActionModule {}

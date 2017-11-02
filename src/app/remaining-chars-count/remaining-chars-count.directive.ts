@@ -61,8 +61,7 @@ export class RemainingCharsCountDirective implements OnInit {
    * @param el The element reference for this component
    * @param renderer The renderer service
    */
-  constructor(private el: ElementRef,
-              private renderer: Renderer2) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
   }
 
   // Initialization

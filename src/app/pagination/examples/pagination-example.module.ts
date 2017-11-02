@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -28,7 +28,7 @@ import { PaginationListExampleComponent } from './pagination-list-example.compon
     ListModule,
     TabsModule.forRoot(),
   ],
-  providers: [ BsDropdownConfig, TabsetConfig ]
+  providers: [BsDropdownConfig, TabsetConfig]
 })
 export class PaginationExampleModule {
   constructor() {}
