@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -27,7 +27,7 @@ import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.com
     FilterSaveExampleComponent,
     FilterTypeAheadExampleComponent
   ],
-  providers: [ TabsetConfig ]
+  providers: [TabsetConfig]
 })
 export class FilterExampleModule {
   constructor() {}

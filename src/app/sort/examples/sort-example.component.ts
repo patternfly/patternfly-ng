@@ -68,11 +68,11 @@ export class SortExampleComponent implements OnInit {
         sortType: 'alpha'
       }, {
         id: 'address',
-        title:  'Address',
+        title: 'Address',
         sortType: 'alpha'
       }, {
         id: 'birthMonth',
-        title:  'Birth Month',
+        title: 'Birth Month',
         sortType: 'alpha'
       }],
       isAscending: this.isAscendingSort

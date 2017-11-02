@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -9,7 +9,7 @@ import { ActionModule } from '../action.module';
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 
 @NgModule({
-  declarations: [ ActionExampleComponent ],
+  declarations: [ActionExampleComponent],
   imports: [
     ActionModule,
     BsDropdownModule.forRoot(),
@@ -17,7 +17,7 @@ import { DemoComponentsModule } from '../../../demo/components/demo-components.m
     DemoComponentsModule,
     TabsModule.forRoot()
   ],
-  providers: [ BsDropdownConfig, TabsetConfig ]
+  providers: [BsDropdownConfig, TabsetConfig]
 })
 export class ActionExampleModule {
   constructor() {}

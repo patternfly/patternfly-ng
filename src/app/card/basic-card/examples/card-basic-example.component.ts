@@ -39,15 +39,15 @@ export class CardBasicExampleComponent implements OnInit {
         iconStyleClass: 'fa fa-flag'
       },
       filters: [{
-          title: 'Last 30 Days',
-          value: '30'
-        }, {
-          default: true,
-          title: 'Last 15 Days',
-          value: '15'
-        }, {
-          title: 'Today',
-          value: 'today'
+        title: 'Last 30 Days',
+        value: '30'
+      }, {
+        default: true,
+        title: 'Last 15 Days',
+        value: '15'
+      }, {
+        title: 'Today',
+        value: 'today'
       }],
       title: 'Cluster Utilization',
     } as CardConfig;
