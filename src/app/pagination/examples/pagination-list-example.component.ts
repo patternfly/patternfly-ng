@@ -9,6 +9,7 @@ import { ActionConfig } from '../../action/action-config';
 import { ListEvent } from '../../list/list-event';
 import { ListConfig } from '../../list/basic-list/list-config';
 import { PaginationConfig } from '../pagination-config';
+import { PaginationEvent } from '../pagination-event';
 
 import { cloneDeep, isEqual } from 'lodash';
 
@@ -182,7 +183,7 @@ export class PaginationListExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action, item: any): void {
-    if ($event.id === 'start') {
+    if ($event.id === 'start' && item !== null) {
       item.started = true;
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
@@ -196,12 +197,12 @@ export class PaginationListExampleComponent implements OnInit {
     this.actionsText = $event.item.name + ' clicked\r\n' + this.actionsText;
   }
 
-  handlePageSize(event) {
-    this.actionsText = 'Page Size: ' + event.pageSize + ' Selected' + '\n' + this.actionsText;
+  handlePageSize($event: PaginationEvent) {
+    this.actionsText = 'Page Size: ' + $event.pageSize + ' Selected' + '\n' + this.actionsText;
   }
 
-  handlePageNumber(event) {
-    this.actionsText = 'Page Number: ' + event.pageNumber + ' Selected' + '\n' + this.actionsText;
+  handlePageNumber($event: PaginationEvent) {
+    this.actionsText = 'Page Number: ' + $event.pageNumber + ' Selected' + '\n' + this.actionsText;
   }
 
   // Row selection

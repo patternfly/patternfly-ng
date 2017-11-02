@@ -11,7 +11,7 @@
         <pfng-action class="my-actions"
                      [config]="actionConfig"
                      [template]="menuTemplate"
-                     (onActionSelect)="handleAction($event, item)">
+                     (onActionSelect)="handleAction($event)">
           <ng-template #menuTemplate>
             <span class="dropdown primary-action" dropdown>
               <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>

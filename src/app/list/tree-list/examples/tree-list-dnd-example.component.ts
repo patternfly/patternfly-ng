@@ -169,8 +169,8 @@ export class TreeListDndExampleComponent implements OnInit {
 
     this.treeListConfig = {
       treeOptions: {
-        allowDrag: (node) => node.isRoot,
-        allowDrop: (element, { parent, index }) => {
+        allowDrag: (node: any) => node.isRoot,
+        allowDrop: (element: any, { parent, index }: any) => {
           return element.parent === parent;
         },
         isExpandedField: 'expanded'
@@ -181,7 +181,7 @@ export class TreeListDndExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action, item: any): void {
-    if ($event.id === 'start') {
+    if ($event.id === 'start' && item != null) {
       item.started = true;
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;

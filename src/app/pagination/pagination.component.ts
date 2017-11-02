@@ -12,6 +12,7 @@ import {
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
 import { PaginationConfig } from './pagination-config';
+import { PaginationEvent } from './pagination-event';
 
 /**
  * Component for rendering pagination
@@ -210,7 +211,7 @@ export class PaginationComponent implements DoCheck, OnInit {
     this.gotoFirstPage();
     this.onPageSizeChange.emit({
       pageSize: newPageSize
-    });
+    } as PaginationEvent);
   }
 
   /**
@@ -221,7 +222,7 @@ export class PaginationComponent implements DoCheck, OnInit {
     this.config.pageNumber = this.pageNumber = newPageNumber;
     this.onPageNumberChange.emit({
       pageNumber: newPageNumber
-    });
+    } as PaginationEvent);
   }
 
   /**
