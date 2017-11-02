@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 
 import { PaginationConfig } from '../pagination-config';
+import { PaginationEvent } from '../pagination-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -33,11 +34,11 @@ export class PaginationBasicExampleComponent implements OnInit {
     }
   }
 
-  handlePageSize(event) {
-    this.actionsText = 'Page Size: ' + event.pageSize + ' Selected' + '\n' + this.actionsText;
+  handlePageSize($event: PaginationEvent) {
+    this.actionsText = 'Page Size: ' + $event.pageSize + ' Selected' + '\n' + this.actionsText;
   }
 
-  handlePageNumber(event) {
-    this.actionsText = 'Page Number: ' + event.pageNumber + ' Selected' + '\n' + this.actionsText;
+  handlePageNumber($event: PaginationEvent) {
+    this.actionsText = 'Page Number: ' + $event.pageNumber + ' Selected' + '\n' + this.actionsText;
   }
 }

@@ -7,7 +7,6 @@ import { Filter } from '../filter';
 import { FilterConfig } from '../filter-config';
 import { FilterField } from '../filter-field';
 import { FilterEvent } from '../filter-event';
-import { FilterType } from '../filter-type';
 
 @Component({
   selector: 'filter-basic-example',
@@ -66,17 +65,17 @@ export class FilterBasicExampleComponent implements OnInit {
         id: 'name',
         title:  'Name',
         placeholder: 'Filter by Name...',
-        type: FilterType.TEXT
+        type: 'text'
       }, {
         id: 'address',
         title:  'Address',
         placeholder: 'Filter by Address...',
-        type: FilterType.TEXT
+        type: 'text'
       }, {
         id: 'birthMonth',
         title:  'Birth Month',
         placeholder: 'Filter by Birth Month...',
-        type: FilterType.SELECT,
+        type: 'select',
         queries: [{
           id: 'month1',
           value: 'January'
@@ -118,7 +117,7 @@ export class FilterBasicExampleComponent implements OnInit {
         id: 'byIcon',
         title: 'By Icon',
         placeholder: 'Filter by Icon...',
-        type: FilterType.SELECT,
+        type: 'select',
         queries: [{
           id: 'bookmark',
           value: 'Bookmark',

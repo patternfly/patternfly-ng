@@ -6,14 +6,17 @@ import {
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'truncate-example',
-  templateUrl: './truncate-example.component.html'
+  selector: 'hosts-content',
+  templateUrl: './hosts-content.component.html'
 })
-export class TruncateExampleComponent implements OnInit {
+export class HostsContentComponent implements OnInit {
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  ngDoCheck(): void {
   }
 }

@@ -9367,10 +9367,6 @@ fieldset[disabled] .btn-primary.active {
 .dropup .caret:before {
   content: "\F106";
 }
-.dropdown-toggle:focus {
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
 .dropdown-menu .divider {
   background-color: #ededed;
   height: 1px;
@@ -14024,7 +14020,7 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
   content: "\E611";
 }
 .pficon-disconnected:before {
-  content: "\E93C";
+  content: "\E939";
 }
 .pficon-domain:before {
   content: "\E919";
@@ -14051,9 +14047,6 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .pficon-flavor:before {
   content: "\E907";
-}
-.pficon-filter:before {
-  content: "\E943";
 }
 .pficon-folder-close:before {
   content: "\E607";
@@ -14085,9 +14078,6 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-infrastructure:before {
   content: "\E93D";
 }
-.pficon-integration:before {
-  content: "\E948";
-}
 .pficon-key:before {
   content: "\E924";
 }
@@ -14105,9 +14095,6 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .pficon-migration:before {
   content: "\E92E";
-}
-.pficon-monitoring:before {
-  content: "\E944";
 }
 .pficon-network:before {
   content: "\E909";
@@ -14140,14 +14127,8 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-plugged:before {
   content: "\E940";
 }
-.pficon-port:before {
-  content: "\E945";
-}
 .pficon-print:before {
   content: "\E612";
-}
-.pficon-process-automation:before {
-  content: "\E949";
 }
 .pficon-private:before {
   content: "\E914";
@@ -14207,9 +14188,6 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 .pficon-search:before {
   content: "\E921";
 }
-.pficon-security:before {
-  content: "\E946";
-}
 .pficon-server:before {
   content: "\E90D";
 }
@@ -14218,9 +14196,6 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .pficon-service:before {
   content: "\E61E";
-}
-.pficon-services:before {
-  content: "\E947";
 }
 .pficon-service-catalog:before {
   content: "\E941";
@@ -14549,7 +14524,7 @@ a.disabled {
   border-bottom: none;
 }
 .list-pf-item:hover {
-  background-color: #edf8ff;
+  background-color: #fafafa;
 }
 .list-pf-item.active {
   background-color: #ededed;
@@ -14754,7 +14729,7 @@ a.disabled {
   clear: both;
 }
 .list-view-pf .list-group-item.list-view-pf-expand-active {
-  background-color: #edf8ff;
+  background-color: #ededed;
   box-shadow: 0 2px 6px rgba(3, 3, 3, 0.2);
   z-index: 1;
 }
@@ -14766,7 +14741,7 @@ a.disabled {
   z-index: auto;
 }
 .list-view-pf .list-group-item:hover {
-  background-color: #edf8ff;
+  background-color: #ededed;
   border-left-color: transparent;
   border-right-color: transparent;
 }
@@ -16238,7 +16213,7 @@ a.disabled {
 }
 .drawer-pf-close,
 .drawer-pf-toggle-expand {
-  color: #252525;
+  color: inherit;
   cursor: pointer;
   line-height: inherit;
   padding: 2px 10px;
@@ -16248,7 +16223,7 @@ a.disabled {
 .drawer-pf-toggle-expand:hover,
 .drawer-pf-close:focus,
 .drawer-pf-toggle-expand:focus {
-  color: #0088ce;
+  color: inherit;
   text-decoration: none;
 }
 .drawer-pf-toggle-expand {
@@ -16267,7 +16242,6 @@ a.disabled {
 .drawer-pf-action {
   display: -ms-flexbox;
   display: flex;
-  border-bottom: 1px solid #d1d1d1;
 }
 .drawer-pf-action .btn-link {
   color: #0088ce;
@@ -16949,7 +16923,6 @@ table.dataTable th:active {
   border-color: #bbb;
   box-shadow: 0 2px 6px rgba(3, 3, 3, 0.2);
   padding-left: 68px;
-  margin-bottom: 5px;
   /* Medium devices (desktops, 992px and up) */
 }
 .toast-pf.alert-danger > .pficon {

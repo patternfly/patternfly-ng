@@ -8,7 +8,7 @@
                         [itemTemplate]="itemTemplate"
                         [items]="items"
                         [loadTemplate]="loadTemplate"
-                        (onActionSelect)="handleAction($event)"
+                        (onActionSelect)="handleAction($event, null)"
                         (onClick)="handleClick($event)"
                         (onDblClick)="handleDblClick($event)"
                         (onMoveNode)="handleMoveNode($event)"
@@ -117,8 +117,10 @@
     <div class="col-md-12">
       <form role="form">
         <div class="form-group">
-          <button class="btn btn-default primary-action"type="button"
-                  (click)="addNode(treeList)">Add Child</button>
+          <label class="checkbox-inline">
+            <button class="btn btn-default primary-action"type="button"
+                    (click)="addNode(treeList)">Add Child</button>
+          </label>
         </div>
       </form>
     </div>
