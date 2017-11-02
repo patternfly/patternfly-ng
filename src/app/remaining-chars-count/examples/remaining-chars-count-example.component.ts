@@ -11,6 +11,10 @@ import {
   templateUrl: './remaining-chars-count-example.component.html'
 })
 export class RemainingCharsCountExampleComponent implements OnInit {
+  example1: string;
+  example2: string;
+  example3: string;
+
   charsMaxLimitExceeded: any = {
     'example1': false,
     'example2': false,

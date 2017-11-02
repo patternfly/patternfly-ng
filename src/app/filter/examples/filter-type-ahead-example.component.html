@@ -4,7 +4,7 @@
       <div class="form-group">
         <pfng-filter [config]="filterConfig"
                      (onChange)="filterChanged($event)"
-                     (onFieldSelect)="filterFieldSelected()"
+                     (onFieldSelect)="filterFieldSelected($event)"
                      (onTypeAhead)="filterQueries($event)"></pfng-filter>
       </div>
     </div>

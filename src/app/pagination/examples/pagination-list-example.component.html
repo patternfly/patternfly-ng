@@ -6,7 +6,7 @@
                   [config]="listConfig" 
                   [items]="items" 
                   [itemTemplate]="itemTemplate"
-                  (onActionSelect)="handleAction($event)" 
+                  (onActionSelect)="handleAction($event, null)"
                   (onClick)="handleClick($event)"
                   (onSelectionChange)="handleSelectionChange($event)">
                   <ng-template #itemTemplate 
