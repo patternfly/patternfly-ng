@@ -6,7 +6,7 @@
                      [config]="filterConfig"
                      (onChange)="filterChanged($event)"
                      (onDelete)="deleteSavedFilter($event)"
-                     (onFieldSelect)="filterFieldSelected()"
+                     (onFieldSelect)="filterFieldSelected($event)"
                      (onSave)="saveFilter($event)"
                      (onTypeAhead)="filterQueries($event)"></pfng-filter>
         <div class="padding-top-15">
