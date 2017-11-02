@@ -217,7 +217,7 @@ export class FilterSaveExampleComponent implements OnInit {
 
   filterChanged($event: FilterEvent): void {
     this.filtersText = '';
-    let filters = [];
+    let filters: Filter[] = [];
     $event.appliedFilters.forEach((appliedFilter) => {
       this.filtersText += appliedFilter.field.title + ' : ' + appliedFilter.value + '\n';
 
@@ -315,7 +315,7 @@ export class FilterSaveExampleComponent implements OnInit {
         })
       ];
     } else if (this.filterConfig.fields[index].id === 'saved') {
-      let queries = [];
+      let queries: FilterQuery[] = [];
       this.savedFilters.forEach((value, key, map) => {
         queries.push({
           showDelete: true,
@@ -375,7 +375,7 @@ export class FilterSaveExampleComponent implements OnInit {
 
   // Save filter
   saveFilter($event: FilterEvent): void {
-    let filters = [];
+    let filters: Filter[] = [];
     $event.appliedFilters.forEach((filter) => {
       // Flatten saved filters
       if (filter.field.id === 'saved') {
