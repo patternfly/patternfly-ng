@@ -1,7 +1,8 @@
 .idea
+.DS_Store
 dist
 dist-demo
 node_modules
 build
+npm-debug.log
 src/**/*.css
-.DS_Store

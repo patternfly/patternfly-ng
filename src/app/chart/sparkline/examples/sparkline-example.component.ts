@@ -10,7 +10,7 @@ import {
   templateUrl: './sparkline-example.component.html'
 })
 export class SparklineExampleComponent implements OnInit {
-  private dates: any[] = ['dates'];
+  protected dates: any[] = ['dates'];
   public config: any = {
     chartId: 'exampleSparkline',
     tooltipType: 'default'
@@ -30,7 +30,7 @@ export class SparklineExampleComponent implements OnInit {
     let today = new Date();
 
     for (let d = 20 - 1; d >= 0; d--) {
-     this.dates.push(new Date(today.getTime() - (d * 24 * 60 * 60 * 1000)));
+      this.dates.push(new Date(today.getTime() - (d * 24 * 60 * 60 * 1000)));
     }
   }
 
@@ -38,5 +38,4 @@ export class SparklineExampleComponent implements OnInit {
     this.data.xData.push(new Date(this.data.xData[this.data.xData.length - 1].getTime() + (24 * 60 * 60 * 1000)));
     this.data.yData.push(Math.round(Math.random() * 100));
   }
-
 }

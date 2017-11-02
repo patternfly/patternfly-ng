@@ -9,8 +9,8 @@ import { ChartDefaults } from './chart.defaults';
     CommonModule,
     FormsModule,
   ],
-  declarations: [ SparklineComponent ],
-  exports: [ SparklineComponent ],
-  providers: [ ChartDefaults ]
+  declarations: [SparklineComponent],
+  exports: [SparklineComponent],
+  providers: [ChartDefaults]
 })
 export class ChartModule {}

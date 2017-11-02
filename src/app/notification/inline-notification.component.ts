@@ -58,7 +58,7 @@ export class InlineNotificationComponent {
   /**
    * Function called from the view when the notification is removed
    */
-  public notificationRemove(): void  {
+  public notificationRemove(): void {
     this.hidden = true;
     this.hiddenChange.emit(this.hidden);
   }

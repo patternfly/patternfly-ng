@@ -22,19 +22,19 @@ describe('Sort component - ', () => {
     config = {
       fields: [{
         id: 'name',
-        title:  'Name',
+        title: 'Name',
         sortType: 'alpha'
       }, {
         id: 'age',
-        title:  'Age',
+        title: 'Age',
         sortType: 'numeric'
       }, {
         id: 'address',
-        title:  'Address',
+        title: 'Address',
         sortType: 'alpha'
       }, {
         id: 'birthMonth',
-        title:  'Birth Month',
+        title: 'Birth Month',
         sortType: 'alpha'
       }]
     } as SortConfig;
@@ -67,12 +67,12 @@ describe('Sort component - ', () => {
     expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
   });
 
-  it('should default to ascending sort', function () {
+  it('should default to ascending sort', function() {
     let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
     expect(sortIcon).not.toBeNull();
   });
 
-  it('should update the current sort when one is selected', function () {
+  it('should update the current sort when one is selected', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
     let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
@@ -89,7 +89,7 @@ describe('Sort component - ', () => {
       .toBe('Address');
   });
 
-  it('should update the direction icon when the sort type changes', function () {
+  it('should update the direction icon when the sort type changes', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
     let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
@@ -111,7 +111,7 @@ describe('Sort component - ', () => {
 
   });
 
-  it('should reverse the sort direction when the direction button is clicked', function () {
+  it('should reverse the sort direction when the direction button is clicked', function() {
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
     let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
     expect(sortButton).not.toBeNull();
@@ -124,7 +124,7 @@ describe('Sort component - ', () => {
     expect(sortIcon).not.toBeNull();
   });
 
-  it ('should notify when a new sort field is chosen', function(done) {
+  it('should notify when a new sort field is chosen', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
 
@@ -139,7 +139,7 @@ describe('Sort component - ', () => {
     fixture.detectChanges();
   });
 
-  it ('should notify when the sort direction changes', function(done) {
+  it('should notify when the sort direction changes', function(done) {
 
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
 

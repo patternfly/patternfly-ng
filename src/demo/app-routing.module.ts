@@ -1,4 +1,4 @@
-import { NgModule }  from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ActionExampleComponent } from '../app/action/examples/action-example.component';
@@ -6,9 +6,11 @@ import { CardExampleComponent } from '../app/card/basic-card/examples/card-examp
 import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/examples/filter-example.component';
 import { ListExampleComponent } from '../app/list/basic-list/examples/list-example.component';
-import { NotificationServiceExampleComponent } from '../app/notification/examples/notification-service-example.component';
+import { NotificationServiceExampleComponent }
+  from '../app/notification/examples/notification-service-example.component';
 import { PaginationExampleComponent } from '../app/pagination/examples/pagination-example.component';
-import { RemainingCharsCountExampleComponent } from '../app/remaining-chars-count/examples/remaining-chars-count-example.component';
+import { RemainingCharsCountExampleComponent }
+  from '../app/remaining-chars-count/examples/remaining-chars-count-example.component';
 import { SampleComponent } from '../app/sample/sample.component';
 import { SampleExampleComponent } from '../app/sample/examples/sample-example.component';
 import { SearchHighlightExampleComponent } from '../app/search-highlight/examples/search-highlight-example.component';
@@ -48,12 +50,10 @@ const routes: Routes = [{
   }, {
     path: 'navigation',
     component: VerticalNavigationExampleComponent,
-    children: [
-      {
+    children: [{
         path: '**',
         component: SampleComponent,
-      },
-    ]
+      }]
   }, {
     path: 'notificationservice',
     component: NotificationServiceExampleComponent
@@ -93,7 +93,7 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, {useHash: true}) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

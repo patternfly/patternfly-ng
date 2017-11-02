@@ -18,8 +18,6 @@ import { CardFilter } from '../card-filter/card-filter';
   templateUrl: './card-filter.component.html'
 })
 export class CardFilterComponent implements OnInit {
-  private _currentFilter: CardFilter;
-
   /**
    * The card filters
    */
@@ -29,6 +27,8 @@ export class CardFilterComponent implements OnInit {
    * The event emitted when a filter is selected
    */
   @Output('onFilterSelect') onSelect = new EventEmitter();
+
+  private _currentFilter: CardFilter;
 
   /**
    * The default constructor

@@ -24,8 +24,9 @@ describe('Pagination component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule,
-                BsDropdownModule.forRoot()],
+      imports: [
+        FormsModule,
+        BsDropdownModule.forRoot()],
       declarations: [PaginationComponent]
     })
       .compileComponents()
@@ -70,7 +71,7 @@ describe('Pagination component - ', () => {
     let button = fixture.debugElement.query(By.css('button.dropdown-toggle'));
     button.triggerEventHandler('click', null);
 
-    let item =  fixture.debugElement.queryAll(By.css('ul.dropdown-menu > li > a'));
+    let item = fixture.debugElement.queryAll(By.css('ul.dropdown-menu > li > a'));
     // click on menu option with value 20
     item[2].triggerEventHandler('click', null);
     expect(comp.config.pageSize).toEqual(20);

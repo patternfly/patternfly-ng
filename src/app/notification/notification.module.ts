@@ -13,15 +13,15 @@ import { InlineNotificationComponent } from './inline-notification.component';
 export {
   NotificationEvent,
   NotificationType
-}
+};
 
 /**
  * A module containing objects associated with notification components
  */
 @NgModule({
-  imports: [ BsDropdownModule.forRoot(), CommonModule ],
-  declarations: [ ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent ],
-  exports: [ ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent ],
-  providers: [ BsDropdownConfig, NotificationService ]
+  imports: [BsDropdownModule.forRoot(), CommonModule],
+  declarations: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent],
+  exports: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent],
+  providers: [BsDropdownConfig, NotificationService]
 })
-export class NotificationModule { }
+export class NotificationModule {}

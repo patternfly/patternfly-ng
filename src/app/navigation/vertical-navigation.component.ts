@@ -17,7 +17,6 @@ import { WindowReference } from '../utilities/window.reference';
   templateUrl: './vertical-navigation.component.html'
 })
 export class VerticalNavigationComponent implements OnInit, OnDestroy {
-
   /**
    * Source for the brand logo at the top
    */
@@ -158,16 +157,19 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   /**
    * The default constructor
    */
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private router: Router, private windowRef: WindowReference) {
+  constructor(private elementRef: ElementRef,
+              private renderer: Renderer2,
+              private router: Router,
+              private windowRef: WindowReference) {
   }
 
   ngOnInit() {
-    this.windowListener = this.windowRef.nativeWindow.addEventListener("resize", (event: any) => {
+    this.windowListener = this.windowRef.nativeWindow.addEventListener('resize', (event: any) => {
       this.onResize(event);
     });
 
     this.routeChangeListener = this.router.events.subscribe((val) => {
-      if(val instanceof NavigationEnd) {
+      if (val instanceof NavigationEnd) {
         if (!this.updateActiveItemsOnClick) {
           this.clearActiveItems();
           this.initActiveItems();
@@ -186,9 +188,272 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.routeChangeListener.unsubscribe();
-    this.windowRef.nativeWindow.removeEventListener("resize");
+    this.windowRef.nativeWindow.removeEventListener('resize');
   }
 
+  // Actions
+
+  /**
+   * Clear all active items
+   */
+  public clearActiveItems(): void {
+    this.items.forEach((item) => {
+      item.trackActiveState = false;
+      if (item.children) {
+        item.children.forEach((secondary) => {
+          secondary.trackActiveState = false;
+          if (secondary.children) {
+            secondary.children.forEach((tertiary) => {
+              tertiary.trackActiveState = false;
+            });
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Initialize the active items in the vertical navigation
+   */
+  public initActiveItems(): void {
+    let updatedRoute = this.router.url;
+    // //Setting active state on load
+    this.items.forEach((topLevel) => {
+      if (updatedRoute.indexOf(topLevel.url) > -1) {
+        topLevel.trackActiveState = true;
+      }
+      if (topLevel.children) {
+        topLevel.children.forEach((secondLevel) => {
+          if (updatedRoute.indexOf(secondLevel.url) > -1) {
+            secondLevel.trackActiveState = true;
+            topLevel.trackActiveState = true;
+          }
+          if (secondLevel.children) {
+            secondLevel.children.forEach((thirdLevel) => {
+              if (updatedRoute.indexOf(thirdLevel.url) > -1) {
+                thirdLevel.trackActiveState = true;
+                secondLevel.trackActiveState = true;
+                topLevel.trackActiveState = true;
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Public resize event called when the window size changes
+   * @param event
+   */
+  public onResize(event: any): void {
+    this.checkNavState();
+  }
+
+  /**
+   * Handles the navbar hamburger toggle click
+   */
+  public handleNavBarToggleClick(): void {
+
+    if (this.inMobileState) {
+      // Toggle the mobile nav
+      if (this.showMobileNav) {
+        this.showMobileNav = false;
+      } else {
+        // Always start at the primary menu
+        this.updateMobileMenu();
+        this.showMobileNav = true;
+      }
+    } else if (this.navCollapsed) {
+      this.expandMenu();
+    } else {
+      this.collapseMenu();
+    }
+  }
+
+  /**
+   * Primary item selection handler
+   * @param item
+   */
+  public handlePrimaryClick(item: any): void {
+    if (this.inMobileState) {
+      if (item.children && item.children.length > 0) {
+        this.updateMobileMenu(item);
+      } else {
+        this.updateMobileMenu();
+        this.navigateToItem(item);
+      }
+    } else {
+      this.navigateToItem(item);
+    }
+  }
+
+  /**
+   * Secondary item selection handler
+   * @param primary
+   * @param secondary
+   */
+  public handleSecondaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig): void {
+    if (this.inMobileState) {
+      if (secondary.children && secondary.children.length > 0) {
+        this.updateMobileMenu(primary, secondary);
+      } else {
+        this.updateMobileMenu();
+        this.navigateToItem(secondary);
+      }
+    } else {
+      this.navigateToItem(secondary);
+    }
+  }
+
+  /**
+   * Tertiary item selection handler
+   * @param primary
+   * @param secondary
+   * @param tertiary
+   */
+  public handleTertiaryClick(primary: NavigationItemConfig,
+                             secondary: NavigationItemConfig,
+                             tertiary: NavigationItemConfig): void {
+    if (this.inMobileState) {
+      this.updateMobileMenu();
+    }
+
+    this.navigateToItem(tertiary);
+  }
+
+  /**
+   *  Show secondary nav bar on hover of primary nav items
+   * @param item
+   */
+  public handlePrimaryHover(item: NavigationItemConfig): void {
+    if (item.children && item.children.length > 0) {
+      if (!this.inMobileState) {
+        if (item.blurTimeout !== undefined) {
+          clearTimeout(item.blurTimeout);
+          item.blurTimeout = undefined;
+        } else if (this.hoverTimeout === undefined && !item.trackHoverState) {
+          item.hoverTimeout = setTimeout(() => {
+            this.hoverSecondaryNav = true;
+            item.trackHoverState = true;
+            item.hoverTimeout = undefined;
+          }, this.hoverDelay);
+        }
+      }
+    }
+  }
+
+  /**
+   * Hides menus on blur
+   * @param item
+   */
+  public handlePrimaryBlur(item: NavigationItemConfig): void {
+    if (item.children && item.children.length > 0) {
+      if (item.hoverTimeout !== undefined) {
+        clearTimeout(item.hoverTimeout);
+        item.hoverTimeout = undefined;
+      } else if (item.blurTimeout === undefined && item.trackHoverState) {
+        item.blurTimeout = setTimeout(() => {
+          item.trackHoverState = false;
+          if (!this.primaryHover()) {
+            this.hoverSecondaryNav = false;
+          }
+          item.blurTimeout = undefined;
+        }, this.hideDelay);
+      }
+    }
+  }
+
+  /**
+   * Show tertiary nav bar on hover of secondary nav items
+   * @param item
+   */
+  public handleSecondaryHover(item: any): void {
+    if (item.children && item.children.length > 0) {
+      if (!this.inMobileState) {
+        if (item.blurTimeout !== undefined) {
+          clearTimeout(item.blurTimeout);
+          item.blurTimeout = undefined;
+        } else if (this.hoverTimeout === undefined) {
+          item.navHoverTimeout = setTimeout(() => {
+            this.hoverTertiaryNav = true;
+            item.trackHoverState = true;
+            item.navHoverTimeout = undefined;
+          }, this.hoverDelay);
+        }
+      }
+    }
+  }
+
+  /**
+   * Hides menus on blur
+   * @param item
+   */
+  public handleSecondaryBlur(item: NavigationItemConfig): void {
+    if (item.children && item.children.length > 0) {
+      if (item.hoverTimeout !== undefined) {
+        clearTimeout(item.hoverTimeout);
+        item.hoverTimeout = undefined;
+      } else if (item.blurTimeout === undefined) {
+        item.blurTimeout = setTimeout(() => {
+          item.trackHoverState = false;
+          if (!this.secondaryHover()) {
+            this.hoverTertiaryNav = false;
+          }
+          item.blurTimeout = undefined;
+        }, this.hideDelay);
+      }
+    }
+  }
+
+  /**
+   * Collapse secondary navigation
+   * @param item
+   */
+  public collapseSecondaryNav(item: NavigationItemConfig): void {
+    if (this.inMobileState) {
+      this.updateMobileMenu();
+    } else {
+      if (item.secondaryCollapsed) {
+        this.updateSecondaryCollapsedState(false, item);
+        this.forceHideSecondaryMenu();
+      } else {
+        this.updateSecondaryCollapsedState(true, item);
+      }
+    }
+
+    this.hoverSecondaryNav = false;
+  }
+
+  /**
+   * Collapse tertiary navigation
+   * @param item
+   */
+  public collapseTertiaryNav(item: NavigationItemConfig): void {
+    if (this.inMobileState) {
+      this.items.forEach((primaryItem) => {
+        if (primaryItem.children) {
+          primaryItem.children.forEach((secondaryItem) => {
+            if (secondaryItem === item) {
+              this.updateMobileMenu(primaryItem);
+            }
+          });
+        }
+      });
+    } else {
+      if (item.tertiaryCollapsed) {
+        this.updateTertiaryCollapsedState(false, item);
+        this.forceHideSecondaryMenu();
+      } else {
+        this.updateTertiaryCollapsedState(true, item);
+      }
+    }
+
+    this.hoverSecondaryNav = false;
+    this.hoverTertiaryNav = false;
+  }
+
+  // Private
   private addClass(className: string): void {
     let element = this.elementRef.nativeElement;
     this.renderer.addClass(element, className);
@@ -237,7 +502,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-   private checkNavState() {
+  private checkNavState() {
     let width = this.windowRef.nativeWindow.innerWidth;
 
     // Check to see if we need to enter/exit the mobile state
@@ -245,7 +510,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       if (!this.inMobileState) {
         this.inMobileState = true;
 
-        //Set the body class to the correct state
+        // Set the body class to the correct state
         this.removeClass('collapsed-nav');
         this.addClass('hidden-nav');
 
@@ -255,7 +520,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
         this.explicitCollapse = false;
       }
-    } else  {
+    } else {
       this.inMobileState = false;
       this.showMobileNav = false;
 
@@ -275,7 +540,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   private collapseMenu(): void {
     this.navCollapsed = true;
 
-    //Set the body class to the correct state
+    // Set the body class to the correct state
     this.addClass('collapsed-nav');
 
     this.explicitCollapse = true;
@@ -284,7 +549,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   private expandMenu() {
     this.navCollapsed = false;
 
-    //Set the body class to the correct state
+    // Set the body class to the correct state
     this.removeClass('collapsed-nav');
 
     this.explicitCollapse = false;
@@ -361,7 +626,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       if (navTo) {
         this.router.navigateByUrl(navTo);
       }
-      if(this.navigationEvent) {
+      if (this.navigationEvent) {
         this.navigationEvent.emit(navItem);
       }
     }
@@ -370,7 +635,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       this.itemClickEvent.emit(item);
     }
 
-    if (this.updateActiveItemsOnClick ) {
+    if (this.updateActiveItemsOnClick) {
       this.clearActiveItems();
       navItem.trackActiveState = true;
       this.setParentActive(navItem);
@@ -381,7 +646,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   private primaryHover(): boolean {
     let hover = false;
-    this.items.forEach( (item) => {
+    this.items.forEach((item) => {
       if (item.trackHoverState) {
         hover = true;
       }
@@ -393,7 +658,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     let hover = false;
     this.items.forEach((item) => {
       if (item.children && item.children.length > 0) {
-        item.children.forEach( (secondaryItem) => {
+        item.children.forEach((secondaryItem) => {
           if (secondaryItem.trackHoverState) {
             hover = true;
           }
@@ -414,7 +679,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     } else {
       // Remove any collapsed secondary menus
       if (this.items) {
-        this.items.forEach( (item)  => {
+        this.items.forEach((item) => {
           item.secondaryCollapsed = false;
         });
       }
@@ -436,9 +701,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     } else {
       // Remove any collapsed secondary menus
       if (this.items) {
-        this.items.forEach( (item) => {
+        this.items.forEach((item) => {
           if (item.children && item.children.length > 0) {
-            item.children.forEach( (secondaryItem) => {
+            item.children.forEach((secondaryItem) => {
               secondaryItem.tertiaryCollapsed = false;
             });
           }
@@ -448,263 +713,5 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
       this.removeClass('collapsed-tertiary-nav-pf');
     }
-  }
-
-  /**
-   * Clear all active items
-   */
-  public clearActiveItems(): void{
-    this.items.forEach( (item) => {
-      item.trackActiveState = false;
-      if (item.children) {
-        item.children.forEach( (secondary) => {
-          secondary.trackActiveState = false;
-          if (secondary.children) {
-            secondary.children.forEach( (tertiary) => {
-              tertiary.trackActiveState = false;
-            });
-          }
-        });
-      }
-    });
-  }
-
-  /**
-   * Initialize the active items in the vertical navigation
-   */
-  public initActiveItems(): void {
-    let updatedRoute = this.router.url;
-    // //Setting active state on load
-    this.items.forEach( (topLevel)  => {
-      if (updatedRoute.indexOf(topLevel.url) > -1) {
-        topLevel.trackActiveState = true;
-      }
-      if (topLevel.children) {
-        topLevel.children.forEach( (secondLevel) => {
-          if (updatedRoute.indexOf(secondLevel.url) > -1) {
-            secondLevel.trackActiveState = true;
-            topLevel.trackActiveState = true;
-          }
-          if (secondLevel.children) {
-            secondLevel.children.forEach( (thirdLevel) => {
-              if (updatedRoute.indexOf(thirdLevel.url) > -1) {
-                thirdLevel.trackActiveState = true;
-                secondLevel.trackActiveState = true;
-                topLevel.trackActiveState = true;
-              }
-            });
-          }
-        });
-      }
-    });
-  }
-
-  /**
-   * Public resize event called when the window size changes
-   * @param event
-   */
-  public onResize(event: any): void {
-    this.checkNavState();
-  }
-
-  /**
-   * Handles the navbar hamburger toggle click
-   */
-  public handleNavBarToggleClick(): void{
-
-    if (this.inMobileState) {
-      // Toggle the mobile nav
-      if (this.showMobileNav) {
-        this.showMobileNav = false;
-      } else {
-        // Always start at the primary menu
-        this.updateMobileMenu();
-        this.showMobileNav = true;
-      }
-    } else if (this.navCollapsed) {
-      this.expandMenu();
-    } else {
-      this.collapseMenu();
-    }
-  }
-
-  /**
-   * Primary item selection handler
-   * @param item
-   */
-  public handlePrimaryClick(item: any): void {
-    if (this.inMobileState) {
-      if (item.children && item.children.length > 0) {
-        this.updateMobileMenu(item);
-      } else {
-        this.updateMobileMenu();
-        this.navigateToItem(item);
-      }
-    } else {
-      this.navigateToItem(item);
-    }
-  }
-
-  /**
-   * Secondary item selection handler
-   * @param primary
-   * @param secondary
-   */
-  public handleSecondaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig): void {
-    if (this.inMobileState) {
-      if (secondary.children && secondary.children.length > 0) {
-        this.updateMobileMenu(primary, secondary);
-      } else {
-        this.updateMobileMenu();
-        this.navigateToItem(secondary);
-      }
-    } else {
-      this.navigateToItem(secondary);
-    }
-  }
-
-  /**
-   * Tertiary item selection handler
-   * @param primary
-   * @param secondary
-   * @param tertiary
-   */
-  public handleTertiaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig, tertiary: NavigationItemConfig): void {
-    if (this.inMobileState) {
-      this.updateMobileMenu();
-    }
-
-    this.navigateToItem(tertiary);
-  }
-
-  /**
-   *  Show secondary nav bar on hover of primary nav items
-   * @param item
-   */
-  public handlePrimaryHover(item: NavigationItemConfig): void {
-    if (item.children && item.children.length > 0) {
-      if (!this.inMobileState) {
-        if (item.blurTimeout !== undefined) {
-          clearTimeout(item.blurTimeout);
-          item.blurTimeout = undefined;
-        } else if (this.hoverTimeout === undefined && !item.trackHoverState) {
-          item.hoverTimeout = setTimeout(() => {
-            this.hoverSecondaryNav = true;
-            item.trackHoverState = true;
-            item.hoverTimeout = undefined;
-          }, this.hoverDelay);
-        }
-      }
-    }
-  }
-
-  /**
-   * Hides menus on blur
-   * @param item
-   */
-  public handlePrimaryBlur(item: NavigationItemConfig): void {
-    if (item.children && item.children.length > 0) {
-      if (item.hoverTimeout !== undefined) {
-        clearTimeout(item.hoverTimeout);
-        item.hoverTimeout = undefined;
-      } else if (item.blurTimeout === undefined && item.trackHoverState) {
-        item.blurTimeout = setTimeout(() => {
-          item.trackHoverState = false;
-          if (!this.primaryHover()) {
-            this.hoverSecondaryNav = false;
-          }
-          item.blurTimeout = undefined;
-        }, this.hideDelay);
-      }
-    }
-  }
-
-  /**
-   * Show tertiary nav bar on hover of secondary nav items
-   * @param item
-   */
-  public handleSecondaryHover(item: any): void {
-    if (item.children && item.children.length > 0) {
-      if (!this.inMobileState) {
-        if (item.blurTimeout !== undefined) {
-          clearTimeout(item.blurTimeout);
-          item.blurTimeout = undefined;
-        } else if (this.hoverTimeout === undefined) {
-          item.navHoverTimeout = setTimeout( () => {
-            this.hoverTertiaryNav = true;
-            item.trackHoverState = true;
-            item.navHoverTimeout = undefined;
-          }, this.hoverDelay);
-        }
-      }
-    }
-  }
-
-  /**
-   * Hides menus on blur
-   * @param item
-   */
-  public handleSecondaryBlur(item: NavigationItemConfig): void {
-    if (item.children && item.children.length > 0) {
-      if (item.hoverTimeout !== undefined) {
-        clearTimeout(item.hoverTimeout);
-        item.hoverTimeout = undefined;
-      } else if (item.blurTimeout === undefined) {
-        item.blurTimeout = setTimeout( () => {
-          item.trackHoverState = false;
-          if (!this.secondaryHover()) {
-            this.hoverTertiaryNav = false;
-          }
-          item.blurTimeout = undefined;
-        }, this.hideDelay);
-      }
-    }
-  }
-
-  /**
-   * Collapse secondary navigation
-   * @param item
-   */
-  public collapseSecondaryNav(item: NavigationItemConfig): void {
-    if (this.inMobileState) {
-      this.updateMobileMenu();
-    } else {
-      if (item.secondaryCollapsed) {
-        this.updateSecondaryCollapsedState(false, item);
-        this.forceHideSecondaryMenu();
-      } else {
-        this.updateSecondaryCollapsedState(true, item);
-      }
-    }
-
-    this.hoverSecondaryNav = false;
-  };
-
-  /**
-   * Collapse tertiary navigation
-   * @param item
-   */
-  public collapseTertiaryNav(item: NavigationItemConfig): void {
-    if (this.inMobileState) {
-      this.items.forEach((primaryItem) => {
-        if (primaryItem.children) {
-          primaryItem.children.forEach((secondaryItem) => {
-            if (secondaryItem === item) {
-              this.updateMobileMenu(primaryItem);
-            }
-          });
-        }
-      });
-    } else {
-      if (item.tertiaryCollapsed) {
-        this.updateTertiaryCollapsedState(false, item);
-        this.forceHideSecondaryMenu();
-      } else {
-        this.updateTertiaryCollapsedState(true, item);
-      }
-    }
-
-    this.hoverSecondaryNav = false;
-    this.hoverTertiaryNav = false;
   }
 }

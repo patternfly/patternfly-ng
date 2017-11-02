@@ -19,7 +19,7 @@ export {
   WizardEvent,
   WizardStep,
   WizardStepConfig
-}
+};
 
 /**
  * A module containing objects associated with the wizard component
@@ -29,8 +29,8 @@ export {
     CommonModule,
     TooltipModule.forRoot()
   ],
-  declarations: [ WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent ],
-  exports: [ WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent ],
-  providers: [ TooltipConfig ]
+  declarations: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
+  exports: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
+  providers: [TooltipConfig]
 })
-export class WizardModule { }
+export class WizardModule {}

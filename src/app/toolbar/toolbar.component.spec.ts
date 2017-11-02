@@ -81,22 +81,22 @@ describe('Toolbar component - ', () => {
       filterConfig: {
         fields: [{
           id: 'name',
-          title:  'Name',
+          title: 'Name',
           placeholder: 'Filter by Name...',
           type: FilterType.TEXT
         }, {
           id: 'age',
-          title:  'Age',
+          title: 'Age',
           placeholder: 'Filter by Age...',
           type: FilterType.TEXT
         }, {
           id: 'address',
-          title:  'Address',
+          title: 'Address',
           placeholder: 'Filter by Address...',
           type: FilterType.TEXT
         }, {
           id: 'birthMonth',
-          title:  'Birth Month',
+          title: 'Birth Month',
           placeholder: 'Filter by Birth Month...',
           type: FilterType.SELECT,
           queries: [{
@@ -203,13 +203,13 @@ describe('Toolbar component - ', () => {
 
   // Filter tests
 
-  it('should have correct number of filter fields', function () {
+  it('should have correct number of filter fields', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
     expect(fields.length).toBe(4);
   });
 
-  it('should have correct number of results', function () {
+  it('should have correct number of results', function() {
     let results = fixture.debugElement.query(By.css('h5'));
     expect(results).toBeNull();
 
@@ -228,7 +228,7 @@ describe('Toolbar component - ', () => {
     expect(results.nativeElement.textContent.trim().slice(0, '10 Results'.length)).toBe('10 Results');
   });
 
-  it ('should add a dropdown select when a select type is chosen', function() {
+  it('should add a dropdown select when a select type is chosen', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let filterSelect = fixture.debugElement.query(By.css('.filter-select'));
     let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
@@ -245,7 +245,7 @@ describe('Toolbar component - ', () => {
     // expect(items.length).toBe(config.filterConfig.fields[3].queries.length + 1); // +1 for the null value
   });
 
-  it ('should clear a filter when the close button is clicked', function () {
+  it('should clear a filter when the close button is clicked', function() {
     let closeButtons = fixture.debugElement.queryAll(By.css('.pficon-close'));
     expect(closeButtons.length).toBe(0);
 
@@ -268,7 +268,7 @@ describe('Toolbar component - ', () => {
     expect(closeButtons.length).toBe(0);
   });
 
-  it ('should clear all filters when the clear all filters button is clicked', function () {
+  it('should clear all filters when the clear all filters button is clicked', function() {
     let activeFilters = fixture.debugElement.queryAll(By.css('.active-filter'));
     let clearButton = fixture.debugElement.query(By.css('.clear-filters'));
     expect(activeFilters.length).toBe(0);
@@ -297,7 +297,7 @@ describe('Toolbar component - ', () => {
     expect(clearButton).toBeNull();
   });
 
-  it ('should not show filters when a filter config is not supplied', function () {
+  it('should not show filters when a filter config is not supplied', function() {
     let filter = fixture.debugElement.queryAll(By.css('.filter-pf'));
     expect(filter.length).toBe(1);
 
@@ -323,12 +323,12 @@ describe('Toolbar component - ', () => {
     expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
   });
 
-  it('should default to ascending sort', function () {
+  it('should default to ascending sort', function() {
     let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
     expect(sortIcon).not.toBeNull();
   });
 
-  it('should update the current sort when one is selected', function () {
+  it('should update the current sort when one is selected', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
     let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
@@ -342,10 +342,10 @@ describe('Toolbar component - ', () => {
 
     results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
     expect(results.nativeElement.textContent.trim().slice(0, 'Address'.length))
-        .toBe('Address');
+      .toBe('Address');
   });
 
-  it('should update the direction icon when the sort type changes', function () {
+  it('should update the direction icon when the sort type changes', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
     let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
@@ -367,7 +367,7 @@ describe('Toolbar component - ', () => {
 
   });
 
-  it('should reverse the sort direction when the direction button is clicked', function () {
+  it('should reverse the sort direction when the direction button is clicked', function() {
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
     let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
     expect(sortButton).not.toBeNull();
@@ -380,7 +380,7 @@ describe('Toolbar component - ', () => {
     expect(sortIcon).not.toBeNull();
   });
 
-  it ('should notify when a new sort field is chosen', function(done) {
+  it('should notify when a new sort field is chosen', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
 
@@ -395,7 +395,7 @@ describe('Toolbar component - ', () => {
     fixture.detectChanges();
   });
 
-  it ('should notify when the sort direction changes', function(done) {
+  it('should notify when the sort direction changes', function(done) {
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
 
     comp.onSortChange.subscribe((data: SortEvent) => {
@@ -409,7 +409,7 @@ describe('Toolbar component - ', () => {
     fixture.detectChanges();
   });
 
-  it ('should not show sort when a sort config is not supplied', function () {
+  it('should not show sort when a sort config is not supplied', function() {
     let sort = fixture.debugElement.query(By.css('.sort-pf'));
     expect(sort).not.toBeNull();
 
@@ -423,7 +423,7 @@ describe('Toolbar component - ', () => {
 
   // View tests
 
-  it ('should show the correct view selection buttons', function () {
+  it('should show the correct view selection buttons', function() {
     let listSelectora = fixture.debugElement.queryAll(By.css('.toolbar-pf-view-selector .btn-link'));
     expect(listSelectora.length).toBe(2);
 
@@ -431,7 +431,7 @@ describe('Toolbar component - ', () => {
     expect(fixture.debugElement.query(By.css('.fa-table'))).not.toBeNull();
   });
 
-  it ('should show the currently selected view', function () {
+  it('should show the currently selected view', function() {
     let viewSelector = fixture.debugElement.query(By.css('.toolbar-pf-view-selector'));
     let active = fixture.debugElement.queryAll(By.css('.active'));
     expect(viewSelector).not.toBeNull();
@@ -444,7 +444,7 @@ describe('Toolbar component - ', () => {
     expect(active.length).toBe(1);
   });
 
-  it ('should update the currently selected view when a view selector clicked', function () {
+  it('should update the currently selected view when a view selector clicked', function() {
     let active = fixture.debugElement.queryAll(By.css('.active'));
     let viewSelector = fixture.debugElement.query(By.css('.toolbar-pf-view-selector'));
     let listSelectora = fixture.debugElement.queryAll(By.css('.toolbar-pf-view-selector .btn-link'));
@@ -460,7 +460,7 @@ describe('Toolbar component - ', () => {
     expect(active.length).toBe(1);
   });
 
-  it ('should call the callback function when a view selector clicked', function (done) {
+  it('should call the callback function when a view selector clicked', function(done) {
     let listSelectors = fixture.debugElement.queryAll(By.css('.toolbar-pf-view-selector .btn-link'));
     expect(listSelectors.length).toBe(2);
 
@@ -477,30 +477,30 @@ describe('Toolbar component - ', () => {
 
   // Action tests
 
-  it('should have correct number of primary actions', function () {
+  it('should have correct number of primary actions', function() {
     let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
     expect(fields.length).toBe(2);
   });
 
-  it('should have correct number of secondary actions', function () {
+  it('should have correct number of secondary actions', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
     expect(fields.length).toBe(6);
   });
 
-  it('should have correct number of separators', function () {
+  it('should have correct number of separators', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .divider'));
     expect(fields.length).toBe(1);
   });
 
-  it('should correctly disable actions', function () {
+  it('should correctly disable actions', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .disabled'));
     expect(fields.length).toBe(1);
   });
 
-  it('should not show more actions menu when there are no more actions', function () {
+  it('should not show more actions menu when there are no more actions', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let menus = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .fa-ellipsis-v'));
     expect(menus.length).toBe(1);
@@ -512,7 +512,7 @@ describe('Toolbar component - ', () => {
     expect(menus.length).toBe(0);
   });
 
-  it('should call the action function with the appropriate action when an action is clicked', function (done) {
+  it('should call the action function with the appropriate action when an action is clicked', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
@@ -534,7 +534,7 @@ describe('Toolbar component - ', () => {
     expect(action).toBe(config.actionConfig.moreActions[3]);
   });
 
-  it('should not call the action function when a disabled action is clicked', function (done) {
+  it('should not call the action function when a disabled action is clicked', function(done) {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
@@ -564,7 +564,7 @@ describe('Toolbar component - ', () => {
     expect(action).toBeNull();
   });
 
-  it('should not show action components when an action config is not supplied', function () {
+  it('should not show action components when an action config is not supplied', function() {
     fixture.detectChanges(); // Workaround to fix dropdown tests
     let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
     let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
