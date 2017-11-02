@@ -11,6 +11,7 @@ import { NotificationType } from '../notification-type';
   templateUrl: './inline-notification-example.component.html'
 })
 export class InlineNotificationExampleComponent implements OnInit {
+  dismissable: boolean;
   header: string = 'Default Header.';
   message: string = 'Default Message.';
   dismissible: false;

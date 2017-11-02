@@ -1,5 +1,6 @@
 import { PaginationConfig } from './pagination-config';
-export { PaginationConfig };
+import { PaginationEvent } from './pagination-event';
+export { PaginationConfig, PaginationEvent };
 /**
  * A module containing objects associated with notification components
  */

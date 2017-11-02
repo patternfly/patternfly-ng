@@ -187,7 +187,7 @@ export class ListHeadingExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action, item: any): void {
-    if ($event.id === 'start') {
+    if ($event.id === 'start' && item !== null) {
       item.started = true;
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;

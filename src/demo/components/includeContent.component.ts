@@ -7,23 +7,20 @@ import { Http, Response } from '@angular/http';
   selector: 'include-content',
   template: `
     <h1>{{page}}</h1>
-    <pre><code>
-{{templateContent}}
-</code></pre>`
+    <pre><code>{{templateContent}}</code></pre>`
 })
 export class IncludeContentComponent implements OnInit {
+  @Input() src: string;
 
-  @Input('src')
-  private templateUrl: string;
-
-  private templateContent: string;
-  private page: string;
+  page: string;
+  templateUrl: string;
+  templateContent: string;
 
   constructor(private http: Http) {}
 
   ngOnInit() {
     this.http.get(this.templateUrl).subscribe((out: any) => {
-      this.templateContent = out["_body"];
+      this.templateContent = out['_body'];
       this.page = out.url.slice(out.url.lastIndexOf('/') + 1, out.url.length);
     });
   }

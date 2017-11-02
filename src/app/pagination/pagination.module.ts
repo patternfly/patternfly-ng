@@ -6,9 +6,11 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { PaginationConfig } from './pagination-config';
 import { PaginationComponent } from './pagination.component';
+import { PaginationEvent } from './pagination-event';
 
 export {
-  PaginationConfig
+  PaginationConfig,
+  PaginationEvent
 }
 
 /**

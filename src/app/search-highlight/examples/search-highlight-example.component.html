@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <input type="text" placeholder="Enter search value" [(ngModel)]="currentValue" #searchField>
+        <input type="text" placeholder="Enter search value" #searchField>
         <span class="padding-left-5"
               [innerHTML]="'This text is highlighted based on search value' | SearchHighlight: searchField.value"></span>
       </div>

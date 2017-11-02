@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PaginationConfig } from './pagination-config';
 import { PaginationComponent } from './pagination.component';
-export { PaginationConfig };
+import { PaginationEvent } from './pagination-event';
+export { PaginationConfig, PaginationEvent };
 /**
  * A module containing objects associated with notification components
  */

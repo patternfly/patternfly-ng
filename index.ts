@@ -66,6 +66,7 @@ export { InlineNotificationComponent } from './src/app/notification/inline-notif
 // Pagination
 export { PaginationComponent } from './src/app/pagination/pagination.component';
 export { PaginationConfig } from './src/app/pagination/pagination-config';
+import { PaginationEvent } from './src/app/pagination/pagination-event';
 export { PaginationModule } from './src/app/pagination/pagination.module';
 
 // Remaining Chars

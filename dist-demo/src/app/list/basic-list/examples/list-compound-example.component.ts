@@ -163,7 +163,7 @@ export class ListCompoundExampleComponent implements OnInit {
   // Actions
 
   handleAction($event: Action, item: any): void {
-    if ($event.title === 'Start') {
+    if ($event.title === 'Start' && item !== null) {
       item.started = true;
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;

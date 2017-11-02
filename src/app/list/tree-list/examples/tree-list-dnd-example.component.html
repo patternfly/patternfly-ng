@@ -7,7 +7,7 @@
                         [config]="treeListConfig"
                         [itemTemplate]="itemTemplate"
                         [items]="items"
-                        (onActionSelect)="handleAction($event)"
+                        (onActionSelect)="handleAction($event, null)"
                         (onMoveNode)="handleMoveNode($event)">
           <ng-template #loadTemplate let-node="node" let-index="index">
             <span>Loading...</span>

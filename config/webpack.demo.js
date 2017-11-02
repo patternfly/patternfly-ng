@@ -5,6 +5,7 @@ const path = require('path');
 /**
  * Webpack Plugins
  */
+const AotPlugin = require('@ngtools/webpack').AotPlugin;
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -183,6 +184,17 @@ module.exports = {
       ignoreCompilerErrors: true,
       excludePrivate: true,
       exclude: '**/+(examples|demo)/**'
-    }, './src')
+    }, './src'),
+
+    /**
+     * Plugin: AotPlugin
+     * Description: Angular Ahead-of-Time Webpack Plugin
+     *
+     * See: https://www.npmjs.com/package/@ngtools/webpack
+     */
+    new AotPlugin({
+      entryModule: helpers.root('src/demo/app.module.ts#AppModule'),
+      tsConfigPath: helpers.root('tsconfig-aot.json')
+    })
   ]
 };
