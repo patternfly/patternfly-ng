@@ -12,12 +12,8 @@
 .pfng-save-filter {
   input {
     display: inline;
-    @media (min-width: 480px) {
-      width: 10em;
-    }
-    @media (min-width: 768px) {
-      width: 15em;
-    }
+    @media (min-width: @screen-xs-min) { width: 10em; }
+    @media (min-width: @screen-sm-min) { width: 15em; }
   }
   .popover {
     max-width: initial;
