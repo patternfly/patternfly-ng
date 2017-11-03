@@ -42,7 +42,7 @@ export class WizardEmbedExampleComponent implements OnInit {
   wizardConfig: WizardConfig;
   wizardExample: WizardExampleComponent;
 
-  constructor( @Host() wizardExample: WizardExampleComponent) {
+  constructor(@Host() wizardExample: WizardExampleComponent) {
     this.wizardExample = wizardExample;
   }
 
