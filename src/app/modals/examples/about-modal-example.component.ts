@@ -45,7 +45,7 @@ export class AboutModalExampleComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  closeModal($event): void {
+  closeModal($event: MouseEvent): void {
     this.modalRef.hide();
     this.aboutConfig.isOpen = false;
   }

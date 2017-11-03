@@ -6,7 +6,7 @@ import { AboutModalConfig } from './about-modal-config';
 
 export {
   AboutModalConfig
-}
+};
 
 @NgModule({
     imports: [
