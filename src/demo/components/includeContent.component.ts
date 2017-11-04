@@ -10,10 +10,9 @@ import { Http, Response } from '@angular/http';
     <pre><code>{{templateContent}}</code></pre>`
 })
 export class IncludeContentComponent implements OnInit {
-  @Input() src: string;
+  @Input('src') templateUrl: string;
 
   page: string;
-  templateUrl: string;
   templateContent: string;
 
   constructor(private http: Http) {}
