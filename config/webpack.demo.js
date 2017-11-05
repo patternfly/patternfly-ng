@@ -7,6 +7,7 @@ const path = require('path');
  */
 const AotPlugin = require('@ngtools/webpack').AotPlugin;
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
@@ -160,9 +161,9 @@ module.exports = {
     new NamedModulesPlugin(),
 
     // Todo: config is not loading.
-    new TsConfigPathsPlugin({
-      configFileName: helpers.root("tsconfig-demo.json")
-    }),
+    //new TsConfigPathsPlugin({
+    //  configFileName: helpers.root("tsconfig-demo.json")
+    //}),
 
     /**
      * Plugin: ContextReplacementPlugin
@@ -195,6 +196,16 @@ module.exports = {
     new AotPlugin({
       entryModule: helpers.root('src/demo/app.module.ts#AppModule'),
       tsConfigPath: helpers.root('tsconfig-aot.json')
-    })
+    }),
+
+    /**
+     * Plugin: copy-webpack-plugin
+     * Description: Copies individual files or entire directories to the build directory
+     *
+     * See: https://github.com/kevlened/copy-webpack-plugin
+     */
+    new CopyWebpackPlugin([{
+      from: helpers.root('README.md')
+    }]),
   ]
 };
