@@ -3,7 +3,7 @@
 Welcome to PatternFly-Ng.  This is a library of common Angular components for use with the PatternFly reference implementation. Below is information on how to get started using PatternFly-ng.  If you wish to contribute to PatternFly-ng, please go to our [Contributions page][contributing].
 
 - Web site: https://www.patternfly.org
-- API Docs: https://rawgit.com/patternfly/patternfly-ng/master-dist/dist-demo/
+- API Docs: http://www.patternfly.org/patternfly-ng/
 - Build Status: https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master
 
 

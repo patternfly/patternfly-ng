@@ -84,6 +84,13 @@ PatternFly-ng uses npm, webpack and gulp.  With the exception of node.js, all de
 
  - If you are developing on PatternFly-ng and would like to provide a link to the demo from your fork, TravisCI can be configured to create a copy of your branch with the dist files generated for you.  No code changes are necessary to enable this, all that is needed is to login to [TravisCI](https://travis-ci.org/) and configure it to point at your PatternFly fork.  The first three steps at their [Getting Started page](https://docs.travis-ci.com/user/for-beginners) provide instructions on how to do this.  You will also need to add an AUTH_TOKEN variable to Travis generated in your GitHub account to allow Travis to connect to your fork.
 
+ - For reference, this is the ([RawGit URL](https://rawgit.com/patternfly/patternfly-ng/master-dist/dist-demo/)) for the master branch of patternfly-ng.
+
+ - The RawGit URL for your fork should look like this: 
+ ``` html
+ https://rawgit.com/<username>/patternfly-ng/<branch>-dist/dist-demo/
+ ```
+
 ##### The following commands will help you test AOT compilation:
 The demo app uses an AOT webpack plugin to test compilation, which is also run during Travis builds. However, if you still want to test manually, please follow these steps.
 
