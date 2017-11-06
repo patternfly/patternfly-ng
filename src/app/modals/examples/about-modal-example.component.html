@@ -7,14 +7,11 @@
     <div class="col-xs-12">
       <button (click)="openModal(aboutTemplate)" class="btn btn-default">Launch About Modal</button>
       <ng-template #aboutTemplate>
-        <pfng-about-modal [config]="aboutConfig" 
-                          [template]="aboutModalTemplate" 
+        <pfng-about-modal [config]="aboutConfig"  
                           (onCancel)="closeModal($event)">
-          <ng-template #aboutModalTemplate>
             <div>
-              This text is in template.
+              Custom Content
             </div>
-          </ng-template>
         </pfng-about-modal>
       </ng-template>
     </div>
@@ -39,3 +36,4 @@
     </tabset>
   </div>
 </div>
+

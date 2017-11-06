@@ -26,11 +26,11 @@ export class AboutModalExampleComponent implements OnInit {
   ngOnInit(): void {
     this.aboutConfig = {
       additionalInfo: 'Donec consequat dignissim neque, sed suscipit quam egestas in. Fusce bibendum ' +
-      'laoreet lectus commodo interdum. Vestibulum odio ipsum, tristique et ante vel, iaculis placerat nulla. ' +
-      'Suspendisse iaculis urna feugiat lorem semper, ut iaculis risus tempus.',
+        'laoreet lectus commodo interdum. Vestibulum odio ipsum, tristique et ante vel, iaculis placerat nulla. ' +
+        'Suspendisse iaculis urna feugiat lorem semper, ut iaculis risus tempus.',
       copyright: 'Trademark and Copyright Information',
-      imgAlt: 'Patternfly Symbol',
-      imgSrc: '',
+      logoImageAlt: 'Patternfly Symbol',
+      logoImageSrc: '//www.patternfly.org/assets/img/logo-alt.svg',
       title: 'Product Title',
       productInfo: [
         { name: 'Version', value: '1.0.0.0.20160819142038_51be77c' },
@@ -41,12 +41,11 @@ export class AboutModalExampleComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>): void {
-    this.aboutConfig.isOpen = true;
     this.modalRef = this.modalService.show(template);
   }
 
   closeModal($event: MouseEvent): void {
     this.modalRef.hide();
-    this.aboutConfig.isOpen = false;
   }
 }
+

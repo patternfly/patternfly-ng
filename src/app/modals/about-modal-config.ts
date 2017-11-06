@@ -15,17 +15,12 @@ export class AboutModalConfig {
   /**
    * The alt text for the corner graphic
    */
-  imgAlt?: string;
+  logoImageAlt?: string;
 
   /**
    * The source for the corner graphic
    */
-  imgSrc?: string;
-
-  /**
-   * Flag indicating that the modal should be opened
-   */
-  isOpen?: boolean;
+  logoImageSrc?: string;
 
   /**
    * data for the modal:

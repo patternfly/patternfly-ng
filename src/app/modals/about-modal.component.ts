@@ -30,18 +30,11 @@ export class AboutModalComponent implements DoCheck, OnInit {
   @Input() config: AboutModalConfig;
 
   /**
-   * Modal Template for custom content
-   */
-  @Input() template: TemplateRef<any>;
-
-  /**
    * The Event is emitted when modal is closed
    */
   @Output('onCancel') onCancel = new EventEmitter();
 
-  private defaultConfig= {
-    isOpen: false
-  } as AboutModalConfig;
+  private defaultConfig = {} as AboutModalConfig;
   private prevConfig: AboutModalConfig;
 
   /**
