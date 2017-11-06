@@ -1,7 +1,10 @@
-export interface InfoStatusCardConfig {
+/**
+ * A config containing properties for the info status card
+ */
+export class InfoStatusCardConfig {
 
   /**
-   * Flag to allow HTML content within the info options
+   * Flag to allow parsing of HTML content within the info options
    */
   htmlContent: boolean;
 
@@ -34,5 +37,4 @@ export interface InfoStatusCardConfig {
    * An array of strings to display, each element in the array is on a new line, accepts HTML content
    */
   info?: string[];
-
 }
