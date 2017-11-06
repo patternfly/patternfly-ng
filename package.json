@@ -23,7 +23,7 @@
     "test": "karma start",
     "test:debug": "karma --browsers Chrome --no-single-run start",
     "transpile": "gulp transpile",
-    "ts:lint": "tslint -p tslint.json -c tslint.json",
+    "ts:lint": "tslint -p tslint.json 'index.ts' 'src/**/*.ts'",
     "ts:lint:fix": "npm run ts:lint -- --fix",
     "semantic-release": "semantic-release pre && copy package.json npm-shrinkwrap.json dist && npm publish dist && semantic-release post",
     "semantic-release-post": "semantic-release post",
