@@ -13,6 +13,8 @@ export { CardFilter } from './src/app/card/card-filter/card-filter';
 export { CardFilterComponent } from './src/app/card/card-filter/card-filter.component';
 export { CardFilterPosition } from './src/app/card/card-filter/card-filter-position';
 export { CardModule } from './src/app/card/card.module';
+export { InfoStatusCardComponent } from './src/app/card/info-status-card/info-status-card.component';
+export { InfoStatusCardConfig } from './src/app/card/info-status-card/info-status-card-config';
 export { SparklineComponent } from './src/app/chart/sparkline/sparkline.component';
 export { SparklineConfig } from './src/app/chart/sparkline/sparkline-config';
 export { ChartConfig } from './src/app/chart/chart-config';
