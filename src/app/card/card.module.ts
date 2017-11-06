@@ -22,8 +22,8 @@ export {
   CardBaseConfig,
   CardConfig,
   CardFilter,
-  InfoStatusCardConfig,
-  CardFilterPosition
+  CardFilterPosition,
+  InfoStatusCardConfig
 };
 
 /**
