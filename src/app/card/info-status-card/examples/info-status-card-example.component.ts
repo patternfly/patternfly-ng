@@ -31,13 +31,13 @@ export class InfoStatusCardExampleComponent implements OnInit {
   card2Config: InfoStatusCardConfig = {
     showTopBorder: false,
     htmlContent: false,
-    iconImageSrc: '//www.patternfly.org/assets/img/redhat.svg',
+    iconImageSrc: '//www.patternfly.org/assets/img/patternfly-orb.svg',
     info: [
       'Infastructure: VMware',
       'Vmware: 1 CPU (1 socket x 1 core), 1024 MB',
       '12 Snapshots',
       'Drift History: 1',
-      '<strong>No htmlContent</strong>'
+      '<b>No htmlContent</b>'
     ]
 
   };
