@@ -14,5 +14,6 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 import 'patternfly/dist/css/patternfly.css';
 import 'patternfly/dist/css/patternfly-additions.css';
+import 'highlight.js/styles/github.css';
 
 require('patternfly/dist/js/patternfly-settings');
