@@ -3,7 +3,7 @@ import { WizardStepConfig } from './wizard-step-config';
 /**
  * Wizard step
  */
-export interface WizardStep {
+export declare class WizardStep {
     /**
      * The wizard step config containing component properties
      */

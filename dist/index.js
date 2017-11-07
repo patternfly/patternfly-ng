@@ -97,6 +97,7 @@ export { WizardConfig } from './src/app/wizard/wizard-config';
 export { WizardEvent } from './src/app/wizard/wizard-event';
 export { WizardModule } from './src/app/wizard/wizard.module';
 export { WizardReviewComponent } from './src/app/wizard/wizard-review.component';
+export { WizardStep } from './src/app/wizard/wizard-step';
 export { WizardStepComponent } from './src/app/wizard/wizard-step.component';
 export { WizardStepConfig } from './src/app/wizard/wizard-step-config';
 export { WizardSubstepComponent } from './src/app/wizard/wizard-substep.component';
