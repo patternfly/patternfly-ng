@@ -1,0 +1,83 @@
+<div class="list-pf" *ngIf="!itemsEmpty">
+  <tree-root class="pfng-tree-list" #tree
+      [nodes]="items"
+      [focused]="true"
+      [options]="config.treeOptions"
+      (event)="handleEvent($event)"
+      (moveNode)="handleMoveNode($event)"
+      (toggleExpanded)="handleToggleExpanded($event)">
+    <ng-template #treeNodeTemplate let-node let-index="index">
+      <ng-template [ngTemplateOutlet]="itemTemplate" [ngOutletContext]="{ node: node, index: index }"></ng-template>
+    </ng-template>
+    <ng-template #loadingTemplate let-node let-index="index">
+      <ng-template [ngTemplateOutlet]="loadTemplate" [ngOutletContext]="{ node: node, index: index }"></ng-template>
+    </ng-template>
+    <ng-template #treeNodeFullTemplate
+        let-node="node"
+        let-index="index"
+        let-templates="templates">
+      <div *ngIf="node.isHidden !== true"
+          class="tree-node"
+          [ngClass]="node.getClass()"
+          [class.tree-node-expanded]="node.isExpanded && node.hasChildren"
+          [class.tree-node-collapsed]="node.isCollapsed && node.hasChildren"
+          [class.tree-node-leaf]="node.isLeaf"
+          [class.tree-node-active]="node.isActive"
+          [class.tree-node-focused]="node.isFocused">
+        <div class="list-pf-item"
+             [class.active]="node.data.selected"
+             [class.tree-item-placeholder]="index !== 0"
+             [class.tree-item-selected]="node.data.selected">
+          <tree-node-drop-slot *ngIf="index === 0" [dropIndex]="node.index" [node]="node.parent"></tree-node-drop-slot>
+          <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+            <div class="node-content-wrapper"
+                 (click)="node.mouseAction('click', $event)"
+                 (dblclick)="node.mouseAction('dblClick', $event)"
+                 (contextmenu)="node.mouseAction('contextMenu', $event)"
+                 (dragstart)="handleDragStart($event)"
+                 (treeDrop)="node.onDrop($event)"
+                 [treeAllowDrop]="node.allowDrop"
+                 [treeDrag]="node"
+                 [treeDragEnabled]="node.allowDrag()">
+              <div class="list-pf-container"
+                   [class.pfng-tree-list-dnd-slot]="index === 0"
+                   [class.pfng-tree-list-dnd]="node.allowDrag()"
+                   [style.padding-left.px]="getIndentChildren(node.level, node)">
+                <!-- toggle -->
+                <div class="list-pf-chevron">
+                  <tree-node-expander [node]="node"></tree-node-expander>
+                </div>
+                <!-- checkbox -->
+                <div class="list-pf-select" *ngIf="config.showCheckbox">
+                  <input type="checkbox" value="node.data.selected"
+                         [(ngModel)]="node.data.selected"
+                         (ngModelChange)="checkboxChange(node.data)">
+                </div>
+                <!-- content -->
+                <div class="list-pf-content list-pf-content-flex">
+                  <div class="pfng-tree-list-content"
+                       (click)="toggleSelection($event, node.data)"
+                       (dblclick)="dblClick($event, node.data)">
+                    <ng-template [ngTemplateOutlet]="itemTemplate" [ngOutletContext]="{ node: node, index: index }">
+                    </ng-template>
+                  </div>
+                  <!-- actions -->
+                  <div class="list-pf-actions" *ngIf="actionTemplate">
+                    <ng-template [ngTemplateOutlet]="actionTemplate" [ngOutletContext]="{ node: node, index: index }">
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Ideally, this drop would be added after tree-node-children, but located here for row highlighting -->
+          <tree-node-drop-slot [dropIndex]="node.index + 1" [node]="node.parent"></tree-node-drop-slot>
+        </div>
+        <tree-node-children [node]="node" [templates]="templates"></tree-node-children>
+      </div>
+    </ng-template>
+  </tree-root>
+</div>
+<pfng-empty-state *ngIf="itemsEmpty"
+                  [config]="config.emptyStateConfig"
+                  (onActionSelect)="handleAction($event)"></pfng-empty-state>
