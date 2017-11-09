@@ -12,7 +12,7 @@ import { DemoComponentsModule } from './components/demo-components.module';
 
 // Main areas
 //  import example modules
-import { AboutModalExampleModule } from '../app/modals/examples/about-modal-example.module';
+import { AboutModalExampleModule } from '../app/modal/examples/about-modal-example.module';
 import { ActionExampleModule } from '../app/action/examples/action-example.module';
 import { CardExampleModule } from '../app/card/basic-card/examples/card-example.module';
 import { InfoStatusCardExampleModule } from '../app/card/info-status-card/examples/info-status-card-example.module';

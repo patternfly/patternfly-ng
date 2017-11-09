@@ -2,12 +2,14 @@ import {
   Component,
   OnInit,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChild
 } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { AboutModalConfig } from '../about-modal-config';
+import { AboutModalEvent } from '../about-modal-event';
 
 
 @Component({
@@ -16,6 +18,7 @@ import { AboutModalConfig } from '../about-modal-config';
   templateUrl: './about-modal-example.component.html'
 })
 export class AboutModalExampleComponent implements OnInit {
+
 
   aboutConfig: AboutModalConfig;
   modalRef: BsModalRef;
@@ -44,7 +47,7 @@ export class AboutModalExampleComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  closeModal($event: MouseEvent): void {
+  closeModal($event: AboutModalEvent): void {
     this.modalRef.hide();
   }
 }

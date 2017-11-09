@@ -12,6 +12,8 @@ import {
 import { cloneDeep, defaults, isEqual } from 'lodash';
 
 import { AboutModalConfig } from './about-modal-config';
+import { AboutModalEvent } from './about-modal-event';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 /**
  * Component for rendering AboutModal
@@ -40,7 +42,9 @@ export class AboutModalComponent implements DoCheck, OnInit {
   /**
    * The default contructor
    */
-  constructor() { }
+  constructor(
+    private modalService: BsModalService
+  ) { }
 
   // Initialization
 
@@ -77,8 +81,10 @@ export class AboutModalComponent implements DoCheck, OnInit {
    * Close the Modal
    * @param  $event MouseEvent to emit
    */
-  close($event: MouseEvent): void {
-    this.onCancel.emit($event);
+  close(): void {
+    this.onCancel.emit({
+      close: true
+    } as AboutModalEvent);
   }
 }
 

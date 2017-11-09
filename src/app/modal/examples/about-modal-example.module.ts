@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule as BSModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
-import { ModalsModule } from '../modals.module';
+import { ModalModule } from '../modal.module';
 import { AboutModalExampleComponent } from './about-modal-example.component';
 
 @NgModule({
@@ -15,10 +15,11 @@ import { AboutModalExampleComponent } from './about-modal-example.component';
   imports: [
     CommonModule,
     DemoComponentsModule,
-    ModalModule.forRoot(),
+    BSModalModule.forRoot(),
     TabsModule.forRoot(),
-    ModalsModule
+    ModalModule
   ],
+  providers: [TabsetConfig]
 })
 export class AboutModalExampleModule {
   constructor() { }

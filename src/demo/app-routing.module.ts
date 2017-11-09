@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AboutModalExampleComponent } from '../app/modals/examples/about-modal-example.component';
+import { AboutModalExampleComponent } from '../app/modal/examples/about-modal-example.component';
 import { ActionExampleComponent } from '../app/action/examples/action-example.component';
 import { CardExampleComponent } from '../app/card/basic-card/examples/card-example.component';
 import { InfoStatusCardExampleComponent }

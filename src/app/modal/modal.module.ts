@@ -10,10 +10,10 @@ export {
 
 @NgModule({
     imports: [
-      CommonModule,
+      CommonModule
     ],
     declarations: [AboutModalComponent],
     exports: [AboutModalComponent]
 })
 
-export class ModalsModule {}
+export class ModalModule {}

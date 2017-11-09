@@ -57,9 +57,9 @@ export { TreeListComponent } from './src/app/list/tree-list/tree-list.component'
 export { TreeListConfig } from './src/app/list/tree-list/tree-list-config';
 
 // Modals
-export { AboutModalConfig } from './src/app/modals/about-modal-config';
-export { AboutModalComponent } from './src/app/modals/about-modal.component';
-export { ModalsModule } from './src/app/modals/modals.module';
+export { AboutModalConfig } from './src/app/modal/about-modal-config';
+export { AboutModalComponent } from './src/app/modal/about-modal.component';
+export { ModalModule } from './src/app/modal/modal.module';
 
 // Notification
 export { Notification } from './src/app/notification/notification';
