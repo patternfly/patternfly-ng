@@ -9,13 +9,15 @@ import { ActionConfig } from '../../../action/action-config';
 import { ListEvent } from '../../list-event';
 import { ListConfig } from '../list-config';
 
+import { cloneDeep } from 'lodash';
+
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'list-heading-example',
-  styleUrls: ['./list-heading-example.component.less'],
-  templateUrl: './list-heading-example.component.html'
+  selector: 'list-pin-example',
+  styleUrls: ['./list-pin-example.component.less'],
+  templateUrl: './list-pin-example.component.html'
 })
-export class ListHeadingExampleComponent implements OnInit {
+export class ListPinExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
@@ -55,7 +57,8 @@ export class ListHeadingExampleComponent implements OnInit {
       clusterCount: 6,
       nodeCount: 10,
       imageCount: 8,
-      hideExpandingRowToggle: true
+      hideExpandToggle: true,
+      showPin: true
     }, {
       name: 'Frank Livingston',
       address: '234 Elm Street',
@@ -75,7 +78,8 @@ export class ListHeadingExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: true
     }, {
       name: 'Jim Brown',
       address: '72 Bourbon Way',
@@ -95,7 +99,8 @@ export class ListHeadingExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: true
     }, {
       name: 'Marie Edwards',
       address: '17 Cross Street',
@@ -117,9 +122,31 @@ export class ListHeadingExampleComponent implements OnInit {
       nodeCount: 10,
       imageCount: 8
     }];
-    this.items = this.allItems;
+    this.items = cloneDeep(this.allItems);
 
-    this.actionConfig = {
+    this.listConfig = {
+      dblClick: false,
+      multiSelect: false,
+      selectItems: false,
+      selectionMatchProp: 'name',
+      showCheckbox: true,
+      useExpandItems: false,
+      useHeading: true,
+      usePinItems: true
+    } as ListConfig;
+  }
+
+  ngDoCheck(): void {
+  }
+
+  /**
+   * Get the ActionConfig properties for each row
+   *
+   * @param item The current row item
+   * @returns {ActionConfig}
+   */
+  getActionConfig(item: any): ActionConfig {
+    let actionConfig = {
       primaryActions: [{
         id: 'start',
         styleClass: 'btn-primary',
@@ -139,6 +166,10 @@ export class ListHeadingExampleComponent implements OnInit {
         tooltip: 'Do something special'
       }],
       moreActions: [{
+        id: 'pin',
+        title: (item.showPin) ? 'Remove Pin' : 'Add Pin',
+        tooltip: (item.showPin) ? 'Remove Pin' : 'Add Pin'
+      }, {
         id: 'moreActions1',
         title: 'Action',
         tooltip: 'Perform an action'
@@ -172,18 +203,7 @@ export class ListHeadingExampleComponent implements OnInit {
       moreActionsVisible: true
     } as ActionConfig;
 
-    this.listConfig = {
-      dblClick: false,
-      multiSelect: false,
-      selectItems: false,
-      selectionMatchProp: 'name',
-      showCheckbox: true,
-      useExpandItems: false,
-      useHeading: true
-    } as ListConfig;
-  }
-
-  ngDoCheck(): void {
+    return actionConfig;
   }
 
   // Actions
@@ -191,12 +211,11 @@ export class ListHeadingExampleComponent implements OnInit {
   handleAction($event: Action, item: any): void {
     if ($event.id === 'start' && item !== null) {
       item.started = true;
+    } else if ($event.id === 'pin') {
+      item.showPin = (item.showPin === undefined) ? true : !item.showPin;
+      this.items = [...this.items];
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
-  }
-
-  handleSelectionChange($event: ListEvent): void {
-    this.actionsText = $event.selectedItems.length + ' items selected\r\n' + this.actionsText;
   }
 
   handleClick($event: ListEvent): void {
@@ -205,6 +224,15 @@ export class ListHeadingExampleComponent implements OnInit {
 
   handleDblClick($event: ListEvent): void {
     this.actionsText = $event.item.name + ' double clicked\r\n' + this.actionsText;
+  }
+
+  handlePinChange($event: ListEvent): void {
+    this.items = [...this.items];
+    this.actionsText = $event.item.name + ' unpinned\r\n' + this.actionsText;
+  }
+
+  handleSelectionChange($event: ListEvent): void {
+    this.actionsText = $event.selectedItems.length + ' items selected\r\n' + this.actionsText;
   }
 
   // Row selection
