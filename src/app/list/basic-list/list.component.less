@@ -16,6 +16,15 @@
   width: 8px;
 }
 
+.pfng-list-expand {
+  .fa-angle-right {
+    padding-left: 5px;
+    &.fa-angle-down {
+      padding-left: 0;
+    }
+  }
+}
+
 // For displaying close button in expansion area
 .pfng-list-expansion {
   position: relative;
@@ -59,5 +68,38 @@
     + .list-pf-content {
       border-left: none;
     }
+  }
+}
+
+// Pin
+.pfng-list-pin {
+  background-color: @color-pf-black-150;
+  box-shadow: -3px 1px 4px 0 @color-pf-black-200 inset;
+  font-size: 14px;
+  padding-bottom: 24px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 23px;
+  a {
+    color: @color-pf-black;
+    opacity: .7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Pin placeholder for heading and non-pinned items
+.pfng-list-pin-placeholder {
+  width: 21px;
+}
+
+.pfng-list-pin-wrapper {
+  margin-bottom: -20px;
+  margin-left: -20px;
+  margin-right: 20px;
+  margin-top: -20px;
+  &.multi-ctrls {
+    margin-right: 10px;
   }
 }

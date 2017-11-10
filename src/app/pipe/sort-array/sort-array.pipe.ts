@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { isBoolean, isString } from 'util';
 
 /**
  * Sort array pipe
@@ -24,19 +25,21 @@ export class SortArrayPipe implements PipeTransform {
     }
     const m = descending ? -1 : 1;
     return arr.sort((a: any, b: any): number => {
-      const x = a[prop];
-      const y = b[prop];
+      let x = a[prop];
+      let y = b[prop];
 
-      // return (x === y) ? 0 : (x < y) ? -1 * m : 1 * m;
-      if (x === y) {
-        return 0;
-      } else if (x === undefined) {
-        return -1 * m; // Account for undefined properties
-      } else if (y === undefined) {
-        return 1 * m; // Account for undefined properties
-      } else {
-        return (x < y) ? -1 * m : 1 * m;
+      // Resolve undefined values for more predicable behavior
+      if (x === undefined && isBoolean(y)) {
+        x = false;
+      } else if (x === undefined && isString(y)) {
+        x = '';
       }
+      if (y === undefined && isBoolean(x)) {
+        y = false;
+      } else if (y === undefined && isString(x)) {
+        y = '';
+      }
+      return (x === y) ? 0 : (x < y) ? -1 * m : 1 * m;
     });
   }
 }

@@ -14,6 +14,7 @@
             (onActionSelect)="handleAction($event, null)"
             (onClick)="handleClick($event)"
             (onDblClick)="handleDblClick($event)"
+            (onPinChange)="handlePinChange($event)"
             (onSelectionChange)="handleSelectionChange($event)">
           <ng-template #itemHeadingTemplate let-item="item">
             <div class="list-pf-left">
@@ -69,7 +70,7 @@
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
             <pfng-action class="list-pf-actions"
-                         [config]="actionConfig"
+                         [config]="getActionConfig(item)"
                          (onActionSelect)="handleAction($event, item)">
             </pfng-action>
           </ng-template>
@@ -107,8 +108,30 @@
       <form role="form">
         <div class="form-group">
           <label class="checkbox-inline">
+            <input id="dblClick" name="dblClick" type="checkbox"
+                   [(ngModel)]="listConfig.dblClick"
+                   (ngModelChange)="listConfig.multiSelect = false">Double Click
+          </label>
+          <label class="checkbox-inline">
+            <input id="multiSelect" name="multiSelect" type="checkbox"
+                   [(ngModel)]="listConfig.multiSelect"
+                   [disabled]="listConfig.dblClick">Multi Select
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
             <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
                    [(ngModel)]="listConfig.useExpandItems">Show Simple Expansion
+          </label>
+          <label class="checkbox-inline">
+            <input id="usePinItems" name="usePinItems" type="checkbox"
+                   [(ngModel)]="listConfig.usePinItems">Show Pinned Items
           </label>
         </div>
       </form>
@@ -136,10 +159,10 @@
         <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="src/app/list/basic-list/examples/list-heading-example.component.html"></include-content>
+        <include-content src="src/app/list/basic-list/examples/list-pin-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="src/app/list/basic-list/examples/list-heading-example.component.ts"></include-content>
+        <include-content src="src/app/list/basic-list/examples/list-pin-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>

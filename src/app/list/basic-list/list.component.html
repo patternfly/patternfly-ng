@@ -1,38 +1,68 @@
 <div class="list-pf" *ngIf="!itemsEmpty">
-  <div class="list-pf-item {{item?.itemStyleClass}}"
-       *ngFor="let item of items; let i = index"
-       [ngClass]="{'active': item.selected || item.isItemExpanded, 'pfng-list-heading': config.useHeading && i === 0}">
+  <!-- heading -->
+  <div class="list-pf-item pfng-list-heading {{item?.itemStyleClass}}"
+       *ngFor="let item of headingItems; let i = index">
     <div class="list-pf-container">
-      <!-- list header -->
-      <div *ngIf="config.useHeading && i === 0; then showExpandHeader else showExpand"></div>
-      <ng-template #showExpandHeader>
-        <div class="list-pf-chevron" *ngIf="config.useExpandItems">
-          <div class="pfng-list-expand-placeholder"></div>
-        </div>
-      </ng-template>
-      <ng-template #showExpand>
-        <div class="list-pf-chevron" *ngIf="config.useExpandItems">
-          <div class="pfng-list-expand-placeholder" *ngIf="item.hideExpandToggle === true"></div>
-          <span class="fa fa-angle-right"
-                *ngIf="item.hideExpandToggle !== true"
-                (click)="toggleExpandArea(item)"
-                [ngClass]="{'fa-angle-down': item.expanded && item.expandId === undefined}"></span>
-        </div>
-      </ng-template>
+      <!-- pin -->
+      <div class="pfng-list-pin-placeholder" *ngIf="config.usePinItems"></div>
+      <!-- toggle -->
+      <div class="list-pf-chevron" *ngIf="config.useExpandItems">
+        <div class="pfng-list-expand-placeholder"></div>
+      </div>
       <!-- checkbox -->
-      <div *ngIf="(config.useHeading && i === 0); then showCheckboxHeader else showCheckbox"></div>
-      <ng-template #showCheckboxHeader>
-        <div class="list-pf-select" *ngIf="config.showCheckbox">
-          <div class="pfng-list-cb-placeholder"></div>
+      <div class="list-pf-select" *ngIf="config.showCheckbox">
+        <div class="pfng-list-cb-placeholder"></div>
+      </div>
+      <!-- content -->
+      <div class="list-pf-content list-pf-content-flex">
+        <div class="pfng-list-content">
+          <ng-template *ngIf="itemHeadingTemplate"
+                       [ngTemplateOutlet]="itemHeadingTemplate"
+                       [ngOutletContext]="{ item: item, index: i }">
+          </ng-template>
         </div>
-      </ng-template>
-      <ng-template #showCheckbox>
-        <div class="list-pf-select" *ngIf="config.showCheckbox">
-          <input type="checkbox" value="item.selected"
-                 [(ngModel)]="item.selected"
-                 (ngModelChange)="checkboxChange(item)">
+        <!-- actions -->
+        <div class="list-pf-actions">
+          <ng-template *ngIf="actionHeadingTemplate"
+                       [ngTemplateOutlet]="actionHeadingTemplate"
+                       [ngOutletContext]="{ item: item, index: i }">
+          </ng-template>
         </div>
-      </ng-template>
+      </div>
+    </div>
+  </div>
+  <!-- items -->
+  <div class="list-pf-item {{item?.itemStyleClass}}"
+       [ngClass]="{'active': item.selected || item.isItemExpanded}"
+       *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index">
+    <div class="list-pf-container">
+      <!-- pin -->
+      <div class="pfng-list-pin-wrapper"
+           [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox}"
+           *ngIf="config.usePinItems">
+        <div class="pfng-list-pin-placeholder" *ngIf="item.showPin !== true"></div>
+        <div class="pfng-list-pin"
+             *ngIf="item.showPin === true">
+          <a href="javascript:void(0);" tabindex="-1" title="Remove pin"
+             (click)="togglePin($event, item)">
+            <span class="fa fa-thumb-tack"></span>
+          </a>
+        </div>
+      </div>
+      <!-- toggle -->
+      <div class="list-pf-chevron pfng-list-expand" *ngIf="config.useExpandItems">
+        <div class="pfng-list-expand-placeholder" *ngIf="item.hideExpandToggle === true"></div>
+        <span class="fa fa-angle-right"
+              *ngIf="item.hideExpandToggle !== true"
+              (click)="toggleExpandArea(item)"
+              [ngClass]="{'fa-angle-down': item.expanded && item.expandId === undefined}"></span>
+      </div>
+      <!-- checkbox -->
+      <div class="list-pf-select" *ngIf="config.showCheckbox">
+        <input type="checkbox" value="item.selected"
+               [(ngModel)]="item.selected"
+               (ngModelChange)="checkboxChange(item)">
+      </div>
       <!-- content -->
       <div class="list-pf-content list-pf-content-flex">
         <div class="pfng-list-content"
@@ -54,7 +84,7 @@
     </div>
     <!-- expansion -->
     <div class="pfng-list-expansion list-pf-expansion collapse in"
-         *ngIf="!(config.useHeading && i === 0) && expandTemplate && item.expanded">
+         *ngIf="expandTemplate && item.expanded">
       <div class="list-pf-container" tabindex="0">
         <div class="list-pf-content">
           <div class="close" *ngIf="config.hideClose !== true">

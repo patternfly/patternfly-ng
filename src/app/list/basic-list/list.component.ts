@@ -1,14 +1,17 @@
 import {
   Component,
   DoCheck,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';
+import { ListEvent } from '../list-event';
 
 import { cloneDeep, defaults, isEqual, without } from 'lodash';
 
@@ -31,6 +34,11 @@ import { cloneDeep, defaults, isEqual, without } from 'lodash';
 })
 export class ListComponent extends ListBase implements DoCheck, OnInit {
   /**
+   * The name of the template containing action heading layout
+   */
+  @Input() actionHeadingTemplate: TemplateRef<any>;
+
+  /**
    * The list config containing component properties
    */
   @Input() config: ListConfig;
@@ -39,6 +47,21 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
    * The name of the template used to contain expandable content for each item
    */
   @Input() expandTemplate: TemplateRef<any>;
+
+  /**
+   * An array of items to display in the list heading
+   */
+  @Input() headingItems: any[];
+
+  /**
+   * The name of the template containing item heading layout
+   */
+  @Input() itemHeadingTemplate: TemplateRef<any>;
+
+  /**
+   * The event emitted when an item pin has been changed
+   */
+  @Output('onPinChange') onPinChange = new EventEmitter();
 
   private defaultConfig = {
     dblClick: false,
@@ -115,5 +138,12 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
     }
     item.expandId = undefined;
     item.expanded = !item.expanded;
+  }
+
+  private togglePin($event: MouseEvent, item: any): void {
+    item.showPin = (item.showPin === undefined) ? true : !item.showPin;
+    this.onPinChange.emit({
+      item: item
+    } as ListEvent);
   }
 }
