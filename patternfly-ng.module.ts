@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActionModule } from './src/app/action/action.module';
 import { CardModule } from './src/app/card/card.module';
 import { ChartModule } from './src/app/chart/chart.module';
+import { DataTableModule } from './src/app/datatable/datatable.module';
 import { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 import { FilterModule } from './src/app/filter/filter.module';
 import { ListModule } from './src/app/list/list.module';
@@ -26,6 +27,7 @@ import { WizardModule } from './src/app/wizard/wizard.module';
     ActionModule,
     CardModule,
     ChartModule,
+    DataTableModule,
     EmptyStateModule,
     FilterModule,
     ListModule,
