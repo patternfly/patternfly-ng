@@ -71,8 +71,11 @@
     "patternfly": "^3.28.0"
   },
   "optionalDependencies": {
+    "@swimlane/ngx-datatable": "^11.1.5",
     "angular-tree-component": "^6.0.0",
-    "c3": "^0.4.15"
+    "c3": "^0.4.15",
+    "c3": "^0.4.15",
+    "ng2-dragula": "^1.5.0"
   },
   "devDependencies": {
     "@angular/animations": "^4.0.1",

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutModalExampleComponent } from '../app/modal/example/about-modal-example.component';
 import { ActionExampleComponent } from '../app/action/example/action-example.component';
 import { CardExampleComponent } from '../app/card/basic-card/example/card-example.component';
+import { DataTableExampleComponent } from '../app/table/datatable/example/datatable-example.component';
 import { DonutExampleComponent } from '../app/chart/donut/example/donut-example.component';
 import { EmptyStateExampleComponent } from '../app/empty-state/example/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/example/filter-example.component';
@@ -104,6 +105,9 @@ const routes: Routes = [{
   }, {
     path: 'toastnotificationlist',
     component: ToastNotificationListExampleComponent
+  }, {
+    path: 'table',
+    component: DataTableExampleComponent
   }, {
     path: 'toolbar',
     component: ToolbarExampleComponent
