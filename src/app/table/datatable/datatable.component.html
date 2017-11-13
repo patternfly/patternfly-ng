@@ -1,0 +1,47 @@
+<div class="pfng-datatable">
+  <pfng-toolbar
+      [config]="config.toolbarConfig"
+      [actionTemplate]="actionTemplate"
+      (onActionSelect)="handleAction($event)"
+      (onFilterChange)="handleFilterChange($event)"
+      (onFilterFieldSelect)="handleFilterFieldSelect($event)"
+      (onFilterTypeAhead)="handleFilterTypeAhead($event)"
+      (onSortChange)="handleSortChange($event)"
+      (onViewSelect)="handleViewSelect($event)"
+      *ngIf="config.toolbarConfig">
+  </pfng-toolbar>
+  <ngx-datatable #datatable
+      class="bootstrap"
+      [rows]="rows"
+      [columns]="cols"
+      [columnMode]="'force'"
+      [dragulaClassSelector]="'pfng-datatable-dnd-header'"
+      [dragulaModel]="rowsModel"
+      [dragulaName]="dragulaName"
+      [headerHeight]="50"
+      [selected]="selectedRows"
+      [rowHeight]="'auto'"
+      [reorderable]="true"
+      (dragulaDrop)="handleDrop($event)"
+      (dragulaDrag)="handleDrag($event)"
+      *ngIf="showTable">
+    <ng-template #headerTmpl></ng-template>
+    <ng-template #dndTmpl>
+      <div class="pfng-datatable-dnd-container">
+        <div class="pfng-datatable-dnd-header"></div>
+      </div>
+    </ng-template>
+    <ng-template #selectTmpl let-row="row">
+      <div class="pfng-datatable-select">
+        <input type="checkbox" value="row.selected"
+               [(ngModel)]="row.selected"
+               (ngModelChange)="selectionChange(row)">
+      </div>
+    </ng-template>
+  </ngx-datatable>
+  <pfng-pagination
+      [config]="config.paginationConfig"
+      (onPageNumberChange)="handlePageNumber($event)"
+      (onPageSizeChange)="handlePageSize($event)"
+      *ngIf="config.paginationConfig"></pfng-pagination>
+</div>

@@ -16,6 +16,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { AboutModalExampleModule } from '../app/modal/example/about-modal-example.module';
 import { ActionExampleModule } from '../app/action/example/action-example.module';
 import { CardExampleModule } from '../app/card/basic-card/example/card-example.module';
+import { DataTableExampleModule } from '../app/table/datatable/example/datatable-example.module';
 import { DonutExampleModule } from '../app/chart/donut/example/donut-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/example/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/example/filter-example.module';
@@ -52,6 +53,7 @@ import { WizardExampleModule } from '../app/wizard/example/wizard-example.module
     AppRoutingModule,
     BrowserModule,
     CardExampleModule,
+    DataTableExampleModule,
     DemoComponentsModule,
     DonutExampleModule,
     EmptyStateExampleModule,
