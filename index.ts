@@ -30,6 +30,11 @@ export { SparklineComponent } from './src/app/chart/sparkline/sparkline.componen
 export { SparklineConfig } from './src/app/chart/sparkline/sparkline-config';
 export { SparklineData } from './src/app/chart/sparkline/sparkline-data';
 
+// Data Table
+export { DragulaExtendedDirective } from './src/app/datatable/dragula-extended.directive';
+export { DataTableConfig } from './src/app/datatable/datatable-config';
+export { DataTableComponent } from './src/app/datatable/datatable.component';
+
 // EmptyState
 export { EmptyStateComponent } from './src/app/empty-state/empty-state.component';
 export { EmptyStateConfig } from './src/app/empty-state/empty-state-config';

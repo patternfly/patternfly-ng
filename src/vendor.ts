@@ -14,6 +14,7 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 import 'patternfly/dist/css/patternfly.css';
 import 'patternfly/dist/css/patternfly-additions.css';
-import 'highlight.js/styles/github.css';
+import '@swimlane/ngx-datatable/release/themes/bootstrap.css';
+import 'dragula/dist/dragula.css';
 
 require('patternfly/dist/js/patternfly-settings');

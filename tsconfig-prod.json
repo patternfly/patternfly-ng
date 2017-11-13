@@ -33,9 +33,11 @@
     "build/index.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true
+    "forkChecker": true,
+    "useWebpackText": true
   },
   "angularCompilerOptions": {
+    "genDir": "compiled",
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true
   },
