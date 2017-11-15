@@ -4,25 +4,45 @@
     <hr/>
   </div>
 </div>
-<div class="padding-15">
-  <div class="row row-cards-pf well">
-    <div style="max-width:409px;">
-      <div class="col-md-10">
-        <label>With top border, Icon Class, Href</label>
-        <pfng-info-status-card
-          [config]="card1Config">
-        </pfng-info-status-card>
-        <br>
-        <label>No Top Border, Icon Image, No Title, No Html Content</label>
-        <pfng-info-status-card
-          [config]="card2Config">
-        </pfng-info-status-card>
-        <br>
-        <label>With HTML</label>
-        <pfng-info-status-card
-          [config]="card3Config">
-        </pfng-info-status-card>
-      </div>
+<div class="cards-pf">
+  <div class="restrictive-width-example-container">
+    <div class="row row-cards-pf">
+      <label>With top border, Icon Class, Href</label>
+      <pfng-info-status-card
+        [config]="card1Config">
+      </pfng-info-status-card>
+    </div>
+    <div class="row row-cards-pf">
+      <label>No Top Border, Icon Image, No Title, No Html Content</label>
+      <pfng-info-status-card
+        [config]="card2Config">
+      </pfng-info-status-card>
+    </div>
+    <div class="row row-cards-pf">
+      <label>With HTML</label>
+      <pfng-info-status-card
+        [config]="card3Config">
+      </pfng-info-status-card>
+    </div>
+  </div>
+  <div class="container-fluid fluid-width-example-container">
+    <div class="col-lg-4">
+      <label>With top border, Icon Class, Href</label>
+      <pfng-info-status-card
+        [config]="card1Config">
+      </pfng-info-status-card>
+    </div>
+    <div class="col-lg-4">
+      <label>With HTML</label>
+      <pfng-info-status-card
+        [config]="card3Config">
+      </pfng-info-status-card>
+    </div>
+    <div class="col-lg-4">
+      <label>No Top Border, Icon Image, No Title, No Html Content</label>
+      <pfng-info-status-card
+        [config]="card2Config">
+      </pfng-info-status-card>
     </div>
   </div>
 </div>
