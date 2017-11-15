@@ -55,6 +55,13 @@
   font-size: 12px;
   opacity: 0;
   padding-top: 4px;
+  a {
+    color: @color-pf-black;
+    opacity: .7;
+    &:hover {
+      opacity: 1;
+    }
+  }
   .dropdown-item:hover & {
     opacity: 1;
     transition-duration: .5s;
@@ -68,11 +75,12 @@
   padding-bottom: 5px;
   padding-right: 5px;
   padding-top: 5px;
-  .fa:before {
+  a {
     color: @color-pf-white;
-  }
-  &.close {
-    opacity: 0;
+    opacity: .9;
+    .fa:before {
+      color: @color-pf-white;
+    }
     &:hover {
       opacity: 1;
     }

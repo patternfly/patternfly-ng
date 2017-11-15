@@ -9,10 +9,10 @@
       <ul class="dropdown-menu" role="menu" *dropdownMenu>
         <li role="menuitem" *ngFor="let field of config?.fields"
             [ngClass]="{'disabled': isFieldDisabled(field), 'divider dropdown-divider': field.separator}">
-          <a class="filter-field dropdown-item" role="menuitem" tabindex="-1" (click)="selectField(field)"
+          <a class="filter-field dropdown-item" href="javascript:void(0);" role="menuitem" tabindex="-1"
+             (click)="selectField(field)"
              *ngIf="!field?.separator && !isFieldDisabled(field)">{{field?.title}}</a>
-          <a class="filter-field dropdown-item" role="menuitem"
-             href="javascript:void(0)"
+          <a class="filter-field dropdown-item" href="javascript:void(0);" role="menuitem"
              onclick="return false;"
              *ngIf="!field?.separator && isFieldDisabled(field)">{{field?.title}}</a>
         </li>
@@ -31,13 +31,15 @@
         </button>
         <ul class="dropdown-menu" role="menu" *dropdownMenu>
           <li role="menuitem" *ngIf="currentField?.placeholder">
-            <a class="dropdown-item" tabindex="-1" (click)="selectQuery()">
+            <a class="dropdown-item" href="javascript:void(0);" tabindex="-1" (click)="selectQuery()">
               {{currentField?.placeholder}}
             </a>
           </li>
           <li role="menuitem" *ngFor="let query of currentField?.queries"
               [ngClass]="{'selected': query?.value === currentValue, 'divider dropdown-divider': query?.separator}">
-            <a class="dropdown-item" tabindex="-1" (click)="selectQuery(query)" *ngIf="!query?.separator">
+            <a class="dropdown-item" href="javascript:void(0);" tabindex="-1"
+               (click)="selectQuery(query)"
+               *ngIf="!query?.separator">
               <span class="{{query?.iconStyleClass}}" *ngIf="query?.iconStyleClass"></span>
               <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
               {{query.value}}
@@ -57,7 +59,7 @@
         </div>
         <ul class="dropdown-menu" role="menu" *dropdownMenu>
           <li role="menuitem" *ngIf="currentField.placeholder">
-            <a class="dropdown-item" tabindex="-1" (click)="selectQuery()">
+            <a class="dropdown-item" href="javascript:void(0);" tabindex="-1" (click)="selectQuery()">
               {{currentField?.placeholder}}
             </a>
           </li>
@@ -70,21 +72,27 @@
                  *ngIf="query?.showDelete">
               <span class="pfng-filter-delete-text">Delete filter?</span>
               <span class="pfng-filter-delete-confirm close">
-                <span class="fa fa-check padding-right-5" tabindex="-1"
-                      (click)="deleteQueryConfirm($event, query)"></span>
+                <a class="padding-right-5" href="javascript:void(0);" tabindex="-1"
+                   (click)="deleteQueryConfirm($event, query)">
+                  <span class="fa fa-check"></span>
+                </a>
               </span>
               <span class="pfng-filter-delete-confirm close">
-                <span class="fa fa-remove padding-right-5" tabindex="-1"
-                      (click)="deleteQueryCancel($event, query)"></span>
+                <a class="padding-right-5" href="javascript:void(0);" tabindex="-1"
+                   (click)="deleteQueryCancel($event, query)">
+                  <span class="fa fa-remove"></span>
+                </a>
               </span>
             </div>
-            <a #blurable class="dropdown-item" tabindex="-1"
+            <a #blurable class="dropdown-item" href="javascript:void(0);" tabindex="-1"
                (click)="selectQuery(query)"
                *ngIf="!query?.separator">
               <span class="pfng-filter-delete close" *ngIf="query?.showDelete">
-                <span class="pficon pficon-remove" tabindex="-1"
-                      [ngClass]="{'hidden': query?.showDeleteConfirm}"
-                      (click)="deleteQuery($event, query, blurable)"></span>
+                <a href="javascript:void(0);" tabindex="-1"
+                   [ngClass]="{'hidden': query?.showDeleteConfirm}"
+                   (click)="deleteQuery($event, query, blurable)">
+                  <span class="pficon pficon-remove"></span>
+                </a>
               </span>
               <span class="{{query?.iconStyleClass}}" *ngIf="query?.iconStyleClass"></span>
               <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
