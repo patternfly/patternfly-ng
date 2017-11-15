@@ -65,8 +65,8 @@ describe('Info Status Card Component - ', () => {
   it('should set the title, title link, and icons class', () => {
     Object.assign(infoCard, cardConfig);
     fixture.detectChanges();
-    let numTitles = fixture.debugElement.queryAll(By.css('.card-pf-title')).length;
-    let numTitleLinks = fixture.debugElement.queryAll(By.css('.card-pf-title a[href]')).length;
+    let numTitles = fixture.debugElement.queryAll(By.css('.pfng-card-title')).length;
+    let numTitleLinks = fixture.debugElement.queryAll(By.css('.pfng-card-title a[href]')).length;
     let hasIconStyleClass = fixture.debugElement.queryAll(By.css('.info-icon.fa.fa-shield')).length;
     expect(numTitles).toBe(1);
     expect(numTitleLinks).toBe(1);
@@ -77,14 +77,14 @@ describe('Info Status Card Component - ', () => {
     cardConfig.href = null;
     Object.assign(infoCard, cardConfig);
     fixture.detectChanges();
-    let numTitleLinks = fixture.debugElement.queryAll(By.css('.card-pf-title a')).length;
+    let numTitleLinks = fixture.debugElement.queryAll(By.css('.pfng-card-title a')).length;
     expect(numTitleLinks).toBe(0);
   });
 
   it('should set three info elements', () => {
     Object.assign(infoCard, cardConfig);
     fixture.detectChanges();
-    let numInfoElements = fixture.debugElement.queryAll(By.css('.card-pf-info-item')).length;
+    let numInfoElements = fixture.debugElement.queryAll(By.css('.pfng-card-info-item')).length;
     expect(numInfoElements).toBe(4);
   });
 
@@ -114,7 +114,7 @@ describe('Info Status Card Component - ', () => {
     cardConfig.iconImageSrc = '//www.patternfly.org/assets/img/redhat.svg',
     Object.assign(infoCard, cardConfig);
     fixture.detectChanges();
-    let hasIconImg = fixture.debugElement.queryAll(By.css('.card-pf-info-image .info-img')).length;
+    let hasIconImg = fixture.debugElement.queryAll(By.css('.pfng-card-info-image .info-img')).length;
     expect(hasIconImg).toBe(1);
   });
 
