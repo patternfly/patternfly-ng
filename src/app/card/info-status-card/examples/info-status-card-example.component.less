@@ -1,0 +1,24 @@
+@bottomMargin: 12px;
+.card-pf-info-status {
+  @supports not (word-break: break-word) {
+    word-break: break-all;
+  }
+  @supports (word-break: break-word) {
+    word-break: break-word;
+  }
+}
+.cards-pf {
+  padding-bottom: 20px;
+}
+.cards-pf .row-cards-pf {
+  margin-bottom: @bottomMargin;
+}
+.restrictive-width-example-container {
+  display: inline-block;
+}
+.fluid-width-example-container {
+  [class*="col-"] {
+    padding: 0;
+    margin-bottom: @bottomMargin;
+  }
+}
