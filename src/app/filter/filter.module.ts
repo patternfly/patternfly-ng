@@ -15,8 +15,7 @@ import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
 import { FilterQuery } from './filter-query';
 import { FilterType } from './filter-type';
-import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
-import { TruncateModule } from './../truncate/truncate.module';
+import { PipeModule } from './../pipe/pipe.module';
 
 export {
   Filter,
@@ -35,10 +34,9 @@ export {
     BsDropdownModule.forRoot(),
     CommonModule,
     FormsModule,
+    PipeModule,
     PopoverModule.forRoot(),
-    TooltipModule.forRoot(),
-    SearchHighlightModule,
-    TruncateModule
+    TooltipModule.forRoot()
   ],
   declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
   exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
