@@ -62,14 +62,15 @@ export { InlineNotificationComponent } from './src/app/notification/inline-notif
 export { PaginationComponent } from './src/app/pagination/pagination.component';
 export { PaginationConfig } from './src/app/pagination/pagination-config';
 export { PaginationModule } from './src/app/pagination/pagination.module';
+// Pipes
+export { PipeModule } from './src/app/pipe/pipe.module';
+export { SearchHighlightPipe } from './src/app/pipe/search-highlight/search-highlight.pipe';
+export { TruncatePipe } from './src/app/pipe/truncate/truncate.pipe';
 // Remaining Chars
 export { RemainingCharsCountDirective } from './src/app/remaining-chars-count/remaining-chars-count.directive';
 export { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
 // Sample
 export { SampleModule } from './src/app/sample/sample.module';
-// Search Highlight
-export { SearchHighlightPipe } from './src/app/search-highlight/search-highlight.pipe';
-export { SearchHighlightModule } from './src/app/search-highlight/search-highlight.module';
 // Sort
 export { SortComponent } from './src/app/sort/sort.component';
 export { SortConfig } from './src/app/sort/sort-config';
@@ -81,9 +82,6 @@ export { ToolbarConfig } from './src/app/toolbar/toolbar-config';
 export { ToolbarComponent } from './src/app/toolbar/toolbar.component';
 export { ToolbarModule } from './src/app/toolbar/toolbar.module';
 export { ToolbarView } from './src/app/toolbar/toolbar-view';
-// Truncate
-export { TruncatePipe } from './src/app/truncate/truncate.pipe';
-export { TruncateModule } from './src/app/truncate/truncate.module';
 // Utilities
 export { WindowReference } from './src/app/utilities/window.reference';
 // Vertical Navigation

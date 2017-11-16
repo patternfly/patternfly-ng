@@ -15,12 +15,11 @@ import { ListModule } from './src/app/list/list.module';
 import { NavigationModule } from './src/app/navigation/navigation.module';
 import { NotificationModule } from './src/app/notification/notification.module';
 import { PaginationModule } from './src/app/pagination/pagination.module';
+import { PipeModule } from './src/app/pipe/pipe.module';
 import { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
 import { SampleModule } from './src/app/sample/sample.module';
-import { SearchHighlightModule } from './src/app/search-highlight/search-highlight.module';
 import { SortModule } from './src/app/sort/sort.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
-import { TruncateModule } from './src/app/truncate/truncate.module';
 import { WizardModule } from './src/app/wizard/wizard.module';
 var PatternFlyNgModule = (function () {
     function PatternFlyNgModule() {
@@ -43,11 +42,10 @@ PatternFlyNgModule = __decorate([
             NotificationModule,
             PaginationModule,
             RemainingCharsCountModule,
+            PipeModule,
             SampleModule,
-            SearchHighlightModule,
             SortModule,
             ToolbarModule,
-            TruncateModule,
             WizardModule
         ]
     })

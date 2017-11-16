@@ -20,14 +20,13 @@ import { FilterField } from '../filter/filter-field';
 import { FilterFieldsComponent } from '../filter/filter-fields.component';
 import { FilterResultsComponent } from '../filter/filter-results.component';
 import { FilterType } from '../filter/filter-type';
-import { SearchHighlightModule } from './../search-highlight/search-highlight.module';
+import { PipeModule } from './../pipe/pipe.module';
 import { SortComponent } from '../sort/sort.component';
 import { SortConfig } from '../sort/sort-config';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarConfig } from './toolbar-config';
 import { ToolbarView } from './toolbar-view';
-import { TruncateModule } from './../truncate/truncate.module';
 
 describe('Toolbar component - ', () => {
   let comp: ToolbarComponent;
@@ -181,10 +180,9 @@ describe('Toolbar component - ', () => {
         BsDropdownModule.forRoot(),
         BrowserAnimationsModule,
         FormsModule,
+        PipeModule,
         PopoverModule.forRoot(),
-        TooltipModule.forRoot(),
-        SearchHighlightModule,
-        TruncateModule
+        TooltipModule.forRoot()
       ],
       declarations: [
         ToolbarComponent, FilterFieldsComponent,

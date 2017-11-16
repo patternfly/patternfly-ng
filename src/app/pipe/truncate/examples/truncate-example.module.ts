@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 
-import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
-import { TruncateModule } from '../truncate.module';
+import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
+import { PipeModule } from '../../pipe.module';
 import { TruncateExampleComponent } from './truncate-example.component';
 
 @NgModule({
@@ -13,8 +13,8 @@ import { TruncateExampleComponent } from './truncate-example.component';
     CommonModule,
     DemoComponentsModule,
     FormsModule,
-    TabsModule.forRoot(),
-    TruncateModule
+    PipeModule,
+    TabsModule.forRoot()
   ],
   providers: [ TabsetConfig ]
 })

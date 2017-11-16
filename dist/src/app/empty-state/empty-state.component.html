@@ -28,7 +28,7 @@
   </div>
     <div class="blank-slate-pf-secondary-action {{config.actions?.moreActionsStyleClass}}"
        [ngClass]="{'hidden': config.actions?.moreActionsVisible === false}"
-       *ngIf="config.actions?.moreActions.length > 0">
+       *ngIf="config.actions?.moreActions?.length > 0">
     <button *ngFor="let action of config.actions.moreActions"
             class="btn btn-default {{action.styleClass}}" title="{{action.tooltip}}"
             [disabled]="action.disabled"
