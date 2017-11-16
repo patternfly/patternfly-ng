@@ -1,0 +1,42 @@
+<div class="padding-15">
+  <div class="cards-pf">
+    <div class="row row-cards-pf">
+      <div class="col-sm-12">
+        <pfng-card [config]="config"
+                   (onActionSelect)="handleActionSelect($event)"
+                   (onFilterSelect)="handleFilterSelect($event)">
+          <pfng-chart-sparkline [config]="chartConfig" [chartData]="chartData" ></pfng-chart-sparkline>
+        </pfng-card>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-md-12">
+      <h4 class="events-label">Actions: </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <textarea rows="3" class="col-md-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-xs-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/cardcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/card/basic-card/examples/card-basic-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/card/basic-card/examples/card-basic-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
