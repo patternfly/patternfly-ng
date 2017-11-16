@@ -1,24 +1,34 @@
+@import '../../../../../node_modules/patternfly/dist/less/color-variables.less';
 @bottomMargin: 12px;
-.pfng-card-info-status {
-  @supports not (word-break: break-word) {
-    word-break: break-all;
-  }
-  @supports (word-break: break-word) {
-    word-break: break-word;
-  }
-}
-.cards-pf {
+.pfng-isc-ex-container {
   padding-bottom: 20px;
-}
-.cards-pf .row-cards-pf {
-  margin-bottom: @bottomMargin;
-}
-.restrictive-width-example-container {
-  display: inline-block;
-}
-.fluid-width-example-container {
-  [class*='col-'] {
-    padding: 0;
+  h5 {
+    border-bottom: 1px dashed darken(@color-pf-blue-300, 15%);
+    padding-bottom: 16px;
+  }
+  .row-cards-pf {
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: @bottomMargin;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+  .pfng-restrictive-width-container {
+    display: inline-block;
+  }
+  .pfng-fluid-width-container {
+    [class*='col-'] {
+      margin-bottom: @bottomMargin;
+      padding: 0;
+    }
+  }
+  .pfng-card-info-status {
+    @supports not (word-break: break-word) {
+      word-break: break-all;
+    }
+    @supports (word-break: break-word) {
+      word-break: break-word;
+    }
   }
 }
