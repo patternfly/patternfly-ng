@@ -9,6 +9,7 @@ import { InfoStatusCardConfig } from '../info-status-card-config';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'info-status-card-example',
+  styleUrls: ['./info-status-card-example.component.less'],
   templateUrl: './info-status-card-example.component.html'
 })
 
@@ -31,13 +32,13 @@ export class InfoStatusCardExampleComponent implements OnInit {
   card2Config: InfoStatusCardConfig = {
     showTopBorder: false,
     htmlContent: false,
-    iconImageSrc: '//www.patternfly.org/assets/img/redhat.svg',
+    iconImageSrc: '//www.patternfly.org/assets/img/patternfly-orb.svg',
     info: [
       'Infastructure: VMware',
       'Vmware: 1 CPU (1 socket x 1 core), 1024 MB',
       '12 Snapshots',
       'Drift History: 1',
-      '<strong>No htmlContent</strong>'
+      '<b>No htmlContent</b>'
     ]
 
   };

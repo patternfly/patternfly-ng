@@ -2,7 +2,8 @@ import {
   Component,
   Input,
   OnInit,
-  DoCheck
+  DoCheck,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
@@ -13,9 +14,11 @@ import { InfoStatusCardConfig } from './info-status-card-config';
  * Info Status Card Component
  */
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'pfng-info-status-card',
-  templateUrl: './info-status-card.component.html',
-  styleUrls: ['./info-status-card.component.less']
+  styleUrls: ['./info-status-card.component.less'],
+  templateUrl: './info-status-card.component.html'
+
 })
 
 export class InfoStatusCardComponent implements OnInit, DoCheck {
