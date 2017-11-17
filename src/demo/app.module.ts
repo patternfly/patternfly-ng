@@ -24,6 +24,7 @@ import { RemainingCharsCountExampleModule }
   from '../app/remaining-chars-count/examples/remaining-chars-count-example.module';
 import { SampleExampleModule } from '../app/sample/examples/sample-example.module';
 import { SearchHighlightExampleModule } from '../app/pipe/search-highlight/examples/search-highlight-example.module';
+import { SortArrayExampleModule } from '../app/pipe/sort-array/examples/sort-array-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 import { SparklineExampleModule } from '../app/chart/sparkline/examples/sparkline-example.module';
 import { ToolbarExampleModule } from '../app/toolbar/examples/toolbar-example.module';
@@ -51,6 +52,7 @@ import { NavigationExampleModule } from '../app/navigation/examples/navigation-e
     RemainingCharsCountExampleModule,
     SampleExampleModule,
     SearchHighlightExampleModule,
+    SortArrayExampleModule,
     SortExampleModule,
     SparklineExampleModule,
     ToolbarExampleModule,

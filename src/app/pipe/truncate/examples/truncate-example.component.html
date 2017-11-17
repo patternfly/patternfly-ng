@@ -8,9 +8,9 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <p>{{'this is a not so long string' | Truncate}}</p>
-        <p>{{'this is a not so long string' | Truncate:[20]}}</p>
-        <p>{{'this is a not so long string' | Truncate:[20, '.']}}</p>
+        <p>{{'this is a not so long string' | truncate}}</p>
+        <p>{{'this is a not so long string' | truncate: 20}}</p>
+        <p>{{'this is a not so long string' | truncate: 20: '.'}}</p>
       </div>
     </div>
   </div>
@@ -26,10 +26,10 @@
         <iframe class="demoframe" src="docs/classes/truncatepipe.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="src/app/truncate/examples/truncate-example.component.html"></include-content>
+        <include-content src="src/app/pipe/truncate/examples/truncate-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="src/app/truncate/examples/truncate-example.component.ts"></include-content>
+        <include-content src="src/app/pipe/truncate/examples/truncate-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>
