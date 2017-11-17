@@ -56,6 +56,7 @@ export { PaginationConfig } from './src/app/pagination/pagination-config';
 export { PaginationModule } from './src/app/pagination/pagination.module';
 export { PipeModule } from './src/app/pipe/pipe.module';
 export { SearchHighlightPipe } from './src/app/pipe/search-highlight/search-highlight.pipe';
+export { SortArrayPipe } from './src/app/pipe/sort-array/sort-array.pipe';
 export { TruncatePipe } from './src/app/pipe/truncate/truncate.pipe';
 export { RemainingCharsCountDirective } from './src/app/remaining-chars-count/remaining-chars-count.directive';
 export { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';

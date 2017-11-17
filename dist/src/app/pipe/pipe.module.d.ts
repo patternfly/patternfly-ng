@@ -1,5 +1,5 @@
 /**
- * A module containing objects associated with the truncate pipe
+ * A module containing objects associated with pipes
  */
 export declare class PipeModule {
 }

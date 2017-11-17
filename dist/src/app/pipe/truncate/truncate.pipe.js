@@ -13,15 +13,23 @@ import { Pipe } from '@angular/core';
 var TruncatePipe = (function () {
     function TruncatePipe() {
     }
-    TruncatePipe.prototype.transform = function (value, args) {
-        var limit = (args && args.length > 0) ? parseInt(args[0], 10) : 10;
-        var trail = (args && args.length > 1) ? args[1] : '...';
+    /**
+     * Truncate given string
+     *
+     * @param {string} value The string to truncate
+     * @param {string} limit The number of characters to truncate the string at
+     * @param {string} trail The trailing characters representing truncation
+     * @returns {string} The truncated string
+     */
+    TruncatePipe.prototype.transform = function (value, limit, trail) {
+        if (limit === void 0) { limit = 10; }
+        if (trail === void 0) { trail = '...'; }
         return (value.length > limit) ? value.substring(0, limit) + trail : value;
     };
     return TruncatePipe;
 }());
 TruncatePipe = __decorate([
-    Pipe({ name: 'Truncate' })
+    Pipe({ name: 'truncate' })
 ], TruncatePipe);
 export { TruncatePipe };
 //# sourceMappingURL=truncate.pipe.js.map

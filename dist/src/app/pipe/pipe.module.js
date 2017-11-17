@@ -6,9 +6,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { NgModule } from '@angular/core';
 import { SearchHighlightPipe } from './search-highlight/search-highlight.pipe';
+import { SortArrayPipe } from './sort-array/sort-array.pipe';
 import { TruncatePipe } from './truncate/truncate.pipe';
 /**
- * A module containing objects associated with the truncate pipe
+ * A module containing objects associated with pipes
  */
 var PipeModule = (function () {
     function PipeModule() {
@@ -19,10 +20,12 @@ PipeModule = __decorate([
     NgModule({
         declarations: [
             SearchHighlightPipe,
+            SortArrayPipe,
             TruncatePipe
         ],
         exports: [
             SearchHighlightPipe,
+            SortArrayPipe,
             TruncatePipe
         ]
     })

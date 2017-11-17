@@ -13,8 +13,14 @@ import { Pipe } from '@angular/core';
 var SearchHighlightPipe = (function () {
     function SearchHighlightPipe() {
     }
+    /**
+     *
+     * @param {string} val The string to highlight
+     * @param {string} search The text to search for
+     * @returns {any} The given string with highlighted text
+     */
     SearchHighlightPipe.prototype.transform = function (val, search) {
-        if (search !== '' && search.length) {
+        if (search !== undefined && search.length > 0) {
             var lowerVal = val.toLowerCase();
             search = search.toLowerCase();
             if (!lowerVal)
@@ -51,7 +57,7 @@ var SearchHighlightPipe = (function () {
     return SearchHighlightPipe;
 }());
 SearchHighlightPipe = __decorate([
-    Pipe({ name: 'SearchHighlight' })
+    Pipe({ name: 'searchHighlight' })
 ], SearchHighlightPipe);
 export { SearchHighlightPipe };
 //# sourceMappingURL=search-highlight.pipe.js.map

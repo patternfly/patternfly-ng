@@ -5,7 +5,7 @@ describe('Truncate pipe', () => {
   let pipe = new TruncatePipe();
 
   it('should transforms "this is a not so long string" to "this is a not so lon..."', () => {
-    expect(pipe.transform('this is a not so long string', ['20']))
+    expect(pipe.transform('this is a not so long string', 20))
       .toBe('this is a not so lon...');
   });
 });
