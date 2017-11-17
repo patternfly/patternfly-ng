@@ -5,12 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
  *
  * This is currently used with the save filter feature of the filter fields component
  */
-@Pipe({ name: 'Truncate'})
+@Pipe({ name: 'truncate'})
 export class TruncatePipe implements PipeTransform {
-  transform(value: string, args: string[]): string {
-    let limit = (args && args.length > 0) ? parseInt(args[0], 10) : 10;
-    let trail = (args && args.length > 1) ? args[1] : '...';
-
+  /**
+   * Truncate given string
+   *
+   * @param {string} value The string to truncate
+   * @param {string} limit The number of characters to truncate the string at
+   * @param {string} trail The trailing characters representing truncation
+   * @returns {string} The truncated string
+   */
+  transform(value: string, limit: number = 10, trail: string = '...'): string {
     return (value.length > limit) ? value.substring(0, limit) + trail : value;
   }
 }

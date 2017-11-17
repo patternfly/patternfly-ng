@@ -96,7 +96,7 @@
               </span>
               <span class="{{query?.iconStyleClass}}" *ngIf="query?.iconStyleClass"></span>
               <img class="avatar" [attr.src]="query?.imageUrl" *ngIf="query?.imageUrl"/>
-              <span [innerHTML]="query.value | Truncate:[20] | SearchHighlight: queryInput.value"></span>
+              <span [innerHTML]="query.value | truncate: 20 | searchHighlight: queryInput.value"></span>
             </a>
           </li>
         </ul>

@@ -10,6 +10,7 @@ import {
   templateUrl: './search-highlight-example.component.html'
 })
 export class SearchHighlightExampleComponent implements OnInit {
+  searchText: string;
 
   constructor() {
   }
