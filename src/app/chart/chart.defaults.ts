@@ -8,8 +8,9 @@ export class ChartDefaults {
   public getDefaultColors = this.patternflyDefaults.getDefaultColors;
   public getDefaultDonut = this.patternflyDefaults.getDefaultDonut;
   public getDefaultDonutSize = this.patternflyDefaults.getDefaultDonutSize;
-  public getDefaultDonutColor = this.patternflyDefaults.getDefaultDonutColors;
+  public getDefaultDonutColors = this.patternflyDefaults.getDefaultDonutColors;
   public getDefaultDonutLegend = this.patternflyDefaults.getDefaultDonutLegend;
+  public getDefaultDonutTooltip = this.patternflyDefaults.getDefaultDonutTooltip;
   public getDefaultDonutConfig = this.patternflyDefaults.getDefaultDonutConfig;
   public getDefaultSparklineArea = this.patternflyDefaults.getDefaultSparklineArea;
   public getDefaultSparklineSize = this.patternflyDefaults.getDefaultSparklineSize;
