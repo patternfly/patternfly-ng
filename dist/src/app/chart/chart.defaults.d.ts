@@ -3,8 +3,9 @@ export declare class ChartDefaults {
     getDefaultColors: any;
     getDefaultDonut: any;
     getDefaultDonutSize: any;
-    getDefaultDonutColor: any;
+    getDefaultDonutColors: any;
     getDefaultDonutLegend: any;
+    getDefaultDonutTooltip: any;
     getDefaultDonutConfig: any;
     getDefaultSparklineArea: any;
     getDefaultSparklineSize: any;
