@@ -73,13 +73,22 @@
 
 // Pin
 .pfng-list-pin {
+  align-items: center;
+  align-self: stretch;
   background-color: @color-pf-black-150;
   box-shadow: -3px 1px 4px 0 @color-pf-black-200 inset;
-  font-size: 14px;
-  padding-bottom: 24px;
-  padding-left: 6px;
-  padding-right: 6px;
-  padding-top: 23px;
+  display: flex;
+  margin-bottom: -20px;
+  margin-left: -20px;
+  margin-right: 20px;
+  margin-top: -20px;
+  padding-bottom: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 20px;
+  &.multi-ctrls {
+    margin-right: 10px;
+  }
   a {
     color: @color-pf-black;
     opacity: .7;
@@ -89,17 +98,17 @@
   }
 }
 
-// Pin placeholder for heading and non-pinned items
-.pfng-list-pin-placeholder {
-  width: 21px;
+// Pin constainer to hide/show feature
+.pfng-list-pin-container {
+  align-self: stretch;
+  display: flex;
 }
 
-.pfng-list-pin-wrapper {
-  margin-bottom: -20px;
+// Pin placeholder for heading and non-pinned items
+.pfng-list-pin-placeholder {
   margin-left: -20px;
-  margin-right: 20px;
-  margin-top: -20px;
+  width: 38px;
   &.multi-ctrls {
-    margin-right: 10px;
+    width: 28px;
   }
 }

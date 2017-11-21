@@ -37,11 +37,12 @@
        *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index">
     <div class="list-pf-container">
       <!-- pin -->
-      <div class="pfng-list-pin-wrapper"
-           [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox}"
-           *ngIf="config.usePinItems">
-        <div class="pfng-list-pin-placeholder" *ngIf="item.showPin !== true"></div>
+      <div class="pfng-list-pin-container" *ngIf="config.usePinItems">
+        <div class="pfng-list-pin-placeholder"
+             [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox}"
+             *ngIf="item.showPin !== true"></div>
         <div class="pfng-list-pin"
+             [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox}"
              *ngIf="item.showPin === true">
           <a href="javascript:void(0);" tabindex="-1" title="Remove pin"
              (click)="togglePin($event, item)">
