@@ -178,8 +178,7 @@ export class ListHeadingExampleComponent implements OnInit {
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: true,
-      useExpandItems: false,
-      useHeading: true
+      useExpandItems: false
     } as ListConfig;
   }
 

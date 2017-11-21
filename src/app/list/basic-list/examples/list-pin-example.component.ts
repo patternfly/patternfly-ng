@@ -131,7 +131,6 @@ export class ListPinExampleComponent implements OnInit {
       selectionMatchProp: 'name',
       showCheckbox: true,
       useExpandItems: false,
-      useHeading: true,
       usePinItems: true
     } as ListConfig;
   }
