@@ -20,6 +20,7 @@ import { SearchHighlightExampleComponent }
 import { SortExampleComponent } from '../app/sort/examples/sort-example.component';
 import { SortArrayExampleComponent } from '../app/pipe/sort-array/examples/sort-array-example.component';
 import { SparklineExampleComponent } from '../app/chart/sparkline/examples/sparkline-example.component';
+import { DonutExampleComponent } from '../app/chart/donut/examples/donut-example.component';
 import { ToastNotificationExampleComponent } from '../app/notification/examples/toast-notification-example.component';
 import { ToolbarExampleComponent } from '../app/toolbar/examples/toolbar-example.component';
 import { TreeListExampleComponent } from '../app/list/tree-list/examples/tree-list-example.component';
@@ -85,6 +86,9 @@ const routes: Routes = [{
   }, {
     path: 'sparkline',
     component: SparklineExampleComponent
+  }, {
+    path: 'donut',
+    component: DonutExampleComponent
   }, {
     path: 'toastnotification',
     component: ToastNotificationExampleComponent

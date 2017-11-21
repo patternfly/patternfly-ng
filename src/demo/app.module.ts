@@ -27,6 +27,7 @@ import { SearchHighlightExampleModule } from '../app/pipe/search-highlight/examp
 import { SortArrayExampleModule } from '../app/pipe/sort-array/examples/sort-array-example.module';
 import { SortExampleModule } from '../app/sort/examples/sort-example.module';
 import { SparklineExampleModule } from '../app/chart/sparkline/examples/sparkline-example.module';
+import { DonutExampleModule } from '../app/chart/donut/examples/donut-example.module';
 import { ToolbarExampleModule } from '../app/toolbar/examples/toolbar-example.module';
 import { TreeListExampleModule } from '../app/list/tree-list/examples/tree-list-example.module';
 import { TruncateExampleModule } from '../app/pipe/truncate/examples/truncate-example.module';
@@ -55,6 +56,7 @@ import { NavigationExampleModule } from '../app/navigation/examples/navigation-e
     SortArrayExampleModule,
     SortExampleModule,
     SparklineExampleModule,
+    DonutExampleModule,
     ToolbarExampleModule,
     TreeListExampleModule,
     TruncateExampleModule,
