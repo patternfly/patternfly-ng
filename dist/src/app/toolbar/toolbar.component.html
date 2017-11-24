@@ -23,7 +23,7 @@
       <div class="toolbar-pf-action-right">
         <div class="form-group toolbar-pf-view-selector"
              *ngIf="viewTemplate !== undefined || (config.views)">
-          <ng-template [ngTemplateOutlet]="viewTemplate" [ngOutletContext]="{}"></ng-template>
+          <ng-template [ngTemplateOutlet]="viewTemplate" [ngTemplateOutletContext]="{}"></ng-template>
           <span *ngIf="config.views">
             <button *ngFor="let view of config.views" class="btn btn-link"
                     [ngClass]="{'active': isViewSelected(view), 'disabled': view.disabled === true}"

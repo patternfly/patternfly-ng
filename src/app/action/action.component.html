@@ -7,7 +7,7 @@
   <div *ngIf="action.template; then showButtonTemplate else showButton"></div>
   <ng-template #showButtonTemplate let-action="action"
                [ngTemplateOutlet]="action.template"
-               [ngOutletContext]="{ action: action }"></ng-template>
+               [ngTemplateOutletContext]="{ action: action }"></ng-template>
   <ng-template #showButton>
     {{action.title}}
   </ng-template>
@@ -15,7 +15,7 @@
 <!-- custom actions -->
 <ng-template *ngIf="template !== undefined" let-action="action"
              [ngTemplateOutlet]="template"
-             [ngOutletContext]="{ action: action }">
+             [ngTemplateOutletContext]="{ action: action }">
 </ng-template>
 <!-- more actions kebab -->
 <div class="dropdown-kebab-pf pull-right {{config.moreActionsStyleClass}}" dropdown

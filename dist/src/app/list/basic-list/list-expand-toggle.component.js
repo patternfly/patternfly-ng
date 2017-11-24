@@ -74,7 +74,7 @@ ListExpandToggleComponent = __decorate([
     Component({
         encapsulation: ViewEncapsulation.None,
         selector: 'pfng-list-expand-toggle',
-        template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpand()\"><span class=\"fa fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngOutletContext]=\"{ item: item }\"></ng-template></div>"
+        template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpand()\"><span class=\"fa fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
     }),
     __metadata("design:paramtypes", [])
 ], ListExpandToggleComponent);

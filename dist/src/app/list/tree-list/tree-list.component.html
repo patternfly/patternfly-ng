@@ -7,10 +7,10 @@
       (moveNode)="handleMoveNode($event)"
       (toggleExpanded)="handleToggleExpanded($event)">
     <ng-template #treeNodeTemplate let-node let-index="index">
-      <ng-template [ngTemplateOutlet]="itemTemplate" [ngOutletContext]="{ node: node, index: index }"></ng-template>
+      <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{ node: node, index: index }"></ng-template>
     </ng-template>
     <ng-template #loadingTemplate let-node let-index="index">
-      <ng-template [ngTemplateOutlet]="loadTemplate" [ngOutletContext]="{ node: node, index: index }"></ng-template>
+      <ng-template [ngTemplateOutlet]="loadTemplate" [ngTemplateOutletContext]="{ node: node, index: index }"></ng-template>
     </ng-template>
     <ng-template #treeNodeFullTemplate
         let-node="node"
@@ -58,12 +58,12 @@
                   <div class="pfng-tree-list-content"
                        (click)="toggleSelection($event, node.data)"
                        (dblclick)="dblClick($event, node.data)">
-                    <ng-template [ngTemplateOutlet]="itemTemplate" [ngOutletContext]="{ node: node, index: index }">
+                    <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{ node: node, index: index }">
                     </ng-template>
                   </div>
                   <!-- actions -->
                   <div class="list-pf-actions" *ngIf="actionTemplate">
-                    <ng-template [ngTemplateOutlet]="actionTemplate" [ngOutletContext]="{ node: node, index: index }">
+                    <ng-template [ngTemplateOutlet]="actionTemplate" [ngTemplateOutletContext]="{ node: node, index: index }">
                     </ng-template>
                   </div>
                 </div>

@@ -40,14 +40,14 @@
              (dblclick)="dblClick($event, item)">
           <ng-template *ngIf="itemTemplate"
                        [ngTemplateOutlet]="itemTemplate"
-                       [ngOutletContext]="{ item: item, index: i }">
+                       [ngTemplateOutletContext]="{ item: item, index: i }">
           </ng-template>
         </div>
         <!-- actions -->
         <div class="list-pf-actions">
           <ng-template *ngIf="actionTemplate"
                        [ngTemplateOutlet]="actionTemplate"
-                       [ngOutletContext]="{ item: item, index: i }">
+                       [ngTemplateOutletContext]="{ item: item, index: i }">
           </ng-template>
         </div>
       </div>
@@ -61,7 +61,7 @@
             <span class="pficon pficon-close" (click)="closeExpandArea(item)"></span>
           </div>
           <ng-template [ngTemplateOutlet]="expandTemplate"
-                       [ngOutletContext]="{ item: item, index: i }"></ng-template>
+                       [ngTemplateOutletContext]="{ item: item, index: i }"></ng-template>
         </div>
       </div>
     </div>

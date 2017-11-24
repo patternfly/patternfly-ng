@@ -20,7 +20,7 @@
       <div *ngIf="action.template; then showButtonTemplate else showButton"></div>
       <ng-template #showButtonTemplate let-action="action"
                    [ngTemplateOutlet]="action.template"
-                   [ngOutletContext]="{ action: action }"></ng-template>
+                   [ngTemplateOutletContext]="{ action: action }"></ng-template>
       <ng-template #showButton>
         {{action.title}}
       </ng-template>
