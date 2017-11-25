@@ -5,7 +5,8 @@ const path = require('path');
 /**
  * Webpack Plugins
  */
-const AotPlugin = require('@ngtools/webpack').AotPlugin;
+const AotPlugin = require('@ngtools/webpack').AotPlugin; // Angular 4
+// const AotPlugin = require('@ngtools/webpack').AngularCompilerPlugin; // Angular 5
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
