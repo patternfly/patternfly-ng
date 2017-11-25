@@ -8,13 +8,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 import { FilterField } from './filter-field';
 import { FilterQuery } from './filter-query';
 
-import { cloneDeep, defaults, find, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Component for the filter query field and filter query dropdown
@@ -107,7 +106,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   protected initCurrentField(): void {
     let fieldFound: boolean = false;
     if (this._currentField !== undefined) {
-      find(this.config.fields, (nextField) => {
+      this.config.fields.forEach((nextField) => {
         if (nextField.id === this._currentField.id) {
           fieldFound = true;
           return;
