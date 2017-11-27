@@ -6,10 +6,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-        <pfng-chart-donut [config]="config" [chartData]="data"></pfng-chart-donut>
-      </div>
+    <div class="col-md-6 text-center">
+      <label>Donut Chart</label>
+    </div>
+    <div class="col-md-6 text-center">
+      <label>Small Donut Chart</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <pfng-chart-donut [config]="config" [chartData]="data"></pfng-chart-donut>
+    </div>
+    <div class="col-md-6 text-center">
+      <pfng-chart-donut [config]="config2" [chartData]="data"></pfng-chart-donut>
     </div>
   </div>
 
