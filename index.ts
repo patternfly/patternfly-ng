@@ -56,6 +56,11 @@ export { ListExpandToggleComponent } from './src/app/list/basic-list/list-expand
 export { TreeListComponent } from './src/app/list/tree-list/tree-list.component';
 export { TreeListConfig } from './src/app/list/tree-list/tree-list-config';
 
+// Modals
+export { AboutModalConfig } from './src/app/modal/about-modal-config';
+export { AboutModalComponent } from './src/app/modal/about-modal.component';
+export { ModalModule } from './src/app/modal/modal.module';
+
 // Notification
 export { Notification } from './src/app/notification/notification';
 export { NotificationEvent } from './src/app/notification/notification-event';
