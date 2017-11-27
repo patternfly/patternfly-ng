@@ -18,7 +18,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Rende
  * text field after the max has been reached; additionally a right-click 'paste' will only paste characters until the
  * maximum character limit is reached.
  */
-var RemainingCharsCountDirective = (function () {
+var RemainingCharsCountDirective = /** @class */ (function () {
     /**
      * Default constructor
      *
@@ -117,43 +117,43 @@ var RemainingCharsCountDirective = (function () {
             }
         }
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], RemainingCharsCountDirective.prototype, "blockInputAtMaxLimit", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], RemainingCharsCountDirective.prototype, "charsMaxLimit", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], RemainingCharsCountDirective.prototype, "charsRemainingElement", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], RemainingCharsCountDirective.prototype, "charsRemainingWarning", void 0);
+    __decorate([
+        Output('onOverCharsMaxLimit'),
+        __metadata("design:type", Object)
+    ], RemainingCharsCountDirective.prototype, "onOverCharsMaxLimit", void 0);
+    __decorate([
+        Output('onUnderCharsMaxLimit'),
+        __metadata("design:type", Object)
+    ], RemainingCharsCountDirective.prototype, "onUnderCharsMaxLimit", void 0);
+    __decorate([
+        HostListener('keyup', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [KeyboardEvent]),
+        __metadata("design:returntype", void 0)
+    ], RemainingCharsCountDirective.prototype, "handleKeypress", null);
+    RemainingCharsCountDirective = __decorate([
+        Directive({
+            selector: '[pfng-remaining-chars-count]'
+        }),
+        __metadata("design:paramtypes", [ElementRef, Renderer2])
+    ], RemainingCharsCountDirective);
     return RemainingCharsCountDirective;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Boolean)
-], RemainingCharsCountDirective.prototype, "blockInputAtMaxLimit", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Number)
-], RemainingCharsCountDirective.prototype, "charsMaxLimit", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], RemainingCharsCountDirective.prototype, "charsRemainingElement", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Number)
-], RemainingCharsCountDirective.prototype, "charsRemainingWarning", void 0);
-__decorate([
-    Output('onOverCharsMaxLimit'),
-    __metadata("design:type", Object)
-], RemainingCharsCountDirective.prototype, "onOverCharsMaxLimit", void 0);
-__decorate([
-    Output('onUnderCharsMaxLimit'),
-    __metadata("design:type", Object)
-], RemainingCharsCountDirective.prototype, "onUnderCharsMaxLimit", void 0);
-__decorate([
-    HostListener('keyup', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [KeyboardEvent]),
-    __metadata("design:returntype", void 0)
-], RemainingCharsCountDirective.prototype, "handleKeypress", null);
-RemainingCharsCountDirective = __decorate([
-    Directive({
-        selector: '[pfng-remaining-chars-count]'
-    }),
-    __metadata("design:paramtypes", [ElementRef, Renderer2])
-], RemainingCharsCountDirective);
 export { RemainingCharsCountDirective };
 //# sourceMappingURL=remaining-chars-count.directive.js.map

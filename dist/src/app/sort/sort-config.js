@@ -1,7 +1,7 @@
 /**
  * A config containing properties for sort
  */
-var SortConfig = (function () {
+var SortConfig = /** @class */ (function () {
     function SortConfig() {
     }
     return SortConfig;

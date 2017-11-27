@@ -20,21 +20,21 @@ export { WizardBase, WizardConfig, WizardEvent, WizardStep, WizardStepConfig };
 /**
  * A module containing objects associated with the wizard component
  */
-var WizardModule = (function () {
+var WizardModule = /** @class */ (function () {
     function WizardModule() {
     }
+    WizardModule = __decorate([
+        NgModule({
+            imports: [
+                CommonModule,
+                TooltipModule.forRoot()
+            ],
+            declarations: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
+            exports: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
+            providers: [TooltipConfig]
+        })
+    ], WizardModule);
     return WizardModule;
 }());
-WizardModule = __decorate([
-    NgModule({
-        imports: [
-            CommonModule,
-            TooltipModule.forRoot()
-        ],
-        declarations: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
-        exports: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
-        providers: [TooltipConfig]
-    })
-], WizardModule);
 export { WizardModule };
 //# sourceMappingURL=wizard.module.js.map

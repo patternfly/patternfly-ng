@@ -11,7 +11,7 @@ import { EventEmitter, Input, Output, TemplateRef, } from '@angular/core';
 /**
  * List base component
  */
-var ListBase = (function () {
+var ListBase = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -222,35 +222,35 @@ var ListBase = (function () {
             });
         }
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], ListBase.prototype, "actionTemplate", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], ListBase.prototype, "items", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], ListBase.prototype, "itemTemplate", void 0);
+    __decorate([
+        Output('onActionSelect'),
+        __metadata("design:type", Object)
+    ], ListBase.prototype, "onActionSelect", void 0);
+    __decorate([
+        Output('onClick'),
+        __metadata("design:type", Object)
+    ], ListBase.prototype, "onClick", void 0);
+    __decorate([
+        Output('onDblClick'),
+        __metadata("design:type", Object)
+    ], ListBase.prototype, "onDblClick", void 0);
+    __decorate([
+        Output('onSelectionChange'),
+        __metadata("design:type", Object)
+    ], ListBase.prototype, "onSelectionChange", void 0);
     return ListBase;
 }());
 export { ListBase };
-__decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
-], ListBase.prototype, "actionTemplate", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Array)
-], ListBase.prototype, "items", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
-], ListBase.prototype, "itemTemplate", void 0);
-__decorate([
-    Output('onActionSelect'),
-    __metadata("design:type", Object)
-], ListBase.prototype, "onActionSelect", void 0);
-__decorate([
-    Output('onClick'),
-    __metadata("design:type", Object)
-], ListBase.prototype, "onClick", void 0);
-__decorate([
-    Output('onDblClick'),
-    __metadata("design:type", Object)
-], ListBase.prototype, "onDblClick", void 0);
-__decorate([
-    Output('onSelectionChange'),
-    __metadata("design:type", Object)
-], ListBase.prototype, "onSelectionChange", void 0);
 //# sourceMappingURL=list-base.js.map

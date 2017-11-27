@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-var ChartDefaults = (function () {
+var ChartDefaults = /** @class */ (function () {
     function ChartDefaults() {
         this.patternflyDefaults = window.patternfly.c3ChartDefaults();
         this.getDefaultColors = this.patternflyDefaults.getDefaultColors;
@@ -28,11 +28,11 @@ var ChartDefaults = (function () {
         this.getDefaultSparklineConfig = this.patternflyDefaults.getDefaultSparklineConfig;
         this.getDefaultLineConfig = this.patternflyDefaults.getDefaultLineConfig;
     }
+    ChartDefaults = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [])
+    ], ChartDefaults);
     return ChartDefaults;
 }());
-ChartDefaults = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [])
-], ChartDefaults);
 export { ChartDefaults };
 //# sourceMappingURL=chart.defaults.js.map

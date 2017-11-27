@@ -9,21 +9,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SparklineComponent } from './sparkline/sparkline.component';
 import { ChartDefaults } from './chart.defaults';
-var ChartModule = (function () {
+var ChartModule = /** @class */ (function () {
     function ChartModule() {
     }
+    ChartModule = __decorate([
+        NgModule({
+            imports: [
+                CommonModule,
+                FormsModule,
+            ],
+            declarations: [SparklineComponent],
+            exports: [SparklineComponent],
+            providers: [ChartDefaults]
+        })
+    ], ChartModule);
     return ChartModule;
 }());
-ChartModule = __decorate([
-    NgModule({
-        imports: [
-            CommonModule,
-            FormsModule,
-        ],
-        declarations: [SparklineComponent],
-        exports: [SparklineComponent],
-        providers: [ChartDefaults]
-    })
-], ChartModule);
 export { ChartModule };
 //# sourceMappingURL=chart.module.js.map

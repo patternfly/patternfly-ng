@@ -19,7 +19,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
  *
  * Note: This component is expected to be a child of wizard-step.
  */
-var WizardSubstepComponent = (function () {
+var WizardSubstepComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -111,28 +111,28 @@ var WizardSubstepComponent = (function () {
             step: this
         });
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", WizardStepConfig)
+    ], WizardSubstepComponent.prototype, "config", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], WizardSubstepComponent.prototype, "reviewTemplate", void 0);
+    __decorate([
+        Output('onShow'),
+        __metadata("design:type", Object)
+    ], WizardSubstepComponent.prototype, "onShow", void 0);
+    WizardSubstepComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-wizard-substep',
+            template: "<ng-content *ngIf=\"selected\"></ng-content>"
+        }),
+        __param(0, Host()),
+        __metadata("design:paramtypes", [WizardStepComponent])
+    ], WizardSubstepComponent);
     return WizardSubstepComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", WizardStepConfig)
-], WizardSubstepComponent.prototype, "config", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
-], WizardSubstepComponent.prototype, "reviewTemplate", void 0);
-__decorate([
-    Output('onShow'),
-    __metadata("design:type", Object)
-], WizardSubstepComponent.prototype, "onShow", void 0);
-WizardSubstepComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-wizard-substep',
-        template: "<ng-content *ngIf=\"selected\"></ng-content>"
-    }),
-    __param(0, Host()),
-    __metadata("design:paramtypes", [WizardStepComponent])
-], WizardSubstepComponent);
 export { WizardSubstepComponent };
 //# sourceMappingURL=wizard-substep.component.js.map

@@ -11,24 +11,24 @@ import { TruncatePipe } from './truncate/truncate.pipe';
 /**
  * A module containing objects associated with pipes
  */
-var PipeModule = (function () {
+var PipeModule = /** @class */ (function () {
     function PipeModule() {
     }
+    PipeModule = __decorate([
+        NgModule({
+            declarations: [
+                SearchHighlightPipe,
+                SortArrayPipe,
+                TruncatePipe
+            ],
+            exports: [
+                SearchHighlightPipe,
+                SortArrayPipe,
+                TruncatePipe
+            ]
+        })
+    ], PipeModule);
     return PipeModule;
 }());
-PipeModule = __decorate([
-    NgModule({
-        declarations: [
-            SearchHighlightPipe,
-            SortArrayPipe,
-            TruncatePipe
-        ],
-        exports: [
-            SearchHighlightPipe,
-            SortArrayPipe,
-            TruncatePipe
-        ]
-    })
-], PipeModule);
 export { PipeModule };
 //# sourceMappingURL=pipe.module.js.map

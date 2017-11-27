@@ -1,7 +1,7 @@
 /**
  * A config containing properties for filters
  */
-var FilterConfig = (function () {
+var FilterConfig = /** @class */ (function () {
     function FilterConfig() {
     }
     return FilterConfig;

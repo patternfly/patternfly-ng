@@ -1,7 +1,7 @@
 /**
  * An view containing common properties
  */
-var ToolbarView = (function () {
+var ToolbarView = /** @class */ (function () {
     function ToolbarView() {
     }
     return ToolbarView;

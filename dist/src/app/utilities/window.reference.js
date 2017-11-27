@@ -9,7 +9,7 @@ function _window() {
     // return the global native browser window object
     return window;
 }
-var WindowReference = (function () {
+var WindowReference = /** @class */ (function () {
     function WindowReference() {
     }
     Object.defineProperty(WindowReference.prototype, "nativeWindow", {
@@ -19,10 +19,10 @@ var WindowReference = (function () {
         enumerable: true,
         configurable: true
     });
+    WindowReference = __decorate([
+        Injectable()
+    ], WindowReference);
     return WindowReference;
 }());
-WindowReference = __decorate([
-    Injectable()
-], WindowReference);
 export { WindowReference };
 //# sourceMappingURL=window.reference.js.map

@@ -14,18 +14,18 @@ export { NavigationItemConfig };
 /**
  * A module containing objects associated with the navigation components
  */
-var NavigationModule = (function () {
+var NavigationModule = /** @class */ (function () {
     function NavigationModule() {
     }
+    NavigationModule = __decorate([
+        NgModule({
+            imports: [CommonModule, TooltipModule.forRoot()],
+            declarations: [VerticalNavigationComponent],
+            exports: [VerticalNavigationComponent],
+            providers: [TooltipConfig, WindowReference]
+        })
+    ], NavigationModule);
     return NavigationModule;
 }());
-NavigationModule = __decorate([
-    NgModule({
-        imports: [CommonModule, TooltipModule.forRoot()],
-        declarations: [VerticalNavigationComponent],
-        exports: [VerticalNavigationComponent],
-        providers: [TooltipConfig, WindowReference]
-    })
-], NavigationModule);
 export { NavigationModule };
 //# sourceMappingURL=navigation.module.js.map

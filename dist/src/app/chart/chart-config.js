@@ -1,7 +1,7 @@
 /**
  * A base config containing properties for the  chart
  */
-var ChartConfig = (function () {
+var ChartConfig = /** @class */ (function () {
     function ChartConfig() {
     }
     return ChartConfig;

@@ -1,7 +1,7 @@
 /**
  * An object containing properties for filter events
  */
-var FilterEvent = (function () {
+var FilterEvent = /** @class */ (function () {
     function FilterEvent() {
     }
     return FilterEvent;

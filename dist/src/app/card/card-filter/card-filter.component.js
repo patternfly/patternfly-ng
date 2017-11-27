@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 /**
  * Card filter component
  */
-var CardFilterComponent = (function () {
+var CardFilterComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -63,23 +63,23 @@ var CardFilterComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], CardFilterComponent.prototype, "filters", void 0);
+    __decorate([
+        Output('onFilterSelect'),
+        __metadata("design:type", Object)
+    ], CardFilterComponent.prototype, "onSelect", void 0);
+    CardFilterComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-card-filter',
+            template: "<div class=\"card-pf-time-frame-filter\"><div class=\"dropdown primary-action\" dropdown><button class=\"btn btn-default dropdown-toggle\" type=\"button\" dropdownToggle>{{currentFilter?.title}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let filter of filters\" [ngClass]=\"{'selected': filter === currentFilter}\"><a class=\"dropdown-item\" role=\"menuitem\" tabindex=\"-1\" (click)=\"select(filter)\">{{filter?.title}}</a></li></ul></div></div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], CardFilterComponent);
     return CardFilterComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Array)
-], CardFilterComponent.prototype, "filters", void 0);
-__decorate([
-    Output('onFilterSelect'),
-    __metadata("design:type", Object)
-], CardFilterComponent.prototype, "onSelect", void 0);
-CardFilterComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-card-filter',
-        template: "<div class=\"card-pf-time-frame-filter\"><div class=\"dropdown primary-action\" dropdown><button class=\"btn btn-default dropdown-toggle\" type=\"button\" dropdownToggle>{{currentFilter?.title}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let filter of filters\" [ngClass]=\"{'selected': filter === currentFilter}\"><a class=\"dropdown-item\" role=\"menuitem\" tabindex=\"-1\" (click)=\"select(filter)\">{{filter?.title}}</a></li></ul></div></div>"
-    }),
-    __metadata("design:paramtypes", [])
-], CardFilterComponent);
 export { CardFilterComponent };
 //# sourceMappingURL=card-filter.component.js.map

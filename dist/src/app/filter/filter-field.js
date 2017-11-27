@@ -1,7 +1,7 @@
 /**
  * An object containing properties for a filterable field, used to select categories of filters
  */
-var FilterField = (function () {
+var FilterField = /** @class */ (function () {
     function FilterField() {
     }
     return FilterField;

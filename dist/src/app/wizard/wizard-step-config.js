@@ -1,7 +1,7 @@
 /**
  * A config containing properties for wizard steps and substeps
  */
-var WizardStepConfig = (function () {
+var WizardStepConfig = /** @class */ (function () {
     function WizardStepConfig() {
     }
     return WizardStepConfig;

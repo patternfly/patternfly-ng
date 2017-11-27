@@ -1,7 +1,7 @@
 /**
  * An empty state config containing component properties
  */
-var EmptyStateConfig = (function () {
+var EmptyStateConfig = /** @class */ (function () {
     function EmptyStateConfig() {
     }
     return EmptyStateConfig;

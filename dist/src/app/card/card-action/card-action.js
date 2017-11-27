@@ -1,7 +1,7 @@
 /**
  * An object containing card action properties
  */
-var CardAction = (function () {
+var CardAction = /** @class */ (function () {
     function CardAction() {
     }
     return CardAction;

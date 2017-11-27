@@ -1,7 +1,7 @@
 /**
  * An object containing properties for a filterable query, used when filterType is 'select'
  */
-var FilterQuery = (function () {
+var FilterQuery = /** @class */ (function () {
     function FilterQuery() {
     }
     return FilterQuery;

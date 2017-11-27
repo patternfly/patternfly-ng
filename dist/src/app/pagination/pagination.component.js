@@ -13,7 +13,7 @@ import { PaginationConfig } from './pagination-config';
 /**
  * Component for rendering pagination
  */
-var PaginationComponent = (function () {
+var PaginationComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -205,27 +205,27 @@ var PaginationComponent = (function () {
     PaginationComponent.prototype.isLastPage = function () {
         return this.config.pageNumber === this.lastPageNumber;
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", PaginationConfig)
+    ], PaginationComponent.prototype, "config", void 0);
+    __decorate([
+        Output('onPageSizeChange'),
+        __metadata("design:type", Object)
+    ], PaginationComponent.prototype, "onPageSizeChange", void 0);
+    __decorate([
+        Output('onPageNumberChange'),
+        __metadata("design:type", Object)
+    ], PaginationComponent.prototype, "onPageNumberChange", void 0);
+    PaginationComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-pagination',
+            template: "<form class=\"content-view-pf-pagination list-view-pf-pagination clearfix\"><div class=\"form-group\"><div class=\"padding-right-10\"><div class=\"btn-group dropdown\" dropdown><button #pageSizeMenu type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle>{{config.pageSize}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu\" *dropdownMenu><li class=\"display-length-increment\" [ngClass]=\"{'selected': increment === config?.pageSize}\" *ngFor=\"let increment of config?.pageSizeIncrements\"><a role=\"menuitem\" (click)=\"onPageSizeUpdate($event, increment)\">{{increment}}</a></li></ul></div></div><span for=\"pageSizeMenu\" class=\"per-page-label\">per page</span></div><div class=\"form-group\"><span><span class=\"pagination-pf-item-current\">{{getCurrentPage()}}</span>&nbsp;of&nbsp; <span class=\"pagination-pf-items-total\">{{config.totalItems}}</span></span><ul class=\"pagination pagination-pf-back\"><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-first-page\" title=\"First Page\" (click)=\"gotoFirstPage()\"><span class=\"i fa fa-angle-double-left\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-prev-page\" title=\"Previous Page\" (click)=\"gotoPreviousPage()\"><span class=\"i fa fa-angle-left\"></span></a></li></ul><input class=\"pagination-pf-page\" name=\"pageNumber\" type=\"text\" [(ngModel)]=\"pageNumber\" (blur)=\"onPageNumberBlur($event)\" (keyup.enter)=\"onPageNumberKeyup($event)\"> <span>of&nbsp;<span class=\"pagination-pf-pages\">{{lastPageNumber}}</span></span><ul class=\"pagination pagination-pf-forward\"><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-next-page\" title=\"Next Page\" (click)=\"gotoNextPage()\"><span class=\"i fa fa-angle-right\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-last-page\" title=\"Last Page\" (click)=\"gotoLastPage()\"><span class=\"i fa fa-angle-double-right\"></span></a></li></ul></div></form>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], PaginationComponent);
     return PaginationComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", PaginationConfig)
-], PaginationComponent.prototype, "config", void 0);
-__decorate([
-    Output('onPageSizeChange'),
-    __metadata("design:type", Object)
-], PaginationComponent.prototype, "onPageSizeChange", void 0);
-__decorate([
-    Output('onPageNumberChange'),
-    __metadata("design:type", Object)
-], PaginationComponent.prototype, "onPageNumberChange", void 0);
-PaginationComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-pagination',
-        template: "<form class=\"content-view-pf-pagination list-view-pf-pagination clearfix\"><div class=\"form-group\"><div class=\"padding-right-10\"><div class=\"btn-group dropdown\" dropdown><button #pageSizeMenu type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle>{{config.pageSize}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu\" *dropdownMenu><li class=\"display-length-increment\" [ngClass]=\"{'selected': increment === config?.pageSize}\" *ngFor=\"let increment of config?.pageSizeIncrements\"><a role=\"menuitem\" (click)=\"onPageSizeUpdate($event, increment)\">{{increment}}</a></li></ul></div></div><span for=\"pageSizeMenu\" class=\"per-page-label\">per page</span></div><div class=\"form-group\"><span><span class=\"pagination-pf-item-current\">{{getCurrentPage()}}</span>&nbsp;of&nbsp; <span class=\"pagination-pf-items-total\">{{config.totalItems}}</span></span><ul class=\"pagination pagination-pf-back\"><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-first-page\" title=\"First Page\" (click)=\"gotoFirstPage()\"><span class=\"i fa fa-angle-double-left\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-prev-page\" title=\"Previous Page\" (click)=\"gotoPreviousPage()\"><span class=\"i fa fa-angle-left\"></span></a></li></ul><input class=\"pagination-pf-page\" name=\"pageNumber\" type=\"text\" [(ngModel)]=\"pageNumber\" (blur)=\"onPageNumberBlur($event)\" (keyup.enter)=\"onPageNumberKeyup($event)\"> <span>of&nbsp;<span class=\"pagination-pf-pages\">{{lastPageNumber}}</span></span><ul class=\"pagination pagination-pf-forward\"><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-next-page\" title=\"Next Page\" (click)=\"gotoNextPage()\"><span class=\"i fa fa-angle-right\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-last-page\" title=\"Last Page\" (click)=\"gotoLastPage()\"><span class=\"i fa fa-angle-double-right\"></span></a></li></ul></div></form>"
-    }),
-    __metadata("design:paramtypes", [])
-], PaginationComponent);
 export { PaginationComponent };
 //# sourceMappingURL=pagination.component.js.map

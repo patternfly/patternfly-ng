@@ -12,7 +12,7 @@ import { ListBaseConfig } from '../list-base-config';
 /**
  * A config containing properties for list view
  */
-var ListConfig = (function (_super) {
+var ListConfig = /** @class */ (function (_super) {
     __extends(ListConfig, _super);
     function ListConfig() {
         return _super !== null && _super.apply(this, arguments) || this;

@@ -13,7 +13,7 @@ import { NotificationType } from './notification-type';
  * Inline notifications can be used to provide notifications to user that can persist on the page
  * they are also optionally dismissable by the user
  */
-var InlineNotificationComponent = (function () {
+var InlineNotificationComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -34,40 +34,40 @@ var InlineNotificationComponent = (function () {
         this.hidden = true;
         this.hiddenChange.emit(this.hidden);
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", NotificationType)
+    ], InlineNotificationComponent.prototype, "type", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], InlineNotificationComponent.prototype, "message", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], InlineNotificationComponent.prototype, "header", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], InlineNotificationComponent.prototype, "dismissable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], InlineNotificationComponent.prototype, "hidden", void 0);
+    __decorate([
+        Output('hiddenChange'),
+        __metadata("design:type", Object)
+    ], InlineNotificationComponent.prototype, "hiddenChange", void 0);
+    InlineNotificationComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-inline-notification',
+            styleUrls: [],
+            template: "<div class=\"alert alert-{{type}}\" ng-class=\"{'alert-dismissable': dismissable === true}\" *ngIf=\"!hidden\"><button *ngIf=\"dismissable\" (click)=\"notificationRemove()\" type=\"button\" class=\"close\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button> <span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <strong>{{header}}</strong> {{message}}</div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], InlineNotificationComponent);
     return InlineNotificationComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", NotificationType)
-], InlineNotificationComponent.prototype, "type", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", String)
-], InlineNotificationComponent.prototype, "message", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", String)
-], InlineNotificationComponent.prototype, "header", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Boolean)
-], InlineNotificationComponent.prototype, "dismissable", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Boolean)
-], InlineNotificationComponent.prototype, "hidden", void 0);
-__decorate([
-    Output('hiddenChange'),
-    __metadata("design:type", Object)
-], InlineNotificationComponent.prototype, "hiddenChange", void 0);
-InlineNotificationComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-inline-notification',
-        styleUrls: [],
-        template: "<div class=\"alert alert-{{type}}\" ng-class=\"{'alert-dismissable': dismissable === true}\" *ngIf=\"!hidden\"><button *ngIf=\"dismissable\" (click)=\"notificationRemove()\" type=\"button\" class=\"close\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button> <span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <strong>{{header}}</strong> {{message}}</div>"
-    }),
-    __metadata("design:paramtypes", [])
-], InlineNotificationComponent);
 export { InlineNotificationComponent };
 //# sourceMappingURL=inline-notification.component.js.map

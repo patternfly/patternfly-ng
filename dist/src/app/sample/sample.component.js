@@ -11,30 +11,30 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 /**
  * Sample component
  */
-var SampleComponent = (function () {
+var SampleComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
     function SampleComponent() {
     }
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SampleComponent.prototype, "disabled", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SampleComponent.prototype, "label", void 0);
+    SampleComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pf-sample-component',
+            styles: ["\n    .pfng__samplecomponent { \n      color: blueviolet; \n    }\n    .pfng__samplecomponent--disabled  { \n      color: grey; \n    }\n  "],
+            template: "<div class=\"pfng__samplecomponent\" [ngClass]=\"{'pfng__samplecomponent--disabled': disabled}\">{{label}}</div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], SampleComponent);
     return SampleComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Boolean)
-], SampleComponent.prototype, "disabled", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", String)
-], SampleComponent.prototype, "label", void 0);
-SampleComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pf-sample-component',
-        styles: ["\n    .pfng__samplecomponent { \n      color: blueviolet; \n    }\n    .pfng__samplecomponent--disabled  { \n      color: grey; \n    }\n  "],
-        template: "<div class=\"pfng__samplecomponent\" [ngClass]=\"{'pfng__samplecomponent--disabled': disabled}\">{{label}}</div>"
-    }),
-    __metadata("design:paramtypes", [])
-], SampleComponent);
 export { SampleComponent };
 //# sourceMappingURL=sample.component.js.map

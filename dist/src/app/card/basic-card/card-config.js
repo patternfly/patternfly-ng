@@ -12,7 +12,7 @@ import { CardBaseConfig } from '../card-base-config';
 /**
  * A config containing properties for card
  */
-var CardConfig = (function (_super) {
+var CardConfig = /** @class */ (function (_super) {
     __extends(CardConfig, _super);
     function CardConfig() {
         return _super !== null && _super.apply(this, arguments) || this;

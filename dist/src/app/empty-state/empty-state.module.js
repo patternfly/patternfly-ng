@@ -12,17 +12,17 @@ export { EmptyStateConfig };
 /**
  * A module containing objects associated with the empty state component
  */
-var EmptyStateModule = (function () {
+var EmptyStateModule = /** @class */ (function () {
     function EmptyStateModule() {
     }
+    EmptyStateModule = __decorate([
+        NgModule({
+            imports: [CommonModule],
+            declarations: [EmptyStateComponent],
+            exports: [EmptyStateComponent]
+        })
+    ], EmptyStateModule);
     return EmptyStateModule;
 }());
-EmptyStateModule = __decorate([
-    NgModule({
-        imports: [CommonModule],
-        declarations: [EmptyStateComponent],
-        exports: [EmptyStateComponent]
-    })
-], EmptyStateModule);
 export { EmptyStateModule };
 //# sourceMappingURL=empty-state.module.js.map

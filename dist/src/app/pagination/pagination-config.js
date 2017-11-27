@@ -1,7 +1,7 @@
 /**
  * A config containing properties for Pagination
  */
-var PaginationConfig = (function () {
+var PaginationConfig = /** @class */ (function () {
     function PaginationConfig() {
     }
     return PaginationConfig;

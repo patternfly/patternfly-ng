@@ -13,7 +13,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Sort component
  */
-var SortComponent = (function () {
+var SortComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -97,24 +97,24 @@ var SortComponent = (function () {
             isAscending: this.config.isAscending
         });
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", SortConfig)
+    ], SortComponent.prototype, "config", void 0);
+    __decorate([
+        Output('onChange'),
+        __metadata("design:type", Object)
+    ], SortComponent.prototype, "onChange", void 0);
+    SortComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-sort',
+            styles: [".sort-pf .btn-link{margin-left:10px;padding:4px 0;min-width:0;color:#030303;font-size:16px;line-height:1}.sort-pf .btn-link:hover{color:#0088ce}"],
+            template: "<div class=\"sort-pf\" *ngIf=\"config?.visible !== false\"><div class=\"btn-group dropdown\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle>{{currentField?.title}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let item of config?.fields\" [ngClass]=\"{'selected': item === currentField}\"><a href=\"javascript:void(0);\" class=\"sortfield sort-field dropdown-item\" tabindex=\"-1\" (click)=\"selectField(item)\">{{item?.title}}</a></li></ul></div><button class=\"btn btn-link\" type=\"button\" (click)=\"onChangeDirection()\"><span class=\"sort-direction\" [ngClass]=\"getIconStyleClass()\"></span></button></div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], SortComponent);
     return SortComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", SortConfig)
-], SortComponent.prototype, "config", void 0);
-__decorate([
-    Output('onChange'),
-    __metadata("design:type", Object)
-], SortComponent.prototype, "onChange", void 0);
-SortComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-sort',
-        styles: [".sort-pf .btn-link{margin-left:10px;padding:4px 0;min-width:0;color:#030303;font-size:16px;line-height:1}.sort-pf .btn-link:hover{color:#0088ce}"],
-        template: "<div class=\"sort-pf\" *ngIf=\"config?.visible !== false\"><div class=\"btn-group dropdown\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle>{{currentField?.title}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let item of config?.fields\" [ngClass]=\"{'selected': item === currentField}\"><a href=\"javascript:void(0);\" class=\"sortfield sort-field dropdown-item\" tabindex=\"-1\" (click)=\"selectField(item)\">{{item?.title}}</a></li></ul></div><button class=\"btn btn-link\" type=\"button\" (click)=\"onChangeDirection()\"><span class=\"sort-direction\" [ngClass]=\"getIconStyleClass()\"></span></button></div>"
-    }),
-    __metadata("design:paramtypes", [])
-], SortComponent);
 export { SortComponent };
 //# sourceMappingURL=sort.component.js.map

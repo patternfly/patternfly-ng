@@ -14,7 +14,7 @@ import { NotificationType } from './notification-type';
  *
  * You may configure the service with: setDelay, setVerbose and setPersist.
  */
-var NotificationService = (function () {
+var NotificationService = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -159,11 +159,11 @@ var NotificationService = (function () {
     NotificationService.prototype.removeIndex = function (index) {
         this.notifications.data.splice(index, 1);
     };
+    NotificationService = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [])
+    ], NotificationService);
     return NotificationService;
 }());
-NotificationService = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [])
-], NotificationService);
 export { NotificationService };
 //# sourceMappingURL=notification.service.js.map

@@ -19,7 +19,7 @@ import { Notification } from './notification';
  * Note: Using the kebab menu (more actions) with the close button is not currently supported. If both are specified the
  * close button will not be shown. Add a close menu item if you want to have both capabilities.
  */
-var ToastNotificationComponent = (function () {
+var ToastNotificationComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -89,56 +89,56 @@ var ToastNotificationComponent = (function () {
     ToastNotificationComponent.prototype.handleClose = function ($event) {
         this.onCloseSelect.emit({ notification: this.notification });
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], ToastNotificationComponent.prototype, "header", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], ToastNotificationComponent.prototype, "message", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], ToastNotificationComponent.prototype, "moreActions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Notification)
+    ], ToastNotificationComponent.prototype, "notification", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Action)
+    ], ToastNotificationComponent.prototype, "primaryAction", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], ToastNotificationComponent.prototype, "showClose", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], ToastNotificationComponent.prototype, "type", void 0);
+    __decorate([
+        Output('onActionSelect'),
+        __metadata("design:type", Object)
+    ], ToastNotificationComponent.prototype, "onActionSelect", void 0);
+    __decorate([
+        Output('onCloseSelect'),
+        __metadata("design:type", Object)
+    ], ToastNotificationComponent.prototype, "onCloseSelect", void 0);
+    __decorate([
+        Output('onViewingChange'),
+        __metadata("design:type", Object)
+    ], ToastNotificationComponent.prototype, "onViewingChange", void 0);
+    ToastNotificationComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-toast-notification',
+            styles: [".toast-pf .dropdown-menu>li>a,.toast-pf-action>a{cursor:pointer}"],
+            template: "<div class=\"toast-pf alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': showCloseButton}\" (mouseenter)=\"handleEnter($event)\" (mouseleave)=\"handleLeave($event)\"><div *ngIf=\"moreActions?.length > 0\" class=\"pull-right dropdown-kebab-pf\" dropdown><button class=\"btn btn-link dropdown-toggle\" type=\"button\" id=\"dropdownKebabRight\" dropdownToggle><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownKebabRight\" *dropdownMenu><li *ngFor=\"let action of moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div><button *ngIf=\"showCloseButton\" type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"handleClose($event)\"><span class=\"pficon pficon-close\"></span></button><div *ngIf=\"primaryAction\" class=\"pull-right toast-pf-action {{primaryAction.styleClass}}\" [ngClass]=\"{'padding-right-15': showCloseButton == true, 'hidden': primaryAction?.visible === false}\"><div *ngIf=\"primaryAction.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"primaryAction.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton><a *ngIf=\"primaryAction.disabled !== true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" (click)=\"handleAction(primaryAction)\">{{primaryAction?.title}}</a> <a *ngIf=\"primaryAction.disabled === true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" onclick=\"return false;\">{{primaryAction?.title}}</a></ng-template></div><span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <span *ngIf=\"header\"><strong>{{header}}</strong> {{message}} </span><span *ngIf=\"!header\">{{message}}</span></div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], ToastNotificationComponent);
     return ToastNotificationComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", String)
-], ToastNotificationComponent.prototype, "header", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", String)
-], ToastNotificationComponent.prototype, "message", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Array)
-], ToastNotificationComponent.prototype, "moreActions", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Notification)
-], ToastNotificationComponent.prototype, "notification", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Action)
-], ToastNotificationComponent.prototype, "primaryAction", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Boolean)
-], ToastNotificationComponent.prototype, "showClose", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", String)
-], ToastNotificationComponent.prototype, "type", void 0);
-__decorate([
-    Output('onActionSelect'),
-    __metadata("design:type", Object)
-], ToastNotificationComponent.prototype, "onActionSelect", void 0);
-__decorate([
-    Output('onCloseSelect'),
-    __metadata("design:type", Object)
-], ToastNotificationComponent.prototype, "onCloseSelect", void 0);
-__decorate([
-    Output('onViewingChange'),
-    __metadata("design:type", Object)
-], ToastNotificationComponent.prototype, "onViewingChange", void 0);
-ToastNotificationComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-toast-notification',
-        styles: [".toast-pf .dropdown-menu>li>a,.toast-pf-action>a{cursor:pointer}"],
-        template: "<div class=\"toast-pf alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': showCloseButton}\" (mouseenter)=\"handleEnter($event)\" (mouseleave)=\"handleLeave($event)\"><div *ngIf=\"moreActions?.length > 0\" class=\"pull-right dropdown-kebab-pf\" dropdown><button class=\"btn btn-link dropdown-toggle\" type=\"button\" id=\"dropdownKebabRight\" dropdownToggle><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownKebabRight\" *dropdownMenu><li *ngFor=\"let action of moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div><button *ngIf=\"showCloseButton\" type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"handleClose($event)\"><span class=\"pficon pficon-close\"></span></button><div *ngIf=\"primaryAction\" class=\"pull-right toast-pf-action {{primaryAction.styleClass}}\" [ngClass]=\"{'padding-right-15': showCloseButton == true, 'hidden': primaryAction?.visible === false}\"><div *ngIf=\"primaryAction.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"primaryAction.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton><a *ngIf=\"primaryAction.disabled !== true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" (click)=\"handleAction(primaryAction)\">{{primaryAction?.title}}</a> <a *ngIf=\"primaryAction.disabled === true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" onclick=\"return false;\">{{primaryAction?.title}}</a></ng-template></div><span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <span *ngIf=\"header\"><strong>{{header}}</strong> {{message}} </span><span *ngIf=\"!header\">{{message}}</span></div>"
-    }),
-    __metadata("design:paramtypes", [])
-], ToastNotificationComponent);
 export { ToastNotificationComponent };
 //# sourceMappingURL=toast-notification.component.js.map

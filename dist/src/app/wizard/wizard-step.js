@@ -1,7 +1,7 @@
 /**
  * Wizard step
  */
-var WizardStep = (function () {
+var WizardStep = /** @class */ (function () {
     function WizardStep() {
     }
     return WizardStep;

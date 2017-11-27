@@ -14,7 +14,7 @@ import { isBoolean, isString } from 'util';
  * Example:
  * <div *ngFor="let item of (items | sortPin: 'name': true)">
  */
-var SortArrayPipe = (function () {
+var SortArrayPipe = /** @class */ (function () {
     function SortArrayPipe() {
     }
     /**
@@ -50,10 +50,10 @@ var SortArrayPipe = (function () {
             return (x === y) ? 0 : (x < y) ? -1 * m : 1 * m;
         });
     };
+    SortArrayPipe = __decorate([
+        Pipe({ name: 'sortArray' })
+    ], SortArrayPipe);
     return SortArrayPipe;
 }());
-SortArrayPipe = __decorate([
-    Pipe({ name: 'sortArray' })
-], SortArrayPipe);
 export { SortArrayPipe };
 //# sourceMappingURL=sort-array.pipe.js.map

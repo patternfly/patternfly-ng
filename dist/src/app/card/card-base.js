@@ -13,21 +13,21 @@ import { Input, TemplateRef } from '@angular/core';
  *
  * For customization, use the templates named headerTemplate and footerTemplate.
  */
-var CardBase = (function () {
+var CardBase = /** @class */ (function () {
     /**
      * The default constructor
      */
     function CardBase() {
     }
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], CardBase.prototype, "footerTemplate", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], CardBase.prototype, "headerTemplate", void 0);
     return CardBase;
 }());
 export { CardBase };
-__decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
-], CardBase.prototype, "footerTemplate", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
-], CardBase.prototype, "headerTemplate", void 0);
 //# sourceMappingURL=card-base.js.map

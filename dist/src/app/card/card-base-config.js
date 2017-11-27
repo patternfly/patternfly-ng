@@ -1,7 +1,7 @@
 /**
  * A config containing properties for cards
  */
-var CardBaseConfig = (function () {
+var CardBaseConfig = /** @class */ (function () {
     function CardBaseConfig() {
     }
     return CardBaseConfig;

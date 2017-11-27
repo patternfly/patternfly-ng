@@ -1,7 +1,7 @@
 /**
  * An object containing properties for notification messages
  */
-var Notification = (function () {
+var Notification = /** @class */ (function () {
     function Notification() {
     }
     return Notification;

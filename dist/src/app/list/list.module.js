@@ -23,25 +23,25 @@ export { ListBase, ListBaseConfig, ListConfig, ListEvent, TreeListConfig };
 /**
  * A module containing objects associated with list components
  */
-var ListModule = (function () {
+var ListModule = /** @class */ (function () {
     function ListModule() {
     }
+    ListModule = __decorate([
+        NgModule({
+            imports: [
+                BsDropdownModule.forRoot(),
+                CommonModule,
+                EmptyStateModule,
+                FormsModule,
+                PipeModule,
+                TreeModule
+            ],
+            declarations: [ListComponent, ListExpandToggleComponent, TreeListComponent],
+            exports: [ListComponent, ListExpandToggleComponent, TreeListComponent],
+            providers: [BsDropdownConfig]
+        })
+    ], ListModule);
     return ListModule;
 }());
-ListModule = __decorate([
-    NgModule({
-        imports: [
-            BsDropdownModule.forRoot(),
-            CommonModule,
-            EmptyStateModule,
-            FormsModule,
-            PipeModule,
-            TreeModule
-        ],
-        declarations: [ListComponent, ListExpandToggleComponent, TreeListComponent],
-        exports: [ListComponent, ListExpandToggleComponent, TreeListComponent],
-        providers: [BsDropdownConfig]
-    })
-], ListModule);
 export { ListModule };
 //# sourceMappingURL=list.module.js.map

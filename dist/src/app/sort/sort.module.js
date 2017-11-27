@@ -15,18 +15,18 @@ export { SortConfig, SortEvent, SortField };
 /**
  * A module containing objects associated with the sort component
  */
-var SortModule = (function () {
+var SortModule = /** @class */ (function () {
     function SortModule() {
     }
+    SortModule = __decorate([
+        NgModule({
+            imports: [CommonModule, BsDropdownModule.forRoot()],
+            declarations: [SortComponent],
+            exports: [SortComponent],
+            providers: [BsDropdownConfig]
+        })
+    ], SortModule);
     return SortModule;
 }());
-SortModule = __decorate([
-    NgModule({
-        imports: [CommonModule, BsDropdownModule.forRoot()],
-        declarations: [SortComponent],
-        exports: [SortComponent],
-        providers: [BsDropdownConfig]
-    })
-], SortModule);
 export { SortModule };
 //# sourceMappingURL=sort.module.js.map

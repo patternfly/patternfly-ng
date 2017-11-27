@@ -27,7 +27,7 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
  *
  * For customization, use the templates named headerTemplate and footerTemplate.
  */
-var CardComponent = (function (_super) {
+var CardComponent = /** @class */ (function (_super) {
     __extends(CardComponent, _super);
     /**
      * The default constructor
@@ -146,28 +146,28 @@ var CardComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        Input(),
+        __metadata("design:type", CardConfig)
+    ], CardComponent.prototype, "config", void 0);
+    __decorate([
+        Output('onActionSelect'),
+        __metadata("design:type", Object)
+    ], CardComponent.prototype, "onActionSelect", void 0);
+    __decorate([
+        Output('onFilterSelect'),
+        __metadata("design:type", Object)
+    ], CardComponent.prototype, "onFilterSelect", void 0);
+    CardComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-card',
+            styles: [".pfng-card .card-pf-footer{min-height:60px}.pfng-card.pfng-card-no-padding.card-pf{padding-left:0;padding-right:0}.pfng-card.pfng-card-no-padding .card-pf-body{margin-top:0;padding-bottom:0}.pfng-card.pfng-card-no-padding .card-pf-heading{margin-bottom:0;margin-left:0;margin-right:0}.pfng-card-heading-no-bottom{margin:0 -20px;padding:0 20px}"],
+            template: "<div class=\"pfng-card card-pf\" [ngClass]=\"{'card-pf-accented': config?.topBorder, 'pfng-card-no-padding': config.noPadding}\"><div [ngClass]=\"config?.titleBorder ? 'card-pf-heading' : 'pfng-card-heading-no-bottom'\" *ngIf=\"showHeader\"><div *ngIf=\"headerTemplate; then showHeaderTemplate else showHeader\"></div><ng-template #showHeaderTemplate><ng-template [ngTemplateOutlet]=\"headerTemplate\"></ng-template></ng-template><ng-template #showHeader><div *ngIf=\"showFilterInHeader\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><h2 class=\"card-pf-title\">{{config?.title}}</h2></ng-template></div><span *ngIf=\"config?.subTitle\" class=\"card-pf-subtitle\">{{config?.subTitle}}</span><div class=\"card-pf-body\"><ng-content></ng-content></div><div class=\"card-pf-footer\" *ngIf=\"showFooter\"><div *ngIf=\"footerTemplate; then showFooterTemplate else showFooter\"></div><ng-template #showFooterTemplate><ng-template [ngTemplateOutlet]=\"footerTemplate\"></ng-template></ng-template><ng-template #showFooter><div *ngIf=\"showFilterInFooter\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><p><pfng-card-action [action]=\"config?.action\" (onActionSelect)=\"handleActionSelect($event)\"></pfng-card-action></p></ng-template></div></div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], CardComponent);
     return CardComponent;
 }(CardBase));
-__decorate([
-    Input(),
-    __metadata("design:type", CardConfig)
-], CardComponent.prototype, "config", void 0);
-__decorate([
-    Output('onActionSelect'),
-    __metadata("design:type", Object)
-], CardComponent.prototype, "onActionSelect", void 0);
-__decorate([
-    Output('onFilterSelect'),
-    __metadata("design:type", Object)
-], CardComponent.prototype, "onFilterSelect", void 0);
-CardComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-card',
-        styles: [".pfng-card .card-pf-footer{min-height:60px}.pfng-card.pfng-card-no-padding.card-pf{padding-left:0;padding-right:0}.pfng-card.pfng-card-no-padding .card-pf-body{margin-top:0;padding-bottom:0}.pfng-card.pfng-card-no-padding .card-pf-heading{margin-bottom:0;margin-left:0;margin-right:0}.pfng-card-heading-no-bottom{margin:0 -20px;padding:0 20px}"],
-        template: "<div class=\"pfng-card card-pf\" [ngClass]=\"{'card-pf-accented': config?.topBorder, 'pfng-card-no-padding': config.noPadding}\"><div [ngClass]=\"config?.titleBorder ? 'card-pf-heading' : 'pfng-card-heading-no-bottom'\" *ngIf=\"showHeader\"><div *ngIf=\"headerTemplate; then showHeaderTemplate else showHeader\"></div><ng-template #showHeaderTemplate><ng-template [ngTemplateOutlet]=\"headerTemplate\"></ng-template></ng-template><ng-template #showHeader><div *ngIf=\"showFilterInHeader\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><h2 class=\"card-pf-title\">{{config?.title}}</h2></ng-template></div><span *ngIf=\"config?.subTitle\" class=\"card-pf-subtitle\">{{config?.subTitle}}</span><div class=\"card-pf-body\"><ng-content></ng-content></div><div class=\"card-pf-footer\" *ngIf=\"showFooter\"><div *ngIf=\"footerTemplate; then showFooterTemplate else showFooter\"></div><ng-template #showFooterTemplate><ng-template [ngTemplateOutlet]=\"footerTemplate\"></ng-template></ng-template><ng-template #showFooter><div *ngIf=\"showFilterInFooter\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><p><pfng-card-action [action]=\"config?.action\" (onActionSelect)=\"handleActionSelect($event)\"></pfng-card-action></p></ng-template></div></div>"
-    }),
-    __metadata("design:paramtypes", [])
-], CardComponent);
 export { CardComponent };
 //# sourceMappingURL=card.component.js.map

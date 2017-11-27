@@ -12,7 +12,7 @@ import { CardAction } from './card-action';
 /**
  * Card action component
  */
-var CardActionComponent = (function () {
+var CardActionComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -32,23 +32,23 @@ var CardActionComponent = (function () {
     CardActionComponent.prototype.select = function ($event) {
         this.onActionSelect.emit(this.action);
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", CardAction)
+    ], CardActionComponent.prototype, "action", void 0);
+    __decorate([
+        Output('onActionSelect'),
+        __metadata("design:type", Object)
+    ], CardActionComponent.prototype, "onActionSelect", void 0);
+    CardActionComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-card-action',
+            template: "<div *ngIf=\"action === undefined || action?.disabled; then showDisabled else showEnabled\"></div><ng-template #showDisabled><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></ng-template><ng-template #showEnabled><a href=\"{{action?.url}}\" *ngIf=\"action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span> </a><a *ngIf=\"!action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\" (click)=\"select($event)\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></a></ng-template>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], CardActionComponent);
     return CardActionComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", CardAction)
-], CardActionComponent.prototype, "action", void 0);
-__decorate([
-    Output('onActionSelect'),
-    __metadata("design:type", Object)
-], CardActionComponent.prototype, "onActionSelect", void 0);
-CardActionComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-card-action',
-        template: "<div *ngIf=\"action === undefined || action?.disabled; then showDisabled else showEnabled\"></div><ng-template #showDisabled><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></ng-template><ng-template #showEnabled><a href=\"{{action?.url}}\" *ngIf=\"action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span> </a><a *ngIf=\"!action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\" (click)=\"select($event)\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></a></ng-template>"
-    }),
-    __metadata("design:paramtypes", [])
-], CardActionComponent);
 export { CardActionComponent };
 //# sourceMappingURL=card-action.component.js.map

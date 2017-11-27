@@ -13,7 +13,7 @@ import { Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core'
  *
  * This is intended to be used with the list component's itemExpandTemplate
  */
-var ListExpandToggleComponent = (function () {
+var ListExpandToggleComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -56,27 +56,27 @@ var ListExpandToggleComponent = (function () {
         this.item.expandId = this.expandId;
         this.item.expanded = !this.item.expanded;
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], ListExpandToggleComponent.prototype, "expandId", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], ListExpandToggleComponent.prototype, "item", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], ListExpandToggleComponent.prototype, "template", void 0);
+    ListExpandToggleComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-list-expand-toggle',
+            template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpand()\"><span class=\"fa fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], ListExpandToggleComponent);
     return ListExpandToggleComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", String)
-], ListExpandToggleComponent.prototype, "expandId", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], ListExpandToggleComponent.prototype, "item", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
-], ListExpandToggleComponent.prototype, "template", void 0);
-ListExpandToggleComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-list-expand-toggle',
-        template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpand()\"><span class=\"fa fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
-    }),
-    __metadata("design:paramtypes", [])
-], ListExpandToggleComponent);
 export { ListExpandToggleComponent };
 //# sourceMappingURL=list-expand-toggle.component.js.map

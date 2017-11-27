@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 /**
  * Component to display a list of toast notifications
  */
-var ToastNotificationListComponent = (function () {
+var ToastNotificationListComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -48,36 +48,36 @@ var ToastNotificationListComponent = (function () {
     ToastNotificationListComponent.prototype.handleViewingChange = function ($event) {
         this.onViewingChange.emit($event);
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], ToastNotificationListComponent.prototype, "notifications", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], ToastNotificationListComponent.prototype, "showClose", void 0);
+    __decorate([
+        Output('onActionSelect'),
+        __metadata("design:type", Object)
+    ], ToastNotificationListComponent.prototype, "onActionSelect", void 0);
+    __decorate([
+        Output('onCloseSelect'),
+        __metadata("design:type", Object)
+    ], ToastNotificationListComponent.prototype, "onCloseSelect", void 0);
+    __decorate([
+        Output('onViewingChange'),
+        __metadata("design:type", Object)
+    ], ToastNotificationListComponent.prototype, "onViewingChange", void 0);
+    ToastNotificationListComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-toast-notification-list',
+            styles: [""],
+            template: "<div class=\"toast-notifications-list-pf\" *ngIf=\"notifications?.length > 0\"><div *ngFor=\"let notification of notifications\"><pfng-toast-notification [header]=\"notification.header\" [message]=\"notification.message\" [notification]=\"notification\" [moreActions]=\"notification.moreActions\" [primaryAction]=\"notification.primaryAction\" [showClose]=\"showClose === true || notification.isPersistent === true\" [type]=\"notification.type\" (onActionSelect)=\"handleAction($event)\" (onCloseSelect)=\"handleClose($event)\" (onViewingChange)=\"handleViewingChange($event)\"></pfng-toast-notification></div></div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], ToastNotificationListComponent);
     return ToastNotificationListComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Array)
-], ToastNotificationListComponent.prototype, "notifications", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Boolean)
-], ToastNotificationListComponent.prototype, "showClose", void 0);
-__decorate([
-    Output('onActionSelect'),
-    __metadata("design:type", Object)
-], ToastNotificationListComponent.prototype, "onActionSelect", void 0);
-__decorate([
-    Output('onCloseSelect'),
-    __metadata("design:type", Object)
-], ToastNotificationListComponent.prototype, "onCloseSelect", void 0);
-__decorate([
-    Output('onViewingChange'),
-    __metadata("design:type", Object)
-], ToastNotificationListComponent.prototype, "onViewingChange", void 0);
-ToastNotificationListComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-toast-notification-list',
-        styles: [""],
-        template: "<div class=\"toast-notifications-list-pf\" *ngIf=\"notifications?.length > 0\"><div *ngFor=\"let notification of notifications\"><pfng-toast-notification [header]=\"notification.header\" [message]=\"notification.message\" [notification]=\"notification\" [moreActions]=\"notification.moreActions\" [primaryAction]=\"notification.primaryAction\" [showClose]=\"showClose === true || notification.isPersistent === true\" [type]=\"notification.type\" (onActionSelect)=\"handleAction($event)\" (onCloseSelect)=\"handleClose($event)\" (onViewingChange)=\"handleViewingChange($event)\"></pfng-toast-notification></div></div>"
-    }),
-    __metadata("design:paramtypes", [])
-], ToastNotificationListComponent);
 export { ToastNotificationListComponent };
 //# sourceMappingURL=toast-notification-list.component.js.map

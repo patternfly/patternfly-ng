@@ -68,7 +68,7 @@
     "angular-tree-component": "^6.0.0",
     "c3": "^0.4.15",
     "lodash": "^4.17.4",
-    "ngx-bootstrap": "^1.8.0",
+    "ngx-bootstrap": "1.8.0",
     "patternfly": "^3.28.0"
   },
   "devDependencies": {

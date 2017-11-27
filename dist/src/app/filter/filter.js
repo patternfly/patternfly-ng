@@ -1,7 +1,7 @@
 /**
  * An object containing filter properties
  */
-var Filter = (function () {
+var Filter = /** @class */ (function () {
     function Filter() {
     }
     return Filter;

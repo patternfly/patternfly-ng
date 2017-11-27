@@ -23,22 +23,22 @@ export { CardAction, CardBase, CardBaseConfig, CardConfig, CardFilter, CardFilte
 /**
  * A module containing objects associated with card components
  */
-var CardModule = (function () {
+var CardModule = /** @class */ (function () {
     function CardModule() {
     }
+    CardModule = __decorate([
+        NgModule({
+            imports: [
+                BsDropdownModule.forRoot(),
+                CommonModule,
+                FormsModule
+            ],
+            declarations: [CardActionComponent, CardComponent, CardFilterComponent, InfoStatusCardComponent],
+            exports: [CardComponent, CardFilterComponent, InfoStatusCardComponent],
+            providers: [BsDropdownConfig]
+        })
+    ], CardModule);
     return CardModule;
 }());
-CardModule = __decorate([
-    NgModule({
-        imports: [
-            BsDropdownModule.forRoot(),
-            CommonModule,
-            FormsModule
-        ],
-        declarations: [CardActionComponent, CardComponent, CardFilterComponent, InfoStatusCardComponent],
-        exports: [CardComponent, CardFilterComponent, InfoStatusCardComponent],
-        providers: [BsDropdownConfig]
-    })
-], CardModule);
 export { CardModule };
 //# sourceMappingURL=card.module.js.map

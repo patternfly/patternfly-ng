@@ -15,20 +15,20 @@ export { PaginationConfig, PaginationEvent };
 /**
  * A module containing objects associated with notification components
  */
-var PaginationModule = (function () {
+var PaginationModule = /** @class */ (function () {
     function PaginationModule() {
     }
+    PaginationModule = __decorate([
+        NgModule({
+            imports: [BsDropdownModule.forRoot(),
+                CommonModule,
+                FormsModule],
+            declarations: [PaginationComponent],
+            exports: [PaginationComponent],
+            providers: [BsDropdownConfig]
+        })
+    ], PaginationModule);
     return PaginationModule;
 }());
-PaginationModule = __decorate([
-    NgModule({
-        imports: [BsDropdownModule.forRoot(),
-            CommonModule,
-            FormsModule],
-        declarations: [PaginationComponent],
-        exports: [PaginationComponent],
-        providers: [BsDropdownConfig]
-    })
-], PaginationModule);
 export { PaginationModule };
 //# sourceMappingURL=pagination.module.js.map

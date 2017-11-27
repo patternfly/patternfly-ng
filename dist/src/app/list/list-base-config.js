@@ -1,7 +1,7 @@
 /**
  * A config containing properties for tree list
  */
-var ListBaseConfig = (function () {
+var ListBaseConfig = /** @class */ (function () {
     function ListBaseConfig() {
     }
     return ListBaseConfig;

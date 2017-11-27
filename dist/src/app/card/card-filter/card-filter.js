@@ -1,7 +1,7 @@
 /**
  * An object containing card filter properties
  */
-var CardFilter = (function () {
+var CardFilter = /** @class */ (function () {
     function CardFilter() {
     }
     return CardFilter;

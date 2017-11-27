@@ -25,7 +25,7 @@ import { SparklineConfig } from './sparkline-config';
 /**
  * Sparkline chart component based on C3
  */
-var SparklineComponent = (function (_super) {
+var SparklineComponent = /** @class */ (function (_super) {
     __extends(SparklineComponent, _super);
     /**
      * Default constructor
@@ -211,22 +211,22 @@ var SparklineComponent = (function (_super) {
             '  </table>' +
             '</div>';
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], SparklineComponent.prototype, "chartData", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", SparklineConfig)
+    ], SparklineComponent.prototype, "config", void 0);
+    SparklineComponent = __decorate([
+        Component({
+            selector: 'pfng-chart-sparkline',
+            template: "<div #chartElement id=\"{{sparklineChartId}}\"></div>"
+        }),
+        __metadata("design:paramtypes", [ChartDefaults])
+    ], SparklineComponent);
     return SparklineComponent;
 }(ChartBase));
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], SparklineComponent.prototype, "chartData", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", SparklineConfig)
-], SparklineComponent.prototype, "config", void 0);
-SparklineComponent = __decorate([
-    Component({
-        selector: 'pfng-chart-sparkline',
-        template: "<div #chartElement id=\"{{sparklineChartId}}\"></div>"
-    }),
-    __metadata("design:paramtypes", [ChartDefaults])
-], SparklineComponent);
 export { SparklineComponent };
 //# sourceMappingURL=sparkline.component.js.map

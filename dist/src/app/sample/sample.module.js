@@ -10,17 +10,17 @@ import { SampleComponent } from './sample.component';
 /**
  * A module containing objects associated with the sample component
  */
-var SampleModule = (function () {
+var SampleModule = /** @class */ (function () {
     function SampleModule() {
     }
+    SampleModule = __decorate([
+        NgModule({
+            imports: [CommonModule],
+            declarations: [SampleComponent],
+            exports: [SampleComponent]
+        })
+    ], SampleModule);
     return SampleModule;
 }());
-SampleModule = __decorate([
-    NgModule({
-        imports: [CommonModule],
-        declarations: [SampleComponent],
-        exports: [SampleComponent]
-    })
-], SampleModule);
 export { SampleModule };
 //# sourceMappingURL=sample.module.js.map

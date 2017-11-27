@@ -1,7 +1,7 @@
 /**
  * A config containing properties for navigation items
  */
-var NavigationItemConfig = (function () {
+var NavigationItemConfig = /** @class */ (function () {
     function NavigationItemConfig() {
     }
     return NavigationItemConfig;

@@ -1,7 +1,7 @@
 /**
  * An object containing properties for wizard events
  */
-var WizardEvent = (function () {
+var WizardEvent = /** @class */ (function () {
     function WizardEvent() {
     }
     return WizardEvent;

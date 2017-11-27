@@ -1,7 +1,7 @@
 /**
  * An object containing properties for a sortable field, used to select categories of sorting
  */
-var SortField = (function () {
+var SortField = /** @class */ (function () {
     function SortField() {
     }
     return SortField;

@@ -24,25 +24,25 @@ export { Filter, FilterConfig, FilterEvent, FilterField, FilterQuery, FilterType
 /**
  * A module containing objects associated with filter components
  */
-var FilterModule = (function () {
+var FilterModule = /** @class */ (function () {
     function FilterModule() {
     }
+    FilterModule = __decorate([
+        NgModule({
+            imports: [
+                BsDropdownModule.forRoot(),
+                CommonModule,
+                FormsModule,
+                PipeModule,
+                PopoverModule.forRoot(),
+                TooltipModule.forRoot()
+            ],
+            declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+            exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+            providers: [BsDropdownConfig, TooltipConfig]
+        })
+    ], FilterModule);
     return FilterModule;
 }());
-FilterModule = __decorate([
-    NgModule({
-        imports: [
-            BsDropdownModule.forRoot(),
-            CommonModule,
-            FormsModule,
-            PipeModule,
-            PopoverModule.forRoot(),
-            TooltipModule.forRoot()
-        ],
-        declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
-        exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
-        providers: [BsDropdownConfig, TooltipConfig]
-    })
-], FilterModule);
 export { FilterModule };
 //# sourceMappingURL=filter.module.js.map

@@ -16,24 +16,24 @@ export { ToolbarConfig };
 /**
  * A module containing objects associated with the toolbar component
  */
-var ToolbarModule = (function () {
+var ToolbarModule = /** @class */ (function () {
     function ToolbarModule() {
     }
+    ToolbarModule = __decorate([
+        NgModule({
+            imports: [
+                ActionModule,
+                BsDropdownModule.forRoot(),
+                CommonModule,
+                FilterModule,
+                SortModule
+            ],
+            declarations: [ToolbarComponent],
+            exports: [ToolbarComponent],
+            providers: [BsDropdownConfig]
+        })
+    ], ToolbarModule);
     return ToolbarModule;
 }());
-ToolbarModule = __decorate([
-    NgModule({
-        imports: [
-            ActionModule,
-            BsDropdownModule.forRoot(),
-            CommonModule,
-            FilterModule,
-            SortModule
-        ],
-        declarations: [ToolbarComponent],
-        exports: [ToolbarComponent],
-        providers: [BsDropdownConfig]
-    })
-], ToolbarModule);
 export { ToolbarModule };
 //# sourceMappingURL=toolbar.module.js.map

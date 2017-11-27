@@ -1,7 +1,7 @@
 /**
  * An object containing properties for sort events
  */
-var SortEvent = (function () {
+var SortEvent = /** @class */ (function () {
     function SortEvent() {
     }
     return SortEvent;

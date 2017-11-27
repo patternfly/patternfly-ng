@@ -17,7 +17,7 @@ import { WizardComponent } from './wizard.component';
  *
  * Note: This component is expected to be direct descendant of wizard-step or wizard-substep.
  */
-var WizardReviewComponent = (function () {
+var WizardReviewComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -56,16 +56,16 @@ var WizardReviewComponent = (function () {
     WizardReviewComponent.prototype.toggleReviewDetails = function (step) {
         step.config.expandReviewDetails = !step.config.expandReviewDetails;
     };
+    WizardReviewComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-wizard-review',
+            template: "<div class=\"wizard-pf-review-page\"><div class=\"wizard-pf-review-steps\"><ul class=\"list-group\"><li class=\"list-group-item\" *ngFor=\"let step of getReviewSteps()\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': step.config.expandReview !== true}\" (click)=\"toggleReview(step)\">{{step.config.title}}</a><div class=\"wizard-pf-review-substeps\" [ngClass]=\"{'collapse': step.config.expandReview !== true}\"><ul class=\"list-group\" *ngIf=\"step.hasSubsteps\"><li class=\"list-group-item\" *ngFor=\"let substep of getReviewSubsteps(step)\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': substep.config.expandReviewDetails !== true}\" (click)=\"toggleReviewDetails(substep)\"><span class=\"wizard-pf-substep-number\">{{getSubstepNumber(step, substep)}}</span> <span class=\"wizard-pf-substep-title\">{{substep.config.title}}</span></a><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': substep.config.expandReviewDetails !== true}\"><ng-template [ngTemplateOutlet]=\"substep.reviewTemplate\"></ng-template></div></li></ul><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': step.config.expandReviewDetails !== true}\" *ngIf=\"step.reviewTemplate\"><ng-template [ngTemplateOutlet]=\"step.reviewTemplate\"></ng-template></div></div></li></ul></div></div>"
+        }),
+        __param(0, Host()),
+        __metadata("design:paramtypes", [WizardComponent])
+    ], WizardReviewComponent);
     return WizardReviewComponent;
 }());
-WizardReviewComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-wizard-review',
-        template: "<div class=\"wizard-pf-review-page\"><div class=\"wizard-pf-review-steps\"><ul class=\"list-group\"><li class=\"list-group-item\" *ngFor=\"let step of getReviewSteps()\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': step.config.expandReview !== true}\" (click)=\"toggleReview(step)\">{{step.config.title}}</a><div class=\"wizard-pf-review-substeps\" [ngClass]=\"{'collapse': step.config.expandReview !== true}\"><ul class=\"list-group\" *ngIf=\"step.hasSubsteps\"><li class=\"list-group-item\" *ngFor=\"let substep of getReviewSubsteps(step)\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': substep.config.expandReviewDetails !== true}\" (click)=\"toggleReviewDetails(substep)\"><span class=\"wizard-pf-substep-number\">{{getSubstepNumber(step, substep)}}</span> <span class=\"wizard-pf-substep-title\">{{substep.config.title}}</span></a><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': substep.config.expandReviewDetails !== true}\"><ng-template [ngTemplateOutlet]=\"substep.reviewTemplate\"></ng-template></div></li></ul><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': step.config.expandReviewDetails !== true}\" *ngIf=\"step.reviewTemplate\"><ng-template [ngTemplateOutlet]=\"step.reviewTemplate\"></ng-template></div></div></li></ul></div></div>"
-    }),
-    __param(0, Host()),
-    __metadata("design:paramtypes", [WizardComponent])
-], WizardReviewComponent);
 export { WizardReviewComponent };
 //# sourceMappingURL=wizard-review.component.js.map

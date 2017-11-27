@@ -12,7 +12,7 @@ import { ChartConfig } from '../chart-config';
 /**
  * A config containing properties for the sparkline chart
  */
-var SparklineConfig = (function (_super) {
+var SparklineConfig = /** @class */ (function (_super) {
     __extends(SparklineConfig, _super);
     function SparklineConfig() {
         return _super !== null && _super.apply(this, arguments) || this;

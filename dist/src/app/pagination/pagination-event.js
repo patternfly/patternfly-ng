@@ -1,7 +1,7 @@
 /**
  * An object containing properties for pagination events
  */
-var PaginationEvent = (function () {
+var PaginationEvent = /** @class */ (function () {
     function PaginationEvent() {
     }
     return PaginationEvent;

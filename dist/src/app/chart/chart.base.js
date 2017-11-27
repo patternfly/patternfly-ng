@@ -11,7 +11,7 @@ import { Input, Output, EventEmitter } from '@angular/core';
 import * as c3 from 'c3';
 import { cloneDeep } from 'lodash';
 import { ChartConfig } from './chart-config';
-var ChartBase = (function () {
+var ChartBase = /** @class */ (function () {
     function ChartBase() {
         /**
          * Event emitted with the chart reference after load is complete
@@ -44,15 +44,15 @@ var ChartBase = (function () {
             }
         });
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", ChartConfig)
+    ], ChartBase.prototype, "config", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], ChartBase.prototype, "chartLoaded", void 0);
     return ChartBase;
 }());
 export { ChartBase };
-__decorate([
-    Input(),
-    __metadata("design:type", ChartConfig)
-], ChartBase.prototype, "config", void 0);
-__decorate([
-    Output(),
-    __metadata("design:type", EventEmitter)
-], ChartBase.prototype, "chartLoaded", void 0);
 //# sourceMappingURL=chart.base.js.map

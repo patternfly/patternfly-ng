@@ -12,7 +12,7 @@ import { ListBaseConfig } from '../list-base-config';
 /**
  * A config containing properties for tree list
  */
-var TreeListConfig = (function (_super) {
+var TreeListConfig = /** @class */ (function (_super) {
     __extends(TreeListConfig, _super);
     function TreeListConfig() {
         return _super !== null && _super.apply(this, arguments) || this;

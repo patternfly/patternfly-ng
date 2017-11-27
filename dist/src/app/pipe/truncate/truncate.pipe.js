@@ -10,7 +10,7 @@ import { Pipe } from '@angular/core';
  *
  * This is currently used with the save filter feature of the filter fields component
  */
-var TruncatePipe = (function () {
+var TruncatePipe = /** @class */ (function () {
     function TruncatePipe() {
     }
     /**
@@ -26,10 +26,10 @@ var TruncatePipe = (function () {
         if (trail === void 0) { trail = '...'; }
         return (value.length > limit) ? value.substring(0, limit) + trail : value;
     };
+    TruncatePipe = __decorate([
+        Pipe({ name: 'truncate' })
+    ], TruncatePipe);
     return TruncatePipe;
 }());
-TruncatePipe = __decorate([
-    Pipe({ name: 'truncate' })
-], TruncatePipe);
 export { TruncatePipe };
 //# sourceMappingURL=truncate.pipe.js.map

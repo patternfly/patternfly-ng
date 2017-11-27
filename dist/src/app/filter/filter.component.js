@@ -15,7 +15,7 @@ import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 /**
  * Filter component
  */
-var FilterComponent = (function () {
+var FilterComponent = /** @class */ (function () {
     /**
      * The default constructor
      */
@@ -154,44 +154,44 @@ var FilterComponent = (function () {
         });
         return foundFilter !== undefined;
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", FilterConfig)
+    ], FilterComponent.prototype, "config", void 0);
+    __decorate([
+        Output('onChange'),
+        __metadata("design:type", Object)
+    ], FilterComponent.prototype, "onChange", void 0);
+    __decorate([
+        Output('onDelete'),
+        __metadata("design:type", Object)
+    ], FilterComponent.prototype, "onDelete", void 0);
+    __decorate([
+        Output('onFieldSelect'),
+        __metadata("design:type", Object)
+    ], FilterComponent.prototype, "onFilterSelect", void 0);
+    __decorate([
+        Output('onSave'),
+        __metadata("design:type", Object)
+    ], FilterComponent.prototype, "onSave", void 0);
+    __decorate([
+        Output('onTypeAhead'),
+        __metadata("design:type", Object)
+    ], FilterComponent.prototype, "onTypeAhead", void 0);
+    __decorate([
+        ViewChild('filterFields'),
+        __metadata("design:type", FilterFieldsComponent)
+    ], FilterComponent.prototype, "filterFields", void 0);
+    FilterComponent = __decorate([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-filter',
+            styles: [".filter-pf a{cursor:pointer}.filter-select .btn{border-left:0}.dropdown-menu{min-width:176px}"],
+            template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
+        }),
+        __metadata("design:paramtypes", [])
+    ], FilterComponent);
     return FilterComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", FilterConfig)
-], FilterComponent.prototype, "config", void 0);
-__decorate([
-    Output('onChange'),
-    __metadata("design:type", Object)
-], FilterComponent.prototype, "onChange", void 0);
-__decorate([
-    Output('onDelete'),
-    __metadata("design:type", Object)
-], FilterComponent.prototype, "onDelete", void 0);
-__decorate([
-    Output('onFieldSelect'),
-    __metadata("design:type", Object)
-], FilterComponent.prototype, "onFilterSelect", void 0);
-__decorate([
-    Output('onSave'),
-    __metadata("design:type", Object)
-], FilterComponent.prototype, "onSave", void 0);
-__decorate([
-    Output('onTypeAhead'),
-    __metadata("design:type", Object)
-], FilterComponent.prototype, "onTypeAhead", void 0);
-__decorate([
-    ViewChild('filterFields'),
-    __metadata("design:type", FilterFieldsComponent)
-], FilterComponent.prototype, "filterFields", void 0);
-FilterComponent = __decorate([
-    Component({
-        encapsulation: ViewEncapsulation.None,
-        selector: 'pfng-filter',
-        styles: [".filter-pf a{cursor:pointer}.filter-select .btn{border-left:0}.dropdown-menu{min-width:176px}"],
-        template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
-    }),
-    __metadata("design:paramtypes", [])
-], FilterComponent);
 export { FilterComponent };
 //# sourceMappingURL=filter.component.js.map

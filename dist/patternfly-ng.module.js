@@ -21,34 +21,34 @@ import { SampleModule } from './src/app/sample/sample.module';
 import { SortModule } from './src/app/sort/sort.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
 import { WizardModule } from './src/app/wizard/wizard.module';
-var PatternFlyNgModule = (function () {
+var PatternFlyNgModule = /** @class */ (function () {
     function PatternFlyNgModule() {
     }
+    PatternFlyNgModule = __decorate([
+        NgModule({
+            imports: [
+                FormsModule
+            ],
+            exports: [
+                ActionModule,
+                CardModule,
+                ChartModule,
+                EmptyStateModule,
+                FilterModule,
+                ListModule,
+                NavigationModule,
+                NotificationModule,
+                PaginationModule,
+                RemainingCharsCountModule,
+                PipeModule,
+                SampleModule,
+                SortModule,
+                ToolbarModule,
+                WizardModule
+            ]
+        })
+    ], PatternFlyNgModule);
     return PatternFlyNgModule;
 }());
-PatternFlyNgModule = __decorate([
-    NgModule({
-        imports: [
-            FormsModule
-        ],
-        exports: [
-            ActionModule,
-            CardModule,
-            ChartModule,
-            EmptyStateModule,
-            FilterModule,
-            ListModule,
-            NavigationModule,
-            NotificationModule,
-            PaginationModule,
-            RemainingCharsCountModule,
-            PipeModule,
-            SampleModule,
-            SortModule,
-            ToolbarModule,
-            WizardModule
-        ]
-    })
-], PatternFlyNgModule);
 export { PatternFlyNgModule };
 //# sourceMappingURL=patternfly-ng.module.js.map

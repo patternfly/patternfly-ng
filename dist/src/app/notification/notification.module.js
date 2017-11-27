@@ -17,18 +17,18 @@ export { NotificationEvent, NotificationType };
 /**
  * A module containing objects associated with notification components
  */
-var NotificationModule = (function () {
+var NotificationModule = /** @class */ (function () {
     function NotificationModule() {
     }
+    NotificationModule = __decorate([
+        NgModule({
+            imports: [BsDropdownModule.forRoot(), CommonModule],
+            declarations: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent],
+            exports: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent],
+            providers: [BsDropdownConfig, NotificationService]
+        })
+    ], NotificationModule);
     return NotificationModule;
 }());
-NotificationModule = __decorate([
-    NgModule({
-        imports: [BsDropdownModule.forRoot(), CommonModule],
-        declarations: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent],
-        exports: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent],
-        providers: [BsDropdownConfig, NotificationService]
-    })
-], NotificationModule);
 export { NotificationModule };
 //# sourceMappingURL=notification.module.js.map

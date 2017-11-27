@@ -11,17 +11,17 @@ import { RemainingCharsCountDirective } from './remaining-chars-count.directive'
 /**
  * A module containing objects associated with the remaining characters directive
  */
-var RemainingCharsCountModule = (function () {
+var RemainingCharsCountModule = /** @class */ (function () {
     function RemainingCharsCountModule() {
     }
+    RemainingCharsCountModule = __decorate([
+        NgModule({
+            imports: [CommonModule, FormsModule],
+            declarations: [RemainingCharsCountDirective],
+            exports: [RemainingCharsCountDirective]
+        })
+    ], RemainingCharsCountModule);
     return RemainingCharsCountModule;
 }());
-RemainingCharsCountModule = __decorate([
-    NgModule({
-        imports: [CommonModule, FormsModule],
-        declarations: [RemainingCharsCountDirective],
-        exports: [RemainingCharsCountDirective]
-    })
-], RemainingCharsCountModule);
 export { RemainingCharsCountModule };
 //# sourceMappingURL=remaining-chars-count.module.js.map

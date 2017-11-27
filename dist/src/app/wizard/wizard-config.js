@@ -1,7 +1,7 @@
 /**
  * A config containing properties for wizard
  */
-var WizardConfig = (function () {
+var WizardConfig = /** @class */ (function () {
     function WizardConfig() {
     }
     return WizardConfig;

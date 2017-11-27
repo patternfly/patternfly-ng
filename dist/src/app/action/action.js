@@ -1,7 +1,7 @@
 /**
  * An action containing common properties for buttons, kebabs, etc.
  */
-var Action = (function () {
+var Action = /** @class */ (function () {
     function Action() {
     }
     return Action;

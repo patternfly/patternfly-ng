@@ -2,7 +2,7 @@ import { find } from 'lodash';
 /**
  * A base class with common functionality for wizard and wizard-step
  */
-var WizardBase = (function () {
+var WizardBase = /** @class */ (function () {
     /**
      * The default constructor
      */

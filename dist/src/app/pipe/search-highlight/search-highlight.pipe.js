@@ -10,7 +10,7 @@ import { Pipe } from '@angular/core';
  *
  * This is currently used with the type ahead feature of the filter fields component
  */
-var SearchHighlightPipe = (function () {
+var SearchHighlightPipe = /** @class */ (function () {
     function SearchHighlightPipe() {
     }
     /**
@@ -54,10 +54,10 @@ var SearchHighlightPipe = (function () {
         }
         return output;
     };
+    SearchHighlightPipe = __decorate([
+        Pipe({ name: 'searchHighlight' })
+    ], SearchHighlightPipe);
     return SearchHighlightPipe;
 }());
-SearchHighlightPipe = __decorate([
-    Pipe({ name: 'searchHighlight' })
-], SearchHighlightPipe);
 export { SearchHighlightPipe };
 //# sourceMappingURL=search-highlight.pipe.js.map

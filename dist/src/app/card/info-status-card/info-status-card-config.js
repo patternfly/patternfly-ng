@@ -1,7 +1,7 @@
 /**
  * A config containing properties for the info status card
  */
-var InfoStatusCardConfig = (function () {
+var InfoStatusCardConfig = /** @class */ (function () {
     function InfoStatusCardConfig() {
     }
     return InfoStatusCardConfig;

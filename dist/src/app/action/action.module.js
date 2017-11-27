@@ -15,22 +15,22 @@ export { Action, ActionConfig };
 /**
  * A module containing objects associated with action components
  */
-var ActionModule = (function () {
+var ActionModule = /** @class */ (function () {
     function ActionModule() {
     }
+    ActionModule = __decorate([
+        NgModule({
+            imports: [
+                BsDropdownModule.forRoot(),
+                CommonModule,
+                FormsModule
+            ],
+            declarations: [ActionComponent],
+            exports: [ActionComponent],
+            providers: [BsDropdownConfig]
+        })
+    ], ActionModule);
     return ActionModule;
 }());
-ActionModule = __decorate([
-    NgModule({
-        imports: [
-            BsDropdownModule.forRoot(),
-            CommonModule,
-            FormsModule
-        ],
-        declarations: [ActionComponent],
-        exports: [ActionComponent],
-        providers: [BsDropdownConfig]
-    })
-], ActionModule);
 export { ActionModule };
 //# sourceMappingURL=action.module.js.map

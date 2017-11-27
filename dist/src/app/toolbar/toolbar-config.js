@@ -1,7 +1,7 @@
 /**
  * A config containing properties for toolbar
  */
-var ToolbarConfig = (function () {
+var ToolbarConfig = /** @class */ (function () {
     function ToolbarConfig() {
     }
     return ToolbarConfig;

@@ -1,7 +1,7 @@
 /**
  * An object containing properties for notification events
  */
-var NotificationEvent = (function () {
+var NotificationEvent = /** @class */ (function () {
     function NotificationEvent() {
     }
     return NotificationEvent;
