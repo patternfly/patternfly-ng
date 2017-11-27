@@ -1,15 +1,13 @@
-import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-
-import { FormsModule } from '@angular/forms';
+import {
+  async,
+  ComponentFixture,
+  TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap';
 
 import { AboutModalComponent } from './about-modal.component';
 import { AboutModalConfig } from './about-modal-config';
-
-import { ModalModule } from 'ngx-bootstrap';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 describe('AboutModal component - ', () => {
   let comp: AboutModalComponent;
@@ -86,5 +84,19 @@ describe('AboutModal component - ', () => {
     expect(modalBody.nativeNode.innerText).toEqual('');
     let modalHeader = fixture.debugElement.query(By.css('.modal-header'));
     expect(modalHeader.nativeNode.innerText).toEqual('');
+  });
+
+  it('should change the logo alt text', () => {
+    comp.config.logoImageAlt = 'Patternfly Symbol';
+    fixture.detectChanges();
+    let img = fixture.debugElement.query(By.css('.modal-footer img'));
+    expect(img.nativeElement.alt).toEqual('Patternfly Symbol');
+  });
+
+  it('should change the logo src', () => {
+    comp.config.logoImageAlt = '//www.patternfly.org/assets/img/logo-alt.svg';
+    fixture.detectChanges();
+    let img = fixture.debugElement.query(By.css('.modal-footer img'));
+    expect(img.nativeElement.alt).toEqual('//www.patternfly.org/assets/img/logo-alt.svg');
   });
 });
