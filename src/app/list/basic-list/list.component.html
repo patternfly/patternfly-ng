@@ -18,14 +18,14 @@
         <div class="pfng-list-content">
           <ng-template *ngIf="itemHeadingTemplate"
                        [ngTemplateOutlet]="itemHeadingTemplate"
-                       [ngOutletContext]="{ item: item, index: i }">
+                       [ngTemplateOutletContext]="{ item: item, index: i }">
           </ng-template>
         </div>
         <!-- actions -->
         <div class="list-pf-actions">
           <ng-template *ngIf="actionHeadingTemplate"
                        [ngTemplateOutlet]="actionHeadingTemplate"
-                       [ngOutletContext]="{ item: item, index: i }">
+                       [ngTemplateOutletContext]="{ item: item, index: i }">
           </ng-template>
         </div>
       </div>
