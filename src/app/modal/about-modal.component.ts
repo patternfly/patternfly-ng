@@ -13,7 +13,6 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
 
 import { AboutModalConfig } from './about-modal-config';
 import { AboutModalEvent } from './about-modal-event';
-import { BsModalService } from 'ngx-bootstrap/modal';
 
 /**
  * Component for rendering AboutModal
@@ -42,9 +41,7 @@ export class AboutModalComponent implements DoCheck, OnInit {
   /**
    * The default contructor
    */
-  constructor(
-    private modalService: BsModalService
-  ) { }
+  constructor() {}
 
   // Initialization
 
