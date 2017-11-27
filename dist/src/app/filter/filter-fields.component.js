@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FilterConfig } from './filter-config';
-import { cloneDeep, defaults, find, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Component for the filter query field and filter query dropdown
  */
@@ -78,7 +78,7 @@ var FilterFieldsComponent = (function () {
         var _this = this;
         var fieldFound = false;
         if (this._currentField !== undefined) {
-            find(this.config.fields, function (nextField) {
+            this.config.fields.forEach(function (nextField) {
                 if (nextField.id === _this._currentField.id) {
                     fieldFound = true;
                     return;
