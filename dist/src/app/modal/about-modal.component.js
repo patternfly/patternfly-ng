@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, isEqual } from 'lodash';
 import { AboutModalConfig } from './about-modal-config';
-import { BsModalService } from 'ngx-bootstrap/modal';
 /**
  * Component for rendering AboutModal
  */
@@ -18,8 +17,7 @@ var AboutModalComponent = /** @class */ (function () {
     /**
      * The default contructor
      */
-    function AboutModalComponent(modalService) {
-        this.modalService = modalService;
+    function AboutModalComponent() {
         /**
          * The Event is emitted when modal is closed
          */
@@ -77,7 +75,7 @@ var AboutModalComponent = /** @class */ (function () {
             selector: 'pfng-about-modal',
             template: "<div class=\"about-modal-pf\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" (click)=\"close()\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button></div><div class=\"modal-body\"><h1 *ngIf=\"config.title\">{{config.title}}</h1><div *ngIf=\"config.productInfo && config.productInfo.length > 0\" class=\"product-versions-pf\"><ul class=\"list-unstyled\"><li *ngFor=\"let info of config.productInfo\"><strong>{{info.name}}</strong> {{info.value}}</li></ul></div><div class=\"product-versions-pf\"><ng-content></ng-content></div><div *ngIf=\"config.additionalInfo\" class=\"product-versions-pf\">{{config.additionalInfo}}</div><div *ngIf=\"config.copyright\" class=\"trademark-pf\">{{config.copyright}}</div></div><div class=\"modal-footer\"><img *ngIf=\"config.logoImageSrc\" [src]=\"config.logoImageSrc\" alt=\"{{config.logoImageAlt}}\"></div></div>"
         }),
-        __metadata("design:paramtypes", [BsModalService])
+        __metadata("design:paramtypes", [])
     ], AboutModalComponent);
     return AboutModalComponent;
 }());

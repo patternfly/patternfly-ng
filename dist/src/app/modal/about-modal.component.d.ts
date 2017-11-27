@@ -1,11 +1,9 @@
 import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { AboutModalConfig } from './about-modal-config';
-import { BsModalService } from 'ngx-bootstrap/modal';
 /**
  * Component for rendering AboutModal
  */
 export declare class AboutModalComponent implements DoCheck, OnInit {
-    private modalService;
     /**
      * The AboutModal config contaning component properties
      */
@@ -19,7 +17,7 @@ export declare class AboutModalComponent implements DoCheck, OnInit {
     /**
      * The default contructor
      */
-    constructor(modalService: BsModalService);
+    constructor();
     /**
      *  Setup component configuration upon initialization
      */

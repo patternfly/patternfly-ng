@@ -11,14 +11,12 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { AboutModalConfig } from '../about-modal-config';
 import { AboutModalEvent } from '../about-modal-event';
 
-
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'about-modal-example',
   templateUrl: './about-modal-example.component.html'
 })
 export class AboutModalExampleComponent implements OnInit {
-
 
   aboutConfig: AboutModalConfig;
   modalRef: BsModalRef;
