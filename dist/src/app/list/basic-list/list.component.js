@@ -17,7 +17,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';
 import { cloneDeep, defaults, isEqual } from 'lodash';
@@ -39,6 +39,10 @@ var ListComponent = (function (_super) {
      */
     function ListComponent() {
         var _this = _super.call(this) || this;
+        /**
+         * The event emitted when an item pin has been changed
+         */
+        _this.onPinChange = new EventEmitter();
         _this.defaultConfig = {
             dblClick: false,
             hideClose: false,
@@ -102,8 +106,18 @@ var ListComponent = (function (_super) {
         item.expandId = undefined;
         item.expanded = !item.expanded;
     };
+    ListComponent.prototype.togglePin = function ($event, item) {
+        item.showPin = (item.showPin === undefined) ? true : !item.showPin;
+        this.onPinChange.emit({
+            item: item
+        });
+    };
     return ListComponent;
 }(ListBase));
+__decorate([
+    Input(),
+    __metadata("design:type", TemplateRef)
+], ListComponent.prototype, "actionHeadingTemplate", void 0);
 __decorate([
     Input(),
     __metadata("design:type", ListConfig)
@@ -112,12 +126,24 @@ __decorate([
     Input(),
     __metadata("design:type", TemplateRef)
 ], ListComponent.prototype, "expandTemplate", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Array)
+], ListComponent.prototype, "headingItems", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", TemplateRef)
+], ListComponent.prototype, "itemHeadingTemplate", void 0);
+__decorate([
+    Output('onPinChange'),
+    __metadata("design:type", Object)
+], ListComponent.prototype, "onPinChange", void 0);
 ListComponent = __decorate([
     Component({
         encapsulation: ViewEncapsulation.None,
         selector: 'pfng-list',
-        styles: [".pfng-list-cb-placeholder{width:12px}.pfng-list-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.pfng-list-expand-placeholder{width:8px}.pfng-list-expansion{position:relative}.pfng-list-expansion .list-pf-content{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.pfng-list-heading{pointer-events:none}@media (max-width:992px){.pfng-list-heading{display:none}}.pfng-list-heading:hover{background-color:#fff}.pfng-list-heading i{pointer-events:auto}.pfng-list-heading.list-pf-item{border-top:none}.pfng-list-heading .list-pf-title{font-size:inherit;font-weight:400}.pfng-list-heading .list-pf-chevron+.list-pf-content,.pfng-list-heading .list-pf-select+.list-pf-content{border-left:none}"],
-        template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><div class=\"list-pf-item {{item?.itemStyleClass}}\" *ngFor=\"let item of items; let i = index\" [ngClass]=\"{'active': item.selected || item.isItemExpanded, 'pfng-list-heading': config.useHeading && i === 0}\"><div class=\"list-pf-container\"><div *ngIf=\"config.useHeading && i === 0; then showExpandHeader else showExpand\"></div><ng-template #showExpandHeader><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\"></div></div></ng-template><ng-template #showExpand><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\" *ngIf=\"item.hideExpandToggle === true\"></div><span class=\"fa fa-angle-right\" *ngIf=\"item.hideExpandToggle !== true\" (click)=\"toggleExpandArea(item)\" [ngClass]=\"{'fa-angle-down': item.expanded && item.expandId === undefined}\"></span></div></ng-template><div *ngIf=\"(config.useHeading && i === 0); then showCheckboxHeader else showCheckbox\"></div><ng-template #showCheckboxHeader><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox\"><div class=\"pfng-list-cb-placeholder\"></div></div></ng-template><ng-template #showCheckbox><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox\"><input type=\"checkbox\" value=\"item.selected\" [(ngModel)]=\"item.selected\" (ngModelChange)=\"checkboxChange(item)\"></div></ng-template><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\" (click)=\"toggleSelection($event, item)\" (dblclick)=\"dblClick($event, item)\"><ng-template *ngIf=\"itemTemplate\" [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionTemplate\" [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div><div class=\"pfng-list-expansion list-pf-expansion collapse in\" *ngIf=\"!(config.useHeading && i === 0) && expandTemplate && item.expanded\"><div class=\"list-pf-container\" tabindex=\"0\"><div class=\"list-pf-content\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"closeExpandArea(item)\"></span></div><ng-template [ngTemplateOutlet]=\"expandTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
+        styles: [".pfng-list-cb-placeholder{width:12px}.pfng-list-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.pfng-list-expand-placeholder{width:8px}.pfng-list-expand .fa-angle-right{padding-left:5px}.pfng-list-expand .fa-angle-right.fa-angle-down{padding-left:0}.pfng-list-expansion{position:relative}.pfng-list-expansion .list-pf-content{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.pfng-list-heading{pointer-events:none}@media (max-width:992px){.pfng-list-heading{display:none}}.pfng-list-pin,.pfng-list-pin-container{-ms-flex-item-align:stretch;align-self:stretch;display:-webkit-box;display:-ms-flexbox;display:flex}.pfng-list-heading:hover{background-color:#fff}.pfng-list-heading i{pointer-events:auto}.pfng-list-heading.list-pf-item{border-top:none}.pfng-list-heading .list-pf-title{font-size:inherit;font-weight:400}.pfng-list-heading .list-pf-chevron+.list-pf-content,.pfng-list-heading .list-pf-select+.list-pf-content{border-left:none}.pfng-list-pin{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#f5f5f5;-webkit-box-shadow:-3px 1px 4px 0 #ededed inset;box-shadow:-3px 1px 4px 0 #ededed inset;margin:-20px 20px -20px -20px;padding:20px 5px}.pfng-list-pin.multi-ctrls{margin-right:10px}.pfng-list-pin a{color:#030303;opacity:.7}.pfng-list-pin a:hover{opacity:1}.pfng-list-pin-placeholder{margin-left:-20px;width:38px}.pfng-list-pin-placeholder.multi-ctrls{width:28px}"],
+        template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><div class=\"list-pf-item pfng-list-heading {{item?.itemStyleClass}}\" *ngFor=\"let item of headingItems; let i = index\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-placeholder\" *ngIf=\"config.usePinItems\"></div><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\"></div></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox\"><div class=\"pfng-list-cb-placeholder\"></div></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\"><ng-template *ngIf=\"itemHeadingTemplate\" [ngTemplateOutlet]=\"itemHeadingTemplate\" [ngOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionHeadingTemplate\" [ngTemplateOutlet]=\"actionHeadingTemplate\" [ngOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div><div class=\"list-pf-item {{item?.itemStyleClass}}\" [ngClass]=\"{'active': item.selected || item.isItemExpanded}\" *ngFor=\"let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-container\" *ngIf=\"config.usePinItems\"><div class=\"pfng-list-pin-placeholder\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox}\" *ngIf=\"item.showPin !== true\"></div><div class=\"pfng-list-pin\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox}\" *ngIf=\"item.showPin === true\"><a href=\"javascript:void(0);\" tabindex=\"-1\" title=\"Remove pin\" (click)=\"togglePin($event, item)\"><span class=\"fa fa-thumb-tack\"></span></a></div></div><div class=\"list-pf-chevron pfng-list-expand\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\" *ngIf=\"item.hideExpandToggle === true\"></div><span class=\"fa fa-angle-right\" *ngIf=\"item.hideExpandToggle !== true\" (click)=\"toggleExpandArea(item)\" [ngClass]=\"{'fa-angle-down': item.expanded && item.expandId === undefined}\"></span></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox\"><input type=\"checkbox\" value=\"item.selected\" [(ngModel)]=\"item.selected\" (ngModelChange)=\"checkboxChange(item)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\" (click)=\"toggleSelection($event, item)\" (dblclick)=\"dblClick($event, item)\"><ng-template *ngIf=\"itemTemplate\" [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionTemplate\" [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div><div class=\"pfng-list-expansion list-pf-expansion collapse in\" *ngIf=\"expandTemplate && item.expanded\"><div class=\"list-pf-container\" tabindex=\"0\"><div class=\"list-pf-content\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"closeExpandArea(item)\"></span></div><ng-template [ngTemplateOutlet]=\"expandTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
     }),
     __metadata("design:paramtypes", [])
 ], ListComponent);

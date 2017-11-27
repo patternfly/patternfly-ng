@@ -12,7 +12,7 @@ export declare class ListConfig extends ListBaseConfig {
      */
     useExpandItems?: boolean;
     /**
-     * Show list heading. First object in items array is be used to define heading content
+     * Show pinned items
      */
-    useHeading?: boolean;
+    usePinItems?: boolean;
 }

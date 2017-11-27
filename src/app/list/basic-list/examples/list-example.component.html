@@ -15,5 +15,8 @@
     <tab heading="Heading" (select)="tabSelected($event)">
       <list-heading-example *ngIf="activeTab === 'Heading'"></list-heading-example>
     </tab>
+    <tab heading="Pinning" (select)="tabSelected($event)">
+      <list-pin-example *ngIf="activeTab === 'Pinning'"></list-pin-example>
+    </tab>
   </tabset>
 </div>

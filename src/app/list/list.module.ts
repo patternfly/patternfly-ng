@@ -12,6 +12,7 @@ import { ListEvent } from './list-event';
 import { ListComponent } from './basic-list/list.component';
 import { ListConfig } from './basic-list/list-config';
 import { ListExpandToggleComponent } from './basic-list/list-expand-toggle.component';
+import { PipeModule } from '../pipe/pipe.module';
 import { TreeListComponent } from './tree-list/tree-list.component';
 import { TreeListConfig } from './tree-list/tree-list-config';
 
@@ -32,6 +33,7 @@ export {
     CommonModule,
     EmptyStateModule,
     FormsModule,
+    PipeModule,
     TreeModule
   ],
   declarations: [ListComponent, ListExpandToggleComponent, TreeListComponent],

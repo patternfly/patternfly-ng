@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Pipe } from '@angular/core';
+import { isBoolean, isString } from 'util';
 /**
  * Sort array pipe
  *
@@ -33,19 +34,20 @@ var SortArrayPipe = (function () {
         return arr.sort(function (a, b) {
             var x = a[prop];
             var y = b[prop];
-            // return (x === y) ? 0 : (x < y) ? -1 * m : 1 * m;
-            if (x === y) {
-                return 0;
+            // Resolve undefined values for more predicable behavior
+            if (x === undefined && isBoolean(y)) {
+                x = false;
             }
-            else if (x === undefined) {
-                return -1 * m; // Account for undefined properties
+            else if (x === undefined && isString(y)) {
+                x = '';
             }
-            else if (y === undefined) {
-                return 1 * m; // Account for undefined properties
+            if (y === undefined && isBoolean(x)) {
+                y = false;
             }
-            else {
-                return (x < y) ? -1 * m : 1 * m;
+            else if (y === undefined && isString(x)) {
+                y = '';
             }
+            return (x === y) ? 0 : (x < y) ? -1 * m : 1 * m;
         });
     };
     return SortArrayPipe;

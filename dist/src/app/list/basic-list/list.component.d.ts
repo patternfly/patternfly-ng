@@ -1,4 +1,4 @@
-import { DoCheck, OnInit, TemplateRef } from '@angular/core';
+import { DoCheck, EventEmitter, OnInit, TemplateRef } from '@angular/core';
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';
 /**
@@ -14,6 +14,10 @@ import { ListConfig } from './list-config';
  */
 export declare class ListComponent extends ListBase implements DoCheck, OnInit {
     /**
+     * The name of the template containing action heading layout
+     */
+    actionHeadingTemplate: TemplateRef<any>;
+    /**
      * The list config containing component properties
      */
     config: ListConfig;
@@ -21,6 +25,18 @@ export declare class ListComponent extends ListBase implements DoCheck, OnInit {
      * The name of the template used to contain expandable content for each item
      */
     expandTemplate: TemplateRef<any>;
+    /**
+     * An array of items to display in the list heading
+     */
+    headingItems: any[];
+    /**
+     * The name of the template containing item heading layout
+     */
+    itemHeadingTemplate: TemplateRef<any>;
+    /**
+     * The event emitted when an item pin has been changed
+     */
+    onPinChange: EventEmitter<{}>;
     private defaultConfig;
     private prevConfig;
     /**
@@ -47,4 +63,5 @@ export declare class ListComponent extends ListBase implements DoCheck, OnInit {
     protected getConfig(): ListConfig;
     private closeExpandArea(item);
     private toggleExpandArea(item);
+    private togglePin($event, item);
 }

@@ -3,78 +3,75 @@
     <div class="col-sm-12">
       <div class="form-group">
         <pfng-list
+            [actionHeadingTemplate]="actionHeadingTemplate"
             [actionTemplate]="actionTemplate"
             [config]="listConfig"
             [expandTemplate]="expandTemplate"
-            [items]="items"
+            [headingItems]="headingItems"
+            [items]="items | sortArray: 'name'"
+            [itemHeadingTemplate]="itemHeadingTemplate"
             [itemTemplate]="itemTemplate"
             (onActionSelect)="handleAction($event, null)"
             (onClick)="handleClick($event)"
             (onDblClick)="handleDblClick($event)"
             (onSelectionChange)="handleSelectionChange($event)">
+          <ng-template #itemHeadingTemplate let-item="item">
+            <div class="list-pf-left">
+              <!-- Place holder to match fa-plane icon width below -->
+              <div class="icon-placeholder"></div>
+            </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">{{item.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+              </div>
+              <div class="list-pf-additional-content">
+                <div>
+                  {{item.additionalInfo}}
+                  <i class="pficon pficon-info padding-left-5" tooltip="Additional info"></i>
+                </div>
+              </div>
+            </div>
+          </ng-template>
           <ng-template #itemTemplate let-item="item" let-index="index">
-            <div *ngIf="index === 0; then showContentHeader else showContent"></div>
-            <ng-template #showContentHeader>
-              <div class="list-pf-left">
-                <!-- Place holder to match fa-plane icon width below -->
-                <div class="icon-placeholder"></div>
+            <div class="list-pf-left">
+              <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
+            </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">{{item.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
               </div>
-              <div class="list-pf-content-wrapper">
-                <div class="list-pf-main-content">
-                  <div class="list-pf-title">{{item.name}}</div>
-                  <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+              <div class="list-pf-additional-content">
+                <div>
+                  <span class="pficon pficon-screen"></span>
+                  <strong>{{item.hostCount}}</strong> Hosts
                 </div>
-                <div class="list-pf-additional-content">
-                  <div>
-                    {{item.additionalInfo}}
-                    <i class="pficon pficon-info padding-left-5" tooltip="Additional info"></i>
-                  </div>
+                <div>
+                  <span class="pficon pficon-cluster"></span>
+                  <strong>{{item.clusterCount}}</strong> Clusters
                 </div>
-              </div>
-            </ng-template>
-            <ng-template #showContent>
-              <div class="list-pf-left">
-                <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
-              </div>
-              <div class="list-pf-content-wrapper">
-                <div class="list-pf-main-content">
-                  <div class="list-pf-title">{{item.name}}</div>
-                  <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+                <div>
+                  <span class="pficon pficon-container-node"></span>
+                  <strong>{{item.nodeCount}}</strong> Nodes
                 </div>
-                <div class="list-pf-additional-content">
-                  <div>
-                    <span class="pficon pficon-screen"></span>
-                    <strong>{{item.hostCount}}</strong> Hosts
-                  </div>
-                  <div>
-                    <span class="pficon pficon-cluster"></span>
-                    <strong>{{item.clusterCount}}</strong> Clusters
-                  </div>
-                  <div>
-                    <span class="pficon pficon-container-node"></span>
-                    <strong>{{item.nodeCount}}</strong> Nodes
-                  </div>
-                  <div>
-                    <span class="pficon pficon-image"></span>
-                    <strong>{{item.imageCount}}</strong> Images
-                  </div>
+                <div>
+                  <span class="pficon pficon-image"></span>
+                  <strong>{{item.imageCount}}</strong> Images
                 </div>
               </div>
-            </ng-template>
+            </div>
+          </ng-template>
+          <ng-template #actionHeadingTemplate let-item="item">
+            <span class="margin-left-40">{{item.actions}}</span>
+            <!-- Place holder to match action button width below -->
+            <div class="actions-placeholder"></div>
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
-            <div *ngIf="index === 0; then showActionsHeader else showActions"></div>
-            <ng-template #showActionsHeader>
-              <span class="margin-left-40">{{item.actions}}</span>
-              <!-- Place holder to match action button width below -->
-              <div class="actions-placeholder"></div>
-            </ng-template>
-            <ng-template #showActions>
-              <pfng-action class="list-pf-actions"
-                  [config]="actionConfig"
-                  (onActionSelect)="handleAction($event, item)">
-              </pfng-action>
-            </ng-template>
+            <pfng-action class="list-pf-actions"
+                         [config]="actionConfig"
+                         (onActionSelect)="handleAction($event, item)">
+            </pfng-action>
           </ng-template>
           <ng-template #expandTemplate let-item="item" let-index="index">
             <basic-content [item]="item"></basic-content>

@@ -19,6 +19,7 @@ export class ListHeadingExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
+  headingItems: any[];
   items: any[];
   listConfig: ListConfig;
   selectType: string = 'checkbox';
@@ -27,13 +28,14 @@ export class ListHeadingExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.allItems = [{
-      // First array item used for heading
+    this.headingItems = [{
       name: 'NAME',
       actions: 'ACTIONS',
       additionalInfo: 'ADDITOINAL INFO',
       address: 'ADDRESS'
-    }, {
+    }];
+
+    this.allItems = [{
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way',
       city: 'Bedrock',
@@ -176,8 +178,7 @@ export class ListHeadingExampleComponent implements OnInit {
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: true,
-      useExpandItems: false,
-      useHeading: true
+      useExpandItems: false
     } as ListConfig;
   }
 
