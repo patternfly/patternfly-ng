@@ -7,6 +7,7 @@ import { ChartModule } from './src/app/chart/chart.module';
 import { EmptyStateModule } from './src/app/empty-state/empty-state.module';
 import { FilterModule } from './src/app/filter/filter.module';
 import { ListModule } from './src/app/list/list.module';
+import { ModalModule } from './src/app/modal/modal.module';
 import { NavigationModule } from './src/app/navigation/navigation.module';
 import { NotificationModule } from './src/app/notification/notification.module';
 import { PaginationModule } from './src/app/pagination/pagination.module';
@@ -28,6 +29,7 @@ import { WizardModule } from './src/app/wizard/wizard.module';
     EmptyStateModule,
     FilterModule,
     ListModule,
+    ModalModule,
     NavigationModule,
     NotificationModule,
     PaginationModule,
