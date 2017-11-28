@@ -24,8 +24,7 @@ describe('Component: donut chart', () => {
       data: {},
       onClickFn: function(d: any, e: any) {
       },
-      centerLabelFn: function() {
-      }
+      centerLabel: 'center'
     };
     data = [
       ['Cats', 2],

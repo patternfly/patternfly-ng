@@ -5,9 +5,9 @@ import { ChartConfig } from '../chart-config';
 export class DonutConfig extends ChartConfig {
 
   /**
-   * An optional function to customize the text of the center label
+   * Text for the donut chart center label (optional)
    */
-  centerLabelFn?: any;
+  centerLabel?: any;
 
   /**
    * An optional function to handle when donut is clicked
@@ -15,12 +15,18 @@ export class DonutConfig extends ChartConfig {
   onClickFn?: any;
 
   /**
-   * The height of the donut chart
+   * The height of the donut chart (optional)
    */
   chartHeight?: number;
 
   /**
    * C3 inherited configuration for colors
+   * An object with key-value pairs of data name and color, e.g.
+   * colors : {
+   *   Cats: '#0088ce',
+   *   Hamsters: '#3f9c35',
+   * }
+   *
    */
   colors?: any;
 

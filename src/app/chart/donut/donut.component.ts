@@ -83,8 +83,8 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
       smText: this.config.donut.title
     };
 
-    if (this.config.centerLabelFn) {
-      centerLabelText.bigText = this.config.centerLabelFn();
+    if (this.config.centerLabel) {
+      centerLabelText.bigText = this.config.centerLabel;
       centerLabelText.smText = '';
     }
 
@@ -134,6 +134,7 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
   }
 
   private updateConfig(): void {
+
     if (this.config.chartHeight) {
       this.config.size.height = this.config.chartHeight;
     }
