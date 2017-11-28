@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 
 import { cloneDeep } from 'lodash';
+import { Observable } from 'rxjs';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -54,5 +55,15 @@ export class DonutExampleComponent implements OnInit {
       return 'Pets';
     };
     this.config2.chartHeight = 120;
+
+    Observable
+      .timer(0, 1000)
+      .map(() => Math.floor(Math.random() * 5) + 1)
+      .subscribe(val => this.data[0][1] = val);
+
+    Observable
+    .timer(0, 5000)
+    .map(() => Math.floor(Math.random() * 100) + 100)
+    .subscribe(val => this.config2.chartHeight = val);
   }
 }
