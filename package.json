@@ -3,8 +3,8 @@
   "version": "0.0.0-semantically-released",
   "description": "A collection of PatternFly Angular components and other useful things to be shared.",
   "main": "bundles/patternfly-ng.umd.js",
-  "module": "index.js",
-  "typings": "index.d.ts",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "npm-run-all --serial remove-dist ts:lint build:library build:demo copy-examples:demo",
     "build:demo": "webpack --config config/webpack.demo.js --progress --profile --bail",
@@ -171,5 +171,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "files": [
+    "dist/"
+  ]
 }
