@@ -1,6 +1,8 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
 
 import { cloneDeep, defaults, isEqual, merge } from 'lodash';
+import { Subscription } from 'rxjs/Subscription';
+
 import { ChartDefaults } from '../chart.defaults';
 import { ChartBase } from '../chart.base';
 import { DonutConfig } from './donut-config';
@@ -19,7 +21,8 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
   public donutChartId: any;
 
   private prevChartData: any;
-  private defaultConfig: DonutConfig;
+
+  private subscriptions: Subscription[] = [];
 
   /**
    * Default constructor
@@ -35,29 +38,31 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
       this.donutChartId = this.config.chartId + this.donutChartId;
     }
 
-    this.chartLoaded.subscribe({
+    this.subscriptions.push(this.chartLoaded.subscribe({
       next: (chart: any) => {
         this.chartAvailable(chart);
       }
-    });
+    }));
 
-    this.setupConfig();
-    super.generateChart(this.donutChartId);
-    this.updateAll();
+    this.setupConfigDefaults();
   }
 
   ngDoCheck(): void {
-    if (!isEqual(this.chartData, this.prevChartData)) {
-      this.updateAll();
-    }
-
     if (!isEqual(this.config, this.prevConfig)) {
-      this.setupConfig();
+      this.updateConfig();
       this.generateChart(this.donutChartId, true);
+    } else if (!isEqual(this.chartData, this.prevChartData)) {
+      this.config.data = merge(this.config.data, this.getDonutData(this.chartData));
+      this.generateChart(this.donutChartId, false);
+      this.prevChartData = cloneDeep(this.chartData);
     }
   }
 
-  public chartAvailable(chart: any): void {
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe);
+  }
+
+  private chartAvailable(chart: any): void {
     this.setupDonutChartTitle(chart);
   }
 
@@ -111,19 +116,6 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
     }
   }
 
-  private setupConfig(): void {
-    this.defaultConfig = this.chartDefaults.getDefaultDonutConfig();
-    let defaultDonut = this.chartDefaults.getDefaultDonut();
-
-    defaults(this.config, this.defaultConfig);
-    defaults(this.config.donut, defaultDonut);
-
-    if (this.config.chartHeight) {
-      this.defaultConfig.size.height = this.config.chartHeight;
-      this.config.size.height = this.config.chartHeight;
-    }
-  }
-
   private getDonutData(chartData: any): any {
     return {
       type: 'donut',
@@ -133,12 +125,23 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
     };
   }
 
-  private updateAll(): void {
-    this.prevChartData = cloneDeep(this.chartData);
+  private setupConfigDefaults(): void {
+    let defaultConfig = this.chartDefaults.getDefaultDonutConfig();
+    let defaultDonut = this.chartDefaults.getDefaultDonut();
 
-    this.config.data = merge(this.config.data, this.getDonutData(this.chartData));
-    this.config.data.onclick = this.config.onClickFn;
+    defaults(this.config, defaultConfig);
+    defaults(this.config.donut, defaultDonut);
   }
 
+  private updateConfig(): void {
+    if (this.config.chartHeight) {
+      this.config.size.height = this.config.chartHeight;
+    }
 
+    this.config.data = merge(this.config.data, this.getDonutData(this.chartData));
+
+    if (this.config.onClickFn) {
+      this.config.data.onclick = this.config.onClickFn;
+    }
+  }
 }
