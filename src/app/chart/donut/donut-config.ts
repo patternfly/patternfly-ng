@@ -39,4 +39,9 @@ export class DonutConfig extends ChartConfig {
    * C3 inherited donut configuration
    */
   donut?: any;
+
+  /**
+   * C3 inherited configuration for tooltip
+   */
+  tooltip?: any;
 }

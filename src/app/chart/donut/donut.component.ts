@@ -134,15 +134,16 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
   }
 
   private updateConfig(): void {
+    this.config.data = merge(this.config.data, this.getDonutData(this.chartData));
 
     if (this.config.chartHeight) {
       this.config.size.height = this.config.chartHeight;
     }
 
-    this.config.data = merge(this.config.data, this.getDonutData(this.chartData));
-
     if (this.config.onClickFn) {
       this.config.data.onclick = this.config.onClickFn;
     }
+
+    this.config.tooltip = { contents: (window as any).patternfly.pfDonutTooltipContents };
   }
 }
