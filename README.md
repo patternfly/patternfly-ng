@@ -28,10 +28,10 @@ This example demonstrates using the Angular-cli to get started with PatternFly-n
 
 3. Add patternfly-ng dependencies
  
- - install `patternfly` and `ngx-bootstrap`
+ - install `patternfly`
 
  ```bash
-   npm install patternfly ngx-bootstrap --save
+   npm install patternfly --save
  ```
  
 4. Add a patternfly-ng component
