@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DonutComponent } from './donut/donut.component';
 import { SparklineComponent } from './sparkline/sparkline.component';
 import { ChartDefaults } from './chart.defaults';
 
@@ -9,8 +10,8 @@ import { ChartDefaults } from './chart.defaults';
     CommonModule,
     FormsModule,
   ],
-  declarations: [SparklineComponent],
-  exports: [SparklineComponent],
+  declarations: [SparklineComponent, DonutComponent],
+  exports: [SparklineComponent, DonutComponent],
   providers: [ChartDefaults]
 })
 export class ChartModule {}
