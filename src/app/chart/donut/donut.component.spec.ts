@@ -53,7 +53,7 @@ describe('Component: donut chart', () => {
   }));
 
   it('should set chart id', () => {
-    expect(comp.donutChartId).toBe('testDonutChartdonutChart');
+    expect(comp.config.chartId).toContain('testDonutChart');
   });
 
 

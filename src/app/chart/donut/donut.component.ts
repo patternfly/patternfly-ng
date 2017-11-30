@@ -1,6 +1,6 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
 
-import { cloneDeep, defaults, isEqual, merge } from 'lodash';
+import { cloneDeep, defaults, isEqual, merge, uniqueId } from 'lodash';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ChartDefaults } from '../chart.defaults';
@@ -18,8 +18,6 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
   @Input() chartData: any;
   @Input() config: DonutConfig;
 
-  public donutChartId: any;
-
   private prevChartData: any;
 
   private subscriptions: Subscription[] = [];
@@ -33,10 +31,10 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
   }
 
   ngOnInit(): void {
-    this.donutChartId = 'donutChart';
-    if (this.config.chartId) {
-      this.donutChartId = this.config.chartId + this.donutChartId;
+    if (!this.config.chartId) {
+      throw new Error('DonutComponent: config must have string property chartId');
     }
+    this.config.chartId = uniqueId(this.config.chartId);
 
     this.subscriptions.push(this.chartLoaded.subscribe({
       next: (chart: any) => {
@@ -50,10 +48,10 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
   ngDoCheck(): void {
     if (!isEqual(this.config, this.prevConfig)) {
       this.updateConfig();
-      this.generateChart(this.donutChartId, true);
+      this.generateChart(this.config.chartId, true);
     } else if (!isEqual(this.chartData, this.prevChartData)) {
       this.config.data = merge(this.config.data, this.getDonutData(this.chartData));
-      this.generateChart(this.donutChartId, false);
+      this.generateChart(this.config.chartId, false);
       this.prevChartData = cloneDeep(this.chartData);
     }
   }
