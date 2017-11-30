@@ -20,11 +20,13 @@ describe('Component: donut chart', () => {
 
   beforeEach(() => {
     config = {
-      'chartId': 'testDonutChart',
-      data: {},
+      chartId: 'testDonutChart',
       onClickFn: function(d: any, e: any) {
       },
-      centerLabel: 'center'
+      data: {},
+      donut: {
+        title: 'Animals'
+      }
     };
     data = [
       ['Cats', 2],
@@ -50,6 +52,10 @@ describe('Component: donut chart', () => {
       });
   }));
 
+  it('should set chart id', () => {
+    expect(comp.donutChartId).toBe('testDonutChartdonutChart');
+  });
+
 
   it('should allow attribute specification of chart height', () => {
     config.chartHeight = 120;
@@ -61,14 +67,12 @@ describe('Component: donut chart', () => {
     config.chartHeight = 120;
 
     fixture.detectChanges();
-    expect(comp.donutChartId).toBe('testDonutChartdonutChart');
     expect(comp.config.size.height).toBe(120);
 
     config.chartHeight = 100;
     fixture.detectChanges();
     expect(comp.config.size.height).toBe(100);
   });
-
 
   it('should setup C3 chart data correctly', () => {
     expect(comp.config.data.columns.length).toBe(3);
@@ -89,5 +93,31 @@ describe('Component: donut chart', () => {
 
   it('should setup onclick correctly', () => {
     expect(typeof(comp.config.data.onclick)).toBe('function');
+  });
+
+  it('should use the default centerLabel', () => {
+    let centerLabel = comp.getCenterLabelText();
+    expect(centerLabel.bigText).toBe(6);
+    expect(centerLabel.smText).toBe('Animals');
+  });
+
+  it('should use custom centerLabel', () => {
+    config.centerLabel = 'custom-label';
+    fixture.detectChanges();
+
+    let centerLabel = comp.getCenterLabelText();
+    expect(centerLabel.bigText).toBe('custom-label');
+    expect(centerLabel.smText).toBe('');
+  });
+
+  it('should use patternfly tooltip', () => {
+    expect(typeof(comp.config.tooltip.contents)).toBe('function');
+  });
+
+  it('should have default donut config with custom title', () => {
+    expect(comp.config.donut.title).toBe('Animals');
+
+    expect(comp.config.donut.width).toBe(11);
+    expect(comp.config.donut.label.show).toBe(false);
   });
 });

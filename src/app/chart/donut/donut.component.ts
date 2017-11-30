@@ -62,6 +62,21 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
     this.subscriptions.forEach(sub => sub.unsubscribe);
   }
 
+  // Public for testing
+  public getCenterLabelText(): any {
+    let centerLabelText = {
+      bigText: this.getTotal(),
+      smText: this.config.donut.title
+    };
+
+    if (this.config.centerLabel) {
+      centerLabelText.bigText = this.config.centerLabel;
+      centerLabelText.smText = '';
+    }
+
+    return centerLabelText;
+  }
+
   private chartAvailable(chart: any): void {
     this.setupDonutChartTitle(chart);
   }
@@ -75,20 +90,6 @@ export class DonutComponent extends ChartBase implements DoCheck, OnInit {
     });
 
     return total;
-  }
-
-  private getCenterLabelText(): any {
-    let centerLabelText = {
-      bigText: this.getTotal(),
-      smText: this.config.donut.title
-    };
-
-    if (this.config.centerLabel) {
-      centerLabelText.bigText = this.config.centerLabel;
-      centerLabelText.smText = '';
-    }
-
-    return centerLabelText;
   }
 
   private setupDonutChartTitle(chart: any): void {
