@@ -15,6 +15,7 @@ import { DemoComponentsModule } from './components/demo-components.module';
 import { AboutModalExampleModule } from '../app/modal/examples/about-modal-example.module';
 import { ActionExampleModule } from '../app/action/examples/action-example.module';
 import { CardExampleModule } from '../app/card/basic-card/examples/card-example.module';
+import { DonutExampleModule } from '../app/chart/donut/examples/donut-example.module';
 import { InfoStatusCardExampleModule } from '../app/card/info-status-card/examples/info-status-card-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/examples/filter-example.module';
@@ -43,6 +44,7 @@ import { NavigationExampleModule } from '../app/navigation/examples/navigation-e
     BrowserModule,
     CardExampleModule,
     DemoComponentsModule,
+    DonutExampleModule,
     EmptyStateExampleModule,
     FilterExampleModule,
     FormsModule,

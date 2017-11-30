@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DonutComponent } from './donut/donut.component';
 import { SparklineComponent } from './sparkline/sparkline.component';
 import { ChartDefaults } from './chart.defaults';
 var ChartModule = /** @class */ (function () {
@@ -18,8 +19,8 @@ var ChartModule = /** @class */ (function () {
                 CommonModule,
                 FormsModule,
             ],
-            declarations: [SparklineComponent],
-            exports: [SparklineComponent],
+            declarations: [SparklineComponent, DonutComponent],
+            exports: [SparklineComponent, DonutComponent],
             providers: [ChartDefaults]
         })
     ], ChartModule);
