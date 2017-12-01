@@ -62,7 +62,7 @@ describe('Info Status Card Component - ', () => {
   });
 
   it('should set the title, title link, and icons class', () => {
-    Object.assign(infoCard, cardConfig);
+    (<any>Object).assign(infoCard, cardConfig);
     fixture.detectChanges();
     let numTitles = fixture.debugElement.queryAll(By.css('.pfng-card-title')).length;
     let numTitleLinks = fixture.debugElement.queryAll(By.css('.pfng-card-title a[href]')).length;
@@ -74,14 +74,14 @@ describe('Info Status Card Component - ', () => {
 
   it('should not have a link present in the title', () => {
     cardConfig.href = null;
-    Object.assign(infoCard, cardConfig);
+    (<any>Object).assign(infoCard, cardConfig);
     fixture.detectChanges();
     let numTitleLinks = fixture.debugElement.queryAll(By.css('.pfng-card-title a')).length;
     expect(numTitleLinks).toBe(0);
   });
 
   it('should set three info elements', () => {
-    Object.assign(infoCard, cardConfig);
+    (<any>Object).assign(infoCard, cardConfig);
     fixture.detectChanges();
     let numInfoElements = fixture.debugElement.queryAll(By.css('.pfng-card-info-item')).length;
     expect(numInfoElements).toBe(4);
@@ -89,21 +89,21 @@ describe('Info Status Card Component - ', () => {
 
   it('should show the top border', () => {
     cardConfig.showTopBorder = true;
-    Object.assign(infoCard, cardConfig);
+    (<any>Object).assign(infoCard, cardConfig);
     fixture.detectChanges();
     let hasAccentedClass = fixture.debugElement.queryAll(By.css('.card-pf.card-pf-accented')).length;
     expect(hasAccentedClass).toBe(1);
   });
 
   it('should hide the top border by default', () => {
-    Object.assign(infoCard, cardConfig);
+    (<any>Object).assign(infoCard, cardConfig);
     fixture.detectChanges();
     let hasAccentedClass = fixture.debugElement.queryAll(By.css('.card-pf.card-pf-accented')).length;
     expect(hasAccentedClass).toBe(0);
   });
 
   it('should not have an icon image by default', () => {
-    Object.assign(infoCard, cardConfig);
+    (<any>Object).assign(infoCard, cardConfig);
     fixture.detectChanges();
     let hasIconImg = fixture.debugElement.queryAll(By.css('.info-img')).length;
     expect(hasIconImg).toBe(0);
@@ -111,7 +111,7 @@ describe('Info Status Card Component - ', () => {
 
   it('should set the icon image', () => {
     cardConfig.iconImageSrc = '//www.patternfly.org/assets/img/redhat.svg',
-    Object.assign(infoCard, cardConfig);
+    (<any>Object).assign(infoCard, cardConfig);
     fixture.detectChanges();
     let hasIconImg = fixture.debugElement.queryAll(By.css('.pfng-card-info-image .info-img')).length;
     expect(hasIconImg).toBe(1);
