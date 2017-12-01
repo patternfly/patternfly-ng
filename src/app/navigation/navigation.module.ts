@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { VerticalNavigationComponent } from './vertical-navigation.component';
 import { NavigationItemConfig } from './navigation-item-config';
+import { VerticalNavigationComponent } from './vertical-navigation.component';
 import { WindowReference } from '../utilities/window.reference';
 
 export {

@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NavigationItemConfig } from './navigation-item-config';
+
 import { WindowReference } from '../utilities/window.reference';
 
 /**

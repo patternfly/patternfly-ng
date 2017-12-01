@@ -1,12 +1,11 @@
 import {
   Component,
   DoCheck,
-  SimpleChanges,
-  Input,
-  Output,
   EventEmitter,
-  ViewEncapsulation,
-  OnInit
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';

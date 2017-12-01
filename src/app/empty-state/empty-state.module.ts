@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { EmptyStateConfig } from './empty-state-config';
 import { EmptyStateComponent } from './empty-state.component';

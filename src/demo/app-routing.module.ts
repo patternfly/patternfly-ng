@@ -5,10 +5,11 @@ import { AboutModalExampleComponent } from '../app/modal/examples/about-modal-ex
 import { ActionExampleComponent } from '../app/action/examples/action-example.component';
 import { CardExampleComponent } from '../app/card/basic-card/examples/card-example.component';
 import { DonutExampleComponent } from '../app/chart/donut/examples/donut-example.component';
-import { InfoStatusCardExampleComponent }
-  from '../app/card/info-status-card/examples/info-status-card-example.component';
 import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/examples/filter-example.component';
+import { InfoStatusCardExampleComponent }
+  from '../app/card/info-status-card/examples/info-status-card-example.component';
+import { InlineNotificationExampleComponent } from '../app/notification/examples/inline-notification-example.component';
 import { ListExampleComponent } from '../app/list/basic-list/examples/list-example.component';
 import { NotificationServiceExampleComponent }
   from '../app/notification/examples/notification-service-example.component';
@@ -28,7 +29,6 @@ import { TreeListExampleComponent } from '../app/list/tree-list/examples/tree-li
 import { TruncateExampleComponent } from '../app/pipe/truncate/examples/truncate-example.component';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/examples/wizard-example.component';
-import { InlineNotificationExampleComponent } from '../app/notification/examples/inline-notification-example.component';
 import { VerticalNavigationExampleComponent } from '../app/navigation/examples/vertical-navigation-example.component';
 
 const routes: Routes = [{

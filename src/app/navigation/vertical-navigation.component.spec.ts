@@ -3,14 +3,13 @@ import {
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
-
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
-import { VerticalNavigationComponent } from './vertical-navigation.component';
-import { TooltipModule } from 'ngx-bootstrap';
-import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationItemConfig } from './navigation-item-config';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TooltipModule } from 'ngx-bootstrap';
+import { VerticalNavigationComponent } from './vertical-navigation.component';
 import { WindowReference } from '../utilities/window.reference';
 
 describe('Vertical Navigation component - ', () => {

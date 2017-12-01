@@ -9,13 +9,13 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
+
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterType } from './filter-type';
-
-import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
 /**
  * Filter component

@@ -2,8 +2,8 @@ import {
   Component,
   OnInit,
   TemplateRef,
-  ViewEncapsulation,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';

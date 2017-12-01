@@ -1,12 +1,11 @@
 import {
   Component,
   DoCheck,
-  Input,
-  Output,
   EventEmitter,
-  TemplateRef,
-  ViewEncapsulation,
-  OnInit
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { cloneDeep, defaults, isEqual } from 'lodash';
@@ -24,7 +23,6 @@ import { AboutModalEvent } from './about-modal-event';
 })
 
 export class AboutModalComponent implements DoCheck, OnInit {
-
   /**
    * The AboutModal config contaning component properties
    */

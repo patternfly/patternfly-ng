@@ -1,13 +1,13 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
+import * as d3 from 'd3';
 
 import { cloneDeep, defaults, isEqual, merge, uniqueId } from 'lodash';
-import { Subscription } from 'rxjs/Subscription';
 
 import { ChartDefaults } from '../chart.defaults';
 import { ChartBase } from '../chart.base';
 import { DonutConfig } from './donut-config';
-
-import * as d3 from 'd3';
 
 @Component({
   selector: 'pfng-chart-donut',

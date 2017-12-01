@@ -3,9 +3,8 @@ import {
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
-
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { InlineNotificationComponent } from './inline-notification.component';
 import { NotificationType } from './notification-type';

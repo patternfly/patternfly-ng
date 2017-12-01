@@ -8,11 +8,11 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { SortConfig } from './sort-config';
 import { SortField } from './sort-field';
 import { SortEvent } from './sort-event';
-
-import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Sort component

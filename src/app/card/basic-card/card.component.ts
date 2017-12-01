@@ -8,13 +8,13 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { CardAction } from '../card-action/card-action';
 import { CardBase } from '../card-base';
 import { CardConfig } from './card-config';
 import { CardFilter } from '../card-filter/card-filter';
 import { CardFilterPosition } from '../card-filter/card-filter-position';
-
-import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Card component

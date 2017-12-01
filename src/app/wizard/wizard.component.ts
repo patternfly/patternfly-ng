@@ -8,12 +8,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { WizardBase } from './wizard-base';
 import { WizardConfig } from './wizard-config';
 import { WizardEvent } from './wizard-event';
 import { WizardStep } from './wizard-step';
-
-import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Wizard component

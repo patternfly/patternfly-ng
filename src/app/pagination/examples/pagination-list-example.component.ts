@@ -4,14 +4,14 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, isEqual } from 'lodash';
+
 import { Action } from '../../action/action';
 import { ActionConfig } from '../../action/action-config';
 import { ListEvent } from '../../list/list-event';
 import { ListConfig } from '../../list/basic-list/list-config';
 import { PaginationConfig } from '../pagination-config';
 import { PaginationEvent } from '../pagination-event';
-
-import { cloneDeep, isEqual } from 'lodash';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

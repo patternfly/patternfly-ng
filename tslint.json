@@ -125,6 +125,13 @@
       "check-type"
     ],
     "space-before-function-paren": [true, "never"],
-    "space-within-parens": 0
+    "space-within-parens": 0,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "any",
+        "named-imports-order": "lowercase-first"
+      }
+    ]
   }
 }
