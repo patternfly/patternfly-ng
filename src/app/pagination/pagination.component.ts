@@ -84,7 +84,7 @@ export class PaginationComponent implements DoCheck, OnInit {
     this.pageNumber = this.config.pageNumber;
   }
 
-  // Getters and setters
+  // Accessors
 
   get pageNumber(): number {
     return this._pageNumber;

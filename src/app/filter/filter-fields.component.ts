@@ -130,7 +130,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
     this.initCurrentField();
   }
 
-  // Getters & setters
+  // Accessors
 
   /**
    * Get the current filter field

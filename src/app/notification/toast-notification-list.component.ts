@@ -54,7 +54,7 @@ export class ToastNotificationListComponent implements OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
   }
@@ -62,7 +62,7 @@ export class ToastNotificationListComponent implements OnInit {
   // Actions
 
   /**
-   *  Check if the component config has changed
+   * Check if the component config has changed
    */
   private handleAction($event: NotificationEvent): void {
     this.onActionSelect.emit($event);

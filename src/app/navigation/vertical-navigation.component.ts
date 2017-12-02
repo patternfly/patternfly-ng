@@ -164,6 +164,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
               private windowRef: WindowReference) {
   }
 
+  /**
+   * Setup component configuration upon initialization
+   */
   ngOnInit() {
     this.windowListener = this.windowRef.nativeWindow.addEventListener('resize', (event: any) => {
       this.onResize(event);
@@ -187,6 +190,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     this.checkNavState();
   }
 
+  /**
+   * Destroy listeners
+   */
   ngOnDestroy() {
     this.routeChangeListener.unsubscribe();
     this.windowRef.nativeWindow.removeEventListener('resize');
