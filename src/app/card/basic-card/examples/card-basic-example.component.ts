@@ -7,6 +7,8 @@ import {
 import { CardAction } from '../../card-action/card-action';
 import { CardConfig } from '../card-config';
 import { CardFilter } from '../../card-filter/card-filter';
+import { SparklineConfig } from '../../../chart/sparkline/sparkline-config';
+import { SparklineData } from '../../../chart/sparkline/sparkline-data';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -16,12 +18,12 @@ import { CardFilter } from '../../card-filter/card-filter';
 export class CardBasicExampleComponent implements OnInit {
   actionsText: string = '';
   chartDates: any[] = ['dates'];
-  chartConfig: any = {
+  chartConfig: SparklineConfig = {
     chartHeight: 60,
     chartId: 'exampleSparkline',
     tooltipType: 'default'
   };
-  chartData: any = {
+  chartData: SparklineData = {
     dataAvailable: true,
     total: 100,
     xData: this.chartDates,

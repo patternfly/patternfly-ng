@@ -5,10 +5,12 @@ import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { ChartModule } from '../../chart.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
+import { DonutBasicExampleComponent } from './donut-basic-example.component';
+import { DonutDynamicExampleComponent } from './donut-dynamic-example.component';
 import { DonutExampleComponent } from './donut-example.component';
 
 @NgModule({
-  declarations: [DonutExampleComponent],
+  declarations: [DonutBasicExampleComponent, DonutDynamicExampleComponent, DonutExampleComponent],
   imports: [
     ChartModule,
     CommonModule,
