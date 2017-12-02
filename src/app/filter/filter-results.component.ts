@@ -52,14 +52,14 @@ export class FilterResultsComponent implements DoCheck, OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     this.setupConfig();
   }
 
   /**
-   *  Check if the component config has changed
+   * Check if the component config has changed
    */
   ngDoCheck(): void {
     // Do a deep compare on config
@@ -77,7 +77,6 @@ export class FilterResultsComponent implements DoCheck, OnInit {
     } else {
       this.config = cloneDeep(this.defaultConfig);
     }
-    this.prevConfig = cloneDeep(this.config);
 
     if (this.config && this.config.appliedFilters === undefined) {
       this.config.appliedFilters = [];
@@ -91,6 +90,7 @@ export class FilterResultsComponent implements DoCheck, OnInit {
     if (this.config && this.config.totalCount === undefined) {
       this.config.totalCount = 0;
     }
+    this.prevConfig = cloneDeep(this.config);
   }
 
   // Private

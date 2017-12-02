@@ -90,14 +90,14 @@ export class ToolbarComponent implements DoCheck, OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     this.setupConfig();
   }
 
   /**
-   *  Check if the component config has changed
+   * Check if the component config has changed
    */
   ngDoCheck(): void {
     // Do a deep compare on config
@@ -132,6 +132,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
     if (this.config && this.config.view === undefined) {
       this.config.view = this.config.views[0];
     }
+    this.prevConfig = cloneDeep(this.config);
   }
 
   // Actions

@@ -48,14 +48,14 @@ export class SortComponent implements DoCheck, OnInit {
   }
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     this.setupConfig();
   }
 
   /**
-   *  Check if the component config has changed
+   * Check if the component config has changed
    */
   ngDoCheck(): void {
     // Do a deep compare on config
@@ -82,6 +82,7 @@ export class SortComponent implements DoCheck, OnInit {
         this.config.isAscending = true;
       }
     }
+    this.prevConfig = cloneDeep(this.config);
   }
 
   // Actions
