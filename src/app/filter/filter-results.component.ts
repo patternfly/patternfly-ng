@@ -8,11 +8,11 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { clone, cloneDeep, defaults, isEqual } from 'lodash';
+
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
-
-import { clone, cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Component for the filter results

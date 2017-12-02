@@ -19,8 +19,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input } from '@angular/core';
 import { cloneDeep, defaults, isEqual, merge } from 'lodash';
-import { ChartDefaults } from '../chart.defaults';
 import { ChartBase } from '../chart.base';
+import { ChartDefaults } from '../chart.defaults';
 import { SparklineConfig } from './sparkline-config';
 /**
  * Sparkline chart component based on C3

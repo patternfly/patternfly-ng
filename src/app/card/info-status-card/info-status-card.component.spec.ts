@@ -1,5 +1,4 @@
-import { DebugElement } from '@angular/core';
-import { TestBed, ComponentFixture, async } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { InfoStatusCardComponent } from './info-status-card.component';

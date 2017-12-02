@@ -19,9 +19,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TreeComponent } from 'angular-tree-component';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 import { ListBase } from '../list-base';
 import { TreeListConfig } from './tree-list-config';
-import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Tree List component
  *

@@ -21,10 +21,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 import { Component, EventEmitter, Host, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 import { WizardBase } from './wizard-base';
 import { WizardComponent } from './wizard.component';
 import { WizardStepConfig } from './wizard-step-config';
-import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Wizard step component. Each step can stand alone or have substeps.
  *

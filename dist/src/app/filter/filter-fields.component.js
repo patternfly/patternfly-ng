@@ -8,8 +8,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { FilterConfig } from './filter-config';
 import { cloneDeep, defaults, isEqual } from 'lodash';
+import { FilterConfig } from './filter-config';
 /**
  * Component for the filter query field and filter query dropdown
  */

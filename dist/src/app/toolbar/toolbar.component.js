@@ -8,8 +8,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { ToolbarConfig } from './toolbar-config';
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
+import { ToolbarConfig } from './toolbar-config';
 /**
  * Toolbar component
  */

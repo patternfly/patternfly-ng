@@ -9,13 +9,13 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { WizardBase } from './wizard-base';
 import { WizardComponent } from './wizard.component';
 import { WizardEvent } from './wizard-event';
 import { WizardStep } from './wizard-step';
 import { WizardStepConfig } from './wizard-step-config';
-
-import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Wizard step component. Each step can stand alone or have substeps.

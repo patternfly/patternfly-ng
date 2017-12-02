@@ -5,6 +5,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+
 import { WizardStep } from '../wizard-step';
 import { WizardStepComponent } from '../wizard-step.component';
 import { WizardConfig } from '../wizard-config';

@@ -8,8 +8,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { ActionConfig } from './action-config';
 import { cloneDeep, defaults, isEqual } from 'lodash';
+import { ActionConfig } from './action-config';
 /**
  * List actions component.
  *

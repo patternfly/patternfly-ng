@@ -8,8 +8,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { EmptyStateConfig } from './empty-state-config';
 import { cloneDeep, defaults, isEqual } from 'lodash';
+import { EmptyStateConfig } from './empty-state-config';
 /**
  * Component for rendering an empty state.
  */

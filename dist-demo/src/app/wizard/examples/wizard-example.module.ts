@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 import { WizardBasicExampleComponent } from './wizard-basic-example.component';

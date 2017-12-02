@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Input, Output, EventEmitter } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
 import * as c3 from 'c3';
 import { cloneDeep } from 'lodash';
 import { ChartConfig } from './chart-config';

@@ -1,8 +1,9 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
 
 import { cloneDeep, defaults, isEqual, merge } from 'lodash';
-import { ChartDefaults } from '../chart.defaults';
+
 import { ChartBase } from '../chart.base';
+import { ChartDefaults } from '../chart.defaults';
 import { SparklineConfig } from './sparkline-config';
 
 /**

@@ -9,14 +9,14 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
+
 import { Action } from '../action/action';
 import { Filter } from '../filter/filter';
 import { FilterEvent } from '../filter/filter-event';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarConfig } from './toolbar-config';
 import { ToolbarView } from './toolbar-view';
-
-import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
 /**
  * Toolbar component

@@ -1,6 +1,6 @@
 import { DoCheck, OnInit } from '@angular/core';
-import { ChartDefaults } from '../chart.defaults';
 import { ChartBase } from '../chart.base';
+import { ChartDefaults } from '../chart.defaults';
 import { SparklineConfig } from './sparkline-config';
 /**
  * Sparkline chart component based on C3

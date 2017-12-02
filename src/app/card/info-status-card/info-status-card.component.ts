@@ -1,8 +1,8 @@
 import {
   Component,
+  DoCheck,
   Input,
   OnInit,
-  DoCheck,
   ViewEncapsulation
 } from '@angular/core';
 

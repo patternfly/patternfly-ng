@@ -4,12 +4,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep } from 'lodash';
+
 import { Action } from '../../../action/action';
 import { ActionConfig } from '../../../action/action-config';
 import { ListEvent } from '../../list-event';
 import { ListConfig } from '../list-config';
-
-import { cloneDeep } from 'lodash';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

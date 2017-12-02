@@ -4,9 +4,9 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import {
-  TreeNode,
-} from 'angular-tree-component';
+import { TreeNode } from 'angular-tree-component';
+
+import { cloneDeep } from 'lodash';
 
 import { Action } from '../../../action/action';
 import { ActionConfig } from '../../../action/action-config';
@@ -15,7 +15,7 @@ import { ListEvent } from '../../list-event';
 import { TreeListComponent } from '../tree-list.component';
 import { TreeListConfig } from '../tree-list-config';
 
-import { cloneDeep } from 'lodash';
+
 
 @Component({
   encapsulation: ViewEncapsulation.None,

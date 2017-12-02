@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 import { TreeModule } from 'angular-tree-component';
 
 import { ActionModule } from '../../../action/action.module';

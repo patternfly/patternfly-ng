@@ -1,9 +1,9 @@
 // import './rxjs-extensions';
 
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
 
 // App components
 import { AppComponent } from './app.component';
@@ -16,9 +16,9 @@ import { AboutModalExampleModule } from '../app/modal/examples/about-modal-examp
 import { ActionExampleModule } from '../app/action/examples/action-example.module';
 import { CardExampleModule } from '../app/card/basic-card/examples/card-example.module';
 import { DonutExampleModule } from '../app/chart/donut/examples/donut-example.module';
-import { InfoStatusCardExampleModule } from '../app/card/info-status-card/examples/info-status-card-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/examples/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/examples/filter-example.module';
+import { InfoStatusCardExampleModule } from '../app/card/info-status-card/examples/info-status-card-example.module';
 import { ListExampleModule } from '../app/list/basic-list/examples/list-example.module';
 import { NotificationExampleModule } from '../app/notification/examples/notification-example.module';
 import { PaginationExampleModule } from '../app/pagination/examples/pagination-example.module';

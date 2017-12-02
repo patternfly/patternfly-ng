@@ -18,11 +18,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, Input } from '@angular/core';
+import * as d3 from 'd3';
 import { cloneDeep, defaults, isEqual, merge, uniqueId } from 'lodash';
 import { ChartDefaults } from '../chart.defaults';
 import { ChartBase } from '../chart.base';
 import { DonutConfig } from './donut-config';
-import * as d3 from 'd3';
 var DonutComponent = /** @class */ (function (_super) {
     __extends(DonutComponent, _super);
     /**

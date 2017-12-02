@@ -4,6 +4,8 @@ import {
   ViewChild
 } from '@angular/core';
 
+import { cloneDeep, find } from 'lodash';
+
 import { Filter } from '../filter';
 import { FilterComponent } from '../filter.component';
 import { FilterConfig } from '../filter-config';
@@ -11,8 +13,6 @@ import { FilterField } from '../filter-field';
 import { FilterEvent } from '../filter-event';
 import { FilterQuery } from '../filter-query';
 import { FilterType } from '../filter-type';
-
-import { cloneDeep, find } from 'lodash';
 
 @Component({
   selector: 'filter-save-example',

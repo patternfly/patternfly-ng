@@ -8,10 +8,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { Action } from '../action/action';
 import { EmptyStateConfig } from './empty-state-config';
-
-import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Component for rendering an empty state.

@@ -18,10 +18,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { cloneDeep, defaults, isEqual } from 'lodash';
 import { CardBase } from '../card-base';
 import { CardConfig } from './card-config';
 import { CardFilterPosition } from '../card-filter/card-filter-position';
-import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Card component
  *

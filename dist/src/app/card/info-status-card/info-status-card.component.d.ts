@@ -1,4 +1,4 @@
-import { OnInit, DoCheck } from '@angular/core';
+import { DoCheck, OnInit } from '@angular/core';
 import { InfoStatusCardConfig } from './info-status-card-config';
 /**
  * Info Status Card Component
