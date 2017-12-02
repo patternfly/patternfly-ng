@@ -65,11 +65,13 @@
     "rxjs": ">=5.0.1"
   },
   "dependencies": {
-    "angular-tree-component": "^6.0.0",
-    "c3": "^0.4.15",
     "lodash": "^4.17.4",
     "ngx-bootstrap": "1.8.0",
     "patternfly": "^3.28.0"
+  },
+  "optionalDependencies": {
+    "angular-tree-component": "^6.0.0",
+    "c3": "^0.4.15"
   },
   "devDependencies": {
     "@angular/animations": "^4.0.1",
