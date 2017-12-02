@@ -84,7 +84,7 @@ export abstract class ListBase {
    */
   protected abstract getConfig(): ListBaseConfig;
 
-  // Getters & setters
+  // Accessors
 
   /**
    * Get the flag indicating list has no items

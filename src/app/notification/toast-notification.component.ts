@@ -89,20 +89,20 @@ export class ToastNotificationComponent implements DoCheck, OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
   }
 
   /**
-   *  Check if the component config has changed
+   * Check if the component config has changed
    */
   ngDoCheck(): void {
     this._showCloseButton = (this.showClose === true)
       && (this.moreActions === undefined || this.moreActions.length === 0);
   }
 
-  // Getters & setters
+  // Accessors
 
   /**
    * Get the flag indicating that the close button should be shown

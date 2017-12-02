@@ -39,7 +39,7 @@ export class CardFilterComponent implements OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     if (this.filters !== undefined && this.filters.length > 0) {
@@ -60,7 +60,7 @@ export class CardFilterComponent implements OnInit {
     this.onSelect.emit($event);
   }
 
-  // Getters and setters
+  // Accessors
 
   /**
    * Returns the current filter

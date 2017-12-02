@@ -67,7 +67,7 @@ export class RemainingCharsCountDirective implements OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     this.remainingChars = this.charsMaxLimit;
