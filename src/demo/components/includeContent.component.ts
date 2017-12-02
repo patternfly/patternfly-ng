@@ -1,5 +1,5 @@
 import {
-  Component, Input, ViewContainerRef, OnInit, ViewChild
+  Component, Input, OnInit, ViewChild, ViewContainerRef
 } from '@angular/core';
 import { Http, Response } from '@angular/http';
 

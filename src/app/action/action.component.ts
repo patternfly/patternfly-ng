@@ -10,10 +10,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { Action } from './action';
 import { ActionConfig } from './action-config';
-
-import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * List actions component.

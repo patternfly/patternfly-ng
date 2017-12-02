@@ -3,9 +3,9 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { cloneDeep } from 'lodash';
-import { Observable } from 'rxjs';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

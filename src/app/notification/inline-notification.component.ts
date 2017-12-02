@@ -5,6 +5,7 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
+
 import { NotificationType } from './notification-type';
 
 /**

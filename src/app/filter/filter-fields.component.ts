@@ -8,12 +8,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 import { FilterField } from './filter-field';
 import { FilterQuery } from './filter-query';
-
-import { cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Component for the filter query field and filter query dropdown

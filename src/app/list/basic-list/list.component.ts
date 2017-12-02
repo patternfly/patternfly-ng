@@ -9,11 +9,11 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep, defaults, isEqual } from 'lodash';
+
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';
 import { ListEvent } from '../list-event';
-
-import { cloneDeep, defaults, isEqual, without } from 'lodash';
 
 /**
  * List component

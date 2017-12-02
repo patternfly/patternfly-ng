@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { AboutModalComponent } from './about-modal.component';
 import { AboutModalConfig } from './about-modal-config';

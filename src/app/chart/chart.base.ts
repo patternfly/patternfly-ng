@@ -1,6 +1,9 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
+
 import * as c3 from 'c3';
+
 import { cloneDeep } from 'lodash';
+
 import { ChartConfig } from './chart-config';
 
 export abstract class ChartBase {

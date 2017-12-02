@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { ChartModule } from '../../chart.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
