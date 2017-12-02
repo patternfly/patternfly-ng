@@ -64,14 +64,14 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     this.setupConfig();
   }
 
   /**
-   *  Check if the component config has changed
+   * Check if the component config has changed
    */
   ngDoCheck(): void {
     // Do a deep compare on config
@@ -89,7 +89,6 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
     } else {
       this.config = cloneDeep(this.defaultConfig);
     }
-    this.prevConfig = cloneDeep(this.config);
 
     if (this.config && this.config.fields === undefined) {
       this.config.fields = [];
@@ -98,6 +97,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
       this.config.tooltipPlacement = 'top';
     }
     this.initCurrentField();
+    this.prevConfig = cloneDeep(this.config);
   }
 
   /**
