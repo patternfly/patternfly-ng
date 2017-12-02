@@ -25,8 +25,10 @@ export { ChartConfig } from './src/app/chart/chart-config';
 export { ChartDefaults } from './src/app/chart/chart.defaults';
 export { ChartBase } from './src/app/chart/chart.base';
 export { ChartModule } from './src/app/chart/chart.module';
+export { DonutConfig } from './src/app/chart/donut/donut-config';
 export { SparklineComponent } from './src/app/chart/sparkline/sparkline.component';
 export { SparklineConfig } from './src/app/chart/sparkline/sparkline-config';
+export { SparklineData } from './src/app/chart/sparkline/sparkline-data';
 
 // EmptyState
 export { EmptyStateComponent } from './src/app/empty-state/empty-state.component';

@@ -1,20 +1,16 @@
 /**
- * A base config containing properties for the  chart
+ * A base config containing properties for charts
  */
 export abstract class ChartConfig {
-
   /**
    * The id of the chart used in the markup
    */
   chartId?: string;
 
   /**
-   * An array of untyped data
+   * C3 inherited configuration for data
+   *
+   * See: http://c3js.org/reference.html#data
    */
-  data: any;
-
-  /**
-   * C3 configuration id for element to bind to
-   */
-  bindto?: string;
+  data?: any;
 }

@@ -1,56 +1,44 @@
-import { EventEmitter, Input, Output } from '@angular/core';
-
-import * as c3 from 'c3';
+import { EventEmitter, Output } from '@angular/core';
 
 import { cloneDeep } from 'lodash';
+import * as c3 from 'c3';
 
 import { ChartConfig } from './chart-config';
 
 export abstract class ChartBase {
-  /**
-   * Chart configuration object with data
-   */
-  @Input() public config: ChartConfig;
-
   /**
    * Event emitted with the chart reference after load is complete
    * @type {EventEmitter}
    */
   @Output() chartLoaded: EventEmitter<any> = new EventEmitter();
 
-  /**
-   * Stored previous config to check for any changes
-   */
-  protected prevConfig: ChartConfig;
-
-  // store the chart object
+  // Store the chart object
   private chart: any;
 
-  constructor() {
-  }
+  /**
+   * Default constructor
+   */
+  constructor() {}
 
   /**
    * Protected method called when configuration or data changes by any class that inherits from this
-   * @param chartId
-   * @param reload
+   *
+   * @param config The config for the c3 chart
+   * @param reload True to reload
    */
-  protected generateChart(chartId: string, reload?: boolean): void {
+  protected generateChart(config: ChartConfig, reload?: boolean): void {
     setTimeout(() => {
-      let c3Config = this.config;
-      if (c3Config) {
-        c3Config.bindto = '#' + chartId;
-        // always re-generate donut pct chart because it's colors
-        // change based on data and thresholds
-        if (!this.chart || reload || chartId.indexOf('donutPctChart') > -1) {
-          this.chart = c3.generate(c3Config);
-        } else {
-          // if chart is already created, then we only need to re-load data
-          this.chart.load(this.config.data);
-        }
+      let c3Config: any = cloneDeep(config);
+      c3Config.bindto = '#' + config.chartId;
 
-        this.chartLoaded.emit(this.chart);
-        this.prevConfig = cloneDeep(this.config);
+      // Note: Always re-generate donut pct chart because it's colors change based on data and thresholds
+      if (this.chart === undefined || reload === true) {
+        this.chart = c3.generate(c3Config);
+      } else {
+        // if chart is already created, then we only need to re-load data
+        this.chart.load(c3Config.data);
       }
+      this.chartLoaded.emit(this.chart);
     });
   }
 }

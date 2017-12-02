@@ -4,7 +4,17 @@ import { NgModule } from '@angular/core';
 
 import { ChartDefaults } from './chart.defaults';
 import { DonutComponent } from './donut/donut.component';
+import { DonutConfig } from './donut/donut-config';
 import { SparklineComponent } from './sparkline/sparkline.component';
+import { SparklineConfig } from './sparkline/sparkline-config';
+import { SparklineData } from './sparkline/sparkline-data';
+import { WindowReference } from '../utilities/window.reference';
+
+export {
+  DonutConfig,
+  SparklineConfig,
+  SparklineData
+};
 
 @NgModule({
   imports: [
@@ -13,6 +23,6 @@ import { SparklineComponent } from './sparkline/sparkline.component';
   ],
   declarations: [SparklineComponent, DonutComponent],
   exports: [SparklineComponent, DonutComponent],
-  providers: [ChartDefaults]
+  providers: [ChartDefaults, WindowReference]
 })
 export class ChartModule {}
