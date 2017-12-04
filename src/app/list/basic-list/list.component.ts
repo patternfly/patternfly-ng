@@ -49,11 +49,6 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
   @Input() expandTemplate: TemplateRef<any>;
 
   /**
-   * An array of items to display in the list heading
-   */
-  @Input() headingItems: any[];
-
-  /**
    * The name of the template containing item heading layout
    */
   @Input() itemHeadingTemplate: TemplateRef<any>;

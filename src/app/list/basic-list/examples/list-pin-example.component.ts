@@ -21,7 +21,6 @@ export class ListPinExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
-  headingItems: any[];
   items: any[];
   listConfig: ListConfig;
   selectType: string = 'checkbox';
@@ -30,13 +29,6 @@ export class ListPinExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.headingItems = [{
-      name: 'NAME',
-      actions: 'ACTIONS',
-      additionalInfo: 'ADDITOINAL INFO',
-      address: 'ADDRESS'
-    }];
-
     this.allItems = [{
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way',
