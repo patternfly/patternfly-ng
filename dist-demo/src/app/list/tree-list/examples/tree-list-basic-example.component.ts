@@ -285,9 +285,9 @@ export class TreeListBasicExampleComponent implements OnInit {
   }
 
   lazyLoadChildren(node: TreeNode): any {
-    return new Promise((resolve: any, reject: any) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => resolve(this.lazyChild.map((c) => {
-        return (<any>Object).assign({}, c, {
+        return Object.assign({}, c, {
           address: node.level + ' Street',
           name: 'Lazy child: ' + node.level,
           hasChildren: node.level < 5,

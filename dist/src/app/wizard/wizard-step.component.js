@@ -115,9 +115,9 @@ var WizardStepComponent = /** @class */ (function (_super) {
         get: function () {
             var enabled = this.config.nextEnabled;
             if (this.hasSubsteps) {
-                var selectedSubstep = this.getEnabledSteps().filter(function (step) { return step.selected; });
-                if (selectedSubstep && selectedSubstep.length > 0) {
-                    enabled = selectedSubstep[0].config.nextEnabled;
+                var selectedSubstep = this.getEnabledSteps().find(function (step) { return step.selected; });
+                if (selectedSubstep) {
+                    enabled = selectedSubstep.config.nextEnabled;
                 }
             }
             return enabled;
@@ -134,9 +134,9 @@ var WizardStepComponent = /** @class */ (function (_super) {
         get: function () {
             var enabled = this.config.previousEnabled;
             if (this.hasSubsteps) {
-                var selectedSubstep = this.getEnabledSteps().filter(function (step) { return step.selected; });
-                if (selectedSubstep && selectedSubstep.length > 0) {
-                    enabled = selectedSubstep[0].config.previousEnabled;
+                var selectedSubstep = this.getEnabledSteps().find(function (step) { return step.selected; });
+                if (selectedSubstep) {
+                    enabled = selectedSubstep.config.previousEnabled;
                 }
             }
             return enabled;

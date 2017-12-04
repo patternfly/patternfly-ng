@@ -49,7 +49,7 @@ var ToastNotificationComponent = /** @class */ (function () {
      */
     ToastNotificationComponent.prototype.ngDoCheck = function () {
         this._showCloseButton = (this.showClose === true)
-            && (this.moreActions === undefined || this.moreActions === null || this.moreActions.length === 0);
+            && (this.moreActions === undefined || this.moreActions.length === 0);
     };
     Object.defineProperty(ToastNotificationComponent.prototype, "showCloseButton", {
         // Accessors
