@@ -80,6 +80,7 @@ export class PaginationComponent implements DoCheck, OnInit {
     } else {
       this.config = cloneDeep(this.defaultConfig);
     }
+    this.lastPageNumber = this.getLastPageNumber();
     this.pageNumber = this.config.pageNumber;
     this.prevConfig = cloneDeep(this.config);
   }
@@ -157,7 +158,7 @@ export class PaginationComponent implements DoCheck, OnInit {
    * Start Index of Current Page
    */
   getStartIndex(): number {
-    return this.config.totalItems ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
+    return (this.config.totalItems !== undefined) ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
   }
 
   /**
@@ -167,7 +168,7 @@ export class PaginationComponent implements DoCheck, OnInit {
     let numFullPages = Math.floor(this.config.totalItems / this.config.pageSize);
     let numItemsOnLastPage = this.config.totalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
     let numItemsOnPage = this.isLastPage() ? numItemsOnLastPage : this.config.pageSize;
-    return this.config.totalItems ? this.getStartIndex() + numItemsOnPage - 1 : 0;
+    return (this.config.totalItems !== undefined) ? this.getStartIndex() + numItemsOnPage - 1 : 0;
   }
 
   /**
@@ -235,7 +236,7 @@ export class PaginationComponent implements DoCheck, OnInit {
    * Check if current Page is Last Page
    */
   private isLastPage(): boolean {
-    return this.config.pageNumber === this.lastPageNumber;
+    return (this.config.pageNumber === this.lastPageNumber);
   }
 }
 
