@@ -55,7 +55,7 @@ var ListBase = /** @class */ (function () {
         }
     };
     Object.defineProperty(ListBase.prototype, "itemsEmpty", {
-        // Getters & setters
+        // Accessors
         /**
          * Get the flag indicating list has no items
          *

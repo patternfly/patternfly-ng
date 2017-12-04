@@ -70,7 +70,7 @@ var WizardComponent = /** @class */ (function (_super) {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     WizardComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -82,7 +82,7 @@ var WizardComponent = /** @class */ (function (_super) {
         }
     };
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     WizardComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config

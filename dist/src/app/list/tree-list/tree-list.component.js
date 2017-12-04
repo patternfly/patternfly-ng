@@ -69,13 +69,13 @@ var TreeListComponent = /** @class */ (function (_super) {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     TreeListComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     TreeListComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config

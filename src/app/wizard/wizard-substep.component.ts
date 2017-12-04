@@ -70,7 +70,7 @@ export class WizardSubstepComponent implements OnInit, WizardStep {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     this.setupConfig();
@@ -86,7 +86,7 @@ export class WizardSubstepComponent implements OnInit, WizardStep {
   }
 
   /**
-   *  Check if the component config has changed
+   * Check if the component config has changed
    */
   ngDoCheck(): void {
     // Do a deep compare on config

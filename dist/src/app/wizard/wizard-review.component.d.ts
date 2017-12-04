@@ -13,7 +13,7 @@ export declare class WizardReviewComponent implements OnInit {
      */
     constructor(wizard: WizardComponent);
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     /**

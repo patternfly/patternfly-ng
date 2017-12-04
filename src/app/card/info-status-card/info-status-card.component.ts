@@ -41,14 +41,14 @@ export class InfoStatusCardComponent implements OnInit, DoCheck {
   constructor() {}
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
     this.setupConfig();
   }
 
   /**
-   *  Check if any component config props have changed
+   * Check if any component config props have changed
    */
   ngDoCheck(): void {
     if (!isEqual(this.config, this.prevConfig)) {
@@ -66,7 +66,6 @@ export class InfoStatusCardComponent implements OnInit, DoCheck {
     } else {
       this.config = cloneDeep(this.defaultConfig);
     }
-
     this.prevConfig = cloneDeep(this.config);
   }
 

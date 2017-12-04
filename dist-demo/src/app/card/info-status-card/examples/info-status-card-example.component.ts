@@ -60,7 +60,7 @@ export class InfoStatusCardExampleComponent implements OnInit {
   constructor() {}
 
   /**
-   *  Setup any component configuration upon initialization
+   * Setup any component configuration upon initialization
    */
   ngOnInit(): void {}
 }

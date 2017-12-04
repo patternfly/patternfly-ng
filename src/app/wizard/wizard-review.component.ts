@@ -33,7 +33,7 @@ export class WizardReviewComponent implements OnInit {
   // Initialization
 
   /**
-   *  Setup component configuration upon initialization
+   * Setup component configuration upon initialization
    */
   ngOnInit(): void {
   }

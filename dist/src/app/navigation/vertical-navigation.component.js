@@ -88,6 +88,9 @@ var VerticalNavigationComponent = /** @class */ (function () {
         this.hoverDelay = 500;
         this.hideDelay = this.hoverDelay + 200;
     }
+    /**
+     * Setup component configuration upon initialization
+     */
     VerticalNavigationComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.windowListener = this.windowRef.nativeWindow.addEventListener('resize', function (event) {
@@ -108,6 +111,9 @@ var VerticalNavigationComponent = /** @class */ (function () {
         this.initBodyElement();
         this.checkNavState();
     };
+    /**
+     * Destroy listeners
+     */
     VerticalNavigationComponent.prototype.ngOnDestroy = function () {
         this.routeChangeListener.unsubscribe();
         this.windowRef.nativeWindow.removeEventListener('resize');

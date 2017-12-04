@@ -123,7 +123,13 @@ export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
      * The default constructor
      */
     constructor(elementRef: ElementRef, renderer: Renderer2, router: Router, windowRef: WindowReference);
+    /**
+     * Setup component configuration upon initialization
+     */
     ngOnInit(): void;
+    /**
+     * Destroy listeners
+     */
     ngOnDestroy(): void;
     /**
      * Clear all active items

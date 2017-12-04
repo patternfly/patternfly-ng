@@ -31,13 +31,13 @@ var ToastNotificationListComponent = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ToastNotificationListComponent.prototype.ngOnInit = function () {
     };
     // Actions
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     ToastNotificationListComponent.prototype.handleAction = function ($event) {
         this.onActionSelect.emit($event);

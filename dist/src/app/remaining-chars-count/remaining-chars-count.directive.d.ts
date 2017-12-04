@@ -45,7 +45,7 @@ export declare class RemainingCharsCountDirective implements OnInit {
      */
     constructor(el: ElementRef, renderer: Renderer2);
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     /**

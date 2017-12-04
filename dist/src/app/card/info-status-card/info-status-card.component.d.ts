@@ -15,11 +15,11 @@ export declare class InfoStatusCardComponent implements OnInit, DoCheck {
      */
     constructor();
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     /**
-     *  Check if any component config props have changed
+     * Check if any component config props have changed
      */
     ngDoCheck(): void;
     /**

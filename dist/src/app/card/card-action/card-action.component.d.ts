@@ -17,7 +17,7 @@ export declare class CardActionComponent implements OnInit {
      */
     constructor();
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     private select($event);

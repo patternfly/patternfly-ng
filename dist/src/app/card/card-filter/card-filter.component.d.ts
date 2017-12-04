@@ -18,7 +18,7 @@ export declare class CardFilterComponent implements OnInit {
      */
     constructor();
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     private select($event);

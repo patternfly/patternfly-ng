@@ -22,7 +22,7 @@ export declare class ListExpandToggleComponent implements OnInit {
      */
     constructor();
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     /**

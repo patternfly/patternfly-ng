@@ -52,13 +52,13 @@ var CardComponent = /** @class */ (function (_super) {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     CardComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     CardComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config
@@ -96,7 +96,7 @@ var CardComponent = /** @class */ (function (_super) {
         this.onFilterSelect.emit($event);
     };
     Object.defineProperty(CardComponent.prototype, "showFilterInFooter", {
-        // Getters and setters
+        // Accessors
         /**
          * Indicates that the footer should be shown in the footer
          *

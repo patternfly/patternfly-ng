@@ -48,7 +48,7 @@ var RemainingCharsCountDirective = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     RemainingCharsCountDirective.prototype.ngOnInit = function () {
         this.remainingChars = this.charsMaxLimit;

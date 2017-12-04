@@ -63,7 +63,7 @@ var PaginationComponent = /** @class */ (function () {
         this.pageNumber = this.config.pageNumber;
     };
     Object.defineProperty(PaginationComponent.prototype, "pageNumber", {
-        // Getters and setters
+        // Accessors
         get: function () {
             return this._pageNumber;
         },

@@ -40,19 +40,19 @@ var ToastNotificationComponent = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ToastNotificationComponent.prototype.ngOnInit = function () {
     };
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     ToastNotificationComponent.prototype.ngDoCheck = function () {
         this._showCloseButton = (this.showClose === true)
             && (this.moreActions === undefined || this.moreActions.length === 0);
     };
     Object.defineProperty(ToastNotificationComponent.prototype, "showCloseButton", {
-        // Getters & setters
+        // Accessors
         /**
          * Get the flag indicating that the close button should be shown
          *

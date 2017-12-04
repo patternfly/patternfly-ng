@@ -26,7 +26,7 @@ var WizardReviewComponent = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     WizardReviewComponent.prototype.ngOnInit = function () {
     };

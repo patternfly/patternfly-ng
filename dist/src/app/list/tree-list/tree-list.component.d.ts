@@ -45,11 +45,11 @@ export declare class TreeListComponent extends ListBase implements DoCheck, OnIn
      */
     constructor();
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     ngDoCheck(): void;
     /**

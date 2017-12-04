@@ -24,13 +24,13 @@ var InfoStatusCardComponent = /** @class */ (function () {
         };
     }
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     InfoStatusCardComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
     /**
-     *  Check if any component config props have changed
+     * Check if any component config props have changed
      */
     InfoStatusCardComponent.prototype.ngDoCheck = function () {
         if (!isEqual(this.config, this.prevConfig)) {

@@ -23,7 +23,7 @@ var CardFilterComponent = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     CardFilterComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -43,7 +43,7 @@ var CardFilterComponent = /** @class */ (function () {
         this.onSelect.emit($event);
     };
     Object.defineProperty(CardFilterComponent.prototype, "currentFilter", {
-        // Getters and setters
+        // Accessors
         /**
          * Returns the current filter
          *

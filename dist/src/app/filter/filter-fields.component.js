@@ -101,7 +101,7 @@ var FilterFieldsComponent = /** @class */ (function () {
         this.initCurrentField();
     };
     Object.defineProperty(FilterFieldsComponent.prototype, "currentField", {
-        // Getters & setters
+        // Accessors
         /**
          * Get the current filter field
          *

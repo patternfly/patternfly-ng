@@ -26,13 +26,13 @@ var AboutModalComponent = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     AboutModalComponent.prototype.ngOnInit = function () {
         this.setupConfig();
     };
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     AboutModalComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config

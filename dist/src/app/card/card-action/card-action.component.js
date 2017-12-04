@@ -24,7 +24,7 @@ var CardActionComponent = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     CardActionComponent.prototype.ngOnInit = function () {
     };

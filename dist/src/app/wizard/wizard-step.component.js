@@ -61,7 +61,7 @@ var WizardStepComponent = /** @class */ (function (_super) {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     WizardStepComponent.prototype.ngOnInit = function () {
         this.setupConfig();
@@ -70,7 +70,7 @@ var WizardStepComponent = /** @class */ (function (_super) {
         }
     };
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     WizardStepComponent.prototype.ngDoCheck = function () {
         // Do a deep compare on config

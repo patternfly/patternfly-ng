@@ -21,7 +21,7 @@ var ListExpandToggleComponent = /** @class */ (function () {
     }
     // Initialization
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ListExpandToggleComponent.prototype.ngOnInit = function () {
         if (this.item === undefined) {

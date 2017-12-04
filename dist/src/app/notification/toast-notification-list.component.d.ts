@@ -29,11 +29,11 @@ export declare class ToastNotificationListComponent implements OnInit {
      */
     constructor();
     /**
-     *  Setup component configuration upon initialization
+     * Setup component configuration upon initialization
      */
     ngOnInit(): void;
     /**
-     *  Check if the component config has changed
+     * Check if the component config has changed
      */
     private handleAction($event);
     private handleClose($event);
