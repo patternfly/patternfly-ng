@@ -7,56 +7,54 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+import { ChartDefaults } from '../chart.defaults';
 import { DonutConfig } from './donut-config';
 import { DonutComponent } from './donut.component';
-import { ChartDefaults } from '../chart.defaults';
+import { WindowReference } from '../../utilities/window.reference';
 
 describe('Component: donut chart', () => {
-
   let comp: DonutComponent;
   let fixture: ComponentFixture<DonutComponent>;
 
   let config: DonutConfig;
-  let data: any;
+  let chartData: any[];
 
   beforeEach(() => {
-    config = {
-      chartId: 'testDonutChart',
-      onClickFn: function(d: any, e: any) {
-      },
-      data: {},
-      donut: {
-        title: 'Animals'
-      }
-    };
-    data = [
+    chartData = [
       ['Cats', 2],
       ['Hamsters', 2],
       ['Dogs', 2]
     ];
+    config = {
+      chartId: 'testChart',
+      data: {
+        onclick: function(d: any, e: any) {}
+      },
+      donut: {
+        title: 'Animals'
+      }
+    };
   });
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule],
       declarations: [DonutComponent],
-      providers: [ChartDefaults]
+      providers: [ChartDefaults, WindowReference]
     })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(DonutComponent);
         comp = fixture.componentInstance;
         comp.config = config;
-        comp.chartData = data;
+        comp.chartData = chartData;
         fixture.detectChanges();
       });
   }));
 
   it('should set chart id', () => {
-    expect(comp.config.chartId).toContain('testDonutChart');
+    expect(comp.config.chartId).toContain('testChart');
   });
-
 
   it('should allow attribute specification of chart height', () => {
     config.chartHeight = 120;
@@ -86,7 +84,7 @@ describe('Component: donut chart', () => {
     expect(comp.config.data.columns[0][0]).toBe('Cats');
     expect(comp.config.data.columns[0][1]).toBe(2);
 
-    data[0][1] = 3;
+    chartData[0][1] = 3;
     fixture.detectChanges();
 
     expect(comp.config.data.columns[0][1]).toBe(3);

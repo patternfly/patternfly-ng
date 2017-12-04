@@ -7,39 +7,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { SparklineConfig } from './sparkline-config';
-import { SparklineComponent } from './sparkline.component';
 import { ChartDefaults } from '../chart.defaults';
+import { SparklineComponent } from './sparkline.component';
+import { SparklineConfig } from './sparkline-config';
+import { SparklineData } from './sparkline-data';
 
 describe('Component: sparkline chart', () => {
-
   let comp: SparklineComponent;
   let fixture: ComponentFixture<SparklineComponent>;
 
   let config: SparklineConfig;
-  let data: any;
+  let chartData: SparklineData;
 
   beforeEach(() => {
-    config = {
-      'chartId': 'testSparklineChart',
-      'units': 'MHz',
-      data: {}
-    };
-
     let today = new Date();
     let dates: any = ['dates'];
     for (let d = 20 - 1; d >= 0; d--) {
       dates.push(new Date(today.getTime() - (d * 24 * 60 * 60 * 1000)));
     }
-
-    data = {
-      'total': '100',
-      'yData': ['used', '10', '20', '30', '20', '30', '10', '14', '20',
+    chartData = {
+      total: 100,
+      yData: ['used', '10', '20', '30', '20', '30', '10', '14', '20',
         '25', '68', '54', '56', '78', '56', '67', '88', '76', '65', '87', '76'],
-      'xData': dates
+      xData: dates
+    };
+    config = {
+      chartId: 'testChart',
+      units: 'MHz'
     };
   });
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,16 +48,19 @@ describe('Component: sparkline chart', () => {
         fixture = TestBed.createComponent(SparklineComponent);
         comp = fixture.componentInstance;
         comp.config = config;
-        comp.chartData = data;
+        comp.chartData = chartData;
         fixture.detectChanges();
       });
   }));
 
+  it('should set chart id', () => {
+    expect(comp.config.chartId).toContain('testChart');
+  });
+
   it('should not show axis by default', () => {
-    let elements = fixture.debugElement.queryAll(By.css('#testSparklineChartsparklineChart'));
+    let elements = fixture.debugElement.queryAll(By.css('#testChart'));
     expect(elements.length).toBe(1);
 
-    expect(comp.sparklineChartId).toBe('testSparklineChartsparklineChart');
     expect(comp.config.axis.x.show).toBe(false);
     expect(comp.config.axis.y.show).toBe(false);
   });
@@ -72,7 +71,6 @@ describe('Component: sparkline chart', () => {
 
     fixture.detectChanges();
 
-    expect(comp.sparklineChartId).toBe('testSparklineChartsparklineChart');
     expect(comp.config.axis.x.show).toBe(true);
     expect(comp.config.axis.y.show).toBe(true);
   });
@@ -103,7 +101,6 @@ describe('Component: sparkline chart', () => {
     config.chartHeight = 120;
 
     fixture.detectChanges();
-    expect(comp.sparklineChartId).toBe('testSparklineChartsparklineChart');
     expect(comp.config.size.height).toBe(120);
 
     config.chartHeight = 100;
@@ -122,12 +119,12 @@ describe('Component: sparkline chart', () => {
   it('should update C3 chart data when data changes', () => {
     expect(comp.config.data.x).toBe('dates');
     expect(comp.config.data.columns.length).toBe(2);
-    expect(comp.config.data.columns[0][1].toString()).toBe(data.xData[1].toString());
+    expect(comp.config.data.columns[0][1].toString()).toBe(chartData.xData[1].toString());
     expect(comp.config.data.columns[1][1]).toBe('10');
 
     let now = new Date();
-    data.xData[1] = now;
-    data.yData[1] = '1000';
+    chartData.xData[1] = now;
+    chartData.yData[1] = '1000';
 
     fixture.detectChanges();
 
@@ -142,19 +139,19 @@ describe('Component: sparkline chart', () => {
   });
 
   it('should allow using a tooltip function', () => {
-    let functionCalled = false;
-    let myTooltipFn = function(d) {
-      if (d && d.length === 2) {
-        functionCalled = true;
+    let tooltipCalled = false;
+    let tooltip = {
+      contents: (d: any) => {
+        tooltipCalled = true;
       }
     };
 
-    config.tooltipFn = myTooltipFn;
+    config.tooltip = tooltip;
     fixture.detectChanges();
 
     let dataPoint = [{ value: 0, name: 'used' }, 0];
-    comp.sparklineTooltip().contents(dataPoint);
-    expect(functionCalled).toBe(true);
+    config.tooltip.contents(dataPoint); // TODO - c3 should invoke tooltip
+    expect(tooltipCalled).toBe(true);
   });
 
   it('should allow using C3 chart data formats', () => {
@@ -164,10 +161,10 @@ describe('Component: sparkline chart', () => {
       data: {
         xFormat: '%Y-%m-%d %H:%M:%S',
         x: 'dates',
-        columns: [data.xData, data.yData]
+        columns: [chartData.xData, chartData.yData]
       }
     };
-    data = {
+    chartData = {
       total: 100
     };
 
