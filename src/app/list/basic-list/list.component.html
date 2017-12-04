@@ -1,7 +1,7 @@
 <div class="list-pf" *ngIf="!itemsEmpty">
   <!-- heading -->
   <div class="list-pf-item pfng-list-heading {{item?.itemStyleClass}}"
-       *ngFor="let item of headingItems; let i = index">
+       *ngIf="itemHeadingTemplate || actionHeadingTemplate">
     <div class="list-pf-container">
       <!-- pin -->
       <div class="pfng-list-pin-placeholder" *ngIf="config.usePinItems"></div>
