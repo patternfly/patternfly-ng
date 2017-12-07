@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 import { Action } from '../action/action';
 import { Notification } from './notification';
@@ -18,6 +19,7 @@ export class NotificationService {
   private notifications: any = {};
   private persist: any = { 'error': true, 'httpError': true };
   private verbose: boolean = false;
+  private _notificationsSubject: Subject<Notification[]> = new Subject();
 
   /**
    * The default constructor
@@ -40,6 +42,13 @@ export class NotificationService {
    */
   getNotifications(): Notification[] {
     return this.notifications.data;
+  }
+
+  /**
+   * Allows for interacting with a stream of notifications
+   */
+  get getNotificationsObserver(): Observable<Notification[]> {
+    return this._notificationsSubject.asObservable();
   }
 
   /**
@@ -67,31 +76,38 @@ export class NotificationService {
    * @param primaryAction The primary action for the notifiaction
    * @param moreActions More actions for the kebab
    */
-  message(type: string, header: string, message: string, isPersistent: boolean,
-          primaryAction: Action, moreActions: Action[]): void {
-    let notification = {
-      header: header,
-      isPersistent: isPersistent,
-      isViewing: false,
-      message: message,
-      moreActions: moreActions,
-      primaryAction: primaryAction,
-      showClose: false,
-      type: type,
-      visible: true
-    } as Notification;
-    this.notifications.data.push(notification);
+  message(
+    type: string,
+    header: string,
+    message: string,
+    isPersistent: boolean,
+    primaryAction: Action,
+    moreActions: Action[]): void {
+      let notification = {
+        header: header,
+        isPersistent: isPersistent,
+        isViewing: false,
+        message: message,
+        moreActions: moreActions,
+        primaryAction: primaryAction,
+        showClose: false,
+        type: type,
+        visible: true
+      } as Notification;
 
-    if (notification.isPersistent !== true) {
-      notification.isViewing = false;
-      setTimeout(() => {
-        notification.visible = false;
-        if (!notification.isViewing) {
-          this.remove(notification);
-        }
-      }, this.delay);
+      this.notifications.data.push(notification);
+      this.updateNotificationsStream();
+
+      if (notification.isPersistent !== true) {
+        notification.isViewing = false;
+        setTimeout(() => {
+          notification.visible = false;
+          if (!notification.isViewing) {
+            this.remove(notification);
+          }
+        }, this.delay);
+      }
     }
-  }
 
   /**
    * Remove notification
@@ -102,6 +118,7 @@ export class NotificationService {
     let index = this.notifications.data.indexOf(notification);
     if (index !== -1) {
       this.removeIndex(index);
+      this.updateNotificationsStream();
     }
   }
 
@@ -167,4 +184,9 @@ export class NotificationService {
   private removeIndex(index: number): void {
     this.notifications.data.splice(index, 1);
   }
+
+  private updateNotificationsStream(): void {
+    this._notificationsSubject.next(this.getNotifications());
+  }
+
 }
