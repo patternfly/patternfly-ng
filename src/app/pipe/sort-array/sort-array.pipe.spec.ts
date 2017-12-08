@@ -63,7 +63,7 @@ describe('Sort array pipe', () => {
 
   it('should sort array by "name", then sort array by "pin"', () => {
     let sortedItems = pipe.transform(items, 'name');
-    sortedItems = pipe.transform(sortedItems, 'pin', true);
+    sortedItems = pipe.transform(sortedItems, 'pin');
     expect(sortedItems[0].name).toBe('Holly Nichols');
   });
 });
