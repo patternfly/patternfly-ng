@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { isBoolean, isString } from 'util';
+
+import { orderBy } from 'lodash';
 
 /**
  * Sort array pipe
@@ -21,25 +22,10 @@ export class SortArrayPipe implements PipeTransform {
    */
   transform(arr: Array<any>, prop: any, descending: boolean = false): any {
     if (arr === undefined) {
-      return;
+      return arr;
     }
-    const m = descending ? -1 : 1;
-    return arr.sort((a: any, b: any): number => {
-      let x = a[prop];
-      let y = b[prop];
-
-      // Resolve undefined values for more predicable behavior
-      if (x === undefined && isBoolean(y)) {
-        x = false;
-      } else if (x === undefined && isString(y)) {
-        x = '';
-      }
-      if (y === undefined && isBoolean(x)) {
-        y = false;
-      } else if (y === undefined && isString(x)) {
-        y = '';
-      }
-      return (x === y) ? 0 : (x < y) ? -1 * m : 1 * m;
-    });
+    const sortOrder = descending ? 'desc' : 'asc';
+    const sortedArray = orderBy(arr, [prop], [sortOrder]);
+    return sortedArray;
   }
 }

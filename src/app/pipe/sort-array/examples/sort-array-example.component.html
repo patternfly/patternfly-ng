@@ -53,7 +53,7 @@
     <div class="col-sm-12">
       <h5>Sort Array Ascending by "name", Then Sort Descending by "pin"</h5>
       <div class="col-md-12"
-           *ngFor="let item of (items3 | sortArray: 'name' | sortArray: 'pin': true)">
+           *ngFor="let item of (items3 | sortArray: 'name' | sortArray: 'pin')">
         <div class="row">
           <div class="col-md-3">
             <span>{{item.name}}</span><strong *ngIf="item.pin"> (pinned)</strong>
