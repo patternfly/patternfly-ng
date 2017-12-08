@@ -34,7 +34,7 @@
   <!-- items -->
   <div class="list-pf-item {{item?.itemStyleClass}}"
        [ngClass]="{'active': item.selected || item.isItemExpanded}"
-       *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index">
+       *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin') : items); let i = index">
     <div class="list-pf-container">
       <!-- pin -->
       <div class="pfng-list-pin-container" *ngIf="config.usePinItems">

@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Pipe } from '@angular/core';
-import { isBoolean, isString } from 'util';
+import { orderBy } from 'lodash';
 /**
  * Sort array pipe
  *
@@ -28,27 +28,11 @@ var SortArrayPipe = /** @class */ (function () {
     SortArrayPipe.prototype.transform = function (arr, prop, descending) {
         if (descending === void 0) { descending = false; }
         if (arr === undefined) {
-            return;
+            return arr;
         }
-        var m = descending ? -1 : 1;
-        return arr.sort(function (a, b) {
-            var x = a[prop];
-            var y = b[prop];
-            // Resolve undefined values for more predicable behavior
-            if (x === undefined && isBoolean(y)) {
-                x = false;
-            }
-            else if (x === undefined && isString(y)) {
-                x = '';
-            }
-            if (y === undefined && isBoolean(x)) {
-                y = false;
-            }
-            else if (y === undefined && isString(x)) {
-                y = '';
-            }
-            return (x === y) ? 0 : (x < y) ? -1 * m : 1 * m;
-        });
+        var sortOrder = descending ? 'desc' : 'asc';
+        var sortedArray = orderBy(arr, [prop], [sortOrder]);
+        return sortedArray;
     };
     SortArrayPipe = __decorate([
         Pipe({ name: 'sortArray' })
