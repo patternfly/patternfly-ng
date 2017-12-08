@@ -10,7 +10,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, has, isEqual } from 'lodash';
 
 import { Action } from './action';
 import { ActionConfig } from './action-config';
@@ -84,7 +84,16 @@ export class ActionComponent implements DoCheck, OnInit {
     } else {
       this.config = cloneDeep(this.defaultConfig);
     }
-    this.prevConfig = cloneDeep(this.config);
+    // lodash has issues cloning primaryActions.template with the list component
+    let found = false;
+    this.config.primaryActions.forEach((action) => {
+      if (has(action, 'template')) {
+        found = true;
+      }
+    });
+    if (!found) {
+      this.prevConfig = cloneDeep(this.config);
+    }
   }
 
   // Private
