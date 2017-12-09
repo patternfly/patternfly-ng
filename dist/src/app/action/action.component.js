@@ -61,11 +61,13 @@ var ActionComponent = /** @class */ (function () {
         }
         // lodash has issues cloning primaryActions.template with the list component
         var found = false;
-        this.config.primaryActions.forEach(function (action) {
-            if (has(action, 'template')) {
-                found = true;
-            }
-        });
+        if (this.config.primaryActions !== undefined) {
+            this.config.primaryActions.forEach(function (action) {
+                if (has(action, 'template')) {
+                    found = true;
+                }
+            });
+        }
         if (!found) {
             this.prevConfig = cloneDeep(this.config);
         }

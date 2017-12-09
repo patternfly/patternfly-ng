@@ -86,11 +86,13 @@ export class ActionComponent implements DoCheck, OnInit {
     }
     // lodash has issues cloning primaryActions.template with the list component
     let found = false;
-    this.config.primaryActions.forEach((action) => {
-      if (has(action, 'template')) {
-        found = true;
-      }
-    });
+    if (this.config.primaryActions !== undefined) {
+      this.config.primaryActions.forEach((action) => {
+        if (has(action, 'template')) {
+          found = true;
+        }
+      });
+    }
     if (!found) {
       this.prevConfig = cloneDeep(this.config);
     }
