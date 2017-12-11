@@ -4,9 +4,9 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import {
-  TreeNode,
-} from 'angular-tree-component';
+import { TreeNode } from 'angular-tree-component';
+
+import { cloneDeep } from 'lodash';
 
 import { Action } from '../../../action/action';
 import { ActionConfig } from '../../../action/action-config';
@@ -15,7 +15,7 @@ import { ListEvent } from '../../list-event';
 import { TreeListComponent } from '../tree-list.component';
 import { TreeListConfig } from '../tree-list-config';
 
-import { cloneDeep } from 'lodash';
+
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -285,9 +285,9 @@ export class TreeListBasicExampleComponent implements OnInit {
   }
 
   lazyLoadChildren(node: TreeNode): any {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve: any, reject: any) => {
       setTimeout(() => resolve(this.lazyChild.map((c) => {
-        return Object.assign({}, c, {
+        return (<any>Object).assign({}, c, {
           address: node.level + ' Street',
           name: 'Lazy child: ' + node.level,
           hasChildren: node.level < 5,

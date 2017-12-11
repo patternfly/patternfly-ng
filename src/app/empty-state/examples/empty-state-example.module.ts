@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { NgModule } from '@angular/core';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 import { EmptyStateModule } from '../empty-state.module';

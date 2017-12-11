@@ -11,23 +11,18 @@ import { ListConfig } from '../../list/basic-list/list-config';
 import { PaginationConfig } from '../pagination-config';
 import { PaginationEvent } from '../pagination-event';
 
-import { cloneDeep, isEqual } from 'lodash';
-
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pagination-list-example',
   templateUrl: './pagination-list-example.component.html'
 })
 export class PaginationListExampleComponent implements OnInit {
+  actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   items: any[];
-  itemsAvailable: boolean = true;
   listConfig: ListConfig;
   paginationConfig: PaginationConfig;
-  actionConfig: ActionConfig;
-  prevConfig: PaginationConfig;
-
 
   constructor() {
   }
@@ -161,23 +156,7 @@ export class PaginationListExampleComponent implements OnInit {
       totalItems: this.allItems.length
     } as PaginationConfig;
 
-    this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
-      this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize));
-  }
-
-  ngDoCheck(): void {
-    if (!isEqual(this.paginationConfig, this.prevConfig)) {
-      this.checkPaginationConfig();
-    }
-  }
-
-  /**
-   * Check if Pagination config is changed
-   */
-  checkPaginationConfig() {
-    this.items = cloneDeep(this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
-      this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize));
-    this.prevConfig = cloneDeep(this.paginationConfig);
+    this.updateItems();
   }
 
   // Actions
@@ -199,15 +178,18 @@ export class PaginationListExampleComponent implements OnInit {
 
   handlePageSize($event: PaginationEvent) {
     this.actionsText = 'Page Size: ' + $event.pageSize + ' Selected' + '\n' + this.actionsText;
+    this.updateItems();
   }
 
   handlePageNumber($event: PaginationEvent) {
     this.actionsText = 'Page Number: ' + $event.pageNumber + ' Selected' + '\n' + this.actionsText;
+    this.updateItems();
   }
 
-  // Row selection
+  // Pagination
 
-  updateItemsAvailable(): void {
-    this.items = (this.itemsAvailable) ? cloneDeep(this.allItems) : [];
+  updateItems() {
+    this.items = this.allItems.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
+      this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize);
   }
 }

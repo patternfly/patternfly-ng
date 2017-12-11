@@ -106,19 +106,19 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sparklinecomponent.html#chartdata" class="tsd-kind-icon">chart<wbr>Data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="sparklinecomponent.html#chartloaded" class="tsd-kind-icon">chart<wbr>Loaded</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="sparklinecomponent.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="sparklinecomponent.html#prevconfig" class="tsd-kind-icon">prev<wbr>Config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sparklinecomponent.html#sparklinechartid" class="tsd-kind-icon">sparkline<wbr>Chart<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sparklinecomponent.html#config" class="tsd-kind-icon">config</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="sparklinecomponent.html#generatechart" class="tsd-kind-icon">generate<wbr>Chart</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="sparklinecomponent.html#getsparklinedata" class="tsd-kind-icon">get<wbr>Sparkline<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="sparklinecomponent.html#getchartdata" class="tsd-kind-icon">get<wbr>Chart<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sparklinecomponent.html#ngdocheck" class="tsd-kind-icon">ng<wbr>DoCheck</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sparklinecomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sparklinecomponent.html#sparklinetooltip" class="tsd-kind-icon">sparkline<wbr>Tooltip</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="sparklinecomponent.html#setupconfig" class="tsd-kind-icon">setup<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="sparklinecomponent.html#setupconfigdefaults" class="tsd-kind-icon">setup<wbr>Config<wbr>Defaults</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sparklinecomponent.html#tooltip" class="tsd-kind-icon">tooltip</a></li>
 							</ul>
 						</section>
 					</div>
@@ -137,7 +137,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="chartbase.html">ChartBase</a>.<a href="chartbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L32">app/chart/sparkline/sparkline.component.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L37">app/chart/sparkline/sparkline.component.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -165,15 +165,15 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="chartdata" class="tsd-anchor"></a>
 					<h3>chart<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">chart<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">chart<wbr>Data<span class="tsd-signature-symbol">:</span> <a href="sparklinedata.html" class="tsd-signature-type">SparklineData</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L19">app/chart/sparkline/sparkline.component.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L28">app/chart/sparkline/sparkline.component.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Chart data for the chart</p>
+							<p>Chart data</p>
 						</div>
 					</div>
 				</section>
@@ -184,7 +184,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="chartbase.html">ChartBase</a>.<a href="chartbase.html#chartloaded">chartLoaded</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/chart.base.ts#L16">app/chart/chart.base.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/chart.base.ts#L13">app/chart/chart.base.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -198,50 +198,18 @@
 						</dl>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="config" class="tsd-anchor"></a>
 					<h3>config</h3>
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="sparklineconfig.html" class="tsd-signature-type">SparklineConfig</a></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="chartbase.html">ChartBase</a>.<a href="chartbase.html#config">config</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L24">app/chart/sparkline/sparkline.component.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L33">app/chart/sparkline/sparkline.component.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Configuration object containing details about how to render the chart</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="prevconfig" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> prev<wbr>Config</h3>
-					<div class="tsd-signature tsd-kind-icon">prev<wbr>Config<span class="tsd-signature-symbol">:</span> <a href="chartconfig.html" class="tsd-signature-type">ChartConfig</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="chartbase.html">ChartBase</a>.<a href="chartbase.html#prevconfig">prevConfig</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/chart.base.ts#L21">app/chart/chart.base.ts:21</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Stored previous config to check for any changes</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="sparklinechartid" class="tsd-anchor"></a>
-					<h3>sparkline<wbr>Chart<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">sparkline<wbr>Chart<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L29">app/chart/sparkline/sparkline.component.ts:29</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The chart id created during initialization</p>
 						</div>
 					</div>
 				</section>
@@ -252,14 +220,14 @@
 					<a name="generatechart" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> generate<wbr>Chart</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Chart<span class="tsd-signature-symbol">(</span>chartId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, reload<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Chart<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="chartconfig.html" class="tsd-signature-type">ChartConfig</a>, reload<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="chartbase.html">ChartBase</a>.<a href="chartbase.html#generatechart">generateChart</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/chart.base.ts#L34">app/chart/chart.base.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/chart.base.ts#L29">app/chart/chart.base.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -270,11 +238,15 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>chartId: <span class="tsd-signature-type">string</span></h5>
+									<h5>config: <a href="chartconfig.html" class="tsd-signature-type">ChartConfig</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The config for the c3 chart</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> reload: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>True to reload</p>
 									</div>
 								</li>
 							</ul>
@@ -283,24 +255,23 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="getsparklinedata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Sparkline<wbr>Data</h3>
+					<a name="getchartdata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Chart<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Sparkline<wbr>Data<span class="tsd-signature-symbol">(</span>chartData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Chart<wbr>Data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L152">app/chart/sparkline/sparkline.component.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L132">app/chart/sparkline/sparkline.component.ts:132</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>chartData: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Convert chartData to C3 data property</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
@@ -315,12 +286,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L62">app/chart/sparkline/sparkline.component.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L59">app/chart/sparkline/sparkline.component.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p> Check if the component config has changed</p>
+									<p>Check if the component config has changed</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -337,12 +308,56 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L45">app/chart/sparkline/sparkline.component.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L50">app/chart/sparkline/sparkline.component.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>NgOnInit implementation</p>
+									<p>Setup component configuration upon initialization</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="setupconfig" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> setup<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">setup<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L69">app/chart/sparkline/sparkline.component.ts:69</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set up default config</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="setupconfigdefaults" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> setup<wbr>Config<wbr>Defaults</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">setup<wbr>Config<wbr>Defaults<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L99">app/chart/sparkline/sparkline.component.ts:99</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set up config defaults</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -350,16 +365,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="sparklinetooltip" class="tsd-anchor"></a>
-					<h3>sparkline<wbr>Tooltip</h3>
+					<a name="tooltip" class="tsd-anchor"></a>
+					<h3>tooltip</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">sparkline<wbr>Tooltip<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">tooltip<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L79">app/chart/sparkline/sparkline.component.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/c57b70e/src/app/chart/sparkline/sparkline.component.ts#L151">app/chart/sparkline/sparkline.component.ts:151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -367,70 +382,9 @@
 									<p>Tooltip function for sparklines</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 							<p>{{contents: ((d:any)=&gt;string), position: ((data:any, width:number,
 							height:number, element:any)=&gt;{top: number, left: number})}}</p>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter">
-									<h5>contents<span class="tsd-signature-symbol">: </span>function</h5>
-									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon">contents<span class="tsd-signature-symbol">(</span>d<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<aside class="tsd-sources">
-												<ul>
-													<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L81">app/chart/sparkline/sparkline.component.ts:81</a></li>
-												</ul>
-											</aside>
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>d: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-										</li>
-								</ul>        </li>
-								<li class="tsd-parameter">
-									<h5>position<span class="tsd-signature-symbol">: </span>function</h5>
-									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<aside class="tsd-sources">
-												<ul>
-													<li>Defined in <a href="https://github.com/dlabrecq/patternfly-ng/blob/cf76803/src/app/chart/sparkline/sparkline.component.ts#L123">app/chart/sparkline/sparkline.component.ts:123</a></li>
-												</ul>
-											</aside>
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-												<li>
-													<h5>width: <span class="tsd-signature-type">number</span></h5>
-												</li>
-												<li>
-													<h5>height: <span class="tsd-signature-type">number</span></h5>
-												</li>
-												<li>
-													<h5>element: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
-											<ul class="tsd-parameters">
-												<li class="tsd-parameter">
-													<h5>left<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-												</li>
-												<li class="tsd-parameter">
-													<h5>top<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-												</li>
-											</ul>
-										</li>
-								</ul>        </li>
-							</ul>
 						</li>
 					</ul>
 				</section>
@@ -460,20 +414,14 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="sparklinecomponent.html#chartloaded" class="tsd-kind-icon">chart<wbr>Loaded</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
-								<a href="sparklinecomponent.html#config" class="tsd-kind-icon">config</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="sparklinecomponent.html#prevconfig" class="tsd-kind-icon">prev<wbr>Config</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="sparklinecomponent.html#sparklinechartid" class="tsd-kind-icon">sparkline<wbr>Chart<wbr>Id</a>
+								<a href="sparklinecomponent.html#config" class="tsd-kind-icon">config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="sparklinecomponent.html#generatechart" class="tsd-kind-icon">generate<wbr>Chart</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="sparklinecomponent.html#getsparklinedata" class="tsd-kind-icon">get<wbr>Sparkline<wbr>Data</a>
+								<a href="sparklinecomponent.html#getchartdata" class="tsd-kind-icon">get<wbr>Chart<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="sparklinecomponent.html#ngdocheck" class="tsd-kind-icon">ng<wbr>DoCheck</a>
@@ -481,8 +429,14 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="sparklinecomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="sparklinecomponent.html#setupconfig" class="tsd-kind-icon">setup<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="sparklinecomponent.html#setupconfigdefaults" class="tsd-kind-icon">setup<wbr>Config<wbr>Defaults</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sparklinecomponent.html#sparklinetooltip" class="tsd-kind-icon">sparkline<wbr>Tooltip</a>
+								<a href="sparklinecomponent.html#tooltip" class="tsd-kind-icon">tooltip</a>
 							</li>
 						</ul>
 					</li>

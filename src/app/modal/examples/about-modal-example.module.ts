@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { ModalModule as BSModalModule } from 'ngx-bootstrap/modal';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
+import { AboutModalExampleComponent } from './about-modal-example.component';
 import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
 import { ModalModule } from '../modal.module';
-import { AboutModalExampleComponent } from './about-modal-example.component';
 
 @NgModule({
   declarations: [

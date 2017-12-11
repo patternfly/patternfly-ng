@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { ActionExampleComponent } from './action-example.component';
 import { ActionModule } from '../action.module';

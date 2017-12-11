@@ -5,6 +5,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+
 import { WizardStep } from '../wizard-step';
 import { WizardStepComponent } from '../wizard-step.component';
 import { WizardConfig } from '../wizard-config';
@@ -139,9 +140,9 @@ export class WizardBasicExampleComponent implements OnInit {
 
   stepChanged($event: WizardEvent) {
     let flatSteps = flattenWizardSteps(this.wizard);
-    let currentStep = flatSteps.find(step => step.config.id === $event.step.config.id);
-    if (currentStep) {
-      currentStep.config.nextEnabled = true;
+    let currentStep = flatSteps.filter(step => step.config.id === $event.step.config.id);
+    if (currentStep && currentStep.length > 0) {
+      currentStep[0].config.nextEnabled = true;
     }
     if ($event.step.config.id === 'step1a') {
       this.updateName();

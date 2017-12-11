@@ -7,7 +7,6 @@
             [actionTemplate]="actionTemplate"
             [config]="listConfig"
             [expandTemplate]="expandTemplate"
-            [headingItems]="headingItems"
             [items]="items | sortArray: 'name'"
             [itemHeadingTemplate]="itemHeadingTemplate"
             [itemTemplate]="itemTemplate"
@@ -23,14 +22,11 @@
             </div>
             <div class="list-pf-content-wrapper">
               <div class="list-pf-main-content">
-                <div class="list-pf-title">{{item.name}}</div>
-                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+                <div class="list-pf-title">NAME</div>
+                <div class="list-pf-description text-overflow-pf">ACTIONS</div>
               </div>
               <div class="list-pf-additional-content">
-                <div>
-                  {{item.additionalInfo}}
-                  <i class="pficon pficon-info padding-left-5" tooltip="Additional info"></i>
-                </div>
+                <div>ADDITOINAL INFO<i class="pficon pficon-info padding-left-5" tooltip="Additional info"></i></div>
               </div>
             </div>
           </ng-template>
@@ -64,7 +60,7 @@
             </div>
           </ng-template>
           <ng-template #actionHeadingTemplate let-item="item">
-            <span class="margin-left-40">{{item.actions}}</span>
+            <span class="margin-left-40">ADDRESS</span>
             <!-- Place holder to match action button width below -->
             <div class="actions-placeholder"></div>
           </ng-template>

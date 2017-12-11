@@ -4,6 +4,8 @@ import {
   ViewChild
 } from '@angular/core';
 
+import { cloneDeep, find } from 'lodash';
+
 import { Filter } from '../filter';
 import { FilterComponent } from '../filter.component';
 import { FilterConfig } from '../filter-config';
@@ -11,8 +13,6 @@ import { FilterField } from '../filter-field';
 import { FilterEvent } from '../filter-event';
 import { FilterQuery } from '../filter-query';
 import { FilterType } from '../filter-type';
-
-import { cloneDeep, find } from 'lodash';
 
 @Component({
   selector: 'filter-save-example',
@@ -28,7 +28,7 @@ export class FilterSaveExampleComponent implements OnInit {
   filtersText: string = '';
   monthQueries: any[];
   monthQueriesFixed: any[];
-  savedFilters: Map<string, Filter[]>;
+  savedFilters: any = {};
   savedQueries: FilterQuery[];
   separator: Object;
   weekDayQueries: any[];
@@ -37,8 +37,6 @@ export class FilterSaveExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.savedFilters = new Map<string, Filter[]>();
-
     this.allItems = [{
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way, Bedrock, Washingstone',
@@ -223,12 +221,12 @@ export class FilterSaveExampleComponent implements OnInit {
 
       // Flatten saved filters
       if (appliedFilter.field.id === 'saved') {
-        this.savedFilters.get(appliedFilter.value).forEach((filter) => {
+        for (const filter of this.savedFilters[appliedFilter.value]) {
           // Prune duplicates
           if (!this.filterExists(filters, filter)) {
             filters.push(filter);
           }
-        });
+        }
       } else {
         // Prune duplicates
         if (!this.filterExists(filters, appliedFilter)) {
@@ -256,12 +254,12 @@ export class FilterSaveExampleComponent implements OnInit {
         ];
       } else if (field.id === 'saved') {
         field.queries = [];
-        this.savedFilters.forEach((value, key, map) => {
+        for (const key of Object.keys(this.savedFilters)) {
           field.queries.push({
             showDelete: true,
             value: key
           });
-        });
+        }
       }
     });
   }
@@ -316,12 +314,12 @@ export class FilterSaveExampleComponent implements OnInit {
       ];
     } else if (this.filterConfig.fields[index].id === 'saved') {
       let queries: FilterQuery[] = [];
-      this.savedFilters.forEach((value, key, map) => {
+      for (const key of Object.keys(this.savedFilters)) {
         queries.push({
           showDelete: true,
           value: key
         });
-      });
+      }
       this.filterConfig.fields[index].queries = [
         ...queries.filter((item: any) => {
           if (item.value) {
@@ -347,9 +345,9 @@ export class FilterSaveExampleComponent implements OnInit {
 
   // Delete saved filter
   deleteSavedFilter($event: FilterEvent): void {
-    this.savedFilters.delete($event.value); // Delete saved filter
+    delete this.savedFilters[$event.value]; // Delete saved filter
     this.filterFieldSelected($event); // Refresh queries
-    if (this.savedFilters.size === 0) {
+    if (Object.keys(this.savedFilters).length === 0) {
       this.filter.resetCurrentField(); // Reset
     }
   }
@@ -368,8 +366,8 @@ export class FilterSaveExampleComponent implements OnInit {
     } as Filter;
 
     // Load filters
-    this.savedFilters.set('Test1', [filter1]); // Filter values matching February
-    this.savedFilters.set('Test2', [filter1, filter2]); // Filter values matching February and Sunday
+    this.savedFilters['Test1'] = [filter1]; // Filter values matching February
+    this.savedFilters['Test2'] = [filter1, filter2]; // Filter values matching February and Sunday
     this.filterFieldSelected(null); // Refresh queries
   }
 
@@ -379,14 +377,14 @@ export class FilterSaveExampleComponent implements OnInit {
     $event.appliedFilters.forEach((filter) => {
       // Flatten saved filters
       if (filter.field.id === 'saved') {
-        this.savedFilters.get(filter.value).forEach((item) => {
+        for (const item of this.savedFilters[filter.value]) {
           filters.push(item);
-        });
+        }
       } else {
         filters.push(filter);
       }
     });
-    this.savedFilters.set($event.value, filters);
+    this.savedFilters[$event.value] = filters;
     this.filterFieldSelected($event); // Refresh queries
   }
 }

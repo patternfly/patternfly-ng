@@ -4,12 +4,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { cloneDeep } from 'lodash';
+
 import { Action } from '../../../action/action';
 import { ActionConfig } from '../../../action/action-config';
 import { ListEvent } from '../../list-event';
 import { ListConfig } from '../list-config';
-
-import { cloneDeep } from 'lodash';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -21,7 +21,6 @@ export class ListPinExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
-  headingItems: any[];
   items: any[];
   listConfig: ListConfig;
   selectType: string = 'checkbox';
@@ -30,13 +29,6 @@ export class ListPinExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.headingItems = [{
-      name: 'NAME',
-      actions: 'ACTIONS',
-      additionalInfo: 'ADDITOINAL INFO',
-      address: 'ADDRESS'
-    }];
-
     this.allItems = [{
       name: 'Fred Flintstone',
       address: '20 Dinosaur Way',
@@ -46,7 +38,8 @@ export class ListPinExampleComponent implements OnInit {
       clusterCount: 6,
       hostCount: 8,
       imageCount: 8,
-      nodeCount: 10
+      nodeCount: 10,
+      showPin: false
     }, {
       name: 'John Smith',
       address: '415 East Main Street',
@@ -68,7 +61,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }, {
       name: 'Linda McGovern',
       address: '22 Oak Street',
@@ -89,7 +83,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }, {
       name: 'Holly Nichols',
       address: '21 Jump Street',
@@ -110,7 +105,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }, {
       name: 'Pat Thomas',
       address: '50 Second Street',
@@ -120,7 +116,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }];
     this.items = cloneDeep(this.allItems);
 
