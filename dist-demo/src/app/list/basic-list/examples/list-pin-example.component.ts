@@ -38,7 +38,8 @@ export class ListPinExampleComponent implements OnInit {
       clusterCount: 6,
       hostCount: 8,
       imageCount: 8,
-      nodeCount: 10
+      nodeCount: 10,
+      showPin: false
     }, {
       name: 'John Smith',
       address: '415 East Main Street',
@@ -60,7 +61,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }, {
       name: 'Linda McGovern',
       address: '22 Oak Street',
@@ -81,7 +83,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }, {
       name: 'Holly Nichols',
       address: '21 Jump Street',
@@ -102,7 +105,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }, {
       name: 'Pat Thomas',
       address: '50 Second Street',
@@ -112,7 +116,8 @@ export class ListPinExampleComponent implements OnInit {
       hostCount: 8,
       clusterCount: 6,
       nodeCount: 10,
-      imageCount: 8
+      imageCount: 8,
+      showPin: false
     }];
     this.items = cloneDeep(this.allItems);
 
