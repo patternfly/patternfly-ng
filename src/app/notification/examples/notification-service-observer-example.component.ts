@@ -20,32 +20,28 @@ import { Observable } from 'rxjs';
     notifications: Observable<Notification[]>;
 
     constructor(private notificationService: NotificationService) {
-      notificationService.setDelay(8000);
     }
 
     ngOnInit(): void {
       this.notifications = this.notificationService.getNotificationsObserver;
       // Display notifications to illustrate how
       // one can react to a notifications observer
-      const exampleTimer = setInterval(_ => {
-        this.notificationService.message(
-          NotificationType.SUCCESS,
-          'Example header',
-          'Open js console to see notifications observer in action',
-          false,
-          null,
-          null
-        );
-      }, 1000);
-
-      setTimeout(_ => {
-        clearInterval(exampleTimer);
-      }, 6000);
 
       // Track Notifications
       this.notificationService.getNotificationsObserver
         .subscribe((notification) => {
           console.log(notification);
         });
+    }
+
+    launchNotification(): void {
+      this.notificationService.message(
+        NotificationType.SUCCESS,
+        'Example header',
+        'Open js console to see notifications observer in action',
+        false,
+        null,
+        null
+      );
     }
   }

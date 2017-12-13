@@ -3,8 +3,9 @@
       <div class="col-sm-12">
         <div class="form-group">
           <h2>This example illustrates subscribing to the notifications observer.</h2>
-          <p>Using a standard 8 second delay, this example launches a new message every second for 6 seconds, logging the notification to the console each time.</p>
+          <p>Click the button below to launch a notification, and view the logs in the console to see the subscription in action.</p>
           <p>This method of getting notifications becomes necessary when using the OnPush ChangeDetectionStrategy in Angular.</p>
+          <button class="btn btn-default" (click)="launchNotification()">Launch Notification</button>
           <pfng-toast-notification-list [notifications]="notifications|async"></pfng-toast-notification-list>
         </div>
       </div>
