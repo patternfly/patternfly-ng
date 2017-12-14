@@ -9,6 +9,8 @@ import { DemoComponentsModule } from '../../../demo/components/demo-components.m
 import { NotificationModule } from '../notification.module';
 import { NotificationService } from '../notification.service';
 import { NotificationServiceExampleComponent } from './notification-service-example.component';
+import { NotificationServiceBasicExampleComponent } from './notification-service-basic-example.component';
+import { NotificationServiceObserverExampleComponent } from './notification-service-observer-example.component';
 import { ToastNotificationExampleComponent } from './toast-notification-example.component';
 import { ToastNotificationListExampleComponent } from './toast-notification-list-example.component';
 import { InlineNotificationExampleComponent } from './inline-notification-example.component';
@@ -17,6 +19,8 @@ import { InlineNotificationExampleComponent } from './inline-notification-exampl
   declarations: [
     InlineNotificationExampleComponent,
     NotificationServiceExampleComponent,
+    NotificationServiceBasicExampleComponent,
+    NotificationServiceObserverExampleComponent,
     ToastNotificationExampleComponent,
     ToastNotificationListExampleComponent
   ],
