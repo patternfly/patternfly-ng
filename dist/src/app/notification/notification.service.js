@@ -8,6 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { NotificationType } from './notification-type';
 /**
  * Notification service used to notify user about important events in the application.
@@ -26,6 +27,7 @@ var NotificationService = /** @class */ (function () {
         this.notifications = {};
         this.persist = { 'error': true, 'httpError': true };
         this.verbose = false;
+        this._notificationsSubject = new Subject();
         this.notifications.data = [];
         this.modes = [
             { info: { type: NotificationType.INFO, header: 'Info!', log: 'info' } },
@@ -43,6 +45,16 @@ var NotificationService = /** @class */ (function () {
     NotificationService.prototype.getNotifications = function () {
         return this.notifications.data;
     };
+    Object.defineProperty(NotificationService.prototype, "getNotificationsObserver", {
+        /**
+         * Allows for interacting with a stream of notifications
+         */
+        get: function () {
+            return this._notificationsSubject.asObservable();
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Generate a notification for the given HTTP Response
      *
@@ -81,6 +93,7 @@ var NotificationService = /** @class */ (function () {
             visible: true
         };
         this.notifications.data.push(notification);
+        this.updateNotificationsStream();
         if (notification.isPersistent !== true) {
             notification.isViewing = false;
             setTimeout(function () {
@@ -100,6 +113,7 @@ var NotificationService = /** @class */ (function () {
         var index = this.notifications.data.indexOf(notification);
         if (index !== -1) {
             this.removeIndex(index);
+            this.updateNotificationsStream();
         }
     };
     /**
@@ -158,6 +172,9 @@ var NotificationService = /** @class */ (function () {
     };
     NotificationService.prototype.removeIndex = function (index) {
         this.notifications.data.splice(index, 1);
+    };
+    NotificationService.prototype.updateNotificationsStream = function () {
+        this._notificationsSubject.next(this.getNotifications());
     };
     NotificationService = __decorate([
         Injectable(),

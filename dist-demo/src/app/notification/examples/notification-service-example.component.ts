@@ -4,9 +4,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Notification } from '../notification';
-import { NotificationService } from '../notification.service';
-import { NotificationType } from '../notification-type';
+import { TabDirective } from 'ngx-bootstrap/tabs';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -14,21 +12,19 @@ import { NotificationType } from '../notification-type';
   templateUrl: './notification-service-example.component.html'
 })
 export class NotificationServiceExampleComponent implements OnInit {
-  notifications: Notification[];
+  activeTab: string = '';
 
-  constructor(private notificationService: NotificationService) {
-    this.notifications = this.notificationService.getNotifications();
-
-    notificationService.setDelay(5000); // default is 8000
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.notificationService.message(
-      NotificationType.WARNING,
-      'Default Header.',
-      'Default Message.',
-      false,
-      null,
-      null);
+  }
+
+  ngDoCheck(): void {
+  }
+
+  // Actions
+  tabSelected($event: TabDirective): void {
+    this.activeTab = $event.heading;
   }
 }

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Action } from '../action/action';
 import { Notification } from './notification';
 /**
@@ -11,6 +12,7 @@ export declare class NotificationService {
     private notifications;
     private persist;
     private verbose;
+    private _notificationsSubject;
     /**
      * The default constructor
      */
@@ -19,6 +21,10 @@ export declare class NotificationService {
      * Get all notifications
      */
     getNotifications(): Notification[];
+    /**
+     * Allows for interacting with a stream of notifications
+     */
+    readonly getNotificationsObserver: Observable<Notification[]>;
     /**
      * Generate a notification for the given HTTP Response
      *
@@ -72,4 +78,5 @@ export declare class NotificationService {
     setViewing(notification: Notification, isViewing: boolean): void;
     private createNotifyMethod(index);
     private removeIndex(index);
+    private updateNotificationsStream();
 }
