@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DemoComponentsModule } from './components/demo-components.module';
+import { NavbarModule } from './navbar/navbar.module';
 
 // Main areas
 //  import example modules
@@ -51,6 +52,7 @@ import { NavigationExampleModule } from '../app/navigation/examples/navigation-e
     HttpModule,
     InfoStatusCardExampleModule,
     ListExampleModule,
+    NavbarModule,
     NotificationExampleModule,
     PaginationExampleModule,
     RemainingCharsCountExampleModule,
