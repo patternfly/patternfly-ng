@@ -90,7 +90,7 @@ const routes: Routes = [{
     path: 'sort',
     component: SortExampleComponent
   }, {
-    path: 'sortArray',
+    path: 'sortarray',
     component: SortArrayExampleComponent
   }, {
     path: 'sparkline',
@@ -110,6 +110,9 @@ const routes: Routes = [{
   }, {
     path: 'truncate',
     component: TruncateExampleComponent
+  }, {
+    path: 'welcome',
+    component: WelcomeComponent
   }, {
     path: 'wizard',
     component: WizardExampleComponent

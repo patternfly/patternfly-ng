@@ -18,6 +18,7 @@ import { NavigationItemConfig } from '../navigation-item-config';
       right: 0;
       background-color: #f5f5f5;
       padding-top: 15px;
+      z-index: 1100;
     }
     .example-page-container.container-fluid {
       position: fixed;
