@@ -72,6 +72,18 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="dnd" name="dnd" type="checkbox"
+                   [(ngModel)]="dataTableConfig.dragEnabled">Drag and Drop
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
       <label class="actions-label">Actions: </label>
     </div>
   </div>
