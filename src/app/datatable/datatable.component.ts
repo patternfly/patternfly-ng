@@ -122,6 +122,7 @@ export class DataTableComponent implements DoCheck, OnInit {
 
   private dragulaName = 'newBag';
   private defaultConfig = {
+    dragEnabled: false,
     showCheckbox: false
   } as DataTableConfig;
   private prevConfig: DataTableConfig;
