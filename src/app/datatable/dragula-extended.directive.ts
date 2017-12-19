@@ -115,7 +115,7 @@ export class DragulaExtendedDirective implements AfterViewInit, OnChanges, OnDes
       if (this.classSelector !== 'null') {
         let classSelector = this.classSelector;
         let options = {
-          moves: function(el, container, handle) {
+          moves: function(el: any, container: any, handle: any) {
             return handle.className === classSelector;
           }
         };
@@ -128,10 +128,10 @@ export class DragulaExtendedDirective implements AfterViewInit, OnChanges, OnDes
     }
 
     // Set DRAG and DROP subscriptions and callbacks
-    this.subscriptionDrag = this.dragulaService.drag.subscribe((value) => {
+    this.subscriptionDrag = this.dragulaService.drag.subscribe((value: any) => {
       this.drag(value.slice(1));
     });
-    this.subscriptionDrop = this.dragulaService.drop.subscribe((value) => {
+    this.subscriptionDrop = this.dragulaService.drop.subscribe((value: any) => {
       const [bagName, el, target, source] = value;
 
       this.onDropModel(value.slice(1));
@@ -148,13 +148,13 @@ export class DragulaExtendedDirective implements AfterViewInit, OnChanges, OnDes
     }
   }
 
-  private drag(args) {
+  private drag(args: any) {
     let [e, el] = args;
     // Todo - not implemented
     // this.directiveDrag.emit();
   }
 
-  private onDropModel(args) {
+  private onDropModel(args: any) {
     let [el, target, source] = args;
 
     // Added emitter on any DROP action
