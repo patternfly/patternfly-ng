@@ -1,4 +1,4 @@
-@import (reference) '../../assets/stylesheets/patternfly-ng';
+@import (reference) '../../../assets/stylesheets/patternfly-ng';
 
 .pfng-datatable {
   .row.toolbar-pf {
@@ -8,6 +8,11 @@
   .table-view-pf-select-results {
     padding-bottom: 10px;
   }
+}
+
+.pfng-datatable-dnd-container {
+  align-self: stretch;
+  display: flex;
 }
 
 .pfng-datatable-dnd-header {
@@ -20,10 +25,10 @@
     border: 4px solid @color-pf-blue-400;
     border-color: @color-pf-blue-500;
     content: '';
-    height: 30px;
+    height: 100%;
     left: -4px;
     position: absolute;
-    top: -5px;
+    top: 0;
     width: 10px;
   }
 }
