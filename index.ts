@@ -102,12 +102,14 @@ export { SortField } from './src/app/sort/sort-field';
 export { SortModule } from './src/app/sort/sort.module';
 
 // Table
-export { DataTableConfig } from './src/app/table/datatable/datatable-config';
-export { DataTableComponent } from './src/app/table/datatable/datatable.component';
-export { DataTableDragulaDirective } from './src/app/table/datatable/datatable-dragula.directive';
-import { TableBase } from './src/app/table/table-base';
-import { TableBaseConfig } from './src/app/table/table-base-config';
-import { TableEvent } from './src/app/table/table-event';
+export { NgxDataTableConfig } from './src/app/table/basic-table/ngx-datatable-config';
+export { NgxDataTableDndDirective } from './src/app/table/basic-table/ngx-datatable-dnd.directive';
+export { TableBase } from './src/app/table/table-base';
+export { TableComponent } from './src/app/table/basic-table/table.component';
+export { TableConfig } from './src/app/table/basic-table/table-config';
+export { TableConfigBase } from './src/app/table/table-config-base';
+export { TableEvent } from './src/app/table/table-event';
+export { TableModule } from './src/app/table/table.module';
 
 // Toolbar
 export { ToolbarConfig } from './src/app/toolbar/toolbar-config';

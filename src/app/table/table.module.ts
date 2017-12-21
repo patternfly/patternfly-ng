@@ -5,19 +5,22 @@ import { FormsModule } from '@angular/forms';
 import { DragulaModule, DragulaService } from 'ng2-dragula';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
-import { DataTableDragulaDirective } from './datatable/datatable-dragula.directive';
 import { PaginationModule } from '../pagination/pagination.module';
-import { DataTableComponent } from './datatable/datatable.component';
-import { DataTableConfig } from './datatable/datatable-config';
+import { EmptyStateModule } from '../empty-state/empty-state.module';
+import { NgxDataTableConfig } from './basic-table/ngx-datatable-config';
+import { NgxDataTableDndDirective } from './basic-table/ngx-datatable-dnd.directive';
 import { TableBase } from './table-base';
-import { TableBaseConfig } from './table-base-config';
+import { TableComponent } from './basic-table/table.component';
+import { TableConfig } from './basic-table/table-config';
+import { TableConfigBase } from './table-config-base';
 import { TableEvent } from './table-event';
 import { ToolbarModule } from '../toolbar/toolbar.module';
 
 export {
-  DataTableConfig,
+  NgxDataTableConfig,
   TableBase,
-  TableBaseConfig,
+  TableConfig,
+  TableConfigBase,
   TableEvent
 };
 
@@ -28,13 +31,14 @@ export {
   imports: [
     CommonModule,
     DragulaModule,
+    EmptyStateModule,
     FormsModule,
     PaginationModule,
     NgxDatatableModule,
     ToolbarModule
   ],
-  declarations: [DataTableComponent, DataTableDragulaDirective],
-  exports: [DataTableComponent],
+  declarations: [NgxDataTableDndDirective, TableComponent],
+  exports: [TableComponent],
   providers: [DragulaService]
 })
 export class TableModule {}

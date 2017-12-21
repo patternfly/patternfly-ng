@@ -71,7 +71,7 @@
     "patternfly": "^3.28.0"
   },
   "optionalDependencies": {
-    "@swimlane/ngx-datatable": "^11.1.5",
+    "@swimlane/ngx-datatable": "^11.1.7",
     "angular-tree-component": "^6.0.0",
     "c3": "^0.4.15",
     "c3": "^0.4.15",

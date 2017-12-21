@@ -1,7 +1,16 @@
 @import (reference) '../../../assets/stylesheets/patternfly-ng';
 
 .pfng {
-  &-datatable {
+  &-table {
+    .blank-slate-pf {
+      border-bottom: 1px solid @color-pf-black-300;
+      border-left: 1px solid @color-pf-black-300;
+      border-right: 1px solid @color-pf-black-300;
+      border-top: 1px solid @color-pf-black-300;
+    }
+    .content-view-pf-pagination {
+      border-top: none;
+    }
     .row.toolbar-pf {
       margin-left: 0;
       margin-right: 0;
@@ -17,7 +26,6 @@
       display: flex;
     }
     &-dnd-header {
-      margin-right: 10px;
       &:before {
         background-image: linear-gradient(to bottom, @color-pf-blue-400 60%, @color-pf-white 0%);
         background-position: left;
@@ -27,7 +35,7 @@
         border-color: @color-pf-blue-500;
         content: '';
         height: 100%;
-        left: -4px;
+        left: 0;
         position: absolute;
         top: 0;
         width: 10px;
@@ -36,8 +44,18 @@
         cursor: move;
       }
     }
+    &-expand-container {
+      align-items: flex-start;
+      border-bottom: 1px solid @color-pf-black-300;
+      border-left: 1px solid @color-pf-black-300;
+      border-right: 1px solid @color-pf-black-300;
+      display: flex;
+      padding: 20px;
+    }
+    &-expand-content {
+      flex-grow: 1;
+    }
     &-select {
-      margin-left: -5px;
       .ng-untouched {
         margin-top: 0;
       }
@@ -75,8 +93,8 @@
     z-index: 9999 !important;
     /* stylelint-enable */
     opacity: .5;
-    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';
-    filter: alpha(opacity=50);
+    /* -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)'; */
+    /* filter: alpha(opacity=50); */
   }
   .gu-hide {
     /* stylelint-disable */
@@ -96,15 +114,17 @@
     color: #fff;
     background-color: @color-pf-blue-400;
     opacity: .5;
-    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';
-    filter: alpha(opacity=50);
+    /* -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)'; */
+    /* filter: alpha(opacity=50); */
   }
   &.patternfly {
     margin-bottom: -5px;
     border-top: 1px solid @color-pf-black-300;
     box-shadow: none;
     .datatable-header {
+      /* stylelint-disable */
       background-image: -webkit-linear-gradient(top, @color-pf-black-100 0, @color-pf-black-200 100%);
+      /* stylelint-enable */
       background-image: linear-gradient(to bottom, @color-pf-black-100 0, @color-pf-black-200 100%);
       background-repeat: repeat-x;
       background-color: @color-pf-black-150;
@@ -119,6 +139,14 @@
         vertical-align: bottom;
         &:first-child {
           border-left: 1px solid @color-pf-black-300;
+        }
+        &.pfng-table-select {
+          padding-top: 6px;
+          text-align: center;
+        }
+        &.pfng-table-dnd-only {
+          padding-left: 0;
+          padding-right: 0;
         }
         &.sortable.sort-active {
           color: @color-pf-blue-400;
@@ -169,6 +197,9 @@
       .datatable-header-cell-label {
         line-height: 24px;
       }
+      .datatable-header-cell-wrapper {
+        cursor: pointer;
+      }
     }
     .datatable-body {
       &-row {
@@ -203,6 +234,10 @@
           padding: 2px 10px 3px;
           text-align: left;
           vertical-align: top;
+          &.pfng-table-dnd-only {
+            padding-left: 0;
+            padding-right: 0;
+          }
         }
       }
       &-cell {
@@ -217,6 +252,28 @@
             }
           }
         }
+      }
+      .datatable-scroll,
+      .datatable-row-wrapper {
+        /* stylelint-disable */
+        width: 100% !important;
+        /* stylelint-enable */
+      }
+      .datatable-group-header {
+        background: @color-pf-black-150;
+        border-bottom: solid 1px @color-pf-black-300;
+        border-left: solid 1px @color-pf-black-300;
+        border-right: solid 1px @color-pf-black-300;
+        /* stylelint-disable */
+        width: 100% !important;
+        /* stylelint-enable */
+      }
+      .empty-row {
+        border-bottom: 1px solid @color-pf-black-300;
+        border-left: 1px solid @color-pf-black-300;
+        border-right: 1px solid @color-pf-black-300;
+        margin-bottom: 5px;
+        padding: 2px 10px 1px;
       }
     }
   }

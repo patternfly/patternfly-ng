@@ -16,7 +16,6 @@ import { NavbarModule } from './navbar/navbar.module';
 import { AboutModalExampleModule } from '../app/modal/example/about-modal-example.module';
 import { ActionExampleModule } from '../app/action/example/action-example.module';
 import { CardExampleModule } from '../app/card/basic-card/example/card-example.module';
-import { DataTableExampleModule } from '../app/table/datatable/example/datatable-example.module';
 import { DonutExampleModule } from '../app/chart/donut/example/donut-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/example/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/example/filter-example.module';
@@ -34,6 +33,7 @@ import { SearchHighlightExampleModule } from '../app/pipe/search-highlight/examp
 import { SortArrayExampleModule } from '../app/pipe/sort-array/example/sort-array-example.module';
 import { SortExampleModule } from '../app/sort/example/sort-example.module';
 import { SparklineExampleModule } from '../app/chart/sparkline/example/sparkline-example.module';
+import { TableExampleModule } from '../app/table/basic-table/example/table-example.module';
 import { ToastNotificationExampleModule }
   from '../app/notification/toast-notification/example/toast-notification-example.module';
 import { ToastNotificationListExampleModule }
@@ -53,7 +53,6 @@ import { WizardExampleModule } from '../app/wizard/example/wizard-example.module
     AppRoutingModule,
     BrowserModule,
     CardExampleModule,
-    DataTableExampleModule,
     DemoComponentsModule,
     DonutExampleModule,
     EmptyStateExampleModule,
@@ -72,6 +71,7 @@ import { WizardExampleModule } from '../app/wizard/example/wizard-example.module
     SortArrayExampleModule,
     SortExampleModule,
     SparklineExampleModule,
+    TableExampleModule,
     ToastNotificationExampleModule,
     ToastNotificationListExampleModule,
     ToolbarExampleModule,
