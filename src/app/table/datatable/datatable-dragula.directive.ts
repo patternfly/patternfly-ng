@@ -15,20 +15,18 @@ import { dragula, DragulaService } from 'ng2-dragula';
 @Directive({
   selector: 'ngx-datatable[dragulaName]'
 })
-export class DragulaExtendedDirective implements AfterViewInit, OnChanges, OnDestroy, OnInit {
+export class DataTableDragulaDirective implements AfterViewInit, OnChanges, OnDestroy, OnInit {
   @Input() public dragulaName: string;
   @Input() public dragulaModel: any;
-  @Input() public dragulaVScroll: any;
-  @Input() public classSelector: string = 'null';
-  @Output() public directiveDrop: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public directiveDrag: EventEmitter<any> = new EventEmitter<any>();
+  @Input() public dragulaClassSelector: string = 'null';
+  @Output() public dragulaDrop: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public dragulaDrag: EventEmitter<any> = new EventEmitter<any>();
 
   subscriptionDrag: any = null;
   subscriptionDrop: any = null;
 
   protected container: any;
   private drake: any;
-  private options: any;
   private el: ElementRef;
   private dragulaService: DragulaService;
 
@@ -105,15 +103,15 @@ export class DragulaExtendedDirective implements AfterViewInit, OnChanges, OnDes
       this.drake.containers.push(this.container);
     } else {
 
-      // Check if classSelector was specified
+      // Check if dragulaClassSelector was specified
       // *true:
-      //    - the classSelector string will be used to match the class of the element clicked
+      //    - the dragulaClassSelector string will be used to match the class of the element clicked
       //    - the element with the matching class name will be used to drag the row
       // *false:
       //    - no class selector will be used
       //    - the whole row will default back to being draggable
-      if (this.classSelector !== 'null') {
-        let classSelector = this.classSelector;
+      if (this.dragulaClassSelector !== 'null') {
+        let classSelector = this.dragulaClassSelector;
         let options = {
           moves: function(el: any, container: any, handle: any) {
             return handle.className === classSelector;
@@ -150,8 +148,7 @@ export class DragulaExtendedDirective implements AfterViewInit, OnChanges, OnDes
 
   private drag(args: any) {
     let [e, el] = args;
-    // Todo - not implemented
-    // this.directiveDrag.emit();
+    // Todo: not implemented
   }
 
   private onDropModel(args: any) {
@@ -159,6 +156,6 @@ export class DragulaExtendedDirective implements AfterViewInit, OnChanges, OnDes
 
     // Added emitter on any DROP action
     // console.log('EMITTER', args);
-    this.directiveDrop.emit(this.dragulaModel);
+    this.dragulaDrop.emit(this.dragulaModel);
   }
 }

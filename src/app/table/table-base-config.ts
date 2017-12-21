@@ -2,18 +2,16 @@ import { PaginationConfig } from '../pagination/pagination-config';
 import { ToolbarConfig } from '../toolbar/toolbar-config';
 
 /**
- * An config containing properties for data table
+ * An config containing properties for tables
  */
-export class DataTableConfig {
-
+export class TableBaseConfig {
   /**
-   * Enable drag and drop. Default is false.
+   * A config containing properties for pagination
    */
-  dragEnabled?: boolean;
-
   paginationConfig?: PaginationConfig;
 
-  showCheckbox?: boolean;
-
+  /**
+   * A config containing properties for toolbar
+   */
   toolbarConfig?: ToolbarConfig;
 }
