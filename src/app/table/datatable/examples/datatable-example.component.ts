@@ -31,14 +31,15 @@ import { cloneDeep } from 'lodash';
   templateUrl: './datatable-example.component.html'
 })
 export class DataTableExampleComponent implements OnInit {
-  @ViewChild('addressCellTmpl') addressCellTmpl: TemplateRef<any>;
-  @ViewChild('addressHeadTmpl') addressHeadTmpl: TemplateRef<any>;
-  @ViewChild('birthMonthCellTmpl') birthMonthCellTmpl: TemplateRef<any>;
-  @ViewChild('birthMonthHeadTmpl') birthMonthHeadTmpl: TemplateRef<any>;
-  @ViewChild('nameCellTmpl') nameCellTmpl: TemplateRef<any>;
-  @ViewChild('nameHeadTmpl') nameHeadTmpl: TemplateRef<any>;
-  @ViewChild('weekDayCellTmpl') weekDayCellTmpl: TemplateRef<any>;
-  @ViewChild('weekDayHeadTmpl') weekDayHeadTmpl: TemplateRef<any>;
+  @ViewChild('addressCellTemplate') addressCellTemplate: TemplateRef<any>;
+  @ViewChild('addressHeadTemplate') addressHeadTemplate: TemplateRef<any>;
+  @ViewChild('birthMonthCellTemplate') birthMonthCellTemplate: TemplateRef<any>;
+  @ViewChild('birthMonthHeadTemplate') birthMonthHeadTemplate: TemplateRef<any>;
+  @ViewChild('expandRowTemplate') expandRowTemplate: TemplateRef<any>;
+  @ViewChild('nameCellTemplate') nameCellTemplate: TemplateRef<any>;
+  @ViewChild('nameHeadTemplate') nameHeadTemplate: TemplateRef<any>;
+  @ViewChild('weekDayCellTemplate') weekDayCellTemplate: TemplateRef<any>;
+  @ViewChild('weekDayHeadTemplate') weekDayHeadTemplate: TemplateRef<any>;
 
   actionConfig: ActionConfig;
   actionsText: string = '';
@@ -52,7 +53,8 @@ export class DataTableExampleComponent implements OnInit {
   isAscendingSort: boolean = true;
   paginationConfig: PaginationConfig;
   rows: any[];
-  selectType: string = 'checkbox';
+  rowsAvailable: boolean = true;
+  selectType: string = 'none';
   separator: Object;
   sortConfig: SortConfig;
   toolbarConfig: ToolbarConfig;
@@ -88,27 +90,27 @@ export class DataTableExampleComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns = [{
-      cellTemplate: this.nameCellTmpl,
+      cellTemplate: this.nameCellTemplate,
       draggable: true,
-      headerTemplate: this.nameHeadTmpl,
+      headerTemplate: this.nameHeadTemplate,
       prop: 'name',
       name: 'Name'
     }, {
-      cellTemplate: this.addressCellTmpl,
+      cellTemplate: this.addressCellTemplate,
       draggable: true,
-      headerTemplate: this.addressHeadTmpl,
+      headerTemplate: this.addressHeadTemplate,
       prop: 'address',
       name: 'Address'
     }, {
-      cellTemplate: this.birthMonthCellTmpl,
+      cellTemplate: this.birthMonthCellTemplate,
       draggable: true,
-      headerTemplate: this.birthMonthHeadTmpl,
+      headerTemplate: this.birthMonthHeadTemplate,
       prop: 'birthMonth',
       name: 'Birth Month'
     }, {
-      cellTemplate: this.weekDayCellTmpl,
+      cellTemplate: this.weekDayCellTemplate,
       draggable: true,
-      headerTemplate: this.weekDayHeadTmpl,
+      headerTemplate: this.weekDayHeadTemplate,
       prop: 'weekDay',
       name: 'Week Day'
     }];
@@ -125,7 +127,7 @@ export class DataTableExampleComponent implements OnInit {
       address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
-      selected: true,
+      // selected: true,
       weekDay: 'Monday',
       weekdayId: 'day2'
     }, {
@@ -329,10 +331,11 @@ export class DataTableExampleComponent implements OnInit {
     } as ToolbarConfig;
 
     this.dataTableConfig = {
-      // dragEnabled: false,
+      dragEnabled: false,
       paginationConfig: this.paginationConfig,
-      showCheckbox: true,
-      toolbarConfig: this.toolbarConfig
+      showCheckbox: false,
+      toolbarConfig: this.toolbarConfig,
+      useExpandRows: false
     } as DataTableConfig;
   }
 
@@ -504,7 +507,7 @@ export class DataTableExampleComponent implements OnInit {
   // Selection
 
   updateItemsAvailable(): void {
-    // this.rows = (this.rowsAvailable) ? cloneDeep(this.allRows) : [];
+    this.rows = (this.rowsAvailable) ? cloneDeep(this.allRows) : [];
   }
 
   updateSelectionType(): void {

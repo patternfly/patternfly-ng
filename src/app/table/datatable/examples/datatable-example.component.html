@@ -12,6 +12,7 @@
             [actionTemplate]="actionTemplate"
             [columns]="columns"
             [config]="dataTableConfig"
+            [expandRowTemplate]="expandRowTemplate"
             [rows]="rows"
             (onActionSelect)="handleAction($event)"
             (onDrop)="handleDrop($event)"
@@ -24,30 +25,39 @@
             (onSortChange)="sortChanged($event)"
             (onViewSelect)="viewSelected($event)">
         </pfng-datatable>
-        <ng-template let-column="column" #nameHeadTmpl>
+        <!-- Column templates -->
+        <ng-template #nameHeadTemplate let-column="column">
           <span>{{column.name}}</span>
         </ng-template>
-        <ng-template let-row="row" #nameCellTmpl>
+        <ng-template #nameCellTemplate let-row="row">
           <span>{{row.name}}</span>
         </ng-template>
-        <ng-template let-column="column" #addressHeadTmpl>
+        <ng-template #addressHeadTemplate let-column="column">
           <span>{{column.name}}</span>
         </ng-template>
-        <ng-template let-row="row" #addressCellTmpl>
+        <ng-template #addressCellTemplate let-row="row">
           <span>{{row.address}}</span>
         </ng-template>
-        <ng-template let-column="column" #brithMonthHeadTmpl>
+        <ng-template #brithMonthHeadTemplate let-column="column">
           <span>{{column.name}}</span>
         </ng-template>
-        <ng-template let-row="row" #brithMonthCellTmpl>
+        <ng-template #brithMonthCellTemplate let-row="row">
           <span>{{row.birthMonth}}</span>
         </ng-template>
-        <ng-template let-column="column" #weekDayHeadTmpl>
+        <ng-template #weekDayHeadTemplate let-column="column">
           <span>{{column.name}}</span>
         </ng-template>
-        <ng-template let-row="row" #weekDayCellTmpl>
+        <ng-template #weekDayCellTemplate let-row="row">
           <span>{{row.birthMonth}}</span>
         </ng-template>
+        <!-- Row detail template -->
+        <ng-template #expandRowTemplate let-row="row">
+          <div class="margin-left-20">
+            <div><strong>Address</strong></div>
+            <div>{{row.address}}</div>
+          </div>
+        </ng-template>
+        <!-- Toolbar action template -->
         <ng-template #actionTemplate>
             <span class="dropdown primary-action" dropdown>
               <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
@@ -87,7 +97,7 @@
                    [(ngModel)]="selectType" value="checkbox" (ngModelChange)="updateSelectionType()">Checkbox
           </label>
           <label class="radio-inline">
-            <input id="selectType3" name="selectType" type="radio"
+            <input id="selectType2" name="selectType" type="radio"
                    [(ngModel)]="selectType" value="none" (ngModelChange)="updateSelectionType()">None
           </label>
         </div>
@@ -101,6 +111,15 @@
           <label class="checkbox-inline">
             <input id="dnd" name="dnd" type="checkbox"
                    [(ngModel)]="dataTableConfig.dragEnabled">Drag and Drop
+          </label>
+          <label class="checkbox-inline">
+            <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
+                   [(ngModel)]="dataTableConfig.useExpandRows">Show Simple Expansion
+          </label>
+          <label class="checkbox-inline">
+            <input id="itemsAvailable" name="itemsAvailable" type="checkbox"
+                   [(ngModel)]="rowsAvailable"
+                   (ngModelChange)="updateItemsAvailable()">Items Available
           </label>
         </div>
       </form>
