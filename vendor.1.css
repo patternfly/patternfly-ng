@@ -18817,85 +18817,101 @@ table.dataTable th:active {
     width: 18em;
   }
 }/*
-bootstrap table theme
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
 */
-.ngx-datatable.bootstrap {
-  box-shadow: none;
-  font-size: 13px; }
-  .ngx-datatable.bootstrap .datatable-header {
-    height: unset !important; }
-    .ngx-datatable.bootstrap .datatable-header .datatable-header-cell {
-      vertical-align: bottom;
-      padding: 0.75rem;
-      border-bottom: 1px solid #d1d4d7; }
-      .ngx-datatable.bootstrap .datatable-header .datatable-header-cell .datatable-header-cell-label {
-        line-height: 24px; }
-  .ngx-datatable.bootstrap .datatable-body .datatable-body-row {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #d1d4d7; }
-    .ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-even {
-      background-color: rgba(0, 0, 0, 0.05); }
-    .ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {
-      background-color: #1483ff;
-      color: #FFF; }
-    .ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell {
-      text-align: left;
-      vertical-align: top; }
-  .ngx-datatable.bootstrap .datatable-footer {
-    background: #424242;
-    color: #ededed;
-    margin-top: -1px; }
-    .ngx-datatable.bootstrap .datatable-footer .page-count {
-      line-height: 50px;
-      height: 50px;
-      padding: 0 1.2rem; }
-    .ngx-datatable.bootstrap .datatable-footer .datatable-pager {
-      margin: 0 10px;
-      vertical-align: top; }
-      .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li {
-        margin: 10px 0px; }
-        .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a, .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
-          background-color: #545454;
-          font-weight: bold; }
-      .ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
-        height: 22px;
-        min-width: 24px;
-        line-height: 22px;
-        padding: 0;
-        border-radius: 3px;
-        margin: 0 3px;
-        text-align: center;
-        vertical-align: top;
-        text-decoration: none;
-        vertical-align: bottom;
-        color: #ededed; }
-      .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-left,
-      .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-skip,
-      .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right,
-      .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-prev {
-        font-size: 18px;
-        line-height: 27px;
-        padding: 0 3px; }
-.gu-mirror {
-  position: fixed !important;
-  margin: 0 !important;
-  z-index: 9999 !important;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
 }
-.gu-hide {
-  display: none !important;
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
 }
-.gu-unselectable {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
 }
-.gu-transit {
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
 }
