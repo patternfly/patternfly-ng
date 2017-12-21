@@ -64,11 +64,24 @@ module.exports = {
         test: /\.html$/,
         loader: 'html-loader'
       }, {
+        test: /node_modules\/@swimlane\/ngx-datatable\/.*\.css$/,
+        loaders: [
+          {
+            loader: 'to-string-loader'
+          }, {
+            loader: 'css-loader',
+            options: {
+              context: '/'
+            }
+          }
+        ],
+      }, {
         test: /\.css$/,
         loader: extractCSS.extract({
           fallback: "style-loader",
           use: "css-loader?sourceMap&context=/"
-        })
+        }),
+        exclude: [/node_modules\/@swimlane\/ngx-datatable/]
       }, {
         test: /\.less$/,
         loaders: [
@@ -194,12 +207,11 @@ module.exports = {
      *
      * See: https://www.npmjs.com/package/@ngtools/webpack
      */
-/*
     new AotPlugin({
       entryModule: helpers.root('src/demo/app.module.ts#AppModule'),
       tsConfigPath: helpers.root('tsconfig-aot.json')
     }),
-*/
+
     /**
      * Plugin: copy-webpack-plugin
      * Description: Copies individual files or entire directories to the build directory

@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutModalExampleComponent } from '../app/modal/example/about-modal-example.component';
 import { ActionExampleComponent } from '../app/action/example/action-example.component';
 import { CardExampleComponent } from '../app/card/basic-card/example/card-example.component';
-import { DataTableExampleComponent } from '../app/table/datatable/example/datatable-example.component';
 import { DonutExampleComponent } from '../app/chart/donut/example/donut-example.component';
 import { EmptyStateExampleComponent } from '../app/empty-state/example/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/example/filter-example.component';
@@ -25,6 +24,7 @@ import { SearchHighlightExampleComponent }
 import { SortExampleComponent } from '../app/sort/example/sort-example.component';
 import { SortArrayExampleComponent } from '../app/pipe/sort-array/example/sort-array-example.component';
 import { SparklineExampleComponent } from '../app/chart/sparkline/example/sparkline-example.component';
+import { TableExampleComponent } from '../app/table/basic-table/example/table-example.component';
 import { ToastNotificationExampleComponent }
   from '../app/notification/toast-notification/example/toast-notification-example.component';
 import { ToastNotificationListExampleComponent }
@@ -107,7 +107,7 @@ const routes: Routes = [{
     component: ToastNotificationListExampleComponent
   }, {
     path: 'table',
-    component: DataTableExampleComponent
+    component: TableExampleComponent
   }, {
     path: 'toolbar',
     component: ToolbarExampleComponent

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   OnInit,
   TemplateRef,
@@ -8,7 +9,7 @@ import {
 
 import { Action } from '../../../action/action';
 import { ActionConfig } from '../../../action/action-config';
-import { DataTableConfig } from '../datatable-config';
+import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
 import { Filter } from '../../../filter/filter';
 import { FilterConfig } from '../../../filter/filter-config';
 import { FilterField } from '../../../filter/filter-field';
@@ -19,40 +20,37 @@ import { PaginationEvent } from '../../../pagination/pagination-event';
 import { SortConfig } from '../../../sort/sort-config';
 import { SortField } from '../../../sort/sort-field';
 import { SortEvent } from '../../../sort/sort-event';
+import { TableConfig } from '../table-config';
 import { TableEvent } from '../../table-event';
 import { ToolbarConfig } from '../../../toolbar/toolbar-config';
-import { ToolbarView } from '../../../toolbar/toolbar-view';
 
 import { cloneDeep } from 'lodash';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'datatable-example',
-  templateUrl: './datatable-example.component.html'
+  selector: 'table-embedded-example',
+  templateUrl: './table-embedded-example.component.html'
 })
-export class DataTableExampleComponent implements OnInit {
-  @ViewChild('addressCellTmpl') addressCellTmpl: TemplateRef<any>;
-  @ViewChild('addressHeadTmpl') addressHeadTmpl: TemplateRef<any>;
-  @ViewChild('birthMonthCellTmpl') birthMonthCellTmpl: TemplateRef<any>;
-  @ViewChild('birthMonthHeadTmpl') birthMonthHeadTmpl: TemplateRef<any>;
-  @ViewChild('nameCellTmpl') nameCellTmpl: TemplateRef<any>;
-  @ViewChild('nameHeadTmpl') nameHeadTmpl: TemplateRef<any>;
-  @ViewChild('weekDayCellTmpl') weekDayCellTmpl: TemplateRef<any>;
-  @ViewChild('weekDayHeadTmpl') weekDayHeadTmpl: TemplateRef<any>;
+export class TableEmbeddedExampleComponent implements AfterViewInit, OnInit {
+  @ViewChild('addressTemplate') addressTemplate: TemplateRef<any>;
+  @ViewChild('birthMonthTemplate') birthMonthTemplate: TemplateRef<any>;
+  @ViewChild('nameTemplate') nameTemplate: TemplateRef<any>;
+  @ViewChild('weekDayTemplate') weekDayTemplate: TemplateRef<any>;
 
   actionConfig: ActionConfig;
   actionsText: string = '';
   allRows: any[];
   columns: any[];
   currentSortField: SortField;
-  dataTableConfig: DataTableConfig;
+  tableConfig: TableConfig;
+  emptyStateConfig: EmptyStateConfig;
   filterConfig: FilterConfig;
   filteredRows: any[];
   filtersText: string = '';
   isAscendingSort: boolean = true;
   paginationConfig: PaginationConfig;
   rows: any[];
-  selectType: string = 'checkbox';
+  rowsAvailable: boolean = true;
   separator: Object;
   sortConfig: SortConfig;
   toolbarConfig: ToolbarConfig;
@@ -86,31 +84,35 @@ export class DataTableExampleComponent implements OnInit {
   constructor() {
   }
 
+  ngAfterViewInit(): void {
+    this.updateRows(false); // Reinitialize expanded rows in order to render properly with tabs
+  }
+
   ngOnInit(): void {
     this.columns = [{
-      cellTemplate: this.nameCellTmpl,
+      cellTemplate: this.nameTemplate,
       draggable: true,
-      headerTemplate: this.nameHeadTmpl,
       prop: 'name',
-      name: 'Name'
+      name: 'Name',
+      resizeable: true
     }, {
-      cellTemplate: this.addressCellTmpl,
+      cellTemplate: this.addressTemplate,
       draggable: true,
-      headerTemplate: this.addressHeadTmpl,
       prop: 'address',
-      name: 'Address'
+      name: 'Address',
+      resizeable: true
     }, {
-      cellTemplate: this.birthMonthCellTmpl,
+      cellTemplate: this.birthMonthTemplate,
       draggable: true,
-      headerTemplate: this.birthMonthHeadTmpl,
       prop: 'birthMonth',
-      name: 'Birth Month'
+      name: 'Birth Month',
+      resizeable: true
     }, {
-      cellTemplate: this.weekDayCellTmpl,
+      cellTemplate: this.weekDayTemplate,
       draggable: true,
-      headerTemplate: this.weekDayHeadTmpl,
       prop: 'weekDay',
-      name: 'Week Day'
+      name: 'Week Day',
+      resizeable: true
     }];
 
     this.allRows = [{
@@ -125,7 +127,7 @@ export class DataTableExampleComponent implements OnInit {
       address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
-      selected: true,
+      // selected: true,
       weekDay: 'Monday',
       weekdayId: 'day2'
     }, {
@@ -158,7 +160,9 @@ export class DataTableExampleComponent implements OnInit {
       pageSizeIncrements: [2, 3, 4],
       totalItems: this.filteredRows.length
     } as PaginationConfig;
-    this.updateRows();
+
+    // Need to initialize for results/total counts
+    this.updateRows(false);
 
     this.weekDayQueries = [{
       id: 'day1',
@@ -313,27 +317,51 @@ export class DataTableExampleComponent implements OnInit {
       }]
     } as ActionConfig;
 
+    this.emptyStateConfig = {
+      actions: {
+        primaryActions: [{
+          id: 'action1',
+          title: 'Main Action',
+          tooltip: 'Start the server'
+        }],
+        moreActions: [{
+          id: 'action2',
+          title: 'Secondary Action 1',
+          tooltip: 'Do the first thing'
+        }, {
+          id: 'action3',
+          title: 'Secondary Action 2',
+          tooltip: 'Do something else'
+        }, {
+          id: 'action4',
+          title: 'Secondary Action 3',
+          tooltip: 'Do something special'
+        }]
+      } as ActionConfig,
+      iconStyleClass: 'pficon-warning-triangle-o',
+      title: 'No Items Available',
+      info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
+      'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
+      'objects exists and you want to guide the user to perform specific actions.',
+      helpLink: {
+        hypertext: 'Table example',
+        text: 'For more information please see the',
+        url: '#/table'
+      }
+    } as EmptyStateConfig;
+
     this.toolbarConfig = {
       actionConfig: this.actionConfig,
       filterConfig: this.filterConfig,
-      sortConfig: this.sortConfig,
-      views: [{
-        id: 'listView',
-        iconStyleClass: 'fa fa-th-list',
-        tooltip: 'List View'
-      }, {
-        id: 'tableView',
-        iconStyleClass: 'fa fa-table',
-        tooltip: 'Table View'
-      }]
+      sortConfig: this.sortConfig
     } as ToolbarConfig;
 
-    this.dataTableConfig = {
-      // dragEnabled: false,
+    this.tableConfig = {
+      emptyStateConfig: this.emptyStateConfig,
       paginationConfig: this.paginationConfig,
       showCheckbox: true,
       toolbarConfig: this.toolbarConfig
-    } as DataTableConfig;
+    } as TableConfig;
   }
 
   // Actions
@@ -364,8 +392,7 @@ export class DataTableExampleComponent implements OnInit {
       this.filteredRows = this.allRows;
     }
     this.toolbarConfig.filterConfig.resultsCount = this.filteredRows.length;
-    this.paginationConfig.totalItems = this.filteredRows.length;
-    this.updateRows();
+    this.updateRows(true);
   }
 
   // Handle filter changes
@@ -435,8 +462,6 @@ export class DataTableExampleComponent implements OnInit {
   // Drag and drop
 
   handleDrop($event: any[]): void {
-    // Todo - this doesn't account for filtered rows
-
     // Save new row order
     let startIndex = (this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize;
     let endIndex = startIndex + this.paginationConfig.pageSize;
@@ -446,23 +471,42 @@ export class DataTableExampleComponent implements OnInit {
     this.actionsText = 'Row dropped' + '\n' + this.actionsText;
   }
 
+  // ngx-datatable
+
+  handleOnActivate($event: any): void {
+    // To much noise
+    // this.actionsText = 'Cell or row focused' + '\n' + this.actionsText;
+  }
+
+  handleOnReorder($event: any): void {
+    this.actionsText = 'Columns reordered' + '\n' + this.actionsText;
+  }
+
+  handleOnResize($event: any): void {
+    this.actionsText = 'Columns resized' + '\n' + this.actionsText;
+  }
+
+  handleOnScroll($event: any): void {
+    this.actionsText = 'Body scrolled' + '\n' + this.actionsText;
+  }
+
   // Pagination
 
   handlePageSize($event: PaginationEvent): void {
     this.actionsText = 'Page Size: ' + $event.pageSize + ' Selected' + '\n' + this.actionsText;
-    this.updateRows();
+    this.updateRows(false);
   }
 
   handlePageNumber($event: PaginationEvent): void {
     this.actionsText = 'Page Number: ' + $event.pageNumber + ' Selected' + '\n' + this.actionsText;
-    this.updateRows();
+    this.updateRows(false);
   }
 
-  handleSelectionChange($event: TableEvent): void {
-    this.actionsText = $event.selectedRows.length + ' rows selected\r\n' + this.actionsText;
-  }
-
-  updateRows(): void {
+  updateRows(reset: boolean): void {
+    if (reset) {
+      this.paginationConfig.pageNumber = 1;
+    }
+    this.paginationConfig.totalItems = this.filteredRows.length;
     this.rows = this.filteredRows.slice((this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
       this.paginationConfig.totalItems).slice(0, this.paginationConfig.pageSize);
   }
@@ -488,34 +532,29 @@ export class DataTableExampleComponent implements OnInit {
   }
 
   // Handle sort changes
-  sortChanged($event: SortEvent): void {
+  handleSortChanged($event: SortEvent): void {
     this.currentSortField = $event.field;
     this.isAscendingSort = $event.isAscending;
     this.allRows.sort((item1: any, item2: any) => this.compare(item1, item2));
-    this.updateRows();
-  }
-
-  // View
-
-  viewSelected(currentView: ToolbarView): void {
-    this.sortConfig.visible = (currentView.id === 'tableView' ? false : true);
+    this.updateRows(false);
   }
 
   // Selection
 
+  handleSelectionChange($event: TableEvent): void {
+    this.actionsText = $event.selectedRows.length + ' rows selected\r\n' + this.actionsText;
+  }
+
   updateItemsAvailable(): void {
-    // this.rows = (this.rowsAvailable) ? cloneDeep(this.allRows) : [];
-  }
-
-  updateSelectionType(): void {
-    if (this.selectType === 'checkbox') {
-      this.dataTableConfig.showCheckbox = true;
+    if (this.rowsAvailable) {
+      this.toolbarConfig.filterConfig.totalCount = this.allRows.length;
+      this.filteredRows = this.allRows;
+      this.updateRows(false);
     } else {
-      this.dataTableConfig.showCheckbox = false;
+      // Clear previously applied properties to simulate no rows available
+      this.toolbarConfig.filterConfig.totalCount = 0;
+      this.filterConfig.appliedFilters = [];
+      this.rows = [];
     }
-  }
-
-  test(row: any): void {
-    console.log('Clicked!!! ' + row.name);
   }
 }

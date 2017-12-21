@@ -10,11 +10,13 @@ import '@angular/router';
 // RxJS
 import 'rxjs';
 
+// Highlighting for getting started page
+import 'highlight.js/styles/github.css';
+
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
 import 'patternfly/dist/css/patternfly.css';
 import 'patternfly/dist/css/patternfly-additions.css';
-import '@swimlane/ngx-datatable/release/themes/bootstrap.css';
 import 'dragula/dist/dragula.css';
 
 require('patternfly/dist/js/patternfly-settings');

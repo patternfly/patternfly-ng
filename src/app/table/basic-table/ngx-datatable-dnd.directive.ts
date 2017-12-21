@@ -10,12 +10,20 @@ import {
   Output,
   SimpleChange
 } from '@angular/core';
+
 import { dragula, DragulaService } from 'ng2-dragula';
 
+/**
+ * Drag and drop directive used with the underlying ngx-datatable component.
+ *
+ * Note: When drag and drop is avaiable upstream, this functionlity will likely be removed
+ *
+ * See: https://github.com/swimlane/ngx-datatable/issues/411
+ */
 @Directive({
   selector: 'ngx-datatable[dragulaName]'
 })
-export class DataTableDragulaDirective implements AfterViewInit, OnChanges, OnDestroy, OnInit {
+export class NgxDataTableDndDirective implements AfterViewInit, OnChanges, OnDestroy, OnInit {
   @Input() public dragulaName: string;
   @Input() public dragulaModel: any;
   @Input() public dragulaClassSelector: string = 'null';
