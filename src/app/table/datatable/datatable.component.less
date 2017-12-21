@@ -2,6 +2,9 @@
 
 .pfng {
   &-datatable {
+    .content-view-pf-pagination {
+      border-top: none;
+    }
     .row.toolbar-pf {
       margin-left: 0;
       margin-right: 0;
@@ -17,7 +20,6 @@
       display: flex;
     }
     &-dnd-header {
-      margin-right: 10px;
       &:before {
         background-image: linear-gradient(to bottom, @color-pf-blue-400 60%, @color-pf-white 0%);
         background-position: left;
@@ -27,7 +29,7 @@
         border-color: @color-pf-blue-500;
         content: '';
         height: 100%;
-        left: -4px;
+        left: 0;
         position: absolute;
         top: 0;
         width: 10px;
@@ -36,8 +38,18 @@
         cursor: move;
       }
     }
+    &-expand-container {
+      align-items: flex-start;
+      border-bottom: 1px solid @color-pf-black-300;
+      border-left: 1px solid @color-pf-black-300;
+      border-right: 1px solid @color-pf-black-300;
+      display: flex;
+      padding: 20px;
+    }
+    &-expand-content {
+      flex-grow: 1;
+    }
     &-select {
-      margin-left: -5px;
       .ng-untouched {
         margin-top: 0;
       }
@@ -119,6 +131,10 @@
         vertical-align: bottom;
         &:first-child {
           border-left: 1px solid @color-pf-black-300;
+        }
+        &.pfng-datatable-dnd-only {
+          padding-left: 0;
+          padding-right: 0;
         }
         &.sortable.sort-active {
           color: @color-pf-blue-400;
@@ -203,6 +219,10 @@
           padding: 2px 10px 3px;
           text-align: left;
           vertical-align: top;
+          &.pfng-datatable-dnd-only {
+            padding-left: 0;
+            padding-right: 0;
+          }
         }
       }
       &-cell {

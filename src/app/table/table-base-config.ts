@@ -11,6 +11,11 @@ export class TableBaseConfig {
   paginationConfig?: PaginationConfig;
 
   /**
+   * Show checkbox for selecting rows. Default is true
+   */
+  showCheckbox?: boolean;
+
+  /**
    * A config containing properties for toolbar
    */
   toolbarConfig?: ToolbarConfig;

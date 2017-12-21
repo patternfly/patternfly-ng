@@ -17,7 +17,7 @@ import { DataTableConfig } from './datatable-config';
 import { TableBase } from '../table-base';
 import { TableEvent } from '../table-event';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { clone, cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
  * Data table component.
@@ -40,6 +40,11 @@ export class DataTableComponent extends TableBase implements DoCheck, OnInit {
   @Input() config: DataTableConfig;
 
   /**
+   * The name of the template used with expanding rows
+   */
+  @Input() expandRowTemplate: TemplateRef<any>;
+
+  /**
    * An array of items to display for table rows
    */
   @Input() rows: any[];
@@ -60,18 +65,20 @@ export class DataTableComponent extends TableBase implements DoCheck, OnInit {
   @Output('onSelectionChange') onSelectionChange = new EventEmitter();
 
   @ViewChild('datatable') private _datatable: DatatableComponent;
-  @ViewChild('dndTmpl') private dndTmpl: TemplateRef<any>;
-  @ViewChild('headerTmpl') private headerTmpl: TemplateRef<any>;
-  @ViewChild('selectTmpl') private selectTmpl: TemplateRef<any>;
+  @ViewChild('selectCellTemplate') private selectCellTemplate: TemplateRef<any>;
+  @ViewChild('selectHeadTemplate') private selectHeadTemplate: TemplateRef<any>;
 
   private _cols: any[];
   private _selectedRows: any[];
 
   private defaultConfig = {
     dragEnabled: false,
-    showCheckbox: false
+    hideClose: false,
+    showCheckbox: false,
+    useExpandRows: false
   } as DataTableConfig;
   private dragulaName = 'newBag';
+  private messages = { emptyMessage: 'No records found' };
   private prevConfig: DataTableConfig;
   private prevRows: any[];
   private rowsModel: any[];
@@ -104,7 +111,7 @@ export class DataTableComponent extends TableBase implements DoCheck, OnInit {
     if (!isEqual(this.rows, this.prevRows)) {
       this.rowsModel = [...this.rows];
       this.selectedRows = this.getSelectedRows(this.rows);
-      this.prevRows = cloneDeep(this.rows);
+      this.prevRows = clone(this.rows); // lodash has issues deep cloning templates
     }
   }
 
@@ -119,30 +126,43 @@ export class DataTableComponent extends TableBase implements DoCheck, OnInit {
     }
     this.prevConfig = cloneDeep(this.config);
 
-    this._cols = [];
-    if (this.config.dragEnabled === true) {
-      this._cols.push({
-        canAutoResize: false,
-        cellTemplate: this.dndTmpl,
-        headerTemplate: this.headerTmpl,
-        name: '_dnd',
-        prop: '_dnd',
-        resizeable: false,
-        sortable: false,
-        width: 10
-      });
+    let cellClass = '';
+    if (this.config.dragEnabled === true
+        && (this.config.useExpandRows !== true && this.config.showCheckbox !== true)) {
+      cellClass = 'pfng-datatable-dnd-only';
     }
 
-    if (this.config.showCheckbox === true) {
+    // ngx-datatable requires width to be visible
+    let width = 0;
+    if (this.config.showCheckbox === true && this.config.useExpandRows === true && this.config.dragEnabled === true) {
+      width = 52;
+    } else if (this.config.showCheckbox === true && this.config.useExpandRows === true) {
+      width = 50;
+    } else if (this.config.showCheckbox === true && this.config.dragEnabled === true) {
+      width = 36;
+    } else if (this.config.useExpandRows === true && this.config.dragEnabled === true) {
+      width = 32;
+    } else if (this.config.showCheckbox === true) {
+      width = 34;
+    } else if (this.config.useExpandRows === true) {
+      width = 30;
+    } else if (this.config.dragEnabled === true) {
+      width = 10;
+    }
+
+    this._cols = [];
+    if (width > 0) {
       this._cols.push({
         canAutoResize: false,
-        cellTemplate: this.selectTmpl,
-        headerTemplate: this.headerTmpl,
+        cellClass: 'pfng-datatable-select ' + cellClass,
+        cellTemplate: this.selectCellTemplate,
+        headerClass: 'pfng-datatable-select ' + cellClass,
+        headerTemplate: this.selectHeadTemplate,
         name: '_select',
         prop: '_select',
         resizeable: false,
         sortable: false,
-        width: 25
+        width: width
       });
     }
 
@@ -172,8 +192,6 @@ export class DataTableComponent extends TableBase implements DoCheck, OnInit {
     this._selectedRows = selectedRows;
     this.config.toolbarConfig.filterConfig.selectedCount = this._selectedRows.length;
   }
-
-  // Actions
 
   // Private
 
@@ -222,5 +240,11 @@ export class DataTableComponent extends TableBase implements DoCheck, OnInit {
       row: row,
       selectedRows: this.selectedRows
     } as TableEvent);
+  }
+
+  private toggleExpandRow(row: any) {
+    if (this.datatable.rowDetail !== undefined) {
+      this.datatable.rowDetail.toggleExpandRow(row);
+    }
   }
 }
