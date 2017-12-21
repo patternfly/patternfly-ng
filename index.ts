@@ -30,11 +30,6 @@ export { SparklineComponent } from './src/app/chart/sparkline/sparkline.componen
 export { SparklineConfig } from './src/app/chart/sparkline/sparkline-config';
 export { SparklineData } from './src/app/chart/sparkline/sparkline-data';
 
-// Data Table
-export { DragulaExtendedDirective } from './src/app/datatable/dragula-extended.directive';
-export { DataTableConfig } from './src/app/datatable/datatable-config';
-export { DataTableComponent } from './src/app/datatable/datatable.component';
-
 // EmptyState
 export { EmptyStateComponent } from './src/app/empty-state/empty-state.component';
 export { EmptyStateConfig } from './src/app/empty-state/empty-state-config';
@@ -103,6 +98,14 @@ export { SortConfig } from './src/app/sort/sort-config';
 export { SortEvent } from './src/app/sort/sort-event';
 export { SortField } from './src/app/sort/sort-field';
 export { SortModule } from './src/app/sort/sort.module';
+
+// Table
+export { DataTableConfig } from './src/app/table/datatable/datatable-config';
+export { DataTableComponent } from './src/app/table/datatable/datatable.component';
+export { DataTableDragulaDirective } from './src/app/table/datatable/datatable-dragula.directive';
+import { TableBase } from './src/app/table/table-base';
+import { TableBaseConfig } from './src/app/table/table-base-config';
+import { TableEvent } from './src/app/table/table-event';
 
 // Toolbar
 export { ToolbarConfig } from './src/app/toolbar/toolbar-config';

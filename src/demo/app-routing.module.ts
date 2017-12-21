@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutModalExampleComponent } from '../app/modal/examples/about-modal-example.component';
 import { ActionExampleComponent } from '../app/action/examples/action-example.component';
 import { CardExampleComponent } from '../app/card/basic-card/examples/card-example.component';
-import { DataTableExampleComponent } from '../app/datatable/examples/datatable-example.component';
+import { DataTableExampleComponent } from '../app/table/datatable/examples/datatable-example.component';
 import { DonutExampleComponent } from '../app/chart/donut/examples/donut-example.component';
 import { EmptyStateExampleComponent } from '../app/empty-state/examples/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/examples/filter-example.component';

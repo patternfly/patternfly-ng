@@ -1,26 +1,27 @@
 import {
   Component,
-  DoCheck,
   OnInit,
+  TemplateRef,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
-import { Action } from '../../action/action';
-import { ActionConfig } from '../../action/action-config';
+import { Action } from '../../../action/action';
+import { ActionConfig } from '../../../action/action-config';
 import { DataTableConfig } from '../datatable-config';
-import { DataTableEvent } from '../datatable-event';
-import { Filter } from '../../filter/filter';
-import { FilterConfig } from '../../filter/filter-config';
-import { FilterField } from '../../filter/filter-field';
-import { FilterEvent } from '../../filter/filter-event';
-import { FilterType } from '../../filter/filter-type';
-import { PaginationConfig } from '../../pagination/pagination-config';
-import { PaginationEvent } from '../../pagination/pagination-event';
-import { SortConfig } from '../../sort/sort-config';
-import { SortField } from '../../sort/sort-field';
-import { SortEvent } from '../../sort/sort-event';
-import { ToolbarConfig } from '../../toolbar/toolbar-config';
-import { ToolbarView } from '../../toolbar/toolbar-view';
+import { Filter } from '../../../filter/filter';
+import { FilterConfig } from '../../../filter/filter-config';
+import { FilterField } from '../../../filter/filter-field';
+import { FilterEvent } from '../../../filter/filter-event';
+import { FilterType } from '../../../filter/filter-type';
+import { PaginationConfig } from '../../../pagination/pagination-config';
+import { PaginationEvent } from '../../../pagination/pagination-event';
+import { SortConfig } from '../../../sort/sort-config';
+import { SortField } from '../../../sort/sort-field';
+import { SortEvent } from '../../../sort/sort-event';
+import { TableEvent } from '../../table-event';
+import { ToolbarConfig } from '../../../toolbar/toolbar-config';
+import { ToolbarView } from '../../../toolbar/toolbar-view';
 
 import { cloneDeep } from 'lodash';
 
@@ -30,6 +31,15 @@ import { cloneDeep } from 'lodash';
   templateUrl: './datatable-example.component.html'
 })
 export class DataTableExampleComponent implements OnInit {
+  @ViewChild('addressCellTmpl') addressCellTmpl: TemplateRef<any>;
+  @ViewChild('addressHeadTmpl') addressHeadTmpl: TemplateRef<any>;
+  @ViewChild('birthMonthCellTmpl') birthMonthCellTmpl: TemplateRef<any>;
+  @ViewChild('birthMonthHeadTmpl') birthMonthHeadTmpl: TemplateRef<any>;
+  @ViewChild('nameCellTmpl') nameCellTmpl: TemplateRef<any>;
+  @ViewChild('nameHeadTmpl') nameHeadTmpl: TemplateRef<any>;
+  @ViewChild('weekDayCellTmpl') weekDayCellTmpl: TemplateRef<any>;
+  @ViewChild('weekDayHeadTmpl') weekDayHeadTmpl: TemplateRef<any>;
+
   actionConfig: ActionConfig;
   actionsText: string = '';
   allRows: any[];
@@ -77,12 +87,31 @@ export class DataTableExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.columns = [
-      {prop: 'name', name: 'Name'},
-      {prop: 'address', name: 'Address'},
-      {prop: 'birthMonth', name: 'Birth Month'},
-      {prop: 'weekDay', name: 'Week Day'}
-    ];
+    this.columns = [{
+      cellTemplate: this.nameCellTmpl,
+      draggable: true,
+      headerTemplate: this.nameHeadTmpl,
+      prop: 'name',
+      name: 'Name'
+    }, {
+      cellTemplate: this.addressCellTmpl,
+      draggable: true,
+      headerTemplate: this.addressHeadTmpl,
+      prop: 'address',
+      name: 'Address'
+    }, {
+      cellTemplate: this.birthMonthCellTmpl,
+      draggable: true,
+      headerTemplate: this.birthMonthHeadTmpl,
+      prop: 'birthMonth',
+      name: 'Birth Month'
+    }, {
+      cellTemplate: this.weekDayCellTmpl,
+      draggable: true,
+      headerTemplate: this.weekDayHeadTmpl,
+      prop: 'weekDay',
+      name: 'Week Day'
+    }];
 
     this.allRows = [{
       name: 'Fred Flintstone',
@@ -96,6 +125,7 @@ export class DataTableExampleComponent implements OnInit {
       address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
+      selected: true,
       weekDay: 'Monday',
       weekdayId: 'day2'
     }, {
@@ -299,6 +329,7 @@ export class DataTableExampleComponent implements OnInit {
     } as ToolbarConfig;
 
     this.dataTableConfig = {
+      // dragEnabled: false,
       paginationConfig: this.paginationConfig,
       showCheckbox: true,
       toolbarConfig: this.toolbarConfig
@@ -427,7 +458,7 @@ export class DataTableExampleComponent implements OnInit {
     this.updateRows();
   }
 
-  handleSelectionChange($event: DataTableEvent): void {
+  handleSelectionChange($event: TableEvent): void {
     this.actionsText = $event.selectedRows.length + ' rows selected\r\n' + this.actionsText;
   }
 
@@ -482,5 +513,9 @@ export class DataTableExampleComponent implements OnInit {
     } else {
       this.dataTableConfig.showCheckbox = false;
     }
+  }
+
+  test(row: any): void {
+    console.log('Clicked!!! ' + row.name);
   }
 }

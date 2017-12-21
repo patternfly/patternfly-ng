@@ -5,14 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { DragulaModule, DragulaService } from 'ng2-dragula';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
-import { DragulaExtendedDirective } from './dragula-extended.directive';
+import { DataTableDragulaDirective } from './datatable/datatable-dragula.directive';
 import { PaginationModule } from '../pagination/pagination.module';
-import { DataTableComponent } from './datatable.component';
-import { DataTableConfig } from './datatable-config';
+import { DataTableComponent } from './datatable/datatable.component';
+import { DataTableConfig } from './datatable/datatable-config';
+import { TableBase } from './table-base';
+import { TableBaseConfig } from './table-base-config';
+import { TableEvent } from './table-event';
 import { ToolbarModule } from '../toolbar/toolbar.module';
 
 export {
-  DataTableConfig
+  DataTableConfig,
+  TableBase,
+  TableBaseConfig,
+  TableEvent
 };
 
 /**
@@ -27,8 +33,8 @@ export {
     NgxDatatableModule,
     ToolbarModule
   ],
-  declarations: [DragulaExtendedDirective, DataTableComponent],
+  declarations: [DataTableComponent, DataTableDragulaDirective],
   exports: [DataTableComponent],
   providers: [DragulaService]
 })
-export class DataTableModule {}
+export class TableModule {}

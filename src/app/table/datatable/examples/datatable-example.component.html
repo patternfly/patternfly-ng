@@ -24,6 +24,30 @@
             (onSortChange)="sortChanged($event)"
             (onViewSelect)="viewSelected($event)">
         </pfng-datatable>
+        <ng-template let-column="column" #nameHeadTmpl>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" #nameCellTmpl>
+          <span>{{row.name}}</span>
+        </ng-template>
+        <ng-template let-column="column" #addressHeadTmpl>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" #addressCellTmpl>
+          <span>{{row.address}}</span>
+        </ng-template>
+        <ng-template let-column="column" #brithMonthHeadTmpl>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" #brithMonthCellTmpl>
+          <span>{{row.birthMonth}}</span>
+        </ng-template>
+        <ng-template let-column="column" #weekDayHeadTmpl>
+          <span>{{column.name}}</span>
+        </ng-template>
+        <ng-template let-row="row" #weekDayCellTmpl>
+          <span>{{row.birthMonth}}</span>
+        </ng-template>
         <ng-template #actionTemplate>
             <span class="dropdown primary-action" dropdown>
               <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
@@ -104,10 +128,10 @@
         <iframe class="demoframe" src="docs/classes/datatablecomponent.html"></iframe>
       </tab>
       <tab heading="html">
-        <include-content src="src/app/datatable/examples/datatable-example.component.html"></include-content>
+        <include-content src="src/app/table/datatable/examples/datatable-example.component.html"></include-content>
       </tab>
       <tab heading="typescript">
-        <include-content src="src/app/datatable/examples/datatable-example.component.ts"></include-content>
+        <include-content src="src/app/table/datatable/examples/datatable-example.component.ts"></include-content>
       </tab>
     </tabset>
   </div>
