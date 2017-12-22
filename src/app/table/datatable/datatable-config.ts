@@ -10,7 +10,12 @@ export class DataTableConfig extends TableBaseConfig {
   dragEnabled?: boolean;
 
   /**
-   * Show checkbox for selecting rows. Default is true
+   * Set to true to hide the close button in the expansion area. Default is false
    */
-  showCheckbox?: boolean;
+  hideClose?: boolean;
+
+  /**
+   * Allow expansion for each row
+   */
+  useExpandRows?: boolean;
 }

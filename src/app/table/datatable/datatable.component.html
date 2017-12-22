@@ -19,25 +19,48 @@
       [dragulaModel]="rowsModel"
       [dragulaName]="dragulaName"
       [headerHeight]="50"
+      [messages]="messages"
       [selected]="selectedRows"
       [rowHeight]="'auto'"
       [reorderable]="true"
       (dragulaDrop)="handleDrop($event)"
       (dragulaDrag)="handleDrag($event)"
       *ngIf="showTable">
-    <ng-template #headerTmpl></ng-template>
-    <ng-template #dndTmpl>
-      <div class="pfng-datatable-dnd-container">
-        <div class="pfng-datatable-dnd-header"></div>
-      </div>
-    </ng-template>
-    <ng-template #selectTmpl let-row="row">
-      <div class="pfng-datatable-select">
+    <!-- Selection template -->
+    <ng-template #selectHeadTemplate></ng-template>
+    <ng-template #selectCellTemplate let-row="row" let-expanded="expanded">
+      <span class="pfng-datatable-dnd-container" *ngIf="config.dragEnabled === true">
+        <span class="pfng-datatable-dnd-header"></span>
+      </span>
+      <span [ngClass]="{'margin-left-5': config.dragEnabled === true}"
+            *ngIf="config.useExpandRows === true">
+        <span class="pfng-list-expand-placeholder" *ngIf="row.hideExpandToggle === true"></span>
+        <span class="fa"
+              [ngClass]="{'fa-angle-down': expanded, 'fa-angle-right': !expanded}"
+              (click)="toggleExpandRow(row)"
+              *ngIf="row.hideExpandToggle !== true"></span>
+      </span>
+      <span [ngClass]="{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}"
+            *ngIf="config.showCheckbox === true">
         <input type="checkbox" value="row.selected"
                [(ngModel)]="row.selected"
                (ngModelChange)="selectionChange(row)">
-      </div>
+      </span>
     </ng-template>
+    <!-- Row detail template -->
+    <ngx-datatable-row-detail [rowHeight]="auto" *ngIf="expandRowTemplate !== undefined">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <div class="pfng-datatable-expand-container" tabindex="0">
+          <div class="pfng-datatable-expand-content" style="flex-grow: 1;">
+            <div class="close" *ngIf="config.hideClose !== true">
+              <span class="pficon pficon-close" (click)="toggleExpandRow(row)"></span>
+            </div>
+            <ng-template [ngTemplateOutlet]="expandRowTemplate"
+                         [ngTemplateOutletContext]="{ row: row, expanded: expanded }"></ng-template>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-row-detail>
   </ngx-datatable>
   <pfng-pagination
       [config]="config.paginationConfig"
