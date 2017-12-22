@@ -31,12 +31,16 @@ export class NavbarComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+    let url = this.location.path();
+    if (!includes(url, this._navPage)) {
+      this.initNav(url);
+    }
+
     // Support for browser back button
     this.subscription = this.location.subscribe((popState: PopStateEvent) => {
       if (popState.type === 'popstate') {
         if (!includes(popState.url, this._navPage)) {
-          this._navPage = (popState.url.length > 0) ? popState.url.substring(1, popState.url.length) : 'welcome';
-          this._navItem = this.findNavItem(this._navPage);
+          this.initNav(popState.url);
         }
       }
     }) as Subscription;
@@ -138,5 +142,10 @@ export class NavbarComponent implements OnDestroy, OnInit {
       }
     });
     return hasPage;
+  }
+
+  private initNav(url: string): void {
+    this._navPage = (url.length > 0) ? url.substring(1, url.length) : 'welcome';
+    this._navItem = this.findNavItem(this._navPage);
   }
 }
