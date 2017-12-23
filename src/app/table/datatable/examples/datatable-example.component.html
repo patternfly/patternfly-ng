@@ -26,29 +26,17 @@
             (onViewSelect)="viewSelected($event)">
         </pfng-datatable>
         <!-- Column templates -->
-        <ng-template #nameHeadTemplate let-column="column">
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template #nameCellTemplate let-row="row">
+        <ng-template #nameTemplate let-row="row">
           <span>{{row.name}}</span>
         </ng-template>
-        <ng-template #addressHeadTemplate let-column="column">
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template #addressCellTemplate let-row="row">
+        <ng-template #addressTemplate let-row="row">
           <span>{{row.address}}</span>
         </ng-template>
-        <ng-template #brithMonthHeadTemplate let-column="column">
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template #brithMonthCellTemplate let-row="row">
+        <ng-template #birthMonthTemplate let-row="row">
           <span>{{row.birthMonth}}</span>
         </ng-template>
-        <ng-template #weekDayHeadTemplate let-column="column">
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template #weekDayCellTemplate let-row="row">
-          <span>{{row.birthMonth}}</span>
+        <ng-template #weekDayTemplate let-row="row">
+          <span>{{row.weekDay}}</span>
         </ng-template>
         <!-- Row detail template -->
         <ng-template #expandRowTemplate let-row="row">

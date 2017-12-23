@@ -156,6 +156,7 @@ export class DataTableComponent extends TableBase implements DoCheck, OnInit {
         canAutoResize: false,
         cellClass: 'pfng-datatable-select ' + cellClass,
         cellTemplate: this.selectCellTemplate,
+        // frozenLeft: true,
         headerClass: 'pfng-datatable-select ' + cellClass,
         headerTemplate: this.selectHeadTemplate,
         name: '_select',

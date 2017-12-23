@@ -31,15 +31,11 @@ import { cloneDeep } from 'lodash';
   templateUrl: './datatable-example.component.html'
 })
 export class DataTableExampleComponent implements OnInit {
-  @ViewChild('addressCellTemplate') addressCellTemplate: TemplateRef<any>;
-  @ViewChild('addressHeadTemplate') addressHeadTemplate: TemplateRef<any>;
-  @ViewChild('birthMonthCellTemplate') birthMonthCellTemplate: TemplateRef<any>;
-  @ViewChild('birthMonthHeadTemplate') birthMonthHeadTemplate: TemplateRef<any>;
+  @ViewChild('addressTemplate') addressTemplate: TemplateRef<any>;
+  @ViewChild('birthMonthTemplate') birthMonthTemplate: TemplateRef<any>;
   @ViewChild('expandRowTemplate') expandRowTemplate: TemplateRef<any>;
-  @ViewChild('nameCellTemplate') nameCellTemplate: TemplateRef<any>;
-  @ViewChild('nameHeadTemplate') nameHeadTemplate: TemplateRef<any>;
-  @ViewChild('weekDayCellTemplate') weekDayCellTemplate: TemplateRef<any>;
-  @ViewChild('weekDayHeadTemplate') weekDayHeadTemplate: TemplateRef<any>;
+  @ViewChild('nameTemplate') nameTemplate: TemplateRef<any>;
+  @ViewChild('weekDayTemplate') weekDayTemplate: TemplateRef<any>;
 
   actionConfig: ActionConfig;
   actionsText: string = '';
@@ -90,29 +86,29 @@ export class DataTableExampleComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns = [{
-      cellTemplate: this.nameCellTemplate,
+      cellTemplate: this.nameTemplate,
       draggable: true,
-      headerTemplate: this.nameHeadTemplate,
       prop: 'name',
-      name: 'Name'
+      name: 'Name',
+      resizeable: true
     }, {
-      cellTemplate: this.addressCellTemplate,
+      cellTemplate: this.addressTemplate,
       draggable: true,
-      headerTemplate: this.addressHeadTemplate,
       prop: 'address',
-      name: 'Address'
+      name: 'Address',
+      resizeable: true
     }, {
-      cellTemplate: this.birthMonthCellTemplate,
+      cellTemplate: this.birthMonthTemplate,
       draggable: true,
-      headerTemplate: this.birthMonthHeadTemplate,
       prop: 'birthMonth',
-      name: 'Birth Month'
+      name: 'Birth Month',
+      resizeable: true
     }, {
-      cellTemplate: this.weekDayCellTemplate,
+      cellTemplate: this.weekDayTemplate,
       draggable: true,
-      headerTemplate: this.weekDayHeadTemplate,
       prop: 'weekDay',
-      name: 'Week Day'
+      name: 'Week Day',
+      resizeable: true
     }];
 
     this.allRows = [{
@@ -331,11 +327,11 @@ export class DataTableExampleComponent implements OnInit {
     } as ToolbarConfig;
 
     this.dataTableConfig = {
-      dragEnabled: false,
+      dragEnabled: true,
       paginationConfig: this.paginationConfig,
-      showCheckbox: false,
+      showCheckbox: true,
       toolbarConfig: this.toolbarConfig,
-      useExpandRows: false
+      useExpandRows: true
     } as DataTableConfig;
   }
 
