@@ -35,6 +35,7 @@ export class ToolbarExampleComponent implements OnInit {
   currentSortField: SortField;
   toolbarConfig: ToolbarConfig;
   weekDayQueries: any[];
+  continentQueries: any[];
 
   monthVals: any = {
     'January': 1,
@@ -125,6 +126,29 @@ export class ToolbarExampleComponent implements OnInit {
       value: 'Saturday'
     }];
 
+    this.continentQueries = [{
+      id: 'continent1',
+      value: 'Asia'
+    }, {
+      id: 'continent2',
+      value: 'Africa'
+    }, {
+      id: 'continent3',
+      value: 'North America'
+    }, {
+      id: 'continent4',
+      value: 'South America'
+    }, {
+      id: 'continent5',
+      value: 'Antarctica'
+    }, {
+      id: 'continent6',
+      value: 'Europe'
+    }, {
+      id: 'continent7',
+      value: 'Australia'
+    }];
+
     this.filterConfig = {
       fields: [{
         id: 'name',
@@ -186,6 +210,12 @@ export class ToolbarExampleComponent implements OnInit {
         queries: [
           ...this.weekDayQueries
         ]
+      }, {
+        id: 'continent',
+        title: 'Continent',
+        placeholder: 'Filter by Continent...',
+        type: FilterType.TYPEAHEAD,
+        queries: []
       }] as FilterField[],
       resultsCount: this.items.length,
       appliedFilters: []
@@ -316,6 +346,10 @@ export class ToolbarExampleComponent implements OnInit {
       if (field.id === 'weekDay') {
         field.queries = [
           ...this.weekDayQueries
+        ];
+      } else if (field.id === 'continent') {
+        field.queries = [
+          ...this.continentQueries
         ];
       }
     });
