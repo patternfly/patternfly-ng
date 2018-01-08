@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   TemplateRef,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -13,6 +14,7 @@ import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
 import { Action } from '../action/action';
 import { Filter } from '../filter/filter';
+import { FilterFieldsComponent } from '../filter/filter-fields.component';
 import { FilterEvent } from '../filter/filter-event';
 import { SortEvent } from '../sort/sort-event';
 import { ToolbarConfig } from './toolbar-config';
@@ -77,6 +79,8 @@ export class ToolbarComponent implements DoCheck, OnInit {
    * The event emitted when a view has been selected
    */
   @Output('onViewSelect') onViewSelect = new EventEmitter();
+
+  @ViewChild('filterFields') private filterFields: FilterFieldsComponent;
 
   private defaultConfig: ToolbarConfig = {} as ToolbarConfig;
   private prevConfig: ToolbarConfig;
@@ -147,6 +151,15 @@ export class ToolbarComponent implements DoCheck, OnInit {
     this.onFilterChange.emit({
       appliedFilters: $event
     } as FilterEvent);
+  }
+
+  /**
+   * Reset current field and value
+   */
+  resetFilterField() {
+    if (this.filterFields !== undefined) {
+      this.filterFields.reset();
+    }
   }
 
   // Private

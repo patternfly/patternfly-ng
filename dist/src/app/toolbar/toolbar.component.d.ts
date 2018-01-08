@@ -45,6 +45,7 @@ export declare class ToolbarComponent implements DoCheck, OnInit {
      * The event emitted when a view has been selected
      */
     onViewSelect: EventEmitter<{}>;
+    private filterFields;
     private defaultConfig;
     private prevConfig;
     /**
@@ -69,6 +70,10 @@ export declare class ToolbarComponent implements DoCheck, OnInit {
      * @param $event An array of current Filter objects
      */
     clearFilter($event: Filter[]): void;
+    /**
+     * Reset current field and value
+     */
+    resetFilterField(): void;
     private filterAdded($event);
     private filterExists(filter);
     private handleAction(action);
