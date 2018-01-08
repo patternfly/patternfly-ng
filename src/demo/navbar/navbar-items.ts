@@ -28,6 +28,10 @@ export class NavbarItems {
       title: 'Sparkline Chart'
     }]
   }, {
+    id: 'emptystate',
+    path: 'emptystate',
+    title: 'Empty State'
+  }, {
     id: 'filters',
     path: 'filters',
     title: 'Filter'
