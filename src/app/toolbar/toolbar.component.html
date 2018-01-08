@@ -4,11 +4,12 @@
           [ngClass]="{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}"
           (submit)="$event.preventDefault()">
       <div class="form-group toolbar-apf-filter">
-        <pfng-filter-fields [config]="config.filterConfig" *ngIf="config.filterConfig?.fields"
+        <pfng-filter-fields [config]="config.filterConfig" #filterFields
                             (onAdd)="filterAdded($event)"
                             (onFieldSelect)="handleFilterFieldSelect($event)"
                             (onSave)="handleFilterSave($event)"
-                            (onTypeAhead)="handleFilterTypeAhead($event)"></pfng-filter-fields>
+                            (onTypeAhead)="handleFilterTypeAhead($event)"
+                            *ngIf="config.filterConfig?.fields"></pfng-filter-fields>
       </div>
       <div class="form-group" *ngIf="config.sortConfig?.fields && config.sortConfig?.visible !== false">
         <pfng-sort [config]="config.sortConfig" (onChange)="sortChange($event)"></pfng-sort>
