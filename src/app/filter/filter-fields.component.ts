@@ -14,6 +14,7 @@ import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 import { FilterField } from './filter-field';
 import { FilterQuery } from './filter-query';
+import { FilterType } from './filter-type';
 
 /**
  * Component for the filter query field and filter query dropdown
@@ -219,10 +220,10 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   }
 
   private isFieldDisabled(field: FilterField): boolean {
-    if (field.type === undefined || field.type === 'text') {
+    if (field.type === FilterType.TEXT) {
       return false;
     }
-    return (field.queries === undefined || field.queries.length === 0);
+    return (field.queries === undefined || field.type === undefined);
   }
 
   private queryInputChange(value: string) {
