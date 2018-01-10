@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
+        <div class="padding-bottom-15">
+          This example saves custom filters. Click the "Load Filters" button to pre-populate the "My Filters" option. Or, apply a filter and select "Save Filter".
+        </div>
         <pfng-filter #filter
                      [config]="filterConfig"
                      (onChange)="filterChanged($event)"
@@ -9,9 +12,6 @@
                      (onFieldSelect)="filterFieldSelected($event)"
                      (onSave)="saveFilter($event)"
                      (onTypeAhead)="filterQueries($event)"></pfng-filter>
-        <div class="padding-top-15">
-          This example lazily loads filters in addition to saving a custom filter.
-        </div>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <div class="col-md-12">
       <div class="padding-top-15">
         <button class="btn btn-default primary-action" type="button"
-                (click)="loadSavedFilters()">Load Saved Filters
+                (click)="loadSavedFilters()">Load Filters
         </button>
       </div>
     </div>
