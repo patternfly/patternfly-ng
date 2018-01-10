@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { clone, cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, has, isEqual } from 'lodash';
 import { ActionConfig } from './action-config';
 /**
  * List actions component.
@@ -59,8 +59,18 @@ var ActionComponent = /** @class */ (function () {
         else {
             this.config = cloneDeep(this.defaultConfig);
         }
-        // lodash has issues deep cloning templates -- best seen with list component
-        this.prevConfig = clone(this.config);
+        // lodash has issues cloning primaryActions.template with the list component
+        var found = false;
+        if (this.config.primaryActions !== undefined) {
+            this.config.primaryActions.forEach(function (action) {
+                if (has(action, 'template')) {
+                    found = true;
+                }
+            });
+        }
+        if (!found) {
+            this.prevConfig = cloneDeep(this.config);
+        }
     };
     // Private
     ActionComponent.prototype.handleAction = function (action) {
