@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
+        <div class="padding-bottom-15">
+          This example ensures child nodes cannot be rearranged.
+        </div>
         <pfng-tree-list #treeList
                         [actionTemplate]="actionTemplate"
                         [config]="treeListConfig"
@@ -48,9 +51,6 @@
             </pfng-action>
           </ng-template>
         </pfng-tree-list>
-        <div class="padding-top-15">
-          This example ensures child nodes cannot be rearranged.
-        </div>
       </div>
     </div>
   </div>

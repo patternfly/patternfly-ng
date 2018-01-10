@@ -10516,6 +10516,44 @@ h2,
     margin-right: 20px;
   }
 }/* PatternFly additions to Bootstrap */
+/*! =========================================================
+ * bootstrap-slider.js
+ *
+ * Maintainers:
+ *		Kyle Kemp
+ *			- Twitter: @seiyria
+ *			- Github:  seiyria
+ *		Rohit Kalkur
+ *			- Twitter: @Rovolutionary
+ *			- Github:  rovolution
+ *
+ * =========================================================
+  *
+ * bootstrap-slider is released under the MIT License
+ * Copyright (c) 2017 Kyle Kemp, Rohit Kalkur, and contributors
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ========================================================= */
 .slider {
   display: inline-block;
   vertical-align: middle;
@@ -13120,12 +13158,6 @@ select.selectpicker {
 .blank-slate-pf .blank-slate-pf-secondary-action {
   margin-top: 20px;
 }
-.blank-slate-pf button {
-  margin-right: 5px;
-}
-.blank-slate-pf button:last-of-type {
-  margin-right: 0;
-}
 .combobox-container.combobox-selected .glyphicon-remove {
   display: inline-block;
 }
@@ -13213,8 +13245,8 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .bootstrap-datepicker.form-control[readonly]:focus {
   border-color: #0088ce;
-  outline: 0 !important;
-  box-shadow: inset 0 1px 1px rgba(3, 3, 3, 0.075), 0 0 8px rgba(0, 136, 206, 0.6);
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0, 136, 206, 0.6);
 }
 .bootstrap-datepicker.form-control[readonly]:focus {
   border-color: #0088ce !important;
@@ -13427,7 +13459,6 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
   border: 1px solid #bbb;
 }
 .slider-tick {
-  background-color: transparent !important;
   background-image: radial-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 2px, transparent 2px) !important;
   box-shadow: none;
 }
@@ -14221,94 +14252,8 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
 }
 .btn-experimental-pf {
   background-color: #92d400;
-  background-image: linear-gradient(to bottom, #ace12e 0%, #92d400 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fface12e', endColorstr='#ff92d400', GradientType=0);
+  background-image: linear-gradient(to bottom, #ace12e 0, #92d400 100%);
   border-color: #92d400;
-  color: #4d5258;
-}
-.btn-experimental-pf:hover,
-.btn-experimental-pf:focus,
-.btn-experimental-pf:active,
-.btn-experimental-pf.active,
-.open .dropdown-toggle.btn-experimental-pf {
-  background-color: #92d400;
-  background-image: none;
-  border-color: #92d400;
-  color: #4d5258;
-}
-.btn-experimental-pf:active,
-.btn-experimental-pf.active,
-.open .dropdown-toggle.btn-experimental-pf {
-  background-image: none;
-}
-.btn-experimental-pf:active:hover,
-.btn-experimental-pf.active:hover,
-.open .dropdown-toggle.btn-experimental-pf:hover,
-.btn-experimental-pf:active:focus,
-.btn-experimental-pf.active:focus,
-.open .dropdown-toggle.btn-experimental-pf:focus,
-.btn-experimental-pf:active.focus,
-.btn-experimental-pf.active.focus,
-.open .dropdown-toggle.btn-experimental-pf.focus {
-  background-color: #80bb00;
-  border-color: #79b000;
-}
-.btn-experimental-pf.disabled,
-.btn-experimental-pf[disabled],
-fieldset[disabled] .btn-experimental-pf,
-.btn-experimental-pf.disabled:hover,
-.btn-experimental-pf[disabled]:hover,
-fieldset[disabled] .btn-experimental-pf:hover,
-.btn-experimental-pf.disabled:focus,
-.btn-experimental-pf[disabled]:focus,
-fieldset[disabled] .btn-experimental-pf:focus,
-.btn-experimental-pf.disabled:active,
-.btn-experimental-pf[disabled]:active,
-fieldset[disabled] .btn-experimental-pf:active,
-.btn-experimental-pf.disabled.active,
-.btn-experimental-pf[disabled].active,
-fieldset[disabled] .btn-experimental-pf.active {
-  background-color: #92d400;
-  border-color: #92d400;
-}
-.filter-pf-category-select {
-  display: -ms-flexbox;
-  display: flex;
-}
-.filter-pf-category-select-value {
-  border-left-width: 0;
-}
-.filter-pf-category-item {
-  margin-bottom: 5px;
-}
-.filter-pf-category-label {
-  font-weight: 700;
-  margin-right: 5px;
-  padding: 5px 0 6px 5px;
-}
-.filter-pf-select .caret {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-}
-.filter-pf-select-dropdown {
-  background-color: #fff;
-  background-image: none;
-  color: #8b8d8f;
-  font-size: 12px;
-  font-style: italic;
-  font-weight: 400;
-  padding-right: 25px;
-  text-align: left;
-}
-.filter-pf-select-dropdown .caret {
-  font-style: normal;
-}
-.filter-pf-active-label {
-  margin-right: 5px;
 }
 .footer-pf-alt,
 .footer-pf {
@@ -14377,9 +14322,6 @@ fieldset[disabled] .btn-experimental-pf.active {
 .pficon-blueprint:before {
   content: "\E915";
 }
-.pficon-catalog:before {
-  content: "\E939";
-}
 .pficon-chat:before {
   content: "\E928";
 }
@@ -14418,9 +14360,6 @@ fieldset[disabled] .btn-experimental-pf.active {
 }
 .pficon-edit:before {
   content: "\E60A";
-}
-.pficon-enhancement:before {
-  content: "\E93A";
 }
 .pficon-enterprise:before {
   content: "\E906";
@@ -17491,6 +17430,7 @@ table.dataTable th:active {
 @media (min-width: 768px) {
   .toolbar-pf-actions .toolbar-pf-filter {
     padding-left: 0;
+    width: 25%;
   }
 }
 .toolbar-pf-view-selector {
@@ -18621,8 +18561,6 @@ table.dataTable th:active {
       align-items: center;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   font-weight: 700;
 }
 @media (min-width: 768px) {
@@ -18878,135 +18816,6 @@ table.dataTable th:active {
   .wizard-pf-sidebar .list-group-item > a {
     width: 18em;
   }
-}
-.wizard-pf-steps-alt,
-.wizard-pf-steps-alt ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.wizard-pf-steps-alt {
-  margin-left: 15px;
-  margin-top: 15px;
-  background-image: linear-gradient(to right, transparent 11px, #d1d1d1 11px, #d1d1d1 13px, transparent 13px);
-}
-@media (min-width: 768px) {
-  .wizard-pf-steps-alt {
-    display: none;
-  }
-}
-.wizard-pf-steps-alt-indicator {
-  position: relative;
-}
-.wizard-pf-steps-alt-indicator:after {
-  color: #4d5258;
-  content: "\F107";
-  display: block;
-  font-family: FontAwesome;
-  font-size: 24px;
-  font-weight: 500;
-  position: absolute;
-  right: 17px;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-}
-@media (min-width: 768px) {
-  .wizard-pf-steps-alt-indicator:after {
-    display: none;
-  }
-}
-.wizard-pf-steps-alt-indicator.active:after {
-  content: "\F106";
-}
-.wizard-pf-step-alt {
-  margin-bottom: 10px;
-}
-.wizard-pf-step-alt a {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex: 1;
-      flex: 1;
-}
-.wizard-pf-step-alt a:hover {
-  text-decoration: none;
-}
-.wizard-pf-step-alt a:hover .wizard-pf-step-alt-title {
-  color: #39a5dc;
-}
-.wizard-pf-step-alt ul {
-  margin-left: 11px;
-}
-.wizard-pf-step-alt .wizard-pf-step-alt-title {
-  margin-left: 5px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-}
-.wizard-pf-step-alt .wizard-pf-step-alt-number {
-  -ms-flex: 0 0 auto;
-      flex: 0 0 auto;
-}
-.wizard-pf-step-alt.active .wizard-pf-step-alt-number {
-  background-color: #39a5dc;
-  border-color: #39a5dc;
-  cursor: default;
-  color: #fff;
-}
-.wizard-pf-step-alt.active .wizard-pf-step-alt-title {
-  color: #39a5dc;
-}
-.wizard-pf-step-alt.active .wizard-pf-step-alt-substep:first-of-type {
-  margin-top: 2px;
-}
-.wizard-pf-step-alt.viewed .wizard-pf-step-alt-number {
-  color: #030303;
-  background-color: #fff;
-  border-color: #39a5dc;
-}
-.wizard-pf-step-alt-number {
-  background-color: #fff;
-  border-radius: 50%;
-  border: solid 2px #bbb;
-  color: #bbb;
-  font-size: 12px;
-  font-weight: 700;
-  height: 24px;
-  width: 24px;
-  display: inline-block;
-  text-align: center;
-}
-.wizard-pf-step-alt-title {
-  color: #030303;
-  font-weight: 700;
-  text-transform: capitalize;
-  display: inline-block;
-}
-.wizard-pf-step-alt-substep {
-  display: -ms-flexbox;
-  display: flex;
-}
-.wizard-pf-step-alt-substep a {
-  padding: 5px 0 5px 18px;
-  color: #393f44;
-}
-.wizard-pf-step-alt-substep:not(.disabled).active,
-.wizard-pf-step-alt-substep:not(.disabled):hover {
-  background-color: #ededed;
-  background-image: linear-gradient(to right, #39a5dc 2px, transparent 2px);
-}
-.wizard-pf-step-alt-substep:not(.disabled).active a,
-.wizard-pf-step-alt-substep:not(.disabled):hover a {
-  color: #39a5dc;
-}
-.wizard-pf-step-alt-substep.active a {
-  font-weight: 700;
-}
-.wizard-pf-step-alt-substep.disabled {
-  cursor: not-allowed;
-}
-.wizard-pf-step-alt-substep.disabled a {
-  pointer-events: none;
 }/*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>

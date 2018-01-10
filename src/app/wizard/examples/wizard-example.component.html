@@ -39,15 +39,15 @@
         </div>
       </div>
     </tab>
-    <tab heading="Disabled Navigation" (select)="tabSelected($event)">
-      <div class="padding-15" *ngIf="activeTab === 'Disabled Navigation' || activeTab === ''">
+    <tab heading="Navigation" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Navigation' || activeTab === ''">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <button (click)="openModal(navTemplate)" class="btn btn-default">Launch Wizard</button>
-              <div class="padding-top-15">
-                This example disables navigation until simulated processes are complete.
+              <div class="padding-bottom-15">
+                This demos disabled navigation while simulated processes are running.
               </div>
+              <button (click)="openModal(navTemplate)" class="btn btn-default">Launch Wizard</button>
               <ng-template #navTemplate>
                 <wizard-nav-example></wizard-nav-example>
               </ng-template>
@@ -75,12 +75,17 @@
         </div>
       </div>
     </tab>
-    <tab heading="Embed in Page" (select)="tabSelected($event)">
-      <div class="padding-15" *ngIf="activeTab === 'Embed in Page' || activeTab === ''">
+    <tab heading="Embeded" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Embeded' || activeTab === ''">
         <div class="row">
           <div class="col-sm-12">
-            <div class="form-group example-wizard-embed">
-              <wizard-embed-example></wizard-embed-example>
+            <div class="form-group">
+              <div class="padding-bottom-15">
+                This demos the wizard component embedded in a page.
+              </div>
+              <div class="example-wizard-embed">
+                <wizard-embed-example></wizard-embed-example>
+              </div>
             </div>
           </div>
         </div>
@@ -105,18 +110,18 @@
         </div>
       </div>
     </tab>
-    <tab heading="Lazy Loading" (select)="tabSelected($event)">
-      <div class="padding-15" *ngIf="activeTab === 'Lazy Loading' || activeTab === ''">
+    <tab heading="Lazy Load" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Lazy Load' || activeTab === ''">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
+              <div class="padding-bottom-15">
+                This example lazily adds additional steps after the initial step is complete.
+              </div>
               <button (click)="openModal(lazyTemplate)" class="btn btn-default">Launch Wizard</button>
               <ng-template #lazyTemplate>
                 <wizard-lazy-example></wizard-lazy-example>
               </ng-template>
-              <div class="padding-top-15">
-                This example lazily adds additional steps after the initial step is complete.
-              </div>
             </div>
           </div>
         </div>
