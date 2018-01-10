@@ -1,8 +1,7 @@
-<div class="filter-pf"
-     *ngIf="config && (config.appliedFilters && config.appliedFilters.length > 0) || config.totalCount > 0">
+<div class="filter-pf" *ngIf="config && config.appliedFilters && config.appliedFilters.length > 0">
   <div class="row toolbar-pf-results">
     <div [ngClass]="{'col-sm-9': config.totalCount !== undefined, 'col-sm-12': config.totalCount === undefined}">
-      <h5 *ngIf="config.appliedFilters.length > 0 && config.resultsCount >= 0">{{config.resultsCount}} Results</h5>
+      <h5 *ngIf="config.resultsCount >= 0">{{config.resultsCount}} Results</h5>
       <p *ngIf="config.appliedFilters.length > 0">Active filters:</p>
       <ul class="list-inline">
         <li *ngFor="let filter of config.appliedFilters">
