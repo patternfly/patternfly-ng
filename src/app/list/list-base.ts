@@ -10,7 +10,7 @@ import { ListBaseConfig } from './list-base-config';
 import { ListEvent } from './list-event';
 
 /**
- * List base component
+ * List base
  */
 export abstract class ListBase {
   /**

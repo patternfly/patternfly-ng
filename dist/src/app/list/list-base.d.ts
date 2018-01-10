@@ -2,7 +2,7 @@ import { EventEmitter, TemplateRef } from '@angular/core';
 import { Action } from '../action/action';
 import { ListBaseConfig } from './list-base-config';
 /**
- * List base component
+ * List base
  */
 export declare abstract class ListBase {
     /**

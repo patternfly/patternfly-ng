@@ -3,7 +3,7 @@
  */
 export declare class ListEvent {
     /**
-     * The item associated with the current list row
+     * The object associated with the current row
      */
     item: any;
     /**

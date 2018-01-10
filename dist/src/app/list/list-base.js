@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { EventEmitter, Input, Output, TemplateRef, } from '@angular/core';
 /**
- * List base component
+ * List base
  */
 var ListBase = /** @class */ (function () {
     /**
