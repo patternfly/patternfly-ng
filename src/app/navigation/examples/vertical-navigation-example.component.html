@@ -1,14 +1,15 @@
-<div id="verticalNavLayout" class="layout-pf layout-pf-fixed faux-layout" *ngIf="showExample" style="background-color: white;">
+<div id="verticalNavLayout" class="layout-pf layout-pf-fixed faux-layout" style="background-color: white;"
+     *ngIf="showExample">
   <pfng-vertical-navigation
-    [items]="navigationItems"
-    (onItemClickEvent)="onItemClicked($event)"
-    (onNavigationEvent)="onNavigation($event)"
-    [brandAlt]="'PatternFly Ng'"
-    [showBadges]="true"
-    [hiddenIcons]="false"
-    [persistentSecondary]="false"
-    [updateActiveItemsOnClick]="true"
-    [pinnableMenus]="true">
+      [brandAlt]="'PatternFly Ng'"
+      [hiddenIcons]="false"
+      [persistentSecondary]="false"
+      [pinnableMenus]="true"
+      [showBadges]="true"
+      [updateActiveItemsOnClick]="true"
+      [items]="navigationItems"
+      (onItemClickEvent)="onItemClicked($event)"
+      (onNavigationEvent)="onNavigation($event)">
     <div>
       <ul class="nav navbar-nav">
         <li><button id="hideVerticalNavWithRouter" (click)="toggleExample()" class="hide-vertical-nav">Exit Vertical Navigation Demo</button></li>
@@ -39,10 +40,18 @@
       </ul>
     </div>
   </pfng-vertical-navigation>
-  <div id="contentContainer" class="container-fluid container-cards-pf container-pf-nav-pf-vertical example-page-container nav-pf-vertical-with-badges" style="background-color: white;">
+  <div id="contentContainer"
+       class="container-fluid container-cards-pf container-pf-nav-pf-vertical example-page-container nav-pf-vertical-with-badges"
+       style="background-color: white;">
     <div class="row">
-      <div class="col-md-12">
-        <textarea rows="5" class="col-md-12">{{actionText}}</textarea>
+      <div class="col-sm-12">
+        <h4 class="actions-label">Actions</h4>
+        <hr/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <textarea rows="3" class="col-sm-12">{{actionText}}</textarea>
         <router-outlet></router-outlet>
       </div>
     </div>
@@ -50,7 +59,7 @@
 </div>
 <div class="padding-15" *ngIf="!showExample">
   <div class="row padding-bottom-15">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <h4>Vertical Navigation Component Example</h4>
       <hr/>
     </div>
@@ -63,7 +72,7 @@
     </div>
   </div>
   <div class="row padding-bottom-15 padding-top-15">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <h4>Code</h4>
       <hr/>
     </div>
