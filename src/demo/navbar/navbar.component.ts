@@ -2,6 +2,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { Location, PopStateEvent } from '@angular/common';
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { NavbarItems } from './navbar-items';
+import { NavbarSideComponent } from './navbar-side.component';
 
 import { find, includes } from 'lodash';
 
@@ -18,6 +20,8 @@ import { find, includes } from 'lodash';
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnDestroy, OnInit {
+  @ViewChild('navbarSide') private navbarSide: NavbarSideComponent;
+
   private _navItem: string = 'getstarted';
   private _navPage: string = 'welcome';
   private _navbarOpen: boolean = false;
@@ -126,6 +130,36 @@ export class NavbarComponent implements OnDestroy, OnInit {
     return item;
   }
 
+  private findPageItem(path: string): string {
+    let page = this.getNavPage(NavbarItems.COMPONENTS, path);
+
+    if (page === undefined) {
+      page = this.getNavPage(NavbarItems.GETSTARTED, path);
+    } else if (page === undefined) {
+      page = this.getNavPage(NavbarItems.DIRECTIVES, path);
+    } else if (page === undefined) {
+      page = this.getNavPage(NavbarItems.PIPES, path);
+    } else if (page === undefined) {
+      page = this.getNavPage(NavbarItems.SERVICES, path);
+    }
+    return page;
+  }
+
+  private getNavPage(items: any[], path: string): string {
+    let page;
+    items.forEach((item) => {
+      if (item.children !== undefined) {
+        item.children.forEach((child: any) => {
+          if (child.path === path) {
+            page = item.id;
+            return;
+          }
+        });
+      }
+    });
+    return page;
+  }
+
   private hasNavPage(items: any[], path: string): boolean {
     let hasPage: boolean = false;
     items.forEach((item: any) => {
@@ -147,5 +181,6 @@ export class NavbarComponent implements OnDestroy, OnInit {
   private initNav(url: string): void {
     this._navPage = (url.length > 0) ? url.substring(1, url.length) : 'welcome';
     this._navItem = this.findNavItem(this._navPage);
+    this.navbarSide.toggleCollapsed(null, this.findPageItem(this._navPage));
   }
 }

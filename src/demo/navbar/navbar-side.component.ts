@@ -48,14 +48,14 @@ export class NavbarSideComponent implements OnInit {
     return ids;
   }
 
-  isCollapsed(name: string) {
+  isCollapsed(name: string): boolean {
     if (this._collapsed[name] === undefined) {
       this._collapsed[name] = true;
     }
     return this._collapsed[name];
   }
 
-  isPageSelected(name: string[]) {
+  isPageSelected(name: string[]): boolean {
     let found = false;
     name.forEach((pageName) => {
       if (this.navPage === pageName) {
@@ -83,6 +83,6 @@ export class NavbarSideComponent implements OnInit {
   }
 
   toggleCollapsed($event: any, name: string): void {
-    this._collapsed[name] = !this._collapsed[name];
+    this._collapsed[name] = !this.isCollapsed(name);
   }
 }
