@@ -1,6 +1,6 @@
 <div class="padding-15">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <h4>Toast Notification List Component Example</h4>
       <hr/>
     </div>
@@ -19,27 +19,37 @@
     </div>
   </div>
   <div class="row padding-bottom-15 padding-top-15">
-    <div class="col-md-12">
+    <div class="col-sm-12">
+      <button (click)="notify()">Add notification</button>
+      <p class="padding-top-5">Click multiple times</p>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
       <form class="form-horizontal">
         <div class="form-group">
           <label class="col-sm-2 control-label" for="header">Header:</label>
           <div class="col-sm-10">
-            <input id="header" name="header"
-                   type="text" class="form-control" [(ngModel)]="header"/>
+            <input id="header" name="header" type="text" class="form-control" [(ngModel)]="header">
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label" for="message">Message:</label>
           <div class="col-sm-10">
-            <input id="message" name="message"
-                   type="text" class="form-control" [(ngModel)]="message"/>
+            <input id="message" name="message" type="text" class="form-control" [(ngModel)]="message">
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label" for="message">Primary Action:</label>
           <div class="col-sm-10">
-            <input id="primaryAction" name="primaryAction" [(ngModel)]="primaryAction.title"
-                   type="text" class="form-control" />
+            <input id="primaryAction" name="primaryAction" type="text" class="form-control"
+                   [(ngModel)]="primaryAction.title">
           </div>
         </div>
         <div class="form-group">
@@ -61,36 +71,35 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="showClose">Show Close:</label>
-          <div class="col-sm-2">
-            <input id="showClose" name="showClose"
-                   type="checkbox" [(ngModel)]="showClose"/>
-          </div>
-          <label class="col-sm-2 control-label" for="showMenu">Show More Actions:</label>
-          <div class="col-sm-2">
-            <input id="showMenu" name="showMenu" type="checkbox" [(ngModel)]="showMoreActions"/>
-          </div>
-          <label class="col-sm-2 control-label" for="type">Persistent:</label>
-          <div class="col-sm-2">
-            <input id="showPersistent" name="showPersistent" type="checkbox" [(ngModel)]="isPersistent"/>
+          <label class="col-sm-2 control-label" for="showClose">Close:</label>
+          <div class="col-sm-10">
+            <input id="showClose" name="showClose" type="checkbox" [(ngModel)]="showClose">
           </div>
         </div>
         <div class="form-group">
-          <div class="col-sm-12">
-            <button (click)="notify()">Add notification - Click me several times</button>
+          <label class="col-sm-2 control-label" for="moreActions">More Actions:</label>
+          <div class="col-sm-10">
+            <input id="moreActions" name="moreActions" type="checkbox" [(ngModel)]="showMoreActions">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="type">Persistent:</label>
+          <div class="col-sm-10">
+            <input id="persistent" name="persistent" type="checkbox" [(ngModel)]="isPersistent">
           </div>
         </div>
       </form>
     </div>
-    <div class="col-md-12">
-      <label class="actions-label">Actions: </label>
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
     </div>
-    <div class="col-md-12">
-      <textarea rows="3" class="col-md-12">{{actionText}}</textarea>
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionText}}</textarea>
     </div>
   </div>
   <div class="row padding-bottom-15 padding-top-15">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <h4>Code</h4>
       <hr/>
     </div>
