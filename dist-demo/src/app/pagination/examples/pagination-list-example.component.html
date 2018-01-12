@@ -9,9 +9,7 @@
                   (onActionSelect)="handleAction($event, null)"
                   (onClick)="handleClick($event)"
                   (onSelectionChange)="handleSelectionChange($event)">
-                  <ng-template #itemTemplate 
-                        let-item="item"
-                        let-index="index">
+         <ng-template #itemTemplate let-item="item" let-index="index">
             <div class="list-pf-left">
               <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
             </div>
@@ -45,28 +43,27 @@
               [config]="actionConfig"
               (onActionSelect)="handleAction($event, item)">
             </pfng-action>
-        </ng-template>
+          </ng-template>
         </pfng-list>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <pfng-pagination [config]="paginationConfig"
-                 (onPageNumberChange)="handlePageNumber($event)"
-                 (onPageSizeChange)="handlePageSize($event)"></pfng-pagination>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h4 class="events-label">Actions: </h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <textarea rows="3" class="col-md-12">{{actionsText}}</textarea>
+      <pfng-pagination [config]="paginationConfig"
+                       (onPageNumberChange)="handlePageNumber($event)"
+                       (onPageSizeChange)="handlePageSize($event)"></pfng-pagination>
     </div>
   </div>
   <div class="row padding-bottom-15 padding-top-15">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-bottom-15 padding-top-15">
+    <div class="col-sm-12">
       <h4>Code</h4>
       <hr/>
     </div>
