@@ -88,7 +88,7 @@ export class PaginationComponent implements DoCheck, OnInit {
   // Accessors
 
   get pageNumber(): number {
-    return this._pageNumber;
+    return (this.config.totalItems !== undefined && this.config.totalItems > 0) ? this._pageNumber : 0;
   }
 
   set pageNumber(pageNumber: number) {
@@ -99,7 +99,7 @@ export class PaginationComponent implements DoCheck, OnInit {
    * Return last page number
    */
   get lastPageNumber(): number {
-    return this._lastPageNumber;
+    return (this.config.totalItems !== undefined && this.config.totalItems > 0) ? this._lastPageNumber : 0;
   }
 
   /**
@@ -158,7 +158,8 @@ export class PaginationComponent implements DoCheck, OnInit {
    * Start Index of Current Page
    */
   getStartIndex(): number {
-    return (this.config.totalItems !== undefined) ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
+    return (this.config.totalItems !== undefined && this.config.totalItems > 0)
+      ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
   }
 
   /**
@@ -168,7 +169,8 @@ export class PaginationComponent implements DoCheck, OnInit {
     let numFullPages = Math.floor(this.config.totalItems / this.config.pageSize);
     let numItemsOnLastPage = this.config.totalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
     let numItemsOnPage = this.isLastPage() ? numItemsOnLastPage : this.config.pageSize;
-    return (this.config.totalItems !== undefined) ? this.getStartIndex() + numItemsOnPage - 1 : 0;
+    return (this.config.totalItems !== undefined && this.config.totalItems > 0)
+      ? (this.getStartIndex() + numItemsOnPage - 1) : 0;
   }
 
   /**

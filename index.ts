@@ -77,7 +77,7 @@ export { ToastNotificationListComponent } from './src/app/notification/toast-not
 // Pagination
 export { PaginationComponent } from './src/app/pagination/pagination.component';
 export { PaginationConfig } from './src/app/pagination/pagination-config';
-import { PaginationEvent } from './src/app/pagination/pagination-event';
+export { PaginationEvent } from './src/app/pagination/pagination-event';
 export { PaginationModule } from './src/app/pagination/pagination.module';
 
 // Pipes

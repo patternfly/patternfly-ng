@@ -66,7 +66,7 @@ var PaginationComponent = /** @class */ (function () {
     Object.defineProperty(PaginationComponent.prototype, "pageNumber", {
         // Accessors
         get: function () {
-            return this._pageNumber;
+            return (this.config.totalItems !== undefined && this.config.totalItems > 0) ? this._pageNumber : 0;
         },
         set: function (pageNumber) {
             this._pageNumber = pageNumber;
@@ -79,7 +79,7 @@ var PaginationComponent = /** @class */ (function () {
          * Return last page number
          */
         get: function () {
-            return this._lastPageNumber;
+            return (this.config.totalItems !== undefined && this.config.totalItems > 0) ? this._lastPageNumber : 0;
         },
         /**
          * Update Last page Number
@@ -133,7 +133,8 @@ var PaginationComponent = /** @class */ (function () {
      * Start Index of Current Page
      */
     PaginationComponent.prototype.getStartIndex = function () {
-        return (this.config.totalItems !== undefined) ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
+        return (this.config.totalItems !== undefined && this.config.totalItems > 0)
+            ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
     };
     /**
      * End Index of Current Page
@@ -142,7 +143,8 @@ var PaginationComponent = /** @class */ (function () {
         var numFullPages = Math.floor(this.config.totalItems / this.config.pageSize);
         var numItemsOnLastPage = this.config.totalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
         var numItemsOnPage = this.isLastPage() ? numItemsOnLastPage : this.config.pageSize;
-        return (this.config.totalItems !== undefined) ? this.getStartIndex() + numItemsOnPage - 1 : 0;
+        return (this.config.totalItems !== undefined && this.config.totalItems > 0)
+            ? (this.getStartIndex() + numItemsOnPage - 1) : 0;
     };
     /**
      * Page number is changed via input field's focus event

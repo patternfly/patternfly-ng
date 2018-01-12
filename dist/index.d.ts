@@ -59,6 +59,7 @@ export { ToastNotificationComponent } from './src/app/notification/toast-notific
 export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
 export { PaginationComponent } from './src/app/pagination/pagination.component';
 export { PaginationConfig } from './src/app/pagination/pagination-config';
+export { PaginationEvent } from './src/app/pagination/pagination-event';
 export { PaginationModule } from './src/app/pagination/pagination.module';
 export { PipeModule } from './src/app/pipe/pipe.module';
 export { SearchHighlightPipe } from './src/app/pipe/search-highlight/search-highlight.pipe';
