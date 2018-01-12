@@ -39,7 +39,9 @@ export class FilterResultsComponent implements DoCheck, OnInit {
    */
   @Output('onSave') onSave = new EventEmitter();
 
-  private defaultConfig = {} as FilterConfig;
+  private defaultConfig = {
+    disabled: false
+  } as FilterConfig;
   private prevConfig: FilterConfig;
   private saveFilterName: string;
 

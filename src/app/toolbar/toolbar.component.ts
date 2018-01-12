@@ -82,7 +82,9 @@ export class ToolbarComponent implements DoCheck, OnInit {
 
   @ViewChild('filterFields') private filterFields: FilterFieldsComponent;
 
-  private defaultConfig: ToolbarConfig = {} as ToolbarConfig;
+  private defaultConfig: ToolbarConfig = {
+    disabled: false
+  } as ToolbarConfig;
   private prevConfig: ToolbarConfig;
 
   /**
@@ -120,12 +122,17 @@ export class ToolbarComponent implements DoCheck, OnInit {
       this.config = cloneDeep(this.defaultConfig);
     }
 
-    if (this.config && this.config.filterConfig
-        && this.config.filterConfig.appliedFilters === undefined) {
-      this.config.filterConfig.appliedFilters = [];
+    if (this.config && this.config.filterConfig) {
+      this.config.filterConfig.disabled = this.config.disabled;
+      if (this.config.filterConfig.appliedFilters === undefined) {
+        this.config.filterConfig.appliedFilters = [];
+      }
     }
-    if (this.config && this.config.sortConfig && this.config.sortConfig.fields === undefined) {
-      this.config.sortConfig.fields = [];
+    if (this.config && this.config.sortConfig) {
+      this.config.sortConfig.disabled = this.config.disabled;
+      if (this.config.sortConfig.fields === undefined) {
+        this.config.sortConfig.fields = [];
+      }
     }
     if (this.config.sortConfig !== undefined && this.config.sortConfig.visible === undefined) {
       this.config.sortConfig.visible = true;

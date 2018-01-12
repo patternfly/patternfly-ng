@@ -8,12 +8,16 @@
         <li *ngFor="let filter of config.appliedFilters">
           <span class="active-filter label label-info">
             {{filter.field.title}}: {{filter.value}}
-            <span class="margin-left-5 pficon pficon-close" (click)="clearFilter(filter)"></span>
+            <span class="margin-left-5 pficon pficon-close"
+                  (click)="clearFilter(filter)"
+                  *ngIf="config.disabled !== true"></span>
           </span>
         </li>
       </ul>
       <p>
-        <a class="clear-filters" (click)="clearAllFilters()"
+        <a class="clear-filters" href="javascript:void(0)"
+           [class.disabled]="config.disabled === true"
+           (click)="config.disabled !== true && clearAllFilters()"
            *ngIf="config.appliedFilters.length > 0">Clear All Filters</a>
       </p>
       <p class="pfng-save-filter margin-left-10">
@@ -37,8 +41,11 @@
           </div>
         </ng-template>
         <span placement="bottom" [popover]="saveFilterTemplate" #saveFilterPop="bs-popover">
-          <a *ngIf="config.showSaveFilter">Save Filter</a>
+          <a *ngIf="config.showSaveFilter && config.disabled !== true">Save Filter</a>
         </span>
+        <a href="javascript:void(0)"
+           [class.disabled]="config.disabled === true"
+           *ngIf="config.showSaveFilter && config.disabled === true">Save Filter</a>
       </p>
     </div>
     <div class="col-sm-3 table-view-pf-select-results" *ngIf="config.totalCount > 0">

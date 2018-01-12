@@ -5,6 +5,11 @@ import { SortField } from './sort-field';
  */
 export class SortConfig {
   /**
+   * A flag indicating the component is disabled
+   */
+  disabled?: boolean;
+
+  /**
    * A list of sortable fields
    */
   fields: SortField[];

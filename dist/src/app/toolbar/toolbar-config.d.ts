@@ -11,6 +11,12 @@ export declare class ToolbarConfig {
      */
     actionConfig?: ActionConfig;
     /**
+     * A flag indicating the component is disabled
+     *
+     * Note: This will not disable components within your custom action and view templates
+     */
+    disabled?: boolean;
+    /**
      * Config properties for toolbar filter. If undefined, filter features are not shown.
      */
     filterConfig?: FilterConfig;

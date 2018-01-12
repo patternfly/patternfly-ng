@@ -9,6 +9,10 @@ export declare class FilterConfig {
      */
     appliedFilters?: Filter[];
     /**
+     * A flag indicating the component is disabled
+     */
+    disabled?: boolean;
+    /**
      * A list of filterable fields
      */
     fields: FilterField[];

@@ -40,7 +40,9 @@ var FilterComponent = /** @class */ (function () {
          * The event emitted when the user types ahead in the query input field
          */
         this.onTypeAhead = new EventEmitter();
-        this.defaultConfig = {};
+        this.defaultConfig = {
+            disabled: false
+        };
     }
     // Initialization
     /**

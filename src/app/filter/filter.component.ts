@@ -62,7 +62,9 @@ export class FilterComponent implements DoCheck, OnInit {
    */
   @ViewChild('filterFields') private filterFields: FilterFieldsComponent;
 
-  private defaultConfig = {} as FilterConfig;
+  private defaultConfig = {
+    disabled: false
+  } as FilterConfig;
   private prevConfig: FilterConfig;
 
   /**

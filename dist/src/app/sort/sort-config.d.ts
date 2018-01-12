@@ -4,6 +4,10 @@ import { SortField } from './sort-field';
  */
 export declare class SortConfig {
     /**
+     * A flag indicating the component is disabled
+     */
+    disabled?: boolean;
+    /**
      * A list of sortable fields
      */
     fields: SortField[];

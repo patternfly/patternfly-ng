@@ -52,7 +52,9 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
 
   private _currentField: FilterField;
   private _currentValue: string;
-  private defaultConfig = {} as FilterConfig;
+  private defaultConfig = {
+    disabled: false
+  } as FilterConfig;
   private prevConfig: FilterConfig;
 
   /**
