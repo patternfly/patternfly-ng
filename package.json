@@ -19,7 +19,7 @@
     "reinstall": "npm run clean && npm install",
     "remove-dist": "rimraf build dist dist-watch dist-demo",
     "rimraf": "rimraf",
-    "start:demo": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base dist-demo",
+    "start:demo": "npm run webpack-dev-server -- --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base dist-demo",
     "test": "karma start",
     "test:debug": "karma --browsers Chrome --no-single-run start",
     "transpile": "gulp transpile",
@@ -27,7 +27,8 @@
     "ts:lint:fix": "npm run ts:lint -- --fix",
     "semantic-release": "semantic-release pre && copy package.json npm-shrinkwrap.json dist && npm publish dist && semantic-release post",
     "semantic-release-post": "semantic-release post",
-    "semantic-release-pre": "semantic-release pre"
+    "semantic-release-pre": "semantic-release pre",
+    "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "license": "Apache-2.0",
   "contributors": [],
