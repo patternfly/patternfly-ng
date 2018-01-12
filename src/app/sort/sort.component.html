@@ -1,6 +1,7 @@
 <div class="sort-pf" *ngIf="config?.visible !== false">
   <div class="btn-group dropdown" dropdown>
-    <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle>
+    <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle
+            [disabled]="config.disabled === true">
       {{currentField?.title}}
       <span class="caret"></span>
     </button>
@@ -11,7 +12,9 @@
       </li>
     </ul>
   </div>
-  <button class="btn btn-link" type="button" (click)="onChangeDirection()">
+  <button class="btn btn-link" type="button"
+          [disabled]="config.disabled === true"
+          (click)="onChangeDirection()">
     <span class="sort-direction" [ngClass]="getIconStyleClass()"></span>
   </button>
 </div>
