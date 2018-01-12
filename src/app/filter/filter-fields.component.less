@@ -11,6 +11,12 @@
       white-space: nowrap;
     }
     .typeahead-input-container {
+      &.disabled {
+        width: 100%;
+        .caret {
+          top: 8px;
+        }
+      }
       position: relative;
       padding-right: 0;
       .caret {
