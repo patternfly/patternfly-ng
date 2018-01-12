@@ -1,0 +1,104 @@
+<nav class="navbar navbar-sidebar"
+     [ngClass]="{'xnavbar-primary': isNavItemSelected('getstarted'), 'open': isNavbarOpen()}">
+  <ul>
+    <li class="primary-menu" *ngIf="isNavItemSelected('getstarted')">
+      <a routerLink="/" routerLinkActive="active">Get Started</a>
+      <ul>
+        <li [ngClass]="{'active': isNavItemSelected(item.id)}"
+            *ngFor="let item of getStarted">
+          <a (click)="selectNavItem($event, item.id)"
+             *ngIf="item.hasChildren !== true">{{item.title}}</a>
+          <a (click)="selectNavItem($event, item.id)"
+             *ngIf="item.hasChildren === true">{{item.title}}<span class="fa fa-angle-right"></span></a>
+        </li>
+        <li>
+          <a href="https://github.com/patternfly/patternfly-ng" target="_blank">GitHub</a>
+        </li>
+      </ul>
+    </li>
+    <li class="secondary-menu" *ngIf="isNavItemSelected('components')">
+      <a class="secondary-menu-toggle"
+         (click)="selectNavItem($event, 'getstarted')"><span class="secondary-menu-toggle-icon"></span>Components</a>
+      <ul>
+        <li *ngFor="let item of components"
+            [ngClass]="{'active': isPageSelected(getIds(item))}">
+          <a (click)="selectNavPage($event, item.path)" *ngIf="item.children === undefined">{{item.title}}</a>
+          <a [ngClass]="{'collapsed': isCollapsed(item.id), 'expanded': !isCollapsed(item.id)}"
+             (click)="toggleCollapsed($event, item.id)"
+             *ngIf="item.children !== undefined">{{item.title}}</a>
+          <ul class="collapse"
+              [collapse]="isCollapsed(item.id)"
+              [ngClass]="{'in': !isCollapsed(item.id)}"
+              *ngFor="let child of item.children">
+            <li [ngClass]="{'active': isPageSelected([child.id])}">
+              <a (click)="selectNavPage($event, child.path)">{{child.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li class="secondary-menu" *ngIf="isNavItemSelected('directives')">
+      <a class="secondary-menu-toggle"
+         (click)="selectNavItem($event, 'getstarted')"><span class="secondary-menu-toggle-icon"></span>Directives</a>
+      <ul>
+        <li *ngFor="let item of directives"
+            [ngClass]="{'active': isPageSelected(getIds(item))}">
+          <a (click)="selectNavPage($event, item.path)" *ngIf="item.children === undefined">{{item.title}}</a>
+          <a [ngClass]="{'collapsed': isCollapsed(item.id), 'expanded': !isCollapsed(item.id)}"
+             (click)="toggleCollapsed($event, item.id)"
+             *ngIf="item.children !== undefined">{{item.title}}</a>
+          <ul class="collapse"
+              [collapse]="isCollapsed(item.id)"
+              [ngClass]="{'in': !isCollapsed(item.id)}"
+              *ngFor="let child of item.children">
+            <li [ngClass]="{'active': isPageSelected([child.id])}">
+              <a (click)="selectNavPage($event, child.path)">{{child.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li class="secondary-menu" *ngIf="isNavItemSelected('pipes')">
+      <a class="secondary-menu-toggle"
+         (click)="selectNavItem($event, 'getstarted')"><span class="secondary-menu-toggle-icon"></span>Pipes</a>
+      <ul>
+        <li *ngFor="let item of pipes"
+            [ngClass]="{'active': isPageSelected(getIds(item))}">
+          <a (click)="selectNavPage($event, item.path)" *ngIf="item.children === undefined">{{item.title}}</a>
+          <a [ngClass]="{'collapsed': isCollapsed(item.id), 'expanded': !isCollapsed(item.id)}"
+             (click)="toggleCollapsed($event, item.id)"
+             *ngIf="item.children !== undefined">{{item.title}}</a>
+          <ul class="collapse"
+              [collapse]="isCollapsed(item.id)"
+              [ngClass]="{'in': !isCollapsed(item.id)}"
+              *ngFor="let child of item.children">
+            <li [ngClass]="{'active': isPageSelected([child.id])}">
+              <a (click)="selectNavPage($event, child.path)">{{child.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li class="secondary-menu" *ngIf="isNavItemSelected('services')">
+      <a class="secondary-menu-toggle"
+         (click)="selectNavItem($event, 'getstarted')"><span class="secondary-menu-toggle-icon"></span>Services</a>
+      <ul>
+        <li *ngFor="let item of services"
+            [ngClass]="{'active': isPageSelected(getIds(item))}">
+          <a (click)="selectNavPage($event, item.path)" *ngIf="item.children === undefined">{{item.title}}</a>
+          <a [ngClass]="{'collapsed': isCollapsed(item.id), 'expanded': !isCollapsed(item.id)}"
+             (click)="toggleCollapsed($event, item.id)"
+             *ngIf="item.children !== undefined">{{item.title}}</a>
+          <ul class="collapse"
+              [collapse]="isCollapsed(item.id)"
+              [ngClass]="{'in': !isCollapsed(item.id)}"
+              *ngFor="let child of item.children">
+            <li [ngClass]="{'active': isPageSelected([child.id])}">
+              <a (click)="selectNavPage($event, child.path)">{{child.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
