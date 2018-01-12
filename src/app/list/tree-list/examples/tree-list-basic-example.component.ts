@@ -232,9 +232,9 @@ export class TreeListBasicExampleComponent implements OnInit {
         'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
         'objects exists and you want to guide the user to perform specific actions.',
       helpLink: {
-        hypertext: 'List example',
+        hypertext: 'Tree List example',
         text: 'For more information please see the',
-        url: '#/list'
+        url: '#/treelist'
       }
     } as EmptyStateConfig;
 
