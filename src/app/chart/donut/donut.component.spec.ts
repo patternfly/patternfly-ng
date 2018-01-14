@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { ChartDefaults } from '../chart.defaults';
+import { ChartDefaults } from '../chart-defaults';
 import { DonutConfig } from './donut-config';
 import { DonutComponent } from './donut.component';
 import { WindowReference } from '../../utilities/window.reference';

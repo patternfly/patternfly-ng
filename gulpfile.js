@@ -21,7 +21,7 @@ var libraryBuild = 'build';
 var libraryDist = 'dist';
 var demoDist = 'dist-demo';
 var watchDist = 'dist-watch';
-var globalExcludes = [ '!./**/examples/**', '!./**/examples' ];
+var globalExcludes = [ '!./**/example/**', '!./**/example' ];
 
 /**
  * FUNCTION LIBRARY
@@ -167,7 +167,7 @@ gulp.task('copy-css', function () {
 
 gulp.task('copy-examples', function () {
   return copyToDemo([
-    'src/**/examples/*.*'
+    'src/**/example/*.*'
   ]);
 });
 

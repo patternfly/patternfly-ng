@@ -7,9 +7,9 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CardAction } from './card-action/card-action';
 import { CardActionComponent } from './card-action/card-action.component';
 import { CardBase } from './card-base';
-import { CardBaseConfig } from './card-base-config';
 import { CardComponent } from './basic-card/card.component';
 import { CardConfig } from './basic-card/card-config';
+import { CardConfigBase } from './card-config-base';
 import { CardFilter } from './card-filter/card-filter';
 import { CardFilterComponent } from './card-filter/card-filter.component';
 import { CardFilterPosition } from './card-filter/card-filter-position';
@@ -19,8 +19,8 @@ import { InfoStatusCardComponent } from './info-status-card/info-status-card.com
 export {
   CardAction,
   CardBase,
-  CardBaseConfig,
   CardConfig,
+  CardConfigBase,
   CardFilter,
   CardFilterPosition,
   InfoStatusCardConfig

@@ -2,7 +2,6 @@
  * A config containing properties for the info status card
  */
 export class InfoStatusCardConfig {
-
   /**
    * Flag to allow parsing of HTML content within the info options
    */
