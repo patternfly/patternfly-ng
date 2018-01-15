@@ -113,6 +113,7 @@ export { WindowReference } from './src/app/utilities/window.reference';
 export { NavigationItemConfig } from './src/app/navigation/navigation-item-config';
 export { NavigationModule } from './src/app/navigation/navigation.module';
 export { VerticalNavigationComponent } from './src/app/navigation/vertical-navigation.component';
+export { ApplicationLauncherComponent} from './src/app/navigation/application-launcher.component';
 
 // Wizard
 export { WizardBase } from './src/app/wizard/wizard-base';
