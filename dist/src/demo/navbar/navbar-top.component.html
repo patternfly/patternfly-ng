@@ -1,0 +1,61 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" (click)="toggleNavbar($event)">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="logo" title="" routerLink="/" routerLinkActive="active">PatternFly NG</a>
+    </div>
+    <div class="navbar-collapse navbar-collapse-pf-site collapse">
+      <ul id="menu-primary" class="nav navbar-nav navbar-right">
+        <li [ngClass]="{'active': isNavItemSelected('getstarted')}">
+          <a (click)="selectNavItem($event, 'getstarted')">Get Started</a>
+        </li>
+        <li [ngClass]="{'active': isNavItemSelected('components')}">
+          <a (click)="selectNavItem($event, 'components')">Components</a>
+        </li>
+        <li [ngClass]="{'active': isNavItemSelected('directives')}">
+          <a (click)="selectNavItem($event, 'directives')">Directives</a>
+        </li>
+        <li [ngClass]="{'active': isNavItemSelected('pipes')}">
+          <a (click)="selectNavItem($event, 'pipes')">Pipes</a>
+        </li>
+        <li [ngClass]="{'active': isNavItemSelected('services')}">
+          <a (click)="selectNavItem($event, 'services')">Services</a>
+        </li>
+        <li>
+          <a href="https://github.com/patternfly/patternfly-ng" target="_blank">GitHub</a>
+        </li>
+        <!--
+        <li class="applauncher-pf dropdown dropdown-kebab-pf">
+          <a class="dropdown-toggle nav-item-iconic" data-toggle="dropdown" href="#" aria-expanded="false">
+            <i class="fa fa-th applauncher-pf-icon" aria-hidden="true">
+              <span class="sr-only">PatternFly Showcases</span>
+            </i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li class="applauncher-pf-item" role="menuitem">
+              <a class="applauncher-pf-link" href="https://rawgit.com/patternfly/patternfly-ng/master-dist/dist-demo/#/">
+                <span class="applauncher-pf-link-title">PatternFly NG</span>
+              </a>
+            </li>
+            <li class="applauncher-pf-item" role="menuitem">
+              <a class="applauncher-pf-link" href="https://patternfly-webcomponents.github.io/components.html">
+                <span class="applauncher-pf-link-title">PatternFly Web Components</span>
+              </a>
+            </li>
+            <li class="applauncher-pf-item" role="menuitem">
+              <a class="applauncher-pf-link" href="https://rawgit.com/patternfly/patternfly-react/gh-pages/index.html">
+                <span class="applauncher-pf-link-title">PatternFly React</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        -->
+      </ul>
+    </div>
+  </div>
+</nav>
