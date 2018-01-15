@@ -20,6 +20,7 @@ import { PipeModule } from './src/app/pipe/pipe.module';
 import { RemainingCharsCountModule } from './src/app/remaining-chars-count/remaining-chars-count.module';
 import { SampleModule } from './src/app/sample/sample.module';
 import { SortModule } from './src/app/sort/sort.module';
+import { TableModule } from './src/app/table/table.module';
 import { ToolbarModule } from './src/app/toolbar/toolbar.module';
 import { WizardModule } from './src/app/wizard/wizard.module';
 var PatternFlyNgModule = /** @class */ (function () {
@@ -45,6 +46,7 @@ var PatternFlyNgModule = /** @class */ (function () {
                 PipeModule,
                 SampleModule,
                 SortModule,
+                TableModule,
                 ToolbarModule,
                 WizardModule
             ]

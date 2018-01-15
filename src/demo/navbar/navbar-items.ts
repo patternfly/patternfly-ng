@@ -84,6 +84,10 @@ export class NavbarItems {
       title: 'Toast Notification List'
     }]
   }, {
+    id: 'table',
+    path: 'table',
+    title: 'Table'
+  }, {
     id: 'toolbar',
     path: 'toolbar',
     title: 'Toolbar'

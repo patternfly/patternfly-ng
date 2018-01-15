@@ -11,12 +11,10 @@
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "aot"
   },
-
   "files": [
     "src/demo/app.module.ts",
     "src/demo.ts"
   ],
-
   "angularCompilerOptions": {
     "genDir": "aot",
     "skipMetadataEmit" : true
