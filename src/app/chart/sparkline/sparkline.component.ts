@@ -60,9 +60,10 @@ export class SparklineComponent extends ChartBase implements DoCheck, OnInit {
    * Check if the component config has changed
    */
   ngDoCheck(): void {
-    if (!isEqual(this.config, this.prevConfig) || !isEqual(this.chartData, this.prevChartData)) {
+    const dataChanged = !isEqual(this.chartData, this.prevChartData);
+    if (dataChanged || !isEqual(this.config, this.prevConfig)) {
       this.setupConfig();
-      this.generateChart(this.config, true);
+      this.generateChart(this.config, !dataChanged);
     }
   }
 
