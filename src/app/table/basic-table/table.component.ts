@@ -22,7 +22,7 @@ import { TableEvent } from '../table-event';
 import { clone, cloneDeep, defaults, isEqual } from 'lodash';
 
 /**
- * Data table component.
+ * Table component.
  *
  * Table cells are defined using cell templates provided as column options.
  * For example:
@@ -54,7 +54,7 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
   @Input() columns: any[];
 
   /**
-   * The data table config containing component properties
+   * The table config containing component properties
    */
   @Input() config: TableConfig;
 
