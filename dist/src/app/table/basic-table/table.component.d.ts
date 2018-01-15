@@ -7,8 +7,18 @@ import { TableBase } from '../table-base';
 /**
  * Table component.
  *
- * Table cells are defined using cell templates provided as column options.
- * For example:
+ * In order to use drag and drop, please include the following CSS file from ng2-dragula. For example:
+ * <code>import 'dragula/dist/dragula.css';</code>
+ *
+ * For ngx-datatable options, see: https://swimlane.gitbooks.io/ngx-datatable/
+ *
+ * Note: The underlying ngx-datatable uses ContentChildren to retrieve DataTableColumnDirective (ngx-datatable-column)
+ * tags. As a result of wrapping ngx-datatable, these objects are no longer direct descendents and ContentChildren
+ * cannot retrieve them. A fix to ContentChildren may be in the works for Angular 5 or later.
+ *
+ * Instead of using ngx-datatable-column, table cells may be defined using templates, provided as the
+ * columns cellTemplate property. For example:
+ *
  * <code>
  * this.columns = [{
  *   cellTemplate: this.nameTemplate,
@@ -17,12 +27,13 @@ import { TableBase } from '../table-base';
  * }]
  * </code>
  *
- * Note: In order to use drag and drop, please include the following CSS file from ng2-dragula. For example:
- * <code>import 'dragula/dist/dragula.css';</code>
+ * and
  *
- * For ngx-datatable options, see: https://swimlane.gitbooks.io/ngx-datatable/
- *
- * Todo: row grouping and footer are not currently implemented
+ * <code>
+ * &lt;ng-template #nameTemplate let-row="row"&gt;
+ *   &lt;span>{{row.name}}&lt;/span&gt;
+ * &lt;/ng-template&gt;
+ * </code>
  */
 export declare class TableComponent extends TableBase implements AfterViewInit, DoCheck, OnInit {
     private dragulaService;
