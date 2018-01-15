@@ -5,7 +5,7 @@ import { TableConfig } from './table-config';
 import { NgxDataTableConfig } from './ngx-datatable-config';
 import { TableBase } from '../table-base';
 /**
- * Data table component.
+ * Table component.
  *
  * Table cells are defined using cell templates provided as column options.
  * For example:
@@ -31,7 +31,7 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      */
     columns: any[];
     /**
-     * The data table config containing component properties
+     * The table config containing component properties
      */
     config: TableConfig;
     /**

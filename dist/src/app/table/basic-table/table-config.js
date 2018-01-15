@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { TableConfigBase } from '../table-config-base';
 /**
- * An config containing properties for datatable
+ * An config containing properties for table
  */
 var TableConfig = /** @class */ (function (_super) {
     __extends(TableConfig, _super);

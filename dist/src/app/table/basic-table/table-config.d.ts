@@ -1,7 +1,7 @@
 import { Filter } from '../../filter/filter';
 import { TableConfigBase } from '../table-config-base';
 /**
- * An config containing properties for datatable
+ * An config containing properties for table
  */
 export declare class TableConfig extends TableConfigBase {
     /**
