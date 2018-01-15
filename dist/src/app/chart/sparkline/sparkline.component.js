@@ -52,9 +52,10 @@ var SparklineComponent = /** @class */ (function (_super) {
      * Check if the component config has changed
      */
     SparklineComponent.prototype.ngDoCheck = function () {
-        if (!isEqual(this.config, this.prevConfig) || !isEqual(this.chartData, this.prevChartData)) {
+        var dataChanged = !isEqual(this.chartData, this.prevChartData);
+        if (dataChanged || !isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
-            this.generateChart(this.config, true);
+            this.generateChart(this.config, !dataChanged);
         }
     };
     /**
