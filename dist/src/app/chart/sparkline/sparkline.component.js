@@ -19,12 +19,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash';
-import { ChartBase } from '../chart.base';
-import { ChartDefaults } from '../chart.defaults';
+import { ChartBase } from '../chart-base';
+import { ChartDefaults } from '../chart-defaults';
 import { SparklineConfig } from './sparkline-config';
 import { SparklineData } from './sparkline-data';
 /**
- * Sparkline chart component based on C3
+ * Sparkline chart component
+ *
+ * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
+ * <code>require('patternfly/dist/js/patternfly-settings');</code>
  */
 var SparklineComponent = /** @class */ (function (_super) {
     __extends(SparklineComponent, _super);

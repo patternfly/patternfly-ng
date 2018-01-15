@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { ChartDefaults } from '../chart.defaults';
+import { ChartDefaults } from '../chart-defaults';
 import { SparklineComponent } from './sparkline.component';
 import { SparklineConfig } from './sparkline-config';
 import { SparklineData } from './sparkline-data';

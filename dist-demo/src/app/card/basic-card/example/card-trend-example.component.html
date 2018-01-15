@@ -1,0 +1,45 @@
+<div class="padding-15">
+  <div class="cards-pf">
+    <div class="row row-cards-pf">
+      <div class="col-sm-12">
+        <pfng-card [config]="config"
+                   (onActionSelect)="handleActionSelect($event)"
+                   (onFilterSelect)="handleFilterSelect($event)">
+          <pfng-chart-sparkline [config]="chartConfigVirtual" [chartData]="chartDataVirtual" ></pfng-chart-sparkline>
+          <pfng-chart-sparkline [config]="chartConfigPhysical" [chartData]="chartDataPhysical" ></pfng-chart-sparkline>
+          <pfng-chart-sparkline [config]="chartConfigMemory" [chartData]="chartDataMemory" ></pfng-chart-sparkline>
+        </pfng-card>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/cardcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/card/basic-card/example/card-trend-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/card/basic-card/example/card-trend-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

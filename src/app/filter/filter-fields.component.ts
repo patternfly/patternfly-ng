@@ -148,7 +148,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
    *
    * @returns {string} The current filter field value
    */
-  get currentValue(): string {
+  protected get currentValue(): string {
     return this._currentValue;
   }
 
@@ -157,7 +157,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
    *
    * @param val The current filter field value
    */
-  set currentValue(val: string) {
+  protected set currentValue(val: string) {
     this._currentValue = val;
   }
 

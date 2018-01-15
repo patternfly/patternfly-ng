@@ -1,11 +1,11 @@
 import { CardAction } from '../card-action/card-action';
-import { CardBaseConfig } from '../card-base-config';
+import { CardConfigBase } from '../card-config-base';
 import { CardFilter } from '../card-filter/card-filter';
 
 /**
  * A config containing properties for card
  */
-export class CardConfig extends CardBaseConfig {
+export class CardConfig extends CardConfigBase {
   /**
    * An action shown in the footer
    */

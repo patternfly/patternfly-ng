@@ -185,7 +185,7 @@ module.exports = {
       includeDeclarations: false,
       ignoreCompilerErrors: true,
       excludePrivate: true,
-      exclude: '**/+(examples|demo)/**'
+      exclude: '**/+(example|demo)/**'
     }, './src'),
 
     /**

@@ -69,7 +69,7 @@ export declare class FilterFieldsComponent implements DoCheck, OnInit {
      *
      * @param val The current filter field value
      */
-    currentValue: string;
+    protected currentValue: string;
     private deleteQuery($event, filterQuery, el);
     private deleteQueryCancel($event, filterQuery);
     private deleteQueryConfirm($event, filterQuery);

@@ -12,11 +12,17 @@ import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash';
 
 import * as d3 from 'd3';
 
-import { ChartDefaults } from '../chart.defaults';
-import { ChartBase } from '../chart.base';
+import { ChartDefaults } from '../chart-defaults';
+import { ChartBase } from '../chart-base';
 import { DonutConfig } from './donut-config';
 import { WindowReference } from '../../utilities/window.reference';
 
+/**
+ * Donut chart component.
+ *
+ * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
+ * <code>require('patternfly/dist/js/patternfly-settings');</code>
+ */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-chart-donut',

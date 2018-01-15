@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { CardBaseConfig } from '../card-base-config';
+import { CardConfigBase } from '../card-config-base';
 /**
  * A config containing properties for card
  */
@@ -18,6 +18,6 @@ var CardConfig = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return CardConfig;
-}(CardBaseConfig));
+}(CardConfigBase));
 export { CardConfig };
 //# sourceMappingURL=card-config.js.map

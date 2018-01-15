@@ -10,8 +10,8 @@ export { ActionModule } from './src/app/action/action.module';
 export { CardAction } from './src/app/card/card-action/card-action';
 export { CardActionComponent } from './src/app/card/card-action/card-action.component';
 export { CardBase } from './src/app/card/card-base';
-export { CardBaseConfig } from './src/app/card/card-base-config';
 export { CardConfig } from './src/app/card/basic-card/card-config';
+export { CardConfigBase } from './src/app/card/card-config-base';
 export { CardComponent } from './src/app/card/basic-card/card.component';
 export { CardFilter } from './src/app/card/card-filter/card-filter';
 export { CardFilterComponent } from './src/app/card/card-filter/card-filter.component';
@@ -22,8 +22,8 @@ export { InfoStatusCardConfig } from './src/app/card/info-status-card/info-statu
 
 // Charts
 export { ChartConfig } from './src/app/chart/chart-config';
-export { ChartDefaults } from './src/app/chart/chart.defaults';
-export { ChartBase } from './src/app/chart/chart.base';
+export { ChartDefaults } from './src/app/chart/chart-defaults';
+export { ChartBase } from './src/app/chart/chart-base';
 export { ChartModule } from './src/app/chart/chart.module';
 export { DonutComponent } from './src/app/chart/donut/donut.component';
 export { DonutConfig } from './src/app/chart/donut/donut-config';
@@ -65,14 +65,15 @@ export { AboutModalComponent } from './src/app/modal/about-modal.component';
 export { ModalModule } from './src/app/modal/modal.module';
 
 // Notification
-export { InlineNotificationComponent } from './src/app/notification/inline-notification.component';
+export { InlineNotificationComponent } from './src/app/notification/inline-notification/inline-notification.component';
 export { Notification } from './src/app/notification/notification';
 export { NotificationEvent } from './src/app/notification/notification-event';
 export { NotificationModule } from './src/app/notification/notification.module';
 export { NotificationType } from './src/app/notification/notification-type';
-export { NotificationService } from './src/app/notification/notification.service';
-export { ToastNotificationComponent } from './src/app/notification/toast-notification.component';
-export { ToastNotificationListComponent } from './src/app/notification/toast-notification-list.component';
+export { NotificationService } from './src/app/notification/notification-service/notification.service';
+export { ToastNotificationComponent } from './src/app/notification/toast-notification/toast-notification.component';
+export { ToastNotificationListComponent }
+  from './src/app/notification/toast-notification-list/toast-notification-list.component';
 
 // Pagination
 export { PaginationComponent } from './src/app/pagination/pagination.component';
@@ -112,7 +113,7 @@ export { WindowReference } from './src/app/utilities/window.reference';
 // Vertical Navigation
 export { NavigationItemConfig } from './src/app/navigation/navigation-item-config';
 export { NavigationModule } from './src/app/navigation/navigation.module';
-export { VerticalNavigationComponent } from './src/app/navigation/vertical-navigation.component';
+export { VerticalNavigationComponent } from './src/app/navigation/vertical-navigation/vertical-navigation.component';
 
 // Wizard
 export { WizardBase } from './src/app/wizard/wizard-base';

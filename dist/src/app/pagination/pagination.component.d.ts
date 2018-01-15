@@ -67,11 +67,11 @@ export declare class PaginationComponent implements DoCheck, OnInit {
     /**
      * Start Index of Current Page
      */
-    getStartIndex(): number;
+    protected getStartIndex(): number;
     /**
      * End Index of Current Page
      */
-    getEndIndex(): number;
+    protected getEndIndex(): number;
     /**
      * Page number is changed via input field's focus event
      */

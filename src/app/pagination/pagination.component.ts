@@ -157,7 +157,7 @@ export class PaginationComponent implements DoCheck, OnInit {
   /**
    * Start Index of Current Page
    */
-  getStartIndex(): number {
+  protected getStartIndex(): number {
     return (this.config.totalItems !== undefined && this.config.totalItems > 0)
       ? this.config.pageSize * (this.config.pageNumber - 1) + 1 : 0;
   }
@@ -165,7 +165,7 @@ export class PaginationComponent implements DoCheck, OnInit {
   /**
    * End Index of Current Page
    */
-  getEndIndex(): number {
+  protected getEndIndex(): number {
     let numFullPages = Math.floor(this.config.totalItems / this.config.pageSize);
     let numItemsOnLastPage = this.config.totalItems - (numFullPages * this.config.pageSize) || this.config.pageSize;
     let numItemsOnPage = this.isLastPage() ? numItemsOnLastPage : this.config.pageSize;
