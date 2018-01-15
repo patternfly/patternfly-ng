@@ -1,0 +1,68 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <pfng-filter [config]="filterConfig"
+                     (onChange)="filterChanged($event)"
+                     (onFieldSelect)="filterFieldSelected($event)"
+                     (onTypeAhead)="filterQueries($event)"></pfng-filter>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Items</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngFor="let item of items" class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-3">
+            <span>{{item.name}}</span>
+          </div>
+          <div class="col-sm-5">
+            <span>{{item.address}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.birthMonth}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.weekDay}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Filters</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{filtersText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/filtercomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/filter/example/filter-type-ahead-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/filter/example/filter-type-ahead-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
