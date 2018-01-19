@@ -1,5 +1,7 @@
 import {
   async,
+  fakeAsync,
+  tick,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -382,16 +384,22 @@ describe('Table component - ', () => {
     expect(comp.config.paginationConfig.pageNumber).toEqual(1);
   });
 
-  it('should change page Size', () => {
-    fixture.detectChanges();
-    let button = fixture.debugElement.query(By.css('pfng-pagination button.dropdown-toggle'));
-    button.triggerEventHandler('click', null);
+  it('should change page Size', fakeAsync(() => {
+    const element = fixture.nativeElement;
 
-    let item = fixture.debugElement.queryAll(By.css('pfng-pagination ul.dropdown-menu > li > a'));
-    // click on menu option with value 4
-    item[2].triggerEventHandler('click', null);
+    let button = element.querySelector('pfng-pagination button');
+    button.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
+    fixture.detectChanges();
+
+    // click on menu option with value 20
+    let item = element.querySelectorAll(' pfng-pagination ul.dropdown-menu > li > a');
+    item[2].click();
+    fixture.detectChanges();
+
     expect(comp.config.paginationConfig.pageSize).toEqual(4);
-  });
+  }));
 
   it('should change the page on blur by using input', () => {
     let input = fixture.debugElement.query(By.css('pfng-pagination input.pagination-pf-page'));
@@ -403,11 +411,18 @@ describe('Table component - ', () => {
 
   // Filter tests
 
-  it('should have correct number of filter fields', function() {
+  it('should have correct number of filter fields', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.filter-field');
     expect(fields.length).toBe(4);
-  });
+  }));
 
   it('should have correct number of results', function() {
     let results = fixture.debugElement.query(By.css('h5'));
@@ -425,25 +440,60 @@ describe('Table component - ', () => {
 
     results = fixture.debugElement.query(By.css('h5'));
     expect(results).not.toBeNull();
-    expect(results.nativeElement.textContent.trim().slice(0, '10 Results'.length)).toBe('10 Results');
+    expect(
+      results.nativeElement.textContent.trim().slice(0, '10 Results'.length)
+    ).toBe('10 Results');
   });
 
-  it('should add a dropdown select when a select type is chosen', function() {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
-    let filterSelect = fixture.debugElement.query(By.css('.filter-select'));
-    let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
+  it('should show active filters and clear filters button when there are filters', function() {
+    let activeFilters = fixture.debugElement.queryAll(By.css('.active-filter'));
+    let clearFilters = fixture.debugElement.query(By.css('.clear-filters'));
+    expect(activeFilters.length).toBe(0);
+    expect(clearFilters).toBeNull();
 
-    expect(filterSelect).toBeNull();
-    fields[3].triggerEventHandler('click', {});
+    config.toolbarConfig.filterConfig.appliedFilters = [{
+      field: {
+        id: 'address',
+        title: 'Address'
+      },
+      value: 'New York'
+    }] as Filter[];
     fixture.detectChanges();
 
-    filterSelect = fixture.debugElement.query(By.css('.filter-select'));
+    activeFilters = fixture.debugElement.queryAll(By.css('.active-filter'));
+    clearFilters = fixture.debugElement.query(By.css('.clear-filters'));
+    expect(activeFilters.length).toBe(1);
+    expect(clearFilters).not.toBeNull();
+  });
+
+  it('should add a dropdown select when a select type is chosen', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('button');
+    button.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
+    fixture.detectChanges();
+
+    let filterSelect = element.querySelector('.filter-select');
+    let fields = element.querySelectorAll('.filter-field');
+
+    expect(filterSelect).toBeNull();
+    fields[3].click();
+    fixture.detectChanges();
+
+    filterSelect = element.querySelector('.filter-select');
     expect(filterSelect).not.toBeNull();
 
-    // Todo: ngx-bootstrap no longer renders children for this test?
-    // let items = filterSelect.queryAll(By.css('li'));
-    // expect(items.length).toBe(config.filterConfig.fields[3].queries.length + 1); // +1 for the null value
-  });
+    let selectButton = element.querySelector('.filter-select button');
+    selectButton.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
+    fixture.detectChanges();
+
+    let items = element.querySelectorAll('.filter-select li');
+    expect(items.length).toBe(config.toolbarConfig.filterConfig.fields[3].queries.length + 1); // +1 for the null value
+  }));
 
   it('should clear a filter when the close button is clicked', function() {
     let closeButtons = fixture.debugElement.queryAll(By.css('.pficon-close'));
@@ -511,11 +561,18 @@ describe('Table component - ', () => {
 
   // Sort Tests
 
-  it('should have correct number of sort fields', () => {
+  it('should have correct number of sort fields', fakeAsync(() => {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let elements = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    tick();
+    fixture.detectChanges();
+
+    let elements = element.querySelectorAll('.sort-pf .sort-field');
     expect(elements.length).toBe(4);
-  });
+  }));
 
   it('should have default to the first sort field', () => {
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
@@ -528,43 +585,57 @@ describe('Table component - ', () => {
     expect(sortIcon).not.toBeNull();
   });
 
-  it('should update the current sort when one is selected', function() {
+  it('should update the current sort when one is selected', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
-
-    expect(results).not.toBeNull();
-    expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
-    expect(fields.length).toBe(4);
-
-    fields[2].triggerEventHandler('click', {});
+    tick();
     fixture.detectChanges();
 
-    results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    expect(results.nativeElement.textContent.trim().slice(0, 'Address'.length))
+    let results = element.querySelector('.sort-pf .dropdown-toggle');
+    let fields = element.querySelectorAll('.sort-pf .sort-field');
+
+    expect(results).not.toBeNull();
+    expect(results.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
+    expect(fields.length).toBe(4);
+
+    fields[2].click();
+    fixture.detectChanges();
+
+    results = element.querySelector('.sort-pf .dropdown-toggle');
+    expect(results.textContent.trim().slice(0, 'Address'.length))
       .toBe('Address');
-  });
+  }));
 
-  it('should update the direction icon when the sort type changes', function() {
+  it('should update the direction icon when the sort type changes', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
-    let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
+    tick();
+    fixture.detectChanges();
+
+    let results = element.querySelector('.sort-pf .dropdown-toggle');
+    let fields = element.querySelectorAll('.sort-pf .sort-field');
+    let sortIcon = element.querySelector('.sort-pf .fa-sort-alpha-asc');
 
     expect(results).not.toBeNull();
-    expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
+    expect(results.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
     expect(fields.length).toBe(4);
     expect(sortIcon).not.toBeNull();
 
-    fields[1].triggerEventHandler('click', {});
+    fields[1].click();
     fixture.detectChanges();
 
-    results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-numeric-asc'));
+    results = element.querySelector('.sort-pf .dropdown-toggle');
+    sortIcon = element.querySelector('.sort-pf .fa-sort-numeric-asc');
     expect(results).not.toBeNull();
-    expect(results.nativeElement.textContent.trim().slice(0, 'Age'.length)).toBe('Age');
+    expect(results.textContent.trim().slice(0, 'Age'.length)).toBe('Age');
     expect(sortIcon).not.toBeNull();
-  });
+  }));
 
   it('should reverse the sort direction when the direction button is clicked', function() {
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
@@ -579,20 +650,26 @@ describe('Table component - ', () => {
     expect(sortIcon).not.toBeNull();
   });
 
-  it('should notify when a new sort field is chosen', function(done) {
+  it('should notify when a new sort field is chosen', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.sort-pf .sort-field');
+    expect(fields.length).toBe(4);
 
     comp.onSortChange.subscribe((data: SortEvent) => {
       expect(data.field).toBe(config.toolbarConfig.sortConfig.fields[1]);
-      done();
     });
 
-    expect(fields.length).toBe(4);
-
-    fields[1].triggerEventHandler('click', {});
+    fields[1].click();
     fixture.detectChanges();
-  });
+    tick();
+  }));
 
   it('should notify when the sort direction changes', function(done) {
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
@@ -681,26 +758,46 @@ describe('Table component - ', () => {
     expect(fields.length).toBe(2);
   });
 
-  it('should have correct number of secondary actions', function() {
+  it('should have correct number of secondary actions', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.toolbar-actions button.dropdown-toggle');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.toolbar-actions .secondary-action');
     expect(fields.length).toBe(6);
-  });
+  }));
 
-  it('should have correct number of separators', function() {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .divider'));
-    expect(fields.length).toBe(1);
-  });
+  it('should have correct number of separators', fakeAsync(function() {
+    const element = fixture.nativeElement;
 
-  it('should correctly disable actions', function() {
+    let button = element.querySelector('.toolbar-actions button.dropdown-toggle');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .disabled'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.toolbar-actions .divider');
     expect(fields.length).toBe(1);
-  });
+  }));
+
+  it('should correctly disable actions', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.toolbar-actions .dropdown-kebab-pf button.dropdown-toggle');
+    button.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.toolbar-actions .disabled');
+    expect(fields.length).toBe(1);
+  }));
 
   it('should not show more actions menu when there are no more actions', function() {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     let menus = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .fa-ellipsis-v'));
     expect(menus.length).toBe(1);
 
@@ -711,46 +808,63 @@ describe('Table component - ', () => {
     expect(menus.length).toBe(0);
   });
 
-  it('should call the action function with the appropriate action when an action is clicked', function(done) {
+  it('should call the action function with the appropriate action when an action is clicked',
+    fakeAsync(function() {
+      const element = fixture.nativeElement;
+
+      let button = element.querySelector('.toolbar-pf-actions .dropdown-kebab-pf button');
+      button.click();
+      fixture.detectChanges(); // Workaround to fix dropdown tests
+      tick();
+      fixture.detectChanges();
+
+      let moreActions = element.querySelectorAll(
+        '.toolbar-pf-actions .dropdown-kebab-pf .dropdown-item.secondary-action');
+      expect(moreActions.length).toBe(6);
+
+      let primaryActions = element.querySelectorAll('.toolbar-pf-actions button.primary-action');
+      expect(primaryActions.length).toBe(2);
+
+      let action: Action;
+      comp.onActionSelect.subscribe((data: Action) => {
+        action = data;
+      });
+
+      primaryActions[0].click();
+      fixture.detectChanges();
+      expect(action).toBe(config.toolbarConfig.actionConfig.primaryActions[0]);
+
+      moreActions[3].click();
+      fixture.detectChanges();
+      expect(action).toBe(config.toolbarConfig.actionConfig.moreActions[3]);
+    }));
+
+  it('should not call the action function when a disabled action is clicked', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.toolbar-pf-actions .dropdown-kebab-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
-    let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
-    expect(primaryActions.length).toBe(2);
+    tick();
+    fixture.detectChanges();
+
+    let moreActions = element.querySelectorAll(
+      '.toolbar-pf-actions .dropdown-kebab-pf .dropdown-item.secondary-action');
     expect(moreActions.length).toBe(6);
 
-    let action: Action;
-    comp.onActionSelect.subscribe((data: Action) => {
-      action = data;
-      done();
-    });
-
-    primaryActions[0].triggerEventHandler('click', {});
-    fixture.detectChanges();
-    expect(action).toBe(config.toolbarConfig.actionConfig.primaryActions[0]);
-
-    moreActions[3].triggerEventHandler('click', {});
-    fixture.detectChanges();
-    expect(action).toBe(config.toolbarConfig.actionConfig.moreActions[3]);
-  });
-
-  it('should not call the action function when a disabled action is clicked', function(done) {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
-    let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
-    let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
+    let primaryActions = element.querySelectorAll('.toolbar-pf-actions button.primary-action');
     expect(primaryActions.length).toBe(2);
-    expect(moreActions.length).toBe(6);
 
     let action: Action = null;
     comp.onActionSelect.subscribe((data: Action) => {
       action = data;
-      done();
     });
 
-    moreActions[2].triggerEventHandler('click', {});
+    moreActions[2].click();
     fixture.detectChanges();
     expect(action).toBeNull();
 
-    primaryActions[1].triggerEventHandler('click', {});
+    primaryActions[1].click();
     fixture.detectChanges();
     expect(action).toBe(config.toolbarConfig.actionConfig.primaryActions[1]);
 
@@ -758,25 +872,8 @@ describe('Table component - ', () => {
     fixture.detectChanges();
     action = null;
 
-    primaryActions[1].triggerEventHandler('click', {});
+    primaryActions[1].click();
     fixture.detectChanges();
     expect(action).toBeNull();
-  });
-
-  it('should not show action components when an action config is not supplied', function() {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
-    let primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
-    let moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
-    expect(primaryActions.length).toBe(2);
-    expect(moreActions.length).toBe(6);
-
-    config.toolbarConfig.actionConfig = undefined;
-    comp.config = config;
-    fixture.detectChanges();
-
-    primaryActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .primary-action'));
-    moreActions = fixture.debugElement.queryAll(By.css('.toolbar-pf-actions .secondary-action'));
-    expect(primaryActions.length).toBe(0);
-    expect(moreActions.length).toBe(0);
-  });
+  }));
 });
