@@ -1,0 +1,39 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>About Modal Component Example</h4>
+      <hr/>
+    </div>
+    <div class="col-sm-12">
+      <button (click)="openModal(aboutTemplate)" class="btn btn-default">Launch About Modal</button>
+      <ng-template #aboutTemplate>
+        <pfng-about-modal [config]="aboutConfig"  
+                          (onCancel)="closeModal($event)">
+          <div>
+            Custom Content
+          </div>
+        </pfng-about-modal>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/aboutmodalcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/modal/example/about-modal-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/modal/example/about-modal-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
+
