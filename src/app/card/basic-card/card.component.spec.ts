@@ -1,5 +1,7 @@
 import {
   async,
+  fakeAsync,
+  tick,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -131,21 +133,27 @@ describe('Card component - ', () => {
     expect(element.length).toBe(1);
   });
 
-  it('should call function when filter is selected', function(done) {
+  it('should call function when filter is selected', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.card-pf-time-frame-filter .dropdown-toggle');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let elements = fixture.debugElement.queryAll(By.css('.card-pf-time-frame-filter .dropdown-item'));
+    tick();
+    fixture.detectChanges();
+
+    let elements = element.querySelectorAll('.card-pf-time-frame-filter .dropdown-item');
     expect(elements.length).toBe(3);
 
     let filter: CardFilter;
     comp.onFilterSelect.subscribe((data: CardFilter) => {
       filter = data;
-      done();
     });
 
-    elements[0].triggerEventHandler('click', {});
+    elements[0].click();
     fixture.detectChanges();
     expect(filter).toBe(config.filters[0]);
-  });
+  }));
 
   it('should have an action', function() {
     let element = fixture.debugElement.queryAll(By.css('.card-pf-link-with-icon'));

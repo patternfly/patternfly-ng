@@ -1,5 +1,7 @@
 import {
   async,
+  fakeAsync,
+  tick,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -139,11 +141,18 @@ describe('Filter component - ', () => {
       });
   }));
 
-  it('should have correct number of filter fields', function() {
+  it('should have correct number of filter fields', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.filter-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.filter-field');
     expect(fields.length).toBe(5);
-  });
+  }));
 
   it('should have correct number of results', function() {
     let results = fixture.debugElement.query(By.css('h5'));
@@ -187,23 +196,34 @@ describe('Filter component - ', () => {
     expect(clearFilters).not.toBeNull();
   });
 
-  it('should add a dropdown select when a select type is chosen', function() {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
-    let filterSelect = fixture.debugElement.query(By.css('.filter-select'));
-    let fields = fixture.debugElement.queryAll(By.css('.filter-field'));
+  it('should add a dropdown select when a select type is chosen', fakeAsync(function() {
+    const element = fixture.nativeElement;
 
-    expect(filterSelect).toBeNull();
-    fields[3].triggerEventHandler('click', {});
+    let button = element.querySelector('.filter-pf button');
+    button.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
     fixture.detectChanges();
 
-    filterSelect = fixture.debugElement.query(By.css('.filter-select'));
+    let filterSelect = element.querySelector('.filter-select');
+    let fields = element.querySelectorAll('.filter-field');
+
+    expect(filterSelect).toBeNull();
+    fields[3].click();
+    fixture.detectChanges();
+
+    filterSelect = element.querySelector('.filter-select');
     expect(filterSelect).not.toBeNull();
 
-    /* Todo: ngx-bootstrap no longer renders children for this test?
-    let items = filterSelect.queryAll(By.css('li'));
+    let selectButton = element.querySelector('.filter-select button');
+    selectButton.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
+    fixture.detectChanges();
+
+    let items = element.querySelectorAll('.filter-select li');
     expect(items.length).toBe(config.fields[3].queries.length + 1); // +1 for the null value
-    */
-  });
+  }));
 
   it('should clear a filter when the close button is clicked', function() {
     let closeButtons = fixture.debugElement.queryAll(By.css('.pficon-close'));
