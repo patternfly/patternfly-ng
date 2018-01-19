@@ -200,8 +200,12 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Destroy listeners
    */
   ngOnDestroy() {
-    this.routeChangeListener.unsubscribe();
-    this.windowRef.nativeWindow.removeEventListener('resize');
+    if (this.routeChangeListener !== undefined) {
+      this.routeChangeListener.unsubscribe();
+    }
+    if (this.windowListener !== undefined) {
+      this.windowRef.nativeWindow.removeEventListener('resize', this.windowListener);
+    }
   }
 
   // Actions
