@@ -71,9 +71,8 @@ describe('Pagination component - ', () => {
 
     let button = element.querySelector('button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     expect(element.querySelector('[dropdown]').classList).toContain('open');
 
@@ -81,7 +80,7 @@ describe('Pagination component - ', () => {
     let item = element.querySelectorAll('ul.dropdown-menu > li > a');
     item[2].click();
     fixture.detectChanges();
-    
+
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     expect(comp.config.pageSize).toEqual(20);
   }));
