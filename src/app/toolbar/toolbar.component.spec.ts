@@ -208,9 +208,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.filter-field');
     expect(fields.length).toBe(4);
@@ -263,9 +262,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let filterSelect = element.querySelector('.filter-select');
     let fields = element.querySelectorAll('.filter-field');
@@ -279,9 +277,8 @@ describe('Toolbar component - ', () => {
 
     let selectButton = element.querySelector('.filter-select button');
     selectButton.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let items = element.querySelectorAll('.filter-select li');
     expect(items.length).toBe(config.filterConfig.fields[3].queries.length + 1); // +1 for the null value
@@ -358,9 +355,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let elements = element.querySelectorAll('.sort-pf .sort-field');
     expect(elements.length).toBe(4);
@@ -382,9 +378,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let results = element.querySelector('.sort-pf .dropdown-toggle');
     let fields = element.querySelectorAll('.sort-pf .sort-field');
@@ -406,9 +401,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let results = element.querySelector('.sort-pf .dropdown-toggle');
     let fields = element.querySelectorAll('.sort-pf .sort-field');
@@ -447,9 +441,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.sort-pf .sort-field');
     expect(fields.length).toBe(4);
@@ -555,9 +548,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.toolbar-actions button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.toolbar-actions .secondary-action');
     expect(fields.length).toBe(6);
@@ -568,9 +560,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.toolbar-actions button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.toolbar-actions .divider');
     expect(fields.length).toBe(1);
@@ -581,9 +572,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.toolbar-actions .dropdown-kebab-pf button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.toolbar-actions .disabled');
     expect(fields.length).toBe(1);
@@ -606,9 +596,8 @@ describe('Toolbar component - ', () => {
 
       let button = element.querySelector('.toolbar-pf-actions .dropdown-kebab-pf button');
       button.click();
-      fixture.detectChanges(); // Workaround to fix dropdown tests
       tick();
-      fixture.detectChanges();
+      fixture.detectChanges(); // Workaround to fix dropdown tests
 
       let moreActions = element.querySelectorAll(
         '.toolbar-pf-actions .dropdown-kebab-pf .dropdown-item.secondary-action');
@@ -636,9 +625,8 @@ describe('Toolbar component - ', () => {
 
     let button = element.querySelector('.toolbar-pf-actions .dropdown-kebab-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let moreActions = element.querySelectorAll(
       '.toolbar-pf-actions .dropdown-kebab-pf .dropdown-item.secondary-action');
@@ -646,7 +634,7 @@ describe('Toolbar component - ', () => {
 
     let primaryActions = element.querySelectorAll('.toolbar-pf-actions button.primary-action');
     expect(primaryActions.length).toBe(2);
-    
+
     let action: Action = null;
     comp.onActionSelect.subscribe((data: Action) => {
       action = data;
