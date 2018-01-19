@@ -62,9 +62,8 @@ describe('Sort component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let elements = element.querySelectorAll('.sort-pf .sort-field');
     expect(elements.length).toBe(4);
@@ -86,9 +85,8 @@ describe('Sort component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown testsv
 
     let results = element.querySelector('.sort-pf .dropdown-toggle');
     let fields = element.querySelectorAll('.sort-pf .sort-field');
@@ -110,9 +108,8 @@ describe('Sort component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let results = element.querySelector('.sort-pf .dropdown-toggle');
     let fields = element.querySelectorAll('.sort-pf .sort-field');
@@ -151,9 +148,8 @@ describe('Sort component - ', () => {
 
     let button = element.querySelector('.sort-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.sort-pf .sort-field');
     expect(fields.length).toBe(4);
