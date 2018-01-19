@@ -1,5 +1,7 @@
 import {
   async,
+  fakeAsync,
+  tick,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -90,26 +92,46 @@ describe('Action component - ', () => {
     expect(fields.length).toBe(2);
   });
 
-  it('should have correct number of secondary actions', function() {
+  it('should have correct number of secondary actions', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('button.dropdown-toggle');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.secondary-action'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.secondary-action');
     expect(fields.length).toBe(6);
-  });
+  }));
 
-  it('should have correct number of separators', function() {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.divider'));
-    expect(fields.length).toBe(1);
-  });
+  it('should have correct number of separators', fakeAsync(function() {
+    const element = fixture.nativeElement;
 
-  it('should correctly disable actions', function() {
+    let button = element.querySelector('button.dropdown-toggle');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.disabled'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.divider');
     expect(fields.length).toBe(1);
-  });
+  }));
+
+  it('should correctly disable actions', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('button.dropdown-toggle');
+    button.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.disabled');
+    expect(fields.length).toBe(1);
+  }));
 
   it('should not show more actions menu when there are no more actions', function() {
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     let menus = fixture.debugElement.queryAll(By.css('.fa-ellipsis-v'));
     expect(menus.length).toBe(1);
 
@@ -120,46 +142,59 @@ describe('Action component - ', () => {
     expect(menus.length).toBe(0);
   });
 
-  it('should call the action function with the appropriate action when an action is clicked', function(done) {
+  it('should call the action function with the appropriate action when an action is clicked',
+      fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('button.dropdown-toggle');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let primaryActions = fixture.debugElement.queryAll(By.css('.primary-action'));
-    let moreActions = fixture.debugElement.queryAll(By.css('.secondary-action'));
+    tick();
+    fixture.detectChanges();
+
+    let primaryActions = element.querySelectorAll('.primary-action');
+    let moreActions = element.querySelectorAll('.secondary-action');
     expect(primaryActions.length).toBe(2);
     expect(moreActions.length).toBe(6);
 
     let action: Action;
     comp.onActionSelect.subscribe((data: Action) => {
       action = data;
-      done();
     });
 
-    primaryActions[0].triggerEventHandler('click', {});
+    primaryActions[0].click();
     fixture.detectChanges();
     expect(action).toBe(config.primaryActions[0]);
 
-    moreActions[3].triggerEventHandler('click', {});
+    moreActions[3].click();
     fixture.detectChanges();
     expect(action).toBe(config.moreActions[3]);
-  });
+  }));
 
-  it('should not call the action function when a disabled action is clicked', function(done) {
+  it('should not call the action function when a disabled action is clicked', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('button.dropdown-toggle');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let primaryActions = fixture.debugElement.queryAll(By.css('.primary-action'));
-    let moreActions = fixture.debugElement.queryAll(By.css('.secondary-action'));
+    tick();
+    fixture.detectChanges();
+
+    let primaryActions = element.querySelectorAll('.primary-action');
+    let moreActions = element.querySelectorAll('.secondary-action');
     expect(primaryActions.length).toBe(2);
     expect(moreActions.length).toBe(6);
 
     let action: Action = null;
     comp.onActionSelect.subscribe((data: Action) => {
       action = data;
-      done();
     });
 
-    moreActions[2].triggerEventHandler('click', {});
+    moreActions[2].click();
     fixture.detectChanges();
     expect(action).toBeNull();
 
-    primaryActions[1].triggerEventHandler('click', {});
+    primaryActions[1].click();
     fixture.detectChanges();
     expect(action).toBe(config.primaryActions[1]);
 
@@ -167,8 +202,8 @@ describe('Action component - ', () => {
     fixture.detectChanges();
     action = null;
 
-    primaryActions[1].triggerEventHandler('click', {});
+    primaryActions[1].click();
     fixture.detectChanges();
     expect(action).toBeNull();
-  });
+  }));
 });
