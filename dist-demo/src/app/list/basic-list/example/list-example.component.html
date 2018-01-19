@@ -1,0 +1,22 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>List Component Example</h4>
+      <hr>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <list-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></list-basic-example>
+    </tab>
+    <tab heading="Compound Expansion" (select)="tabSelected($event)">
+      <list-compound-example *ngIf="activeTab === 'Compound Expansion'"></list-compound-example>
+    </tab>
+    <tab heading="Pinning" (select)="tabSelected($event)">
+      <list-pin-example *ngIf="activeTab === 'Pinning'"></list-pin-example>
+    </tab>
+    <tab heading="Heading" (select)="tabSelected($event)">
+      <list-heading-example *ngIf="activeTab === 'Heading'"></list-heading-example>
+    </tab>
+  </tabset>
+</div>
