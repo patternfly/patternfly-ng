@@ -1,5 +1,7 @@
 import {
   async,
+  fakeAsync,
+  tick,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -55,11 +57,18 @@ describe('Sort component - ', () => {
       });
   }));
 
-  it('should have correct number of sort fields', () => {
+  it('should have correct number of sort fields', fakeAsync(() => {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let elements = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    tick();
+    fixture.detectChanges();
+
+    let elements = element.querySelectorAll('.sort-pf .sort-field');
     expect(elements.length).toBe(4);
-  });
+  }));
 
   it('should have default to the first sort field', () => {
     let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
@@ -72,44 +81,57 @@ describe('Sort component - ', () => {
     expect(sortIcon).not.toBeNull();
   });
 
-  it('should update the current sort when one is selected', function() {
+  it('should update the current sort when one is selected', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
-
-    expect(results).not.toBeNull();
-    expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
-    expect(fields.length).toBe(4);
-
-    fields[2].triggerEventHandler('click', {});
+    tick();
     fixture.detectChanges();
 
-    results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    expect(results.nativeElement.textContent.trim().slice(0, 'Address'.length))
+    let results = element.querySelector('.sort-pf .dropdown-toggle');
+    let fields = element.querySelectorAll('.sort-pf .sort-field');
+
+    expect(results).not.toBeNull();
+    expect(results.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
+    expect(fields.length).toBe(4);
+
+    fields[2].click();
+    fixture.detectChanges();
+
+    results = element.querySelector('.sort-pf .dropdown-toggle');
+    expect(results.textContent.trim().slice(0, 'Address'.length))
       .toBe('Address');
-  });
+  }));
 
-  it('should update the direction icon when the sort type changes', function() {
+  it('should update the direction icon when the sort type changes', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
-    let sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-alpha-asc'));
+    tick();
+    fixture.detectChanges();
+
+    let results = element.querySelector('.sort-pf .dropdown-toggle');
+    let fields = element.querySelectorAll('.sort-pf .sort-field');
+    let sortIcon = element.querySelector('.sort-pf .fa-sort-alpha-asc');
 
     expect(results).not.toBeNull();
-    expect(results.nativeElement.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
+    expect(results.textContent.trim().slice(0, 'Name'.length)).toBe('Name');
     expect(fields.length).toBe(4);
     expect(sortIcon).not.toBeNull();
 
-    fields[1].triggerEventHandler('click', {});
+    fields[1].click();
     fixture.detectChanges();
 
-    results = fixture.debugElement.query(By.css('.sort-pf .dropdown-toggle'));
-    sortIcon = fixture.debugElement.query(By.css('.sort-pf .fa-sort-numeric-asc'));
+    results = element.querySelector('.sort-pf .dropdown-toggle');
+    sortIcon = element.querySelector('.sort-pf .fa-sort-numeric-asc');
     expect(results).not.toBeNull();
-    expect(results.nativeElement.textContent.trim().slice(0, 'Age'.length)).toBe('Age');
+    expect(results.textContent.trim().slice(0, 'Age'.length)).toBe('Age');
     expect(sortIcon).not.toBeNull();
-
-  });
+  }));
 
   it('should reverse the sort direction when the direction button is clicked', function() {
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
@@ -124,23 +146,28 @@ describe('Sort component - ', () => {
     expect(sortIcon).not.toBeNull();
   });
 
-  it('should notify when a new sort field is chosen', function(done) {
+  it('should notify when a new sort field is chosen', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.sort-pf button');
+    button.click();
     fixture.detectChanges(); // Workaround to fix dropdown tests
-    let fields = fixture.debugElement.queryAll(By.css('.sort-pf .sort-field'));
+    tick();
+    fixture.detectChanges();
+
+    let fields = element.querySelectorAll('.sort-pf .sort-field');
+    expect(fields.length).toBe(4);
 
     comp.onChange.subscribe((data: SortEvent) => {
       expect(data.field).toBe(config.fields[1]);
-      done();
     });
 
-    expect(fields.length).toBe(4);
-
-    fields[1].triggerEventHandler('click', {});
+    fields[1].click();
     fixture.detectChanges();
-  });
+    tick();
+  }));
 
   it('should notify when the sort direction changes', function(done) {
-
     let sortButton = fixture.debugElement.query(By.css('.sort-pf .btn.btn-link'));
 
     comp.onChange.subscribe((data: SortEvent) => {
