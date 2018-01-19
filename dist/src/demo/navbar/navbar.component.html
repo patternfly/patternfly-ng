@@ -1,0 +1,8 @@
+<navbar-top [navItem]="navItem"
+            (onNavItemSelect)="navToItem($event)"
+            (onNavbarToggle)="toggleNavbar()"></navbar-top>
+<navbar-side [navItem]="navItem" #navbarSide
+             [navPage]="navPage"
+             [navbarOpen]="navbarOpen"
+             (onNavItemSelect)="navToItem($event)"
+             (onNavPageSelect)="navToPage($event)"></navbar-side>
