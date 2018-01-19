@@ -1,0 +1,168 @@
+<pfng-wizard #wizard
+             [config]="wizardConfig"
+             (onCancel)="wizardExample.closeModal($event)"
+             (onNext)="nextClicked($event)"
+             (onStepChange)="stepChanged($event)">
+  <pfng-wizard-step [config]="step1Config">
+    <!-- Step 1A: Details -->
+    <pfng-wizard-substep [config]="step1aConfig" [reviewTemplate]="step1aReviewTemplate">
+      <form class="form-horizontal" *ngIf="fetchComplete">
+        <div class="form-group required">
+          <label class="col-sm-2 control-label required-pf" for="name">Name</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="name" name="name" type="text" required
+                   [(ngModel)]="data.name"
+                   (ngModelChange)="updateName()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="description">Description (Optional)</label>
+          <div class="col-sm-10">
+                      <textarea class="form-control" id="description" name="description" rows="2"
+                                [(ngModel)]="data.description"></textarea>
+          </div>
+        </div>
+      </form>
+      <div class="wizard-pf-contents" *ngIf="!fetchComplete">
+        <div class="wizard-pf-process blank-slate-pf">
+          <div class="spinner spinner-lg blank-slate-pf-icon"></div>
+          <h3 class="blank-slate-pf-main-action">Fetching data...</h3>
+          <p class="blank-slate-pf-secondary-action">Lorem ipsum dolor sit amet, porta at suspendisse ac, ut wisi vivamus, lorem sociosqu eget nunc amet. </p>
+        </div>
+      </div>
+    </pfng-wizard-substep>
+    <!-- Step 1B: Settings -->
+    <pfng-wizard-substep [config]="step1bConfig" [reviewTemplate]="step1bReviewTemplate">
+      <form class="form-horizontal">
+        <div class="form-group required">
+          <label class="col-sm-2 control-label" for="lorem">Lorem</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="lorem" name="lorem" type="text"
+                   [(ngModel)]="data.lorem">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="ipsum">Ipsum</label>
+          <div class="col-sm-10">
+                      <textarea class="form-control" id="ipsum" name="ipsum" rows="2"
+                                [(ngModel)]="data.ipsum"></textarea>
+          </div>
+        </div>
+      </form>
+    </pfng-wizard-substep>
+  </pfng-wizard-step>
+  <pfng-wizard-step [config]="step2Config">
+    <!-- Step 2A: Details -->
+    <pfng-wizard-substep [config]="step2aConfig" [reviewTemplate]="step2aReviewTemplate">
+      <form class="form-horizontal">
+        <div class="form-group required">
+          <label class="col-sm-2 control-label" for="aliquam">Aliquam</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="aliquam" name="aliquam" type="text"
+                   [(ngModel)]="data.aliquam">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="fermentum">Fermentum</label>
+          <div class="col-sm-10">
+                      <textarea class="form-control" id="fermentum" name="fermentum" rows="2"
+                                [(ngModel)]="data.fermentum"></textarea>
+          </div>
+        </div>
+      </form>
+    </pfng-wizard-substep>
+    <!-- Step 2B: Settings -->
+    <pfng-wizard-substep [config]="step2bConfig" [reviewTemplate]="step2bReviewTemplate">
+      <form class="form-horizontal">
+        <div class="form-group required">
+          <label class="col-sm-2 control-label" for="consectetur">Consectetur</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="consectetur" name="consectetur" type="text"
+                   [(ngModel)]="data.consectetur">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="ipsum">Adipiscing</label>
+          <div class="col-sm-10">
+                      <textarea class="form-control" id="adipiscing" name="adipiscing" rows="2"
+                                [(ngModel)]="data.adipiscing"></textarea>
+          </div>
+        </div>
+      </form>
+    </pfng-wizard-substep>
+  </pfng-wizard-step>
+  <pfng-wizard-step [config]="step3Config">
+    <!-- Step 3A: Review -->
+    <pfng-wizard-substep [config]="step3aConfig">
+      <pfng-wizard-review></pfng-wizard-review>
+    </pfng-wizard-substep>
+    <!-- Step 3B: Deploy -->
+    <pfng-wizard-substep [config]="step3bConfig" (onShow)="startDeploy()">
+      <div class="wizard-pf-contents">
+        <div class="wizard-pf-process blank-slate-pf" *ngIf="!deployComplete">
+          <div class="spinner spinner-lg blank-slate-pf-icon"></div>
+          <h3 class="blank-slate-pf-main-action">Deployment in progress</h3>
+          <p class="blank-slate-pf-secondary-action">Lorem ipsum dolor sit amet, porta at suspendisse ac, ut wisi vivamus, lorem sociosqu eget nunc amet. </p>
+        </div>
+        <div class="wizard-pf-complete blank-slate-pf" *ngIf="deployComplete">
+          <div class="wizard-pf-success-icon"><span class="glyphicon glyphicon-ok-circle"></span></div>
+          <h3 class="blank-slate-pf-main-action">Deployment was successful</h3>
+          <p class="blank-slate-pf-secondary-action">Lorem ipsum dolor sit amet, porta at suspendisse ac, ut wisi vivamus, lorem sociosqu eget nunc amet. </p>
+          <button type="button" class="btn btn-lg btn-primary">View Deployment</button>
+        </div>
+      </div>
+    </pfng-wizard-substep>
+  </pfng-wizard-step>
+</pfng-wizard>
+<!-- Step 1A: Details -->
+<ng-template #step1aReviewTemplate>
+  <form class="form">
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Name:</span>
+      <span class="wizard-pf-review-item-value">{{data.name}}</span>
+    </div>
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Description:</span>
+      <span class="wizard-pf-review-item-value">{{data.description}}</span>
+    </div>
+  </form>
+</ng-template>
+<!-- Step 1B: Settings -->
+<ng-template #step1bReviewTemplate>
+  <form class="form">
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Lorem:</span>
+      <span class="wizard-pf-review-item-value">{{data.lorem}}</span>
+    </div>
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Ipsum:</span>
+      <span class="wizard-pf-review-item-value">{{data.ipsum}}</span>
+    </div>
+  </form>
+</ng-template>
+<!-- Step 2A: Details -->
+<ng-template #step2aReviewTemplate>
+  <form class="form">
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Aliquam:</span>
+      <span class="wizard-pf-review-item-value">{{data.aliquam}}</span>
+    </div>
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Fermentum:</span>
+      <span class="wizard-pf-review-item-value">{{data.fermentum}}</span>
+    </div>
+  </form>
+</ng-template>
+<!-- Step 2B: Settings -->
+<ng-template #step2bReviewTemplate>
+  <form class="form">
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Consectetur:</span>
+      <span class="wizard-pf-review-item-value">{{data.consectetur}}</span>
+    </div>
+    <div class="wizard-pf-review-item">
+      <span class="wizard-pf-review-item-label">Adipiscing:</span>
+      <span class="wizard-pf-review-item-value">{{data.adipiscing}}</span>
+    </div>
+  </form>
+</ng-template>
