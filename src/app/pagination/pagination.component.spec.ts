@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { PaginationComponent } from './pagination.component';
 import { PaginationConfig } from './pagination-config';
@@ -26,7 +26,8 @@ describe('Pagination component - ', () => {
       imports: [
         FormsModule,
         BsDropdownModule.forRoot()],
-      declarations: [PaginationComponent]
+      declarations: [PaginationComponent],
+      providers: [BsDropdownConfig]
     })
       .compileComponents()
       .then(() => {
@@ -65,16 +66,25 @@ describe('Pagination component - ', () => {
     expect(comp.config.pageNumber).toEqual(1);
   });
 
-  it('should change page Size', () => {
-    fixture.detectChanges();
-    let button = fixture.debugElement.query(By.css('button.dropdown-toggle'));
-    button.triggerEventHandler('click', null);
+  it('should change page Size', fakeAsync(() => {
+    const element = fixture.nativeElement;
 
-    let item = fixture.debugElement.queryAll(By.css('ul.dropdown-menu > li > a'));
+    let button = element.querySelector('button');
+    button.click();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+    tick();
+    fixture.detectChanges();
+
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+
     // click on menu option with value 20
-    item[2].triggerEventHandler('click', null);
+    let item = element.querySelectorAll('ul.dropdown-menu > li > a');
+    item[2].click();
+    fixture.detectChanges();
+    
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     expect(comp.config.pageSize).toEqual(20);
-  });
+  }));
 
   it('should call the method "onPageNumberKeyup" on Enter key to change page by using input', () => {
     spyOn(comp, 'onPageNumberKeyup');
