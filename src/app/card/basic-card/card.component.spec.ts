@@ -138,9 +138,8 @@ describe('Card component - ', () => {
 
     let button = element.querySelector('.card-pf-time-frame-filter .dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let elements = element.querySelectorAll('.card-pf-time-frame-filter .dropdown-item');
     expect(elements.length).toBe(3);
