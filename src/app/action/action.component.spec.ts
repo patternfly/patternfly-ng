@@ -97,9 +97,8 @@ describe('Action component - ', () => {
 
     let button = element.querySelector('button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.secondary-action');
     expect(fields.length).toBe(6);
@@ -110,9 +109,8 @@ describe('Action component - ', () => {
 
     let button = element.querySelector('button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.divider');
     expect(fields.length).toBe(1);
@@ -123,9 +121,8 @@ describe('Action component - ', () => {
 
     let button = element.querySelector('button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.disabled');
     expect(fields.length).toBe(1);
@@ -148,9 +145,8 @@ describe('Action component - ', () => {
 
     let button = element.querySelector('button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let primaryActions = element.querySelectorAll('.primary-action');
     let moreActions = element.querySelectorAll('.secondary-action');
@@ -176,9 +172,8 @@ describe('Action component - ', () => {
 
     let button = element.querySelector('button.dropdown-toggle');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let primaryActions = element.querySelectorAll('.primary-action');
     let moreActions = element.querySelectorAll('.secondary-action');
