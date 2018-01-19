@@ -134,27 +134,26 @@ describe('Tree List component - ', () => {
    * ERROR: '[mobx] Encountered an uncaught exception that was thrown by a reaction or observer
    * component, in: 'Reaction[Autorun@175]'
    *
-   * This appears related to:
-   * https://angular2-tree.readme.io/v2.2.0/discuss/58b936ad759c201900abfdb5
-   *
-   * Update:
    * Apparently there are no plans to make angular-tree-component work with PhantomJS
    * See: https://github.com/500tech/angular-tree-component/issues/433
    *
    * "Best to shift to a more modern headless browser and not invest your time in issues with Phantom"
+   *
+   * Also see:
+   * https://angular2-tree.readme.io/v2.2.0/discuss/58b936ad759c201900abfdb5
    */
 
-   xit('Should have at least one node', function() {
+   it('Should have at least one node', function() {
      let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
      expect(elements.length).toBe(4);
    });
   
-   xit('Should have collapsed toggle', function() {
+   it('Should have collapsed toggle', function() {
      let elements = fixture.debugElement.queryAll(By.css('.tree-node-collapsed'));
      expect(elements.length).toBe(1);
    });
   
-   xit('Should have expanded toggle', function() {
+   it('Should have expanded toggle', function() {
      let elements = fixture.debugElement.queryAll(By.css('.tree-node-expanded'));
      expect(elements.length).toBe(1);
    });

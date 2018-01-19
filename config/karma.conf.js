@@ -78,7 +78,6 @@ module.exports = function(config) {
      * start these browsers
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
-/*
     browsers: [
       'Chrome'
     ],
@@ -89,7 +88,7 @@ module.exports = function(config) {
         flags: ['--no-sandbox']
       }
     },
-*/
+/*
     browsers: ['PhantomJS_custom'],
     customLaunchers: {
       'PhantomJS_custom': {
@@ -109,19 +108,17 @@ module.exports = function(config) {
       // (useful if karma exits without killing phantom)
       exitOnResourceError: true
     },
-
+*/
     /*
      * Continuous Integration mode
      * if true, Karma captures browsers, runs the tests and exits
      */
     singleRun: true
   };
-/*
+
   if (process.env.TRAVIS){
-    configuration.browsers = [
-      'ChromeTravisCi'
-    ];
+    configuration.browsers = ['ChromeTravisCi'];
   }
-*/
+
   config.set(configuration);
 };
