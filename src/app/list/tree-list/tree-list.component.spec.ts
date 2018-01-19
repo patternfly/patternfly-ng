@@ -129,8 +129,6 @@ describe('Tree List component - ', () => {
   }));
 
   /**
-   * Temporarily disabling individual tests.
-   *
    * After upgrading from 2.7.0 to 3.2.4, running more than one test generates the following exception.
    *
    * ERROR: '[mobx] Encountered an uncaught exception that was thrown by a reaction or observer
@@ -139,37 +137,25 @@ describe('Tree List component - ', () => {
    * This appears related to:
    * https://angular2-tree.readme.io/v2.2.0/discuss/58b936ad759c201900abfdb5
    *
-   * Also see:
-   * https://github.com/mobxjs/mobx/issues/462
+   * Update:
+   * Apparently there are no plans to make angular-tree-component work with PhantomJS
+   * See: https://github.com/500tech/angular-tree-component/issues/433
+   *
+   * "Best to shift to a more modern headless browser and not invest your time in issues with Phantom"
    */
-  /*
-    it('Should have at least one node', function () {
-      let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
-      expect(elements.length).toBe(2);
-    });
+
+   xit('Should have at least one node', function() {
+     let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
+     expect(elements.length).toBe(4);
+   });
   
-    it('Should have collapsed toggle', function () {
-      let elements = fixture.debugElement.queryAll(By.css('.tree-node-collapsed'));
-      expect(elements.length).toBe(1);
-    });
+   xit('Should have collapsed toggle', function() {
+     let elements = fixture.debugElement.queryAll(By.css('.tree-node-collapsed'));
+     expect(elements.length).toBe(1);
+   });
   
-    it('Should have expanded toggle', function () {
-      let elements = fixture.debugElement.queryAll(By.css('.tree-node-expanded'));
-      expect(elements.length).toBe(1);
-    });
-  */
-
-  xit('Should run consolidated tests', function() {
-    // Test 1: 'Should have at least one node'
-    let elements = fixture.debugElement.queryAll(By.css('.tree-node'));
-    expect(elements.length).toBe(4);
-
-    // Test 2: 'Should have collapsed toggle'
-    elements = fixture.debugElement.queryAll(By.css('.tree-node-collapsed'));
-    expect(elements.length).toBe(1);
-
-    // Test 3: 'Should have expanded toggle'
-    elements = fixture.debugElement.queryAll(By.css('.tree-node-expanded'));
-    expect(elements.length).toBe(1);
-  });
+   xit('Should have expanded toggle', function() {
+     let elements = fixture.debugElement.queryAll(By.css('.tree-node-expanded'));
+     expect(elements.length).toBe(1);
+   });
 });
