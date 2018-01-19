@@ -1,0 +1,53 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+        <p>This ensures the underlying ngx-datatable features can be utilized if necessary</p>
+        <pfng-table
+            [columns]="columns"
+            [config]="tableConfig"
+            [dataTableConfig]="dataTableConfig"
+            [groupHeaderTemplate]="groupHeaderTemplate"
+            [rows]="rows">
+        </pfng-table>
+        <!-- Group header template -->
+        <ng-template #groupHeaderTemplate let-group="group">
+          <b>Birth Month: {{group.value[0].birthMonth}}</b>
+        </ng-template>
+        <!-- Column templates -->
+        <ng-template #nameTemplate let-row="row">
+          <span>{{row.name}}</span>
+        </ng-template>
+        <ng-template #addressTemplate let-row="row">
+          <span>{{row.address}}</span>
+        </ng-template>
+        <ng-template #birthMonthTemplate let-row="row">
+          <span>{{row.birthMonth}}</span>
+        </ng-template>
+        <ng-template #weekDayTemplate let-row="row">
+          <span>{{row.weekDay}}</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/tablecomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/table/basic-table/example/table-group-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/table/basic-table/example/table-group-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

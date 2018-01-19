@@ -1,0 +1,24 @@
+<section class="wizard-pf-row" *ngIf="selected">
+  <div class="wizard-pf-sidebar"
+       [ngClass]="wizard?.config?.sidebarStyleClass"
+       [ngStyle]="wizard?.contentStyle"
+       *ngIf="hasSubsteps && !wizard?.config?.hideSidebar">
+    <ul class="list-group">
+      <li class="list-group-item"
+          [ngClass]="{'active': step.selected}"
+          *ngFor="let step of getEnabledSteps()">
+        <a (click)="stepClick(step)">
+          <span class="wizard-pf-substep-number">{{getDisplayNumber(step)}}</span>
+          <span class="wizard-pf-substep-title">{{step.config?.title}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="wizard-pf-main {{wizard.config?.stepStyleClass}}"
+       [ngClass]="{'pfng-wizard-single-step': !hasSubsteps || wizard?.config?.hideSidebar}"
+       [ngStyle]="wizard?.contentStyle">
+    <div class="wizard-pf-contents">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</section>
