@@ -1,0 +1,21 @@
+/**
+ * An view containing common properties
+ */
+export declare class ToolbarView {
+    /**
+     * True if view is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Style class to use for the view selector
+     */
+    iconStyleClass: string;
+    /**
+     * Unique id for the view
+     */
+    id?: string;
+    /**
+     * A tooltip for the view selector
+     */
+    tooltip?: string;
+}
