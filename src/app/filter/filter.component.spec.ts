@@ -146,9 +146,8 @@ describe('Filter component - ', () => {
 
     let button = element.querySelector('.filter-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.filter-field');
     expect(fields.length).toBe(5);
@@ -201,9 +200,8 @@ describe('Filter component - ', () => {
 
     let button = element.querySelector('.filter-pf button');
     button.click();
-    fixture.detectChanges(); // Workaround to fix dropdown tests
     tick();
-    fixture.detectChanges();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let filterSelect = element.querySelector('.filter-select');
     let fields = element.querySelectorAll('.filter-field');
