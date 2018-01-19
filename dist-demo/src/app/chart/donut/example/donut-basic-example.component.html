@@ -1,0 +1,37 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-6 text-center">
+      <label>Donut Chart</label>
+    </div>
+    <div class="col-sm-6 text-center">
+      <label>Small Donut Chart</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 text-center">
+      <pfng-chart-donut [chartData]="chartData" [config]="largeConfig"></pfng-chart-donut>
+    </div>
+    <div class="col-sm-6 text-center">
+      <pfng-chart-donut [chartData]="chartData" [config]="smallConfig"></pfng-chart-donut>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/donutcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/chart/donut/example/donut-basic-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/chart/donut/example/donut-basic-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

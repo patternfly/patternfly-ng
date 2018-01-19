@@ -1,0 +1,70 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+        <p>This ensures a custom icon can be added to the button via a template</p>
+        <pfng-action class="my-actions"
+                     [config]="actionConfig"
+                     [template]="menuTemplate"
+                     (onActionSelect)="handleAction($event)">
+          <ng-template #menuTemplate>
+            <span class="dropdown primary-action" dropdown>
+              <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
+                Menu Action<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" *dropdownMenu>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" (click)="optionSelected(1)">Option 1</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(2)">Option 2</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(3)">Option 3</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(4)">Option 4</a>
+                </li>
+              </ul>
+            </span>
+            <button class="btn btn-default primary-action" type="button" (click)="doAdd()">
+              <span class="fa fa-plus"></span>
+              Add Action
+            </button>
+          </ng-template>
+        </pfng-action>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/actioncomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/action/example/action-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/action/example/action-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
