@@ -35,6 +35,11 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   @Input() brandAlt: string;
 
   /**
+   * Container for page content
+   */
+  @Input() contentContainer: HTMLElement;
+  
+  /**
    * Boolean to indicate whether or not to show badges
    */
   @Input() showBadges: boolean;
@@ -467,6 +472,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   // Private
+
   private addClass(className: string): void {
     let element = this.elementRef.nativeElement;
     this.renderer.addClass(element, className);
@@ -478,14 +484,17 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   private initBodyElement(): void {
+    if (this.contentContainer === undefined) {
+      return;
+    }
     if (this.showBadges) {
-      this.addClass('nav-pf-vertical-with-badges');
+      this.renderer.addClass(this.contentContainer, 'nav-pf-vertical-with-badges');
     }
     if (this.persistentSecondary) {
-      this.addClass('nav-pf-persistent-secondary');
+      this.renderer.addClass(this.contentContainer, 'nav-pf-persistent-secondary');
     }
     if (this.hiddenIcons) {
-      this.addClass('hidden-icons-pf');
+      this.renderer.addClass(this.contentContainer, 'hidden-icons-pf');
     }
   }
 
@@ -524,8 +533,10 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
         this.inMobileState = true;
 
         // Set the body class to the correct state
-        this.removeClass('collapsed-nav');
-        this.addClass('hidden-nav');
+        if (this.contentContainer !== undefined) {
+          this.renderer.removeClass(this.contentContainer, 'collapsed-nav');
+          this.renderer.addClass(this.contentContainer, 'hidden-nav');
+        }
 
         // Reset the collapsed states
         this.updateSecondaryCollapsedState(false);
@@ -538,7 +549,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       this.showMobileNav = false;
 
       // Set the body class back to the default
-      this.removeClass('hidden-nav');
+      if (this.contentContainer !== undefined) {
+        this.renderer.removeClass(this.contentContainer, 'hidden-nav');
+      }
     }
 
     if (this.explicitCollapse) {
@@ -554,7 +567,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     this.navCollapsed = true;
 
     // Set the body class to the correct state
-    this.addClass('collapsed-nav');
+    if (this.contentContainer !== undefined) {
+      this.renderer.addClass(this.contentContainer, 'collapsed-nav');
+    }
 
     this.explicitCollapse = true;
   }
@@ -563,7 +578,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     this.navCollapsed = false;
 
     // Set the body class to the correct state
-    this.removeClass('collapsed-nav');
+    if (this.contentContainer !== undefined) {
+      this.renderer.removeClass(this.contentContainer, 'collapsed-nav');
+    }
 
     this.explicitCollapse = false;
 
@@ -622,10 +639,12 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
           });
         }
       });
-      if (this.activeSecondary) {
-        this.addClass('secondary-visible-pf');
-      } else {
-        this.removeClass('secondary-visible-pf');
+      if (this.contentContainer !== undefined) {
+        if (this.activeSecondary) {
+          this.renderer.addClass(this.contentContainer, 'secondary-visible-pf');
+        } else {
+          this.renderer.removeClass(this.contentContainer, 'secondary-visible-pf');
+        }
       }
     }
   }
@@ -688,7 +707,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     if (setCollapsed) {
       this.collapsedSecondaryNav = true;
 
-      this.addClass('collapsed-secondary-nav-pf');
+      if (this.contentContainer !== undefined) {
+        this.renderer.addClass(this.contentContainer, 'collapsed-secondary-nav-pf');
+      }
     } else {
       // Remove any collapsed secondary menus
       if (this.items) {
@@ -698,7 +719,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       }
       this.collapsedSecondaryNav = false;
 
-      this.removeClass('collapsed-secondary-nav-pf');
+      if (this.contentContainer !== undefined) {
+        this.renderer.removeClass(this.contentContainer, 'collapsed-secondary-nav-pf');
+      }
     }
   }
 
@@ -708,9 +731,11 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
     if (setCollapsed) {
       this.collapsedTertiaryNav = true;
-
-      this.addClass('collapsed-tertiary-nav-pf');
       this.updateSecondaryCollapsedState(false);
+
+      if (this.contentContainer !== undefined) {
+        this.renderer.addClass(this.contentContainer, 'collapsed-tertiary-nav-pf');
+      }
     } else {
       // Remove any collapsed secondary menus
       if (this.items) {
@@ -724,7 +749,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       }
       this.collapsedTertiaryNav = false;
 
-      this.removeClass('collapsed-tertiary-nav-pf');
+      if (this.contentContainer !== undefined) {
+        this.renderer.removeClass(this.contentContainer, 'collapsed-tertiary-nav-pf');
+      }
     }
   }
 }
