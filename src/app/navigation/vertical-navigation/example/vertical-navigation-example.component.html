@@ -2,6 +2,7 @@
      *ngIf="showExample">
   <pfng-vertical-navigation
       [brandAlt]="'PatternFly Ng'"
+      [contentContainer]="contentContainer"
       [hiddenIcons]="false"
       [persistentSecondary]="false"
       [pinnableMenus]="true"
@@ -40,7 +41,7 @@
       </ul>
     </div>
   </pfng-vertical-navigation>
-  <div id="contentContainer"
+  <div #contentContainer
        class="container-fluid container-cards-pf container-pf-nav-pf-vertical example-page-container nav-pf-vertical-with-badges"
        style="background-color: white;">
     <div class="row">
