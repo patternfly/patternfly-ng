@@ -62,13 +62,13 @@
     "@angular/compiler": ">=4.0.1 || >5.0.0",
     "@angular/core": ">=4.0.1 || >5.0.0",
     "@angular/forms": ">=4.0.1 || >5.0.0",
+    "patternfly": "^3.28.0",
     "typescript": ">=2.3.4",
     "rxjs": ">=5.0.1"
   },
   "dependencies": {
     "lodash": "^4.17.4",
-    "ngx-bootstrap": "1.8.0",
-    "patternfly": "^3.28.0"
+    "ngx-bootstrap": "1.8.0"
   },
   "optionalDependencies": {
     "@swimlane/ngx-datatable": "^11.1.7",
@@ -140,6 +140,7 @@
     "npm-run-all": "4.0.2",
     "nsp": "2.7.0",
     "optimize-js-plugin": "0.0.4",
+    "patternfly": "^3.28.0",
     "patternfly-eng-publish": "0.0.4",
     "patternfly-eng-release": "3.26.54",
     "phantomjs-prebuilt": "2.1.14",
