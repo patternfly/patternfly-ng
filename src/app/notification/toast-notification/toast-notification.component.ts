@@ -24,7 +24,6 @@ import { NotificationEvent } from '../notification-event';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-toast-notification',
-  styleUrls: ['./toast-notification.component.less'],
   templateUrl: './toast-notification.component.html'
 })
 export class ToastNotificationComponent implements DoCheck, OnInit {

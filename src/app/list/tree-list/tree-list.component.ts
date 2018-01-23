@@ -32,7 +32,6 @@ import { TreeListConfig } from './tree-list-config';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-tree-list',
-  styleUrls: ['./tree-list.component.less'],
   templateUrl: './tree-list.component.html'
 })
 

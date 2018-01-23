@@ -23,7 +23,6 @@ import { FilterType } from './filter-type';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-filter',
-  styleUrls: ['./filter.component.less'],
   templateUrl: './filter.component.html'
 })
 export class FilterComponent implements DoCheck, OnInit {

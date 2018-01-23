@@ -15,7 +15,6 @@ import { NotificationType } from '../notification-type';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-inline-notification',
-  styleUrls: [],
   templateUrl: './inline-notification.component.html'
 })
 export class InlineNotificationComponent {

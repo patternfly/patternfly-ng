@@ -29,7 +29,6 @@ import { ListEvent } from '../list-event';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-list',
-  styleUrls: ['./list.component.less'],
   templateUrl: './list.component.html'
 })
 export class ListComponent extends ListBase implements DoCheck, OnInit {

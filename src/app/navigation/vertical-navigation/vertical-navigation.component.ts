@@ -20,7 +20,6 @@ import { WindowReference } from '../../utilities/window.reference';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-vertical-navigation',
-  styleUrls: ['./vertical-navigation.component.less'],
   templateUrl: './vertical-navigation.component.html'
 })
 export class VerticalNavigationComponent implements OnInit, OnDestroy {

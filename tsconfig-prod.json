@@ -16,7 +16,7 @@
     "noImplicitAny": true,
     "allowUnreachableCode": false,
     "baseUrl": ".",
-    "rootDir": "build",
+    "rootDir": "build/src",
     "outDir": "dist",
     "paths": {
       "@angular/core": ["node_modules/@angular/core"],
