@@ -30,7 +30,7 @@
     ]
   },
   "files": [
-    "build/index.ts"
+    "build/src/app/index.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
