@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var dirPath = './dist/src/app';
+var dirPath = './dist/app';
 
 function copyFile(source, target) {
   var targetFile = target;

@@ -16,7 +16,6 @@ import { InfoStatusCardConfig } from './info-status-card-config';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-info-status-card',
-  styleUrls: ['./info-status-card.component.less'],
   templateUrl: './info-status-card.component.html'
 
 })

@@ -20,7 +20,6 @@ import { FilterEvent } from './filter-event';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-filter-results',
-  styleUrls: ['./filter-results.component.less'],
   templateUrl: './filter-results.component.html'
 })
 export class FilterResultsComponent implements DoCheck, OnInit {

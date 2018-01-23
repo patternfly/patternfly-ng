@@ -26,7 +26,6 @@ import { ToolbarView } from './toolbar-view';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-toolbar',
-  styleUrls: ['./toolbar.component.less'],
   templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent implements DoCheck, OnInit {

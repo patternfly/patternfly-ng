@@ -19,7 +19,6 @@ import { EmptyStateConfig } from './empty-state-config';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-empty-state',
-  styleUrls: ['./empty-state.component.less'],
   templateUrl: './empty-state.component.html'
 })
 export class EmptyStateComponent implements DoCheck, OnInit {

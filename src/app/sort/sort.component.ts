@@ -20,7 +20,6 @@ import { SortEvent } from './sort-event';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-sort',
-  styleUrls: ['./sort.component.less'],
   templateUrl: './sort.component.html'
 })
 export class SortComponent implements DoCheck, OnInit {

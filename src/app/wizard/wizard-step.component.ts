@@ -25,7 +25,6 @@ import { WizardStepConfig } from './wizard-step-config';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-wizard-step',
-  styleUrls: ['./wizard-step.component.less'],
   templateUrl: './wizard-step.component.html'
 })
 export class WizardStepComponent extends WizardBase implements OnInit, WizardStep {
