@@ -3,8 +3,8 @@
   "version": "0.0.0-semantically-released",
   "description": "A collection of PatternFly Angular components and other useful things to be shared.",
   "main": "bundles/patternfly-ng.umd.js",
-  "module": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "module": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "build": "npm-run-all --serial remove-dist ts:lint build:library build:demo copy-examples:demo",
     "build:demo": "webpack --config config/webpack.demo.js --progress --profile --bail",
@@ -15,6 +15,7 @@
     "commit": "git-cz",
     "copy-examples:demo": "gulp copy-examples",
     "minify": "uglifyjs dist/bundles/ngx-widgets.js --screw-ie8 --compress --mangle --comments --output dist/bundles/patternfly-ng.min.js",
+    "postinstall": "node src/scripts/install.js",
     "publish-travis": "node_modules/patternfly-eng-publish/script/publish-ghpages.sh -t dist-demo",
     "reinstall": "npm run clean && npm install",
     "remove-dist": "rimraf build dist dist-watch dist-demo",
@@ -112,7 +113,9 @@
     "gulp-less": "3.3.0",
     "gulp-ngc": "0.2.0",
     "gulp-replace": "0.6.1",
+    "gulp-rename": "1.2.2",
     "gulp-sourcemaps": "2.4.1",
+    "gulp-string-replace": "1.0.0",
     "gulp-stylelint": "5.0.0",
     "highlight.js": "9.12.0",
     "html-loader": "0.4.5",
@@ -178,6 +181,7 @@
     }
   },
   "files": [
-    "dist/"
+    "dist",
+    "src/scripts"
   ]
 }

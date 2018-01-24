@@ -21,7 +21,6 @@ import { FilterQuery } from './filter-query';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-filter-fields',
-  styleUrls: ['./filter-fields.component.less'],
   templateUrl: './filter-fields.component.html'
 })
 export class FilterFieldsComponent implements DoCheck, OnInit {

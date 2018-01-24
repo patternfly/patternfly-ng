@@ -12,6 +12,7 @@ var gulp = require('gulp'),
   path = require('path'),
   postcss = require('postcss'),
   replace = require('gulp-replace'),
+  rename = require('gulp-rename');
   sourcemaps = require('gulp-sourcemaps'),
   stylelint = require('gulp-stylelint'),
   stylus = require('stylus');
@@ -21,18 +22,11 @@ var libraryBuild = 'build';
 var libraryDist = 'dist';
 var demoDist = 'dist-demo';
 var watchDist = 'dist-watch';
-var globalExcludes = [ '!./**/example/**', '!./**/example' ];
+var globalExcludes = [ '!./**/example/**', '!./**/example', '!./**/demo/**', '!./**/demo.*' ];
 
 /**
  * FUNCTION LIBRARY
  */
-
-function copyToBuild(srcArr) {
-  return gulp.src(srcArr.concat(globalExcludes))
-    .pipe(gulp.dest(function (file) {
-      return libraryBuild + file.base.slice(__dirname.length); // save directly to build
-    }));
-}
 
 function copyToDist(srcArr) {
   return gulp.src(srcArr.concat(globalExcludes))
@@ -55,7 +49,21 @@ function updateWatchDist() {
     .pipe(gulp.dest(watchDist));
 }
 
+// Build LESS
 function transpileLESS(src) {
+  return gulp.src(src)
+    .pipe(sourcemaps.init())
+    .pipe(lessCompiler({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(function (file) {
+      return __dirname + file.base.slice(__dirname.length);
+    }));
+}
+
+// Build and minify LESS separately
+function transpileMinifyLESS(src) {
   return gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(lessCompiler({
@@ -64,23 +72,14 @@ function transpileLESS(src) {
     .pipe(cssmin().on('error', function(err) {
       console.log(err);
     }))
+    .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(function (file) {
       return __dirname + file.base.slice(__dirname.length);
     }));
 }
 
-function minifyCSS(file) {
-  try {
-    var minifiedFile = stylus.render(file);
-    minifiedFile = postcss([autoprefixer]).process(minifiedFile).css;
-    minifiedFile = csso.minify(minifiedFile).css;
-    return minifiedFile;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
+// Minify HTML templates
 function minifyTemplate(file) {
   try {
     var minifiedFile = htmlMinifier.minify(file, {
@@ -110,25 +109,31 @@ gulp.task('lint-css', function lintCssTask() {
     }));
 });
 
-//Less compilation and minifiction - adopted from sass compilation, needs work
+// Less compilation
 gulp.task('transpile-less', ['lint-css'], function () {
-  return transpileLESS(appSrc + '/**/*.less');
+  return transpileLESS(appSrc + '/assets/stylesheets/*.less');
 });
 
-// Put the files back to normal
+// Less compilation and minifiction
+gulp.task('min-css', ['transpile-less'], function () {
+  return transpileMinifyLESS(appSrc + '/assets/stylesheets/*.less');
+});
+
+// Put the files back to normal 'transpile',
 gulp.task('build',
   [
     'transpile',
     'copy-css',
-    'copy-html',
-    'copy-static-assets'
+    'copy-less'
   ]);
 
-gulp.task('transpile', ['copy-root', 'inline-template'], function () {
+// Build the components
+gulp.task('transpile', ['inline-template'], function () {
   return ngc('tsconfig-prod.json');
 });
 
-gulp.task('inline-template', ['transpile-less'], function () {
+// Inline HTML templates in component classes
+gulp.task('inline-template', function () {
   return gulp.src(['./src/app/**/*.ts'].concat(globalExcludes), {base: './'})
     .pipe(replace(/templateUrl.*\'/g, function (matched) {
       var fileName = matched.match(/\/.*html/g).toString();
@@ -136,47 +141,42 @@ gulp.task('inline-template', ['transpile-less'], function () {
       var fileContent = fs.readFileSync(dirName + fileName, "utf8");
       return 'template: \`' + minifyTemplate(fileContent) + '\`';
     }))
-    .pipe(replace(/styleUrls.*\'/g, function (matched) {
-      var fileName = matched.match(/\/.*less/g).toString().replace('.less', '.css');
-      var dirName = this.file.relative.substring(0, this.file.relative.lastIndexOf('/'));
-      var fileContent = fs.readFileSync(dirName + fileName, "utf8");
-      return 'styles: [\`' + minifyCSS(fileContent) + '\`';
+    .pipe(gulp.dest(libraryBuild));
+});
+
+// Copy CSS to dist/css
+gulp.task('copy-css', ['min-css'], function () {
+  return gulp.src(['./src/assets/stylesheets/*.css'], {base: './src/assets/stylesheets'})
+    .pipe(gulp.dest(function (file) {
+      return libraryDist + '/css' + file.base.slice(__dirname.length); // save directly to dist
+    }));
+});
+
+// Copy component LESS to dist/less in a flattened directory
+gulp.task('copy-less', ['copy-assets-less'], function () {
+  return gulp.src(['./src/app/**/*.less'].concat(globalExcludes))
+    .pipe(rename({dirname: ''}))
+    .pipe(gulp.dest(libraryDist + '/less'));
+});
+
+// Copy asset LESS to dist/less and replace relative paths for flattened directory
+gulp.task('copy-assets-less', function () {
+  return gulp.src(['./src/assets/stylesheets/*.less'])
+    .pipe(replace(/\.\.\/.\.\/.\.\//g, function () {
+      return '../../../../';
     }))
-    .pipe(gulp.dest(libraryBuild));
+    .pipe(replace(/@import '\.\.\/\.\.\/.*\//g, function () {
+      return '@import \'';
+    }))
+    .pipe(rename({dirname: ''}))
+    .pipe(gulp.dest(libraryDist + '/less'));
 });
 
-gulp.task('copy-root', function () {
-  return gulp.src([
-    'index.ts',
-    'patternfly-ng.module.ts'
-  ])
-    .pipe(gulp.dest(libraryBuild));
-});
-
-gulp.task('copy-html', function () {
-  return copyToDist([
-    'src/**/*.html'
-  ]);
-});
-
-gulp.task('copy-css', function () {
-  return copyToDist([
-    'src/**/*.css'
-  ]);
-});
-
+// Copy example files to dist-demo (e.g., HTML and Typscript for docs)
 gulp.task('copy-examples', function () {
   return copyToDemo([
     'src/**/example/*.*'
   ]);
-});
-
-gulp.task('copy-static-assets', function () {
-  return gulp.src([
-    'LICENSE',
-    'README.md'
-  ])
-    .pipe(gulp.dest(libraryDist));
 });
 
 gulp.task('copy-watch', ['post-transpile'], function() {
@@ -191,7 +191,7 @@ gulp.task('watch', ['build', 'copy-watch-all'], function () {
   gulp.watch([appSrc + '/app/**/*.ts', '!' + appSrc + '/app/**/*.spec.ts'], ['transpile', 'post-transpile', 'copy-watch']).on('change', function (e) {
     console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
   });
-  gulp.watch([appSrc + '/app/**/*.less'], ['transpile-less']).on('change', function (e) {
+  gulp.watch([appSrc + '/app/**/*.less'], ['min-less']).on('change', function (e) {
     console.log(e.path + ' has been changed. Updating.');
     transpileLESS(e.path);
     updateWatchDist();

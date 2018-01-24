@@ -21,7 +21,6 @@ import { WizardStep } from './wizard-step';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-wizard',
-  styleUrls: ['./wizard.component.less'],
   templateUrl: './wizard.component.html'
 })
 export class WizardComponent extends WizardBase implements DoCheck, OnInit {

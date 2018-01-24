@@ -54,6 +54,7 @@ import { NotificationModule } from 'patternfly-ng';
       "styles": [
          "../node_modules/patternfly/dist/css/patternfly.min.css",
          "../node_modules/patternfly/dist/css/patternfly-additions.min.css",
+         "../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
         "styles.css",
       ],
 ```

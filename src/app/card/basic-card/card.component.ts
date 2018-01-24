@@ -24,7 +24,6 @@ import { CardFilterPosition } from '../card-filter/card-filter-position';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-card',
-  styleUrls: ['./card.component.less'],
   templateUrl: './card.component.html'
 })
 export class CardComponent extends CardBase implements DoCheck, OnInit {

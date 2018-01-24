@@ -55,7 +55,6 @@ import { clone, cloneDeep, defaults, isEqual } from 'lodash';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-table',
-  styleUrls: ['./table.component.less'],
   templateUrl: './table.component.html'
 })
 export class TableComponent extends TableBase implements AfterViewInit, DoCheck, OnInit {

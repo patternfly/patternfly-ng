@@ -16,7 +16,6 @@ import { NotificationEvent } from '../notification-event';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-toast-notification-list',
-  styleUrls: ['./toast-notification-list.component.less'],
   templateUrl: './toast-notification-list.component.html'
 })
 export class ToastNotificationListComponent implements OnInit {
