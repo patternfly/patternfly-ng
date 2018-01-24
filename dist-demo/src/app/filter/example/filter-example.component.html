@@ -1,0 +1,22 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Filter Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <filter-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></filter-basic-example>
+    </tab>
+    <tab heading="Type Ahead" (select)="tabSelected($event)">
+      <filter-type-ahead-example *ngIf="activeTab === 'Type Ahead'"></filter-type-ahead-example>
+    </tab>
+    <tab heading="Save" (select)="tabSelected($event)">
+      <filter-save-example *ngIf="activeTab === 'Save'"></filter-save-example>
+    </tab>
+    <tab heading="Lazy Load" (select)="tabSelected($event)">
+      <filter-lazy-example *ngIf="activeTab === 'Lazy Load'"></filter-lazy-example>
+    </tab>
+  </tabset>
+</div>
