@@ -73,7 +73,7 @@
   },
   "optionalDependencies": {
     "@swimlane/ngx-datatable": "^11.1.7",
-    "angular-tree-component": "^6.0.0",
+    "angular-tree-component": "^7.0.0",
     "c3": "^0.4.15",
     "ng2-dragula": "^1.5.0"
   },

@@ -15,185 +15,188 @@ import { WindowReference } from '../../utilities/window.reference';
 describe('Vertical Navigation component - ', () => {
   let comp: VerticalNavigationComponent;
   let fixture: ComponentFixture<VerticalNavigationComponent>;
-  let navigationItems: NavigationItemConfig[] = [
-    {
-      title: 'Dashboard',
-      iconStyleClass: 'fa fa-dashboard',
-      url: '#/dashboard'
-    },
-    {
-      title: 'Dolor',
-      iconStyleClass: 'fa fa-shield',
-      url: '#/dolor',
-      badges: [
-        {
-          count: 1283,
-          tooltip: 'Total number of items'
-        }
-      ]
-    },
-    {
-      title: 'Ipsum',
-      iconStyleClass: 'fa fa-space-shuttle',
-      activeOnLoad: true,
-      children: [
-        {
-          title: 'Intellegam',
-          activeOnLoad: true,
-          children: [
-            {
-              title: 'Recteque',
-              url: '#/ipsum/intellegam/recteque',
-              badges: [
-                {
-                  count: 6,
-                  tooltip: 'Total number of error items',
-                  badgeClass: 'example-error-background'
-                }
-              ]
-            },
-            {
-              title: 'Suavitate',
-              url: '#/ipsum/intellegam/suavitate',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: 'Total number of items',
-                  badgeClass: 'example-ok-background'
-                }
-              ]
-            },
-            {
-              title: 'Vituperatoribus',
-              url: '#/ipsum/intellegam/vituperatoribus',
-              badges: [
-                {
-                  count: 18,
-                  tooltip: 'Total number of warning items',
-                  badgeClass: 'example-warning-background'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Copiosae',
-          children: [
-            {
-              title: 'Exerci',
-              url: '#/ipsum/copiosae/exerci'
-            },
-            {
-              title: 'Quaeque',
-              url: '#/ipsum/copiosae/quaeque'
-            },
-            {
-              title: 'Utroque',
-              url: '#/ipsum/copiosae/utroque'
-            }
-          ]
-        },
-        {
-          title: 'Patrioque',
-          children: [
-            {
-              title: 'Novum',
-              url: '#/ipsum/patrioque/novum'
-            },
-            {
-              title: 'Pericula',
-              url: '#/ipsum/patrioque/pericula'
-            },
-            {
-              title: 'Gubergren',
-              url: '#/ipsum/patrioque/gubergren'
-            }
-          ]
-        },
-        {
-          title: 'Accumsan',
-          url: '#/ipsum/Accumsan'
-        }
-      ]
-    },
-    {
-      title: 'Amet',
-      iconStyleClass: 'fa fa-paper-plane',
-      children: [
-        {
-          title: 'Detracto',
-          children: [
-            {
-              title: 'Delicatissimi',
-              url: '#/amet/detracto/delicatissimi'
-            },
-            {
-              title: 'Aliquam',
-              url: '#/amet/detracto/aliquam'
-            },
-            {
-              title: 'Principes',
-              url: '#/amet/detracto/principes'
-            }
-          ]
-        },
-        {
-          title: 'Mediocrem',
-          children: [
-            {
-              title: 'Convenire',
-              url: '#/amet/mediocrem/convenire'
-            },
-            {
-              title: 'Nonumy',
-              url: '#/amet/mediocrem/nonumy'
-            },
-            {
-              title: 'Deserunt',
-              url: '#/amet/mediocrem/deserunt'
-            }
-          ]
-        },
-        {
-          title: 'Corrumpit',
-          children: [
-            {
-              title: 'Aeque',
-              url: '#/amet/corrumpit/aeque'
-            },
-            {
-              title: 'Delenit',
-              url: '#/amet/corrumpit/delenit'
-            },
-            {
-              title: 'Qualisque',
-              url: '#/amet/corrumpit/qualisque'
-            }
-          ]
-        },
-        {
-          title: 'urbanitas',
-          url: '#/amet/urbanitas'
-        }
-      ]
-    },
-    {
-      title: 'Adipscing',
-      iconStyleClass: 'fa fa-graduation-cap',
-      url: '#/adipscing'
-    },
-    {
-      title: 'Lorem',
-      iconStyleClass: 'fa fa-gamepad',
-      url: '#/lorem'
-    }
-  ];
-
+  let navigationItems: NavigationItemConfig[];
   let navigateItem, clickItem;
 
-  beforeEach(async(() => {
-    navigateItem = undefined;
+  beforeEach(() => {
     clickItem = undefined;
+    navigateItem = undefined;
+    navigationItems = [
+      {
+        title: 'Dashboard',
+        iconStyleClass: 'fa fa-dashboard',
+        url: '#/dashboard'
+      },
+      {
+        title: 'Dolor',
+        iconStyleClass: 'fa fa-shield',
+        url: '#/dolor',
+        badges: [
+          {
+            count: 1283,
+            tooltip: 'Total number of items'
+          }
+        ]
+      },
+      {
+        title: 'Ipsum',
+        iconStyleClass: 'fa fa-space-shuttle',
+        activeOnLoad: true,
+        children: [
+          {
+            title: 'Intellegam',
+            activeOnLoad: true,
+            children: [
+              {
+                title: 'Recteque',
+                url: '#/ipsum/intellegam/recteque',
+                badges: [
+                  {
+                    count: 6,
+                    tooltip: 'Total number of error items',
+                    badgeClass: 'example-error-background'
+                  }
+                ]
+              },
+              {
+                title: 'Suavitate',
+                url: '#/ipsum/intellegam/suavitate',
+                badges: [
+                  {
+                    count: 0,
+                    tooltip: 'Total number of items',
+                    badgeClass: 'example-ok-background'
+                  }
+                ]
+              },
+              {
+                title: 'Vituperatoribus',
+                url: '#/ipsum/intellegam/vituperatoribus',
+                badges: [
+                  {
+                    count: 18,
+                    tooltip: 'Total number of warning items',
+                    badgeClass: 'example-warning-background'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'Copiosae',
+            children: [
+              {
+                title: 'Exerci',
+                url: '#/ipsum/copiosae/exerci'
+              },
+              {
+                title: 'Quaeque',
+                url: '#/ipsum/copiosae/quaeque'
+              },
+              {
+                title: 'Utroque',
+                url: '#/ipsum/copiosae/utroque'
+              }
+            ]
+          },
+          {
+            title: 'Patrioque',
+            children: [
+              {
+                title: 'Novum',
+                url: '#/ipsum/patrioque/novum'
+              },
+              {
+                title: 'Pericula',
+                url: '#/ipsum/patrioque/pericula'
+              },
+              {
+                title: 'Gubergren',
+                url: '#/ipsum/patrioque/gubergren'
+              }
+            ]
+          },
+          {
+            title: 'Accumsan',
+            url: '#/ipsum/Accumsan'
+          }
+        ]
+      },
+      {
+        title: 'Amet',
+        iconStyleClass: 'fa fa-paper-plane',
+        children: [
+          {
+            title: 'Detracto',
+            children: [
+              {
+                title: 'Delicatissimi',
+                url: '#/amet/detracto/delicatissimi'
+              },
+              {
+                title: 'Aliquam',
+                url: '#/amet/detracto/aliquam'
+              },
+              {
+                title: 'Principes',
+                url: '#/amet/detracto/principes'
+              }
+            ]
+          },
+          {
+            title: 'Mediocrem',
+            children: [
+              {
+                title: 'Convenire',
+                url: '#/amet/mediocrem/convenire'
+              },
+              {
+                title: 'Nonumy',
+                url: '#/amet/mediocrem/nonumy'
+              },
+              {
+                title: 'Deserunt',
+                url: '#/amet/mediocrem/deserunt'
+              }
+            ]
+          },
+          {
+            title: 'Corrumpit',
+            children: [
+              {
+                title: 'Aeque',
+                url: '#/amet/corrumpit/aeque'
+              },
+              {
+                title: 'Delenit',
+                url: '#/amet/corrumpit/delenit'
+              },
+              {
+                title: 'Qualisque',
+                url: '#/amet/corrumpit/qualisque'
+              }
+            ]
+          },
+          {
+            title: 'urbanitas',
+            url: '#/amet/urbanitas'
+          }
+        ]
+      },
+      {
+        title: 'Adipscing',
+        iconStyleClass: 'fa fa-graduation-cap',
+        url: '#/adipscing'
+      },
+      {
+        title: 'Lorem',
+        iconStyleClass: 'fa fa-gamepad',
+        url: '#/lorem'
+      }
+    ];
+  });
+
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, TooltipModule.forRoot(), RouterTestingModule],
       declarations: [VerticalNavigationComponent],
