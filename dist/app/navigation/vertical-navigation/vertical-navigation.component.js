@@ -115,12 +115,8 @@ var VerticalNavigationComponent = /** @class */ (function () {
      * Destroy listeners
      */
     VerticalNavigationComponent.prototype.ngOnDestroy = function () {
-        if (this.routeChangeListener !== undefined) {
-            this.routeChangeListener.unsubscribe();
-        }
-        if (this.windowListener !== undefined) {
-            this.windowRef.nativeWindow.removeEventListener('resize', this.windowListener);
-        }
+        this.routeChangeListener.unsubscribe();
+        this.windowRef.nativeWindow.removeEventListener('resize');
     };
     // Actions
     /**
