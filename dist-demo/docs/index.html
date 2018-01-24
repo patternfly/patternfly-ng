@@ -94,7 +94,9 @@ ng serve
 					</li>
 					<li>open <code>src/app/app.module.ts</code> and add</li>
 				</ol>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng'</span>;
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng/notification'</span>;
+<span class="hljs-comment">// Or</span>
+<span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng'</span>;
 ...
 
 <span class="hljs-meta">@NgModule</span>({
@@ -107,9 +109,10 @@ ng serve
 					<li>open <code>.angular-cli.json</code> and insert a new entry into the styles array </li>
 				</ul>
 				<pre><code class="lang-json">      &quot;styles&quot;: [
-         &quot;../node_modules/patternfly/dist/css/patternfly.min.css&quot;,
-         &quot;../node_modules/patternfly/dist/css/patternfly-additions.min.css&quot;,
-         &quot;../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css&quot;,
+
+        &quot;../node_modules/patternfly/dist/css/patternfly.min.css&quot;,
+        &quot;../node_modules/patternfly/dist/css/patternfly-additions.min.css&quot;,
+        &quot;../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css&quot;,
         &quot;styles.css&quot;,
       ],
 </code></pre>
@@ -122,6 +125,31 @@ ng serve
 &lt;/pfng-toast-notification&gt;
 </code></pre></li>
 				</ul>
+				<h3 id="optional-dependencies">Optional Dependencies</h3>
+				<ol>
+					<li><p>To enable table drag and drop, add dragula.min.css from the ng2-dragula package</p>
+					</li>
+					<li><p>open <code>.angular-cli.json</code> and insert a new entry into the styles array </p>
+					</li>
+				</ol>
+				<pre><code class="lang-json">      &quot;styles&quot;: [
+        &quot;../node_modules/dragula/dist/dragula.min.css&quot;,
+        &quot;../node_modules/patternfly/dist/css/patternfly.min.css&quot;,
+        &quot;../node_modules/patternfly/dist/css/patternfly-additions.min.css&quot;,
+        &quot;../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css&quot;,
+        &quot;styles.css&quot;,
+      ],
+</code></pre>
+				<ol>
+					<li><p>To enable charts, add patternfly-settings.js from the patternfly package</p>
+					</li>
+					<li><p>open <code>.angular-cli.json</code> and insert a new entry into the scripts array </p>
+					</li>
+				</ol>
+				<pre><code class="lang-json">      &quot;scripts&quot;: [
+        &quot;../node_modules/patternfly/dist/js/patternfly-settings.js&quot;
+      ],
+</code></pre>
 				<h2 id="-a-name-question-a-do-you-have-a-question-"><a name="question"></a> Do you have a question?</h2>
 				<ul>
 					<li>Search our <a href="https://github.com/patternfly/patternfly-ng/issues">GitHub issues</a></li>
