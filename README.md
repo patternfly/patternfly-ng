@@ -38,6 +38,8 @@ This example demonstrates using the Angular-cli to get started with PatternFly-n
 - open `src/app/app.module.ts` and add
 
 ```typescript
+import { NotificationModule } from 'patternfly-ng/notification';
+// Or
 import { NotificationModule } from 'patternfly-ng';
 ...
 
@@ -52,9 +54,10 @@ import { NotificationModule } from 'patternfly-ng';
 
 ```json
       "styles": [
-         "../node_modules/patternfly/dist/css/patternfly.min.css",
-         "../node_modules/patternfly/dist/css/patternfly-additions.min.css",
-         "../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
+
+        "../node_modules/patternfly/dist/css/patternfly.min.css",
+        "../node_modules/patternfly/dist/css/patternfly-additions.min.css",
+        "../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
         "styles.css",
       ],
 ```
@@ -67,6 +70,32 @@ import { NotificationModule } from 'patternfly-ng';
   [showClose]="'true'"
   [type]="'success'">
 </pfng-toast-notification>
+```
+
+### Optional Dependencies
+
+1. To enable table drag and drop, add dragula.min.css from the ng2-dragula package
+
+- open `.angular-cli.json` and insert a new entry into the styles array 
+
+```json
+      "styles": [
+        "../node_modules/dragula/dist/dragula.min.css",
+        "../node_modules/patternfly/dist/css/patternfly.min.css",
+        "../node_modules/patternfly/dist/css/patternfly-additions.min.css",
+        "../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
+        "styles.css",
+      ],
+```
+
+2. To enable charts, add patternfly-settings.js from the patternfly package
+
+- open `.angular-cli.json` and insert a new entry into the scripts array 
+
+```json
+      "scripts": [
+        "../node_modules/patternfly/dist/js/patternfly-settings.js"
+      ],
 ```
 
 ## <a name="question"></a> Do you have a question?
