@@ -34,8 +34,9 @@ import { TreeListExampleComponent } from '../app/list/tree-list/example/tree-lis
 import { TruncateExampleComponent } from '../app/pipe/truncate/example/truncate-example.component';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/example/wizard-example.component';
-import { VerticalNavigationExampleComponent }
-  from '../app/navigation/vertical-navigation/example/vertical-navigation-example.component';
+import { VerticalNavigationExampleComponent } from '../app/navigation/vertical-navigation/example/vertical-navigation-example.component';
+import { ApplicationLauncherExampleComponent } from '../app/navigation/examples/application-launcher-example.component';
+
 
 const routes: Routes = [{
     path: '',
@@ -68,14 +69,20 @@ const routes: Routes = [{
   }, {
     path: 'aboutmodal',
     component: AboutModalExampleComponent
-  }, {
-    path: 'navigation',
+  },
+  {
+    path: 'verticalnavigation',
     component: VerticalNavigationExampleComponent,
     children: [{
         path: '**',
         component: SampleComponent,
       }]
-  }, {
+  },
+  {
+    path: 'applauncher',
+    component: ApplicationLauncherExampleComponent
+  },
+  {
     path: 'notificationservice',
     component: NotificationServiceExampleComponent
   }, {
