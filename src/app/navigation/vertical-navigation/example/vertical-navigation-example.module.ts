@@ -7,7 +7,9 @@ import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 import { NavigationModule } from '../../navigation.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { VerticalNavigationExampleComponent } from './vertical-navigation-example.component';
+import { ApplicationLauncherExampleComponent } from './application-launcher-example.component';
 import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   imports: [
@@ -18,8 +20,8 @@ import { RouterModule } from '@angular/router';
     NavigationModule,
     TabsModule.forRoot()
   ],
-  declarations: [VerticalNavigationExampleComponent],
-  exports: [VerticalNavigationExampleComponent],
+  declarations: [VerticalNavigationExampleComponent, ApplicationLauncherExampleComponent],
+  exports: [VerticalNavigationExampleComponent, ApplicationLauncherExampleComponent],
   providers: [TabsetConfig]
 })
 export class VerticalNavigationExampleModule {
