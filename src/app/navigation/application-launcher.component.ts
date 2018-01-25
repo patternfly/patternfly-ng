@@ -1,19 +1,10 @@
 import {
     Component, ElementRef, EventEmitter,
-    Input, Output, Renderer2, TemplateRef,
-    ViewEncapsulation
+    Input, OnInit, Output, Renderer2,
+    TemplateRef, ViewEncapsulation
 } from '@angular/core';
 
 import { NavigationItemConfig } from './navigation-item-config';
-
-
-
-/**
- * Application Launcher component
- * @param {boolean=} isDisabled Disable the application launcher button, default: false
- * @param {boolean=} isList Display items as a list instead of a grid, default: false
- * @param {boolean=} hiddenIcons Flag to not show icons on the launcher, default: false
- */
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -22,7 +13,7 @@ import { NavigationItemConfig } from './navigation-item-config';
     templateUrl: './application-launcher.component.html'
 })
 
-export class ApplicationLauncherComponent {
+export class ApplicationLauncherComponent  implements OnInit {
 
     /**
      *  Use a custom label for the launcher, default: Application Launcher
@@ -54,13 +45,16 @@ export class ApplicationLauncherComponent {
     @Input() items: NavigationItemConfig[];
 
 
-    /** 
+    /**
      * The default constructor
      */
     constructor() {
 
     }
 
+    ngOnInit(): void {
+
+    }
 
 
 }
