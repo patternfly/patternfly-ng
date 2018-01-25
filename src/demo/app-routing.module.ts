@@ -32,6 +32,7 @@ import { TruncateExampleComponent } from '../app/pipe/truncate/examples/truncate
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/examples/wizard-example.component';
 import { VerticalNavigationExampleComponent } from '../app/navigation/examples/vertical-navigation-example.component';
+import { ApplicationLauncherExampleComponent } from '../app/navigation/examples/application-launcher-example.component';
 
 const routes: Routes = [{
     path: '',
@@ -64,14 +65,20 @@ const routes: Routes = [{
   }, {
     path: 'aboutmodal',
     component: AboutModalExampleComponent
-  }, {
-    path: 'navigation',
+  },
+  {
+    path: 'verticalnavigation',
     component: VerticalNavigationExampleComponent,
     children: [{
         path: '**',
         component: SampleComponent,
       }]
-  }, {
+  },
+  {
+    path: 'applauncher',
+    component: ApplicationLauncherExampleComponent
+  },
+  {
     path: 'notificationservice',
     component: NotificationServiceExampleComponent
   }, {
