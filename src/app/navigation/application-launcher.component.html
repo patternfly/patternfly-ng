@@ -1,11 +1,11 @@
 <div>
-  <div class="applauncher-pf dropdown dropdown-kebab-pf" [ngClass]="{'applauncher-pf-block-list': !isList}"
+  <div class="applauncher-pf dropdown dropdown-kebab-pf" [ngClass]="{'applauncher-pf-block-list': !isList, 'open':isClicked}"
        uib-dropdown
        uib-keyboard-nav="true">
-    <a id="domain-switcher" class="dropdown-toggle drawer-pf-trigger-icon" uib-dropdown-toggle href>
+    <a id="domain-switcher" class="dropdown-toggle drawer-pf-trigger-icon" uib-dropdown-toggle  (click)="toggle()" [ngClass]="{'disabled': isDisabled}">
       <i class="fa fa-th applauncher-pf-icon" aria-hidden="true"></i>
       <span class="applauncher-pf-title">
-        [label]={{label || 'Application Launcher'}}
+              {{label || 'Application Launcher'}}
         <span class="caret" aria-hidden="true"></span>
       </span>
     </a>

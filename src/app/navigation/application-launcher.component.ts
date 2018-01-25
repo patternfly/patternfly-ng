@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 
 import { NavigationItemConfig } from './navigation-item-config';
+import { read } from 'fs-extra';
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -14,6 +15,8 @@ import { NavigationItemConfig } from './navigation-item-config';
 })
 
 export class ApplicationLauncherComponent  implements OnInit {
+
+    isClicked: boolean;
 
     /**
      *  Use a custom label for the launcher, default: Application Launcher
@@ -53,6 +56,15 @@ export class ApplicationLauncherComponent  implements OnInit {
     }
 
     ngOnInit(): void {
+      this.isClicked = false;
+    }
+
+    toggle() {
+      if (this.isDisabled) {
+        return false;
+      } else {
+        this.isClicked = !this.isClicked;
+      }
 
     }
 
