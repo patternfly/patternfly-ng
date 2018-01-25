@@ -1,4 +1,4 @@
-# Contributing to patternfly-ng
+# Contributing to PatternFly Ng
 
 We would love for you to contribute to PatternFly-ng and help make it even better than it is
 today!  Below is information on how to get started as a contributor to PatternFly-ng.
