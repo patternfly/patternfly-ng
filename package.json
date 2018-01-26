@@ -72,10 +72,10 @@
   },
   "optionalDependencies": {
     "@swimlane/ngx-datatable": "^11.1.7",
-    "angular-tree-component": "^7.0.0",
+    "angular-tree-component": "^6.0.0 || ^7.0.0",
     "c3": "^0.4.15",
     "ng2-dragula": "^1.5.0",
-    "ngx-bootstrap": "^2.0.0"
+    "ngx-bootstrap": "^1.8.0 || ^2.0.0"
   },
   "devDependencies": {
     "@angular/animations": "^4.0.1",
