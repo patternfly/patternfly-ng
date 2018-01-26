@@ -68,14 +68,14 @@
   },
   "dependencies": {
     "lodash": "^4.17.4",
-    "ngx-bootstrap": "^1.8.0",
     "patternfly": "^3.28.0"
   },
   "optionalDependencies": {
     "@swimlane/ngx-datatable": "^11.1.7",
     "angular-tree-component": "^7.0.0",
     "c3": "^0.4.15",
-    "ng2-dragula": "^1.5.0"
+    "ng2-dragula": "^1.5.0",
+    "ngx-bootstrap": "^2.0.0"
   },
   "devDependencies": {
     "@angular/animations": "^4.0.1",
