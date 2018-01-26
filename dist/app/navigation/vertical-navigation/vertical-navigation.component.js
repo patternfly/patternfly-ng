@@ -394,14 +394,17 @@ var VerticalNavigationComponent = /** @class */ (function () {
         this.renderer.removeClass(element, className);
     };
     VerticalNavigationComponent.prototype.initBodyElement = function () {
+        if (this.contentContainer === undefined) {
+            return;
+        }
         if (this.showBadges) {
-            this.addClass('nav-pf-vertical-with-badges');
+            this.renderer.addClass(this.contentContainer, 'nav-pf-vertical-with-badges');
         }
         if (this.persistentSecondary) {
-            this.addClass('nav-pf-persistent-secondary');
+            this.renderer.addClass(this.contentContainer, 'nav-pf-persistent-secondary');
         }
         if (this.hiddenIcons) {
-            this.addClass('hidden-icons-pf');
+            this.renderer.addClass(this.contentContainer, 'hidden-icons-pf');
         }
     };
     VerticalNavigationComponent.prototype.updateMobileMenu = function (selected, secondaryItem) {
@@ -437,8 +440,10 @@ var VerticalNavigationComponent = /** @class */ (function () {
             if (!this.inMobileState) {
                 this.inMobileState = true;
                 // Set the body class to the correct state
-                this.removeClass('collapsed-nav');
-                this.addClass('hidden-nav');
+                if (this.contentContainer !== undefined) {
+                    this.renderer.removeClass(this.contentContainer, 'collapsed-nav');
+                    this.renderer.addClass(this.contentContainer, 'hidden-nav');
+                }
                 // Reset the collapsed states
                 this.updateSecondaryCollapsedState(false);
                 this.updateTertiaryCollapsedState(false);
@@ -449,7 +454,9 @@ var VerticalNavigationComponent = /** @class */ (function () {
             this.inMobileState = false;
             this.showMobileNav = false;
             // Set the body class back to the default
-            this.removeClass('hidden-nav');
+            if (this.contentContainer !== undefined) {
+                this.renderer.removeClass(this.contentContainer, 'hidden-nav');
+            }
         }
         if (this.explicitCollapse) {
             this.navCollapsed = true;
@@ -463,13 +470,17 @@ var VerticalNavigationComponent = /** @class */ (function () {
     VerticalNavigationComponent.prototype.collapseMenu = function () {
         this.navCollapsed = true;
         // Set the body class to the correct state
-        this.addClass('collapsed-nav');
+        if (this.contentContainer !== undefined) {
+            this.renderer.addClass(this.contentContainer, 'collapsed-nav');
+        }
         this.explicitCollapse = true;
     };
     VerticalNavigationComponent.prototype.expandMenu = function () {
         this.navCollapsed = false;
         // Set the body class to the correct state
-        this.removeClass('collapsed-nav');
+        if (this.contentContainer !== undefined) {
+            this.renderer.removeClass(this.contentContainer, 'collapsed-nav');
+        }
         this.explicitCollapse = false;
         // Dispatch a resize event when showing the expanding then menu to
         // allow content to adjust to the menu sizing
@@ -524,11 +535,13 @@ var VerticalNavigationComponent = /** @class */ (function () {
                     });
                 }
             });
-            if (this.activeSecondary) {
-                this.addClass('secondary-visible-pf');
-            }
-            else {
-                this.removeClass('secondary-visible-pf');
+            if (this.contentContainer !== undefined) {
+                if (this.activeSecondary) {
+                    this.renderer.addClass(this.contentContainer, 'secondary-visible-pf');
+                }
+                else {
+                    this.renderer.removeClass(this.contentContainer, 'secondary-visible-pf');
+                }
             }
         }
     };
@@ -584,7 +597,9 @@ var VerticalNavigationComponent = /** @class */ (function () {
         }
         if (setCollapsed) {
             this.collapsedSecondaryNav = true;
-            this.addClass('collapsed-secondary-nav-pf');
+            if (this.contentContainer !== undefined) {
+                this.renderer.addClass(this.contentContainer, 'collapsed-secondary-nav-pf');
+            }
         }
         else {
             // Remove any collapsed secondary menus
@@ -594,7 +609,9 @@ var VerticalNavigationComponent = /** @class */ (function () {
                 });
             }
             this.collapsedSecondaryNav = false;
-            this.removeClass('collapsed-secondary-nav-pf');
+            if (this.contentContainer !== undefined) {
+                this.renderer.removeClass(this.contentContainer, 'collapsed-secondary-nav-pf');
+            }
         }
     };
     VerticalNavigationComponent.prototype.updateTertiaryCollapsedState = function (setCollapsed, collapsedItem) {
@@ -603,8 +620,10 @@ var VerticalNavigationComponent = /** @class */ (function () {
         }
         if (setCollapsed) {
             this.collapsedTertiaryNav = true;
-            this.addClass('collapsed-tertiary-nav-pf');
             this.updateSecondaryCollapsedState(false);
+            if (this.contentContainer !== undefined) {
+                this.renderer.addClass(this.contentContainer, 'collapsed-tertiary-nav-pf');
+            }
         }
         else {
             // Remove any collapsed secondary menus
@@ -618,7 +637,9 @@ var VerticalNavigationComponent = /** @class */ (function () {
                 });
             }
             this.collapsedTertiaryNav = false;
-            this.removeClass('collapsed-tertiary-nav-pf');
+            if (this.contentContainer !== undefined) {
+                this.renderer.removeClass(this.contentContainer, 'collapsed-tertiary-nav-pf');
+            }
         }
     };
     __decorate([
@@ -629,6 +650,10 @@ var VerticalNavigationComponent = /** @class */ (function () {
         Input(),
         __metadata("design:type", String)
     ], VerticalNavigationComponent.prototype, "brandAlt", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", HTMLElement)
+    ], VerticalNavigationComponent.prototype, "contentContainer", void 0);
     __decorate([
         Input(),
         __metadata("design:type", Boolean)

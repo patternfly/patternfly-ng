@@ -19,6 +19,10 @@ export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
      */
     brandAlt: string;
     /**
+     * Container for page content
+     */
+    contentContainer: HTMLElement;
+    /**
      * Boolean to indicate whether or not to show badges
      */
     showBadges: boolean;
