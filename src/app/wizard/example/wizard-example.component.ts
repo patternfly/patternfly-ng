@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class'; // BS 1.8.0
-// import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service'; // BS 2.0.0-beta
+// import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class'; // BS 1.8.0
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service'; // BS 2.0.0-beta
 import { TabDirective } from 'ngx-bootstrap/tabs';
 
 import { WizardEvent } from '../wizard-event';
