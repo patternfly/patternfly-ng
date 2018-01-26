@@ -1,0 +1,140 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <p>This demos the Table View pattern with pagination and an external toolbar</p>
+      <pfng-toolbar [config]="toolbarConfig"
+                    [actionTemplate]="actionTemplate"
+                    (onActionSelect)="handleAction($event)"
+                    (onFilterChange)="filterChanged($event)"
+                    (onFilterFieldSelect)="filterFieldSelected($event)"
+                    (onFilterTypeAhead)="filterQueries($event)"
+                    (onSelectionChange)="handleSelectionChange($event)"
+                    (onSortChange)="handleSortChanged($event)"
+                    (onViewSelect)="viewSelected($event)">
+        <ng-template #actionTemplate>
+            <span class="dropdown primary-action" dropdown>
+              <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
+                Menu Action<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" *dropdownMenu>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" (click)="optionSelected(1)">Option 1</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(2)">Option 2</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(3)">Option 3</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(4)">Option 4</a>
+                </li>
+              </ul>
+            </span>
+          <button class="btn btn-default primary-action" type="button" (click)="doAdd()">
+            <span class="fa fa-plus"></span>
+            Add Action
+          </button>
+        </ng-template>
+      </pfng-toolbar>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="margin-top-10">
+        <pfng-table
+            [columns]="columns"
+            [config]="tableConfig"
+            [expandRowTemplate]="expandRowTemplate"
+            [rows]="rows"
+            (onActionSelect)="handleAction($event)"
+            (onFilterTypeAhead)="filterQueries($event)"
+            (onPageNumberChange)="handlePageNumber($event)"
+            (onPageSizeChange)="handlePageSize($event)"
+            (onSelectionChange)="handleSelectionChange($event)">
+        </pfng-table>
+        <!-- Column templates -->
+        <ng-template #nameTemplate let-row="row">
+          <span>{{row.name}}</span>
+        </ng-template>
+        <ng-template #addressTemplate let-row="row">
+          <span>{{row.address}}</span>
+        </ng-template>
+        <ng-template #birthMonthTemplate let-row="row">
+          <span>{{row.birthMonth}}</span>
+        </ng-template>
+        <ng-template #weekDayTemplate let-row="row">
+          <span>{{row.weekDay}}</span>
+        </ng-template>
+        <!-- Row detail template -->
+        <ng-template #expandRowTemplate let-row="row">
+          <div class="margin-left-20">
+            <div><strong>Address</strong></div>
+            <div>{{row.address}}</div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="cb" name="cb" type="checkbox"
+                   [(ngModel)]="tableConfig.showCheckbox">Checkbox
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="itemsAvailable" name="itemsAvailable" type="checkbox"
+                   [(ngModel)]="rowsAvailable"
+                   (ngModelChange)="updateItemsAvailable()">Rows Available
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/tablecomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/table/basic-table/example/table-view-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/table/basic-table/example/table-view-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
