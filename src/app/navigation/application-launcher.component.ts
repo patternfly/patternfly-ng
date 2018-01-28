@@ -10,13 +10,10 @@ import { read } from 'fs-extra';
 @Component({
     encapsulation: ViewEncapsulation.None,
     selector: 'pfng-application-launcher',
-    styleUrls: ['./application-launcher.component.less'],
     templateUrl: './application-launcher.component.html'
 })
 
 export class ApplicationLauncherComponent  implements OnInit {
-
-    isClicked: boolean;
 
     /**
      *  Use a custom label for the launcher, default: Application Launcher
@@ -49,17 +46,27 @@ export class ApplicationLauncherComponent  implements OnInit {
 
 
     /**
+     * Internal boolean to toggle launcher, default:false
+     */
+    public isClicked: boolean;
+
+
+    /**
      * The default constructor
      */
-    constructor() {
+    constructor() {}
 
-    }
-
+    /**
+     * Initialize variable
+     */
     ngOnInit(): void {
       this.isClicked = false;
     }
 
-    toggle() {
+    /**
+     * toggle function for launcher, active when click, return false on isDisabled:true
+     */
+   public toggle() {
       if (this.isDisabled) {
         return false;
       } else {

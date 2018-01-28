@@ -15,7 +15,7 @@
         aria-labelledby="domain-switcher">
       <li class="applauncher-pf-item" role="menuitem" *ngFor="let item of items">
         <a class="applauncher-pf-link" href="{{item.url}}" target="{{item.target || '_blank'}}"  *ngFor="let badge of item.badges" title="{{badge.tooltip}}">
-          <i class="applauncher-pf-link-icon pficon" class="{{item.iconStyleClass}}" *ngIf="!hiddenIcons" aria-hidden="true"></i>
+          <i class="applauncher-pf-link-icon pficon" class="{{item.iconStyleClass}}" *ngIf="item.iconStyleClass" [ngClass]="{hidden: hiddenIcons}" aria-hidden="true"></i>
           <span class="applauncher-pf-link-title">{{item.title}}</span>
         </a>
       </li>
