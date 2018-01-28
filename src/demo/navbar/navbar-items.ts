@@ -69,7 +69,7 @@ export class NavbarItems {
     children: [{
       id: 'verticalnavigation',
       path: 'verticalnavigation',
-      title: 'Vertical Navigation Component',
+      title: 'Vertical Navigation',
     }, {
       id: 'applauncher',
       path: 'applauncher',
