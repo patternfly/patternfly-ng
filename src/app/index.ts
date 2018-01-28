@@ -82,7 +82,8 @@ export {
 export {
   NavigationItemConfig,
   NavigationModule,
-  VerticalNavigationComponent
+  VerticalNavigationComponent,
+  ApplicationLauncherComponent
 } from './navigation/index';
 
 // Notification

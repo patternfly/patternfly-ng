@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
-import { NavigationModule } from '../../navigation.module';
-import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { VerticalNavigationExampleComponent } from './vertical-navigation-example.component';
+import { NavigationModule } from '../navigation.module';
+import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
+import { ApplicationLauncherExampleComponent } from './application-launcher-example.component';
 import { RouterModule } from '@angular/router';
 
 
@@ -19,10 +19,10 @@ import { RouterModule } from '@angular/router';
     NavigationModule,
     TabsModule.forRoot()
   ],
-  declarations: [VerticalNavigationExampleComponent],
-  exports: [VerticalNavigationExampleComponent],
+  declarations: [ApplicationLauncherExampleComponent],
+  exports: [ApplicationLauncherExampleComponent],
   providers: [TabsetConfig]
 })
-export class VerticalNavigationExampleModule {
+export class ApplicationLauncherExampleModule {
   constructor() {}
 }
