@@ -14,8 +14,9 @@ import { DragulaService } from 'ng2-dragula';
 
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 
-import { TableConfig } from './table-config';
 import { NgxDataTableConfig } from './ngx-datatable-config';
+import { SortEvent } from '../../sort/sort-event';
+import { TableConfig } from './table-config';
 import { TableBase } from '../table-base';
 import { TableEvent } from '../table-event';
 
@@ -109,6 +110,11 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
   @Output('onScroll') onScroll = new EventEmitter();
 
   /**
+   * The ngx-datatable event emitted when a column header is sorted
+   */
+  @Output('onSort') onSort = new EventEmitter();
+
+  /**
    * The ngx-datatable event emitted when a context menu is invoked on the table
    */
   // @Output('onTableContextMenu') onTableContextMenu = new EventEmitter();
@@ -156,7 +162,7 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
       pagerNext: 'datatable-icon-skip'
     },
     externalPaging: false,
-    externalSorting: true,
+    externalSorting: false,
     headerHeight: 50,
     messages: { emptyMessage: 'No records found' },
     offset: 0,
@@ -164,7 +170,9 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
     rowHeight: 'auto',
     rowIdentity: ((x: any) => x),
     scrollbarH: false,
-    scrollbarV: false
+    scrollbarV: false,
+    sorts: [],
+    sortType: 'multi'
   } as NgxDataTableConfig;
 
   private dragulaName = 'newBag';
@@ -295,9 +303,6 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
     }
 
     this.columns.forEach((col) => {
-      if (col.sortable === undefined) {
-        col.sortable = false;
-      }
       this._cols.push(col);
     });
   }
@@ -462,6 +467,13 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
    */
   private handleScroll($event: any): void {
     this.onScroll.emit($event);
+  }
+
+  /**
+   * Helper to generate ngx-datatable sort event
+   */
+  private handleSort($event: any): void {
+    this.onSort.emit($event);
   }
 
   /**
