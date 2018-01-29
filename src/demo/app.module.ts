@@ -45,6 +45,7 @@ import { VerticalNavigationExampleModule }
   from '../app/navigation/vertical-navigation/example/vertical-navigation-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleModule } from '../app/wizard/example/wizard-example.module';
+import { ApplicationLauncherExampleModule } from '../app/navigation/example/application-launcher-example.module';
 
 @NgModule({
   imports: [
@@ -78,6 +79,7 @@ import { WizardExampleModule } from '../app/wizard/example/wizard-example.module
     TreeListExampleModule,
     TruncateExampleModule,
     VerticalNavigationExampleModule,
+    ApplicationLauncherExampleModule,
     WizardExampleModule
   ],
   declarations: [
