@@ -38,25 +38,29 @@ export class TableGroupExampleComponent implements OnInit {
       draggable: true,
       prop: 'name',
       name: 'Name',
-      resizeable: true
+      resizeable: true,
+      sortable: false // n/a with group header
     }, {
       cellTemplate: this.addressTemplate,
       draggable: true,
       prop: 'address',
       name: 'Address',
-      resizeable: true
+      resizeable: true,
+      sortable: false // n/a with group header
     }, {
       cellTemplate: this.birthMonthTemplate,
       draggable: true,
       prop: 'birthMonth',
       name: 'Birth Month',
-      resizeable: true
+      resizeable: true,
+      sortable: false // n/a with group header
     }, {
       cellTemplate: this.weekDayTemplate,
       draggable: true,
       prop: 'weekDay',
       name: 'Week Day',
-      resizeable: true
+      resizeable: true,
+      sortable: false // n/a with group header
     }];
 
     this.allRows = [{

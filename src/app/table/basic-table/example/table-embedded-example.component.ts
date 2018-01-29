@@ -94,25 +94,29 @@ export class TableEmbeddedExampleComponent implements AfterViewInit, OnInit {
       draggable: true,
       prop: 'name',
       name: 'Name',
-      resizeable: true
+      resizeable: true,
+      sortable: false // using sort menu
     }, {
       cellTemplate: this.addressTemplate,
       draggable: true,
       prop: 'address',
       name: 'Address',
-      resizeable: true
+      resizeable: true,
+      sortable: false // using sort menu
     }, {
       cellTemplate: this.birthMonthTemplate,
       draggable: true,
       prop: 'birthMonth',
       name: 'Birth Month',
-      resizeable: true
+      resizeable: true,
+      sortable: false // using sort menu
     }, {
       cellTemplate: this.weekDayTemplate,
       draggable: true,
       prop: 'weekDay',
       name: 'Week Day',
-      resizeable: true
+      resizeable: true,
+      sortable: false // using sort menu
     }];
 
     this.allRows = [{
@@ -536,7 +540,7 @@ export class TableEmbeddedExampleComponent implements AfterViewInit, OnInit {
     this.currentSortField = $event.field;
     this.isAscendingSort = $event.isAscending;
     this.allRows.sort((item1: any, item2: any) => this.compare(item1, item2));
-    this.updateRows(false);
+    this.applyFilters(this.filterConfig.appliedFilters || []);
   }
 
   // Selection
