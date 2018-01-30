@@ -1,0 +1,79 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Info Card Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="cards-pf pfng-isc-ex-container">
+    <div class="padding-top-10">
+      <div class="col-sm-12">
+        <h5>Restrictive Width Container Example</h5>
+      </div>
+    </div>
+    <div class="pfng-restrictive-width-container">
+      <div class="row-cards-pf">
+        <label>With top border, Icon Class, Href</label>
+        <pfng-info-status-card
+            [config]="card1Config">
+        </pfng-info-status-card>
+      </div>
+      <div class="row-cards-pf">
+        <label>No Top Border, Icon Image, No Title, No Html Content</label>
+        <pfng-info-status-card
+            [config]="card2Config">
+        </pfng-info-status-card>
+      </div>
+      <div class="row-cards-pf">
+        <label>With HTML</label>
+        <pfng-info-status-card
+            [config]="card3Config">
+        </pfng-info-status-card>
+      </div>
+    </div>
+    <div class="padding-top-10">
+      <div class="col-sm-12">
+        <h5>Fluid Width Container Example</h5>
+      </div>
+    </div>
+    <div class="container-fluid pfng-fluid-width-container">
+      <div class="col-lg-4">
+        <label>With top border, Icon Class, Href</label>
+        <pfng-info-status-card
+            [config]="card1Config">
+        </pfng-info-status-card>
+      </div>
+      <div class="col-lg-4">
+        <label>With HTML</label>
+        <pfng-info-status-card
+            [config]="card3Config">
+        </pfng-info-status-card>
+      </div>
+      <div class="col-lg-4">
+        <label>No Top Border, Icon Image, No Title, No Html Content</label>
+        <pfng-info-status-card
+            [config]="card2Config">
+        </pfng-info-status-card>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/cardcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/card/info-status-card/example/info-status-card-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/card/info-status-card/example/info-status-card-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
