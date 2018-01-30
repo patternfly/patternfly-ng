@@ -15,6 +15,7 @@ import { FilterConfig } from '../../../filter/filter-config';
 import { FilterField } from '../../../filter/filter-field';
 import { FilterEvent } from '../../../filter/filter-event';
 import { FilterType } from '../../../filter/filter-type';
+import { NgxDataTableConfig } from '../ngx-datatable-config';
 import { PaginationConfig } from '../../../pagination/pagination-config';
 import { PaginationEvent } from '../../../pagination/pagination-event';
 import { SortConfig } from '../../../sort/sort-config';
@@ -43,7 +44,7 @@ export class TableFullExampleComponent implements AfterViewInit, OnInit {
   allRows: any[];
   columns: any[];
   currentSortField: SortField;
-  tableConfig: TableConfig;
+  dataTableConfig: NgxDataTableConfig;
   emptyStateConfig: EmptyStateConfig;
   filterConfig: FilterConfig;
   filteredRows: any[];
@@ -54,6 +55,7 @@ export class TableFullExampleComponent implements AfterViewInit, OnInit {
   rowsAvailable: boolean = true;
   separator: Object;
   sortConfig: SortConfig;
+  tableConfig: TableConfig;
   toolbarConfig: ToolbarConfig;
   weekDayQueries: any[];
 
@@ -365,6 +367,10 @@ export class TableFullExampleComponent implements AfterViewInit, OnInit {
       toolbarConfig: this.toolbarConfig,
       useExpandRows: true
     } as TableConfig;
+
+    this.dataTableConfig = {
+      externalSorting: true
+    };
   }
 
   // Actions
@@ -516,19 +522,19 @@ export class TableFullExampleComponent implements AfterViewInit, OnInit {
 
   // Sort
 
-  compare(item1: any, item2: any): number {
+  compare(item1: any, item2: any, id: string, ascending: boolean): number {
     let compValue = 0;
-    if (this.currentSortField.id === 'name') {
+    if (id === 'name') {
       compValue = item1.name.localeCompare(item2.name);
-    } else if (this.currentSortField.id === 'address') {
+    } else if (id === 'address') {
       compValue = item1.address.localeCompare(item2.address);
-    } else if (this.currentSortField.id === 'birthMonth') {
+    } else if (id === 'birthMonth') {
       compValue = this.monthVals[item1.birthMonth] - this.monthVals[item2.birthMonth];
-    } else if (this.currentSortField.id === 'weekDay') {
+    } else if (id === 'weekDay') {
       compValue = this.weekDayVals[item1.weekDay] - this.weekDayVals[item2.weekDay];
     }
 
-    if (!this.isAscendingSort) {
+    if (!ascending) {
       compValue = compValue * -1;
     }
     return compValue;
@@ -538,8 +544,18 @@ export class TableFullExampleComponent implements AfterViewInit, OnInit {
   handleSortChanged($event: SortEvent): void {
     this.currentSortField = $event.field;
     this.isAscendingSort = $event.isAscending;
-    this.allRows.sort((item1: any, item2: any) => this.compare(item1, item2));
-    this.updateRows(false);
+    this.allRows.sort((item1: any, item2: any) =>
+      this.compare(item1, item2, this.currentSortField.id, this.isAscendingSort));
+    this.applyFilters(this.filterConfig.appliedFilters || []);
+  }
+
+  // Handle ngx-datatable sort via column header
+  handleSort($event: any): void {
+    $event.sorts.forEach((sort: any) => {
+      this.allRows.sort((item1: any, item2: any) =>
+        this.compare(item1, item2, sort.prop, (sort.dir === 'asc')));
+    });
+    this.applyFilters(this.filterConfig.appliedFilters || []);
   }
 
   // Selection

@@ -1,8 +1,8 @@
 import { AfterViewInit, DoCheck, EventEmitter, OnInit, TemplateRef } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { TableConfig } from './table-config';
 import { NgxDataTableConfig } from './ngx-datatable-config';
+import { TableConfig } from './table-config';
 import { TableBase } from '../table-base';
 /**
  * Table component.
@@ -77,6 +77,10 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      * The ngx-datatable event emitted when body was scrolled (e.g., when scrollbarV is true)
      */
     onScroll: EventEmitter<{}>;
+    /**
+     * The ngx-datatable event emitted when a column header is sorted
+     */
+    onSort: EventEmitter<{}>;
     /**
      * The ngx-datatable event emitted when a context menu is invoked on the table
      */
@@ -207,6 +211,10 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      * Helper to generate ngx-datatable scroll event
      */
     private handleScroll($event);
+    /**
+     * Helper to generate ngx-datatable sort event
+     */
+    private handleSort($event);
     /**
      * Helper to generate ngx-datatable tableContextmenu event
      */

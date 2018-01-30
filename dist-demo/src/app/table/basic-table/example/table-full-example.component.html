@@ -8,6 +8,7 @@
             [actionTemplate]="actionTemplate"
             [columns]="columns"
             [config]="tableConfig"
+            [dataTableConfig]="dataTableConfig"
             [expandRowTemplate]="expandRowTemplate"
             [rows]="rows"
             (onActivate)="handleOnActivate($event)"
@@ -22,7 +23,8 @@
             (onResize)="handleOnResize($event)"
             (onScroll)="handleOnScroll($event)"
             (onSelectionChange)="handleSelectionChange($event)"
-            (onSortChange)="handleSortChanged($event)">
+            (onSortChange)="handleSortChanged($event)"
+            (onSort)="handleSort($event)">
         </pfng-table>
         <!-- Column templates -->
         <ng-template #nameTemplate let-row="row">
