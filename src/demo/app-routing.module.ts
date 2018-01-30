@@ -36,7 +36,8 @@ import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/example/wizard-example.component';
 import { VerticalNavigationExampleComponent }
   from '../app/navigation/vertical-navigation/example/vertical-navigation-example.component';
-import { ApplicationLauncherExampleComponent } from '../app/navigation/example/application-launcher-example.component';
+import { ApplicationLauncherExampleComponent }
+from '../app/navigation/application-launcher/example/application-launcher-example.component';
 
 const routes: Routes = [{
     path: '',
