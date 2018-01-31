@@ -1,0 +1,25 @@
+<div>
+  <div class="applauncher-pf dropdown dropdown-kebab-pf" [ngClass]="{'applauncher-pf-block-list': !showAsList, 'open':opened}"
+       uib-dropdown
+       uib-keyboard-nav="true">
+    <a id="domain-switcher" class="dropdown-toggle drawer-pf-trigger-icon" uib-dropdown-toggle  (click)="toggle()" [ngClass]="{'disabled': disabled}">
+      <i class="fa fa-th applauncher-pf-icon" aria-hidden="true"></i>
+      <span class="applauncher-pf-title">
+              {{label || 'Application Launcher'}}
+        <span class="caret" aria-hidden="true"></span>
+      </span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-right"
+        uib-dropdown-menu
+        role="menu"
+        aria-labelledby="domain-switcher">
+      <li class="applauncher-pf-item" role="menuitem" *ngFor="let item of items">
+        <a class="applauncher-pf-link" href="{{item.url}}" target="{{item.target || '_blank'}}"  *ngFor="let badge of item.badges" title="{{badge.tooltip}}">
+          <i class="applauncher-pf-link-icon pficon" class="{{item.iconStyleClass}}" *ngIf="item.iconStyleClass" [ngClass]="{hidden: hiddenIcons}" aria-hidden="true"></i>
+          <span class="applauncher-pf-link-title">{{item.title}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+

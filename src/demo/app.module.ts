@@ -45,12 +45,15 @@ import { VerticalNavigationExampleModule }
   from '../app/navigation/vertical-navigation/example/vertical-navigation-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleModule } from '../app/wizard/example/wizard-example.module';
+import { ApplicationLauncherExampleModule }
+from '../app/navigation/application-launcher/example/application-launcher-example.module';
 
 @NgModule({
   imports: [
     AboutModalExampleModule,
     ActionExampleModule,
     AppRoutingModule,
+    ApplicationLauncherExampleModule,
     BrowserModule,
     CardExampleModule,
     DemoComponentsModule,

@@ -6,6 +6,7 @@ import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NavigationItemConfig } from './navigation-item-config';
 import { VerticalNavigationComponent } from './vertical-navigation/vertical-navigation.component';
 import { WindowReference } from '../utilities/window.reference';
+import { ApplicationLauncherComponent } from './application-launcher/application-launcher.component';
 
 export {
   NavigationItemConfig
@@ -16,8 +17,8 @@ export {
  */
 @NgModule({
   imports: [CommonModule, TooltipModule.forRoot()],
-  declarations: [VerticalNavigationComponent],
-  exports: [VerticalNavigationComponent],
+  declarations: [ ApplicationLauncherComponent, VerticalNavigationComponent],
+  exports: [ ApplicationLauncherComponent, VerticalNavigationComponent],
   providers: [TooltipConfig, WindowReference]
 })
 export class NavigationModule {}
