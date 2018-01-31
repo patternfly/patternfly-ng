@@ -105,7 +105,7 @@ import {
 
 
     it('should invoke the toggle when an item is clicked', () => {
-      expect(comp.isClicked).toBeFalsy();
+      expect(comp.opened).toBeFalsy();
 
       let primaryItems = fixture.debugElement.query(
         By.css('.applauncher-pf > a'));
@@ -114,7 +114,7 @@ import {
       primaryItems.triggerEventHandler('click', {});
       fixture.detectChanges();
 
-      expect(comp.isClicked).toBeTruthy();
+      expect(comp.opened).toBeTruthy();
 
     });
 
