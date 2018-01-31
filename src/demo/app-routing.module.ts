@@ -36,6 +36,8 @@ import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleComponent } from '../app/wizard/example/wizard-example.component';
 import { VerticalNavigationExampleComponent }
   from '../app/navigation/vertical-navigation/example/vertical-navigation-example.component';
+import { ApplicationLauncherExampleComponent }
+from '../app/navigation/application-launcher/example/application-launcher-example.component';
 
 const routes: Routes = [{
     path: '',
@@ -69,12 +71,20 @@ const routes: Routes = [{
     path: 'aboutmodal',
     component: AboutModalExampleComponent
   }, {
-    path: 'navigation',
+    path: 'verticalnavigation',
     component: VerticalNavigationExampleComponent,
     children: [{
         path: '**',
         component: SampleComponent,
       }]
+  },
+  {
+    path: 'applauncher',
+    component: ApplicationLauncherExampleComponent,
+    children: [{
+      path: '**',
+      component: SampleComponent,
+    }]
   }, {
     path: 'notificationservice',
     component: NotificationServiceExampleComponent

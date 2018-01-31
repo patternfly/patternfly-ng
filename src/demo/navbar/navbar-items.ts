@@ -65,9 +65,17 @@ export class NavbarItems {
     title: 'Sort'
   }, {
     id: 'navigation',
-    path: 'navigation',
-    title: 'Navigation'
-  }, {
+    title: 'Navigation',
+    children: [{
+      id: 'verticalnavigation',
+      path: 'verticalnavigation',
+      title: 'Vertical Navigation',
+    }, {
+      id: 'applauncher',
+      path: 'applauncher',
+      title: 'Application Launcher',
+    }]
+   }, {
     id: 'notifications',
     title: 'Notifications',
     children: [{
