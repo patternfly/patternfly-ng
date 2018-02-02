@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NavigationItemConfig } from './navigation-item-config';
 import { VerticalNavigationComponent } from './vertical-navigation/vertical-navigation.component';
@@ -20,10 +21,14 @@ var NavigationModule = /** @class */ (function () {
     }
     NavigationModule = __decorate([
         NgModule({
-            imports: [CommonModule, TooltipModule.forRoot()],
+            imports: [
+                BsDropdownModule.forRoot(),
+                CommonModule,
+                TooltipModule.forRoot()
+            ],
             declarations: [ApplicationLauncherComponent, VerticalNavigationComponent],
             exports: [ApplicationLauncherComponent, VerticalNavigationComponent],
-            providers: [TooltipConfig, WindowReference]
+            providers: [BsDropdownConfig, TooltipConfig, WindowReference]
         })
     ], NavigationModule);
     return NavigationModule;

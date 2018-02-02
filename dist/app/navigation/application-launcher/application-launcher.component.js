@@ -13,34 +13,28 @@ var ApplicationLauncherComponent = /** @class */ (function () {
      * The default constructor
      */
     function ApplicationLauncherComponent() {
+        /**
+         * Display items as a list instead of a grid, default: false
+         */
+        this.showAsList = false;
+        /**
+         * Flag to show icons on the launcher, default: true
+         */
+        this.showIcons = true;
     }
     /**
      * Initialize variable
      */
     ApplicationLauncherComponent.prototype.ngOnInit = function () {
-        this._opened = false;
     };
-    Object.defineProperty(ApplicationLauncherComponent.prototype, "opened", {
-        /**
-         * getter
-         */
-        get: function () {
-            return this._opened;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * toggle function for launcher, active when click, return false on isDisabled:true
-     */
-    ApplicationLauncherComponent.prototype.toggle = function () {
-        if (this.disabled) {
-            return false;
-        }
-        else {
-            this._opened = !this._opened;
-        }
-    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], ApplicationLauncherComponent.prototype, "disabled", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], ApplicationLauncherComponent.prototype, "items", void 0);
     __decorate([
         Input(),
         __metadata("design:type", String)
@@ -48,24 +42,16 @@ var ApplicationLauncherComponent = /** @class */ (function () {
     __decorate([
         Input(),
         __metadata("design:type", Boolean)
-    ], ApplicationLauncherComponent.prototype, "disabled", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
     ], ApplicationLauncherComponent.prototype, "showAsList", void 0);
     __decorate([
         Input(),
         __metadata("design:type", Boolean)
-    ], ApplicationLauncherComponent.prototype, "hiddenIcons", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Array)
-    ], ApplicationLauncherComponent.prototype, "items", void 0);
+    ], ApplicationLauncherComponent.prototype, "showIcons", void 0);
     ApplicationLauncherComponent = __decorate([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-application-launcher',
-            template: "<div><div class=\"applauncher-pf dropdown dropdown-kebab-pf\" [ngClass]=\"{'applauncher-pf-block-list': !showAsList, 'open':opened}\" uib-dropdown uib-keyboard-nav=\"true\"><a id=\"domain-switcher\" class=\"dropdown-toggle drawer-pf-trigger-icon\" uib-dropdown-toggle (click)=\"toggle()\" [ngClass]=\"{'disabled': disabled}\"><i class=\"fa fa-th applauncher-pf-icon\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-title\">{{label || 'Application Launcher'}} <span class=\"caret\" aria-hidden=\"true\"></span></span></a><ul class=\"dropdown-menu dropdown-menu-right\" uib-dropdown-menu role=\"menu\" aria-labelledby=\"domain-switcher\"><li class=\"applauncher-pf-item\" role=\"menuitem\" *ngFor=\"let item of items\"><a class=\"applauncher-pf-link\" href=\"{{item.url}}\" target=\"{{item.target || '_blank'}}\" *ngFor=\"let badge of item.badges\" title=\"{{badge.tooltip}}\"><i class=\"applauncher-pf-link-icon pficon\" class=\"{{item.iconStyleClass}}\" *ngIf=\"item.iconStyleClass\" [ngClass]=\"{hidden: hiddenIcons}\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-link-title\">{{item.title}}</span></a></li></ul></div></div>"
+            template: "<div><div class=\"applauncher-pf dropdown dropdown-kebab-pf\" dropdown [ngClass]=\"{'applauncher-pf-block-list': !showAsList}\"><a class=\"dropdown-toggle drawer-pf-trigger-icon\" href=\"javascript:void(0)\" dropdownToggle *ngIf=\"!disabled\"><i class=\"fa fa-th applauncher-pf-icon\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-title\">{{label || 'Application Launcher'}} <span class=\"caret\" aria-hidden=\"true\"></span> </span></a><a class=\"dropdown-toggle drawer-pf-trigger-icon disabled\" href=\"javascript:void(0)\" onclick=\"return false;\" *ngIf=\"disabled\"><i class=\"fa fa-th applauncher-pf-icon\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-title\">{{label || 'Application Launcher'}} <span class=\"caret\" aria-hidden=\"true\"></span></span></a><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li class=\"applauncher-pf-item\" *ngFor=\"let item of items\"><a class=\"applauncher-pf-link\" href=\"{{item.url}}\" target=\"{{item.target || '_blank'}}\" title=\"{{badge.tooltip}}\" role=\"menuitem\" *ngFor=\"let badge of item.badges\"><i class=\"applauncher-pf-link-icon pficon {{item.iconStyleClass}}\" aria-hidden=\"true\" [ngClass]=\"{hidden: !showIcons}\" *ngIf=\"item.iconStyleClass\"></i> <span class=\"applauncher-pf-link-title\">{{item.title}}</span></a></li></ul></div></div>"
         })
         /**
          * Application launcher component

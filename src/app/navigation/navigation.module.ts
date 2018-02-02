@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { NavigationItemConfig } from './navigation-item-config';
@@ -16,9 +17,13 @@ export {
  * A module containing objects associated with the navigation components
  */
 @NgModule({
-  imports: [CommonModule, TooltipModule.forRoot()],
+  imports: [
+    BsDropdownModule.forRoot(),
+    CommonModule,
+    TooltipModule.forRoot()
+  ],
   declarations: [ ApplicationLauncherComponent, VerticalNavigationComponent],
   exports: [ ApplicationLauncherComponent, VerticalNavigationComponent],
-  providers: [TooltipConfig, WindowReference]
+  providers: [BsDropdownConfig, TooltipConfig, WindowReference]
 })
 export class NavigationModule {}

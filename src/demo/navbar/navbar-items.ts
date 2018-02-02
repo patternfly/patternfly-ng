@@ -67,13 +67,13 @@ export class NavbarItems {
     id: 'navigation',
     title: 'Navigation',
     children: [{
-      id: 'verticalnavigation',
-      path: 'verticalnavigation',
-      title: 'Vertical Navigation',
-    }, {
       id: 'applauncher',
       path: 'applauncher',
-      title: 'Application Launcher',
+      title: 'Application Launcher'
+    }, {
+      id: 'verticalnavigation',
+      path: 'verticalnavigation',
+      title: 'Vertical Navigation'
     }]
    }, {
     id: 'notifications',
