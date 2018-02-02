@@ -9,8 +9,6 @@ import { DemoComponentsModule } from '../../../../demo/components/demo-component
 import { ApplicationLauncherExampleComponent } from './application-launcher-example.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
