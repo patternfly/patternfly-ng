@@ -1,0 +1,36 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Search Highlight Pipe Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <input name="text" type="text" placeholder="Enter search value" [(ngModel)]="searchText">
+        <span class="padding-left-5"
+              [innerHTML]="'This text is highlighted based on search value' | searchHighlight: searchText"></span>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/searchhighlightpipe.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/pipe/search-highlight/example/search-highlight-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/pipe/search-highlight/example/search-highlight-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
