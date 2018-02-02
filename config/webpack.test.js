@@ -33,7 +33,7 @@ module.exports = function (options) {
   return {
 
     entry: {
-      'app': './index.ts'
+      'app': './src/app/index.ts'
     },
 
     /**
