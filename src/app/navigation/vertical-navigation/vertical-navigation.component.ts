@@ -39,24 +39,24 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   @Input() contentContainer: HTMLElement;
   
   /**
-   * Boolean to indicate whether or not to show badges
+   * Boolean to indicate whether or not to show badges, default: false
    */
-  @Input() showBadges: boolean;
+  @Input() showBadges: boolean = false;
 
   /**
-   * Indicates whether or not to allow the secondary to persist
+   * Indicates whether or not to allow the secondary to persist, default: false
    */
-  @Input() persistentSecondary: boolean;
+  @Input() persistentSecondary: boolean = false;
 
   /**
-   * Allow pinnable menus when they are open
+   * Allow pinnable menus when they are open, default: false
    */
-  @Input() pinnableMenus: boolean;
+  @Input() pinnableMenus: boolean = false;
 
   /**
-   * Hide menu items
+   * Show menu icons, default: true
    */
-  @Input() hiddenIcons: boolean;
+  @Input() showIcons: boolean = true;
 
   /**
    * The navigation items used to build the menu
@@ -64,19 +64,19 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   @Input() items: NavigationItemConfig[];
 
   /**
-   * Sets an active flag on items when they are selected
+   * Sets an active flag on items when they are selected, default: false
    */
-  @Input() updateActiveItemsOnClick: boolean;
+  @Input() updateActiveItemsOnClick: boolean = false;
 
   /**
-   * Indicates whether or not this is a mobile friendly navigation
+   * Indicates whether or not this is a mobile friendly navigation, default: false
    */
-  @Input() ignoreMobile: boolean;
+  @Input() ignoreMobile: boolean = false;
 
   /**
-   * Hide top banner optionally
+   * Show top banner, default: true
    */
-  @Input() hideTopBanner: boolean;
+  @Input() showTopBanner: boolean = true;
 
   /**
    * This event is fired any time the user has initiated navigation
@@ -88,70 +88,17 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    */
   @Output('onItemClickEvent') itemClickEvent = new EventEmitter();
 
-  /**
-   * Internal boolean to track if secondary menu is active
-   * @type {boolean}
-   */
-  public activeSecondary: boolean = false;
-
-  /**
-   * Internal boolean to track if mobile nav should be shown
-   * @type {boolean}
-   */
-  public showMobileNav: boolean = false;
-
-  /**
-   * Internal boolean to track if mobile secondary should be shown
-   * @type {boolean}
-   */
-  public showMobileSecondary: boolean = false;
-
-  /**
-   * Internal boolean to track if mobile tertiary should be shown
-   * @type {boolean}
-   */
-  public showMobileTertiary: boolean = false;
-
-  /**
-   * Track if secondary nav is being hovered over
-   * @type {boolean}
-   */
-  public hoverSecondaryNav: boolean = false;
-
-  /**
-   * Track if tertiary nav is being hovered over
-   * @type {boolean}
-   */
-  public hoverTertiaryNav: boolean = false;
-
-  /**
-   * Track if secondary nav is collapsed
-   * @type {boolean}
-   */
-  public collapsedSecondaryNav: boolean = false;
-
-  /**
-   * Track if tertiary nav is collapsed
-   * @type {boolean}
-   */
-  public collapsedTertiaryNav: boolean = false;
-
-  /**
-   * Internal boolean to track if nav is collapsed
-   * @type {boolean}
-   */
-  public navCollapsed: boolean = false;
-
-  /**
-   * Internal boolean to track if nav should be entirely hidden when screen is below desktop resolution
-   * @type {boolean}
-   */
-  public forceHidden: boolean = false;
-
-  /**
-   * Internal boolean to track if the navigation is in a mobile state
-   */
-  public inMobileState: boolean;
+  private _activeSecondary: boolean = false;
+  private _collapsedSecondaryNav: boolean = false;
+  private _collapsedTertiaryNav: boolean = false;
+  private _forceHidden: boolean = false;
+  private _hoverSecondaryNav: boolean = false;
+  private _hoverTertiaryNav: boolean = false;
+  private _inMobileState: boolean;
+  private _navCollapsed: boolean = false;
+  private _showMobileNav: boolean = false;
+  private _showMobileSecondary: boolean = false;
+  private _showMobileTertiary: boolean = false;
 
   // Private internal variables
   private hoverTimeout: number;
@@ -212,6 +159,107 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Accessors
+
+  /**
+   * Returns flag indicating if secondary menu is active
+   *
+   * @returns {boolean} True if secondary menu is active
+   */
+  get activeSecondary(): boolean {
+    return this._activeSecondary;
+  }
+
+  /**
+   * Returns flag indicating if mobile nav should be shown
+   *
+   * @returns {boolean} True if mobile nav should be shown
+   */
+  get showMobileNav(): boolean {
+    return this._showMobileNav;
+  }
+
+  /**
+   * Returns flag indicating if mobile secondary should be shown
+   *
+   * @returns {boolean} True if mobile secondary should be shown
+   */
+  get showMobileSecondary(): boolean {
+    return this._showMobileSecondary;
+  }
+
+  /**
+   * Returns flag indicating if mobile tertiary should be shown
+   *
+   * @returns {boolean} True if mobile tertiary should be shown
+   */
+  get showMobileTertiary(): boolean {
+    return this._showMobileTertiary;
+  }
+
+  /**
+   * Returns flag indicating if secondary nav is being hovered over
+   *
+   * @returns {boolean} True if secondary nav is being hovered over
+   */
+  get hoverSecondaryNav(): boolean {
+    return this._hoverSecondaryNav;
+  }
+
+  /**
+   * Returns flag indicating if tertiary nav is being hovered over
+   *
+   * @returns {boolean} True if tertiary nav is being hovered over
+   */
+  get hoverTertiaryNav(): boolean {
+    return this._hoverTertiaryNav;
+  }
+
+  /**
+   * Returns flag indicating if secondary nav is collapsed
+   *
+   * @returns {boolean} True if secondary nav is collapsed
+   */
+  get collapsedSecondaryNav(): boolean {
+    return this._collapsedSecondaryNav;
+  }
+
+  /**
+   * Returns flag indicating if tertiary nav is collapsed
+   *
+   * @returns {boolean} True if tertiary nav is collapsed
+   */
+  get collapsedTertiaryNav(): boolean {
+    return this._collapsedTertiaryNav;
+  }
+
+  /**
+   * Returns flag indicating if nav should be entirely hidden when screen is below desktop resolution
+   *
+   * @returns {boolean} True if nav should be entirely hidden
+   */
+  get forceHidden(): boolean {
+    return this._forceHidden;
+  }
+
+  /**
+   * Returns flag indicating if the navigation is in a mobile state
+   *
+   * @returns {boolean} True if the navigation is in a mobile state
+   */
+  get inMobileState(): boolean {
+    return this._inMobileState;
+  }
+
+  /**
+   * Returns flag indicating if nav is collapsed
+   *
+   * @returns {boolean} True if nav is collapsed
+   */
+  get navCollapsed(): boolean {
+    return this._navCollapsed;
+  }
+
   // Actions
 
   /**
@@ -220,10 +268,10 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   public clearActiveItems(): void {
     this.items.forEach((item) => {
       item.trackActiveState = false;
-      if (item.children) {
+      if (item.children !== undefined) {
         item.children.forEach((secondary) => {
           secondary.trackActiveState = false;
-          if (secondary.children) {
+          if (secondary.children !== undefined) {
             secondary.children.forEach((tertiary) => {
               tertiary.trackActiveState = false;
             });
@@ -243,13 +291,13 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       if (updatedRoute.indexOf(topLevel.url) > -1) {
         topLevel.trackActiveState = true;
       }
-      if (topLevel.children) {
+      if (topLevel.children !== undefined) {
         topLevel.children.forEach((secondLevel) => {
           if (updatedRoute.indexOf(secondLevel.url) > -1) {
             secondLevel.trackActiveState = true;
             topLevel.trackActiveState = true;
           }
-          if (secondLevel.children) {
+          if (secondLevel.children !== undefined) {
             secondLevel.children.forEach((thirdLevel) => {
               if (updatedRoute.indexOf(thirdLevel.url) > -1) {
                 thirdLevel.trackActiveState = true;
@@ -275,17 +323,16 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Handles the navbar hamburger toggle click
    */
   public handleNavBarToggleClick(): void {
-
-    if (this.inMobileState) {
+    if (this.inMobileState === true) {
       // Toggle the mobile nav
-      if (this.showMobileNav) {
-        this.showMobileNav = false;
+      if (this.showMobileNav === true) {
+        this._showMobileNav = false;
       } else {
         // Always start at the primary menu
         this.updateMobileMenu();
-        this.showMobileNav = true;
+        this._showMobileNav = true;
       }
-    } else if (this.navCollapsed) {
+    } else if (this.navCollapsed === true) {
       this.expandMenu();
     } else {
       this.collapseMenu();
@@ -297,8 +344,8 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param item
    */
   public handlePrimaryClick(item: any): void {
-    if (this.inMobileState) {
-      if (item.children && item.children.length > 0) {
+    if (this.inMobileState === true) {
+      if (item.children !== undefined && item.children.length > 0) {
         this.updateMobileMenu(item);
       } else {
         this.updateMobileMenu();
@@ -315,7 +362,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param secondary
    */
   public handleSecondaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig): void {
-    if (this.inMobileState) {
+    if (this.inMobileState === true) {
       if (secondary.children && secondary.children.length > 0) {
         this.updateMobileMenu(primary, secondary);
       } else {
@@ -333,13 +380,11 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param secondary
    * @param tertiary
    */
-  public handleTertiaryClick(primary: NavigationItemConfig,
-                             secondary: NavigationItemConfig,
-                             tertiary: NavigationItemConfig): void {
-    if (this.inMobileState) {
+  public handleTertiaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig,
+      tertiary: NavigationItemConfig): void {
+    if (this.inMobileState === true) {
       this.updateMobileMenu();
     }
-
     this.navigateToItem(tertiary);
   }
 
@@ -348,14 +393,14 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param item
    */
   public handlePrimaryHover(item: NavigationItemConfig): void {
-    if (item.children && item.children.length > 0) {
-      if (!this.inMobileState) {
+    if (item.children !== undefined && item.children.length > 0) {
+      if (this.inMobileState !== true) {
         if (item.blurTimeout !== undefined) {
           clearTimeout(item.blurTimeout);
           item.blurTimeout = undefined;
         } else if (this.hoverTimeout === undefined && !item.trackHoverState) {
           item.hoverTimeout = setTimeout(() => {
-            this.hoverSecondaryNav = true;
+            this._hoverSecondaryNav = true;
             item.trackHoverState = true;
             item.hoverTimeout = undefined;
           }, this.hoverDelay);
@@ -369,15 +414,15 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param item
    */
   public handlePrimaryBlur(item: NavigationItemConfig): void {
-    if (item.children && item.children.length > 0) {
+    if (item.children !== undefined && item.children.length > 0) {
       if (item.hoverTimeout !== undefined) {
         clearTimeout(item.hoverTimeout);
         item.hoverTimeout = undefined;
       } else if (item.blurTimeout === undefined && item.trackHoverState) {
         item.blurTimeout = setTimeout(() => {
           item.trackHoverState = false;
-          if (!this.primaryHover()) {
-            this.hoverSecondaryNav = false;
+          if (this.primaryHover() !== true) {
+            this._hoverSecondaryNav = false;
           }
           item.blurTimeout = undefined;
         }, this.hideDelay);
@@ -390,14 +435,14 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param item
    */
   public handleSecondaryHover(item: any): void {
-    if (item.children && item.children.length > 0) {
-      if (!this.inMobileState) {
+    if (item.children !== undefined && item.children.length > 0) {
+      if (this.inMobileState !== true) {
         if (item.blurTimeout !== undefined) {
           clearTimeout(item.blurTimeout);
           item.blurTimeout = undefined;
         } else if (this.hoverTimeout === undefined) {
           item.navHoverTimeout = setTimeout(() => {
-            this.hoverTertiaryNav = true;
+            this._hoverTertiaryNav = true;
             item.trackHoverState = true;
             item.navHoverTimeout = undefined;
           }, this.hoverDelay);
@@ -411,15 +456,15 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param item
    */
   public handleSecondaryBlur(item: NavigationItemConfig): void {
-    if (item.children && item.children.length > 0) {
+    if (item.children !== undefined && item.children.length > 0) {
       if (item.hoverTimeout !== undefined) {
         clearTimeout(item.hoverTimeout);
         item.hoverTimeout = undefined;
       } else if (item.blurTimeout === undefined) {
         item.blurTimeout = setTimeout(() => {
           item.trackHoverState = false;
-          if (!this.secondaryHover()) {
-            this.hoverTertiaryNav = false;
+          if (this.secondaryHover() !== true) {
+            this._hoverTertiaryNav = false;
           }
           item.blurTimeout = undefined;
         }, this.hideDelay);
@@ -432,18 +477,17 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param item
    */
   public collapseSecondaryNav(item: NavigationItemConfig): void {
-    if (this.inMobileState) {
+    if (this.inMobileState === true) {
       this.updateMobileMenu();
     } else {
-      if (item.secondaryCollapsed) {
+      if (item.secondaryCollapsed === true) {
         this.updateSecondaryCollapsedState(false, item);
         this.forceHideSecondaryMenu();
       } else {
         this.updateSecondaryCollapsedState(true, item);
       }
     }
-
-    this.hoverSecondaryNav = false;
+    this._hoverSecondaryNav = false;
   }
 
   /**
@@ -451,9 +495,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param item
    */
   public collapseTertiaryNav(item: NavigationItemConfig): void {
-    if (this.inMobileState) {
+    if (this.inMobileState === true) {
       this.items.forEach((primaryItem) => {
-        if (primaryItem.children) {
+        if (primaryItem.children !== undefined) {
           primaryItem.children.forEach((secondaryItem) => {
             if (secondaryItem === item) {
               this.updateMobileMenu(primaryItem);
@@ -462,16 +506,15 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
         }
       });
     } else {
-      if (item.tertiaryCollapsed) {
+      if (item.tertiaryCollapsed === true) {
         this.updateTertiaryCollapsedState(false, item);
         this.forceHideSecondaryMenu();
       } else {
         this.updateTertiaryCollapsedState(true, item);
       }
     }
-
-    this.hoverSecondaryNav = false;
-    this.hoverTertiaryNav = false;
+    this._hoverSecondaryNav = false;
+    this._hoverTertiaryNav = false;
   }
 
   // Private
@@ -490,13 +533,13 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     if (this.contentContainer === undefined) {
       return;
     }
-    if (this.showBadges) {
+    if (this.showBadges === true) {
       this.renderer.addClass(this.contentContainer, 'nav-pf-vertical-with-badges');
     }
-    if (this.persistentSecondary) {
+    if (this.persistentSecondary === true) {
       this.renderer.addClass(this.contentContainer, 'nav-pf-persistent-secondary');
     }
-    if (this.hiddenIcons) {
+    if (this.showIcons !== true) {
       this.renderer.addClass(this.contentContainer, 'hidden-icons-pf');
     }
   }
@@ -504,26 +547,26 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   private updateMobileMenu(selected?: NavigationItemConfig, secondaryItem?: NavigationItemConfig): void {
     this.items.forEach((item) => {
       item.mobileItem = false;
-      if (item.children) {
+      if (item.children !== undefined) {
         item.children.forEach((nextSecondary) => {
           nextSecondary.mobileItem = false;
         });
       }
     });
 
-    if (selected) {
+    if (selected !== undefined) {
       selected.mobileItem = true;
       if (secondaryItem) {
         secondaryItem.mobileItem = true;
-        this.showMobileSecondary = false;
-        this.showMobileTertiary = true;
+        this._showMobileSecondary = false;
+        this._showMobileTertiary = true;
       } else {
-        this.showMobileSecondary = true;
-        this.showMobileTertiary = false;
+        this._showMobileSecondary = true;
+        this._showMobileTertiary = false;
       }
     } else {
-      this.showMobileSecondary = false;
-      this.showMobileTertiary = false;
+      this._showMobileSecondary = false;
+      this._showMobileTertiary = false;
     }
   }
 
@@ -531,9 +574,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     let width = this.windowRef.nativeWindow.innerWidth;
 
     // Check to see if we need to enter/exit the mobile state
-    if (!this.ignoreMobile && width < this.breakpoints.tablet) {
-      if (!this.inMobileState) {
-        this.inMobileState = true;
+    if (this.ignoreMobile !== true && width < this.breakpoints.tablet) {
+      if (this.inMobileState !== true) {
+        this._inMobileState = true;
 
         // Set the body class to the correct state
         if (this.contentContainer !== undefined) {
@@ -548,8 +591,8 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
         this.explicitCollapse = false;
       }
     } else {
-      this.inMobileState = false;
-      this.showMobileNav = false;
+      this._inMobileState = false;
+      this._showMobileNav = false;
 
       // Set the body class back to the default
       if (this.contentContainer !== undefined) {
@@ -557,17 +600,17 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       }
     }
 
-    if (this.explicitCollapse) {
-      this.navCollapsed = true;
+    if (this.explicitCollapse === true) {
+      this._navCollapsed = true;
       this.addClass('collapsed-nav');
     } else {
-      this.navCollapsed = false;
+      this._navCollapsed = false;
       this.removeClass('collapsed-nav');
     }
   }
 
   private collapseMenu(): void {
-    this.navCollapsed = true;
+    this._navCollapsed = true;
 
     // Set the body class to the correct state
     if (this.contentContainer !== undefined) {
@@ -578,7 +621,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   private expandMenu() {
-    this.navCollapsed = false;
+    this._navCollapsed = false;
 
     // Set the body class to the correct state
     if (this.contentContainer !== undefined) {
@@ -593,20 +636,20 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   private forceHideSecondaryMenu() {
-    this.forceHidden = true;
+    this._forceHidden = true;
     setTimeout(() => {
-      this.forceHidden = false;
+      this._forceHidden = false;
     }, 500);
   }
 
   private setParentActive(item: NavigationItemConfig) {
     this.items.forEach((topLevel) => {
-      if (topLevel.children) {
+      if (topLevel.children !== undefined) {
         topLevel.children.forEach((secondLevel) => {
           if (secondLevel === item) {
             topLevel.trackActiveState = true;
           }
-          if (secondLevel.children) {
+          if (secondLevel.children !== undefined) {
             secondLevel.children.forEach((thirdLevel) => {
               if (thirdLevel === item) {
                 topLevel.trackActiveState = true;
@@ -621,7 +664,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   private getFirstNavigateChild(item: NavigationItemConfig): NavigationItemConfig {
     let firstChild;
-    if (!item.children || item.children.length < 1) {
+    if (item.children === undefined || item.children.length < 1) {
       firstChild = item;
     } else {
       firstChild = this.getFirstNavigateChild(item.children[0]);
@@ -630,20 +673,20 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   private setSecondaryItemVisible() {
-    this.activeSecondary = false;
+    this._activeSecondary = false;
 
-    if (this.persistentSecondary && !this.inMobileState) {
+    if (this.persistentSecondary === true && !this.inMobileState) {
       this.items.forEach((topLevel) => {
         if (topLevel.children) {
           topLevel.children.forEach((secondLevel) => {
             if (secondLevel.trackActiveState) {
-              this.activeSecondary = true;
+              this._activeSecondary = true;
             }
           });
         }
       });
       if (this.contentContainer !== undefined) {
-        if (this.activeSecondary) {
+        if (this.activeSecondary === true) {
           this.renderer.addClass(this.contentContainer, 'secondary-visible-pf');
         } else {
           this.renderer.removeClass(this.contentContainer, 'secondary-visible-pf');
@@ -656,7 +699,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     let navItem = this.getFirstNavigateChild(item);
     let navTo;
     if (navItem) {
-      this.showMobileNav = false;
+      this._showMobileNav = false;
       navTo = navItem.url;
       if (navTo) {
         this.router.navigateByUrl(navTo);
@@ -704,23 +747,23 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   private updateSecondaryCollapsedState(setCollapsed: boolean, collapsedItem?: NavigationItemConfig) {
-    if (collapsedItem) {
+    if (collapsedItem !== undefined) {
       collapsedItem.secondaryCollapsed = setCollapsed;
     }
-    if (setCollapsed) {
-      this.collapsedSecondaryNav = true;
+    if (setCollapsed === true) {
+      this._collapsedSecondaryNav = true;
 
       if (this.contentContainer !== undefined) {
         this.renderer.addClass(this.contentContainer, 'collapsed-secondary-nav-pf');
       }
     } else {
       // Remove any collapsed secondary menus
-      if (this.items) {
+      if (this.items !== undefined) {
         this.items.forEach((item) => {
           item.secondaryCollapsed = false;
         });
       }
-      this.collapsedSecondaryNav = false;
+      this._collapsedSecondaryNav = false;
 
       if (this.contentContainer !== undefined) {
         this.renderer.removeClass(this.contentContainer, 'collapsed-secondary-nav-pf');
@@ -729,11 +772,11 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   }
 
   private updateTertiaryCollapsedState(setCollapsed: boolean, collapsedItem?: NavigationItemConfig): void {
-    if (collapsedItem) {
+    if (collapsedItem !== undefined) {
       collapsedItem.tertiaryCollapsed = setCollapsed;
     }
-    if (setCollapsed) {
-      this.collapsedTertiaryNav = true;
+    if (setCollapsed === true) {
+      this._collapsedTertiaryNav = true;
       this.updateSecondaryCollapsedState(false);
 
       if (this.contentContainer !== undefined) {
@@ -741,7 +784,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       }
     } else {
       // Remove any collapsed secondary menus
-      if (this.items) {
+      if (this.items !== undefined) {
         this.items.forEach((item) => {
           if (item.children && item.children.length > 0) {
             item.children.forEach((secondaryItem) => {
@@ -750,7 +793,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
           }
         });
       }
-      this.collapsedTertiaryNav = false;
+      this._collapsedTertiaryNav = false;
 
       if (this.contentContainer !== undefined) {
         this.renderer.removeClass(this.contentContainer, 'collapsed-tertiary-nav-pf');

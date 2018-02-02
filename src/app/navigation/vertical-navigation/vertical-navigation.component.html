@@ -1,6 +1,7 @@
 <div>
-  <nav class="navbar navbar-pf-vertical pfng-vertical-container" [ngClass]="{'pfng-vertical-hide-nav': hideTopBanner}">
-    <ng-container *ngIf="!hideTopBanner">
+  <nav class="navbar navbar-pf-vertical pfng-vertical-container"
+       [ngClass]="{'pfng-vertical-hide-nav': !showTopBanner}">
+    <ng-container *ngIf="showTopBanner">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" (click)="handleNavBarToggleClick()">
           <span class="sr-only">Toggle navigation</span>
@@ -21,7 +22,7 @@
     <div class="nav-pf-vertical"
          [ngClass]="{'nav-pf-persistent-secondary': persistentSecondary,
                     'nav-pf-vertical-collapsible-menus': pinnableMenus,
-                    'hidden-icons-pf': hiddenIcons,
+                    'hidden-icons-pf': !showIcons,
                     'nav-pf-vertical-with-badges': showBadges,
                     'secondary-visible-pf': activeSecondary,
                     'show-mobile-secondary': showMobileSecondary,
@@ -43,7 +44,7 @@
                        'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}"
             (mouseenter)="handlePrimaryHover(item)" (mouseleave)="handlePrimaryBlur(item)">
           <a (click)="handlePrimaryClick(item)">
-            <span class="{{item.iconStyleClass}}" *ngIf="item.iconStyleClass" [ngClass]="{hidden: hiddenIcons}"
+            <span class="{{item.iconStyleClass}}" *ngIf="item.iconStyleClass" [ngClass]="{hidden: !showIcons}"
                   tooltip="{{item.title}}"
                   container="body"
                   placement="bottom"

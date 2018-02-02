@@ -23,37 +23,37 @@ export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
      */
     contentContainer: HTMLElement;
     /**
-     * Boolean to indicate whether or not to show badges
+     * Boolean to indicate whether or not to show badges, default: false
      */
     showBadges: boolean;
     /**
-     * Indicates whether or not to allow the secondary to persist
+     * Indicates whether or not to allow the secondary to persist, default: false
      */
     persistentSecondary: boolean;
     /**
-     * Allow pinnable menus when they are open
+     * Allow pinnable menus when they are open, default: false
      */
     pinnableMenus: boolean;
     /**
-     * Hide menu items
+     * Show menu icons, default: true
      */
-    hiddenIcons: boolean;
+    showIcons: boolean;
     /**
      * The navigation items used to build the menu
      */
     items: NavigationItemConfig[];
     /**
-     * Sets an active flag on items when they are selected
+     * Sets an active flag on items when they are selected, default: false
      */
     updateActiveItemsOnClick: boolean;
     /**
-     * Indicates whether or not this is a mobile friendly navigation
+     * Indicates whether or not this is a mobile friendly navigation, default: false
      */
     ignoreMobile: boolean;
     /**
-     * Hide top banner optionally
+     * Show top banner, default: true
      */
-    hideTopBanner: boolean;
+    showTopBanner: boolean;
     /**
      * This event is fired any time the user has initiated navigation
      */
@@ -62,60 +62,17 @@ export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
      * This event is fired any time an item in the navigation is clicked
      */
     itemClickEvent: EventEmitter<{}>;
-    /**
-     * Internal boolean to track if secondary menu is active
-     * @type {boolean}
-     */
-    activeSecondary: boolean;
-    /**
-     * Internal boolean to track if mobile nav should be shown
-     * @type {boolean}
-     */
-    showMobileNav: boolean;
-    /**
-     * Internal boolean to track if mobile secondary should be shown
-     * @type {boolean}
-     */
-    showMobileSecondary: boolean;
-    /**
-     * Internal boolean to track if mobile tertiary should be shown
-     * @type {boolean}
-     */
-    showMobileTertiary: boolean;
-    /**
-     * Track if secondary nav is being hovered over
-     * @type {boolean}
-     */
-    hoverSecondaryNav: boolean;
-    /**
-     * Track if tertiary nav is being hovered over
-     * @type {boolean}
-     */
-    hoverTertiaryNav: boolean;
-    /**
-     * Track if secondary nav is collapsed
-     * @type {boolean}
-     */
-    collapsedSecondaryNav: boolean;
-    /**
-     * Track if tertiary nav is collapsed
-     * @type {boolean}
-     */
-    collapsedTertiaryNav: boolean;
-    /**
-     * Internal boolean to track if nav is collapsed
-     * @type {boolean}
-     */
-    navCollapsed: boolean;
-    /**
-     * Internal boolean to track if nav should be entirely hidden when screen is below desktop resolution
-     * @type {boolean}
-     */
-    forceHidden: boolean;
-    /**
-     * Internal boolean to track if the navigation is in a mobile state
-     */
-    inMobileState: boolean;
+    private _activeSecondary;
+    private _collapsedSecondaryNav;
+    private _collapsedTertiaryNav;
+    private _forceHidden;
+    private _hoverSecondaryNav;
+    private _hoverTertiaryNav;
+    private _inMobileState;
+    private _navCollapsed;
+    private _showMobileNav;
+    private _showMobileSecondary;
+    private _showMobileTertiary;
     private hoverTimeout;
     private routeChangeListener;
     private breakpoints;
@@ -135,6 +92,72 @@ export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
      * Destroy listeners
      */
     ngOnDestroy(): void;
+    /**
+     * Returns flag indicating if secondary menu is active
+     *
+     * @returns {boolean} True if secondary menu is active
+     */
+    readonly activeSecondary: boolean;
+    /**
+     * Returns flag indicating if mobile nav should be shown
+     *
+     * @returns {boolean} True if mobile nav should be shown
+     */
+    readonly showMobileNav: boolean;
+    /**
+     * Returns flag indicating if mobile secondary should be shown
+     *
+     * @returns {boolean} True if mobile secondary should be shown
+     */
+    readonly showMobileSecondary: boolean;
+    /**
+     * Returns flag indicating if mobile tertiary should be shown
+     *
+     * @returns {boolean} True if mobile tertiary should be shown
+     */
+    readonly showMobileTertiary: boolean;
+    /**
+     * Returns flag indicating if secondary nav is being hovered over
+     *
+     * @returns {boolean} True if secondary nav is being hovered over
+     */
+    readonly hoverSecondaryNav: boolean;
+    /**
+     * Returns flag indicating if tertiary nav is being hovered over
+     *
+     * @returns {boolean} True if tertiary nav is being hovered over
+     */
+    readonly hoverTertiaryNav: boolean;
+    /**
+     * Returns flag indicating if secondary nav is collapsed
+     *
+     * @returns {boolean} True if secondary nav is collapsed
+     */
+    readonly collapsedSecondaryNav: boolean;
+    /**
+     * Returns flag indicating if tertiary nav is collapsed
+     *
+     * @returns {boolean} True if tertiary nav is collapsed
+     */
+    readonly collapsedTertiaryNav: boolean;
+    /**
+     * Returns flag indicating if nav should be entirely hidden when screen is below desktop resolution
+     *
+     * @returns {boolean} True if nav should be entirely hidden
+     */
+    readonly forceHidden: boolean;
+    /**
+     * Returns flag indicating if the navigation is in a mobile state
+     *
+     * @returns {boolean} True if the navigation is in a mobile state
+     */
+    readonly inMobileState: boolean;
+    /**
+     * Returns flag indicating if nav is collapsed
+     *
+     * @returns {boolean} True if nav is collapsed
+     */
+    readonly navCollapsed: boolean;
     /**
      * Clear all active items
      */

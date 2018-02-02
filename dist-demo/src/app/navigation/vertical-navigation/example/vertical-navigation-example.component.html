@@ -3,12 +3,12 @@
   <pfng-vertical-navigation
       [brandAlt]="'PatternFly Ng'"
       [contentContainer]="contentContainer"
-      [hiddenIcons]="false"
+      [items]="navigationItems"
       [persistentSecondary]="false"
       [pinnableMenus]="true"
       [showBadges]="true"
+      [showIcons]="true"
       [updateActiveItemsOnClick]="true"
-      [items]="navigationItems"
       (onItemClickEvent)="onItemClicked($event)"
       (onNavigationEvent)="onNavigation($event)">
     <div>

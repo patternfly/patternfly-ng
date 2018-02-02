@@ -23,6 +23,34 @@ var VerticalNavigationComponent = /** @class */ (function () {
         this.router = router;
         this.windowRef = windowRef;
         /**
+         * Boolean to indicate whether or not to show badges, default: false
+         */
+        this.showBadges = false;
+        /**
+         * Indicates whether or not to allow the secondary to persist, default: false
+         */
+        this.persistentSecondary = false;
+        /**
+         * Allow pinnable menus when they are open, default: false
+         */
+        this.pinnableMenus = false;
+        /**
+         * Show menu icons, default: true
+         */
+        this.showIcons = true;
+        /**
+         * Sets an active flag on items when they are selected, default: false
+         */
+        this.updateActiveItemsOnClick = false;
+        /**
+         * Indicates whether or not this is a mobile friendly navigation, default: false
+         */
+        this.ignoreMobile = false;
+        /**
+         * Show top banner, default: true
+         */
+        this.showTopBanner = true;
+        /**
          * This event is fired any time the user has initiated navigation
          */
         this.navigationEvent = new EventEmitter();
@@ -30,56 +58,16 @@ var VerticalNavigationComponent = /** @class */ (function () {
          * This event is fired any time an item in the navigation is clicked
          */
         this.itemClickEvent = new EventEmitter();
-        /**
-         * Internal boolean to track if secondary menu is active
-         * @type {boolean}
-         */
-        this.activeSecondary = false;
-        /**
-         * Internal boolean to track if mobile nav should be shown
-         * @type {boolean}
-         */
-        this.showMobileNav = false;
-        /**
-         * Internal boolean to track if mobile secondary should be shown
-         * @type {boolean}
-         */
-        this.showMobileSecondary = false;
-        /**
-         * Internal boolean to track if mobile tertiary should be shown
-         * @type {boolean}
-         */
-        this.showMobileTertiary = false;
-        /**
-         * Track if secondary nav is being hovered over
-         * @type {boolean}
-         */
-        this.hoverSecondaryNav = false;
-        /**
-         * Track if tertiary nav is being hovered over
-         * @type {boolean}
-         */
-        this.hoverTertiaryNav = false;
-        /**
-         * Track if secondary nav is collapsed
-         * @type {boolean}
-         */
-        this.collapsedSecondaryNav = false;
-        /**
-         * Track if tertiary nav is collapsed
-         * @type {boolean}
-         */
-        this.collapsedTertiaryNav = false;
-        /**
-         * Internal boolean to track if nav is collapsed
-         * @type {boolean}
-         */
-        this.navCollapsed = false;
-        /**
-         * Internal boolean to track if nav should be entirely hidden when screen is below desktop resolution
-         * @type {boolean}
-         */
-        this.forceHidden = false;
+        this._activeSecondary = false;
+        this._collapsedSecondaryNav = false;
+        this._collapsedTertiaryNav = false;
+        this._forceHidden = false;
+        this._hoverSecondaryNav = false;
+        this._hoverTertiaryNav = false;
+        this._navCollapsed = false;
+        this._showMobileNav = false;
+        this._showMobileSecondary = false;
+        this._showMobileTertiary = false;
         this.breakpoints = {
             'tablet': 768,
             'desktop': 1200
@@ -122,6 +110,139 @@ var VerticalNavigationComponent = /** @class */ (function () {
             this.windowRef.nativeWindow.removeEventListener('resize', this.windowListener);
         }
     };
+    Object.defineProperty(VerticalNavigationComponent.prototype, "activeSecondary", {
+        // Accessors
+        /**
+         * Returns flag indicating if secondary menu is active
+         *
+         * @returns {boolean} True if secondary menu is active
+         */
+        get: function () {
+            return this._activeSecondary;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "showMobileNav", {
+        /**
+         * Returns flag indicating if mobile nav should be shown
+         *
+         * @returns {boolean} True if mobile nav should be shown
+         */
+        get: function () {
+            return this._showMobileNav;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "showMobileSecondary", {
+        /**
+         * Returns flag indicating if mobile secondary should be shown
+         *
+         * @returns {boolean} True if mobile secondary should be shown
+         */
+        get: function () {
+            return this._showMobileSecondary;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "showMobileTertiary", {
+        /**
+         * Returns flag indicating if mobile tertiary should be shown
+         *
+         * @returns {boolean} True if mobile tertiary should be shown
+         */
+        get: function () {
+            return this._showMobileTertiary;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "hoverSecondaryNav", {
+        /**
+         * Returns flag indicating if secondary nav is being hovered over
+         *
+         * @returns {boolean} True if secondary nav is being hovered over
+         */
+        get: function () {
+            return this._hoverSecondaryNav;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "hoverTertiaryNav", {
+        /**
+         * Returns flag indicating if tertiary nav is being hovered over
+         *
+         * @returns {boolean} True if tertiary nav is being hovered over
+         */
+        get: function () {
+            return this._hoverTertiaryNav;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "collapsedSecondaryNav", {
+        /**
+         * Returns flag indicating if secondary nav is collapsed
+         *
+         * @returns {boolean} True if secondary nav is collapsed
+         */
+        get: function () {
+            return this._collapsedSecondaryNav;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "collapsedTertiaryNav", {
+        /**
+         * Returns flag indicating if tertiary nav is collapsed
+         *
+         * @returns {boolean} True if tertiary nav is collapsed
+         */
+        get: function () {
+            return this._collapsedTertiaryNav;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "forceHidden", {
+        /**
+         * Returns flag indicating if nav should be entirely hidden when screen is below desktop resolution
+         *
+         * @returns {boolean} True if nav should be entirely hidden
+         */
+        get: function () {
+            return this._forceHidden;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "inMobileState", {
+        /**
+         * Returns flag indicating if the navigation is in a mobile state
+         *
+         * @returns {boolean} True if the navigation is in a mobile state
+         */
+        get: function () {
+            return this._inMobileState;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VerticalNavigationComponent.prototype, "navCollapsed", {
+        /**
+         * Returns flag indicating if nav is collapsed
+         *
+         * @returns {boolean} True if nav is collapsed
+         */
+        get: function () {
+            return this._navCollapsed;
+        },
+        enumerable: true,
+        configurable: true
+    });
     // Actions
     /**
      * Clear all active items
@@ -129,10 +250,10 @@ var VerticalNavigationComponent = /** @class */ (function () {
     VerticalNavigationComponent.prototype.clearActiveItems = function () {
         this.items.forEach(function (item) {
             item.trackActiveState = false;
-            if (item.children) {
+            if (item.children !== undefined) {
                 item.children.forEach(function (secondary) {
                     secondary.trackActiveState = false;
-                    if (secondary.children) {
+                    if (secondary.children !== undefined) {
                         secondary.children.forEach(function (tertiary) {
                             tertiary.trackActiveState = false;
                         });
@@ -151,13 +272,13 @@ var VerticalNavigationComponent = /** @class */ (function () {
             if (updatedRoute.indexOf(topLevel.url) > -1) {
                 topLevel.trackActiveState = true;
             }
-            if (topLevel.children) {
+            if (topLevel.children !== undefined) {
                 topLevel.children.forEach(function (secondLevel) {
                     if (updatedRoute.indexOf(secondLevel.url) > -1) {
                         secondLevel.trackActiveState = true;
                         topLevel.trackActiveState = true;
                     }
-                    if (secondLevel.children) {
+                    if (secondLevel.children !== undefined) {
                         secondLevel.children.forEach(function (thirdLevel) {
                             if (updatedRoute.indexOf(thirdLevel.url) > -1) {
                                 thirdLevel.trackActiveState = true;
@@ -181,18 +302,18 @@ var VerticalNavigationComponent = /** @class */ (function () {
      * Handles the navbar hamburger toggle click
      */
     VerticalNavigationComponent.prototype.handleNavBarToggleClick = function () {
-        if (this.inMobileState) {
+        if (this.inMobileState === true) {
             // Toggle the mobile nav
-            if (this.showMobileNav) {
-                this.showMobileNav = false;
+            if (this.showMobileNav === true) {
+                this._showMobileNav = false;
             }
             else {
                 // Always start at the primary menu
                 this.updateMobileMenu();
-                this.showMobileNav = true;
+                this._showMobileNav = true;
             }
         }
-        else if (this.navCollapsed) {
+        else if (this.navCollapsed === true) {
             this.expandMenu();
         }
         else {
@@ -204,8 +325,8 @@ var VerticalNavigationComponent = /** @class */ (function () {
      * @param item
      */
     VerticalNavigationComponent.prototype.handlePrimaryClick = function (item) {
-        if (this.inMobileState) {
-            if (item.children && item.children.length > 0) {
+        if (this.inMobileState === true) {
+            if (item.children !== undefined && item.children.length > 0) {
                 this.updateMobileMenu(item);
             }
             else {
@@ -223,7 +344,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
      * @param secondary
      */
     VerticalNavigationComponent.prototype.handleSecondaryClick = function (primary, secondary) {
-        if (this.inMobileState) {
+        if (this.inMobileState === true) {
             if (secondary.children && secondary.children.length > 0) {
                 this.updateMobileMenu(primary, secondary);
             }
@@ -243,7 +364,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
      * @param tertiary
      */
     VerticalNavigationComponent.prototype.handleTertiaryClick = function (primary, secondary, tertiary) {
-        if (this.inMobileState) {
+        if (this.inMobileState === true) {
             this.updateMobileMenu();
         }
         this.navigateToItem(tertiary);
@@ -254,15 +375,15 @@ var VerticalNavigationComponent = /** @class */ (function () {
      */
     VerticalNavigationComponent.prototype.handlePrimaryHover = function (item) {
         var _this = this;
-        if (item.children && item.children.length > 0) {
-            if (!this.inMobileState) {
+        if (item.children !== undefined && item.children.length > 0) {
+            if (this.inMobileState !== true) {
                 if (item.blurTimeout !== undefined) {
                     clearTimeout(item.blurTimeout);
                     item.blurTimeout = undefined;
                 }
                 else if (this.hoverTimeout === undefined && !item.trackHoverState) {
                     item.hoverTimeout = setTimeout(function () {
-                        _this.hoverSecondaryNav = true;
+                        _this._hoverSecondaryNav = true;
                         item.trackHoverState = true;
                         item.hoverTimeout = undefined;
                     }, this.hoverDelay);
@@ -276,7 +397,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
      */
     VerticalNavigationComponent.prototype.handlePrimaryBlur = function (item) {
         var _this = this;
-        if (item.children && item.children.length > 0) {
+        if (item.children !== undefined && item.children.length > 0) {
             if (item.hoverTimeout !== undefined) {
                 clearTimeout(item.hoverTimeout);
                 item.hoverTimeout = undefined;
@@ -284,8 +405,8 @@ var VerticalNavigationComponent = /** @class */ (function () {
             else if (item.blurTimeout === undefined && item.trackHoverState) {
                 item.blurTimeout = setTimeout(function () {
                     item.trackHoverState = false;
-                    if (!_this.primaryHover()) {
-                        _this.hoverSecondaryNav = false;
+                    if (_this.primaryHover() !== true) {
+                        _this._hoverSecondaryNav = false;
                     }
                     item.blurTimeout = undefined;
                 }, this.hideDelay);
@@ -298,15 +419,15 @@ var VerticalNavigationComponent = /** @class */ (function () {
      */
     VerticalNavigationComponent.prototype.handleSecondaryHover = function (item) {
         var _this = this;
-        if (item.children && item.children.length > 0) {
-            if (!this.inMobileState) {
+        if (item.children !== undefined && item.children.length > 0) {
+            if (this.inMobileState !== true) {
                 if (item.blurTimeout !== undefined) {
                     clearTimeout(item.blurTimeout);
                     item.blurTimeout = undefined;
                 }
                 else if (this.hoverTimeout === undefined) {
                     item.navHoverTimeout = setTimeout(function () {
-                        _this.hoverTertiaryNav = true;
+                        _this._hoverTertiaryNav = true;
                         item.trackHoverState = true;
                         item.navHoverTimeout = undefined;
                     }, this.hoverDelay);
@@ -320,7 +441,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
      */
     VerticalNavigationComponent.prototype.handleSecondaryBlur = function (item) {
         var _this = this;
-        if (item.children && item.children.length > 0) {
+        if (item.children !== undefined && item.children.length > 0) {
             if (item.hoverTimeout !== undefined) {
                 clearTimeout(item.hoverTimeout);
                 item.hoverTimeout = undefined;
@@ -328,8 +449,8 @@ var VerticalNavigationComponent = /** @class */ (function () {
             else if (item.blurTimeout === undefined) {
                 item.blurTimeout = setTimeout(function () {
                     item.trackHoverState = false;
-                    if (!_this.secondaryHover()) {
-                        _this.hoverTertiaryNav = false;
+                    if (_this.secondaryHover() !== true) {
+                        _this._hoverTertiaryNav = false;
                     }
                     item.blurTimeout = undefined;
                 }, this.hideDelay);
@@ -341,11 +462,11 @@ var VerticalNavigationComponent = /** @class */ (function () {
      * @param item
      */
     VerticalNavigationComponent.prototype.collapseSecondaryNav = function (item) {
-        if (this.inMobileState) {
+        if (this.inMobileState === true) {
             this.updateMobileMenu();
         }
         else {
-            if (item.secondaryCollapsed) {
+            if (item.secondaryCollapsed === true) {
                 this.updateSecondaryCollapsedState(false, item);
                 this.forceHideSecondaryMenu();
             }
@@ -353,7 +474,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
                 this.updateSecondaryCollapsedState(true, item);
             }
         }
-        this.hoverSecondaryNav = false;
+        this._hoverSecondaryNav = false;
     };
     /**
      * Collapse tertiary navigation
@@ -361,9 +482,9 @@ var VerticalNavigationComponent = /** @class */ (function () {
      */
     VerticalNavigationComponent.prototype.collapseTertiaryNav = function (item) {
         var _this = this;
-        if (this.inMobileState) {
+        if (this.inMobileState === true) {
             this.items.forEach(function (primaryItem) {
-                if (primaryItem.children) {
+                if (primaryItem.children !== undefined) {
                     primaryItem.children.forEach(function (secondaryItem) {
                         if (secondaryItem === item) {
                             _this.updateMobileMenu(primaryItem);
@@ -373,7 +494,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
             });
         }
         else {
-            if (item.tertiaryCollapsed) {
+            if (item.tertiaryCollapsed === true) {
                 this.updateTertiaryCollapsedState(false, item);
                 this.forceHideSecondaryMenu();
             }
@@ -381,8 +502,8 @@ var VerticalNavigationComponent = /** @class */ (function () {
                 this.updateTertiaryCollapsedState(true, item);
             }
         }
-        this.hoverSecondaryNav = false;
-        this.hoverTertiaryNav = false;
+        this._hoverSecondaryNav = false;
+        this._hoverTertiaryNav = false;
     };
     // Private
     VerticalNavigationComponent.prototype.addClass = function (className) {
@@ -397,48 +518,48 @@ var VerticalNavigationComponent = /** @class */ (function () {
         if (this.contentContainer === undefined) {
             return;
         }
-        if (this.showBadges) {
+        if (this.showBadges === true) {
             this.renderer.addClass(this.contentContainer, 'nav-pf-vertical-with-badges');
         }
-        if (this.persistentSecondary) {
+        if (this.persistentSecondary === true) {
             this.renderer.addClass(this.contentContainer, 'nav-pf-persistent-secondary');
         }
-        if (this.hiddenIcons) {
+        if (this.showIcons !== true) {
             this.renderer.addClass(this.contentContainer, 'hidden-icons-pf');
         }
     };
     VerticalNavigationComponent.prototype.updateMobileMenu = function (selected, secondaryItem) {
         this.items.forEach(function (item) {
             item.mobileItem = false;
-            if (item.children) {
+            if (item.children !== undefined) {
                 item.children.forEach(function (nextSecondary) {
                     nextSecondary.mobileItem = false;
                 });
             }
         });
-        if (selected) {
+        if (selected !== undefined) {
             selected.mobileItem = true;
             if (secondaryItem) {
                 secondaryItem.mobileItem = true;
-                this.showMobileSecondary = false;
-                this.showMobileTertiary = true;
+                this._showMobileSecondary = false;
+                this._showMobileTertiary = true;
             }
             else {
-                this.showMobileSecondary = true;
-                this.showMobileTertiary = false;
+                this._showMobileSecondary = true;
+                this._showMobileTertiary = false;
             }
         }
         else {
-            this.showMobileSecondary = false;
-            this.showMobileTertiary = false;
+            this._showMobileSecondary = false;
+            this._showMobileTertiary = false;
         }
     };
     VerticalNavigationComponent.prototype.checkNavState = function () {
         var width = this.windowRef.nativeWindow.innerWidth;
         // Check to see if we need to enter/exit the mobile state
-        if (!this.ignoreMobile && width < this.breakpoints.tablet) {
-            if (!this.inMobileState) {
-                this.inMobileState = true;
+        if (this.ignoreMobile !== true && width < this.breakpoints.tablet) {
+            if (this.inMobileState !== true) {
+                this._inMobileState = true;
                 // Set the body class to the correct state
                 if (this.contentContainer !== undefined) {
                     this.renderer.removeClass(this.contentContainer, 'collapsed-nav');
@@ -451,24 +572,24 @@ var VerticalNavigationComponent = /** @class */ (function () {
             }
         }
         else {
-            this.inMobileState = false;
-            this.showMobileNav = false;
+            this._inMobileState = false;
+            this._showMobileNav = false;
             // Set the body class back to the default
             if (this.contentContainer !== undefined) {
                 this.renderer.removeClass(this.contentContainer, 'hidden-nav');
             }
         }
-        if (this.explicitCollapse) {
-            this.navCollapsed = true;
+        if (this.explicitCollapse === true) {
+            this._navCollapsed = true;
             this.addClass('collapsed-nav');
         }
         else {
-            this.navCollapsed = false;
+            this._navCollapsed = false;
             this.removeClass('collapsed-nav');
         }
     };
     VerticalNavigationComponent.prototype.collapseMenu = function () {
-        this.navCollapsed = true;
+        this._navCollapsed = true;
         // Set the body class to the correct state
         if (this.contentContainer !== undefined) {
             this.renderer.addClass(this.contentContainer, 'collapsed-nav');
@@ -476,7 +597,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
         this.explicitCollapse = true;
     };
     VerticalNavigationComponent.prototype.expandMenu = function () {
-        this.navCollapsed = false;
+        this._navCollapsed = false;
         // Set the body class to the correct state
         if (this.contentContainer !== undefined) {
             this.renderer.removeClass(this.contentContainer, 'collapsed-nav');
@@ -488,19 +609,19 @@ var VerticalNavigationComponent = /** @class */ (function () {
     };
     VerticalNavigationComponent.prototype.forceHideSecondaryMenu = function () {
         var _this = this;
-        this.forceHidden = true;
+        this._forceHidden = true;
         setTimeout(function () {
-            _this.forceHidden = false;
+            _this._forceHidden = false;
         }, 500);
     };
     VerticalNavigationComponent.prototype.setParentActive = function (item) {
         this.items.forEach(function (topLevel) {
-            if (topLevel.children) {
+            if (topLevel.children !== undefined) {
                 topLevel.children.forEach(function (secondLevel) {
                     if (secondLevel === item) {
                         topLevel.trackActiveState = true;
                     }
-                    if (secondLevel.children) {
+                    if (secondLevel.children !== undefined) {
                         secondLevel.children.forEach(function (thirdLevel) {
                             if (thirdLevel === item) {
                                 topLevel.trackActiveState = true;
@@ -514,7 +635,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
     };
     VerticalNavigationComponent.prototype.getFirstNavigateChild = function (item) {
         var firstChild;
-        if (!item.children || item.children.length < 1) {
+        if (item.children === undefined || item.children.length < 1) {
             firstChild = item;
         }
         else {
@@ -524,19 +645,19 @@ var VerticalNavigationComponent = /** @class */ (function () {
     };
     VerticalNavigationComponent.prototype.setSecondaryItemVisible = function () {
         var _this = this;
-        this.activeSecondary = false;
-        if (this.persistentSecondary && !this.inMobileState) {
+        this._activeSecondary = false;
+        if (this.persistentSecondary === true && !this.inMobileState) {
             this.items.forEach(function (topLevel) {
                 if (topLevel.children) {
                     topLevel.children.forEach(function (secondLevel) {
                         if (secondLevel.trackActiveState) {
-                            _this.activeSecondary = true;
+                            _this._activeSecondary = true;
                         }
                     });
                 }
             });
             if (this.contentContainer !== undefined) {
-                if (this.activeSecondary) {
+                if (this.activeSecondary === true) {
                     this.renderer.addClass(this.contentContainer, 'secondary-visible-pf');
                 }
                 else {
@@ -549,7 +670,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
         var navItem = this.getFirstNavigateChild(item);
         var navTo;
         if (navItem) {
-            this.showMobileNav = false;
+            this._showMobileNav = false;
             navTo = navItem.url;
             if (navTo) {
                 this.router.navigateByUrl(navTo);
@@ -592,34 +713,34 @@ var VerticalNavigationComponent = /** @class */ (function () {
         return hover;
     };
     VerticalNavigationComponent.prototype.updateSecondaryCollapsedState = function (setCollapsed, collapsedItem) {
-        if (collapsedItem) {
+        if (collapsedItem !== undefined) {
             collapsedItem.secondaryCollapsed = setCollapsed;
         }
-        if (setCollapsed) {
-            this.collapsedSecondaryNav = true;
+        if (setCollapsed === true) {
+            this._collapsedSecondaryNav = true;
             if (this.contentContainer !== undefined) {
                 this.renderer.addClass(this.contentContainer, 'collapsed-secondary-nav-pf');
             }
         }
         else {
             // Remove any collapsed secondary menus
-            if (this.items) {
+            if (this.items !== undefined) {
                 this.items.forEach(function (item) {
                     item.secondaryCollapsed = false;
                 });
             }
-            this.collapsedSecondaryNav = false;
+            this._collapsedSecondaryNav = false;
             if (this.contentContainer !== undefined) {
                 this.renderer.removeClass(this.contentContainer, 'collapsed-secondary-nav-pf');
             }
         }
     };
     VerticalNavigationComponent.prototype.updateTertiaryCollapsedState = function (setCollapsed, collapsedItem) {
-        if (collapsedItem) {
+        if (collapsedItem !== undefined) {
             collapsedItem.tertiaryCollapsed = setCollapsed;
         }
-        if (setCollapsed) {
-            this.collapsedTertiaryNav = true;
+        if (setCollapsed === true) {
+            this._collapsedTertiaryNav = true;
             this.updateSecondaryCollapsedState(false);
             if (this.contentContainer !== undefined) {
                 this.renderer.addClass(this.contentContainer, 'collapsed-tertiary-nav-pf');
@@ -627,7 +748,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
         }
         else {
             // Remove any collapsed secondary menus
-            if (this.items) {
+            if (this.items !== undefined) {
                 this.items.forEach(function (item) {
                     if (item.children && item.children.length > 0) {
                         item.children.forEach(function (secondaryItem) {
@@ -636,7 +757,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
                     }
                 });
             }
-            this.collapsedTertiaryNav = false;
+            this._collapsedTertiaryNav = false;
             if (this.contentContainer !== undefined) {
                 this.renderer.removeClass(this.contentContainer, 'collapsed-tertiary-nav-pf');
             }
@@ -669,7 +790,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
     __decorate([
         Input(),
         __metadata("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "hiddenIcons", void 0);
+    ], VerticalNavigationComponent.prototype, "showIcons", void 0);
     __decorate([
         Input(),
         __metadata("design:type", Array)
@@ -685,7 +806,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
     __decorate([
         Input(),
         __metadata("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "hideTopBanner", void 0);
+    ], VerticalNavigationComponent.prototype, "showTopBanner", void 0);
     __decorate([
         Output('onNavigationEvent'),
         __metadata("design:type", Object)
@@ -698,7 +819,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-vertical-navigation',
-            template: "<div><nav class=\"navbar navbar-pf-vertical pfng-vertical-container\" [ngClass]=\"{'pfng-vertical-hide-nav': hideTopBanner}\"><ng-container *ngIf=\"!hideTopBanner\"><div class=\"navbar-header\"><button type=\"button\" class=\"navbar-toggle\" (click)=\"handleNavBarToggleClick()\"><span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span></button> <span class=\"navbar-brand\"><img class=\"navbar-brand-icon\" *ngIf=\"brandSrc\" [src]=\"brandSrc\" alt=\"{{brandAlt}}\"> <span class=\"navbar-brand-txt\" *ngIf=\"!brandSrc\">{{brandAlt}}</span></span></div><nav class=\"collapse navbar-collapse\"><ng-content></ng-content></nav></ng-container><div class=\"nav-pf-vertical\" [ngClass]=\"{'nav-pf-persistent-secondary': persistentSecondary,\n                    'nav-pf-vertical-collapsible-menus': pinnableMenus,\n                    'hidden-icons-pf': hiddenIcons,\n                    'nav-pf-vertical-with-badges': showBadges,\n                    'secondary-visible-pf': activeSecondary,\n                    'show-mobile-secondary': showMobileSecondary,\n                    'show-mobile-tertiary': showMobileTertiary,\n                    'hover-secondary-nav-pf': hoverSecondaryNav,\n                    'hover-tertiary-nav-pf': hoverTertiaryNav,\n                    'collapsed-secondary-nav-pf': collapsedSecondaryNav,\n                    'collapsed-tertiary-nav-pf': collapsedTertiaryNav,\n                    'hidden': inMobileState,\n                    'collapsed': navCollapsed,\n                    'force-hide-secondary-nav-pf': forceHidden,\n                    'show-mobile-nav': showMobileNav}\"><ul class=\"list-group\"><li *ngFor=\"let item of items\" class=\"list-group-item\" [ngClass]=\"{'secondary-nav-item-pf': item.children && item.children.length > 0,\n                       'active': item.trackActiveState,\n                       'is-hover': item.trackHoverState,\n                       'mobile-nav-item-pf': item.mobileItem && showMobileSecondary,\n                       'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}\" (mouseenter)=\"handlePrimaryHover(item)\" (mouseleave)=\"handlePrimaryBlur(item)\"><a (click)=\"handlePrimaryClick(item)\"><span class=\"{{item.iconStyleClass}}\" *ngIf=\"item.iconStyleClass\" [ngClass]=\"{hidden: hiddenIcons}\" tooltip=\"{{item.title}}\" container=\"body\" placement=\"bottom\" isDisabled=\"!{{navCollapsed}}\" containerClass=\"nav-pf-vertical-tooltip\"></span> <span class=\"list-group-item-value\">{{item.title}}</span><div *ngIf=\"showBadges && item.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of item.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"item.children && item.children.length > 0\" class=\"nav-pf-secondary-nav\"><div class=\"nav-item-pf-header\"><a class=\"secondary-collapse-toggle-pf\" (click)=\"collapseSecondaryNav(item)\" [ngClass]=\"{'collapsed': item.secondaryCollapsed}\"></a> <span>{{item.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let secondaryItem of item.children\" class=\"list-group-item\" [ngClass]=\"{'tertiary-nav-item-pf': secondaryItem.children && secondaryItem.children.length > 0,\n                             'active': secondaryItem.trackActiveState,\n                             'is-hover': secondaryItem.trackHoverState,\n                             'mobile-nav-item-pf': secondaryItem.mobileItem}\" (mouseenter)=\"handleSecondaryHover(secondaryItem)\" (mouseleave)=\"handleSecondaryBlur(secondaryItem)\"><a (click)=\"handleSecondaryClick(item, secondaryItem)\"><span class=\"list-group-item-value\">{{secondaryItem.title}}</span><div *ngIf=\"showBadges && secondaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of secondaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"secondaryItem.children && secondaryItem.children.length > 0\" class=\"nav-pf-tertiary-nav\"><div class=\"nav-item-pf-header\"><a class=\"tertiary-collapse-toggle-pf\" (click)=\"collapseTertiaryNav(secondaryItem)\" [ngClass]=\"{'collapsed': secondaryItem.tertiaryCollapsed}\"></a> <span>{{secondaryItem.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let tertiaryItem of secondaryItem.children\" class=\"list-group-item\" [ngClass]=\"{'active': tertiaryItem.trackActiveState}\"><a (click)=\"handleTertiaryClick(item, secondaryItem, tertiaryItem)\"><span class=\"list-group-item-value\">{{tertiaryItem.title}}</span><div *ngIf=\"showBadges && tertiaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of tertiaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a></li></ul></div></li></ul></div></li></ul></div></nav></div>"
+            template: "<div><nav class=\"navbar navbar-pf-vertical pfng-vertical-container\" [ngClass]=\"{'pfng-vertical-hide-nav': !showTopBanner}\"><ng-container *ngIf=\"showTopBanner\"><div class=\"navbar-header\"><button type=\"button\" class=\"navbar-toggle\" (click)=\"handleNavBarToggleClick()\"><span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span></button> <span class=\"navbar-brand\"><img class=\"navbar-brand-icon\" *ngIf=\"brandSrc\" [src]=\"brandSrc\" alt=\"{{brandAlt}}\"> <span class=\"navbar-brand-txt\" *ngIf=\"!brandSrc\">{{brandAlt}}</span></span></div><nav class=\"collapse navbar-collapse\"><ng-content></ng-content></nav></ng-container><div class=\"nav-pf-vertical\" [ngClass]=\"{'nav-pf-persistent-secondary': persistentSecondary,\n                    'nav-pf-vertical-collapsible-menus': pinnableMenus,\n                    'hidden-icons-pf': !showIcons,\n                    'nav-pf-vertical-with-badges': showBadges,\n                    'secondary-visible-pf': activeSecondary,\n                    'show-mobile-secondary': showMobileSecondary,\n                    'show-mobile-tertiary': showMobileTertiary,\n                    'hover-secondary-nav-pf': hoverSecondaryNav,\n                    'hover-tertiary-nav-pf': hoverTertiaryNav,\n                    'collapsed-secondary-nav-pf': collapsedSecondaryNav,\n                    'collapsed-tertiary-nav-pf': collapsedTertiaryNav,\n                    'hidden': inMobileState,\n                    'collapsed': navCollapsed,\n                    'force-hide-secondary-nav-pf': forceHidden,\n                    'show-mobile-nav': showMobileNav}\"><ul class=\"list-group\"><li *ngFor=\"let item of items\" class=\"list-group-item\" [ngClass]=\"{'secondary-nav-item-pf': item.children && item.children.length > 0,\n                       'active': item.trackActiveState,\n                       'is-hover': item.trackHoverState,\n                       'mobile-nav-item-pf': item.mobileItem && showMobileSecondary,\n                       'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}\" (mouseenter)=\"handlePrimaryHover(item)\" (mouseleave)=\"handlePrimaryBlur(item)\"><a (click)=\"handlePrimaryClick(item)\"><span class=\"{{item.iconStyleClass}}\" *ngIf=\"item.iconStyleClass\" [ngClass]=\"{hidden: !showIcons}\" tooltip=\"{{item.title}}\" container=\"body\" placement=\"bottom\" isDisabled=\"!{{navCollapsed}}\" containerClass=\"nav-pf-vertical-tooltip\"></span> <span class=\"list-group-item-value\">{{item.title}}</span><div *ngIf=\"showBadges && item.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of item.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"item.children && item.children.length > 0\" class=\"nav-pf-secondary-nav\"><div class=\"nav-item-pf-header\"><a class=\"secondary-collapse-toggle-pf\" (click)=\"collapseSecondaryNav(item)\" [ngClass]=\"{'collapsed': item.secondaryCollapsed}\"></a> <span>{{item.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let secondaryItem of item.children\" class=\"list-group-item\" [ngClass]=\"{'tertiary-nav-item-pf': secondaryItem.children && secondaryItem.children.length > 0,\n                             'active': secondaryItem.trackActiveState,\n                             'is-hover': secondaryItem.trackHoverState,\n                             'mobile-nav-item-pf': secondaryItem.mobileItem}\" (mouseenter)=\"handleSecondaryHover(secondaryItem)\" (mouseleave)=\"handleSecondaryBlur(secondaryItem)\"><a (click)=\"handleSecondaryClick(item, secondaryItem)\"><span class=\"list-group-item-value\">{{secondaryItem.title}}</span><div *ngIf=\"showBadges && secondaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of secondaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"secondaryItem.children && secondaryItem.children.length > 0\" class=\"nav-pf-tertiary-nav\"><div class=\"nav-item-pf-header\"><a class=\"tertiary-collapse-toggle-pf\" (click)=\"collapseTertiaryNav(secondaryItem)\" [ngClass]=\"{'collapsed': secondaryItem.tertiaryCollapsed}\"></a> <span>{{secondaryItem.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let tertiaryItem of secondaryItem.children\" class=\"list-group-item\" [ngClass]=\"{'active': tertiaryItem.trackActiveState}\"><a (click)=\"handleTertiaryClick(item, secondaryItem, tertiaryItem)\"><span class=\"list-group-item-value\">{{tertiaryItem.title}}</span><div *ngIf=\"showBadges && tertiaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of tertiaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a></li></ul></div></li></ul></div></li></ul></div></nav></div>"
         }),
         __metadata("design:paramtypes", [ElementRef,
             Renderer2,

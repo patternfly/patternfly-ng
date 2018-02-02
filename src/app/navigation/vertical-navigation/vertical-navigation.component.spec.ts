@@ -291,9 +291,9 @@ describe('Vertical Navigation component - ', () => {
     expect(collased).not.toBeNull();
   });
 
-  it('should not show icons in hiddenIcons mode', () => {
+  it('should not show icons', () => {
 
-    comp.hiddenIcons = true;
+    comp.showIcons = false;
     fixture.detectChanges();
 
     let primaryItems = fixture.debugElement.queryAll(
@@ -326,7 +326,7 @@ describe('Vertical Navigation component - ', () => {
 
   it('should show the alternate text when specified', () => {
     comp.brandSrc = '';
-    comp.hiddenIcons = true;
+    comp.showIcons = true;
     fixture.detectChanges();
 
     let brandIcon = fixture.debugElement.queryAll(By.css('.navbar-brand-icon'));
