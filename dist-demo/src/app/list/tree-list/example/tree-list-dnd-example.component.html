@@ -1,0 +1,85 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+        <p>This ensures child nodes cannot be rearranged</p>
+        <pfng-tree-list #treeList
+                        [actionTemplate]="actionTemplate"
+                        [config]="treeListConfig"
+                        [itemTemplate]="itemTemplate"
+                        [items]="items"
+                        (onActionSelect)="handleAction($event, null)"
+                        (onMoveNode)="handleMoveNode($event)">
+          <ng-template #loadTemplate let-node="node" let-index="index">
+            <span>Loading...</span>
+          </ng-template>
+          <ng-template #itemTemplate let-node="node" let-index="index">
+            <div class="list-pf-left">
+              <span class="fa {{node.data.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
+            </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">{{node.data.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{node.data.address}}</div>
+              </div>
+              <div class="list-pf-additional-content">
+                <div>
+                  <span class="pficon pficon-screen"></span>
+                  <strong>{{node.data.hostCount}}</strong> Hosts
+                </div>
+                <div>
+                  <span class="pficon pficon-cluster"></span>
+                  <strong>{{node.data.clusterCount}}</strong> Clusters
+                </div>
+                <div>
+                  <span class="pficon pficon-container-node"></span>
+                  <strong>{{node.data.nodeCount}}</strong> Nodes
+                </div>
+                <div>
+                  <span class="pficon pficon-image"></span>
+                  <strong>{{node.data.imageCount}}</strong> Images
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #actionTemplate let-node="node" let-index="index">
+            <pfng-action class="list-pf-actions"
+                         [config]="actionConfig"
+                         (onActionSelect)="handleAction($event, node)">
+            </pfng-action>
+          </ng-template>
+        </pfng-tree-list>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/treelistcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/list/tree-list/example/tree-list-dnd-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/list/tree-list/example/tree-list-dnd-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
