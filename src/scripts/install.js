@@ -19,7 +19,7 @@ function copyFolderRecursive(source, target) {
 
   // Check if folder needs to be created or integrated
   var targetFolder = path.join(target, path.basename(source));
-  if (!fs.existsSync(targetFolder)) {
+  if (fs.lstatSync(source).isDirectory() && !fs.existsSync(targetFolder)) {
     fs.mkdirSync(targetFolder);
   }
 
@@ -34,6 +34,8 @@ function copyFolderRecursive(source, target) {
         copyFile(curSource, targetFolder);
       }
     });
+  } else {
+    copyFile(source, targetFolder);
   }
 }
 
