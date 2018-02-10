@@ -1,0 +1,99 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Apply a filter, then chose "Save Filter" to save as a new "My Filters" option. Or, click the "Load Filters" button to pre-populate the "My Filters" option.</p>
+        <pfng-filter #filter
+                     [config]="filterConfig"
+                     (onChange)="filterChanged($event)"
+                     (onDelete)="deleteSavedFilter($event)"
+                     (onFieldSelect)="filterFieldSelected($event)"
+                     (onSave)="saveFilter($event)"
+                     (onTypeAhead)="filterQueries($event)"></pfng-filter>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="padding-top-15">
+        <button class="btn btn-default primary-action" type="button"
+                (click)="loadSavedFilters()">Load Filters
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Items</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngFor="let item of items" class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-3">
+            <span>{{item.name}}</span>
+          </div>
+          <div class="col-sm-5">
+            <span>{{item.address}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.birthMonth}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.weekDay}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="disabled" name="disabled" type="checkbox"
+                   [(ngModel)]="filterConfig.disabled">Disabled
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Filters</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{filtersText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/filtercomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/filter/example/filter-save-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/filter/example/filter-save-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

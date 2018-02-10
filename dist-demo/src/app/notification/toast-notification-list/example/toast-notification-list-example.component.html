@@ -1,0 +1,120 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Toast Notification List Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <pfng-toast-notification-list
+            [notifications]="notifications"
+            (onActionSelect)="handleAction($event)"
+            (onCloseSelect)="handleClose($event)"
+            (onViewingChange)="handleViewingChange($event)"
+            [showClose]="showClose">
+        </pfng-toast-notification-list>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button (click)="notify()">Add notification</button>
+      <p class="padding-top-5">Click multiple times</p>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="header">Header:</label>
+          <div class="col-sm-10">
+            <input id="header" name="header" type="text" class="form-control" [(ngModel)]="header">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="message">Message:</label>
+          <div class="col-sm-10">
+            <input id="message" name="message" type="text" class="form-control" [(ngModel)]="message">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="message">Primary Action:</label>
+          <div class="col-sm-10">
+            <input id="primaryAction" name="primaryAction" type="text" class="form-control"
+                   [(ngModel)]="primaryAction.title">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="type">Type:</label>
+          <div class="col-sm-10">
+            <div class="btn-group dropdown" dropdown>
+              <button id="type" type="button" class="btn btn-default" dropdownToggle>
+                {{type}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" *dropdownMenu role="menu">
+                <li role="menuitem" *ngFor="let item of types" [ngClass]="{'selected': item === type}">
+                  <a href="javascript:void(0);" tabindex="-1" (click)="handleType(item)">
+                    {{item}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="showClose">Close:</label>
+          <div class="col-sm-10">
+            <input id="showClose" name="showClose" type="checkbox" [(ngModel)]="showClose">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="moreActions">More Actions:</label>
+          <div class="col-sm-10">
+            <input id="moreActions" name="moreActions" type="checkbox" [(ngModel)]="showMoreActions">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="type">Persistent:</label>
+          <div class="col-sm-10">
+            <input id="persistent" name="persistent" type="checkbox" [(ngModel)]="isPersistent">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/toastnotificationlistcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/notification/toast-notification-list/example/toast-notification-list-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/notification/toast-notification-list/example/toast-notification-list-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
