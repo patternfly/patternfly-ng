@@ -62,7 +62,7 @@ var InlineNotificationComponent = /** @class */ (function () {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-inline-notification',
-            template: "<div class=\"alert alert-{{type}}\" ng-class=\"{'alert-dismissable': dismissable === true}\" *ngIf=\"!hidden\"><button *ngIf=\"dismissable\" (click)=\"notificationRemove()\" type=\"button\" class=\"close\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button> <span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <strong>{{header}}</strong> {{message}}</div>"
+            template: "<div class=\"alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': dismissable === true}\" *ngIf=\"!hidden\"><button *ngIf=\"dismissable\" (click)=\"notificationRemove()\" type=\"button\" class=\"close\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button> <span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <strong>{{header}}</strong> {{message}}</div>"
         }),
         __metadata("design:paramtypes", [])
     ], InlineNotificationComponent);

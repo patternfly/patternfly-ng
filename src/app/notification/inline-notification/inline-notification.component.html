@@ -1,5 +1,5 @@
 <div class="alert alert-{{type}}"
-     ng-class="{'alert-dismissable': dismissable === true}" *ngIf="!hidden">
+     [ngClass]="{'alert-dismissable': dismissable === true}" *ngIf="!hidden">
   <button *ngIf="dismissable"
           (click)="notificationRemove()"
           type="button" class="close" aria-hidden="true">
