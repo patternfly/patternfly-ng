@@ -1,0 +1,52 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Notification Drawer Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <div class="navbar-pf-vertical">
+          <nav class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left navbar-iconic">
+              <li class="drawer-pf-trigger dropdown" [ngClass]="{'open': !hideDrawer}">
+                <a class="nav-item-iconic drawer-pf-trigger-icon" (click)="toggleShowDrawer()">
+                  <span class="fa fa-bell" title="Notifications"></span>
+                  <span *ngIf="unreadNotifications" class="badge badge-pf-bordered"> </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="layout-pf-fixed">
+          <div class="navbar-pf-vertical">
+            <pfng-notification-drawer [drawerHidden]="hideDrawer" [allowExpand]="true" [drawerTitle]="'Notifications Drawer'" [showMarkAllRead]="true"
+             [notificationGroups]="groups" [showClearAll]="true" [allowExpand]="true">
+            </pfng-notification-drawer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/notificationdrawercomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
