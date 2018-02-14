@@ -8,14 +8,14 @@ export class NotificaitonGroup {
    * Include src for the heading area for each notification group,
    *  access the group via notificationGroup
    */
-   headingInclude: string;
+  heading: string;
 
 
   /**
    * Include src for the sub-heading area for each notification group,
    * access the group via notificationGroup
    */
-  subheadingInclude: string;
+  subHeading: string;
 
 
   /**
