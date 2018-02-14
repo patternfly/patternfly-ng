@@ -1,0 +1,57 @@
+<div class="drawer-pf" [ngClass]="{'hide': drawerHidden, 'drawer-pf-expanded': drawerExpanded}">
+  <div *ngIf="drawerTitle" class="drawer-pf-title">
+    <a href="" *ngIf="allowExpand" class="drawer-pf-toggle-expand fa fa-angle-double-left hidden-xs" (click)="toggleExpandDrawer()"></a>
+    <a href="" *ngIf="onClose" class="drawer-pf-close pficon pficon-close" (click)="onClose()"></a>
+    <h3 class="text-center">{{drawerTitle}}</h3>
+  </div>
+  <div *ngIf="titleInclude" class="drawer-pf-title" ng-include src="titleInclude"></div>
+  <div *ngIf="!notificationGroups" class="apf-blank-notification-groups">
+    <!-- <pfng-empty-state config="emptyStateConfig"></pfng-empty-state> -->
+  </div>
+
+  <div *ngIf="notificationGroups" pf-fixed-accordion scroll-selector=".panel-body">
+    <div class="panel-group">
+      <div class="panel panel-default" *ngFor="let notificationGroup of notificationGroups, let i = index">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a *ngIf="!singleGroup" (click)="toggleCollapse(notificationGroup)" [ngClass]="{collapsed: !notificationGroup.open}" 
+              src="notificationGroup.subHeading"></a>
+            <span *ngIf="singleGroup" ng-include src="notificationGroup.heading"></span>
+          </h4>
+          <span class="panel-counter" ng-include src="notificationGroup.subHeading"></span>
+        </div>
+        <div class="panel-collapse collapse" [ngClass]="{in: notificationGroup.open || notificationGroups.length === 1}">
+          <div *ngIf="hasNotifications(notificationGroup)" class="panel-body">
+            <div class="drawer-pf-notification" [ngClass]="{unread: notification.unread, 'expanded-notification': drawerExpanded}" *ngFor="let notification of notificationGroup.notifications trackBy notificationTrackField, let i = index"
+            ng-include href="notificationBodyInclude">
+            </div>
+            <div *ngIf="notificationGroup.isLoading" class="drawer-pf-loading text-center">
+              <span class="spinner spinner-xs spinner-inline"></span> Loading More
+            </div>
+          </div>
+          <div *ngIf="(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)" class="drawer-pf-action">
+            <span class="drawer-pf-action-link" *ngIf="showMarkAllRead && hasUnread(notificationGroup)">
+              <button class="btn btn-link" (click)="onMarkAllRead(notificationGroup)">Mark All Read</button>
+            </span>
+            <span class="drawer-pf-action-link">
+              <button class="btn btn-link" *ngIf="showClearAll" (click)="onClearAll(notificationGroup)">
+                <span class="pficon pficon-close"></span>
+                Clear All
+              </button>
+            </span>
+          </div>
+          <div *ngIf="actionButtonTitle && hasNotifications(notificationGroup)" class="drawer-pf-action">
+            <a class="btn btn-link btn-block" (click)="actionButtonCallback(notificationGroup)">{{actionButtonTitle}}</a>
+          </div>
+          <div *ngIf="!hasNotifications(notificationGroup)">
+            <div class="panel-body">
+              <!-- <pfng-empty-state config="notificationGroup.emptyStateConfig"></pfng-empty-state> -->
+            </div>
+          </div>
+          <div *ngIf="notificationFooterInclude" ng-include src="notificationFooterInclude">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

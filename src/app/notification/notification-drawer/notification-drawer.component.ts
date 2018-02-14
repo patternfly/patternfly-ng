@@ -1,9 +1,11 @@
 import {
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -22,7 +24,7 @@ import { NotificaitonGroup } from '../notification-group';
   templateUrl: './notification-drawer.component.html'
 })
 
-export class NotificationDrawer implements OnInit {
+export class NotificationDrawerComponent implements OnInit {
 
 
   /**
@@ -53,7 +55,7 @@ export class NotificationDrawer implements OnInit {
    * Collection notification groups to add to the drawer. Alternatively, a single group object
    * can be given if categorization is not used.
    */
-  @Input() notificationGroups: NotificaitonGroup;
+  @Input() notificationGroups: NotificaitonGroup[];
 
 
   /**
@@ -112,36 +114,69 @@ export class NotificationDrawer implements OnInit {
   @Input() noNotificationsText: string;
 
 
-  // /**
-  //  * Object containing any variables/functions used by the included.
-  //  */
-  // @Input() customScope: object;
+  @Input() singleGroup: number = 1;
 
-
-  /**
-   * function(notificationGroup) Callback method for the clear all button (Optional)
-   */
-  @Input() onClearAll: function;
 
   /**
    * function(notificationGroup) Callback method for the mark all read button (Optional)
    */
-  @Input() onMarkAllRead: function;
+  onMarkAllRead() {
+
+  }
+
+  /**
+   * 
+   */
+  toggleExpandDrawer() {
+    this.drawerExpanded = !this.drawerExpanded;
+  }
+
+
+  /**
+   * 
+   */
+  hasUnread() {
+
+  }
+
+  /**
+   * 
+   */
+  hasNotifications() {
+
+  }
+
+  /**
+   * function(notificationGroup) Callback method for the clear all button (Optional)
+   */
+  onClearAll() {
+
+  }
+
 
   /**
    * function(notificationGroup) Callback method for action button for each group,
    * the notificationGroup is passed (Optional)
-   *
    */
-  @Input() actionButtonCallback: function;
+  actionButtonCallback() {
 
+  }
+
+  
+  /**
+   * 
+   */
+  toggleCollapse() {
+
+  }
 
   /**
    * function() Callback for the close button. Close button is shown if this callback is supplied.
    * Callback should set drawerHidden to true to close the drawer.
    */
-  @Input() onClose: function;
+  onClose() {
 
+  }
 
 
 
