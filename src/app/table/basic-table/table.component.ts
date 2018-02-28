@@ -95,6 +95,20 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
   @Output('onActivate') onActivate = new EventEmitter();
 
   /**
+   * The ngx-datatable event emitted when a row detail row was toggled
+   *
+   * Not applicable with pfng-table useExpandRows
+   */
+  @Output('onDetailToggle') onDetailToggle = new EventEmitter();
+
+  /**
+   * The ngx-datatable event emitted when a row detail row was toggled
+   *
+   * Not applicable with pfng-table paginationConfig
+   */
+  @Output('onPage') onPage = new EventEmitter();
+
+  /**
    * The ngx-datatable event emitted when columns are re-ordered
    */
   @Output('onReorder') onReorder = new EventEmitter();
@@ -103,6 +117,13 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
    * The ngx-datatable event emitted when a column is resized
    */
   @Output('onResize') onResize = new EventEmitter();
+
+  /**
+   * The ngx-datatable event emitted when a cell or row was selected
+   *
+   * Not applicable with pfng-table showCheckbox
+   */
+  @Output('onSelect') onSelect = new EventEmitter();
 
   /**
    * The ngx-datatable event emitted when body was scrolled (e.g., when scrollbarV is true)
@@ -117,7 +138,7 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
   /**
    * The ngx-datatable event emitted when a context menu is invoked on the table
    */
-  // @Output('onTableContextMenu') onTableContextMenu = new EventEmitter();
+  @Output('onTableContextMenu') onTableContextMenu = new EventEmitter();
 
   /**
    * The event emitted when a row has been dragged
@@ -128,11 +149,6 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
    * The event emitted when a row has been dropped
    */
   @Output('onDrop') onDrop = new EventEmitter();
-
-  /**
-   * The event emitted when an item selection has been changed
-   */
-  @Output('onSelectionChange') onSelectionChange = new EventEmitter();
 
   @ViewChild('datatable') private _datatable: DatatableComponent;
   @ViewChild('selectCellTemplate') private selectCellTemplate: TemplateRef<any>;
@@ -420,6 +436,13 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
     this.onActivate.emit($event);
   }
 
+  /**
+   * Helper to generate ngx-datatable detailToggle event
+   */
+  private handleDetailToggle($event: any): void {
+    this.onDetailToggle.emit($event);
+  }
+
   // Todo: Not implemented yet
   private handleDragulaDrag($event: any[]): void {
     // this.onDrag.emit($event);
@@ -440,6 +463,13 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
       this.rowsModel = [...this.rows];
       this.showTable = true;
     }, 0);
+  }
+
+  /**
+   * Helper to generate ngx-datatable page event
+   */
+  private handlePage($event: any): void {
+    this.onPage.emit($event);
   }
 
   /**
@@ -470,6 +500,13 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
   }
 
   /**
+   * Helper to generate ngx-datatable select event
+   */
+  private handleSelect($event: any): void {
+    this.onSelect.emit($event);
+  }
+
+  /**
    * Helper to generate ngx-datatable sort event
    */
   private handleSort($event: any): void {
@@ -480,8 +517,7 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
    * Helper to generate ngx-datatable tableContextmenu event
    */
   private handleTableContextMenu($event: any): void {
-    // Todo: Not implemented yet
-    // this.onTableContextMenu.emit($event);
+    this.onTableContextMenu.emit($event);
   }
 
   /**
