@@ -21,43 +21,51 @@ var TableBase = /** @class */ (function () {
          */
         this.onDrop = new EventEmitter();
         /**
-         * The Event is emitted when Page Size is changed
+         * The Event is emitted when Page Size is changed -- requires paginationConfig
+         *
+         * Not applicable with ngx-datatable page event
          */
         this.onPageSizeChange = new EventEmitter();
         /**
-         * The Event is emitted when Page Number is Changed
+         * The Event is emitted when Page Number is Changed -- requires paginationConfig
+         *
+         * Not applicable with ngx-datatable page event
          */
         this.onPageNumberChange = new EventEmitter();
         /**
-         * The event emitted when an action (e.g., button, kebab, etc.) has been selected
+         * The event emitted when an action (e.g., button, kebab, etc.) has been selected -- requires toolbarConfig
          */
         this.onActionSelect = new EventEmitter();
         /**
-         * The event emitted when a field menu option is selected
+         * The event emitted when a field menu option is selected -- requires toolbarConfig
          */
         this.onFilterFieldSelect = new EventEmitter();
         /**
-         * The event emitted when a filter has been changed
+         * The event emitted when a filter has been changed -- requires toolbarConfig
          */
         this.onFilterChange = new EventEmitter();
         /**
-         * The event emitted when a filter has been saved
+         * The event emitted when a filter has been saved -- requires toolbarConfig
          */
         this.onFilterSave = new EventEmitter();
         /**
-         * The event emitted when the user types ahead in the query input field
+         * The event emitted when the user types ahead in the query input field -- requires toolbarConfig
          */
         this.onFilterTypeAhead = new EventEmitter();
         /**
-         * The event emitted when an item selection has been changed
+         * The event emitted when an item selection has been changed -- requires showCheckbox
+         *
+         * Not applicable with ngx-datatable select event
          */
         this.onSelectionChange = new EventEmitter();
         /**
-         * The event emitted when the sort has changed
+         * The event emitted when the sort has changed -- requires toolbarConfig
+         *
+         * Not applicable with ngx-datatable sort event
          */
         this.onSortChange = new EventEmitter();
         /**
-         * The event emitted when a view has been selected
+         * The event emitted when a view has been selected -- requires toolbarConfig
          */
         this.onViewSelect = new EventEmitter();
     }

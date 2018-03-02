@@ -161,7 +161,7 @@
     "tslint": "5.8.0",
     "typedoc": "^0.5.7",
     "typedoc-webpack-plugin": "1.1.4",
-    "typescript": "^2.3.4",
+    "typescript": "2.6.2",
     "url-loader": "0.5.8",
     "webpack": "2.2.1",
     "webpack-bundle-analyzer": "2.3.0",

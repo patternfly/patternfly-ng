@@ -66,6 +66,18 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      */
     onActivate: EventEmitter<{}>;
     /**
+     * The ngx-datatable event emitted when a row detail row was toggled
+     *
+     * Not applicable with pfng-table useExpandRows
+     */
+    onDetailToggle: EventEmitter<{}>;
+    /**
+     * The ngx-datatable event emitted when a row detail row was toggled
+     *
+     * Not applicable with pfng-table paginationConfig
+     */
+    onPage: EventEmitter<{}>;
+    /**
      * The ngx-datatable event emitted when columns are re-ordered
      */
     onReorder: EventEmitter<{}>;
@@ -73,6 +85,12 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      * The ngx-datatable event emitted when a column is resized
      */
     onResize: EventEmitter<{}>;
+    /**
+     * The ngx-datatable event emitted when a cell or row was selected
+     *
+     * Not applicable with pfng-table showCheckbox
+     */
+    onSelect: EventEmitter<{}>;
     /**
      * The ngx-datatable event emitted when body was scrolled (e.g., when scrollbarV is true)
      */
@@ -84,6 +102,7 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
     /**
      * The ngx-datatable event emitted when a context menu is invoked on the table
      */
+    onTableContextMenu: EventEmitter<{}>;
     /**
      * The event emitted when a row has been dragged
      */
@@ -91,10 +110,6 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      * The event emitted when a row has been dropped
      */
     onDrop: EventEmitter<{}>;
-    /**
-     * The event emitted when an item selection has been changed
-     */
-    onSelectionChange: EventEmitter<{}>;
     private _datatable;
     private selectCellTemplate;
     private selectHeadTemplate;
@@ -192,6 +207,10 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      * Helper to generate ngx-datatable activate event
      */
     private handleActivate($event);
+    /**
+     * Helper to generate ngx-datatable detailToggle event
+     */
+    private handleDetailToggle($event);
     private handleDragulaDrag($event);
     /**
      * Helper to generate dragula drop event
@@ -199,6 +218,10 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      * @param {any[]} $event
      */
     private handleDragulaDrop($event);
+    /**
+     * Helper to generate ngx-datatable page event
+     */
+    private handlePage($event);
     /**
      * Helper to generate ngx-datatable reorder event
      */
@@ -211,6 +234,10 @@ export declare class TableComponent extends TableBase implements AfterViewInit, 
      * Helper to generate ngx-datatable scroll event
      */
     private handleScroll($event);
+    /**
+     * Helper to generate ngx-datatable select event
+     */
+    private handleSelect($event);
     /**
      * Helper to generate ngx-datatable sort event
      */
