@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { NotificaitonGroup } from '../notification-group';
@@ -30,7 +30,7 @@ export class NotificationDrawerComponent implements OnInit {
   /**
    * Flag if the drawer is currently hidden
    */
-  @Input() drawerHidden: boolean;
+  @Input() hidden: boolean;
 
 
   /**
@@ -42,13 +42,13 @@ export class NotificationDrawerComponent implements OnInit {
   /**
    * Flag if the drawer is expanded (only valid if allowExpand is true). Optional, default: false
    */
-  @Input() drawerExpanded: boolean;
+  @Input() expanded: boolean;
 
 
   /**
    * Title to display for the drawer (leaving this blank will remove the provided expand capability)
    */
-  @Input() drawerTitle: string;
+  @Input() title: string;
 
 
   /**
@@ -87,25 +87,25 @@ export class NotificationDrawerComponent implements OnInit {
 
 
   /**
-   * Include src for the title area for the notification drawer, use this
+   * Template src for the title area for the notification drawer, use this
    * to customize the drawer title area
    */
-  @Input() titleInclude: string;
+  @Input() titleTemplate:  TemplateRef<any>;
 
 
 
   /**
-   * Include src for the notification body for each notification,
+   * Template src for the notification body for each notification,
    * access the notification via notification
    */
-  @Input() notificationBodyInclude: string;
+  @Input() notificationBodyTemplate: TemplateRef<any>;
 
 
   /**
-   * Include src for the notification footer for each notification,
+   * Template src for the notification footer for each notification,
    * access the notification via notification
    */
-  @Input() notificationFooterInclude: string;
+  @Input() notificationFooterTemplate: TemplateRef<any>;
 
 
   /**
@@ -128,7 +128,7 @@ export class NotificationDrawerComponent implements OnInit {
    * 
    */
   toggleExpandDrawer() {
-    this.drawerExpanded = !this.drawerExpanded;
+    this.expanded = !this.expanded;
   }
 
 
