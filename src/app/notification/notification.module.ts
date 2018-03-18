@@ -10,6 +10,7 @@ import { ToastNotificationComponent } from './toast-notification/toast-notificat
 import { ToastNotificationListComponent } from './toast-notification-list/toast-notification-list.component';
 import { InlineNotificationComponent } from './inline-notification/inline-notification.component';
 import { NotificationDrawerComponent } from './notification-drawer/notification-drawer.component';
+import { EmptyStateModule } from '../empty-state/empty-state.module';
 
 export {
   NotificationEvent,
@@ -21,7 +22,7 @@ export {
  * A module containing objects associated with notification components
  */
 @NgModule({
-  imports: [BsDropdownModule.forRoot(), CommonModule],
+  imports: [BsDropdownModule.forRoot(), CommonModule, EmptyStateModule],
   declarations: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent, 
     NotificationDrawerComponent],
   exports: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent, 
