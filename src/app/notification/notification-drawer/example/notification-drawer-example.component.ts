@@ -1,7 +1,8 @@
 import {
     Component,
     OnInit,
-    ViewEncapsulation
+    ViewEncapsulation,
+    Input
   } from '@angular/core';
   import { NotificationType } from '../../notification-type';
   import { NotificaitonGroup } from '../../notification-group';
@@ -22,7 +23,7 @@ import { time } from 'd3';
     groups: any;
     unreadNotifications: boolean = false; 
     currentTime: number;
-    
+   
 
     toggleShowDrawer() {
       this.hideDrawer = !this.hideDrawer;
