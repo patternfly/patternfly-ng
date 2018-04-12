@@ -24,7 +24,7 @@ export class NotificaitonGroup {
   /**
    * Configuration properties for a notification message
    */
-  notification: Notification;
+  notifications: Notification[];
   
   /**
    * 

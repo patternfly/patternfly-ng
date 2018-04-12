@@ -1,13 +1,16 @@
 import {
+    ChangeDetectorRef,
     Component,
+    Input,
     OnInit,
-    ViewEncapsulation,
-    Input
+    ViewEncapsulation
   } from '@angular/core';
   import { NotificationType } from '../../notification-type';
   import { NotificaitonGroup } from '../../notification-group';
   import { Notification } from '../../notification';
 import { time } from 'd3';
+import { Action } from '../../../action/action';
+import { ActionConfig } from '../../../action/action-config';
   
   @Component({
     encapsulation: ViewEncapsulation.None,
@@ -17,57 +20,66 @@ import { time } from 'd3';
 
   export class NotificationDrawerExampleComponent implements OnInit {
 
-    hideDrawer: boolean = true;
+    hide: boolean = true;
     notifications: Notification[];
-    menuActions: any;
     groups: any;
-    unreadNotifications: boolean = false; 
+    unread: boolean = false; 
     currentTime: number;
+    actionConfig: ActionConfig;
    
 
     toggleShowDrawer() {
-      this.hideDrawer = !this.hideDrawer;
+      this.hide = !this.hide;
     }
     
+    close($event: boolean): void {
+      this.hide = !this.hide;
+    }
    
+    unreadNotifications($event: boolean): void {
+      this.unread = $event;
+      this.chRef.detectChanges();
+    }
    
 
-    constructor() {
-
+    constructor(private chRef: ChangeDetectorRef) {
+      
     }
 
     ngOnInit(): void {
-
-      this.menuActions = [
+      
+     this.actionConfig = { 
+       moreActions : [
         {
-          name: 'Action',
-          title: 'Perform an action'
+          title: 'Action',
+          tooltip: 'Perform an action'
         },
         {
-          name: 'Another Action',
-          title: 'Do something else'
+          title: 'Another Action',
+          tooltip: 'Do something else'
         },
         {
-          name: 'Disabled Action',
-          title: 'Unavailable action',
-          isDisabled: true
+          title: 'Disabled Action',
+          tooltip: 'Unavailable action',
+          disabled: true
         },
         {
-          name: 'Something Else',
-          title: ''
+          title: 'Something Else',
+          tooltip: ''
         },
         {
-          isSeparator: true
+          separator: true
         },
         {
-          name: 'Grouped Action 1',
-          title: 'Do something'
+          title: 'Grouped Action 1',
+          tooltip: 'Do something'
         },
         {
-          name: 'Grouped Action 2',
-          title: 'Do something similar'
+          title: 'Grouped Action 2',
+          tooltip: 'Do something similar'
         }
-      ];
+      ]
+    } as ActionConfig; 
 
       
     this.currentTime = (new Date()).getTime();
@@ -78,75 +90,68 @@ import { time } from 'd3';
           subHeading: '5 New Events',
           notifications: [
             {
-              uid: 1,
-              unread: true,
+              isViewing: true,
               message: 'A New Event! Huzzah! Bold.',
-              status: 'info',
-              actions: this.menuActions,
+              type: 'info',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
             },
             {
-              uid: 2,
-              unread: true,
+              
+              isViewing: true,
               message: 'Another Event Notification',
-              status: 'ok',
-              actions: this.menuActions,
+              type: 'success',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
             },
-            {
-              uid: 3,
-              unread: false,
+            { 
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'warning',
-              actions: this.menuActions,
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
             },
-            {
-              uid: 4,
-              unread: false,
+            { 
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'error',
-              actions: this.menuActions,
+              type: 'danger',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
             },
-            {
-              uid: 5,
-              unread: true,
+            { 
+              isViewing: true,
               message: 'A New Event! Huzzah! Bold',
-              status: 'info',
-              actions: this.menuActions,
+              type: 'info',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
             },
-            {
-              uid: 6,
-              unread: true,
+            { 
+              isViewing: true,
               message: 'Another Event Notification',
-              status: 'error',
-              actions: this.menuActions,
+              type: 'error',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
             },
-            {
-              uid: 7,
-              unread: false,
+            { 
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'ok',
-              actions: this.menuActions,
+              type: 'success',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
             },
-            {
-              uid: 8,
-              unread: false,
+            { 
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'warning',
-              actions: this.menuActions,
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
             },
             {
-              uid: 9,
-              unread: true,
+              
+              isViewing: true,
               message: 'Another Event Notification',
-              status: 'info',
-              actions: this.menuActions,
+              type: 'info',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (240 * 60 * 60 * 1000)
             }
           ],
@@ -157,43 +162,38 @@ import { time } from 'd3';
           subHeading: '3 New Events',
           notifications: [
             {
-              uid: 10,
-              unread: true,
+              isViewing: true,
               message: 'A New Event! Huzzah! Bold',
-              status: 'info',
-              actions: this.menuActions,
+              type: 'info',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
             },
             {
-              uid: 11,
-              unread: true,
+              isViewing: true,
               message: 'Another Event Notification',
-              status: 'error',
-              actions: this.menuActions,
+              type: 'danger',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
             },
             {
-              uid: 12,
-              unread: false,
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'warning',
-              actions: this.menuActions,
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
             },
             {
-              uid: 13,
-              unread: false,
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'ok',
-              actions: this.menuActions,
+              type: 'success',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
             },
             {
-              uid: 14,
-              unread: true,
+              isViewing: true,
               message: 'Another Event Notification',
-              status: 'warning',
-              actions: this.menuActions,
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (240 * 60 * 60 * 1000)
             }
           ]
@@ -201,95 +201,90 @@ import { time } from 'd3';
         {
           heading: 'Notification Tab 4',
           subHeading: '3 New Events',
-          notifications: [
-            {
-              uid: 15,
-              unread: true,
-              message: 'A New Event! Huzzah! Bold',
-              status: 'warning',
-              actions: this.menuActions,
-              timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
-            },
-            {
-              uid: 16,
-              unread: true,
-              message: 'Another Event Notification',
-              status: 'ok',
-              actions: this.menuActions,
-              timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
-            },
-            {
-              uid: 17,
-              unread: false,
-              message: 'Another Event Notification',
-              status: 'ok',
-              actions: this.menuActions,
-              timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
-            },
-            {
-              uid: 18,
-              unread: false,
-              message: 'Another Event Notification',
-              status: 'error',
-              actions: this.menuActions,
-              timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
-            },
-            {
-              uid: 19,
-              unread: true,
-              message: 'Another Event Notification',
-              status: 'info',
-              actions: this.menuActions,
-              timeStamp: this.currentTime - (240 * 60 * 60 * 1000)
-            }
-          ]
+          notifications: []
         },
         {
           heading: 'Notification Tab 5',
           subHeading: '3 New Events',
           notifications: [
             {
-              uid: 20,
-              unread: true,
+              isViewing: true,
               message: 'A New Event! Huzzah! Bold',
-              status: 'error',
-              actions: this.menuActions,
+              type: 'danger',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
             },
             {
-              uid: 21,
-              unread: true,
+              isViewing: true,
               message: 'Another Event Notification',
-              status: 'error',
-              actions: this.menuActions,
+              type: 'danger',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
             },
             {
-              uid: 22,
-              unread: false,
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'warning',
-              actions: this.menuActions,
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
             },
             {
-              uid: 23,
-              unread: false,
+              isViewing: false,
               message: 'Another Event Notification',
-              status: 'warning',
-              actions: this.menuActions,
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
             },
             {
-              uid: 24,
-              unread: true,
+              isViewing: true,
               message: 'Another Event Notification',
-              status: 'error',
-              actions: this.menuActions,
+              type: 'danger',
+              moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (240 * 60 * 60 * 1000)
             }
           ]
-        }
+        },
+        {
+          heading: 'Notification Tab 6',
+          subHeading: '3 New Events',
+          notifications: [
+            {
+              isViewing: true,
+              message: 'A New Event! Huzzah! Bold',
+              type: 'info',
+              moreActions: this.actionConfig.moreActions,
+              timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
+            },
+            {
+              isViewing: true,
+              message: 'Another Event Notification',
+              type: 'danger',
+              moreActions: this.actionConfig.moreActions,
+              timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
+            },
+            {
+              isViewing: true,
+              message: 'Another Event Notification',
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
+              timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
+            },
+            {
+              isViewing: true,
+              message: 'Another Event Notification',
+              type: 'success',
+              moreActions: this.actionConfig.moreActions,
+              timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
+            },
+            {
+              isViewing: true,
+              message: 'Another Event Notification',
+              type: 'warning',
+              moreActions: this.actionConfig.moreActions,
+              timeStamp: this.currentTime - (240 * 60 * 60 * 1000)
+            }
+          ]
+        },
       ];
     }
 

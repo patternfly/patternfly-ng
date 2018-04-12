@@ -11,10 +11,10 @@
         <div class="navbar-pf-vertical">
           <nav class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-left navbar-iconic">
-              <li class="drawer-pf-trigger dropdown" [ngClass]="{'open': !hideDrawer}">
+              <li class="drawer-pf-trigger dropdown" [ngClass]="{'open': !hide}">
                 <a class="nav-item-iconic drawer-pf-trigger-icon" (click)="toggleShowDrawer()">
                   <span class="fa fa-bell" title="Notifications"></span>
-                  <span *ngIf="unreadNotifications" class="badge badge-pf-bordered"> </span>
+                  <span *ngIf="unread" class="badge badge-pf-bordered"> </span>
                 </a>
               </li>
             </ul>
@@ -22,31 +22,32 @@
         </div>
         <div class="layout-pf-fixed">
           <div class="navbar-pf-vertical">
-            <pfng-notification-drawer [hidden]="hideDrawer" [allowExpand]="true" [title]="'Notifications Drawer'" [showMarkAllRead]="true"
-             [notificationGroups]="groups" [titleTemplate]="titleTemplate" [headingTemplate]="headingTemplate" [subHeadingTemplate]="subHeadingTemplate" [notificationBodyTemplate]="notificationBodyTemplate" [showClearAll]="true" [allowExpand]="true">
+            <pfng-notification-drawer [hidden]="hide" [allowExpand]="true" [title]="'Notifications Drawer'" [showMarkAllRead]="true"
+              [notificationGroups]="groups" [titleTemplate]="titleTemplate" [headingTemplate]="headingTemplate" [subHeadingTemplate]="subHeadingTemplate"
+              [notificationBodyTemplate]="notificationBodyTemplate" [showClearAll]="true" [allowExpand]="true" (close)="close($event)"
+              (unreadNotifications)="unreadNotifications($event)">
             </pfng-notification-drawer>
             <ng-template #titleTemplate>
-              <h3>Nav test Drawer</h3>
+              <h3 class="text-center">Notifications Drawer</h3>
             </ng-template>
-            <ng-template #headingTemplate let-group="group" let-index="index"> 
-             {{group.heading}}
+            <ng-template #headingTemplate let-group="group" let-index="index">
+              {{group.heading}}
             </ng-template>
-            <ng-template #subHeadingTemplate let-group="group" let-index="index"><span>{{group.subHeading}}</span></ng-template>
+            <ng-template #subHeadingTemplate let-group="group" let-index="index">
+              <span>{{group.subHeading}}</span>
+            </ng-template>
             <ng-template #notificationBodyTemplate let-notify="notify" let-index="index">
-                <div uib-dropdown class="dropdown pull-right dropdown-kebab-pf" *ngIf="notify.actions.length > 0">
-                    <button uib-dropdown-toggle class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      <span class="fa fa-ellipsis-v"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
-                      <li *ngFor="let action of notify.actions"  ngClass="{'divider': action.isSeparator === true, 'disabled': action.isDisabled === true}">
-                          <a *ngIf="!action.isSeparator" class="secondary-action" title="{{action.title}}" >{{action.name}}</a>
-                      </li>
-                    </ul>
+              <div uib-dropdown class="dropdown pull-right dropdown-kebab-pf" *ngIf="notify.moreActions.length > 0">
+                <pfng-action class="list-pf-actions" [config]="actionConfig"></pfng-action>
               </div>
-              <span *ngIf="notify.status" class="pull-left"></span>
+              <span class="pull-left pficon pficon-ok" *ngIf="notify.type === 'success'"></span>
+              <span class="pull-left pficon pficon-info" *ngIf="notify.type === 'info'"></span>
+              <span class="pull-left pficon pficon-error-circle-o" *ngIf="notify.type === 'danger'"></span>
+              <span class="pull-left pficon pficon-warning-triangle-o" *ngIf="notify.type === 'warning'"></span>
               <div class="drawer-pf-notification-content">
-                <span class="drawer-pf-notification-message" tooltip-append-to-body="true" tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="notify.message">
-                 {{notify.message}}
+                <span class="drawer-pf-notification-message" tooltip-append-to-body="true" tooltip-popup-delay="500" tooltip-placement="bottom"
+                  tooltip="notify.message">
+                  {{notify.message}}
                 </span>
                 <div class="drawer-pf-notification-info">
                   <span class="date">{{notify.timeStamp | date:'MM/dd/yyyy'}}</span>
@@ -60,23 +61,24 @@
     </div>
   </div>
   <div class="row padding-top-10">
-    <div class="col-sm-12">    <div class="panel-group">
+    <div class="col-sm-12">
+      <div class="panel-group">
 
-      <h4>Code</h4>
-      <hr/>
+        <h4>Code</h4>
+        <hr/>
+      </div>
+    </div>
+    <div>
+      <tabset>
+        <tab heading="api">
+          <iframe class="demoframe" src="docs/classes/notificationdrawercomponent.html"></iframe>
+        </tab>
+        <tab heading="html">
+          <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.html"></include-content>
+        </tab>
+        <tab heading="typescript">
+          <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.ts"></include-content>
+        </tab>
+      </tabset>
     </div>
   </div>
-  <div>
-    <tabset>
-      <tab heading="api">
-        <iframe class="demoframe" src="docs/classes/notificationdrawercomponent.html"></iframe>
-      </tab>
-      <tab heading="html">
-        <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.html"></include-content>
-      </tab>
-      <tab heading="typescript">
-        <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.ts"></include-content>
-      </tab>
-    </tabset>
-  </div>
-</div>
