@@ -22,7 +22,7 @@ import { ActionConfig } from '../../../action/action-config';
 
     hide: boolean = true;
     notifications: Notification[];
-    groups: any;
+    groups: NotificaitonGroup[];
     unread: boolean = false; 
     currentTime: number;
     actionConfig: ActionConfig;
@@ -155,7 +155,7 @@ import { ActionConfig } from '../../../action/action-config';
               timeStamp: this.currentTime - (240 * 60 * 60 * 1000)
             }
           ],
-          isLoading: true
+          loading: true
         },
         {
           heading: 'Notification Tab 2',
@@ -200,7 +200,7 @@ import { ActionConfig } from '../../../action/action-config';
         },
         {
           heading: 'Notification Tab 4',
-          subHeading: '3 New Events',
+          subHeading: '0 New Events',
           notifications: []
         },
         {

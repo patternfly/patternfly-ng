@@ -33,7 +33,7 @@
             <div class="drawer-pf-notification" [ngClass]="{unread: !notification.isViewing, 'expanded-notification': expanded}" *ngFor="let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index">
               <ng-template let-notify="notification" let-index="index" [ngTemplateOutlet]="notificationBodyTemplate" [ngTemplateOutletContext]="{notify:notification, index: index}"></ng-template>
             </div>
-            <div *ngIf="notificationGroup.isLoading" class="drawer-pf-loading text-center">
+            <div *ngIf="notificationGroup.loading" class="drawer-pf-loading text-center">
               <span class="spinner spinner-xs spinner-inline"></span> Loading More
             </div>
           </div>

@@ -8,26 +8,31 @@ export class NotificaitonGroup {
 
   
   /**
-   * Include src for the heading area for each notification group,
-   *  access the group via notificationGroup
+   *  heading area for each notification group
+   *  
    */
   heading: string;
   
   
   /**
-   * Include src for the sub-heading area for each notification group,
-   * access the group via notificationGroup
+   * sub-heading area for each notification group
+   * 
    */
   subHeading: string;
   
   
   /**
-   * Configuration properties for a notification message
+   *  Configuration properties for a notification message
    */
   notifications: Notification[];
   
   /**
-   * 
+   * Flag for panel collapse 
    */
-  open: boolean;
+  open?: boolean;
+
+  /**
+   * Flag for the loading spinner
+   */
+  loading?: boolean;
 }
