@@ -88,6 +88,7 @@ export {
 // Notification
 export {
   InlineNotificationComponent,
+  NotificationDrawerComponent,
   Notification,
   NotificationEvent,
   NotificationModule,
