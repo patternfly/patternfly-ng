@@ -1,0 +1,20 @@
+import { PipeTransform } from '@angular/core';
+/**
+ * Sort array pipe
+ *
+ * This is currently used with the pin feature of the list component
+ *
+ * Example:
+ * <div *ngFor="let item of (items | sortPin: 'name': true)">
+ */
+export declare class SortArrayPipe implements PipeTransform {
+    /**
+     * Sort array by property
+     *
+     * @param {Array<any>} arr Array to sort
+     * @param prop Property name to sort by
+     * @param {boolean} descending True to sort descending
+     * @returns {any} Returns sorted array
+     */
+    transform(arr: Array<any>, prop: any, descending?: boolean): any;
+}
