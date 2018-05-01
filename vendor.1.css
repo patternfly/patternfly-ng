@@ -9660,6 +9660,14 @@ fieldset[disabled] .btn-primary.active {
   border-top-color: #fff;
   bottom: -10px;
 }
+.form-horizontal-pf-align-left .control-label {
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .form-horizontal-pf-align-left.required-pf .control-label:not(.required-pf) {
+    padding-left: 30px;
+  }
+}
 .chars-remaining-pf span {
   font-weight: 600;
   padding-right: 5px;
@@ -9732,10 +9740,10 @@ fieldset[disabled] .form-control:hover {
 label {
   font-weight: 600;
 }
-label.required-pf:after {
+label.required-pf:before {
   color: #cc0000;
   content: "*";
-  margin-left: 3px;
+  margin-right: 3px;
 }
 span.required-pf {
   color: #cc0000;
@@ -9758,6 +9766,84 @@ span.required-pf {
   cursor: pointer;
   font-size: 14px;
   width: 14px;
+}
+.form-control-pf-editable {
+  display: -ms-flexbox;
+  display: flex;
+}
+.form-control-pf-editable.form-control-pf-full-width {
+  display: block;
+}
+.form-control-pf-editable.form-control-pf-full-width > .form-control-pf-value {
+  text-align: left;
+}
+.form-control-pf-editable.form-control-pf-full-width .action-buttons {
+  float: right;
+}
+.form-control-pf-editable.form-control-pf-edit > .form-control-pf-value {
+  display: none;
+}
+.form-control-pf-editable.form-control-pf-edit > :not(.form-control-pf-value):not(.spinner),
+.form-control-pf-editable.form-control-pf-edit > .bootstrap-select.btn-group:not(.input-group-btn) {
+  display: inline-block;
+}
+.form-control-pf-editable.form-control-pf-updating > .spinner {
+  display: inline-block;
+}
+.form-control-pf-editable.form-control-pf-updating > :not(.spinner) {
+  display: none;
+}
+.form-control-pf-editable > .form-control-pf-value {
+  background: none;
+  border: 1px solid transparent;
+  display: inline-block;
+  padding: 2px 6px;
+}
+.form-control-pf-editable > .form-control-pf-value:focus {
+  border-color: #bbb;
+}
+.form-control-pf-editable > .form-control-pf-value:hover {
+  border-color: #bbb;
+  cursor: pointer;
+}
+.form-control-pf-editable > .form-control-pf-value + :not(textarea) {
+  -ms-flex: 1;
+      flex: 1;
+}
+.form-control-pf-editable > .form-control-pf-value i {
+  margin-left: 6px;
+}
+.form-control-pf-editable > :not(.form-control-pf-value) {
+  display: none;
+}
+.form-control-pf-editable > .form-control-pf-textbox {
+  position: relative;
+}
+.form-control-pf-editable > .form-control-pf-textbox input {
+  padding-right: 26px;
+}
+.form-control-pf-editable > .form-control-pf-textbox .form-control-pf-empty {
+  background: none;
+  border: none;
+  color: #bbb;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.form-control-pf-editable > .btn {
+  margin-left: 3px;
+}
+.form-control-pf-editable > .spinner {
+  margin: 4px 0;
+}
+.form-control-pf-editable > .bootstrap-select.btn-group:not(.input-group-btn) {
+  display: none;
+}
+.form-control-pf-editable > textarea {
+  display: block;
+  min-height: 84px;
+  resize: vertical;
 }
 .label {
   border-radius: 0;
@@ -9920,7 +10006,7 @@ fieldset[disabled] .pager li > span.active {
   background: #f5f5f5;
   box-shadow: none;
   color: #8b8d8f;
-  cursor: default;
+  cursor: not-allowed;
 }
 .pager .next > a > .i,
 .pager .next > span > .i {
@@ -10060,7 +10146,7 @@ fieldset[disabled] .pagination > li > span.active {
 .pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus {
   box-shadow: none;
-  cursor: default;
+  cursor: not-allowed;
   background-image: linear-gradient(to bottom, #fafafa 0%, #ededed 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffafafa', endColorstr='#ffededed', GradientType=0);
@@ -10310,6 +10396,13 @@ fieldset[disabled] .pagination > li > span.active {
 }
 .popover-title.closable {
   padding-right: 30px;
+}
+.popover-pf-info {
+  color: #292e34;
+}
+.popover-pf-info:hover,
+.popover-pf-info:active {
+  color: #00659c;
 }
 @keyframes progress-bar-stripes {
   from {
@@ -14173,68 +14266,120 @@ fieldset[disabled] .combobox-container .input-group-addon.active {
   opacity: 0.9;
   filter: alpha(opacity=90);
 }
+.contextselector-pf {
+  float: left;
+}
+.contextselector-pf .bootstrap-select {
+  width: 202px !important;
+}
+@media (min-width: 480px) {
+  .contextselector-pf .bootstrap-select {
+    width: 242px !important;
+  }
+}
+.contextselector-pf .bootstrap-select.open {
+  background: #303030;
+}
+.contextselector-pf .bootstrap-select.open > .dropdown-toggle {
+  color: #fff;
+}
+.contextselector-pf .bootstrap-select.open > .dropdown-toggle:focus {
+  outline: 0 !important;
+}
+.contextselector-pf .bootstrap-select > .dropdown-toggle {
+  background: none;
+  border: 0;
+  box-shadow: none !important;
+  color: #d1d1d1;
+  font-weight: normal;
+  padding-bottom: 19px;
+  padding-left: 10px;
+  padding-top: 19px;
+}
+.contextselector-pf .bootstrap-select > .dropdown-toggle:focus {
+  color: #fff;
+  outline: thin dotted !important;
+  outline: 5px auto -webkit-focus-ring-color !important;
+  outline-offset: -2px !important;
+}
+.contextselector-pf .bootstrap-select > .dropdown-toggle:hover {
+  background: #303030;
+  color: #fff;
+  outline: 0 !important;
+}
+.contextselector-pf .bootstrap-select > .dropdown-toggle .filter-option {
+  text-overflow: ellipsis;
+}
+.contextselector-pf .bootstrap-select .dropdown-menu li a span.text {
+  display: block;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
 .layout-pf-fixed .navbar-pf-vertical.navbar-pf-contextselector {
   z-index: 1040;
 }
-.navbar-pf-vertical .nav.contextselector-pf {
-  border-left: 1px solid #4d5258;
-}
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-pf-vertical .nav.contextselector-pf {
     margin-left: 10px;
   }
-}
-.navbar-pf-vertical .nav.contextselector-pf .nav-item-iconic {
-  padding: 23px 20px 18px 10px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
 }
 .contextselector-pf {
   float: left;
 }
 .contextselector-pf-title {
-  width: 170px;
-  white-space: nowrap;
   display: inline-block;
+  line-height: normal;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: normal;
+  white-space: nowrap;
+  width: 170px;
 }
 @media (min-width: 480px) {
   .contextselector-pf-title {
     width: 210px;
   }
 }
+@media (min-width: 768px) {
+  .contextselector-pf .contextselector-pf-list {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+.contextselector-pf .contextselector-pf-list a {
+  color: #393f44;
+  display: block;
+}
+.contextselector-pf .contextselector-pf-list li {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 0;
+  padding: 1px 10px;
+}
+.contextselector-pf .contextselector-pf-list li:hover {
+  background: #def3ff;
+  border-color: #bee1f4;
+}
+.contextselector-pf .contextselector-pf-list li:hover a {
+  text-decoration: none;
+}
 .contextselector-pf .dropdown.open,
 .contextselector-pf .dropdown:hover {
   background-color: #303030;
 }
 .contextselector-pf .dropdown-menu {
+  margin-top: 0;
   width: 100%;
 }
 .contextselector-pf .form-group {
-  padding: 0 5px;
+  margin: 0 5px 5px 5px;
 }
-@media (min-width: 768px) {
-  .contextselector-pf .contextselector-pf-list {
-    max-height: 200px;
-    overflow-y: scroll;
-  }
-}
-.contextselector-pf .contextselector-pf-list li {
-  padding-left: 5px;
-}
-.contextselector-pf .contextselector-pf-list li:hover {
-  background: #0088ce;
-}
-.contextselector-pf .contextselector-pf-list li:hover a {
-  color: #fff;
-  text-decoration: none;
-}
-.contextselector-pf .contextselector-pf-list a {
-  color: #393f44;
+.navbar-pf-vertical .nav.contextselector-pf .nav-item-iconic {
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 23px 20px 18px 10px;
 }
 .ColVis_Button:active:focus {
   outline: none;
@@ -14842,6 +14987,12 @@ fieldset[disabled] .btn-experimental-pf.active {
 }
 .pficon-settings:before {
   content: "\E610";
+}
+.pficon-sort-common-asc:before {
+  content: "\E94E";
+}
+.pficon-sort-common-desc:before {
+  content: "\E94F";
 }
 .pficon-spinner:before {
   content: "\E614";
@@ -18133,6 +18284,86 @@ table.dataTable th:active {
   color: #fff;
   display: inline-block;
   margin-left: 5px;
+}
+.tree-list-view-pf {
+  background-color: #ededed;
+  border: none;
+  margin-top: 30px;
+  overflow-x: hidden;
+}
+.tree-list-view-pf > .list-group-item:first-child {
+  border-top: 1px solid transparent;
+}
+.tree-list-view-pf .list-group-item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  border-color: #ededed;
+  padding: 0;
+  background-clip: padding-box;
+}
+.tree-list-view-pf .list-group-item.active {
+  background-color: #fff;
+  color: currentColor;
+  z-index: auto;
+}
+.tree-list-view-pf .list-group-item.active:hover {
+  border-color: #ededed;
+}
+.tree-list-view-pf .list-group-item.active > .list-group-item-header {
+  background-color: #def3ff;
+  color: #555;
+}
+.tree-list-view-pf .list-group-item.active > .list-group-item-header:before {
+  background-color: #def3ff;
+}
+.tree-list-view-pf .list-group-item.active > .list-group-item-header:hover {
+  background-color: #edf8ff;
+}
+.tree-list-view-pf .list-group-item.active > .list-group-item-header:hover:before {
+  background-color: #edf8ff;
+}
+.tree-list-view-pf .list-group-item.active > .list-group-item-header .list-group-item-text {
+  color: #555;
+}
+.tree-list-view-pf .list-group-item.active .list-group-item-text {
+  color: currentColor;
+}
+.tree-list-view-pf .list-group-item .list-group-item {
+  border-bottom: none;
+  padding-left: 45px;
+}
+.tree-list-view-pf .list-group-item .list-group-item .list-group-item-header:before {
+  border-bottom: solid 1px #ededed;
+  content: "";
+  height: calc(100% + 1px);
+  left: -100%;
+  position: absolute;
+  width: 100%;
+}
+.tree-list-view-pf .list-group-item-container {
+  border-top-color: #ededed;
+  margin: 0;
+  padding: 0;
+}
+.tree-list-view-pf .list-group-item-header {
+  box-sizing: border-box;
+  margin: 0;
+  position: inherit;
+}
+.tree-list-view-pf .list-group-item-header:hover {
+  background-color: #edf8ff;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.tree-list-view-pf .list-group-item-header:hover:before {
+  background-color: #edf8ff;
+}
+@media (min-width: 992px) {
+  .tree-list-view-pf .list-group-item-heading {
+    width: calc(25% - 20px);
+  }
 }
 .nav-pf-vertical {
   background: #292e34;
