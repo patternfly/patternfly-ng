@@ -1,0 +1,133 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Toolbar Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <pfng-toolbar [config]="toolbarConfig"
+                      [actionTemplate]="actionTemplate"
+                      (onActionSelect)="handleAction($event)"
+                      (onFilterChange)="filterChanged($event)"
+                      (onFilterFieldSelect)="filterFieldSelected($event)"
+                      (onFilterTypeAhead)="filterQueries($event)"
+                      (onSortChange)="sortChanged($event)"
+                      (onViewSelect)="viewSelected($event)">
+          <ng-template #actionTemplate>
+            <span class="dropdown primary-action" dropdown>
+              <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
+                Menu Action<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" *dropdownMenu>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" (click)="optionSelected(1)">Option 1</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(2)">Option 2</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(3)">Option 3</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(4)">Option 4</a>
+                </li>
+              </ul>
+            </span>
+            <button class="btn btn-default primary-action" type="button" (click)="doAdd()">
+              <span class="fa fa-plus"></span>
+              Add Action
+            </button>
+          </ng-template>
+        </pfng-toolbar>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Items</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-12" *ngFor="let item of items">
+        <div class="row">
+          <div class="col-sm-3">
+            <span>{{item.name}}</span>
+          </div>
+          <div class="col-sm-5">
+            <span>{{item.address}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.birthMonth}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.weekDay}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10" *ngIf="toolbarConfig.view?.id !== 'tableView'">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Filters</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row" *ngIf="toolbarConfig.view?.id !== 'tableView'">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{filtersText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="disabled" name="disabled" type="checkbox"
+                   [(ngModel)]="toolbarConfig.disabled">Disabled
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/toolbarcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/toolbar/example/toolbar-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/toolbar/example/toolbar-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
