@@ -245,6 +245,7 @@ export class TreeListBasicExampleComponent implements OnInit {
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: true,
+      showRadioButton: false,
       treeOptions: {
         allowDrag: false,
         isExpandedField: 'expanded',
@@ -319,12 +320,19 @@ export class TreeListBasicExampleComponent implements OnInit {
     if (this.selectType === 'checkbox') {
       this.treeListConfig.selectItems = false;
       this.treeListConfig.showCheckbox = true;
+      this.treeListConfig.showRadioButton = false;
+    } else if (this.selectType === 'radio') {
+      this.treeListConfig.selectItems = false;
+      this.treeListConfig.showCheckbox = false;
+      this.treeListConfig.showRadioButton = true;
     } else if (this.selectType === 'row') {
       this.treeListConfig.selectItems = true;
       this.treeListConfig.showCheckbox = false;
+      this.treeListConfig.showRadioButton = false;
     } else {
       this.treeListConfig.selectItems = false;
       this.treeListConfig.showCheckbox = false;
+      this.treeListConfig.showRadioButton = false;
     }
   }
 }
