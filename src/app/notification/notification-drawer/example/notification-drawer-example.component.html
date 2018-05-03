@@ -37,7 +37,7 @@
               <span>{{group.subHeading}}</span>
             </ng-template>
             <ng-template #notificationBodyTemplate let-notify="notify" let-index="index">
-              <div uib-dropdown class="dropdown pull-right dropdown-kebab-pf" *ngIf="notify.moreActions.length > 0">
+              <div class="pull-right" *ngIf="notify.moreActions.length > 0">
                 <pfng-action class="list-pf-actions" [config]="actionConfig"></pfng-action>
               </div>
               <span class="pull-left pficon pficon-ok" *ngIf="notify.type === 'success'"></span>
@@ -45,8 +45,7 @@
               <span class="pull-left pficon pficon-error-circle-o" *ngIf="notify.type === 'danger'"></span>
               <span class="pull-left pficon pficon-warning-triangle-o" *ngIf="notify.type === 'warning'"></span>
               <div class="drawer-pf-notification-content">
-                <span class="drawer-pf-notification-message" tooltip-append-to-body="true" tooltip-popup-delay="500" tooltip-placement="bottom"
-                  tooltip="notify.message">
+                <span class="drawer-pf-notification-message">
                   {{notify.message}}
                 </span>
                 <div class="drawer-pf-notification-info">
@@ -81,3 +80,4 @@
       </tabset>
     </div>
   </div>
+</div>
