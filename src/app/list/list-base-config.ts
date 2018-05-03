@@ -22,12 +22,17 @@ export class ListBaseConfig {
   multiSelect?: boolean;
 
   /**
-   * Allow item selection. Default is false
+   * Allow row item selection. Default is false
    */
   selectItems?: boolean;
 
   /**
-   * Show checkbox for selecting items. Default is true
+   * Show checkbox for selecting items. Default is false
    */
   showCheckbox?: boolean;
+
+  /**
+   * Show radio button for selecting items. Default is false
+   */
+  showRadioButton?: boolean;
 }

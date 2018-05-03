@@ -82,10 +82,14 @@
           </label>
           <label class="radio-inline">
             <input id="selectType2" name="selectType" type="radio"
-                   [(ngModel)]="selectType" value="row" (ngModelChange)="updateSelectionType()">Row
+                   [(ngModel)]="selectType" value="radio" (ngModelChange)="updateSelectionType()">Radio Button
           </label>
           <label class="radio-inline">
             <input id="selectType3" name="selectType" type="radio"
+                   [(ngModel)]="selectType" value="row" (ngModelChange)="updateSelectionType()">Row
+          </label>
+          <label class="radio-inline">
+            <input id="selectType4" name="selectType" type="radio"
                    [(ngModel)]="selectType" value="none" (ngModelChange)="updateSelectionType()">None
           </label>
         </div>

@@ -75,6 +75,14 @@ export abstract class ListBase {
       throw new Error('ListComponent - Illegal use: ' +
         'Cannot use both checkbox and click selection at the same time.');
     }
+    if (config.selectItems && config.showRadioButton) {
+      throw new Error('ListComponent - Illegal use: ' +
+        'Cannot use both radio button and single row selection at the same time.');
+    }
+    if (config.showRadioButton && config.showCheckbox) {
+      throw new Error('ListComponent - Illegal use: ' +
+        'Cannot use both radio button and checkbox at the same time.');
+    }
   }
 
   /**
@@ -176,6 +184,25 @@ export abstract class ListBase {
   }
 
   /**
+   * Helper to generate selection change event
+   *
+   * @param item The selected item
+   */
+  protected radioButtonChange(item: any): void {
+    let selected = item.selected;
+
+    this.deselectItems(this.items);
+    if (!selected) {
+      this.selectSingleItem(item);
+    }
+
+    this.onSelectionChange.emit({
+      item: item,
+      selectedItems: this.getSelectedItems(this.items)
+    } as ListEvent);
+  }
+
+  /**
    * Helper to select a single item and deselect all others
    *
    * @param item The item to select
@@ -194,9 +221,14 @@ export abstract class ListBase {
   selectItem(item: any, selected: boolean): void {
     let config = this.getConfig();
 
-    // Are we using checkboxes?
+    // Are we using checkboxes or radiobuttons?
     if (config.showCheckbox) {
       item.selected = selected;
+      return;
+    }
+    if (config.showRadioButton) {
+      this.deselectItems(this.items);
+      this.selectSingleItem(item);
       return;
     }
 
