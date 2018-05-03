@@ -170,6 +170,7 @@ export class ListHeadingExampleComponent implements OnInit {
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: true,
+      showRadioButton: false,
       useExpandItems: false
     } as ListConfig;
   }
@@ -204,12 +205,19 @@ export class ListHeadingExampleComponent implements OnInit {
     if (this.selectType === 'checkbox') {
       this.listConfig.selectItems = false;
       this.listConfig.showCheckbox = true;
+      this.listConfig.showRadioButton = false;
+    } else if (this.selectType === 'radio') {
+      this.listConfig.selectItems = false;
+      this.listConfig.showCheckbox = false;
+      this.listConfig.showRadioButton = true;
     } else if (this.selectType === 'row') {
       this.listConfig.selectItems = true;
       this.listConfig.showCheckbox = false;
+      this.listConfig.showRadioButton = false;
     } else {
       this.listConfig.selectItems = false;
       this.listConfig.showCheckbox = false;
+      this.listConfig.showRadioButton = false;
     }
   }
 }
