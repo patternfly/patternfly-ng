@@ -235,9 +235,6 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
       }
       this.setupConfig();
     }
-    if (!isEqual(this.config, this.prevConfig)) {
-      this.setupConfig();
-    }
     if (!isEqual(this.dataTableConfig, this.prevDataTableConfig)) {
       this.setupDataTableConfig();
     }
@@ -245,10 +242,19 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
       this.rowsModel = [...this.rows];
       this.initSelectedRows();
       this.initAllRowsSelected();
-      this.prevRows = clone(this.rows); // lodash has issues deep cloning templates
+
+      // Disable toolbar actions
       if (this.config.toolbarConfig !== undefined) {
-        this.config.toolbarConfig.disabled = !this.hasData; // disable toolbar actions
+        this.config.toolbarConfig.disabled = !this.hasData;
       }
+
+      // ngx-datatable recommends you force change detection -- issue #337
+      if (this.prevRows === undefined || this.prevRows.length === 0) {
+        setTimeout(() => {
+          this.setupSelectionCols();
+        }, 10);
+      }
+      this.prevRows = clone(this.rows); // lodash has issues deep cloning templates
     }
   }
 
@@ -260,6 +266,16 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
       defaults(this.config, this.defaultConfig);
     } else {
       this.config = cloneDeep(this.defaultConfig);
+    }
+    // Disable toolbar actions
+    if (this.config.toolbarConfig !== undefined && !this.hasData) {
+      this.showTable = false;
+
+      // Filter and sort don't fully disable without this timeout
+      setTimeout(() => {
+        this.config.toolbarConfig.disabled = !this.hasData;
+        this.showTable = true;
+      }, 10);
     }
     this.prevConfig = cloneDeep(this.config);
   }
@@ -462,7 +478,7 @@ export class TableComponent extends TableBase implements AfterViewInit, DoCheck,
       this.onDrop.emit($event);
       this.rowsModel = [...this.rows];
       this.showTable = true;
-    }, 0);
+    }, 10);
   }
 
   /**

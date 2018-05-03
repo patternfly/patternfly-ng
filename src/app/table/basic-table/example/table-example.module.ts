@@ -6,6 +6,7 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
+import { TableEmptyExampleComponent } from './table-empty-example.component';
 import { TableExampleComponent } from './table-example.component';
 import { TableBasicExampleComponent } from './table-basic-example.component';
 import { TableDndExampleComponent } from './table-dnd-example.component';
@@ -23,6 +24,7 @@ import { ToolbarModule } from '../../../toolbar/toolbar.module';
     TableBasicExampleComponent,
     TableDndExampleComponent,
     TableEmbeddedExampleComponent,
+    TableEmptyExampleComponent,
     TableExampleComponent,
     TableExpansionExampleComponent,
     TableFullExampleComponent,

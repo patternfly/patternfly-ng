@@ -65,29 +65,29 @@
           <span class="pfng-list-expand-placeholder"></span>
         </span>
         <input type="checkbox" value="allRowsSelected" title="{{(allRowsSelected) ? 'Deselect' : 'Select'}} All Rows"
-               [disabled]="rows.length === 0"
+               [disabled]="rows === undefined || rows.length === 0"
                [(ngModel)]="allRowsSelected"
                (ngModelChange)="selectionsChange()"
                *ngIf="config.showCheckbox === true">
       </ng-template>
       <ng-template #selectCellTemplate let-row="row" let-expanded="expanded">
-      <span class="pfng-table-dnd-container" *ngIf="config.dragEnabled === true">
-        <span class="pfng-table-dnd-header"></span>
-      </span>
-      <span [ngClass]="{'margin-left-5': config.dragEnabled === true}"
-            *ngIf="config.useExpandRows === true">
-        <span class="pfng-list-expand-placeholder" *ngIf="row.hideExpandToggle === true"></span>
-        <span class="fa"
-              [ngClass]="{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}"
-              (click)="toggleExpandRow(row)"
-              *ngIf="row.hideExpandToggle !== true"></span>
-      </span>
-      <span [ngClass]="{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}"
-            *ngIf="config.showCheckbox === true">
-        <input type="checkbox" value="row.selected" title="{{(row.selected) ? 'Deselect' : 'Select'}} Row"
-               [(ngModel)]="row.selected"
-               (ngModelChange)="selectionChange(row)">
-      </span>
+        <span class="pfng-table-dnd-container" *ngIf="config.dragEnabled === true">
+          <span class="pfng-table-dnd-header"></span>
+        </span>
+        <span [ngClass]="{'margin-left-5': config.dragEnabled === true}"
+              *ngIf="config.useExpandRows === true">
+          <span class="pfng-list-expand-placeholder" *ngIf="row.hideExpandToggle === true"></span>
+          <span class="fa"
+                [ngClass]="{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}"
+                (click)="toggleExpandRow(row)"
+                *ngIf="row.hideExpandToggle !== true"></span>
+        </span>
+        <span [ngClass]="{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}"
+              *ngIf="config.showCheckbox === true">
+          <input type="checkbox" value="row.selected" title="{{(row.selected) ? 'Deselect' : 'Select'}} Row"
+                 [(ngModel)]="row.selected"
+                 (ngModelChange)="selectionChange(row)">
+        </span>
       </ng-template>
       <!-- Group header template -->
       <ngx-datatable-group-header [rowHeight]="dataTableConfig.rowHeight" *ngIf="groupHeaderTemplate !== undefined">
