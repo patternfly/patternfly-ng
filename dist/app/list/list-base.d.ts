@@ -86,6 +86,12 @@ export declare abstract class ListBase {
      */
     protected getSelectedItems(items: any[]): any[];
     /**
+     * Helper to generate selection change event
+     *
+     * @param item The selected item
+     */
+    protected radioButtonChange(item: any): void;
+    /**
      * Helper to select a single item and deselect all others
      *
      * @param item The item to select

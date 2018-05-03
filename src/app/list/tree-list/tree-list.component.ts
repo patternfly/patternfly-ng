@@ -76,7 +76,8 @@ export class TreeListComponent extends ListBase implements DoCheck, OnInit {
     selectedItems: [],
     selectionMatchProp: 'uuid',
     selectItems: false,
-    showCheckbox: false
+    showCheckbox: false,
+    showRadioButton: false
   } as TreeListConfig;
   private prevConfig: TreeListConfig;
 

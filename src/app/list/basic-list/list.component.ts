@@ -65,6 +65,7 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
     selectionMatchProp: 'uuid',
     selectItems: false,
     showCheckbox: false,
+    showRadioButton: false,
     useExpandItems: false
   } as ListConfig;
   private prevConfig: ListConfig;

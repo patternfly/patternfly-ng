@@ -53,6 +53,14 @@ var ListBase = /** @class */ (function () {
             throw new Error('ListComponent - Illegal use: ' +
                 'Cannot use both checkbox and click selection at the same time.');
         }
+        if (config.selectItems && config.showRadioButton) {
+            throw new Error('ListComponent - Illegal use: ' +
+                'Cannot use both radio button and single row selection at the same time.');
+        }
+        if (config.showRadioButton && config.showCheckbox) {
+            throw new Error('ListComponent - Illegal use: ' +
+                'Cannot use both radio button and checkbox at the same time.');
+        }
     };
     Object.defineProperty(ListBase.prototype, "itemsEmpty", {
         // Accessors
@@ -141,6 +149,22 @@ var ListBase = /** @class */ (function () {
         return selectedItems;
     };
     /**
+     * Helper to generate selection change event
+     *
+     * @param item The selected item
+     */
+    ListBase.prototype.radioButtonChange = function (item) {
+        var selected = item.selected;
+        this.deselectItems(this.items);
+        if (!selected) {
+            this.selectSingleItem(item);
+        }
+        this.onSelectionChange.emit({
+            item: item,
+            selectedItems: this.getSelectedItems(this.items)
+        });
+    };
+    /**
      * Helper to select a single item and deselect all others
      *
      * @param item The item to select
@@ -157,9 +181,14 @@ var ListBase = /** @class */ (function () {
      */
     ListBase.prototype.selectItem = function (item, selected) {
         var config = this.getConfig();
-        // Are we using checkboxes?
+        // Are we using checkboxes or radiobuttons?
         if (config.showCheckbox) {
             item.selected = selected;
+            return;
+        }
+        if (config.showRadioButton) {
+            this.deselectItems(this.items);
+            this.selectSingleItem(item);
             return;
         }
         // Multiple item selection

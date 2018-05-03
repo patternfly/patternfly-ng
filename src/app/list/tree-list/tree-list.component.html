@@ -48,10 +48,16 @@
                   <tree-node-expander [node]="node"></tree-node-expander>
                 </div>
                 <!-- checkbox -->
-                <div class="list-pf-select" *ngIf="config.showCheckbox">
+                <div class="list-pf-select" *ngIf="config.showCheckbox && !config.showRadioButton">
                   <input type="checkbox" value="node.data.selected"
                          [(ngModel)]="node.data.selected"
                          (ngModelChange)="checkboxChange(node.data)">
+                </div>
+                <!-- radio button -->
+                <div class="list-pf-select" *ngIf="!config.showCheckbox && config.showRadioButton">
+                  <input type="radio" value="node.data.selected"
+                         [checked]="node.data.selected"
+                         (click)="radioButtonChange(node.data)">
                 </div>
                 <!-- content -->
                 <div class="list-pf-content list-pf-content-flex">

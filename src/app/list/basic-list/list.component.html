@@ -10,7 +10,7 @@
         <div class="pfng-list-expand-placeholder"></div>
       </div>
       <!-- checkbox -->
-      <div class="list-pf-select" *ngIf="config.showCheckbox">
+      <div class="list-pf-select" *ngIf="config.showCheckbox || config.showRadioButton">
         <div class="pfng-list-cb-placeholder"></div>
       </div>
       <!-- content -->
@@ -39,10 +39,10 @@
       <!-- pin -->
       <div class="pfng-list-pin-container" *ngIf="config.usePinItems">
         <div class="pfng-list-pin-placeholder"
-             [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox}"
+             [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}"
              *ngIf="item.showPin !== true"></div>
         <div class="pfng-list-pin"
-             [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox}"
+             [ngClass]="{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}"
              *ngIf="item.showPin === true">
           <a href="javascript:void(0);" tabindex="-1" title="Remove pin"
              (click)="togglePin($event, item)">
@@ -59,10 +59,16 @@
               [ngClass]="{'fa-angle-down': item.expanded && item.expandId === undefined}"></span>
       </div>
       <!-- checkbox -->
-      <div class="list-pf-select" *ngIf="config.showCheckbox">
+      <div class="list-pf-select" *ngIf="config.showCheckbox && !config.showRadioButton">
         <input type="checkbox" value="item.selected"
                [(ngModel)]="item.selected"
                (ngModelChange)="checkboxChange(item)">
+      </div>
+      <!-- radio button -->
+      <div class="list-pf-select" *ngIf="!config.showCheckbox && config.showRadioButton">
+        <input type="radio" value="item.selected"
+               [checked]="item.selected"
+               (click)="radioButtonChange(item)">
       </div>
       <!-- content -->
       <div class="list-pf-content list-pf-content-flex">
