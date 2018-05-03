@@ -164,7 +164,7 @@ export class NotificationDrawerComponent implements OnInit {
    * method for the close button, emits event with clicked over close icon
    *  
    */
-  onClose() {
+  onClose(): void {
     this.hidden = true;
     this.close.emit(this.hidden);
   }
@@ -174,16 +174,15 @@ export class NotificationDrawerComponent implements OnInit {
    * Method for the mark all read button (Optional)
    * @param group 
    */
-  onMarkAllRead(group: NotificaitonGroup) {
+  onMarkAllRead(group: NotificaitonGroup): void {
     group.notifications.forEach(n => n.isViewing = true);
     this.updateReadCount();
-
   }
 
   /**
    * Toggle to expand the drawer
    */
-  toggleExpandDrawer() {
+  toggleExpandDrawer(): void {
     if (this.allowExpand)
       this.expanded = !this.expanded;
   }
@@ -193,7 +192,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Return boolean if group has unread notifications
    *  @param group 
    */
-  hasUnread(group: NotificaitonGroup) {
+  hasUnread(group: NotificaitonGroup): boolean {
     return size(filter(get(group, 'notifications'), { 'isViewing': false })) > 0;
   }
 
@@ -202,7 +201,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Return boolean if group has notifications
    *  @param group 
    */
-  hasNotifications(group: NotificaitonGroup[]) {
+  hasNotifications(group: NotificaitonGroup[]): boolean {
     return size(get(group, 'notifications')) > 0;
   }
 
@@ -212,7 +211,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Method for the clear all button (Optional)
    *  @param group 
    */
-  onClearAll(group: NotificaitonGroup) {
+  onClearAll(group: NotificaitonGroup): void {
     group.notifications = null;
     group.subHeading = '0 New Events';
   }
@@ -223,7 +222,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Toggle to show / hide drawer
    *  @param group 
    */
-  toggleCollapse(group: NotificaitonGroup) {
+  toggleCollapse(group: NotificaitonGroup): void {
     group.open = !group.open;
   }
 
@@ -252,7 +251,7 @@ export class NotificationDrawerComponent implements OnInit {
   /**
    * Emit event during the inital load based on total unread notification
    */
-  private readCountConfig() {
+  private readCountConfig(): void {
     this.unreadCount = this.totalUnreadNotifications(this.notificationGroups);
     if (this.unreadCount > 0) {
       this.unreadNotifications.emit(true);
@@ -265,7 +264,7 @@ export class NotificationDrawerComponent implements OnInit {
   /**
    * Empty config setup
    */
-  private setEmptyConfig() {
+  private setEmptyConfig(): void {
     this.emptyStateConfig = {
       iconStyleClass: 'pficon-info',
       title: this.noNotificationsText || this.noNotificationsText || 'There are no notifications to display.'
@@ -276,7 +275,7 @@ export class NotificationDrawerComponent implements OnInit {
    * Total number of unread notifications
    * @param groups 
    */
-  private totalUnreadNotifications(groups: NotificaitonGroup[]) {
+  private totalUnreadNotifications(groups: NotificaitonGroup[]): number {
     return size(filter(
       groups.map(g => filter(get(g, 'notifications'), { 'isViewing': false }).length > 0),
       o => { return o === true; }));
@@ -286,7 +285,7 @@ export class NotificationDrawerComponent implements OnInit {
   /**
    * Emit event when no unread notifications are remains
    */
-  private updateReadCount() {
+  private updateReadCount(): void {
     this.markreadCount = this.markreadCount + 1;
     if (this.markreadCount === this.unreadCount) {
       this.unreadNotifications.emit(false);
