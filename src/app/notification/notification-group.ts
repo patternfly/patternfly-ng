@@ -18,7 +18,7 @@ export class NotificaitonGroup {
    * sub-heading area for each notification group
    * 
    */
-  subHeading: string;
+  subHeading?: string;
   
   
   /**
