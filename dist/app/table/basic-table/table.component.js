@@ -168,15 +168,13 @@ var TableComponent = /** @class */ (function (_super) {
      *  Check if the component config has changed
      */
     TableComponent.prototype.ngDoCheck = function () {
+        var _this = this;
         // Do a deep compare on config
         if (!isEqual(this.config, this.prevConfig)) {
             // Skip pagination and toolbar changes
             if (!(this.hasPaginationChanged() || this.hasToolbarChanged())) {
                 this.setupSelectionCols();
             }
-            this.setupConfig();
-        }
-        if (!isEqual(this.config, this.prevConfig)) {
             this.setupConfig();
         }
         if (!isEqual(this.dataTableConfig, this.prevDataTableConfig)) {
@@ -186,21 +184,38 @@ var TableComponent = /** @class */ (function (_super) {
             this.rowsModel = this.rows.slice();
             this.initSelectedRows();
             this.initAllRowsSelected();
-            this.prevRows = clone(this.rows); // lodash has issues deep cloning templates
+            // Disable toolbar actions
             if (this.config.toolbarConfig !== undefined) {
-                this.config.toolbarConfig.disabled = !this.hasData; // disable toolbar actions
+                this.config.toolbarConfig.disabled = !this.hasData;
             }
+            // ngx-datatable recommends you force change detection -- issue #337
+            if (this.prevRows === undefined || this.prevRows.length === 0) {
+                setTimeout(function () {
+                    _this.setupSelectionCols();
+                }, 10);
+            }
+            this.prevRows = clone(this.rows); // lodash has issues deep cloning templates
         }
     };
     /**
      * Set up default config
      */
     TableComponent.prototype.setupConfig = function () {
+        var _this = this;
         if (this.config !== undefined) {
             defaults(this.config, this.defaultConfig);
         }
         else {
             this.config = cloneDeep(this.defaultConfig);
+        }
+        // Disable toolbar actions
+        if (this.config.toolbarConfig !== undefined && !this.hasData) {
+            this.showTable = false;
+            // Filter and sort don't fully disable without this timeout
+            setTimeout(function () {
+                _this.config.toolbarConfig.disabled = !_this.hasData;
+                _this.showTable = true;
+            }, 10);
         }
         this.prevConfig = cloneDeep(this.config);
     };
@@ -415,7 +430,7 @@ var TableComponent = /** @class */ (function (_super) {
             _this.onDrop.emit($event);
             _this.rowsModel = _this.rows.slice();
             _this.showTable = true;
-        }, 0);
+        }, 10);
     };
     /**
      * Helper to generate ngx-datatable page event
@@ -624,7 +639,7 @@ var TableComponent = /** @class */ (function (_super) {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-table',
-            template: "<div class=\"pfng-table\"><pfng-toolbar [config]=\"config.toolbarConfig\" [actionTemplate]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\" (onFilterChange)=\"handleFilterChange($event)\" (onFilterFieldSelect)=\"handleFilterFieldSelect($event)\" (onFilterTypeAhead)=\"handleFilterTypeAhead($event)\" (onSortChange)=\"handleSortChange($event)\" (onViewSelect)=\"handleViewSelect($event)\" *ngIf=\"config.toolbarConfig !== undefined\"></pfng-toolbar><div *ngIf=\"hasData\"><ngx-datatable #datatable [columns]=\"cols\" [columnMode]=\"dataTableConfig.columnMode\" [count]=\"dataTableConfig.count\" [cssClasses]=\"dataTableConfig.cssClasses\" [displayCheck]=\"dataTableConfig.displayCheck\" [dragulaClassSelector]=\"'pfng-table-dnd-header'\" [dragulaModel]=\"rowsModel\" [dragulaName]=\"dragulaName\" [externalPaging]=\"dataTableConfig.externalPaging\" [externalSorting]=\"dataTableConfig.externalSorting\" [footerHeight]=\"dataTableConfig.footerHeight\" [groupExpansionDefault]=\"dataTableConfig.groupExpansionDefault\" [groupRowsBy]=\"dataTableConfig.groupRowsBy\" [headerHeight]=\"dataTableConfig.headerHeight\" [messages]=\"dataTableConfig.messages\" [ngClass]=\"config.styleClass\" [limit]=\"dataTableConfig.limit\" [loadingIndicator]=\"dataTableConfig.loadingIndicator\" [offset]=\"dataTableConfig.offset\" [reorderable]=\"dataTableConfig.reorderable\" [rowClass]=\"dataTableConfig.rowClass\" [rowHeight]=\"dataTableConfig.rowHeight\" [rowIdentity]=\"dataTableConfig.rowIdentity\" [rows]=\"rows\" [scrollbarH]=\"dataTableConfig.scrollbarH\" [scrollbarV]=\"dataTableConfig.scrollbarV\" [selectAllRowsOnPage]=\"dataTableConfig.selectAllRowsOnPage\" [selectCheck]=\"dataTableConfig.selectCheck\" [selected]=\"selectedRows\" [selectionType]=\"dataTableConfig.selectionType\" [sorts]=\"dataTableConfig.sorts\" [sortType]=\"dataTableConfig.sortType\" [trackByProp]=\"dataTableConfig.trackByProp\" [virtualization]=\"dataTableConfig.virtualization\" (activate)=\"handleActivate($event)\" (detailToggle)=\"handleDetailToggle($event)\" (dragulaDrop)=\"handleDragulaDrop($event)\" (dragulaDrag)=\"handleDragulaDrag($event)\" (page)=\"handlePage($event)\" (reorder)=\"handleReorder($event)\" (resize)=\"handleResize($event)\" (scroll)=\"handleScroll($event)\" (select)=\"handleSelect($event)\" (sort)=\"handleSort($event)\" (tableContextmenu)=\"handleOnTableContextMenu($event)\" *ngIf=\"showTable\"><ng-template #selectHeadTemplate><span class=\"margin-left-5\" *ngIf=\"config.dragEnabled === true\"></span> <span class=\"margin-left-16\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\"></span> </span><input type=\"checkbox\" value=\"allRowsSelected\" title=\"{{(allRowsSelected) ? 'Deselect' : 'Select'}} All Rows\" [disabled]=\"rows.length === 0\" [(ngModel)]=\"allRowsSelected\" (ngModelChange)=\"selectionsChange()\" *ngIf=\"config.showCheckbox === true\"></ng-template><ng-template #selectCellTemplate let-row=\"row\" let-expanded=\"expanded\"><span class=\"pfng-table-dnd-container\" *ngIf=\"config.dragEnabled === true\"><span class=\"pfng-table-dnd-header\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true}\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\" *ngIf=\"row.hideExpandToggle === true\"></span> <span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandRow(row)\" *ngIf=\"row.hideExpandToggle !== true\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}\" *ngIf=\"config.showCheckbox === true\"><input type=\"checkbox\" value=\"row.selected\" title=\"{{(row.selected) ? 'Deselect' : 'Select'}} Row\" [(ngModel)]=\"row.selected\" (ngModelChange)=\"selectionChange(row)\"></span></ng-template><ngx-datatable-group-header [rowHeight]=\"dataTableConfig.rowHeight\" *ngIf=\"groupHeaderTemplate !== undefined\"><ng-template let-group=\"group\" let-expanded=\"expanded\" ngx-datatable-group-header-template><span class=\"margin-5\"><span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandGroup(group)\"></span></span><ng-template [ngTemplateOutlet]=\"groupHeaderTemplate\" [ngTemplateOutletContext]=\"{ group: group, expanded: expanded }\"></ng-template></ng-template></ngx-datatable-group-header><ngx-datatable-row-detail [rowHeight]=\"auto\" *ngIf=\"expandRowTemplate !== undefined\"><ng-template let-row=\"row\" let-expanded=\"expanded\" ngx-datatable-row-detail-template><div class=\"pfng-table-expand-container\" tabindex=\"0\"><div class=\"pfng-table-expand-content\" style=\"flex-grow: 1\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"toggleExpandRow(row)\"></span></div><ng-template [ngTemplateOutlet]=\"expandRowTemplate\" [ngTemplateOutletContext]=\"{ row: row, expanded: expanded }\"></ng-template></div></div></ng-template></ngx-datatable-row-detail></ngx-datatable><pfng-pagination [config]=\"config.paginationConfig\" (onPageNumberChange)=\"handlePageNumber($event)\" (onPageSizeChange)=\"handlePageSize($event)\" *ngIf=\"config.paginationConfig !== undefined\"></pfng-pagination></div><pfng-empty-state [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\" *ngIf=\"!hasData\"></pfng-empty-state></div>"
+            template: "<div class=\"pfng-table\"><pfng-toolbar [config]=\"config.toolbarConfig\" [actionTemplate]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\" (onFilterChange)=\"handleFilterChange($event)\" (onFilterFieldSelect)=\"handleFilterFieldSelect($event)\" (onFilterTypeAhead)=\"handleFilterTypeAhead($event)\" (onSortChange)=\"handleSortChange($event)\" (onViewSelect)=\"handleViewSelect($event)\" *ngIf=\"config.toolbarConfig !== undefined\"></pfng-toolbar><div *ngIf=\"hasData\"><ngx-datatable #datatable [columns]=\"cols\" [columnMode]=\"dataTableConfig.columnMode\" [count]=\"dataTableConfig.count\" [cssClasses]=\"dataTableConfig.cssClasses\" [displayCheck]=\"dataTableConfig.displayCheck\" [dragulaClassSelector]=\"'pfng-table-dnd-header'\" [dragulaModel]=\"rowsModel\" [dragulaName]=\"dragulaName\" [externalPaging]=\"dataTableConfig.externalPaging\" [externalSorting]=\"dataTableConfig.externalSorting\" [footerHeight]=\"dataTableConfig.footerHeight\" [groupExpansionDefault]=\"dataTableConfig.groupExpansionDefault\" [groupRowsBy]=\"dataTableConfig.groupRowsBy\" [headerHeight]=\"dataTableConfig.headerHeight\" [messages]=\"dataTableConfig.messages\" [ngClass]=\"config.styleClass\" [limit]=\"dataTableConfig.limit\" [loadingIndicator]=\"dataTableConfig.loadingIndicator\" [offset]=\"dataTableConfig.offset\" [reorderable]=\"dataTableConfig.reorderable\" [rowClass]=\"dataTableConfig.rowClass\" [rowHeight]=\"dataTableConfig.rowHeight\" [rowIdentity]=\"dataTableConfig.rowIdentity\" [rows]=\"rows\" [scrollbarH]=\"dataTableConfig.scrollbarH\" [scrollbarV]=\"dataTableConfig.scrollbarV\" [selectAllRowsOnPage]=\"dataTableConfig.selectAllRowsOnPage\" [selectCheck]=\"dataTableConfig.selectCheck\" [selected]=\"selectedRows\" [selectionType]=\"dataTableConfig.selectionType\" [sorts]=\"dataTableConfig.sorts\" [sortType]=\"dataTableConfig.sortType\" [trackByProp]=\"dataTableConfig.trackByProp\" [virtualization]=\"dataTableConfig.virtualization\" (activate)=\"handleActivate($event)\" (detailToggle)=\"handleDetailToggle($event)\" (dragulaDrop)=\"handleDragulaDrop($event)\" (dragulaDrag)=\"handleDragulaDrag($event)\" (page)=\"handlePage($event)\" (reorder)=\"handleReorder($event)\" (resize)=\"handleResize($event)\" (scroll)=\"handleScroll($event)\" (select)=\"handleSelect($event)\" (sort)=\"handleSort($event)\" (tableContextmenu)=\"handleOnTableContextMenu($event)\" *ngIf=\"showTable\"><ng-template #selectHeadTemplate><span class=\"margin-left-5\" *ngIf=\"config.dragEnabled === true\"></span> <span class=\"margin-left-16\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\"></span> </span><input type=\"checkbox\" value=\"allRowsSelected\" title=\"{{(allRowsSelected) ? 'Deselect' : 'Select'}} All Rows\" [disabled]=\"rows === undefined || rows.length === 0\" [(ngModel)]=\"allRowsSelected\" (ngModelChange)=\"selectionsChange()\" *ngIf=\"config.showCheckbox === true\"></ng-template><ng-template #selectCellTemplate let-row=\"row\" let-expanded=\"expanded\"><span class=\"pfng-table-dnd-container\" *ngIf=\"config.dragEnabled === true\"><span class=\"pfng-table-dnd-header\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true}\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\" *ngIf=\"row.hideExpandToggle === true\"></span> <span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandRow(row)\" *ngIf=\"row.hideExpandToggle !== true\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}\" *ngIf=\"config.showCheckbox === true\"><input type=\"checkbox\" value=\"row.selected\" title=\"{{(row.selected) ? 'Deselect' : 'Select'}} Row\" [(ngModel)]=\"row.selected\" (ngModelChange)=\"selectionChange(row)\"></span></ng-template><ngx-datatable-group-header [rowHeight]=\"dataTableConfig.rowHeight\" *ngIf=\"groupHeaderTemplate !== undefined\"><ng-template let-group=\"group\" let-expanded=\"expanded\" ngx-datatable-group-header-template><span class=\"margin-5\"><span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandGroup(group)\"></span></span><ng-template [ngTemplateOutlet]=\"groupHeaderTemplate\" [ngTemplateOutletContext]=\"{ group: group, expanded: expanded }\"></ng-template></ng-template></ngx-datatable-group-header><ngx-datatable-row-detail [rowHeight]=\"auto\" *ngIf=\"expandRowTemplate !== undefined\"><ng-template let-row=\"row\" let-expanded=\"expanded\" ngx-datatable-row-detail-template><div class=\"pfng-table-expand-container\" tabindex=\"0\"><div class=\"pfng-table-expand-content\" style=\"flex-grow: 1\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"toggleExpandRow(row)\"></span></div><ng-template [ngTemplateOutlet]=\"expandRowTemplate\" [ngTemplateOutletContext]=\"{ row: row, expanded: expanded }\"></ng-template></div></div></ng-template></ngx-datatable-row-detail></ngx-datatable><pfng-pagination [config]=\"config.paginationConfig\" (onPageNumberChange)=\"handlePageNumber($event)\" (onPageSizeChange)=\"handlePageSize($event)\" *ngIf=\"config.paginationConfig !== undefined\"></pfng-pagination></div><pfng-empty-state [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\" *ngIf=\"!hasData\"></pfng-empty-state></div>"
         }),
         __metadata("design:paramtypes", [DragulaService])
     ], TableComponent);

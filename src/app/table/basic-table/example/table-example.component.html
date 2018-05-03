@@ -24,6 +24,9 @@
     <tab heading="Group Headers" (select)="tabSelected($event)">
       <table-group-example *ngIf="activeTab === 'Group Headers'"></table-group-example>
     </tab>
+    <tab heading="Empty Table" (select)="tabSelected($event)">
+      <table-empty-example *ngIf="activeTab === 'Empty Table'"></table-empty-example>
+    </tab>
     <tab heading="Full" (select)="tabSelected($event)">
       <table-full-example *ngIf="activeTab === 'Full'"></table-full-example>
     </tab>
