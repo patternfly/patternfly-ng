@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { ChartDefaults } from './chart-defaults';
 import { DonutComponent } from './donut/donut.component';
+import { DonutUtilizationComponent } from './donut/donut.utilization.component';
 import { DonutConfig } from './donut/donut-config';
 import { SparklineComponent } from './sparkline/sparkline.component';
 import { SparklineConfig } from './sparkline/sparkline-config';
@@ -21,8 +22,8 @@ export {
     CommonModule,
     FormsModule,
   ],
-  declarations: [SparklineComponent, DonutComponent],
-  exports: [SparklineComponent, DonutComponent],
+  declarations: [SparklineComponent, DonutComponent, DonutUtilizationComponent],
+  exports: [SparklineComponent, DonutComponent, DonutUtilizationComponent],
   providers: [ChartDefaults, WindowReference]
 })
 export class ChartModule {}

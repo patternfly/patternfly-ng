@@ -31,6 +31,7 @@ export {
   ChartBase,
   ChartModule,
   DonutComponent,
+  DonutUtilizationComponent,
   DonutConfig,
   SparklineComponent,
   SparklineConfig,
