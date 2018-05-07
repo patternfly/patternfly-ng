@@ -29,7 +29,7 @@ import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
     actionConfig: ActionConfig;
     actionText: string = '';
     emptyStateConfig: EmptyStateConfig;
-
+    empty: boolean = false;
   
 
     toggleShowDrawer() {
@@ -54,6 +54,12 @@ import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
     markAsRead(notify: Notification) {
       notify.isViewing = true;
       this.actionText += 'Mark notification read \n';
+    }
+
+    setEmptyState() {
+      if (this.empty) { this.groups = null; } else {
+        this.setGroups();
+      }
     }
 
     constructor(private chRef: ChangeDetectorRef) {
@@ -101,7 +107,13 @@ import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
       
     this.currentTime = (new Date()).getTime();
        
-    this.groups = [
+    this.setGroups();
+    }
+
+
+
+    private setGroups() {
+      this.groups = [
         {
           heading: 'Notification Tab 1',
           subHeading: '5 New Events',
@@ -114,49 +126,48 @@ import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
               timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
             },
             {
-              
               isViewing: true,
               message: 'Another Event Notification',
               type: 'success',
               moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
             },
-            { 
+            {
               isViewing: false,
               message: 'Another Event Notification',
               type: 'warning',
               moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
             },
-            { 
+            {
               isViewing: false,
               message: 'Another Event Notification',
               type: 'danger',
               moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
             },
-            { 
+            {
               isViewing: true,
               message: 'A New Event! Huzzah! Bold',
               type: 'info',
               moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (1 * 60 * 60 * 1000)
             },
-            { 
+            {
               isViewing: true,
               message: 'Another Event Notification',
               type: 'error',
               moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (2 * 60 * 60 * 1000)
             },
-            { 
+            {
               isViewing: false,
               message: 'Another Event Notification',
               type: 'success',
               moreActions: this.actionConfig.moreActions,
               timeStamp: this.currentTime - (10 * 60 * 60 * 1000)
             },
-            { 
+            {
               isViewing: false,
               message: 'Another Event Notification',
               type: 'warning',
@@ -164,7 +175,6 @@ import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
               timeStamp: this.currentTime - (12 * 60 * 60 * 1000)
             },
             {
-              
               isViewing: true,
               message: 'Another Event Notification',
               type: 'info',
@@ -305,7 +315,5 @@ import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
         },
       ];
     }
-
-
 }
 

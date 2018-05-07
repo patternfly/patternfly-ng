@@ -59,7 +59,6 @@
       </div>
     </div>
   </div>
-  
   <div class="row padding-top-10">
     <div class="col-sm-12">
       <h4 class="actions-label">Actions</h4>
@@ -68,6 +67,23 @@
   </div>
   <div class="col-sm-12">
     <textarea rows="3" class="col-sm-12">{{actionText}}</textarea>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="emptystate" name="emptystate" type="checkbox" [(ngModel)]="empty" (ngModelChange)="setEmptyState()">Empty State
+          </label>
+        </div>
+      </form>
+    </div>
   </div>
   <div class="col-sm-12">
     <div class="panel-group">
