@@ -35,4 +35,10 @@ export class NotificaitonGroup {
    * Flag for the loading spinner
    */
   loading?: boolean;
+  
+  
+  /**
+   * Empty state config for notification
+   */
+  emptyStateConfig?: EmptyStateConfig;
 }

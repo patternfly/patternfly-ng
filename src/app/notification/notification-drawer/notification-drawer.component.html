@@ -50,7 +50,7 @@
           </div>
           <div *ngIf="!hasNotifications(notificationGroup)">
             <div class="panel-body">
-              <pfng-empty-state [config]="emptyStateConfig"></pfng-empty-state>
+              <pfng-empty-state [config]="notificationGroup.emptyStateConfig"></pfng-empty-state>
             </div>
           </div>
           <ng-template *ngIf="notificationFooterTemplate" [ngTemplateOutlet]="notificationFooterTemplate"></ng-template>
