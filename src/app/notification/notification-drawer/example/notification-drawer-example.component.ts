@@ -11,6 +11,7 @@ import {
 import { time } from 'd3';
 import { Action } from '../../../action/action';
 import { ActionConfig } from '../../../action/action-config';
+import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
   
   @Component({
     encapsulation: ViewEncapsulation.None,
@@ -26,24 +27,40 @@ import { ActionConfig } from '../../../action/action-config';
     unread: boolean = false; 
     currentTime: number;
     actionConfig: ActionConfig;
-   
+    actionText: string = '';
+    emptyStateConfig: EmptyStateConfig;
+
+  
 
     toggleShowDrawer() {
       this.hide = !this.hide;
+      this.actionText += 'show drawer:' + this.hide + '\n';
     }
     
     close($event: boolean): void {
       this.hide = !this.hide;
+      this.actionText += 'Close drawer \n';
     }
    
     unreadNotifications($event: boolean): void {
       this.unread = $event;
       this.chRef.detectChanges();
+      if (!this.unread) {
+          this.actionText += 'No Notification \n';
+      }
+
     }
    
+    markAsRead(notify: Notification) {
+      notify.isViewing = true;
+      this.actionText += 'Mark notification read \n';
+    }
 
     constructor(private chRef: ChangeDetectorRef) {
-      
+      this.emptyStateConfig = {
+        iconStyleClass: 'pficon-info',
+        title: 'Tab4: There are no notifications to display .'
+      };
     }
 
     ngOnInit(): void {
@@ -201,7 +218,8 @@ import { ActionConfig } from '../../../action/action-config';
         {
           heading: 'Notification Tab 4',
           subHeading: '0 New Events',
-          notifications: []
+          notifications: [],
+          emptyStateConfig: this.emptyStateConfig
         },
         {
           heading: 'Notification Tab 5',
@@ -288,4 +306,6 @@ import { ActionConfig } from '../../../action/action-config';
       ];
     }
 
-  }
+
+}
+
