@@ -14,7 +14,7 @@
     <pfng-empty-state [config]="emptyStateConfig"></pfng-empty-state>
   </div>
 
-  <div *ngIf="notificationGroups" pf-fixed-accordion scroll-selector=".panel-body">
+  <div *ngIf="notificationGroups">
     <div class="panel-group">
       <div class="panel panel-default" *ngFor="let notificationGroup of notificationGroups, let index = index">
         <div class="panel-heading">
