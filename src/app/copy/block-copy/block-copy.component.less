@@ -1,0 +1,55 @@
+.copy {
+  border: 1px solid #aaa;
+
+  &-preview {
+    display: flex;
+    align-items: stretch;
+
+    &.pf-is-open {
+      border-bottom: 1px solid #aaa;
+      background: #ddd;
+    }
+
+    &-icon, &-txt-cont {
+      display: flex;
+      align-items: center;
+    }
+
+    &-btn {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    &-icon {
+      cursor: pointer;
+      padding: 0 1em;
+      &.fa-angle-right {
+        padding: 0 1.15em;
+      }
+    }
+
+    &-txt-cont {
+      flex-grow: 1;
+      overflow: hidden;
+      white-space: nowrap;
+
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 1em;
+      }
+    }
+
+    .copy-btn {
+      border: none;
+      box-shadow: none;
+      font-size: 1em;
+    }
+  }
+
+  &-body {
+    padding: 15px;
+    word-wrap: break-word;
+  }
+}

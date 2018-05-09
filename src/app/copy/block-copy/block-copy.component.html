@@ -1,0 +1,33 @@
+<div>
+  <label [attr.for]="'pf-copy-token-button-' + hash">{{label}}</label>
+  <div class="copy">
+    <div class="copy-preview" [ngClass]="{'pf-is-open': tokenPanelOpen}">
+
+      <button
+        [attr.aria-label]="expandBtnAriaLabel(label)"
+        [attr.aria-expanded]="tokenPanelOpen"
+        class="copy-preview-btn"
+        (click)="toggleTokenPanel()">
+        <i
+          class="fa copy-preview-icon"
+          [ngClass]="{'fa-angle-down': tokenPanelOpen, 'fa-angle-right': !tokenPanelOpen}"></i>
+      </button>
+
+      <div class="copy-preview-txt-cont">
+        <span
+          data-toggle="tooltip"
+          data-placement="top"
+          [tooltip]="label">{{token}}</span>
+      </div>
+
+      <button
+        [attr.id]="'pf-copy-token-button-' + hash"
+        class="btn btn-lg btn-default copy-btn"
+        [attr.aria-label]="copyBtnAriaLabel(label)"
+        (click)="copyTokenToClipboard()">{{copyBtnTxt}}</button>
+    </div>
+    <div class="copy-body" *ngIf="tokenPanelOpen">
+      <span>{{token}}</span>
+    </div>
+  </div>
+</div>

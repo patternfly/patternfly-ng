@@ -32,6 +32,18 @@ export class NavbarItems {
       title: 'Utilization Donut Chart'
     }]
   }, {
+    id: 'copy',
+    title: 'Copy',
+    children: [{
+      id: 'inlinecopy',
+      path: 'inlinecopy',
+      title: 'Inline Copy'
+    }, {
+      id: 'blockcopy',
+      path: 'blockcopy',
+      title: 'Block Copy'
+    }]
+  }, {
     id: 'emptystate',
     path: 'emptystate',
     title: 'Empty State'
@@ -143,7 +155,7 @@ export class NavbarItems {
   }, {
     hasChildren: true,
     id: 'services',
-    path: 'notificationservice',
+    path: 'copyservice',
     title: 'Services'
   }];
 
@@ -162,6 +174,10 @@ export class NavbarItems {
   }];
 
   static readonly SERVICES: any[] = [{
+    id: 'copyservice',
+    path: 'copyservice',
+    title: 'Copy Service'
+  }, {
     id: 'notificationservice',
     path: 'notificationservice',
     title: 'Notification Service'

@@ -1,0 +1,51 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Block Level Copy Component Examples</h4>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <h5>Basic example</h5>
+        <p>This example accepts defaults for everything except the label and text token that will be copied. Each block-level copy component receives a label and an expandable token container.</p>
+        <pfng-block-copy [label]="example01.label" [token]="example01.token"></pfng-block-copy>
+        <div class="row grid-example">
+          <div class="col-sm-6">
+            <h5>Example customizing labels and accessible text</h5>
+            <p>This example illustrates how you can control various bits of text within the component.</p>
+            <pfng-block-copy
+              [token]="example02.token"
+              [label]="example02.label"
+              [copyBtnTxt]="example02.copyBtnTxt"></pfng-block-copy>
+          </div>
+          <div class="col-sm-6">
+            <h5>Emitting events example</h5>
+            <p>This example renders the component open by default and features an event handler which launches a notification in response to the 'copiedToClipboard' event.</p>
+            <pfng-block-copy
+              [label]="example03.label"
+              [copyBtnTxt]="example03.copyBtnTxt"
+              [tokenPanelOpen]="example03.tokenPanelOpen"
+              [token]="example03.token"
+              (copiedToClipboard)="notify($event)"></pfng-block-copy>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/blockcopycomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/copy/block-copy/example/block-copy-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/copy/block-copy/example/block-copy-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

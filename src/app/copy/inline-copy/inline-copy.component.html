@@ -1,0 +1,16 @@
+<span
+  class="inline-copy">
+  <span
+    class="token-cont"
+    data-toggle="tooltip"
+    data-placement="top"
+    [tooltip]="label">
+    {{token}}
+  </span>
+  <button
+    class="copy-btn"
+    [attr.aria-label]="copyBtnTxt + ' ' + label"
+    (click)="copyTokenToClipboard()">
+    <i class="fa fa-copy"></i>
+  </button>
+</span>

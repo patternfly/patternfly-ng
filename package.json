@@ -42,9 +42,12 @@
     "angular 2",
     "angular4",
     "angular 4",
+    "angular5",
+    "angular 5",
     "ng",
     "ng2",
-    "ng4"
+    "ng4",
+    "ng5"
   ],
   "homepage": "https://github.com/patternfly/patternfly-ng",
   "repository": {

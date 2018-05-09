@@ -5,17 +5,20 @@ import { AboutModalExampleComponent } from '../app/modal/example/about-modal-exa
 import { ActionExampleComponent } from '../app/action/example/action-example.component';
 import { ApplicationLauncherExampleComponent }
   from '../app/navigation/application-launcher/example/application-launcher-example.component';
-import { CardExampleComponent } from '../app/card/basic-card/example/card-example.component';
 import { DonutChartExampleComponent }
   from '../app/chart/donut-chart/basic-donut-chart/example/donut-chart-example.component';
+import { BlockCopyExampleComponent } from '../app/copy/block-copy/example/block-copy-example.component';
+import { CardExampleComponent } from '../app/card/basic-card/example/card-example.component';
+import { CopyServiceExampleComponent } from '../app/copy/copy-service/example/copy-service-example.component';
 import { EmptyStateExampleComponent } from '../app/empty-state/example/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/example/filter-example.component';
 import { InfoStatusCardExampleComponent }
   from '../app/card/info-status-card/example/info-status-card-example.component';
+import { InlineCopyExampleComponent } from '../app/copy/inline-copy/example/inline-copy-example.component';
 import { InlineNotificationExampleComponent }
   from '../app/notification/inline-notification/example/inline-notification-example.component';
 import { ListExampleComponent } from '../app/list/basic-list/example/list-example.component';
-import { NotificationDrawerExampleComponent } 
+import { NotificationDrawerExampleComponent }
 from '../app/notification/notification-drawer/example/notification-drawer-example.component';
 import { NotificationServiceExampleComponent }
   from '../app/notification/notification-service/example/notification-service-example.component';
@@ -62,14 +65,23 @@ const routes: Routes = [{
       component: SampleComponent,
     }]
   }, {
+    path: 'blockcopy',
+    component: BlockCopyExampleComponent
+  }, {
     path: 'card',
     component: CardExampleComponent
+  }, {
+    path: 'copyservice',
+    component: CopyServiceExampleComponent
   }, {
     path: 'donut',
     component: DonutChartExampleComponent
   }, {
     path: 'infocard',
     component: InfoStatusCardExampleComponent
+  }, {
+    path: 'inlinecopy',
+    component: InlineCopyExampleComponent
   }, {
     path: 'emptystate',
     component: EmptyStateExampleComponent
