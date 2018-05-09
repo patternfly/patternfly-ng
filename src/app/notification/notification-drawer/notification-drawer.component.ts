@@ -223,7 +223,12 @@ export class NotificationDrawerComponent implements OnInit {
    *  @param group 
    */
   toggleCollapse(group: NotificaitonGroup): void {
-    group.open = !group.open;
+    if (group.open) {
+      group.open = false;
+    } else {
+      this.collapseOpenGroups();
+      group.open = true;
+    }
   }
 
 
@@ -232,7 +237,7 @@ export class NotificationDrawerComponent implements OnInit {
    * Setup component configuration upon initialization
    */
   ngOnInit(): void {
-    this.notificationGroups.forEach(grp => grp.open = false);
+    this.collapseOpenGroups();
     this.singleGroup = size(this.notificationGroups) < 2;
     this.markreadCount = 0;
     this.setEmptyConfig();
@@ -246,6 +251,13 @@ export class NotificationDrawerComponent implements OnInit {
    */
   constructor() { }
 
+
+  /**
+   * Collapse panel for all groups
+   */
+  private collapseOpenGroups(): void {
+    this.notificationGroups.forEach(grp => grp.open = false);
+  }
 
 
   /**
