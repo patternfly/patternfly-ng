@@ -38,7 +38,7 @@
             </ng-template>
             <ng-template #notificationBodyTemplate let-notify="notify" let-index="index">
               <div class="pull-right" *ngIf="notify.moreActions.length > 0">
-                <pfng-action class="list-pf-actions" [config]="actionConfig"></pfng-action>
+                <pfng-action class="list-pf-actions" [config]="actionConfig" (onActionSelect)="handleAction($event)"></pfng-action>
               </div>
               <span class="pull-left pficon pficon-ok" *ngIf="notify.type === 'success'"></span>
               <span class="pull-left pficon pficon-info" *ngIf="notify.type === 'info'"></span>

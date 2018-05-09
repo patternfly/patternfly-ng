@@ -62,6 +62,10 @@ import { EmptyStateConfig } from '../../../empty-state/empty-state-config';
       }
     }
 
+    handleAction(action: Action): void {
+      this.actionText = action.title + '\n' + this.actionText;
+    }
+
     constructor(private chRef: ChangeDetectorRef) {
       this.emptyStateConfig = {
         iconStyleClass: 'pficon-info',
