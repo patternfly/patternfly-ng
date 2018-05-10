@@ -12,6 +12,8 @@ import { InfoStatusCardExampleComponent }
 import { InlineNotificationExampleComponent }
   from '../app/notification/inline-notification/example/inline-notification-example.component';
 import { ListExampleComponent } from '../app/list/basic-list/example/list-example.component';
+import { NotificationDrawerExampleComponent } 
+from '../app/notification/notification-drawer/example/notification-drawer-example.component';
 import { NotificationServiceExampleComponent }
   from '../app/notification/notification-service/example/notification-service-example.component';
 import { PaginationExampleComponent } from '../app/pagination/example/pagination-example.component';
@@ -88,6 +90,9 @@ const routes: Routes = [{
   }, {
     path: 'notificationservice',
     component: NotificationServiceExampleComponent
+  }, {
+    path: 'notificationdrawer',
+    component: NotificationDrawerExampleComponent
   }, {
     path: 'pagination',
     component: PaginationExampleComponent

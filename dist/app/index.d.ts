@@ -7,7 +7,7 @@ export { Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, Filter
 export { ListBase, ListBaseConfig, ListConfig, ListComponent, ListEvent, ListModule, ListExpandToggleComponent, TreeListComponent, TreeListConfig } from './list/index';
 export { AboutModalConfig, AboutModalComponent, ModalModule } from './modal/index';
 export { NavigationItemConfig, NavigationModule, VerticalNavigationComponent } from './navigation/index';
-export { InlineNotificationComponent, Notification, NotificationEvent, NotificationModule, NotificationType, NotificationService, ToastNotificationComponent, ToastNotificationListComponent } from './notification/index';
+export { InlineNotificationComponent, NotificationDrawerComponent, Notification, NotificationEvent, NotificationModule, NotificationType, NotificationService, ToastNotificationComponent, ToastNotificationListComponent } from './notification/index';
 export { PaginationComponent, PaginationConfig, PaginationEvent, PaginationModule } from './pagination/index';
 export { PipeModule, SearchHighlightPipe, SortArrayPipe, TruncatePipe } from './pipe/index';
 export { RemainingCharsCountDirective, RemainingCharsCountModule } from './remaining-chars-count/index';

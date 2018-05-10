@@ -16,7 +16,7 @@ export { AboutModalConfig, AboutModalComponent, ModalModule } from './modal/inde
 // Navigation
 export { NavigationItemConfig, NavigationModule, VerticalNavigationComponent } from './navigation/index';
 // Notification
-export { InlineNotificationComponent, Notification, NotificationEvent, NotificationModule, NotificationType, NotificationService, ToastNotificationComponent, ToastNotificationListComponent } from './notification/index';
+export { InlineNotificationComponent, NotificationDrawerComponent, Notification, NotificationEvent, NotificationModule, NotificationType, NotificationService, ToastNotificationComponent, ToastNotificationListComponent } from './notification/index';
 // Pagination
 export { PaginationComponent, PaginationConfig, PaginationEvent, PaginationModule } from './pagination/index';
 // Pipes

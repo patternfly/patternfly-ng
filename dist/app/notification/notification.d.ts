@@ -39,4 +39,8 @@ export declare class Notification {
      * Flag indicating notification should be visible
      */
     visible?: boolean;
+    /**
+     * Only for notification drawer module, to dislay time stamp
+     */
+    timeStamp?: number;
 }
