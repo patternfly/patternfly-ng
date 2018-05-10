@@ -1,0 +1,107 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Notification Drawer Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <div class="navbar-pf-vertical">
+          <nav class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left navbar-iconic">
+              <li class="drawer-pf-trigger dropdown" [ngClass]="{'open': !hide}">
+                <a class="nav-item-iconic drawer-pf-trigger-icon" (click)="toggleShowDrawer()">
+                  <span class="fa fa-bell" title="Notifications"></span>
+                  <span *ngIf="unread" class="badge badge-pf-bordered"> </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="layout-pf-fixed">
+          <div class="navbar-pf-vertical">
+            <pfng-notification-drawer [hidden]="hide" [allowExpand]="true" [title]="'Notifications Drawer'" [showMarkAllRead]="true"
+              [notificationGroups]="groups" [titleTemplate]="titleTemplate" [headingTemplate]="headingTemplate" [subHeadingTemplate]="subHeadingTemplate"
+              [notificationBodyTemplate]="notificationBodyTemplate" [showClearAll]="true" [allowExpand]="true" (close)="close($event)"
+              (unreadNotifications)="unreadNotifications($event)">
+            </pfng-notification-drawer>
+            <ng-template #titleTemplate>
+              <h3 class="text-center">Notifications Drawer</h3>
+            </ng-template>
+            <ng-template #headingTemplate let-group="group" let-index="index">
+              {{group.heading}}
+            </ng-template>
+            <ng-template #subHeadingTemplate let-group="group" let-index="index">
+              <span>{{group.subHeading}}</span>
+            </ng-template>
+            <ng-template #notificationBodyTemplate let-notify="notify" let-index="index">
+              <div class="pull-right" *ngIf="notify.moreActions.length > 0">
+                <pfng-action class="list-pf-actions" [config]="actionConfig" (onActionSelect)="handleAction($event)"></pfng-action>
+              </div>
+              <span class="pull-left pficon pficon-ok" *ngIf="notify.type === 'success'"></span>
+              <span class="pull-left pficon pficon-info" *ngIf="notify.type === 'info'"></span>
+              <span class="pull-left pficon pficon-error-circle-o" *ngIf="notify.type === 'danger'"></span>
+              <span class="pull-left pficon pficon-warning-triangle-o" *ngIf="notify.type === 'warning'"></span>
+              <div class="drawer-pf-notification-content" (click)="markAsRead(notify)">
+                <span class="drawer-pf-notification-message">
+                  {{notify.message}}
+                </span>
+                <div class="drawer-pf-notification-info">
+                  <span class="date">{{notify.timeStamp | date:'MM/dd/yyyy'}}</span>
+                  <span class="time">{{notify.timeStamp | date:'h:mm:ss a'}}</span>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <textarea rows="3" class="col-sm-12">{{actionText}}</textarea>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="emptystate" name="emptystate" type="checkbox" [(ngModel)]="empty" (ngModelChange)="setEmptyState()">Empty State
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="panel-group">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+      <tabset>
+        <tab heading="api">
+          <iframe class="demoframe" src="docs/classes/notificationdrawercomponent.html"></iframe>
+        </tab>
+        <tab heading="html">
+          <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.html"></include-content>
+        </tab>
+        <tab heading="typescript">
+          <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.ts"></include-content>
+        </tab>
+      </tabset>
+    </div>
+</div>
