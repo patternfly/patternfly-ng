@@ -23,6 +23,8 @@ import { InfoStatusCardExampleModule } from '../app/card/info-status-card/exampl
 import { InlineNotificationExampleModule }
   from '../app/notification/inline-notification/example/inline-notification-example.module';
 import { ListExampleModule } from '../app/list/basic-list/example/list-example.module';
+import { NotificationDrawerExampleModule } 
+from '../app/notification/notification-drawer/example/notification-drawer-example.module';
 import { NotificationServiceExampleModule }
   from '../app/notification/notification-service/example/notification-service-example.module';
 import { PaginationExampleModule } from '../app/pagination/example/pagination-example.module';
@@ -65,6 +67,7 @@ from '../app/navigation/application-launcher/example/application-launcher-exampl
     InfoStatusCardExampleModule,
     InlineNotificationExampleModule,
     ListExampleModule,
+    NotificationDrawerExampleModule,
     NavbarModule,
     NotificationServiceExampleModule,
     PaginationExampleModule,

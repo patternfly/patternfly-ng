@@ -79,6 +79,11 @@ export class NavbarItems {
     id: 'notifications',
     title: 'Notifications',
     children: [{
+      id: 'notificationdrawer',
+      path: 'notificationdrawer',
+      title: 'Notification Drawer'
+    },
+    {
       id: 'inlinenotification',
       path: 'inlinenotification',
       title: 'Inline Notification'
