@@ -14,9 +14,8 @@
     <pfng-empty-state [config]="emptyStateConfig"></pfng-empty-state>
   </div>
 
-  <div *ngIf="notificationGroups">
-    <div class="panel-group">
-      <div class="panel panel-default" *ngFor="let notificationGroup of notificationGroups, let index = index">
+  <div *ngIf="notificationGroups" class="panel-group">
+      <div class="panel panel-default" [ngClass]="{expanded: notificationGroup.open}" *ngFor="let notificationGroup of notificationGroups, let index = index">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a *ngIf="!singleGroup" (click)="toggleCollapse(notificationGroup)" [ngClass]="{collapsed: !notificationGroup.open}">
@@ -57,5 +56,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
