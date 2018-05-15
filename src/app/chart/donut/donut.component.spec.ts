@@ -96,8 +96,8 @@ describe('Component: donut chart', () => {
 
   it('should use the default centerLabel', () => {
     let centerLabel = comp.getCenterLabelText();
-    expect(centerLabel.bigText).toBe(6);
-    expect(centerLabel.smText).toBe('Animals');
+    expect(centerLabel.title).toBe(6);
+    expect(centerLabel.subTitle).toBe('Animals');
   });
 
   it('should use custom centerLabel', () => {
@@ -105,8 +105,8 @@ describe('Component: donut chart', () => {
     fixture.detectChanges();
 
     let centerLabel = comp.getCenterLabelText();
-    expect(centerLabel.bigText).toBe('custom-label');
-    expect(centerLabel.smText).toBe('');
+    expect(centerLabel.title).toBe('custom-label');
+    expect(centerLabel.subTitle).toBe('');
   });
 
   it('should use patternfly tooltip', () => {

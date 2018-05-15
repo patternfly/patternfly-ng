@@ -85,7 +85,7 @@ PatternFly-ng uses npm, webpack and gulp.  With the exception of node.js, all de
 - If you are developing PatternFly-ng and would like to provide a link to the demo from your fork, TravisCI can be configured to create a copy of your branch with the dist files generated for you. No code changes are necessary to enable this, all that is needed is to login to [TravisCI](https://travis-ci.org/) and configure it to point at your PatternFly-ng fork. The first three steps at their [Getting Started page](https://docs.travis-ci.com/user/for-beginners) provide instructions on how to do this. However, we've also provided step-by-step instructions below.
 
 1. Generate a Github personal access token
-   * You can do this by going to your Github profile -> Settings -> **Personal access tokens**
+   * You can do this by going to your Github profile -> Settings -> Developer Settings -> **Personal access tokens**
    * Select the **"Generate New Token"** button
    * Description: "patternfly-ng"
    * Scopes: Check the **"public_repo"** option
@@ -93,7 +93,7 @@ PatternFly-ng uses npm, webpack and gulp.  With the exception of node.js, all de
 2. Enable Travis builds
    * Visit `https://travis-ci.org/<github username>/patternfly-ng`
    * Hit **"More options"** dropdown and select **"Settings"**
-   * Under **General**, set "Build branch updates" and "Build pull request updates" to **ON**
+   * Under **General**, set "Build only if .travis.yml is present", "Build pushed branches" and "Build pushed pull request" to **ON**
    * Under **Environment Variables**, add a variable with name **AUTH_TOKEN** and value the token generated from Step 1.
    * Set Display value in build log to **OFF**
 3. Push your feature branch to your fork
