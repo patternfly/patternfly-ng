@@ -118,12 +118,12 @@ var DonutComponent = /** @class */ (function (_super) {
     DonutComponent.prototype.getCenterLabelText = function () {
         // Public for testing
         var centerLabelText = {
-            bigText: this.getTotal(),
-            smText: this.config.donut.title
+            title: this.getTotal(),
+            subTitle: this.config.donut.title
         };
         if (this.config.centerLabel) {
-            centerLabelText.bigText = this.config.centerLabel;
-            centerLabelText.smText = '';
+            centerLabelText.title = this.config.centerLabel;
+            centerLabelText.subTitle = '';
         }
         return centerLabelText;
     };
@@ -153,13 +153,13 @@ var DonutComponent = /** @class */ (function (_super) {
         }
         centerLabelText = this.getCenterLabelText();
         donutChartTitle.text('');
-        if (centerLabelText.bigText && !centerLabelText.smText) {
-            donutChartTitle.text(centerLabelText.bigText);
+        if (centerLabelText.title && !centerLabelText.subTitle) {
+            donutChartTitle.text(centerLabelText.title);
         }
         else {
-            donutChartTitle.insert('tspan', null).text(centerLabelText.bigText)
+            donutChartTitle.insert('tspan', null).text(centerLabelText.title)
                 .classed('donut-title-big-pf', true).attr('dy', 0).attr('x', 0);
-            donutChartTitle.insert('tspan', null).text(centerLabelText.smText).
+            donutChartTitle.insert('tspan', null).text(centerLabelText.subTitle).
                 classed('donut-title-small-pf', true).attr('dy', 20).attr('x', 0);
         }
     };

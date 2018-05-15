@@ -4,6 +4,7 @@ export declare class ChartDefaults {
     getDefaultDonut: any;
     getDefaultDonutSize: any;
     getDefaultDonutColors: any;
+    getDefaultRelationshipDonutColors: any;
     getDefaultDonutLegend: any;
     getDefaultDonutTooltip: any;
     getDefaultDonutConfig: any;

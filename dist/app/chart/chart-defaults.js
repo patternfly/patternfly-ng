@@ -15,6 +15,7 @@ var ChartDefaults = /** @class */ (function () {
         this.getDefaultDonut = this.patternflyDefaults.getDefaultDonut;
         this.getDefaultDonutSize = this.patternflyDefaults.getDefaultDonutSize;
         this.getDefaultDonutColors = this.patternflyDefaults.getDefaultDonutColors;
+        this.getDefaultRelationshipDonutColors = this.patternflyDefaults.getDefaultRelationshipDonutColors;
         this.getDefaultDonutLegend = this.patternflyDefaults.getDefaultDonutLegend;
         this.getDefaultDonutTooltip = this.patternflyDefaults.getDefaultDonutTooltip;
         this.getDefaultDonutConfig = this.patternflyDefaults.getDefaultDonutConfig;

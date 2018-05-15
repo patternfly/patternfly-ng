@@ -7,10 +7,12 @@ import { ChartModule } from '../../chart.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { DonutBasicExampleComponent } from './donut-basic-example.component';
 import { DonutDynamicExampleComponent } from './donut-dynamic-example.component';
+import { DonutUtilizationExampleComponent } from './donut-utilization-example.component';
 import { DonutExampleComponent } from './donut-example.component';
 
 @NgModule({
-  declarations: [DonutBasicExampleComponent, DonutDynamicExampleComponent, DonutExampleComponent],
+  declarations: [DonutBasicExampleComponent, DonutDynamicExampleComponent, DonutUtilizationExampleComponent,
+    DonutExampleComponent],
   imports: [
     ChartModule,
     CommonModule,

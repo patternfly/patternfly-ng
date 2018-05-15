@@ -10,7 +10,7 @@ import { WindowReference } from '../../utilities/window.reference';
  * <code>require('patternfly/dist/js/patternfly-settings');</code>
  */
 export declare class DonutComponent extends ChartBase implements DoCheck, OnDestroy, OnInit {
-    private chartDefaults;
+    protected chartDefaults: ChartDefaults;
     private windowRef;
     /**
      * An array containing key value pairs:

@@ -51,7 +51,7 @@ export class DonutComponent extends ChartBase implements DoCheck, OnDestroy, OnI
    * Default constructor
    * @param chartDefaults
    */
-  constructor(private chartDefaults: ChartDefaults, private windowRef: WindowReference) {
+  constructor(protected chartDefaults: ChartDefaults, private windowRef: WindowReference) {
     super();
     this.subscriptions.push(this.chartLoaded.subscribe({
       next: (chart: any) => {
@@ -136,12 +136,12 @@ export class DonutComponent extends ChartBase implements DoCheck, OnDestroy, OnI
   getCenterLabelText(): any {
     // Public for testing
     let centerLabelText = {
-      bigText: this.getTotal(),
-      smText: this.config.donut.title
+      title: this.getTotal(),
+      subTitle: this.config.donut.title
     };
     if (this.config.centerLabel) {
-      centerLabelText.bigText = this.config.centerLabel;
-      centerLabelText.smText = '';
+      centerLabelText.title = this.config.centerLabel;
+      centerLabelText.subTitle = '';
     }
     return centerLabelText;
   }
@@ -179,12 +179,12 @@ export class DonutComponent extends ChartBase implements DoCheck, OnDestroy, OnI
     centerLabelText = this.getCenterLabelText();
 
     donutChartTitle.text('');
-    if (centerLabelText.bigText && !centerLabelText.smText) {
-      donutChartTitle.text(centerLabelText.bigText);
+    if (centerLabelText.title && !centerLabelText.subTitle) {
+      donutChartTitle.text(centerLabelText.title);
     } else {
-      donutChartTitle.insert('tspan', null).text(centerLabelText.bigText)
+      donutChartTitle.insert('tspan', null).text(centerLabelText.title)
         .classed('donut-title-big-pf', true).attr('dy', 0).attr('x', 0);
-      donutChartTitle.insert('tspan', null).text(centerLabelText.smText).
+      donutChartTitle.insert('tspan', null).text(centerLabelText.subTitle).
         classed('donut-title-small-pf', true).attr('dy', 20).attr('x', 0);
     }
   }
