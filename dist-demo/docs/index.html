@@ -1,0 +1,572 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PatternFly NG</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">PatternFly NG</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> PatternFly NG</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://travis-ci.org/patternfly/patternfly-ng"><img src="https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master" alt="Build Status"></a> <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a></p>
+				<p>Welcome to PatternFly-Ng.  This is a library of common Angular components for use with the PatternFly reference implementation. Below is information on how to get started using PatternFly-ng.  If you wish to contribute to PatternFly-ng, please go to our <a href="https://github.com/patternfly/patternfly-ng/blob/master/CONTRIBUTING.md">Contributions page</a>.</p>
+				<ul>
+					<li>Web site: <a href="https://www.patternfly.org">https://www.patternfly.org</a></li>
+					<li>API Docs: <a href="http://www.patternfly.org/patternfly-ng/">http://www.patternfly.org/patternfly-ng/</a></li>
+					<li>Build Status: <a href="https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master">https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master</a></li>
+				</ul>
+				<h3 id="using-patternfly-ng-in-your-application">Using PatternFly-ng In Your Application</h3>
+				<p>This example demonstrates using the Angular-cli to get started with PatternFly-ng</p>
+				<ol>
+					<li><p>Installing angular-cli<br><em>Note</em>: you can skip this part if you already have generated an Angular application using <code>ng-cli</code> and webpack</p>
+						<pre><code class="lang-bash">npm i -g @angular/cli
+ng new patternfly-ng-app
+<span class="hljs-built_in">cd</span> patternfly-ng-app
+ng serve
+</code></pre>
+					</li>
+					<li><p>Install patternfly-ng</p>
+						<pre><code class="lang-bash">  npm install patternfly-ng --save
+</code></pre>
+					</li>
+					<li><p>Add patternfly-ng dependencies</p>
+						<ul>
+							<li>install <code>patternfly</code></li>
+						</ul>
+						<pre><code class="lang-bash">npm install patternfly --save
+</code></pre>
+					</li>
+					<li><p>Add a patternfly-ng component</p>
+					</li>
+					<li>open <code>src/app/app.module.ts</code> and add</li>
+				</ol>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng/notification'</span>;
+<span class="hljs-comment">// Or</span>
+<span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng'</span>;
+...
+
+<span class="hljs-meta">@NgModule</span>({
+   ...
+   imports: [NotificationModule, ... ],
+    ... 
+})
+</code></pre>
+				<ul>
+					<li>open <code>.angular-cli.json</code> and insert a new entry into the styles array </li>
+				</ul>
+				<pre><code class="lang-json">      &quot;styles&quot;: [
+
+        &quot;../node_modules/patternfly/dist/css/patternfly.min.css&quot;,
+        &quot;../node_modules/patternfly/dist/css/patternfly-additions.min.css&quot;,
+        &quot;../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css&quot;,
+        &quot;styles.css&quot;,
+      ],
+</code></pre>
+				<ul>
+					<li>open <code>src/app/app.component.html</code> and add<pre><code>&lt;pfng-toast-notification
+<span class="hljs-string">[header]</span>=<span class="hljs-string">"'test header'"</span>
+<span class="hljs-string">[message]</span>=<span class="hljs-string">"'this is a notification'"</span>
+<span class="hljs-string">[showClose]</span>=<span class="hljs-string">"'true'"</span>
+<span class="hljs-string">[type]</span>=<span class="hljs-string">"'success'"</span>&gt;
+&lt;/pfng-toast-notification&gt;
+</code></pre></li>
+				</ul>
+				<h3 id="optional-dependencies">Optional Dependencies</h3>
+				<ol>
+					<li><p>To enable table drag and drop, add dragula.min.css from the ng2-dragula package</p>
+					</li>
+					<li><p>open <code>.angular-cli.json</code> and insert a new entry into the styles array </p>
+					</li>
+				</ol>
+				<pre><code class="lang-json">      &quot;styles&quot;: [
+        &quot;../node_modules/dragula/dist/dragula.min.css&quot;,
+        &quot;../node_modules/patternfly/dist/css/patternfly.min.css&quot;,
+        &quot;../node_modules/patternfly/dist/css/patternfly-additions.min.css&quot;,
+        &quot;../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css&quot;,
+        &quot;styles.css&quot;,
+      ],
+</code></pre>
+				<ol start="2">
+					<li><p>To enable charts, add patternfly-settings.js from the patternfly package</p>
+					</li>
+					<li><p>open <code>.angular-cli.json</code> and insert a new entry into the scripts array </p>
+					</li>
+				</ol>
+				<pre><code class="lang-json">      &quot;scripts&quot;: [
+        &quot;../node_modules/patternfly/dist/js/patternfly-settings.js&quot;
+      ],
+</code></pre>
+				<h2 id="-a-name-question-a-do-you-have-a-question-"><a name="question"></a> Do you have a question?</h2>
+				<ul>
+					<li>Search our <a href="https://github.com/patternfly/patternfly-ng/issues">GitHub issues</a></li>
+					<li>Join our patternfly-ng channel on <a href="http://slack.patternfly.org">Slack</a></li>
+					<li>Join our mailing-list following the instructions on <a href="http://www.patternfly.org/community/">patternfly.org</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/aboutmodalcomponent.html" class="tsd-kind-icon">About<wbr>Modal<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/aboutmodalconfig.html" class="tsd-kind-icon">About<wbr>Modal<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/aboutmodalevent.html" class="tsd-kind-icon">About<wbr>Modal<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/action.html" class="tsd-kind-icon">Action</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/actioncomponent.html" class="tsd-kind-icon">Action<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/actionconfig.html" class="tsd-kind-icon">Action<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/actionmodule.html" class="tsd-kind-icon">Action<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/applicationlaunchercomponent.html" class="tsd-kind-icon">Application<wbr>Launcher<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardaction.html" class="tsd-kind-icon">Card<wbr>Action</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardactioncomponent.html" class="tsd-kind-icon">Card<wbr>Action<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardbase.html" class="tsd-kind-icon">Card<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardcomponent.html" class="tsd-kind-icon">Card<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardconfig.html" class="tsd-kind-icon">Card<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardconfigbase.html" class="tsd-kind-icon">Card<wbr>Config<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardfilter.html" class="tsd-kind-icon">Card<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardfiltercomponent.html" class="tsd-kind-icon">Card<wbr>Filter<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardfilterposition.html" class="tsd-kind-icon">Card<wbr>Filter<wbr>Position</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cardmodule.html" class="tsd-kind-icon">Card<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/chartbase.html" class="tsd-kind-icon">Chart<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/chartconfig.html" class="tsd-kind-icon">Chart<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/chartdefaults.html" class="tsd-kind-icon">Chart<wbr>Defaults</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/chartmodule.html" class="tsd-kind-icon">Chart<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/donutcomponent.html" class="tsd-kind-icon">Donut<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/donutconfig.html" class="tsd-kind-icon">Donut<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/donutgauge.html" class="tsd-kind-icon">Donut<wbr>Gauge</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/donututilizationcomponent.html" class="tsd-kind-icon">Donut<wbr>Utilization<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/donututilizationconfig.html" class="tsd-kind-icon">Donut<wbr>Utilization<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/emptystatecomponent.html" class="tsd-kind-icon">Empty<wbr>State<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/emptystateconfig.html" class="tsd-kind-icon">Empty<wbr>State<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/emptystatemodule.html" class="tsd-kind-icon">Empty<wbr>State<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filter.html" class="tsd-kind-icon">Filter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filtercomponent.html" class="tsd-kind-icon">Filter<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filterconfig.html" class="tsd-kind-icon">Filter<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filterevent.html" class="tsd-kind-icon">Filter<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filterfield.html" class="tsd-kind-icon">Filter<wbr>Field</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filterfieldscomponent.html" class="tsd-kind-icon">Filter<wbr>Fields<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filtermodule.html" class="tsd-kind-icon">Filter<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filterquery.html" class="tsd-kind-icon">Filter<wbr>Query</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filterresultscomponent.html" class="tsd-kind-icon">Filter<wbr>Results<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/filtertype.html" class="tsd-kind-icon">Filter<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/infostatuscardcomponent.html" class="tsd-kind-icon">Info<wbr>Status<wbr>Card<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/infostatuscardconfig.html" class="tsd-kind-icon">Info<wbr>Status<wbr>Card<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/inlinenotificationcomponent.html" class="tsd-kind-icon">Inline<wbr>Notification<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/listbase.html" class="tsd-kind-icon">List<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/listbaseconfig.html" class="tsd-kind-icon">List<wbr>Base<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/listcomponent.html" class="tsd-kind-icon">List<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/listconfig.html" class="tsd-kind-icon">List<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/listevent.html" class="tsd-kind-icon">List<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/listexpandtogglecomponent.html" class="tsd-kind-icon">List<wbr>Expand<wbr>Toggle<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/listmodule.html" class="tsd-kind-icon">List<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/modalmodule.html" class="tsd-kind-icon">Modal<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/navigationitemconfig.html" class="tsd-kind-icon">Navigation<wbr>Item<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/navigationmodule.html" class="tsd-kind-icon">Navigation<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ngxdatatableconfig.html" class="tsd-kind-icon">Ngx<wbr>Data<wbr>Table<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ngxdatatablednddirective.html" class="tsd-kind-icon">Ngx<wbr>Data<wbr>Table<wbr>Dnd<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificaitongroup.html" class="tsd-kind-icon">Notificaiton<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notification.html" class="tsd-kind-icon">Notification</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificationdrawercomponent.html" class="tsd-kind-icon">Notification<wbr>Drawer<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificationevent.html" class="tsd-kind-icon">Notification<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificationmodule.html" class="tsd-kind-icon">Notification<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificationservice.html" class="tsd-kind-icon">Notification<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/notificationtype.html" class="tsd-kind-icon">Notification<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/paginationcomponent.html" class="tsd-kind-icon">Pagination<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/paginationconfig.html" class="tsd-kind-icon">Pagination<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/paginationevent.html" class="tsd-kind-icon">Pagination<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/paginationmodule.html" class="tsd-kind-icon">Pagination<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/patternflyngmodule.html" class="tsd-kind-icon">Pattern<wbr>Fly<wbr>NgModule</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/pipemodule.html" class="tsd-kind-icon">Pipe<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/remainingcharscountdirective.html" class="tsd-kind-icon">Remaining<wbr>Chars<wbr>Count<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/remainingcharscountmodule.html" class="tsd-kind-icon">Remaining<wbr>Chars<wbr>Count<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/samplecomponent.html" class="tsd-kind-icon">Sample<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/samplemodule.html" class="tsd-kind-icon">Sample<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/searchhighlightpipe.html" class="tsd-kind-icon">Search<wbr>Highlight<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sortarraypipe.html" class="tsd-kind-icon">Sort<wbr>Array<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sortcomponent.html" class="tsd-kind-icon">Sort<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sortconfig.html" class="tsd-kind-icon">Sort<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sortevent.html" class="tsd-kind-icon">Sort<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sortfield.html" class="tsd-kind-icon">Sort<wbr>Field</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sortmodule.html" class="tsd-kind-icon">Sort<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sparklinecomponent.html" class="tsd-kind-icon">Sparkline<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sparklineconfig.html" class="tsd-kind-icon">Sparkline<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sparklinedata.html" class="tsd-kind-icon">Sparkline<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tablebase.html" class="tsd-kind-icon">Table<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tablecomponent.html" class="tsd-kind-icon">Table<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tableconfig.html" class="tsd-kind-icon">Table<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tableconfigbase.html" class="tsd-kind-icon">Table<wbr>Config<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tableevent.html" class="tsd-kind-icon">Table<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tablemodule.html" class="tsd-kind-icon">Table<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/toastnotificationcomponent.html" class="tsd-kind-icon">Toast<wbr>Notification<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/toastnotificationlistcomponent.html" class="tsd-kind-icon">Toast<wbr>Notification<wbr>List<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/toolbarcomponent.html" class="tsd-kind-icon">Toolbar<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/toolbarconfig.html" class="tsd-kind-icon">Toolbar<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/toolbarmodule.html" class="tsd-kind-icon">Toolbar<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/toolbarview.html" class="tsd-kind-icon">Toolbar<wbr>View</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/treelistcomponent.html" class="tsd-kind-icon">Tree<wbr>List<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/treelistconfig.html" class="tsd-kind-icon">Tree<wbr>List<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/truncatepipe.html" class="tsd-kind-icon">Truncate<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/verticalnavigationcomponent.html" class="tsd-kind-icon">Vertical<wbr>Navigation<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/windowreference.html" class="tsd-kind-icon">Window<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardbase.html" class="tsd-kind-icon">Wizard<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardcomponent.html" class="tsd-kind-icon">Wizard<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardconfig.html" class="tsd-kind-icon">Wizard<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardevent.html" class="tsd-kind-icon">Wizard<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardmodule.html" class="tsd-kind-icon">Wizard<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardreviewcomponent.html" class="tsd-kind-icon">Wizard<wbr>Review<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardstep.html" class="tsd-kind-icon">Wizard<wbr>Step</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardstepcomponent.html" class="tsd-kind-icon">Wizard<wbr>Step<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardstepconfig.html" class="tsd-kind-icon">Wizard<wbr>Step<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wizardsubstepcomponent.html" class="tsd-kind-icon">Wizard<wbr>Substep<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#_window" class="tsd-kind-icon">_window</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Donut Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <donut-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></donut-basic-example>
+    </tab>
+    <tab heading="Dynamic" (select)="tabSelected($event)">
+      <donut-dynamic-example *ngIf="activeTab === 'Dynamic'"></donut-dynamic-example>
+    </tab>
+    <tab heading="Utilization" (select)="tabSelected($event)">
+      <donut-utilization-example *ngIf="activeTab === 'Utilization'"></donut-utilization-example>
+    </tab>
+  </tabset>
+</div>
