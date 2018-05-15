@@ -59,17 +59,19 @@ export {
   FilterType
 } from './filter/index';
 
-// Lists
+// List
 export {
+  BasicListModule,
   ListBase,
   ListBaseConfig,
   ListConfig,
   ListComponent,
-  ListEvent,
-  ListModule,
   ListExpandToggleComponent,
+  ListEvent,
+  ListModule, // @deprecated Use BasicListModule or TreeListModule
   TreeListComponent,
-  TreeListConfig
+  TreeListConfig,
+  TreeListModule
 } from './list/index';
 
 // Modals
