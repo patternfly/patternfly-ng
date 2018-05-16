@@ -26,6 +26,10 @@ export class NavbarItems {
       id: 'sparkline',
       path: 'sparkline',
       title: 'Sparkline Chart'
+    }, {
+      id: 'utilization-donut',
+      path: 'utilization-donut',
+      title: 'Utilization Donut Chart'
     }]
   }, {
     id: 'emptystate',

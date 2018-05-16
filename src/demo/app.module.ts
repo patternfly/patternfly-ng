@@ -15,8 +15,10 @@ import { NavbarModule } from './navbar/navbar.module';
 //  import example modules
 import { AboutModalExampleModule } from '../app/modal/example/about-modal-example.module';
 import { ActionExampleModule } from '../app/action/example/action-example.module';
+import { ApplicationLauncherExampleModule }
+  from '../app/navigation/application-launcher/example/application-launcher-example.module';
 import { CardExampleModule } from '../app/card/basic-card/example/card-example.module';
-import { DonutExampleModule } from '../app/chart/donut/example/donut-example.module';
+import { DonutChartExampleModule } from '../app/chart/donut-chart/basic-donut-chart/example/donut-chart-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/example/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/example/filter-example.module';
 import { InfoStatusCardExampleModule } from '../app/card/info-status-card/example/info-status-card-example.module';
@@ -34,7 +36,7 @@ import { SampleExampleModule } from '../app/sample/example/sample-example.module
 import { SearchHighlightExampleModule } from '../app/pipe/search-highlight/example/search-highlight-example.module';
 import { SortArrayExampleModule } from '../app/pipe/sort-array/example/sort-array-example.module';
 import { SortExampleModule } from '../app/sort/example/sort-example.module';
-import { SparklineExampleModule } from '../app/chart/sparkline/example/sparkline-example.module';
+import { SparklineChartExampleModule } from '../app/chart/sparkline-chart/example/sparkline-chart-example.module';
 import { TableExampleModule } from '../app/table/basic-table/example/table-example.module';
 import { ToastNotificationExampleModule }
   from '../app/notification/toast-notification/example/toast-notification-example.module';
@@ -45,10 +47,10 @@ import { TreeListExampleModule } from '../app/list/tree-list/example/tree-list-e
 import { TruncateExampleModule } from '../app/pipe/truncate/example/truncate-example.module';
 import { VerticalNavigationExampleModule }
   from '../app/navigation/vertical-navigation/example/vertical-navigation-example.module';
+import { UtilizationDonutChartExampleModule }
+  from '../app/chart/donut-chart/utilization-donut-chart/example/utilization-donut-chart-example.module';
 import { WelcomeComponent } from './components/welcome.component';
 import { WizardExampleModule } from '../app/wizard/example/wizard-example.module';
-import { ApplicationLauncherExampleModule }
-from '../app/navigation/application-launcher/example/application-launcher-example.module';
 
 @NgModule({
   imports: [
@@ -59,7 +61,7 @@ from '../app/navigation/application-launcher/example/application-launcher-exampl
     BrowserModule,
     CardExampleModule,
     DemoComponentsModule,
-    DonutExampleModule,
+    DonutChartExampleModule,
     EmptyStateExampleModule,
     FilterExampleModule,
     FormsModule,
@@ -76,13 +78,14 @@ from '../app/navigation/application-launcher/example/application-launcher-exampl
     SearchHighlightExampleModule,
     SortArrayExampleModule,
     SortExampleModule,
-    SparklineExampleModule,
+    SparklineChartExampleModule,
     TableExampleModule,
     ToastNotificationExampleModule,
     ToastNotificationListExampleModule,
     ToolbarExampleModule,
     TreeListExampleModule,
     TruncateExampleModule,
+    UtilizationDonutChartExampleModule,
     VerticalNavigationExampleModule,
     WizardExampleModule
   ],

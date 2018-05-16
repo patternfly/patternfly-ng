@@ -10,8 +10,8 @@ import { CardBasicExampleComponent } from './card-basic-example.component';
 import { CardCustomExampleComponent } from './card-custom-example.component';
 import { CardExampleComponent } from './card-example.component';
 import { CardTrendExampleComponent } from './card-trend-example.component';
-import { ChartModule } from '../../../chart/chart.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
+import { SparklineChartModule } from '../../../chart/sparkline-chart/sparkline-chart.module';
 
 @NgModule({
   declarations: [
@@ -23,10 +23,10 @@ import { DemoComponentsModule } from '../../../../demo/components/demo-component
   imports: [
     BsDropdownModule.forRoot(),
     CardModule,
-    ChartModule,
     CommonModule,
     DemoComponentsModule,
     FormsModule,
+    SparklineChartModule,
     TabsModule.forRoot()
   ],
   providers: [BsDropdownConfig, TabsetConfig]
