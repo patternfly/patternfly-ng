@@ -12,14 +12,18 @@ import { InfoStatusCardConfig } from './info-status-card-config';
 
 /**
  * Info Status Card Component
+ *
+ * Usage:
+ * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng';</code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-info-status-card',
   templateUrl: './info-status-card.component.html'
-
 })
-
 export class InfoStatusCardComponent implements OnInit, DoCheck {
 
   /**

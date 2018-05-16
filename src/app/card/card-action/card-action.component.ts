@@ -11,6 +11,12 @@ import { CardAction } from './card-action';
 
 /**
  * Card action component
+ *
+ * Usage:
+ * <br/><code>import { CardActionModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { CardActionModule } from 'patternfly-ng';</code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

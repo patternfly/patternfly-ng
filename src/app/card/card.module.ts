@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
 import { CardAction } from './card-action/card-action';
-import { CardActionComponent } from './card-action/card-action.component';
 import { CardBase } from './card-base';
 import { CardComponent } from './basic-card/card.component';
 import { CardConfig } from './basic-card/card-config';
@@ -13,8 +10,13 @@ import { CardConfigBase } from './card-config-base';
 import { CardFilter } from './card-filter/card-filter';
 import { CardFilterComponent } from './card-filter/card-filter.component';
 import { CardFilterPosition } from './card-filter/card-filter-position';
-import { InfoStatusCardConfig } from './info-status-card/info-status-card-config';
 import { InfoStatusCardComponent } from './info-status-card/info-status-card.component';
+import { InfoStatusCardConfig } from './info-status-card/info-status-card-config';
+import { InfoStatusCardModule } from './info-status-card/info-status-card.module';
+
+import { CardActionModule } from './card-action/card-action.module';
+import { CardModule as BasicCardModule} from './basic-card/card.module';
+import { CardFilterModule } from './card-filter/card-filter.module';
 
 export {
   CardAction,
@@ -28,15 +30,18 @@ export {
 
 /**
  * A module containing objects associated with card components
+ *
+ * @deprecated Use BasicCardModule or InfoStatusCardModule
  */
 @NgModule({
   imports: [
-    BsDropdownModule.forRoot(),
+    BasicCardModule,
+    CardActionModule,
+    CardFilterModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    InfoStatusCardModule
   ],
-  declarations: [CardActionComponent, CardComponent, CardFilterComponent, InfoStatusCardComponent],
-  exports: [CardComponent, CardFilterComponent, InfoStatusCardComponent],
-  providers: [BsDropdownConfig]
+  exports: [CardComponent, CardFilterComponent, InfoStatusCardComponent]
 })
 export class CardModule {}
