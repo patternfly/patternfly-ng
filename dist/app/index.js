@@ -9,8 +9,9 @@ export { ChartConfig, ChartDefaults, ChartBase, ChartModule, DonutComponent, Don
 export { EmptyStateComponent, EmptyStateConfig, EmptyStateModule } from './empty-state/index';
 // Filter
 export { Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, FilterFieldsComponent, FilterModule, FilterResultsComponent, FilterQuery, FilterType } from './filter/index';
-// Lists
-export { ListBase, ListBaseConfig, ListConfig, ListComponent, ListEvent, ListModule, ListExpandToggleComponent, TreeListComponent, TreeListConfig } from './list/index';
+// List
+export { BasicListModule, ListBase, ListBaseConfig, ListConfig, ListComponent, ListExpandToggleComponent, ListEvent, ListModule, // @deprecated Use BasicListModule or TreeListModule
+TreeListComponent, TreeListConfig, TreeListModule } from './list/index';
 // Modals
 export { AboutModalConfig, AboutModalComponent, ModalModule } from './modal/index';
 // Navigation

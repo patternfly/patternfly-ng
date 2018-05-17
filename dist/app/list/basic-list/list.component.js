@@ -31,6 +31,12 @@ import { ListConfig } from './list-config';
  *
  * Cannot use both multi-select and double click selection at the same time
  * Cannot use both checkbox and click selection at the same time
+ *
+ * Usage:
+ * <br/><code>import { BasicListModule } from 'patternfly-ng/list';</code>
+ *
+ * Or:
+ * <br/><code>import { BasicListModule } from 'patternfly-ng';</code>
  */
 var ListComponent = /** @class */ (function (_super) {
     __extends(ListComponent, _super);

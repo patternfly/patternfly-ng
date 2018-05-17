@@ -6,6 +6,8 @@ import { TreeListConfig } from './tree-list/tree-list-config';
 export { ListBase, ListBaseConfig, ListConfig, ListEvent, TreeListConfig };
 /**
  * A module containing objects associated with list components
+ *
+ * @deprecated Use BasicListModule or TreeListModule
  */
 export declare class ListModule {
 }

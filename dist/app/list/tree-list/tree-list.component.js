@@ -33,6 +33,12 @@ import { TreeListConfig } from './tree-list-config';
  * Cannot use both checkbox and click selection at the same time
  *
  * For angular-tree-component options, see: https://angular2-tree.readme.io/docs
+ *
+ * Usage:
+ * <br/><code>import { TreeListModule } from 'patternfly-ng/list';</code>
+ *
+ * Or:
+ * <br/><code>import { TreeListModule } from 'patternfly-ng';</code>
  */
 var TreeListComponent = /** @class */ (function (_super) {
     __extends(TreeListComponent, _super);

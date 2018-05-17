@@ -10,7 +10,7 @@ import { DemoComponentsModule } from '../../../../demo/components/demo-component
 import { TreeListBasicExampleComponent } from './tree-list-basic-example.component';
 import { TreeListDndExampleComponent } from './tree-list-dnd-example.component';
 import { TreeListExampleComponent } from './tree-list-example.component';
-import { ListModule } from '../../list.module';
+import { TreeListModule } from '../tree-list.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { ListModule } from '../../list.module';
     DemoComponentsModule,
     FormsModule,
     TabsModule.forRoot(),
-    ListModule,
+    TreeListModule,
     TreeModule
   ],
   providers: [TabsetConfig]

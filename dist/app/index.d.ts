@@ -4,7 +4,7 @@ export { CardAction, CardActionComponent, CardBase, CardConfig, CardConfigBase, 
 export { ChartConfig, ChartDefaults, ChartBase, ChartModule, DonutComponent, DonutUtilizationComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData } from './chart/index';
 export { EmptyStateComponent, EmptyStateConfig, EmptyStateModule } from './empty-state/index';
 export { Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, FilterFieldsComponent, FilterModule, FilterResultsComponent, FilterQuery, FilterType } from './filter/index';
-export { ListBase, ListBaseConfig, ListConfig, ListComponent, ListEvent, ListModule, ListExpandToggleComponent, TreeListComponent, TreeListConfig } from './list/index';
+export { BasicListModule, ListBase, ListBaseConfig, ListConfig, ListComponent, ListExpandToggleComponent, ListEvent, ListModule, TreeListComponent, TreeListConfig, TreeListModule } from './list/index';
 export { AboutModalConfig, AboutModalComponent, ModalModule } from './modal/index';
 export { NavigationItemConfig, NavigationModule, VerticalNavigationComponent } from './navigation/index';
 export { InlineNotificationComponent, NotificationDrawerComponent, Notification, NotificationEvent, NotificationModule, NotificationType, NotificationService, ToastNotificationComponent, ToastNotificationListComponent } from './notification/index';
