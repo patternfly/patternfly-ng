@@ -8,6 +8,8 @@ import { InfoStatusCardConfig } from './info-status-card/info-status-card-config
 export { CardAction, CardBase, CardConfig, CardConfigBase, CardFilter, CardFilterPosition, InfoStatusCardConfig };
 /**
  * A module containing objects associated with card components
+ *
+ * @deprecated Use BasicCardModule or InfoStatusCardModule
  */
 export declare class CardModule {
 }

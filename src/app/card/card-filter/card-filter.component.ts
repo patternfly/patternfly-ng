@@ -11,6 +11,12 @@ import { CardFilter } from '../card-filter/card-filter';
 
 /**
  * Card filter component
+ *
+ * Usage:
+ * <br/><code>import { CardFilterModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { CardFilterModule } from 'patternfly-ng';</code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

@@ -7,6 +7,12 @@ import { CardFilter } from '../card-filter/card-filter';
  * Card component
  *
  * For customization, use the templates named headerTemplate and footerTemplate.
+ *
+ * Usage:
+ * <br/><code>import { BasicCardModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { BasicCardModule } from 'patternfly-ng';</code>
  */
 export declare class CardComponent extends CardBase implements DoCheck, OnInit {
     /**

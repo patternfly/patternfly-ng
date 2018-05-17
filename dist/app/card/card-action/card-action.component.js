@@ -11,6 +11,12 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 import { CardAction } from './card-action';
 /**
  * Card action component
+ *
+ * Usage:
+ * <br/><code>import { CardActionModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { CardActionModule } from 'patternfly-ng';</code>
  */
 var CardActionComponent = /** @class */ (function () {
     /**

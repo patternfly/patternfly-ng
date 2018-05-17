@@ -10,6 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 /**
  * Card filter component
+ *
+ * Usage:
+ * <br/><code>import { CardFilterModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { CardFilterModule } from 'patternfly-ng';</code>
  */
 var CardFilterComponent = /** @class */ (function () {
     /**

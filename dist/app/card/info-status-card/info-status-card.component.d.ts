@@ -2,6 +2,12 @@ import { DoCheck, OnInit } from '@angular/core';
 import { InfoStatusCardConfig } from './info-status-card-config';
 /**
  * Info Status Card Component
+ *
+ * Usage:
+ * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng';</code>
  */
 export declare class InfoStatusCardComponent implements OnInit, DoCheck {
     /**

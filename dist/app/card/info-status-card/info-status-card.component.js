@@ -12,6 +12,12 @@ import { cloneDeep, defaults, isEqual } from 'lodash';
 import { InfoStatusCardConfig } from './info-status-card-config';
 /**
  * Info Status Card Component
+ *
+ * Usage:
+ * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng/card';</code>
+ *
+ * Or:
+ * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng';</code>
  */
 var InfoStatusCardComponent = /** @class */ (function () {
     /**

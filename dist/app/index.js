@@ -2,7 +2,8 @@ export { PatternFlyNgModule } from './patternfly-ng.module';
 // Action
 export { Action, ActionConfig, ActionComponent, ActionModule } from './action/index';
 // Cards
-export { CardAction, CardActionComponent, CardBase, CardConfig, CardConfigBase, CardComponent, CardFilter, CardFilterComponent, CardFilterPosition, CardModule, InfoStatusCardComponent, InfoStatusCardConfig } from './card/index';
+export { BasicCardModule, CardAction, CardActionComponent, CardActionModule, CardBase, CardComponent, CardConfig, CardConfigBase, CardFilter, CardFilterComponent, CardFilterModule, CardFilterPosition, CardModule, // @deprecated Use BasicCardModule or InfoStatusCardModule
+InfoStatusCardComponent, InfoStatusCardConfig, InfoStatusCardModule } from './card/index';
 // Charts
 export { ChartConfig, ChartDefaults, ChartBase, ChartModule, DonutComponent, DonutUtilizationComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData } from './chart/index';
 // EmptyState
