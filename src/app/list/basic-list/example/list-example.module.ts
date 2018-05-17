@@ -12,7 +12,7 @@ import { ClustersContentComponent } from './content/clusters-content.component';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { HostsContentComponent } from './content/hosts-content.component';
 import { ImagesContentComponent } from './content/images-content.component';
-import { ListModule } from '../../list.module';
+import { ListModule } from '../list.module';
 import { ListBasicExampleComponent } from './list-basic-example.component';
 import { ListCompoundExampleComponent } from './list-compound-example.component';
 import { ListHeadingExampleComponent } from './list-heading-example.component';
