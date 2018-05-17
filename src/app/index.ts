@@ -10,18 +10,22 @@ export {
 
 // Cards
 export {
+  BasicCardModule,
   CardAction,
   CardActionComponent,
+  CardActionModule,
   CardBase,
+  CardComponent,
   CardConfig,
   CardConfigBase,
-  CardComponent,
   CardFilter,
   CardFilterComponent,
+  CardFilterModule,
   CardFilterPosition,
-  CardModule,
+  CardModule, // @deprecated Use BasicCardModule or InfoStatusCardModule
   InfoStatusCardComponent,
-  InfoStatusCardConfig
+  InfoStatusCardConfig,
+  InfoStatusCardModule
 } from './card/index';
 
 // Charts
