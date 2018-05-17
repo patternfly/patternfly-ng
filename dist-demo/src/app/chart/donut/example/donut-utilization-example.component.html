@@ -1,0 +1,84 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-2 text-center">
+      <label>Utilization Donut Chart</label>
+      <div><em>{{currentThreshold.toUpperCase()}} threshold reached</em></div>
+    </div>
+    <div class="col-sm-10">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 text-center">
+      <div style="width: 180px;">
+        <pfng-chart-donut-utilization [config]="config" (thresholdChanged)="thresholdChanged($event)">
+          <div id="outerLabel" style="width: 100px; margin: auto">
+            <div><em>Pods Available</em></div>
+            <div>{{config.gauge.available}} {{config.gauge.units}} available</div>
+          </div>
+        </pfng-chart-donut-utilization>
+      </div>
+    </div>
+    <div class="col-sm-10 text-left">
+      <form role="form">
+        <b>Center Label Format</b>
+        <div class="form-group">
+          <label class="radio-inline">
+            <input id="labelFormatType1" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.gauge.centerLabelFormat" value="used" (ngModelChange)="clearCenterLabelFn()">Used
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType2" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.gauge.centerLabelFormat" value="available" (ngModelChange)="clearCenterLabelFn()">Available
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType3" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.gauge.centerLabelFormat" value="percent" (ngModelChange)="clearCenterLabelFn()">Percent
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType4" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.gauge.centerLabelFormat" value="none" (ngModelChange)="clearCenterLabelFn()">None
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType5" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.gauge.centerLabelFormat" value="txt-func" (ngModelChange)="setCenterLabelFn()">Custom Function
+          </label>
+        </div>
+
+        <b>Outer Label Alignment</b>
+        <div class="form-group">
+          <label class="radio-inline">
+            <input id="labelAlignmentType1" name="labelAlignmentType" type="radio"
+                   [(ngModel)]="config.gauge.outerLabelAlignment" value="left">Left
+          </label>
+          <label class="radio-inline">
+            <input id="labelAlignmentType2" name="labelAlignmentType" type="radio"
+                   [(ngModel)]="config.gauge.outerLabelAlignment" value="center">Center
+          </label>
+          <label class="radio-inline">
+            <input id="labelAlignmentType3" name="labelAlignmentType" type="radio"
+                   [(ngModel)]="config.gauge.outerLabelAlignment" value="right">Right
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/donututilizationcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/chart/donut/example/donut-utilization-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/chart/donut/example/donut-utilization-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
