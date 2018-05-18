@@ -17,7 +17,10 @@ export {
     CommonModule,
     TooltipModule.forRoot()
   ],
-  declarations: [BlockCopyComponent, InlineCopyComponent],
+  declarations: [
+    BlockCopyComponent,
+    InlineCopyComponent
+  ],
   exports: [BlockCopyComponent, InlineCopyComponent],
   providers: [CopyService]
 })

@@ -19,7 +19,6 @@ import { CopyService } from '../copy-service/copy.service';
 export class InlineCopyComponent implements OnInit {
   @Input('ariaLabel') ariaLabel: string;
   @Input('copyValue') copyValue: string = 'Missing \'copyValue\' @Input property';
-  @Input('buttonLabel') buttonLabel: string = 'Copy';
   @Input('tooltipTxt') tooltipTxt: string;
 
   @Output('copiedToClipboard') copiedToClipboard = new EventEmitter();
@@ -27,8 +26,7 @@ export class InlineCopyComponent implements OnInit {
   /**
    * The default constructor
    */
-  constructor(
-    private copyService: CopyService) {}
+  constructor(private copyService: CopyService) {}
 
   ngOnInit(): void {
     if (!this.ariaLabel) throw new Error('Missing required @Input property \'ariaLabel\'');

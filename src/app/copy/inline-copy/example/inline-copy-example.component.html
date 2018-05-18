@@ -1,50 +1,19 @@
 <div class="padding-15">
-    <div class="row">
-      <div class="col-sm-12">
-        <h4>Inline Copy Component Examples</h4>
-        <hr>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <h5>Basic example with callback</h5>
-          <p>Inline copy features an inline-flex container
-            <pfng-inline-copy
-              [copyValue]="example01.copyValue"
-              [ariaLabel]="example01.ariaLabel"
-              [ariaLabel]="example01.ariaLabel"
-              (copiedToClipboard)="notify($event)"></pfng-inline-copy>
-          </p>
-          <div class="row grid-example">
-            <div class="col-sm-6">
-              <h5>Flow content example</h5>
-              <p>Accessibility of web content requires semantic information about widgets, structures, and behaviors, in order to allow assistive technologies to convey appropriate information to persons with disabilities.
-                <pfng-inline-copy [copyValue]="example02.copyValue" [ariaLabel]="example02.ariaLabel"></pfng-inline-copy> These semantics are designed to allow an author to properly convey user interface behaviors and structural information to assistive technologies in document-level markup. This widget is exposed in the VoiceOver rotor menu as a Form Control in the format of "Copy {{'{'}}accessibleName{{'}'}} button". This ensures that context for the copy button is provided across multiple navigation formats.</p>
-            </div>
-            <div class="col-sm-6">
-              <h5>Wrap handling example</h5>
-              <p>This example shows a long string being truncated as it meets the edge of a <a href="https://www.w3.org/TR/css-flexbox-1/#flex-formatting-context" target="_blank">flex formatting context</a>.</p>
-              <pfng-inline-copy
-                [copyValue]="example03.copyValue"
-                [ariaLabel]="example03.ariaLabel"></pfng-inline-copy>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>
-    <div>
-      <tabset>
-        <tab heading="api">
-          <iframe class="demoframe" src="docs/classes/inlinecopycomponent.html"></iframe>
-        </tab>
-        <tab heading="html">
-          <include-content src="src/app/copy/inline-copy/example/inline-copy-example.component.html"></include-content>
-        </tab>
-        <tab heading="typescript">
-          <include-content src="src/app/copy/inline-copy/example/inline-copy-example.component.ts"></include-content>
-        </tab>
-      </tabset>
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Inline Copy Component Example</h4>
+      <hr>
     </div>
   </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <inline-copy-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></inline-copy-basic-example>
+    </tab>
+    <tab heading="Wrap" (select)="tabSelected($event)">
+      <inline-copy-wrap-example *ngIf="activeTab === 'Wrap'"></inline-copy-wrap-example>
+    </tab>
+    <tab heading="Callback" (select)="tabSelected($event)">
+      <inline-copy-callback-example *ngIf="activeTab === 'Callback'"></inline-copy-callback-example>
+    </tab>
+  </tabset>
+</div>

@@ -9,8 +9,8 @@
   </span>
   <button
     class="pfng-inline-copy-btn"
-    [attr.aria-label]="buttonLabel + ' ' + ariaLabel"
+    [attr.aria-label]="ariaLabel"
     (click)="copyValueToClipboard()">
-    <i class="fa fa-copy"></i>
+    <i class="fa fa-copy" aria-hidden="true"></i>
   </button>
 </span>

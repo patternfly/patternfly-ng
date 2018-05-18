@@ -21,7 +21,6 @@ class MockedCopyService {
 interface ComponentConfig {
   copyValue: string;
   ariaLabel: string;
-  buttonLabel?: string;
 }
 
 fdescribe('Inline Copy Component - ', () => {
@@ -81,7 +80,11 @@ fdescribe('Inline Copy Component - ', () => {
   it('should set the tooltip text', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
-    const tooltipText = fixture.debugElement.query(By.css('.pfng-inline-copy-value-cont')).nativeElement.getAttribute('tooltip');
+    const tooltipText = fixture
+                          .debugElement
+                          .query(By.css('.pfng-inline-copy-value-cont'))
+                          .nativeElement
+                          .getAttribute('tooltip');
     expect(tooltipText).toBe('Foobar');
   });
 
@@ -96,15 +99,7 @@ fdescribe('Inline Copy Component - ', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
     const ariaLabel = fixture.debugElement.children[0].children[1].attributes['aria-label'];
-    expect(ariaLabel).toBe(`Copy ${componentConfig.ariaLabel}`);
-  });
-
-  it('should incorporate button txt into its aria-label', () => {
-    const btnTxt = 'Grab';
-    (<any>Object).assign(inlineCopy, componentConfig, {buttonLabel: btnTxt});
-    fixture.detectChanges();
-    const ariaLabel = fixture.debugElement.children[0].children[1].attributes['aria-label'];
-    expect(ariaLabel).toBe(`${btnTxt} ${inlineCopy.ariaLabel}`);
+    expect(ariaLabel).toBe(`${componentConfig.ariaLabel}`);
   });
 
   it('should throw error without an aria label', () => {

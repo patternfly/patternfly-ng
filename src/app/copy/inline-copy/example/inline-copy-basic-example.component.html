@@ -1,0 +1,35 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-8">
+          <p>
+            This example shows how the inline copy component looks when it's surrounded by text content. The font size is always reduced slightly relative to the surrounding text.
+            <pfng-inline-copy
+              [copyValue]="basicConfig01.copyValue"
+              [ariaLabel]="basicConfig01.ariaLabel"></pfng-inline-copy> This example is exposed in the VoiceOver rotor menu as a Form Control in the format of "Copy {{'{'}}accessibleName{{'}'}} button". This ensures that context for the copy button is provided across multiple navigation formats.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/inlinecopycomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-basic-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-basic-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

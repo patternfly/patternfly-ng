@@ -90,7 +90,11 @@ fdescribe('Block Copy Component - ', () => {
   it('should set the expand button aria label', () => {
     (<any>Object).assign(blockCopy, componentConfig);
     fixture.detectChanges();
-    const ariaLabel = fixture.debugElement.nativeElement.querySelector('.pfng-block-copy-preview-btn').getAttribute('aria-label');
+    const ariaLabel = fixture
+                        .debugElement
+                        .nativeElement
+                        .querySelector('.pfng-block-copy-preview-btn')
+                        .getAttribute('aria-label');
     expect(ariaLabel).toBe(`Expand ${componentConfig.label} Container`);
   });
 

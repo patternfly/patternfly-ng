@@ -1,0 +1,32 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12 margin-bottom-15">
+      <p>This example illustrates how one can listen in on copiedToClipboard event to notify user of successful copy action. Inline Copy only takes up as much horizontal space as it needs.</p>
+      <pfng-inline-copy
+        [copyValue]="example01.copyValue"
+        [ariaLabel]="example01.ariaLabel"
+        [ariaLabel]="example01.ariaLabel"
+        (copiedToClipboard)="notify($event)"></pfng-inline-copy>
+    </div>
+  </div>
+  <pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/inlinecopycomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-callback-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-callback-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
