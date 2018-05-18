@@ -6,7 +6,7 @@ import { NotificationModule } from '../../../notification/notification.module';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { CopyModule } from '../../copy.module';
+import { BlockCopyModule } from '../block-copy.module';
 import { BlockCopyExampleComponent } from './block-copy-example.component';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { BlockCopyExampleComponent } from './block-copy-example.component';
   ],
   imports: [
     CommonModule,
-    CopyModule,
+    BlockCopyModule,
     DemoComponentsModule,
     NotificationModule,
     TabsModule.forRoot()

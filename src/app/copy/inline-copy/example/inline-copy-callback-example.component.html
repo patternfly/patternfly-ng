@@ -3,9 +3,9 @@
     <div class="col-sm-12 margin-bottom-15">
       <p>This example illustrates how one can listen in on copiedToClipboard event to notify user of successful copy action. Inline Copy only takes up as much horizontal space as it needs.</p>
       <pfng-inline-copy
-        [copyValue]="example01.copyValue"
-        [ariaLabel]="example01.ariaLabel"
-        [ariaLabel]="example01.ariaLabel"
+        [copyValue]="cbExConfig.copyValue"
+        [ariaLabel]="cbExConfig.ariaLabel"
+        [ariaLabel]="cbExConfig.ariaLabel"
         (copiedToClipboard)="notify($event)"></pfng-inline-copy>
     </div>
   </div>

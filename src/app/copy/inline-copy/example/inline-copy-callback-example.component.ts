@@ -16,7 +16,7 @@ import { NotificationType } from '../../../notification/notification-type';
 export class InlineCopyCallbackExampleComponent implements OnInit {
   notifications: Notification[];
 
-  example01 = {
+  cbExConfig = {
     ariaLabel: 'Example Sparql Query',
     copyValue: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}',
     buttonLabel: 'Copy'
@@ -29,7 +29,6 @@ export class InlineCopyCallbackExampleComponent implements OnInit {
   }
 
   notify(copyValueLabel: string): void {
-    console.log(copyValueLabel);
     this.notificationService.message(
       NotificationType.SUCCESS,
       null,

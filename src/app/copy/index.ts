@@ -1,5 +1,14 @@
-export { CopyModule } from './copy.module';
-export { CopyService } from './copy-service/copy.service';
-export { BlockCopyComponent } from './block-copy/block-copy.component';
-export { InlineCopyComponent } from './inline-copy/inline-copy.component';
+export {
+  CopyService,
+  CopyServiceModule
+} from './copy-service/index';
 
+export {
+  BlockCopyComponent,
+  BlockCopyModule
+} from './block-copy/index';
+
+export {
+  InlineCopyComponent,
+  InlineCopyModule
+} from './inline-copy/index';

@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { CopyService } from './copy-service/copy.service';
-import { BlockCopyComponent } from './block-copy/block-copy.component';
-import { InlineCopyComponent } from './inline-copy/inline-copy.component';
+import { CopyService } from '../copy-service/copy.service';
+import { InlineCopyComponent } from './inline-copy.component';
 
 export {
-  BlockCopyComponent,
   InlineCopyComponent
 };
 
@@ -18,10 +16,9 @@ export {
     TooltipModule.forRoot()
   ],
   declarations: [
-    BlockCopyComponent,
     InlineCopyComponent
   ],
-  exports: [BlockCopyComponent, InlineCopyComponent],
+  exports: [InlineCopyComponent],
   providers: [CopyService]
 })
-export class CopyModule {}
+export class InlineCopyModule {}

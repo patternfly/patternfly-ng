@@ -22,6 +22,9 @@ import { DonutChartExampleModule } from '../app/chart/donut-chart/basic-donut-ch
 import { BlockCopyExampleModule } from '../app/copy/block-copy/example/block-copy-example.module';
 import { InlineCopyExampleModule } from '../app/copy/inline-copy/example/inline-copy-example.module';
 import { CopyModule } from '../app/copy/copy.module';
+import { CardExampleModule } from '../app/card/basic-card/example/card-example.module';
+import { BlockCopyModule } from '../app/copy/block-copy/block-copy.module';
+import { InlineCopyModule } from '../app/copy/inline-copy/inline-copy.module';
 import { CopyServiceExampleModule } from '../app/copy/copy-service/example/copy-service-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/example/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/example/filter-example.module';
@@ -66,7 +69,8 @@ import { WizardExampleModule } from '../app/wizard/example/wizard-example.module
     InlineCopyExampleModule,
     BrowserModule,
     CardExampleModule,
-    CopyModule,
+    BlockCopyModule,
+    InlineCopyModule,
     CopyServiceExampleModule,
     DemoComponentsModule,
     DonutChartExampleModule,

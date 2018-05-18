@@ -11,7 +11,7 @@ import {
 })
 export class InlineCopyBasicExampleComponent implements OnInit {
 
-  basicConfig01 = {
+  basicExConfig = {
     ariaLabel: 'WAI-ARIA URL',
     copyValue: 'https://www.w3.org/TR/wai-aria-1.1/'
   };

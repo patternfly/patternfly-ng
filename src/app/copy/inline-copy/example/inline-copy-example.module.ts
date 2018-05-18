@@ -6,7 +6,7 @@ import { NotificationModule } from '../../../notification/notification.module';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { CopyModule } from '../../copy.module';
+import { InlineCopyModule } from '../inline-copy.module';
 
 import { InlineCopyExampleComponent } from './inline-copy-example.component';
 import { InlineCopyCallbackExampleComponent } from './inline-copy-callback-example.component';
@@ -22,7 +22,7 @@ import { InlineCopyBasicExampleComponent } from './inline-copy-basic-example.com
   ],
   imports: [
     CommonModule,
-    CopyModule,
+    InlineCopyModule,
     DemoComponentsModule,
     NotificationModule,
     TabsModule.forRoot()

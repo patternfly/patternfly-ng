@@ -6,7 +6,7 @@ import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 import { NotificationModule } from '../../../notification/notification.module';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { CopyModule } from '../../copy.module';
+import { CopyServiceModule } from '../copy.service.module';
 import { CopyService } from '../copy.service';
 import { CopyServiceExampleComponent } from './copy-service-example.component';
 import { CopyServiceButtonExampleComponent } from './copy-service-button-example.component';
@@ -18,7 +18,7 @@ import { CopyServiceButtonExampleComponent } from './copy-service-button-example
   ],
   imports: [
     CommonModule,
-    CopyModule,
+    CopyServiceModule,
     DemoComponentsModule,
     NotificationModule,
     TabsModule.forRoot()
