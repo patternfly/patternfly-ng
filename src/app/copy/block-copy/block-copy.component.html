@@ -1,32 +1,35 @@
-<div>
-  <label [attr.for]="'pf-copy-token-button-' + hash">{{label}}</label>
-  <div class="copy">
-    <div class="copy-preview" [ngClass]="{'pf-is-open': tokenPanelOpen}">
+<div class="pfng-block-copy">
+  <label
+    class="pfng-block-copy-label"
+    [attr.for]="'pfng-block-copy-token-button-' + hash">{{label}}</label>
+  <div class="pfng-block-copy-inner-container">
+    <div class="pfng-block-copy-preview" [ngClass]="{'pf-is-open': tokenPanelOpen}">
 
       <button
         [attr.aria-label]="expandBtnAriaLabel(label)"
         [attr.aria-expanded]="tokenPanelOpen"
-        class="copy-preview-btn"
+        class="pfng-block-copy-preview-btn"
         (click)="toggleTokenPanel()">
         <i
-          class="fa copy-preview-icon"
+          class="fa pfng-block-copy-preview-icon"
           [ngClass]="{'fa-angle-down': tokenPanelOpen, 'fa-angle-right': !tokenPanelOpen}"></i>
       </button>
 
-      <div class="copy-preview-txt-cont">
+      <div class="pfng-block-copy-preview-txt-cont">
         <span
+          class="pfng-block-copy-preview-txt"
           data-toggle="tooltip"
           data-placement="top"
-          [tooltip]="label">{{token}}</span>
+          [attr.tooltip]="label">{{token}}</span>
       </div>
 
       <button
-        [attr.id]="'pf-copy-token-button-' + hash"
-        class="btn btn-lg btn-default copy-btn"
+        [attr.id]="'pfng-block-copy-token-button-' + hash"
+        class="btn btn-lg btn-default pfng-block-copy-btn"
         [attr.aria-label]="copyBtnAriaLabel(label)"
-        (click)="copyTokenToClipboard()">{{copyBtnTxt}}</button>
+        (click)="copyTokenToClipboard()">{{buttonLabel}}</button>
     </div>
-    <div class="copy-body" *ngIf="tokenPanelOpen">
+    <div class="pfng-block-copy-body" *ngIf="tokenPanelOpen">
       <span>{{token}}</span>
     </div>
   </div>

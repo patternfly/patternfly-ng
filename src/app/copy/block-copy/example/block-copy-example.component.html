@@ -18,14 +18,14 @@
             <pfng-block-copy
               [token]="example02.token"
               [label]="example02.label"
-              [copyBtnTxt]="example02.copyBtnTxt"></pfng-block-copy>
+              [buttonLabel]="example02.buttonLabel"></pfng-block-copy>
           </div>
           <div class="col-sm-6">
             <h5>Emitting events example</h5>
             <p>This example renders the component open by default and features an event handler which launches a notification in response to the 'copiedToClipboard' event.</p>
             <pfng-block-copy
               [label]="example03.label"
-              [copyBtnTxt]="example03.copyBtnTxt"
+              [buttonLabel]="example03.buttonLabel"
               [tokenPanelOpen]="example03.tokenPanelOpen"
               [token]="example03.token"
               (copiedToClipboard)="notify($event)"></pfng-block-copy>

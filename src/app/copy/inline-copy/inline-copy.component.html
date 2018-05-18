@@ -1,16 +1,16 @@
 <span
-  class="inline-copy">
+  class="pfng-inline-copy">
   <span
-    class="token-cont"
+    class="pfng-inline-copy-value-cont"
     data-toggle="tooltip"
     data-placement="top"
-    [tooltip]="label">
-    {{token}}
+    [attr.tooltip]="tooltipTxt">
+    {{copyValue}}
   </span>
   <button
-    class="copy-btn"
-    [attr.aria-label]="copyBtnTxt + ' ' + label"
-    (click)="copyTokenToClipboard()">
+    class="pfng-inline-copy-btn"
+    [attr.aria-label]="buttonLabel + ' ' + ariaLabel"
+    (click)="copyValueToClipboard()">
     <i class="fa fa-copy"></i>
   </button>
 </span>

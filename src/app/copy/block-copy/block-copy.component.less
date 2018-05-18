@@ -1,5 +1,8 @@
-.copy {
-  border: 1px solid #aaa;
+.pfng-block-copy {
+
+  &-inner-container {
+    border: 1px solid #aaa;
+  }
 
   &-preview {
     display: flex;
@@ -8,11 +11,6 @@
     &.pf-is-open {
       border-bottom: 1px solid #aaa;
       background: #ddd;
-    }
-
-    &-icon, &-txt-cont {
-      display: flex;
-      align-items: center;
     }
 
     &-btn {
@@ -30,22 +28,25 @@
     }
 
     &-txt-cont {
+      display: flex;
+      align-items: center;
+
       flex-grow: 1;
       overflow: hidden;
       white-space: nowrap;
-
-      span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-right: 1em;
-      }
     }
 
-    .copy-btn {
-      border: none;
-      box-shadow: none;
-      font-size: 1em;
+    &-txt {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 1em;
     }
+  }
+
+  &-btn {
+    border: none;
+    box-shadow: none;
+    font-size: 1em;
   }
 
   &-body {

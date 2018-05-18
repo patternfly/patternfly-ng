@@ -19,7 +19,7 @@ import { CopyService } from '../copy-service/copy.service';
 export class BlockCopyComponent implements OnInit {
   @Input('label') label: string;
   @Input('token') token: string = 'Missing \'token\' @Input property';
-  @Input('copyBtnTxt') copyBtnTxt: string = 'Copy';
+  @Input('buttonLabel') buttonLabel: string = 'Copy';
   @Input('tokenPanelOpen') tokenPanelOpen: boolean = false;
 
   @Output('copiedToClipboard') copiedToClipboard = new EventEmitter();

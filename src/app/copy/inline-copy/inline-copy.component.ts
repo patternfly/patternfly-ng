@@ -17,9 +17,10 @@ import { CopyService } from '../copy-service/copy.service';
 })
 
 export class InlineCopyComponent implements OnInit {
-  @Input('label') label: string;
-  @Input('token') token: string = 'Missing \'token\' @Input property';
-  @Input('copyBtnTxt') copyBtnTxt: string = 'Copy';
+  @Input('ariaLabel') ariaLabel: string;
+  @Input('copyValue') copyValue: string = 'Missing \'copyValue\' @Input property';
+  @Input('buttonLabel') buttonLabel: string = 'Copy';
+  @Input('tooltipTxt') tooltipTxt: string;
 
   @Output('copiedToClipboard') copiedToClipboard = new EventEmitter();
 
@@ -30,18 +31,21 @@ export class InlineCopyComponent implements OnInit {
     private copyService: CopyService) {}
 
   ngOnInit(): void {
-    if (!this.label) throw new Error('Missing required @Input property \'label\'');
+    if (!this.ariaLabel) throw new Error('Missing required @Input property \'ariaLabel\'');
+    if (!this.tooltipTxt) {
+      this.tooltipTxt = this.ariaLabel;
+    }
   }
 
   /**
-   * Copy token to the user's system clipboard
+   * Copy value to the user's system clipboard
    */
-  copyTokenToClipboard(): void {
-    let result = this.copyService.copy(this.token);
+  copyValueToClipboard(): void {
+    let result = this.copyService.copy(this.copyValue);
     if (result) {
-      this.copiedToClipboard.emit(`${this.label} copied!`);
+      this.copiedToClipboard.emit(`${this.ariaLabel} copied!`);
     } else {
-      console.error(`Failed to copy ${this.label}`);
+      console.error(`Failed to copy ${this.ariaLabel}`);
     }
   }
 }

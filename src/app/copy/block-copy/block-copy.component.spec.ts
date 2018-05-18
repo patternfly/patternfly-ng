@@ -17,11 +17,11 @@ class MockedCopyService {}
 interface ComponentConfig {
   label: string;
   token: string;
-  copyBtnTxt?: string;
+  buttonLabel?: string;
   tokenPanelOpen?: boolean;
 }
 
-describe('Block Copy Component - ', () => {
+fdescribe('Block Copy Component - ', () => {
 
   let blockCopy: BlockCopyComponent;
   let fixture: ComponentFixture<BlockCopyComponent>;
@@ -66,31 +66,31 @@ describe('Block Copy Component - ', () => {
   });
 
   it('should ensure there is a single token container', () => {
-    const numTokenContainers = fixture.debugElement.queryAll(By.css('.copy-preview-txt-cont')).length;
+    const numTokenContainers = fixture.debugElement.queryAll(By.css('.pfng-block-copy-preview-txt-cont')).length;
     expect(numTokenContainers).toBe(1);
   });
 
   it('should ensure there is a single copy button', () => {
-    const numCopyBtns = fixture.debugElement.queryAll(By.css('.copy-btn')).length;
+    const numCopyBtns = fixture.debugElement.queryAll(By.css('.pfng-block-copy-btn')).length;
     expect(numCopyBtns).toBe(1);
   });
 
   it('should ensure there is a single expand button', () => {
-    const numExpandBtns = fixture.debugElement.queryAll(By.css('.copy-preview-btn')).length;
+    const numExpandBtns = fixture.debugElement.queryAll(By.css('.pfng-block-copy-preview-btn')).length;
     expect(numExpandBtns).toBe(1);
   });
 
   it('should ensure the label can be set', () => {
     (<any>Object).assign(blockCopy, componentConfig);
     fixture.detectChanges();
-    const label = fixture.debugElement.nativeElement.querySelector('label').textContent;
+    const label = fixture.debugElement.nativeElement.querySelector('.pfng-block-copy-label').textContent;
     expect(label).toBe(componentConfig.label);
   });
 
   it('should set the expand button aria label', () => {
     (<any>Object).assign(blockCopy, componentConfig);
     fixture.detectChanges();
-    const ariaLabel = fixture.debugElement.nativeElement.querySelector('.copy-preview-btn').getAttribute('aria-label');
+    const ariaLabel = fixture.debugElement.nativeElement.querySelector('.pfng-block-copy-preview-btn').getAttribute('aria-label');
     expect(ariaLabel).toBe(`Expand ${componentConfig.label} Container`);
   });
 
@@ -99,11 +99,11 @@ describe('Block Copy Component - ', () => {
       nativeEl = debugEl.nativeElement;
     (<any>Object).assign(blockCopy, componentConfig);
     fixture.detectChanges();
-    let ariaExpanded = nativeEl.querySelector('.copy-preview-btn').getAttribute('aria-expanded');
+    let ariaExpanded = nativeEl.querySelector('.pfng-block-copy-preview-btn').getAttribute('aria-expanded');
     expect(ariaExpanded).toBe('false');
-    debugEl.query(By.css('.copy-preview-btn')).triggerEventHandler('click', null);
+    debugEl.query(By.css('.pfng-block-copy-preview-btn')).triggerEventHandler('click', null);
     fixture.detectChanges();
-    ariaExpanded = nativeEl.querySelector('.copy-preview-btn').getAttribute('aria-expanded');
+    ariaExpanded = nativeEl.querySelector('.pfng-block-copy-preview-btn').getAttribute('aria-expanded');
     expect(ariaExpanded).toBe('true');
   });
 
