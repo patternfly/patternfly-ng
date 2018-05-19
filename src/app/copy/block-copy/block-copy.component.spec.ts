@@ -16,12 +16,12 @@ class MockedCopyService {}
 
 interface ComponentConfig {
   label: string;
-  token: string;
+  copyValue: string;
   buttonLabel?: string;
-  tokenPanelOpen?: boolean;
+  expanded?: boolean;
 }
 
-fdescribe('Block Copy Component - ', () => {
+describe('Block Copy Component - ', () => {
 
   let blockCopy: BlockCopyComponent;
   let fixture: ComponentFixture<BlockCopyComponent>;
@@ -40,7 +40,7 @@ fdescribe('Block Copy Component - ', () => {
     .then(() => {
       componentConfig = {
         label: 'Block-level Foobar',
-        token: 'Token'
+        copyValue: 'Token'
       };
     })
     .then(() => {
@@ -65,9 +65,9 @@ fdescribe('Block Copy Component - ', () => {
     expect(blockCopy instanceof BlockCopyComponent).toBeTruthy();
   });
 
-  it('should ensure there is a single token container', () => {
-    const numTokenContainers = fixture.debugElement.queryAll(By.css('.pfng-block-copy-preview-txt-cont')).length;
-    expect(numTokenContainers).toBe(1);
+  it('should ensure there is a single copy value container', () => {
+    const numCopyValueContainers = fixture.debugElement.queryAll(By.css('.pfng-block-copy-preview-txt-cont')).length;
+    expect(numCopyValueContainers).toBe(1);
   });
 
   it('should ensure there is a single copy button', () => {
@@ -95,7 +95,7 @@ fdescribe('Block Copy Component - ', () => {
                         .nativeElement
                         .querySelector('.pfng-block-copy-preview-btn')
                         .getAttribute('aria-label');
-    expect(ariaLabel).toBe(`Expand ${componentConfig.label} Container`);
+    expect(ariaLabel).toBe(`${componentConfig.label}`);
   });
 
   it('should set the aria expanded attribute when opened/closed', () => {

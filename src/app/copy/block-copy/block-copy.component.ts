@@ -18,16 +18,23 @@ import { CopyService } from '../copy-service/copy.service';
 
 export class BlockCopyComponent implements OnInit {
   @Input('label') label: string;
-  @Input('token') token: string = 'Missing \'token\' @Input property';
+  @Input('copyBtnAriaLabel') copyBtnAriaLabel: string;
+  @Input('expandBtnAriaLabel') expandBtnAriaLabel: string;
+  @Input('tooltip') tooltip: string;
+  @Input('copyValue') copyValue: string = 'Missing \'copyValue\' @Input property';
   @Input('buttonLabel') buttonLabel: string = 'Copy';
-  @Input('tokenPanelOpen') tokenPanelOpen: boolean = false;
+  @Input('expanded') expanded: boolean = false;
 
   @Output('copiedToClipboard') copiedToClipboard = new EventEmitter();
 
   /**
    * Used to uniquly relate label to copy button
    */
-  public hash: number = Math.floor(Math.random() * 10000);
+  public _hash: number = Math.floor(Math.random() * 10000);
+
+  get hash(): number {
+    return this._hash;
+  }
 
   /**
    * The default constructor
@@ -35,17 +42,17 @@ export class BlockCopyComponent implements OnInit {
   constructor(private copyService: CopyService) {}
 
   /**
-   * Toggle copy token panel open and close
+   * Toggle copyValue panel open and close
    */
-  toggleTokenPanel(): void {
-    this.tokenPanelOpen = !this.tokenPanelOpen;
+  togglePanel(): void {
+    this.expanded = !this.expanded;
   }
 
   /**
-   * Copy token to the user's system clipboard
+   * Copy copyValue to the user's system clipboard
    */
-  copyTokenToClipboard(): void {
-      let result = this.copyService.copy(this.token);
+  copyValueToClipboard(): void {
+      let result = this.copyService.copy(this.copyValue);
       if (result) {
         this.copiedToClipboard.emit(`${this.label} copied!`);
       } else {
@@ -53,21 +60,9 @@ export class BlockCopyComponent implements OnInit {
       }
   }
 
-  /**
-   * Define format for expand button's aria label
-   */
-  expandBtnAriaLabel(componentLabel: string): string {
-    return `Expand ${componentLabel} Container`;
-  }
-
-  /**
-   * Define format for copy button's aria label
-   */
-  copyBtnAriaLabel(componentLabel: string): string {
-    return `Copy ${componentLabel}`;
-  }
-
   ngOnInit() {
     if (!this.label) throw new Error('Missing required @Input property \'label\'');
+    if (!this.copyBtnAriaLabel) this.copyBtnAriaLabel = this.label;
+    if (!this.expandBtnAriaLabel) this.expandBtnAriaLabel = this.label;
   }
 }

@@ -10,7 +10,7 @@ export class CopyService {
   }
 
   /**
-   * Copy token to the user's system clipboard
+   * Copy value to the user's system clipboard
    */
   copy(value: string): boolean {
     let result = false;

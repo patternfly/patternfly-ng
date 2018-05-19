@@ -4,10 +4,11 @@
       <div class="row">
         <div class="col-sm-8">
           <p>
-            This example shows how the inline copy component looks when it's surrounded by text content. The font size is always reduced slightly relative to the surrounding text.
-            <pfng-inline-copy
-              [copyValue]="basicExConfig.copyValue"
-              [ariaLabel]="basicExConfig.ariaLabel"></pfng-inline-copy> This example is exposed in the VoiceOver rotor menu as a Form Control in the format of "Copy {{'{'}}accessibleName{{'}'}} button". This ensures that context for the copy button is provided across multiple navigation formats.
+            This example shows how the inline copy component looks when it's surrounded by text content.
+            Inline Copy occupies as much space as necessary to display it's content.
+            <pfng-inline-copy [copyValue]="basicExConfig.copyValue" [ariaLabel]="basicExConfig.ariaLabel"></pfng-inline-copy>
+            Font size for this component is always reduced slightly relative to the surrounding text.
+            Inline Copy does not wrap over multiple lines, but instead handles overflow content gracefully.
           </p>
         </div>
       </div>

@@ -23,7 +23,7 @@ interface ComponentConfig {
   ariaLabel: string;
 }
 
-fdescribe('Inline Copy Component - ', () => {
+describe('Inline Copy Component - ', () => {
 
   let inlineCopy: InlineCopyComponent;
   let fixture: ComponentFixture<InlineCopyComponent>;
@@ -68,7 +68,7 @@ fdescribe('Inline Copy Component - ', () => {
   });
 
   it('should find a single copyValue container element', () => {
-    const numCopyValueContainers = fixture.debugElement.queryAll(By.css('.pfng-inline-copy-value-cont')).length;
+    const numCopyValueContainers = fixture.debugElement.queryAll(By.css('.pfng-inline-copy-txt-cont')).length;
     expect(numCopyValueContainers).toBe(1);
   });
 
@@ -82,7 +82,7 @@ fdescribe('Inline Copy Component - ', () => {
     fixture.detectChanges();
     const tooltipText = fixture
                           .debugElement
-                          .query(By.css('.pfng-inline-copy-value-cont'))
+                          .query(By.css('.pfng-inline-copy-txt-cont'))
                           .nativeElement
                           .getAttribute('tooltip');
     expect(tooltipText).toBe('Foobar');

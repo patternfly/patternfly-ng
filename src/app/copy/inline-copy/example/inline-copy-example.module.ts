@@ -7,7 +7,6 @@ import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { InlineCopyModule } from '../inline-copy.module';
-
 import { InlineCopyExampleComponent } from './inline-copy-example.component';
 import { InlineCopyCallbackExampleComponent } from './inline-copy-callback-example.component';
 import { InlineCopyWrapExampleComponent } from './inline-copy-wrap-example.component';
