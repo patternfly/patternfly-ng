@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { ChartConfig } from './chart-config';
+import { ChartConfigBase } from './chart-config-base';
 /**
  * Chart base
  *
@@ -23,5 +23,5 @@ export declare abstract class ChartBase {
      * @param config The config for the c3 chart
      * @param reload True to reload
      */
-    protected generateChart(config: ChartConfig, reload?: boolean): void;
+    protected generateChart(config: ChartConfigBase, reload?: boolean): void;
 }

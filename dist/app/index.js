@@ -5,7 +5,13 @@ export { Action, ActionConfig, ActionComponent, ActionModule } from './action/in
 export { BasicCardModule, CardAction, CardActionComponent, CardActionModule, CardBase, CardComponent, CardConfig, CardConfigBase, CardFilter, CardFilterComponent, CardFilterModule, CardFilterPosition, CardModule, // @deprecated Use BasicCardModule or InfoStatusCardModule
 InfoStatusCardComponent, InfoStatusCardConfig, InfoStatusCardModule } from './card/index';
 // Charts
-export { ChartConfig, ChartDefaults, ChartBase, ChartModule, DonutComponent, DonutUtilizationComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData } from './chart/index';
+export { ChartBase, ChartConfigBase, ChartDefaults, ChartModule, // @deprecated Use DonutChartModule or SparklineChartModule
+DonutChartComponent, DonutChartConfig, DonutChartModule, DonutComponent, // @deprecated Use DonutChartComponent
+DonutConfig, // @deprecated Use DonutChartConfig
+SparklineChartComponent, SparklineChartConfig, SparklineChartData, SparklineChartModule, SparklineComponent, // @deprecated Use SparklineChartComponent
+SparklineConfig, // @deprecated Use SparklineChartConfig
+SparklineData, // @deprecated Use SparklineChartData
+UtilizationDonutChartComponent, UtilizationDonutChartConfig, UtilizationDonutChartModule } from './chart/index';
 // EmptyState
 export { EmptyStateComponent, EmptyStateConfig, EmptyStateModule } from './empty-state/index';
 // Filter

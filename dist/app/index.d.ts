@@ -1,7 +1,7 @@
 export { PatternFlyNgModule } from './patternfly-ng.module';
 export { Action, ActionConfig, ActionComponent, ActionModule } from './action/index';
 export { BasicCardModule, CardAction, CardActionComponent, CardActionModule, CardBase, CardComponent, CardConfig, CardConfigBase, CardFilter, CardFilterComponent, CardFilterModule, CardFilterPosition, CardModule, InfoStatusCardComponent, InfoStatusCardConfig, InfoStatusCardModule } from './card/index';
-export { ChartConfig, ChartDefaults, ChartBase, ChartModule, DonutComponent, DonutUtilizationComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData } from './chart/index';
+export { ChartBase, ChartConfigBase, ChartDefaults, ChartModule, DonutChartComponent, DonutChartConfig, DonutChartModule, DonutComponent, DonutConfig, SparklineChartComponent, SparklineChartConfig, SparklineChartData, SparklineChartModule, SparklineComponent, SparklineConfig, SparklineData, UtilizationDonutChartComponent, UtilizationDonutChartConfig, UtilizationDonutChartModule } from './chart/index';
 export { EmptyStateComponent, EmptyStateConfig, EmptyStateModule } from './empty-state/index';
 export { Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, FilterFieldsComponent, FilterModule, FilterResultsComponent, FilterQuery, FilterType } from './filter/index';
 export { BasicListModule, ListBase, ListBaseConfig, ListConfig, ListComponent, ListExpandToggleComponent, ListEvent, ListModule, TreeListComponent, TreeListConfig, TreeListModule } from './list/index';

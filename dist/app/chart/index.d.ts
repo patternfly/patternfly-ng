@@ -1,10 +1,8 @@
-export { ChartConfig } from './chart-config';
-export { ChartDefaults } from './chart-defaults';
 export { ChartBase } from './chart-base';
+export { ChartConfigBase } from './chart-config-base';
+export { ChartDefaults } from './chart-defaults';
 export { ChartModule } from './chart.module';
-export { DonutComponent } from './donut/donut.component';
-export { DonutUtilizationComponent } from './donut/donut.utilization.component';
-export { DonutConfig } from './donut/donut-config';
-export { SparklineComponent } from './sparkline/sparkline.component';
-export { SparklineConfig } from './sparkline/sparkline-config';
-export { SparklineData } from './sparkline/sparkline-data';
+export { DonutChartBaseComponent, DonutChartBaseConfig } from './donut-chart/index';
+export { DonutChartComponent, DonutChartConfig, DonutChartModule, DonutComponent, DonutConfig } from './donut-chart/basic-donut-chart/index';
+export { SparklineChartComponent, SparklineChartConfig, SparklineChartData, SparklineChartModule, SparklineComponent, SparklineConfig, SparklineData } from './sparkline-chart/index';
+export { UtilizationDonutChartComponent, UtilizationDonutChartConfig, UtilizationDonutChartModule } from './donut-chart/utilization-donut-chart/index';

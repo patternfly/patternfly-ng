@@ -5,9 +5,9 @@
         <pfng-card [config]="config"
                    (onActionSelect)="handleActionSelect($event)"
                    (onFilterSelect)="handleFilterSelect($event)">
-          <pfng-chart-sparkline [config]="chartConfigVirtual" [chartData]="chartDataVirtual" ></pfng-chart-sparkline>
-          <pfng-chart-sparkline [config]="chartConfigPhysical" [chartData]="chartDataPhysical" ></pfng-chart-sparkline>
-          <pfng-chart-sparkline [config]="chartConfigMemory" [chartData]="chartDataMemory" ></pfng-chart-sparkline>
+          <pfng-sparkline-chart [config]="chartConfigVirtual" [chartData]="chartDataVirtual" ></pfng-sparkline-chart>
+          <pfng-sparkline-chart [config]="chartConfigPhysical" [chartData]="chartDataPhysical" ></pfng-sparkline-chart>
+          <pfng-sparkline-chart [config]="chartConfigMemory" [chartData]="chartDataMemory" ></pfng-sparkline-chart>
         </pfng-card>
       </div>
     </div>
