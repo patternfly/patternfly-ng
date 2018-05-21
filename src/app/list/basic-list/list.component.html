@@ -60,13 +60,13 @@
       </div>
       <!-- checkbox -->
       <div class="list-pf-select" *ngIf="config.showCheckbox && !config.showRadioButton">
-        <input type="checkbox" value="item.selected"
+        <input type="checkbox"
                [(ngModel)]="item.selected"
                (ngModelChange)="checkboxChange(item)">
       </div>
       <!-- radio button -->
       <div class="list-pf-select" *ngIf="!config.showCheckbox && config.showRadioButton">
-        <input type="radio" value="item.selected"
+        <input type="radio"
                [checked]="item.selected"
                (click)="radioButtonChange(item)">
       </div>
