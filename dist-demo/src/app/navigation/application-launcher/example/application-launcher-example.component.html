@@ -1,0 +1,79 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Application Launcher</h4>
+      <hr/>
+    </div>
+    <div class="col-sm-8">
+      <nav class="navbar navbar-default navbar-pf" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand active" href="#/" id="logo" title=""
+             routerlink="/"
+             routerlinkactive="active"
+             ng-reflect-router-link="/"
+             ng-reflect-router-link-active="active">PatternFly NG</a>
+        </div>
+        <nav class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right navbar-iconic navbar-utility">
+            <li class="dropdown" style="padding: 5px">
+              <pfng-application-launcher
+                  [disabled]="disabled"
+                  [items]="navigationItems"
+                  [label]="'Application Launcher'"
+                  [showAsList]="false"
+                  [showIcons]="showIcons">
+              </pfng-application-launcher>
+            </li>
+          </ul>
+        </nav>
+      </nav>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="disabled" name="disabled" type="checkbox"
+                   [(ngModel)]="disabled">Disabled
+          </label>
+          <label class="checkbox-inline">
+            <input id="showIcons" name="showIcons" type="checkbox"
+                   [(ngModel)]="showIcons">Icons
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/applicationlaunchercomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/navigation/example/application-launcher-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/navigation/example/application-launcher-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
