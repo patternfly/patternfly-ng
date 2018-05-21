@@ -1,0 +1,147 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+        <p>This ensures all features work properly together, particularly with filtering and pagination</p>
+        <pfng-table
+            [actionTemplate]="actionTemplate"
+            [columns]="columns"
+            [config]="tableConfig"
+            [dataTableConfig]="dataTableConfig"
+            [expandRowTemplate]="expandRowTemplate"
+            [rows]="rows"
+            (onActivate)="handleOnActivate($event)"
+            (onActionSelect)="handleAction($event)"
+            (onDrop)="handleDrop($event)"
+            (onFilterChange)="filterChanged($event)"
+            (onFilterFieldSelect)="filterFieldSelected($event)"
+            (onFilterTypeAhead)="filterQueries($event)"
+            (onPageNumberChange)="handlePageNumber($event)"
+            (onPageSizeChange)="handlePageSize($event)"
+            (onReorder)="handleOnReorder($event)"
+            (onResize)="handleOnResize($event)"
+            (onScroll)="handleOnScroll($event)"
+            (onSelectionChange)="handleSelectionChange($event)"
+            (onSortChange)="handleSortChanged($event)"
+            (onSort)="handleSort($event)">
+        </pfng-table>
+        <!-- Column templates -->
+        <ng-template #nameTemplate let-row="row">
+          <span>{{row.name}}</span>
+        </ng-template>
+        <ng-template #addressTemplate let-row="row">
+          <span>{{row.address}}</span>
+        </ng-template>
+        <ng-template #birthMonthTemplate let-row="row">
+          <span>{{row.birthMonth}}</span>
+        </ng-template>
+        <ng-template #weekDayTemplate let-row="row">
+          <span>{{row.weekDay}}</span>
+        </ng-template>
+        <!-- Row detail template -->
+        <ng-template #expandRowTemplate let-row="row">
+          <div class="margin-left-20">
+            <div><strong>Address</strong></div>
+            <div>{{row.address}}</div>
+          </div>
+        </ng-template>
+        <!-- Toolbar action template -->
+        <ng-template #actionTemplate>
+            <span class="dropdown primary-action" dropdown>
+              <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
+                Menu Action<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" *dropdownMenu>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" (click)="optionSelected(1)">Option 1</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(2)">Option 2</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(3)">Option 3</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item secondary-action" role="menuitem" (click)="optionSelected(4)">Option 4</a>
+                </li>
+              </ul>
+            </span>
+          <button class="btn btn-default primary-action" type="button" (click)="doAdd()">
+            <span class="fa fa-plus"></span>
+            Add Action
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="cb" name="cb" type="checkbox"
+                   [(ngModel)]="tableConfig.showCheckbox">Checkbox
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="dnd" name="dnd" type="checkbox"
+                   [(ngModel)]="tableConfig.dragEnabled">Drag and Drop
+          </label>
+          <label class="checkbox-inline">
+            <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
+                   [(ngModel)]="tableConfig.useExpandRows">Simple Expansion
+          </label>
+          <label class="checkbox-inline">
+            <input id="itemsAvailable" name="itemsAvailable" type="checkbox"
+                   [(ngModel)]="rowsAvailable"
+                   (ngModelChange)="updateItemsAvailable()">Rows Available
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/tablecomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/table/basic-table/example/table-full-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/table/basic-table/example/table-full-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
