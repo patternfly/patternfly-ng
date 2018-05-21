@@ -3,7 +3,7 @@ import { EventEmitter, Output } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import * as c3 from 'c3';
 
-import { ChartConfig } from './chart-config';
+import { ChartConfigBase } from './chart-config-base';
 
 /**
  * Chart base
@@ -32,7 +32,7 @@ export abstract class ChartBase {
    * @param config The config for the c3 chart
    * @param reload True to reload
    */
-  protected generateChart(config: ChartConfig, reload?: boolean): void {
+  protected generateChart(config: ChartConfigBase, reload?: boolean): void {
     setTimeout(() => {
       let c3Config: any = cloneDeep(config);
       c3Config.bindto = '#' + config.chartId;
