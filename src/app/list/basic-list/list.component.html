@@ -67,6 +67,8 @@
       <!-- radio button -->
       <div class="list-pf-select" *ngIf="!config.showCheckbox && config.showRadioButton">
         <input type="radio"
+               [value]="item.selected"
+               [id]="item.name"
                [checked]="item.selected"
                (click)="radioButtonChange(item)">
       </div>
