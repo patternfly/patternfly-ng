@@ -52,6 +52,10 @@ export class NavbarItems {
     path: 'filters',
     title: 'Filter'
   }, {
+    id: 'list',
+    path: 'list',
+    title: 'List'
+/*
     id: 'lists',
     title: 'Lists',
     children: [{
@@ -63,6 +67,7 @@ export class NavbarItems {
       path: 'treelist',
       title: 'Tree List'
     }]
+*/
   }, {
     id: 'aboutmodal',
     path: 'aboutmodal',

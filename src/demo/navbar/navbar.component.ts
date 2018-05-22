@@ -67,7 +67,7 @@ export class NavbarComponent implements OnDestroy, OnInit {
   // Actions
 
   protected getPath(id: string): string {
-    let item = find(NavbarItems.GETSTARTED, {
+    let item: any = find(NavbarItems.GETSTARTED, {
       id: id
     });
     return item.path;

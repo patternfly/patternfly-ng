@@ -40,7 +40,7 @@ import { TreeListConfig } from './tree-list-config';
  * import { TreeModule } from 'angular-tree-component';
  *
  * &#64;NgModule({
- *   imports: [TreeListModule,...]
+ *   imports: [TreeListModule, TreeModule...]
  * })
  * export class AppModule(){}
  * </pre></code>

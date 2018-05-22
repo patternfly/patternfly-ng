@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { ChartDefaults } from '../../chart-defaults';
 
-import { DonutChartComponent, DonutComponent } from './donut-chart.component';
+import { DonutChartComponent } from './donut-chart.component';
 import { WindowReference } from '../../../utilities/window.reference';
 
 @NgModule({
@@ -12,8 +12,8 @@ import { WindowReference } from '../../../utilities/window.reference';
     CommonModule,
     FormsModule,
   ],
-  declarations: [DonutChartComponent, DonutComponent],
-  exports: [DonutChartComponent, DonutComponent],
+  declarations: [DonutChartComponent],
+  exports: [DonutChartComponent],
   providers: [ChartDefaults, WindowReference]
 })
 export class DonutChartModule {}

@@ -90,10 +90,6 @@ describe('Donut Chart component', () => {
     expect(comp.config.data.columns[0][1]).toBe(3);
   });
 
-  it('should setup onclick correctly', () => {
-    expect(typeof(comp.config.data.onclick)).toBe('function');
-  });
-
   it('should use the default centerLabel', () => {
     let centerLabel = comp.getCenterLabelText();
     expect(centerLabel.title).toBe(6);

@@ -12,6 +12,7 @@ import { PaginationModule } from '../pagination.module';
 import { PaginationExampleComponent } from './pagination-example.component';
 import { PaginationBasicExampleComponent } from './pagination-basic-example.component';
 import { PaginationListExampleComponent } from './pagination-list-example.component';
+
 @NgModule({
   declarations: [
     PaginationExampleComponent,
