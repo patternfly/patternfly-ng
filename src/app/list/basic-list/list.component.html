@@ -35,7 +35,7 @@
   <div class="list-pf-item {{item?.itemStyleClass}}"
        [ngClass]="{'active': item.selected || item.isItemExpanded}"
        *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index">
-    <div class="list-pf-container">
+    <div class="list-pf-container" [id]="getId('item', i)">
       <!-- pin -->
       <div class="pfng-list-pin-container" *ngIf="config.usePinItems">
         <div class="pfng-list-pin-placeholder"
@@ -61,12 +61,14 @@
       <!-- checkbox -->
       <div class="list-pf-select" *ngIf="config.showCheckbox && !config.showRadioButton">
         <input type="checkbox"
+               [id]="getId('checkbox', i)"
                [(ngModel)]="item.selected"
                (ngModelChange)="checkboxChange(item)">
       </div>
       <!-- radio button -->
       <div class="list-pf-select" *ngIf="!config.showCheckbox && config.showRadioButton">
         <input type="radio"
+               [id]="getId('radio', i)"
                [checked]="item.selected"
                (click)="radioButtonChange(item)">
       </div>
