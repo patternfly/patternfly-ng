@@ -24,7 +24,6 @@
       <button
         [attr.id]="copyBtnId"
         class="btn btn-lg btn-default pfng-block-copy-btn"
-        [ngClass]="{'recently-copied': recentlyCopied}"
         [attr.aria-label]="copyBtnAriaLabel"
         (click)="copyValueToClipboard()">
           <span *ngIf="!recentlyCopied">{{buttonLabel}}</span>

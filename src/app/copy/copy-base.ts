@@ -18,7 +18,25 @@ export abstract class CopyBase {
    */
   @Output('copiedToClipboard') copiedToClipboard: EventEmitter<any> = new EventEmitter();
 
-  public recentlyCopied: boolean = false;
+  private _recentlyCopied: boolean = false;
+
+  /**
+   * Returns the flag indicating copy action has just happened
+   *
+   * @returns {boolean} True if copy action has been triggered
+   */
+  public get recentlyCopied(): boolean {
+    return this._recentlyCopied;
+  }
+
+  /**
+   * Set the flag indicating copy action has just happened
+   *
+   * @param {boolean} copied True when copy action has been triggered
+   */
+  public set recentlyCopied(copied: boolean) {
+    this._recentlyCopied = copied;
+  }
 
   /**
    * Default constructor

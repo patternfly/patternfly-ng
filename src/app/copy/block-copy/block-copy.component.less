@@ -1,24 +1,19 @@
 .pfng-block-copy {
-
   &-inner-container {
     border: 1px solid #bbb;
   }
-
   &-preview {
     display: flex;
     align-items: stretch;
-
     &.pf-is-open {
       border-bottom: 1px solid #bbb;
       background: #ddd;
     }
-
     &-btn {
       background: none;
       border: none;
       padding: 0;
     }
-
     &-icon {
       cursor: pointer;
       padding: 0 1em;
@@ -26,39 +21,28 @@
         padding: 0 1.15em;
       }
     }
-
     &-txt-cont {
       display: flex;
       align-items: center;
-
       flex-grow: 1;
       overflow: hidden;
       white-space: nowrap;
     }
-
     &-txt {
       overflow: hidden;
       text-overflow: ellipsis;
       margin-right: 1em;
     }
   }
-
   &-btn {
     border: none;
     border-left: 1px solid #bbb;
     box-shadow: none;
     font-size: 1em;
-
     &:active {
       box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, .25);
     }
-
-    &.recently-copied {
-      background: #3f9c35;
-      color: #fafafa;
-    }
   }
-
   &-body {
     padding: 15px;
     word-wrap: break-word;
