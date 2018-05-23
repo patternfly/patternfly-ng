@@ -1,14 +1,6 @@
-export {
-  CopyService,
-  CopyServiceModule
-} from './copy-service/index';
+export { CopyBase } from './copy-base';
+export { CopyConfigBase } from './copy-config-base';
 
-export {
-  BlockCopyComponent,
-  BlockCopyModule
-} from './block-copy/index';
-
-export {
-  InlineCopyComponent,
-  InlineCopyModule
-} from './inline-copy/index';
+export * from './copy-service/index';
+export * from './inline-copy/index';
+export * from './block-copy/index';
