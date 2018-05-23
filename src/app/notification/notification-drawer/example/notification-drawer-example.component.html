@@ -22,10 +22,19 @@
         </div>
         <div class="layout-pf-fixed">
           <div class="navbar-pf-vertical">
-            <pfng-notification-drawer [hidden]="hide" [allowExpand]="true" [title]="'Notifications Drawer'" [showMarkAllRead]="true"
-              [notificationGroups]="groups" [titleTemplate]="titleTemplate" [headingTemplate]="headingTemplate" [subHeadingTemplate]="subHeadingTemplate"
-              [notificationBodyTemplate]="notificationBodyTemplate" [showClearAll]="true" [allowExpand]="true" (close)="close($event)"
-              (unreadNotifications)="unreadNotifications($event)">
+            <pfng-notification-drawer
+                [allowExpand]="true"
+                [headingTemplate]="headingTemplate"
+                [hidden]="hide"
+                [notificationGroups]="groups"
+                [showClearAll]="true"
+                [showMarkAllRead]="true"
+                [subHeadingTemplate]="subHeadingTemplate"
+                [title]="'Notifications Drawer'"
+                [titleTemplate]="titleTemplate"
+                [notificationBodyTemplate]="notificationBodyTemplate"
+                (close)="close($event)"
+                (unreadNotifications)="unreadNotifications($event)">
             </pfng-notification-drawer>
             <ng-template #titleTemplate>
               <h3 class="text-center">Notifications Drawer</h3>
@@ -92,16 +101,16 @@
     </div>
   </div>
   <div>
-      <tabset>
-        <tab heading="api">
-          <iframe class="demoframe" src="docs/classes/notificationdrawercomponent.html"></iframe>
-        </tab>
-        <tab heading="html">
-          <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.html"></include-content>
-        </tab>
-        <tab heading="typescript">
-          <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.ts"></include-content>
-        </tab>
-      </tabset>
-    </div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/notificationdrawercomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/notification/notification-drawer/example/notification-drawer-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
 </div>
