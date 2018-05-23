@@ -18,22 +18,22 @@
       <ul class="nav navbar-nav navbar-right navbar-iconic">
         <li class="dropdown">
         </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <li class="dropdown" dropdown>
+          <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" dropdownToggle>
             <span title="Help" class="fa pficon-help"></span>
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" *dropdownMenu>
             <li><a href="#">Help</a></li>
             <li><a href="#">About</a></li>
           </ul>
         </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <li class="dropdown" dropdown>
+          <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" dropdownToggle>
             <span title="Username" class="fa pficon-user"></span>
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" *dropdownMenu>
             <li><a href="#">Preferences</a></li>
             <li><a href="#">Logout</a></li>
           </ul>

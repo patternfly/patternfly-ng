@@ -75,6 +75,7 @@
 					named itemExpandedTemplate to contain expandable content for each item.</p>
 					<p>Cannot use both multi-select and double click selection at the same time
 					Cannot use both checkbox and click selection at the same time</p>
+					<p>Unique IDs are generated for each list item, which can be overridden by providing an id for the pfng-list tag.</p>
 					<p>Usage:
 					<br/><code>import { BasicListModule } from &#39;patternfly-ng/list&#39;;</code></p>
 					<p>Or:
@@ -141,6 +142,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#dblclick" class="tsd-kind-icon">dbl<wbr>Click</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#deselectitems" class="tsd-kind-icon">deselect<wbr>Items</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="listcomponent.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="listcomponent.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#getselecteditems" class="tsd-kind-icon">get<wbr>Selected<wbr>Items</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="listcomponent.html#handleaction" class="tsd-kind-icon">handle<wbr>Action</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="listcomponent.html#ngdocheck" class="tsd-kind-icon">ng<wbr>DoCheck</a></li>
@@ -161,14 +163,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>List<wbr>Component<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="listcomponent.html" class="tsd-signature-type">ListComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>List<wbr>Component<span class="tsd-signature-symbol">(</span>el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="listcomponent.html" class="tsd-signature-type">ListComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="listbase.html">ListBase</a>.<a href="listbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L77">app/list/basic-list/list.component.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L81">app/list/basic-list/list.component.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -176,6 +178,12 @@
 									<p>The default constructor</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>el: <span class="tsd-signature-type">ElementRef</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="listcomponent.html" class="tsd-signature-type">ListComponent</a></h4>
 						</li>
 					</ul>
@@ -189,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">action<wbr>Heading<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L44">app/list/basic-list/list.component.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L47">app/list/basic-list/list.component.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -205,7 +213,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#actiontemplate">actionTemplate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L19">app/list/list-base.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L19">app/list/list-base.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="listconfig.html" class="tsd-signature-type">ListConfig</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L49">app/list/basic-list/list.component.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L52">app/list/basic-list/list.component.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -235,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">expand<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L54">app/list/basic-list/list.component.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L57">app/list/basic-list/list.component.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -250,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">item<wbr>Heading<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L59">app/list/basic-list/list.component.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L62">app/list/basic-list/list.component.ts:62</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -266,7 +274,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#itemtemplate">itemTemplate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L29">app/list/list-base.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L29">app/list/list-base.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -282,7 +290,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#items">items</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L24">app/list/list-base.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L24">app/list/list-base.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -298,7 +306,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#onactionselect">onActionSelect</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L34">app/list/list-base.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L34">app/list/list-base.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -314,7 +322,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#onclick">onClick</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L39">app/list/list-base.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L39">app/list/list-base.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -330,7 +338,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#ondblclick">onDblClick</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L44">app/list/list-base.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L44">app/list/list-base.ts:44</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -345,7 +353,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Pin<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L64">app/list/basic-list/list.component.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L67">app/list/basic-list/list.component.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -361,7 +369,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#onselectionchange">onSelectionChange</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L49">app/list/list-base.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L49">app/list/list-base.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -384,7 +392,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#itemsempty">itemsEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L102">app/list/list-base.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L102">app/list/list-base.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -411,7 +419,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#checkboxchange">checkboxChange</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L126">app/list/list-base.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L126">app/list/list-base.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -443,7 +451,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#dblclick">dblClick</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L139">app/list/list-base.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L139">app/list/list-base.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -481,7 +489,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#deselectitems">deselectItems</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L153">app/list/list-base.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L153">app/list/list-base.ts:153</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -513,7 +521,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="listbase.html">ListBase</a>.<a href="listbase.html#getconfig">getConfig</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L123">app/list/basic-list/list.component.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L127">app/list/basic-list/list.component.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -523,6 +531,44 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="listconfig.html" class="tsd-signature-type">ListConfig</a></h4>
 							<p>ListConfig The component config</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="getid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Id<span class="tsd-signature-symbol">(</span>suffix<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L140">app/list/basic-list/list.component.ts:140</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return an ID for the given element prefix and index (e.g., &#39;pfng-list1-item0&#39;)</p>
+								</div>
+								<p>Note: The ID prefix can be overridden by providing an id for the pfng-list tag.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>suffix: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The element suffix (e.g., &#39;item&#39;)</p>
+									</div>
+								</li>
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The current item index</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -537,7 +583,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#getselecteditems">getSelectedItems</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L170">app/list/list-base.ts:170</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L170">app/list/list-base.ts:170</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -570,7 +616,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#handleaction">handleAction</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L113">app/list/list-base.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L113">app/list/list-base.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -601,7 +647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L98">app/list/basic-list/list.component.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L102">app/list/basic-list/list.component.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -623,7 +669,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L91">app/list/basic-list/list.component.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L95">app/list/basic-list/list.component.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -646,7 +692,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#radiobuttonchange">radioButtonChange</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L191">app/list/list-base.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L191">app/list/list-base.ts:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -678,7 +724,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#selectitem">selectItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L221">app/list/list-base.ts:221</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L221">app/list/list-base.ts:221</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -716,7 +762,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#selectsingleitem">selectSingleItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L210">app/list/list-base.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L210">app/list/list-base.ts:210</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -748,7 +794,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="listbase.html">ListBase</a>.<a href="listbase.html#setupconfig">setupConfig</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/basic-list/list.component.ts#L108">app/list/basic-list/list.component.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/basic-list/list.component.ts#L112">app/list/basic-list/list.component.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -771,7 +817,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="listbase.html">ListBase</a>.<a href="listbase.html#toggleselection">toggleSelection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/446bf9ed/src/app/list/list-base.ts#L251">app/list/list-base.ts:251</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/04b10347/src/app/list/list-base.ts#L251">app/list/list-base.ts:251</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -868,6 +914,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 								<a href="listcomponent.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="listcomponent.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="listcomponent.html#getselecteditems" class="tsd-kind-icon">get<wbr>Selected<wbr>Items</a>

@@ -17,8 +17,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { cloneDeep, defaults, isEqual, uniqueId } from 'lodash';
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';
 /**
@@ -32,6 +32,8 @@ import { ListConfig } from './list-config';
  * Cannot use both multi-select and double click selection at the same time
  * Cannot use both checkbox and click selection at the same time
  *
+ * Unique IDs are generated for each list item, which can be overridden by providing an id for the pfng-list tag.
+ *
  * Usage:
  * <br/><code>import { BasicListModule } from 'patternfly-ng/list';</code>
  *
@@ -43,8 +45,9 @@ var ListComponent = /** @class */ (function (_super) {
     /**
      * The default constructor
      */
-    function ListComponent() {
+    function ListComponent(el) {
         var _this = _super.call(this) || this;
+        _this.el = el;
         /**
          * The event emitted when an item pin has been changed
          */
@@ -60,6 +63,7 @@ var ListComponent = /** @class */ (function (_super) {
             showRadioButton: false,
             useExpandItems: false
         };
+        _this.id = uniqueId('pfng-list');
         return _this;
     }
     // Initialization
@@ -98,6 +102,22 @@ var ListComponent = /** @class */ (function (_super) {
      */
     ListComponent.prototype.getConfig = function () {
         return this.config;
+    };
+    /**
+     * Return an ID for the given element prefix and index (e.g., 'pfng-list1-item0')
+     *
+     * Note: The ID prefix can be overridden by providing an id for the pfng-list tag.
+     *
+     * @param {string} suffix The element suffix (e.g., 'item')
+     * @param {number} index The current item index
+     * @returns {string}
+     */
+    ListComponent.prototype.getId = function (suffix, index) {
+        var result = this.id;
+        if (this.el.nativeElement.id !== undefined && this.el.nativeElement.id.length > 0) {
+            result = this.el.nativeElement.id;
+        }
+        return result + '-' + suffix + index;
     };
     // Toggle
     ListComponent.prototype.closeExpandArea = function (item) {
@@ -143,9 +163,9 @@ var ListComponent = /** @class */ (function (_super) {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-list',
-            template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><div class=\"list-pf-item pfng-list-heading {{item?.itemStyleClass}}\" *ngIf=\"itemHeadingTemplate || actionHeadingTemplate\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-placeholder\" *ngIf=\"config.usePinItems\"></div><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\"></div></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox || config.showRadioButton\"><div class=\"pfng-list-cb-placeholder\"></div></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\"><ng-template *ngIf=\"itemHeadingTemplate\" [ngTemplateOutlet]=\"itemHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionHeadingTemplate\" [ngTemplateOutlet]=\"actionHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div><div class=\"list-pf-item {{item?.itemStyleClass}}\" [ngClass]=\"{'active': item.selected || item.isItemExpanded}\" *ngFor=\"let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-container\" *ngIf=\"config.usePinItems\"><div class=\"pfng-list-pin-placeholder\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin !== true\"></div><div class=\"pfng-list-pin\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin === true\"><a href=\"javascript:void(0);\" tabindex=\"-1\" title=\"Remove pin\" (click)=\"togglePin($event, item)\"><span class=\"fa fa-thumb-tack\"></span></a></div></div><div class=\"list-pf-chevron pfng-list-expand\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\" *ngIf=\"item.hideExpandToggle === true\"></div><span class=\"fa fa-angle-right\" *ngIf=\"item.hideExpandToggle !== true\" (click)=\"toggleExpandArea(item)\" [ngClass]=\"{'fa-angle-down': item.expanded && item.expandId === undefined}\"></span></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" [(ngModel)]=\"item.selected\" (ngModelChange)=\"checkboxChange(item)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" [checked]=\"item.selected\" (click)=\"radioButtonChange(item)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\" (click)=\"toggleSelection($event, item)\" (dblclick)=\"dblClick($event, item)\"><ng-template *ngIf=\"itemTemplate\" [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionTemplate\" [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div><div class=\"pfng-list-expansion list-pf-expansion collapse in\" *ngIf=\"expandTemplate && item.expanded\"><div class=\"list-pf-container\" tabindex=\"0\"><div class=\"list-pf-content\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"closeExpandArea(item)\"></span></div><ng-template [ngTemplateOutlet]=\"expandTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
+            template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><div class=\"list-pf-item pfng-list-heading {{item?.itemStyleClass}}\" *ngIf=\"itemHeadingTemplate || actionHeadingTemplate\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-placeholder\" *ngIf=\"config.usePinItems\"></div><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\"></div></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox || config.showRadioButton\"><div class=\"pfng-list-cb-placeholder\"></div></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\"><ng-template *ngIf=\"itemHeadingTemplate\" [ngTemplateOutlet]=\"itemHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionHeadingTemplate\" [ngTemplateOutlet]=\"actionHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div><div class=\"list-pf-item {{item?.itemStyleClass}}\" [ngClass]=\"{'active': item.selected || item.isItemExpanded}\" *ngFor=\"let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index\"><div class=\"list-pf-container\" [id]=\"getId('item', i)\"><div class=\"pfng-list-pin-container\" *ngIf=\"config.usePinItems\"><div class=\"pfng-list-pin-placeholder\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin !== true\"></div><div class=\"pfng-list-pin\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin === true\"><a href=\"javascript:void(0);\" tabindex=\"-1\" title=\"Remove pin\" (click)=\"togglePin($event, item)\"><span class=\"fa fa-thumb-tack\"></span></a></div></div><div class=\"list-pf-chevron pfng-list-expand\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\" *ngIf=\"item.hideExpandToggle === true\"></div><span class=\"fa fa-angle-right\" *ngIf=\"item.hideExpandToggle !== true\" (click)=\"toggleExpandArea(item)\" [ngClass]=\"{'fa-angle-down': item.expanded && item.expandId === undefined}\"></span></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" [id]=\"getId('checkbox', i)\" [(ngModel)]=\"item.selected\" (ngModelChange)=\"checkboxChange(item)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" [id]=\"getId('radio', i)\" [checked]=\"item.selected\" (click)=\"radioButtonChange(item)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\" (click)=\"toggleSelection($event, item)\" (dblclick)=\"dblClick($event, item)\"><ng-template *ngIf=\"itemTemplate\" [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionTemplate\" [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div><div class=\"pfng-list-expansion list-pf-expansion collapse in\" *ngIf=\"expandTemplate && item.expanded\"><div class=\"list-pf-container\" tabindex=\"0\"><div class=\"list-pf-content\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"closeExpandArea(item)\"></span></div><ng-template [ngTemplateOutlet]=\"expandTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [ElementRef])
     ], ListComponent);
     return ListComponent;
 }(ListBase));

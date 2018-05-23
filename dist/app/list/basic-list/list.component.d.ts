@@ -1,4 +1,4 @@
-import { DoCheck, EventEmitter, OnInit, TemplateRef } from '@angular/core';
+import { DoCheck, ElementRef, EventEmitter, OnInit, TemplateRef } from '@angular/core';
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';
 /**
@@ -12,6 +12,8 @@ import { ListConfig } from './list-config';
  * Cannot use both multi-select and double click selection at the same time
  * Cannot use both checkbox and click selection at the same time
  *
+ * Unique IDs are generated for each list item, which can be overridden by providing an id for the pfng-list tag.
+ *
  * Usage:
  * <br/><code>import { BasicListModule } from 'patternfly-ng/list';</code>
  *
@@ -19,6 +21,7 @@ import { ListConfig } from './list-config';
  * <br/><code>import { BasicListModule } from 'patternfly-ng';</code>
  */
 export declare class ListComponent extends ListBase implements DoCheck, OnInit {
+    private el;
     /**
      * The name of the template containing action heading layout
      */
@@ -40,11 +43,12 @@ export declare class ListComponent extends ListBase implements DoCheck, OnInit {
      */
     onPinChange: EventEmitter<{}>;
     private defaultConfig;
+    private id;
     private prevConfig;
     /**
      * The default constructor
      */
-    constructor();
+    constructor(el: ElementRef);
     /**
      * Setup component configuration upon initialization
      */
@@ -63,6 +67,16 @@ export declare class ListComponent extends ListBase implements DoCheck, OnInit {
      * @returns {} ListConfig The component config
      */
     protected getConfig(): ListConfig;
+    /**
+     * Return an ID for the given element prefix and index (e.g., 'pfng-list1-item0')
+     *
+     * Note: The ID prefix can be overridden by providing an id for the pfng-list tag.
+     *
+     * @param {string} suffix The element suffix (e.g., 'item')
+     * @param {number} index The current item index
+     * @returns {string}
+     */
+    protected getId(suffix: string, index: number): string;
     private closeExpandArea(item);
     private toggleExpandArea(item);
     private togglePin($event, item);

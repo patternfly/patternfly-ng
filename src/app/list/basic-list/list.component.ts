@@ -1,6 +1,7 @@
 import {
   Component,
   DoCheck,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
@@ -9,7 +10,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual, uniqueId } from 'lodash';
 
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';
@@ -25,6 +26,8 @@ import { ListEvent } from '../list-event';
  *
  * Cannot use both multi-select and double click selection at the same time
  * Cannot use both checkbox and click selection at the same time
+ *
+ * Unique IDs are generated for each list item, which can be overridden by providing an id for the pfng-list tag.
  *
  * Usage:
  * <br/><code>import { BasicListModule } from 'patternfly-ng/list';</code>
@@ -74,12 +77,13 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
     showRadioButton: false,
     useExpandItems: false
   } as ListConfig;
+  private id: string = uniqueId('pfng-list');
   private prevConfig: ListConfig;
 
   /**
    * The default constructor
    */
-  constructor() {
+  constructor(private el: ElementRef) {
     super();
   }
 
@@ -122,6 +126,23 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
    */
   protected getConfig(): ListConfig {
     return this.config;
+  }
+
+  /**
+   * Return an ID for the given element prefix and index (e.g., 'pfng-list1-item0')
+   *
+   * Note: The ID prefix can be overridden by providing an id for the pfng-list tag.
+   *
+   * @param {string} suffix The element suffix (e.g., 'item')
+   * @param {number} index The current item index
+   * @returns {string}
+   */
+  protected getId(suffix: string, index: number): string {
+    let result = this.id;
+    if (this.el.nativeElement.id !== undefined && this.el.nativeElement.id.length > 0) {
+      result = this.el.nativeElement.id;
+    }
+    return result + '-' + suffix + index;
   }
 
   // Toggle

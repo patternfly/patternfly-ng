@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { NavigationModule } from '../../navigation.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
@@ -16,11 +17,12 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule,
     NavigationModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   declarations: [VerticalNavigationExampleComponent],
   exports: [VerticalNavigationExampleComponent],
-  providers: [TabsetConfig]
+  providers: [TabsetConfig, BsDropdownConfig]
 })
 export class VerticalNavigationExampleModule {
   constructor() {}
