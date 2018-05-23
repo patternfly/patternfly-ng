@@ -8,52 +8,49 @@
     </ng-template>
     <ng-template #showTitleTemplate [ngTemplateOutlet]="titleTemplate"></ng-template>
   </div>
-
-
   <div *ngIf="!notificationGroups">
     <pfng-empty-state [config]="emptyStateConfig"></pfng-empty-state>
   </div>
-
   <div *ngIf="notificationGroups" class="panel-group">
-      <div class="panel panel-default" [ngClass]="{expanded: notificationGroup.open}" *ngFor="let notificationGroup of notificationGroups, let index = index">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a *ngIf="!singleGroup" (click)="toggleCollapse(notificationGroup)" [ngClass]="{collapsed: !notificationGroup.open}">
+    <div class="panel panel-default" [ngClass]="{expanded: notificationGroup.open}" *ngFor="let notificationGroup of notificationGroups, let index = index">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a *ngIf="!singleGroup" (click)="toggleCollapse(notificationGroup)" [ngClass]="{collapsed: !notificationGroup.open}">
               <span>
                 <ng-template let-group="notificationGroup" let-index="index" [ngTemplateOutlet]="headingTemplate" [ngTemplateOutletContext]="{group:notificationGroup, index: index}"></ng-template>
               </span>
-            </a>
-          </h4>
-          <ng-template class="panel-counter" let-group="notificationGroup" let-index="index" [ngTemplateOutlet]="subHeadingTemplate"
-            [ngTemplateOutletContext]="{group:notificationGroup, index: index}"></ng-template>
-        </div>
-        <div class="panel-collapse collapse" [ngClass]="{in: notificationGroup.open || notificationGroups.length === 1}">
-          <div *ngIf="hasNotifications(notificationGroup)" class="panel-body">
-            <div class="drawer-pf-notification" [ngClass]="{unread: !notification.isViewing, 'expanded-notification': expanded}" *ngFor="let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index">
-              <ng-template let-notify="notification" let-index="index" [ngTemplateOutlet]="notificationBodyTemplate" [ngTemplateOutletContext]="{notify:notification, index: index}"></ng-template>
-            </div>
-            <div *ngIf="notificationGroup.loading" class="drawer-pf-loading text-center">
-              <span class="spinner spinner-xs spinner-inline"></span> Loading More
-            </div>
+          </a>
+        </h4>
+        <ng-template class="panel-counter" let-group="notificationGroup" let-index="index" [ngTemplateOutlet]="subHeadingTemplate"
+                     [ngTemplateOutletContext]="{group:notificationGroup, index: index}"></ng-template>
+      </div>
+      <div class="panel-collapse collapse" [ngClass]="{in: notificationGroup.open || notificationGroups.length === 1}">
+        <div *ngIf="hasNotifications(notificationGroup)" class="panel-body">
+          <div class="drawer-pf-notification" [ngClass]="{unread: !notification.isViewing, 'expanded-notification': expanded}" *ngFor="let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index">
+            <ng-template let-notify="notification" let-index="index" [ngTemplateOutlet]="notificationBodyTemplate" [ngTemplateOutletContext]="{notify:notification, index: index}"></ng-template>
           </div>
-          <div *ngIf="(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)" class="drawer-pf-action">
+          <div *ngIf="notificationGroup.loading" class="drawer-pf-loading text-center">
+            <span class="spinner spinner-xs spinner-inline"></span> Loading More
+          </div>
+        </div>
+        <div *ngIf="(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)" class="drawer-pf-action">
             <span class="drawer-pf-action-link" *ngIf="showMarkAllRead && hasUnread(notificationGroup)">
               <button class="btn btn-link" (click)="onMarkAllRead(notificationGroup)">Mark All Read</button>
             </span>
-            <span class="drawer-pf-action-link">
+          <span class="drawer-pf-action-link">
               <button class="btn btn-link" *ngIf="showClearAll" (click)="onClearAll(notificationGroup)">
                 <span class="pficon pficon-close"></span>
                 Clear All
               </button>
             </span>
-          </div>
-          <div *ngIf="!hasNotifications(notificationGroup)">
-            <div class="panel-body">
-              <pfng-empty-state [config]="notificationGroup.emptyStateConfig"></pfng-empty-state>
-            </div>
-          </div>
-          <ng-template *ngIf="notificationFooterTemplate" [ngTemplateOutlet]="notificationFooterTemplate"></ng-template>
         </div>
+        <div *ngIf="!hasNotifications(notificationGroup)">
+          <div class="panel-body">
+            <pfng-empty-state [config]="notificationGroup.emptyStateConfig"></pfng-empty-state>
+          </div>
+        </div>
+        <ng-template *ngIf="notificationFooterTemplate" [ngTemplateOutlet]="notificationFooterTemplate"></ng-template>
       </div>
     </div>
+  </div>
 </div>
