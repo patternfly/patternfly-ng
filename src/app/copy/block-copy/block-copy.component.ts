@@ -2,13 +2,11 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   ViewEncapsulation
 } from '@angular/core';
 import { uniqueId } from 'lodash';
 
 import { CopyBase } from '../copy-base';
-// import { BlockCopyConfig } from './block-copy-config';
 
 import { CopyService } from '../copy-service/copy.service';
 
@@ -19,7 +17,7 @@ import { CopyService } from '../copy-service/copy.service';
   styleUrls: ['./block-copy.component.less']
 })
 
-export class BlockCopyComponent extends CopyBase implements OnInit {
+export class BlockCopyComponent extends CopyBase {
   @Input('label') label: string;
   @Input('expandBtnAriaLabel') expandBtnAriaLabel: string;
   @Input('buttonLabel') buttonLabel: string = 'Copy';
@@ -37,8 +35,6 @@ export class BlockCopyComponent extends CopyBase implements OnInit {
   get copyBtnId(): string {
     return this.uniqueID;
   }
-
-  ngOnInit(): void {}
 
   /**
    * Toggle copyValue panel open and close
