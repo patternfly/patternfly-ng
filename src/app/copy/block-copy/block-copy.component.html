@@ -1,7 +1,8 @@
 <div class="pfng-block-copy">
   <label
+    *ngIf="label"
     class="pfng-block-copy-label"
-    [attr.for]="'pfng-block-copy-value-button-' + hash">{{label}}</label>
+    [attr.for]="copyBtnId">{{label}}</label>
   <div class="pfng-block-copy-inner-container">
     <div class="pfng-block-copy-preview" [ngClass]="{'pf-is-open': expanded}">
 
@@ -11,20 +12,20 @@
         class="pfng-block-copy-preview-btn"
         (click)="togglePanel()">
         <i
+          aria-hidden="true"
           class="fa pfng-block-copy-preview-icon"
           [ngClass]="{'fa-angle-down': expanded, 'fa-angle-right': !expanded}"></i>
       </button>
 
-      <div class="pfng-block-copy-preview-txt-cont">
-        <span
-          class="pfng-block-copy-preview-txt"
-          data-toggle="tooltip"
-          data-placement="top"
-          [attr.tooltip]="tooltip">{{copyValue}}</span>
+      <div
+        class="pfng-block-copy-preview-txt-cont"
+        placement="{{tooltipPlacement ? tooltipPlacement : null}}"
+        tooltip="{{tooltip ? tooltip : null}}">
+        <span class="pfng-block-copy-preview-txt">{{copyValue}}</span>
       </div>
 
       <button
-        [attr.id]="'pfng-block-copy-value-button-' + hash"
+        [attr.id]="copyBtnId"
         class="btn btn-lg btn-default pfng-block-copy-btn"
         [attr.aria-label]="copyBtnAriaLabel"
         (click)="copyValueToClipboard()">{{buttonLabel}}</button>

@@ -7,6 +7,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+// import { InlineCopyConfig } from './inline-copy-config';
+
 import { CopyService } from '../copy-service/copy.service';
 
 @Component({
@@ -17,9 +19,10 @@ import { CopyService } from '../copy-service/copy.service';
 })
 
 export class InlineCopyComponent implements OnInit {
-  @Input('ariaLabel') ariaLabel: string;
+  @Input('copyBtnAriaLabel') copyBtnAriaLabel: string;
   @Input('copyValue') copyValue: string = 'Missing \'copyValue\' @Input property';
-  @Input('tooltipTxt') tooltipTxt: string;
+  @Input('tooltip') tooltip: string;
+  @Input('tooltipPlacement') tooltipPlacement: string = 'top';
 
   @Output('copiedToClipboard') copiedToClipboard = new EventEmitter();
 
@@ -28,12 +31,7 @@ export class InlineCopyComponent implements OnInit {
    */
   constructor(private copyService: CopyService) {}
 
-  ngOnInit(): void {
-    if (!this.ariaLabel) throw new Error('Missing required @Input property \'ariaLabel\'');
-    if (!this.tooltipTxt) {
-      this.tooltipTxt = this.ariaLabel;
-    }
-  }
+  ngOnInit(): void {}
 
   /**
    * Copy value to the user's system clipboard
@@ -41,9 +39,9 @@ export class InlineCopyComponent implements OnInit {
   copyValueToClipboard(): void {
     let result = this.copyService.copy(this.copyValue);
     if (result) {
-      this.copiedToClipboard.emit(`${this.ariaLabel} copied!`);
+      this.copiedToClipboard.emit(`${this.copyBtnAriaLabel} copied!`);
     } else {
-      console.error(`Failed to copy ${this.ariaLabel}`);
+      console.error(`Failed to copy ${this.copyBtnAriaLabel}`);
     }
   }
 }

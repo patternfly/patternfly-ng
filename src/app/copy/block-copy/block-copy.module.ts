@@ -6,10 +6,6 @@ import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CopyService } from '../copy-service/copy.service';
 import { BlockCopyComponent } from './block-copy.component';
 
-export {
-  BlockCopyComponent
-};
-
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +15,6 @@ export {
     BlockCopyComponent
   ],
   exports: [BlockCopyComponent],
-  providers: [CopyService]
+  providers: [CopyService, TooltipConfig]
 })
 export class BlockCopyModule {}

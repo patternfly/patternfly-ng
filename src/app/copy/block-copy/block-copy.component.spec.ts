@@ -10,22 +10,16 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { CopyService } from '../copy-service/copy.service';
 import { BlockCopyComponent } from './block-copy.component';
+import { BlockCopyConfig } from './block-copy-config';
 import { Component } from '@angular/core';
 
 class MockedCopyService {}
-
-interface ComponentConfig {
-  label: string;
-  copyValue: string;
-  buttonLabel?: string;
-  expanded?: boolean;
-}
 
 describe('Block Copy Component - ', () => {
 
   let blockCopy: BlockCopyComponent;
   let fixture: ComponentFixture<BlockCopyComponent>;
-  let componentConfig: ComponentConfig;
+  let componentConfig: BlockCopyConfig;
   let copyService: MockedCopyService;
 
   beforeEach(async(() => {
@@ -40,7 +34,9 @@ describe('Block Copy Component - ', () => {
     .then(() => {
       componentConfig = {
         label: 'Block-level Foobar',
-        copyValue: 'Token'
+        copyValue: 'Token',
+        expandBtnAriaLabel: 'Expand Block-level Foobar',
+        tooltip: 'Block Copy Tooltip'
       };
     })
     .then(() => {
@@ -95,7 +91,7 @@ describe('Block Copy Component - ', () => {
                         .nativeElement
                         .querySelector('.pfng-block-copy-preview-btn')
                         .getAttribute('aria-label');
-    expect(ariaLabel).toBe(`${componentConfig.label}`);
+    expect(ariaLabel).toBe('Expand Block-level Foobar');
   });
 
   it('should set the aria expanded attribute when opened/closed', () => {
@@ -111,4 +107,36 @@ describe('Block Copy Component - ', () => {
     expect(ariaExpanded).toBe('true');
   });
 
+  it('should set the tooltip text', () => {
+    (<any>Object).assign(blockCopy, componentConfig);
+    fixture.detectChanges();
+    const tooltipText = fixture
+                          .debugElement
+                          .query(By.css('.pfng-block-copy-preview-txt-cont'))
+                          .nativeElement
+                          .getAttribute('ng-reflect-tooltip');
+    expect(tooltipText).toBe('Block Copy Tooltip');
+  });
+
+  it('should set the default tooltip placement', () => {
+    (<any>Object).assign(blockCopy, componentConfig);
+    fixture.detectChanges();
+    const tooltipText = fixture
+                          .debugElement
+                          .query(By.css('.pfng-block-copy-preview-txt-cont'))
+                          .nativeElement
+                          .getAttribute('ng-reflect-placement');
+    expect(tooltipText).toBe('top');
+  });
+
+  it('should set a custom tooltip placement', () => {
+    (<any>Object).assign(blockCopy, componentConfig, {tooltipPlacement: 'bottom'});
+    fixture.detectChanges();
+    const tooltipText = fixture
+                          .debugElement
+                          .query(By.css('.pfng-block-copy-preview-txt-cont'))
+                          .nativeElement
+                          .getAttribute('ng-reflect-placement');
+    expect(tooltipText).toBe('bottom');
+  });
 });

@@ -6,10 +6,6 @@ import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CopyService } from '../copy-service/copy.service';
 import { InlineCopyComponent } from './inline-copy.component';
 
-export {
-  InlineCopyComponent
-};
-
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +15,6 @@ export {
     InlineCopyComponent
   ],
   exports: [InlineCopyComponent],
-  providers: [CopyService]
+  providers: [CopyService, TooltipConfig]
 })
 export class InlineCopyModule {}

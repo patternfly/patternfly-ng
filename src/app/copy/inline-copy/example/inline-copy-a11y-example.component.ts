@@ -4,22 +4,32 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { InlineCopyConfig } from '../inline-copy-config';
+
 import { Notification } from '../../../notification/notification';
 import { NotificationService } from '../../../notification/notification-service/notification.service';
 import { NotificationType } from '../../../notification/notification-type';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'inline-copy-callback-example',
-  templateUrl: './inline-copy-callback-example.component.html'
+  selector: 'inline-copy-a11y-example',
+  templateUrl: './inline-copy-a11y-example.component.html'
 })
-export class InlineCopyCallbackExampleComponent implements OnInit {
+export class InlineCopyA11yExampleComponent implements OnInit {
   notifications: Notification[];
 
-  cbExConfig = {
-    ariaLabel: 'Example Sparql Query',
+  a11yEx01: InlineCopyConfig = {
+    copyBtnAriaLabel: 'WAI-ARIA URL',
+    // tslint:disable-next-line:max-line-length
+    copyValue: 'https://www.w3.org/TR/wai-aria-1.1/',
+    tooltip: 'ARIA W3C Recommendation'
+  };
+
+  a11yEx02: InlineCopyConfig = {
+    copyBtnAriaLabel: 'Example Sparql Query',
+    // tslint:disable-next-line:max-line-length
     copyValue: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}',
-    buttonLabel: 'Copy'
+    tooltip: 'Semantic Triple (SPO)'
   };
 
   constructor(private notificationService: NotificationService) {}
@@ -28,11 +38,11 @@ export class InlineCopyCallbackExampleComponent implements OnInit {
     this.notifications = this.notificationService.getNotifications();
   }
 
-  notify(copyValueLabel: string): void {
+  notify(msg: string): void {
     this.notificationService.message(
       NotificationType.SUCCESS,
       null,
-      'Sparql Query Copied!',
+      msg,
       false,
       null,
       null);

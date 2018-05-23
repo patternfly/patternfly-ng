@@ -4,6 +4,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { InlineCopyConfig } from '../inline-copy-config';
+
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'inline-copy-basic-example',
@@ -11,9 +13,10 @@ import {
 })
 export class InlineCopyBasicExampleComponent implements OnInit {
 
-  basicExConfig = {
-    ariaLabel: 'WAI-ARIA URL',
-    copyValue: 'https://www.w3.org/TR/wai-aria-1.1/'
+  basicExConfig: InlineCopyConfig = {
+    copyBtnAriaLabel: 'Copy WAI-ARIA URL',
+    copyValue: 'https://www.w3.org/TR/wai-aria-1.1/',
+    tooltip: 'ARIA W3C Recommendation'
   };
 
   constructor() {}

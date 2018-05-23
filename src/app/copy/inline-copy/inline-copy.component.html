@@ -2,15 +2,14 @@
   class="pfng-inline-copy">
   <span
     class="pfng-inline-copy-txt-cont"
-    data-toggle="tooltip"
-    data-placement="top"
-    [attr.tooltip]="tooltipTxt">
+    placement="{{tooltipPlacement ? tooltipPlacement : null}}"
+    tooltip="{{tooltip ? tooltip : null}}">
     {{copyValue}}
   </span>
   <button
     class="pfng-inline-copy-btn"
-    [attr.aria-label]="ariaLabel"
+    [attr.aria-label]="copyBtnAriaLabel"
     (click)="copyValueToClipboard()">
-    <i class="fa fa-copy" aria-hidden="true"></i>
+    <i class="fa fa-clipboard" aria-hidden="true"></i>
   </button>
 </span>

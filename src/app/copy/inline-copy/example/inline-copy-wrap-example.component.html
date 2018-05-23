@@ -1,13 +1,13 @@
 <div class="padding-15">
   <div class="row">
-    <div class="col-sm-12 margin-bottom-15">
+    <div class="col-sm-8 margin-bottom-15">
       <p>This example shows a long string being truncated as the component meets the edge of a
         <a href="https://www.w3.org/TR/css-flexbox-1/#flex-formatting-context" target="_blank">
           flex formatting context</a>.
-        Inline Copy features an inline-flex container.</p>
+        Inline Copy features an inline-flex container and does not wrap over multiple lines, and instead handles overflow content gracefully with an ellipsis.</p>
       <pfng-inline-copy
         [copyValue]="wrapExConfig.copyValue"
-        [ariaLabel]="wrapExConfig.ariaLabel"></pfng-inline-copy>
+        [copyBtnAriaLabel]="wrapExConfig.copyBtnAriaLabel"></pfng-inline-copy>
     </div>
   </div>
   <div class="row padding-top-10">

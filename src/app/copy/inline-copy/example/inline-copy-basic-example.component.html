@@ -4,11 +4,15 @@
       <div class="row">
         <div class="col-sm-8">
           <p>
-            This example shows how the inline copy component looks when it's surrounded by text content.
-            Inline Copy occupies as much space as necessary to display it's content.
-            <pfng-inline-copy [copyValue]="basicExConfig.copyValue" [ariaLabel]="basicExConfig.ariaLabel"></pfng-inline-copy>
-            Font size for this component is always reduced slightly relative to the surrounding text.
-            Inline Copy does not wrap over multiple lines, but instead handles overflow content gracefully.
+            This example shows how the inline copy component looks when surrounded by text content.
+            Inline Copy only occupies as much space as necessary to display its content.
+            Font size for this component is reduced slightly relative to the surrounding text.
+            <pfng-inline-copy
+              [copyValue]="basicExConfig.copyValue"
+              [copyBtnAriaLabel]="basicExConfig.copyBtnAriaLabel"
+              [tooltip]="basicExConfig.tooltip"></pfng-inline-copy>
+            It is recommended to not repeat the copyValue text for the tooltip as this would be redundant.
+            Just as with BlockCopy, you have full and independent control over tooltips, aria labels, button labels, and every other piece of text that's displayed as part of this component.
           </p>
         </div>
       </div>

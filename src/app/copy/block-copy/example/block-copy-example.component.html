@@ -9,8 +9,8 @@
       <tab heading="Basic" (select)="tabSelected($event)">
         <block-copy-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></block-copy-basic-example>
       </tab>
-      <tab heading="Multiple" (select)="tabSelected($event)">
-        <block-copy-multiple-example *ngIf="activeTab === 'Multiple'"></block-copy-multiple-example>
+      <tab heading="Callback" (select)="tabSelected($event)">
+        <block-copy-callback-example *ngIf="activeTab === 'Callback'"></block-copy-callback-example>
       </tab>
       <tab heading="Expanded" (select)="tabSelected($event)">
         <block-copy-expanded-example *ngIf="activeTab === 'Expanded'"></block-copy-expanded-example>

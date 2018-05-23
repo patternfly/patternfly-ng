@@ -1,16 +1,16 @@
 <div class="padding-15">
   <div class="row">
-    <div class="col-sm-8">
-      <h5>Example customizing labels and accessible text</h5>
-      <p>This example illustrates how you can control various bits of text within the component.</p>
+    <div class="col-sm-8 padding-bottom-15">
+      <p>This basic example illustrates how you can control various bits of text within the component. Block copy is not intended for use with small strings of text.</p>
       <pfng-block-copy
         [copyValue]="basicEx01.copyValue"
         [label]="basicEx01.label"
         [buttonLabel]="basicEx01.buttonLabel"
-        (copiedToClipboard)="notify($event)"></pfng-block-copy>
+        [expandBtnAriaLabel]="basicEx01.expandBtnAriaLabel"
+        [copyBtnAriaLabel]="basicEx01.copyBtnAriaLabel"
+        [tooltip]="basicEx01.tooltip"></pfng-block-copy>
     </div>
   </div>
-  <pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>
   <div class="row padding-top-10">
     <div class="col-sm-12">
       <h4>Code</h4>

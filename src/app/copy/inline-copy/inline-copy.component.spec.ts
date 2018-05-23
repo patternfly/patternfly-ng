@@ -10,6 +10,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { CopyService } from '../copy-service/copy.service';
 import { InlineCopyComponent } from './inline-copy.component';
+import { InlineCopyConfig } from './inline-copy-config';
 import { Component } from '@angular/core';
 
 class MockedCopyService {
@@ -18,16 +19,11 @@ class MockedCopyService {
   }
 }
 
-interface ComponentConfig {
-  copyValue: string;
-  ariaLabel: string;
-}
-
 describe('Inline Copy Component - ', () => {
 
   let inlineCopy: InlineCopyComponent;
   let fixture: ComponentFixture<InlineCopyComponent>;
-  let componentConfig: ComponentConfig;
+  let componentConfig: InlineCopyConfig;
   let copyService: MockedCopyService;
 
   beforeEach(async(() => {
@@ -41,8 +37,9 @@ describe('Inline Copy Component - ', () => {
     .compileComponents()
     .then(() => {
       componentConfig = {
-        ariaLabel: 'Foobar',
-        copyValue: 'Test String'
+        copyBtnAriaLabel: 'Foobar',
+        copyValue: 'Test String',
+        tooltip: 'Test tooltip'
       };
     })
     .then(() => {
@@ -84,8 +81,30 @@ describe('Inline Copy Component - ', () => {
                           .debugElement
                           .query(By.css('.pfng-inline-copy-txt-cont'))
                           .nativeElement
-                          .getAttribute('tooltip');
-    expect(tooltipText).toBe('Foobar');
+                          .getAttribute('ng-reflect-tooltip');
+    expect(tooltipText).toBe('Test tooltip');
+  });
+
+  it('should set the default tooltip placement', () => {
+    (<any>Object).assign(inlineCopy, componentConfig);
+    fixture.detectChanges();
+    const tooltipText = fixture
+                          .debugElement
+                          .query(By.css('.pfng-inline-copy-txt-cont'))
+                          .nativeElement
+                          .getAttribute('ng-reflect-placement');
+    expect(tooltipText).toBe('top');
+  });
+
+  it('should set a custom tooltip placement', () => {
+    (<any>Object).assign(inlineCopy, componentConfig, {tooltipPlacement: 'right'});
+    fixture.detectChanges();
+    const tooltipPlacement = fixture
+                          .debugElement
+                          .query(By.css('.pfng-inline-copy-txt-cont'))
+                          .nativeElement
+                          .getAttribute('ng-reflect-placement');
+    expect(tooltipPlacement).toBe('right');
   });
 
   it('should set the copyValue container text node', () => {
@@ -99,14 +118,7 @@ describe('Inline Copy Component - ', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
     const ariaLabel = fixture.debugElement.children[0].children[1].attributes['aria-label'];
-    expect(ariaLabel).toBe(`${componentConfig.ariaLabel}`);
-  });
-
-  it('should throw error without an aria label', () => {
-    (<any>Object).assign({ariaLabel: null}, inlineCopy, componentConfig);
-    expect(() => {
-      fixture.detectChanges();
-    }).toThrow(new Error('Missing required @Input property \'ariaLabel\''));
+    expect(ariaLabel).toBe(`${componentConfig.copyBtnAriaLabel}`);
   });
 
   it('should emit a copiedToClipboard event', () => {
@@ -114,7 +126,7 @@ describe('Inline Copy Component - ', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     inlineCopy.copiedToClipboard.subscribe(eventResponse => {
       expect(spy).toHaveBeenCalled();
-      expect(eventResponse).toBe(`${inlineCopy.ariaLabel} copied!`);
+      expect(eventResponse).toBe(`${inlineCopy.copyBtnAriaLabel} copied!`);
     });
     const copyBtn = fixture.debugElement.query(By.css('.pfng-inline-copy-btn'));
     copyBtn.triggerEventHandler('click', null);
