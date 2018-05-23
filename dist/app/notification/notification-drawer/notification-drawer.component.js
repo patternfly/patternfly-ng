@@ -10,12 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation, } from '@angular/core';
 import { filter, get, size } from 'lodash';
 /**
- * Component for rendering a notification drawer. This provides a common mechanism to handle how the
- * notification drawer should look and behave without mandating
- * the look of the notification group heading or notification body.
+ * Notification drawer component
  *
+ * This provides a common mechanism to handle how the notification drawer should look and behave without mandating
+ * the look of the notification group heading or notification body.
  */
 var NotificationDrawerComponent = /** @class */ (function () {
+    // Initialization
     /**
      * The default constructor
      */
@@ -42,6 +43,31 @@ var NotificationDrawerComponent = /** @class */ (function () {
         this.unreadNotifications = new EventEmitter();
     }
     /**
+     * Setup component configuration upon initialization
+     */
+    NotificationDrawerComponent.prototype.ngOnInit = function () {
+        this.collapseOpenGroups();
+        this.singleGroup = size(this.notificationGroups) < 2;
+        this.markreadCount = 0;
+        this.setEmptyConfig();
+        this.readCountConfig();
+    };
+    // Actions
+    /**
+     *  Return boolean if group has notifications
+     *  @param group
+     */
+    NotificationDrawerComponent.prototype.hasNotifications = function (group) {
+        return size(get(group, 'notifications')) > 0;
+    };
+    /**
+     *  Return boolean if group has unread notifications
+     *  @param group
+     */
+    NotificationDrawerComponent.prototype.hasUnread = function (group) {
+        return size(filter(get(group, 'notifications'), { 'isViewing': false })) > 0;
+    };
+    /**
      * method for the close button, emits event with clicked over close icon
      *
      */
@@ -56,27 +82,6 @@ var NotificationDrawerComponent = /** @class */ (function () {
     NotificationDrawerComponent.prototype.onMarkAllRead = function (group) {
         group.notifications.forEach(function (n) { return n.isViewing = true; });
         this.updateReadCount();
-    };
-    /**
-     * Toggle to expand the drawer
-     */
-    NotificationDrawerComponent.prototype.toggleExpandDrawer = function () {
-        if (this.allowExpand)
-            this.expanded = !this.expanded;
-    };
-    /**
-     *  Return boolean if group has unread notifications
-     *  @param group
-     */
-    NotificationDrawerComponent.prototype.hasUnread = function (group) {
-        return size(filter(get(group, 'notifications'), { 'isViewing': false })) > 0;
-    };
-    /**
-     *  Return boolean if group has notifications
-     *  @param group
-     */
-    NotificationDrawerComponent.prototype.hasNotifications = function (group) {
-        return size(get(group, 'notifications')) > 0;
     };
     /**
      *  Method for the clear all button (Optional)
@@ -100,15 +105,13 @@ var NotificationDrawerComponent = /** @class */ (function () {
         }
     };
     /**
-     * Setup component configuration upon initialization
+     * Toggle to expand the drawer
      */
-    NotificationDrawerComponent.prototype.ngOnInit = function () {
-        this.collapseOpenGroups();
-        this.singleGroup = size(this.notificationGroups) < 2;
-        this.markreadCount = 0;
-        this.setEmptyConfig();
-        this.readCountConfig();
+    NotificationDrawerComponent.prototype.toggleExpandDrawer = function () {
+        if (this.allowExpand)
+            this.expanded = !this.expanded;
     };
+    // Private
     /**
      * Collapse panel for all groups
      */
@@ -155,10 +158,6 @@ var NotificationDrawerComponent = /** @class */ (function () {
     __decorate([
         Input(),
         __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "hidden", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
     ], NotificationDrawerComponent.prototype, "allowExpand", void 0);
     __decorate([
         Input(),
@@ -166,8 +165,24 @@ var NotificationDrawerComponent = /** @class */ (function () {
     ], NotificationDrawerComponent.prototype, "expanded", void 0);
     __decorate([
         Input(),
+        __metadata("design:type", TemplateRef)
+    ], NotificationDrawerComponent.prototype, "headingTemplate", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], NotificationDrawerComponent.prototype, "hidden", void 0);
+    __decorate([
+        Input(),
         __metadata("design:type", String)
-    ], NotificationDrawerComponent.prototype, "title", void 0);
+    ], NotificationDrawerComponent.prototype, "noNotificationsText", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], NotificationDrawerComponent.prototype, "notificationBodyTemplate", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", TemplateRef)
+    ], NotificationDrawerComponent.prototype, "notificationFooterTemplate", void 0);
     __decorate([
         Input(),
         __metadata("design:type", Array)
@@ -186,32 +201,20 @@ var NotificationDrawerComponent = /** @class */ (function () {
     ], NotificationDrawerComponent.prototype, "showClearAll", void 0);
     __decorate([
         Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "titleTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "headingTemplate", void 0);
+        __metadata("design:type", Boolean)
+    ], NotificationDrawerComponent.prototype, "singleGroup", void 0);
     __decorate([
         Input(),
         __metadata("design:type", TemplateRef)
     ], NotificationDrawerComponent.prototype, "subHeadingTemplate", void 0);
     __decorate([
         Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "notificationBodyTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "notificationFooterTemplate", void 0);
-    __decorate([
-        Input(),
         __metadata("design:type", String)
-    ], NotificationDrawerComponent.prototype, "noNotificationsText", void 0);
+    ], NotificationDrawerComponent.prototype, "title", void 0);
     __decorate([
         Input(),
-        __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "singleGroup", void 0);
+        __metadata("design:type", TemplateRef)
+    ], NotificationDrawerComponent.prototype, "titleTemplate", void 0);
     __decorate([
         Output('close'),
         __metadata("design:type", Object)

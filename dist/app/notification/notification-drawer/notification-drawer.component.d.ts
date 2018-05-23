@@ -1,21 +1,12 @@
 import { EventEmitter, OnInit, TemplateRef } from '@angular/core';
-import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { NotificaitonGroup } from '../notification-group';
 /**
- * Component for rendering a notification drawer. This provides a common mechanism to handle how the
- * notification drawer should look and behave without mandating
- * the look of the notification group heading or notification body.
+ * Notification drawer component
  *
+ * This provides a common mechanism to handle how the notification drawer should look and behave without mandating
+ * the look of the notification group heading or notification body.
  */
 export declare class NotificationDrawerComponent implements OnInit {
-    /**
-     * A config containing properties for empty state when no notification are available
-     */
-    emptyStateConfig?: EmptyStateConfig;
-    /**
-     * Flag if the drawer is currently hidden
-     */
-    hidden: boolean;
     /**
      * Flag if the drawer can be expanded. Optional, default: false
      */
@@ -25,9 +16,28 @@ export declare class NotificationDrawerComponent implements OnInit {
      */
     expanded: boolean;
     /**
-     * Title to display for the drawer (leaving this blank will remove the provided expand capability)
+     * Template for the heading area for each notification group,
+     *  access the group via notificationGroup
      */
-    title: string;
+    headingTemplate: TemplateRef<any>;
+    /**
+     * Flag if the drawer is currently hidden
+     */
+    hidden: boolean;
+    /**
+     * Text to show when there are no notifications. Optional.
+     */
+    noNotificationsText: string;
+    /**
+     * Template for the notification body for each notification,
+     * access the notification via notification
+     */
+    notificationBodyTemplate: TemplateRef<any>;
+    /**
+     * Template for the notification footer for each notification,
+     * access the notification via notification
+     */
+    notificationFooterTemplate: TemplateRef<any>;
     /**
      * Collection notification groups to add to the drawer. Alternatively, a single group object
      * can be given if categorization is not used.
@@ -46,38 +56,23 @@ export declare class NotificationDrawerComponent implements OnInit {
      */
     showClearAll: boolean;
     /**
-     * Template for the title area for the notification drawer, use this
-     * to customize the drawer title area
+     * Boolean flag if size of group less 2
      */
-    titleTemplate: TemplateRef<any>;
-    /**
-     * Template for the heading area for each notification group,
-     *  access the group via notificationGroup
-     */
-    headingTemplate: TemplateRef<any>;
+    singleGroup: boolean;
     /**
      * Template for the sub-heading area for each notification group,
      * access the group via notificationGroup
      */
     subHeadingTemplate: TemplateRef<any>;
     /**
-     * Template for the notification body for each notification,
-     * access the notification via notification
+     * Title to display for the drawer (leaving this blank will remove the provided expand capability)
      */
-    notificationBodyTemplate: TemplateRef<any>;
+    title: string;
     /**
-     * Template for the notification footer for each notification,
-     * access the notification via notification
+     * Template for the title area for the notification drawer, use this
+     * to customize the drawer title area
      */
-    notificationFooterTemplate: TemplateRef<any>;
-    /**
-     * Text to show when there are no notifications. Optional.
-     */
-    noNotificationsText: string;
-    /**
-     * Boolean flag if size of group less 2
-     */
-    singleGroup: boolean;
+    titleTemplate: TemplateRef<any>;
     /**
      * Event emitter when close icon clicked
      */
@@ -87,13 +82,35 @@ export declare class NotificationDrawerComponent implements OnInit {
      */
     unreadNotifications: EventEmitter<boolean>;
     /**
-     * count unread notifications
+     * A config containing properties for empty state when no notification are available
      */
-    private unreadCount;
+    private emptyStateConfig?;
     /**
      * count read count
      */
     private markreadCount;
+    /**
+     * count unread notifications
+     */
+    private unreadCount;
+    /**
+     * The default constructor
+     */
+    constructor();
+    /**
+     * Setup component configuration upon initialization
+     */
+    ngOnInit(): void;
+    /**
+     *  Return boolean if group has notifications
+     *  @param group
+     */
+    hasNotifications(group: NotificaitonGroup[]): boolean;
+    /**
+     *  Return boolean if group has unread notifications
+     *  @param group
+     */
+    hasUnread(group: NotificaitonGroup): boolean;
     /**
      * method for the close button, emits event with clicked over close icon
      *
@@ -105,20 +122,6 @@ export declare class NotificationDrawerComponent implements OnInit {
      */
     onMarkAllRead(group: NotificaitonGroup): void;
     /**
-     * Toggle to expand the drawer
-     */
-    toggleExpandDrawer(): void;
-    /**
-     *  Return boolean if group has unread notifications
-     *  @param group
-     */
-    hasUnread(group: NotificaitonGroup): boolean;
-    /**
-     *  Return boolean if group has notifications
-     *  @param group
-     */
-    hasNotifications(group: NotificaitonGroup[]): boolean;
-    /**
      *  Method for the clear all button (Optional)
      *  @param group
      */
@@ -129,13 +132,9 @@ export declare class NotificationDrawerComponent implements OnInit {
      */
     toggleCollapse(group: NotificaitonGroup): void;
     /**
-     * Setup component configuration upon initialization
+     * Toggle to expand the drawer
      */
-    ngOnInit(): void;
-    /**
-     * The default constructor
-     */
-    constructor();
+    toggleExpandDrawer(): void;
     /**
      * Collapse panel for all groups
      */
