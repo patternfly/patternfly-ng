@@ -10,6 +10,13 @@
     class="pfng-inline-copy-btn"
     [attr.aria-label]="copyBtnAriaLabel"
     (click)="copyValueToClipboard()">
-    <i class="fa fa-clipboard" aria-hidden="true"></i>
+    <i
+      class="fa fa-clipboard"
+      aria-hidden="true"
+      *ngIf="!recentlyCopied"></i>
+    <i
+      class="fa fa-check"
+      aria-hidden="true"
+      *ngIf="recentlyCopied"></i>
   </button>
 </span>

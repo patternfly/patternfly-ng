@@ -1,7 +1,7 @@
 .pfng-block-copy {
 
   &-inner-container {
-    border: 1px solid #aaa;
+    border: 1px solid #bbb;
   }
 
   &-preview {
@@ -9,7 +9,7 @@
     align-items: stretch;
 
     &.pf-is-open {
-      border-bottom: 1px solid #aaa;
+      border-bottom: 1px solid #bbb;
       background: #ddd;
     }
 
@@ -45,9 +45,18 @@
 
   &-btn {
     border: none;
-    border-left: 1px solid #aaa;
+    border-left: 1px solid #bbb;
     box-shadow: none;
     font-size: 1em;
+
+    &:active {
+      box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, .25);
+    }
+
+    &.recently-copied {
+      background: #3f9c35;
+      color: #fafafa;
+    }
   }
 
   &-body {

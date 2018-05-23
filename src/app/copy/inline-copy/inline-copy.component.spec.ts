@@ -19,7 +19,7 @@ class MockedCopyService {
   }
 }
 
-describe('Inline Copy Component - ', () => {
+fdescribe('Inline Copy Component - ', () => {
 
   let inlineCopy: InlineCopyComponent;
   let fixture: ComponentFixture<InlineCopyComponent>;

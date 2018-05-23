@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
 
 class MockedCopyService {}
 
-describe('Block Copy Component - ', () => {
+fdescribe('Block Copy Component - ', () => {
 
   let blockCopy: BlockCopyComponent;
   let fixture: ComponentFixture<BlockCopyComponent>;

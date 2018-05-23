@@ -5,7 +5,6 @@
     [attr.for]="copyBtnId">{{label}}</label>
   <div class="pfng-block-copy-inner-container">
     <div class="pfng-block-copy-preview" [ngClass]="{'pf-is-open': expanded}">
-
       <button
         [attr.aria-label]="expandBtnAriaLabel"
         [attr.aria-expanded]="expanded"
@@ -16,19 +15,24 @@
           class="fa pfng-block-copy-preview-icon"
           [ngClass]="{'fa-angle-down': expanded, 'fa-angle-right': !expanded}"></i>
       </button>
-
       <div
         class="pfng-block-copy-preview-txt-cont"
         placement="{{tooltipPlacement ? tooltipPlacement : null}}"
         tooltip="{{tooltip ? tooltip : null}}">
         <span class="pfng-block-copy-preview-txt">{{copyValue}}</span>
       </div>
-
       <button
         [attr.id]="copyBtnId"
         class="btn btn-lg btn-default pfng-block-copy-btn"
+        [ngClass]="{'recently-copied': recentlyCopied}"
         [attr.aria-label]="copyBtnAriaLabel"
-        (click)="copyValueToClipboard()">{{buttonLabel}}</button>
+        (click)="copyValueToClipboard()">
+          <span *ngIf="!recentlyCopied">{{buttonLabel}}</span>
+          <span *ngIf="recentlyCopied">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Copied
+          </span>
+        </button>
     </div>
     <div class="pfng-block-copy-body" *ngIf="expanded">
       <span>{{copyValue}}</span>

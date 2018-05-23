@@ -2,11 +2,12 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output,
+  OnInit,
   ViewEncapsulation
 } from '@angular/core';
 import { uniqueId } from 'lodash';
 
+import { CopyBase } from '../copy-base';
 // import { BlockCopyConfig } from './block-copy-config';
 
 import { CopyService } from '../copy-service/copy.service';
@@ -18,19 +19,17 @@ import { CopyService } from '../copy-service/copy.service';
   styleUrls: ['./block-copy.component.less']
 })
 
-export class BlockCopyComponent {
+export class BlockCopyComponent extends CopyBase implements OnInit {
   @Input('label') label: string;
-  @Input('copyBtnAriaLabel') copyBtnAriaLabel: string;
   @Input('expandBtnAriaLabel') expandBtnAriaLabel: string;
-  @Input('tooltip') tooltip: string;
-  @Input('tooltipPlacement') tooltipPlacement: string = 'top';
-  @Input('copyValue') copyValue: string = 'Missing \'copyValue\' @Input property';
   @Input('buttonLabel') buttonLabel: string = 'Copy';
   @Input('expanded') expanded: boolean = false;
 
-  @Output('copiedToClipboard') copiedToClipboard = new EventEmitter();
-
   public uniqueID: string = uniqueId('pfng-block-copy-button-');
+
+  constructor(protected copyService: CopyService) {
+    super(copyService);
+  }
 
   /**
    * Used to uniquly relate label to copy button
@@ -39,10 +38,7 @@ export class BlockCopyComponent {
     return this.uniqueID;
   }
 
-  /**
-   * The default constructor
-   */
-  constructor(private copyService: CopyService) {}
+  ngOnInit(): void {}
 
   /**
    * Toggle copyValue panel open and close
@@ -51,14 +47,7 @@ export class BlockCopyComponent {
     this.expanded = !this.expanded;
   }
 
-  /**
-   * Copy copyValue to the user's system clipboard
-   */
   copyValueToClipboard(): void {
-    let result = this.copyService.copy(this.copyValue);
-    if (result) {
-      this.copiedToClipboard.emit(`${this.label} copied!`);
-    }
+    super.copyValueToClipboard(this.label);
   }
-
 }

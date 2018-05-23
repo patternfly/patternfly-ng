@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CopyService } from './copy.service';
 
-describe('CopyService', () => {
+fdescribe('CopyService', () => {
 
   let service: CopyService;
   let mockElement: any = document.createElement('textarea');

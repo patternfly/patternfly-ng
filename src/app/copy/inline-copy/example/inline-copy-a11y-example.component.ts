@@ -20,14 +20,12 @@ export class InlineCopyA11yExampleComponent implements OnInit {
 
   a11yEx01: InlineCopyConfig = {
     copyBtnAriaLabel: 'WAI-ARIA URL',
-    // tslint:disable-next-line:max-line-length
     copyValue: 'https://www.w3.org/TR/wai-aria-1.1/',
     tooltip: 'ARIA W3C Recommendation'
   };
 
   a11yEx02: InlineCopyConfig = {
     copyBtnAriaLabel: 'Example Sparql Query',
-    // tslint:disable-next-line:max-line-length
     copyValue: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}',
     tooltip: 'Semantic Triple (SPO)'
   };
