@@ -152,7 +152,21 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
     item.expanded = false;
   }
 
-  private toggleExpandArea(item: any): void {
+  /**
+   * Toggles the list item expansion
+   * 
+   * @param {MouseEvent} $event The event emitted when an item has been clicked
+   * @param {Object} item The object associated with the current row
+   */
+  private toggleExpandArea($event: MouseEvent, item: any): void {
+    // Do nothing if item expansion is disabled
+    if (!this.config.useExpandItems) {
+      return;
+    }
+    // Do not trigger for child items, only on the DOM element to which the event is attached
+    if ($event.target !== $event.currentTarget) {
+      return;
+    }
     // Item may already be open due to compound expansion
     if (item.expanded && item.expandId !== undefined) {
       item.expandId = undefined;

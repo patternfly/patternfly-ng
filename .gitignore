@@ -1,5 +1,6 @@
 .idea
 .DS_Store
+.vscode
 dist
 dist-demo
 node_modules
