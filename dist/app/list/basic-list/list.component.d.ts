@@ -78,6 +78,12 @@ export declare class ListComponent extends ListBase implements DoCheck, OnInit {
      */
     protected getId(suffix: string, index: number): string;
     private closeExpandArea(item);
-    private toggleExpandArea(item);
+    /**
+     * Toggles the list item expansion
+     *
+     * @param {MouseEvent} $event The event emitted when an item has been clicked
+     * @param {Object} item The object associated with the current row
+     */
+    private toggleExpandArea($event, item);
     private togglePin($event, item);
 }
