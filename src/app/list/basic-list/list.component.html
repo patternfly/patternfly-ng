@@ -33,7 +33,7 @@
   </div>
   <!-- items -->
   <div class="list-pf-item {{item?.itemStyleClass}}"
-       [ngClass]="{'active': item.selected || item.isItemExpanded}"
+       [ngClass]="{'active': item.selected || item.expanded}"
        *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index">
     <div class="list-pf-container" [id]="getId('item', i)" (click)="toggleExpandArea($event, item)">
       <!-- pin -->
