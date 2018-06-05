@@ -17,11 +17,17 @@ import { CopyService } from '../copy-service/copy.service';
 
 export class InlineCopyComponent extends CopyBase {
 
+  /**
+   * The default constructor
+   */
   constructor(protected copyService: CopyService) {
     super(copyService);
   }
 
-  public copyValueToClipboard(): void {
-    super.copyValueToClipboard(this.copyBtnAriaLabel);
+  /**
+   * Copies the copyBtnAriaLabel value to the users clipboard
+   */
+  copyToClipboard(): void {
+    this.copyValueToClipboard(this.copyBtnAriaLabel);
   }
 }

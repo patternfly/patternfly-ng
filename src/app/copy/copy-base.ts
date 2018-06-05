@@ -52,15 +52,6 @@ export abstract class CopyBase {
   }
 
   /**
-   * Set the flag indicating copy action has just happened
-   *
-   * @param {boolean} copied True when copy action has been triggered
-   */
-  public set recentlyCopied(copied: boolean) {
-    this._recentlyCopied = copied;
-  }
-
-  /**
    * Default constructor
    */
   constructor(protected copyService: CopyService) {}
@@ -73,9 +64,9 @@ export abstract class CopyBase {
     let result = this.copyService.copy(this.copyValue);
     if (result) {
       this.copiedToClipboard.emit(`${accessibleName} copied!`);
-      this.recentlyCopied = true;
+      this._recentlyCopied = true;
       setTimeout(() => {
-        this.recentlyCopied = false;
+        this._recentlyCopied = false;
       }, 3000);
     }
   }

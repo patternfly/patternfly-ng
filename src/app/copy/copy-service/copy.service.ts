@@ -9,6 +9,9 @@ export class CopyService {
   public dom: Document;
   private verbose: boolean = false;
 
+  /**
+   * The default constructor
+   */
   constructor(@Inject(DOCUMENT) dom: Document) {
     this.dom = dom;
   }

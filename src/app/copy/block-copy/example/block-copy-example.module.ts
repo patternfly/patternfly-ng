@@ -9,14 +9,14 @@ import { DemoComponentsModule } from '../../../../demo/components/demo-component
 import { BlockCopyModule } from '../block-copy.module';
 import { BlockCopyExampleComponent } from './block-copy-example.component';
 import { BlockCopyBasicExampleComponent } from './block-copy-basic-example.component';
-import { BlockCopyCallbackExampleComponent } from './block-copy-callback-example.component';
+import { BlockCopyNotificationExampleComponent } from './block-copy-notification-example.component';
 import { BlockCopyExpandedExampleComponent } from './block-copy-expanded-example.component';
 
 @NgModule({
   declarations: [
     BlockCopyExampleComponent,
     BlockCopyBasicExampleComponent,
-    BlockCopyCallbackExampleComponent,
+    BlockCopyNotificationExampleComponent,
     BlockCopyExpandedExampleComponent
   ],
   imports: [

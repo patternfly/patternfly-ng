@@ -10,10 +10,10 @@ import { NotificationType } from '../../../notification/notification-type';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'block-copy-callback-example',
-  templateUrl: './block-copy-callback-example.component.html'
+  selector: 'block-copy-notification-example',
+  templateUrl: './block-copy-notification-example.component.html'
 })
-export class BlockCopyCallbackExampleComponent implements OnInit {
+export class BlockCopyNotificationExampleComponent implements OnInit {
   notifications: Notification[];
 
   cbExConfig = {

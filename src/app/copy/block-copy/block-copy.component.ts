@@ -43,6 +43,9 @@ export class BlockCopyComponent extends CopyBase {
    */
   public uniqueID: string = uniqueId('pfng-block-copy');
 
+  /**
+   * The default constructor
+   */
   constructor(protected copyService: CopyService) {
     super(copyService);
   }
@@ -64,7 +67,8 @@ export class BlockCopyComponent extends CopyBase {
   /**
    * Copies the label value to the users clipboard
    */
-  copyValueToClipboard(): void {
-    super.copyValueToClipboard(this.label);
+  copyToClipboard(): void {
+    this.copyValueToClipboard(this.label);
   }
+
 }
