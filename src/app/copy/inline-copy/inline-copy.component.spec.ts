@@ -10,7 +10,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { CopyService } from '../copy-service/copy.service';
 import { InlineCopyComponent } from './inline-copy.component';
-import { InlineCopyConfig } from './inline-copy-config';
 import { Component } from '@angular/core';
 
 class MockedCopyService {
@@ -23,7 +22,7 @@ describe('Inline Copy Component - ', () => {
 
   let inlineCopy: InlineCopyComponent;
   let fixture: ComponentFixture<InlineCopyComponent>;
-  let componentConfig: InlineCopyConfig;
+  let componentConfig: any;
   let copyService: MockedCopyService;
 
   beforeEach(async(() => {

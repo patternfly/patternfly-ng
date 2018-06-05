@@ -4,8 +4,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { InlineCopyConfig } from '../inline-copy-config';
-
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'inline-copy-wrap-example',
@@ -13,7 +11,7 @@ import { InlineCopyConfig } from '../inline-copy-config';
 })
 export class InlineCopyWrapExampleComponent implements OnInit {
 
-  wrapExConfig: InlineCopyConfig = {
+  wrapExConfig = {
     copyBtnAriaLabel: 'Copy JSON+LD Schema Example',
     // tslint:disable-next-line:max-line-length
     copyValue: '{"@context": "http://json-ld.org/contexts/person.jsonld", "@id": "http://dbpedia.org/resource/John_Lennon", "name": "John Lennon", "born": "1940-10-09", "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"}'

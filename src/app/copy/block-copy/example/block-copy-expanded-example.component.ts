@@ -3,8 +3,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { BlockCopyConfig } from '../block-copy-config';
-
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'block-copy-expanded-example',
@@ -12,7 +10,7 @@ import { BlockCopyConfig } from '../block-copy-config';
 })
 export class BlockCopyExpandedExampleComponent {
 
-  expandedEx01: BlockCopyConfig = {
+  expandedEx01 = {
     label: 'GraphQL Query',
     buttonLabel: 'Copy Query',
     expandBtnAriaLabel: 'Toggle GraphQL Query',

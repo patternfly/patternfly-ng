@@ -6,10 +6,32 @@ import {
 
 import { CopyService } from './copy-service/copy.service';
 
+  /**
+   * A config containing properties for copy components
+   */
 export abstract class CopyBase {
+  /**
+   * Copy button aria label (announced to screen readers)
+   * @type {string}
+   */
   @Input('copyBtnAriaLabel') copyBtnAriaLabel: string;
+
+  /**
+   * The text node to be copied to the users clipboard
+   * @type {string}
+   */
   @Input('copyValue') copyValue: string = 'Missing \'copyValue\' @Input property';
+
+  /**
+   * Tooltip text for the copyValue
+   * @type {string}
+   */
   @Input('tooltip') tooltip: string;
+
+  /**
+   * Placement for the tooltip that further describes the copyValue
+   * @type {string}
+   */
   @Input('tooltipPlacement') tooltipPlacement: string = 'top';
 
   /**
@@ -45,8 +67,9 @@ export abstract class CopyBase {
 
   /**
    * Copy value to the user's system clipboard
+   * @param {string} accessibleName An accessible name used to describe the component
    */
-  copyValueToClipboard(accessibleName: string): void {
+  protected copyValueToClipboard(accessibleName: string): void {
     let result = this.copyService.copy(this.copyValue);
     if (result) {
       this.copiedToClipboard.emit(`${accessibleName} copied!`);

@@ -10,7 +10,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { CopyService } from '../copy-service/copy.service';
 import { BlockCopyComponent } from './block-copy.component';
-import { BlockCopyConfig } from './block-copy-config';
 import { Component } from '@angular/core';
 
 class MockedCopyService {}
@@ -19,7 +18,7 @@ describe('Block Copy Component - ', () => {
 
   let blockCopy: BlockCopyComponent;
   let fixture: ComponentFixture<BlockCopyComponent>;
-  let componentConfig: BlockCopyConfig;
+  let componentConfig: any;
   let copyService: MockedCopyService;
 
   beforeEach(async(() => {

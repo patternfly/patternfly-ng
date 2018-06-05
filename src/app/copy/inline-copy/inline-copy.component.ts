@@ -21,7 +21,7 @@ export class InlineCopyComponent extends CopyBase {
     super(copyService);
   }
 
-  copyValueToClipboard(): void {
+  public copyValueToClipboard(): void {
     super.copyValueToClipboard(this.copyBtnAriaLabel);
   }
 }

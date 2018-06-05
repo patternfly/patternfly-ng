@@ -18,12 +18,30 @@ import { CopyService } from '../copy-service/copy.service';
 })
 
 export class BlockCopyComponent extends CopyBase {
+  /**
+   * Label naming the block copy component
+   */
   @Input('label') label: string;
-  @Input('expandBtnAriaLabel') expandBtnAriaLabel: string;
+
+  /**
+   * Copy button text
+   */
   @Input('buttonLabel') buttonLabel: string = 'Copy';
+
+  /**
+   * Controls the expanded state of block copy
+   */
   @Input('expanded') expanded: boolean = false;
 
-  public uniqueID: string = uniqueId('pfng-block-copy-button-');
+  /**
+   * Expand/toggle button aria label (announced to screen readers)
+   */
+  @Input('expandBtnAriaLabel') expandBtnAriaLabel: string;
+
+  /**
+   * Generates a unique value for an id
+   */
+  public uniqueID: string = uniqueId('pfng-block-copy');
 
   constructor(protected copyService: CopyService) {
     super(copyService);
@@ -33,7 +51,7 @@ export class BlockCopyComponent extends CopyBase {
    * Used to uniquly relate label to copy button
    */
   get copyBtnId(): string {
-    return this.uniqueID;
+    return `${this.uniqueID}-button`;
   }
 
   /**
@@ -43,6 +61,9 @@ export class BlockCopyComponent extends CopyBase {
     this.expanded = !this.expanded;
   }
 
+  /**
+   * Copies the label value to the users clipboard
+   */
   copyValueToClipboard(): void {
     super.copyValueToClipboard(this.label);
   }

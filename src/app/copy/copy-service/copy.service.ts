@@ -1,6 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
+  /**
+   * A generic service for copying text to clipboard
+   */
 @Injectable()
 export class CopyService {
   public dom: Document;
@@ -43,7 +46,6 @@ export class CopyService {
   /**
    * Set the verbose mode to on or off (default). During the verbose mode, each unsuccessful copy operation
    * will be printed to the console.
-   *
    * @param verbose Set to true for verbose mode
    */
   setVerbose(verbose: boolean): void {
@@ -52,7 +54,6 @@ export class CopyService {
 
   /**
    * Handles an unsuccessful copy operation.
-   *
    * @param error The error message to display in the console.
    */
   private handleError(error: any): void {

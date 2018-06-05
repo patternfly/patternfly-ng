@@ -4,8 +4,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { InlineCopyConfig } from '../inline-copy-config';
-
 import { Notification } from '../../../notification/notification';
 import { NotificationService } from '../../../notification/notification-service/notification.service';
 import { NotificationType } from '../../../notification/notification-type';
@@ -18,13 +16,13 @@ import { NotificationType } from '../../../notification/notification-type';
 export class InlineCopyA11yExampleComponent implements OnInit {
   notifications: Notification[];
 
-  a11yEx01: InlineCopyConfig = {
+  a11yEx01 = {
     copyBtnAriaLabel: 'WAI-ARIA URL',
     copyValue: 'https://www.w3.org/TR/wai-aria-1.1/',
     tooltip: 'ARIA W3C Recommendation'
   };
 
-  a11yEx02: InlineCopyConfig = {
+  a11yEx02 = {
     copyBtnAriaLabel: 'Example Sparql Query',
     copyValue: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}',
     tooltip: 'Semantic Triple (SPO)'
