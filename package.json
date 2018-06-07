@@ -12,7 +12,7 @@
     "build:es2015": "rollup --config src/scripts/bundle/es2015.config.js",
     "build:library": "gulp build",
     "build:umd": "rollup --config src/scripts/bundle/umd.config.js",
-    "build:umd-uglify": "uglifyjs dist/bundles/patternfly-ng.umd.js -c -m -o dist/bundles/patternfly-ng.umd.min.js",
+    "build:umd-uglify": "uglifyjs dist/bundles/patternfly-ng.umd.js -c -o dist/bundles/patternfly-ng.umd.min.js",
     "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist distwatch bundles",
     "cleanup": "rimraf dist/package.json dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
     "commit": "git-cz",

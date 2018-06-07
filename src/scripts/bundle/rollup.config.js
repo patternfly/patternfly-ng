@@ -2,6 +2,7 @@
 'use strict';
 
 const commonjs = require('rollup-plugin-commonjs');
+const ROLLUP_GLOBALS = require('./rollup.globals');
 const fs = require('fs-extra');
 const resolve = require('rollup-plugin-node-resolve');
 const rollup = require('rollup');
@@ -11,6 +12,7 @@ export const PATH_SRC = 'dist/app/';
 export const PATH_DIST = 'dist/bundles/';
 
 export const config = {
+  external: Object.keys(ROLLUP_GLOBALS),
   input: PATH_SRC + 'index.js',
   output: {
     name: LIB_NAME,
@@ -22,35 +24,7 @@ export const config = {
       module: true
     }),
     commonjs({
-      include: 'node_modules/**',
-      // See: https://github.com/rollup/rollup-plugin-commonjs#custom-named-exports
-      namedExports: {
-        'node_modules/c3/c3.js': [
-          'generate'
-        ],
-        'node_modules/d3/d3.js': [
-          'select'
-        ],
-        'node_modules/lodash/lodash.js': [
-          'clone',
-          'cloneDeep',
-          'defaults',
-          'defaultsDeep',
-          'filter',
-          'find',
-          'get',
-          'isEqual',
-          'merge',
-          'orderBy',
-          'remove',
-          'size',
-          'uniqueId'
-        ],
-        '@swimlane/ngx-datatable': [
-          'DatatableComponent',
-          'NgxDatatableModule'
-        ]
-      }
+      include: [ 'node_modules/**' ]
     })
   ],
   onwarn: warning => {
