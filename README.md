@@ -50,7 +50,7 @@ import { NotificationModule } from 'patternfly-ng';
 })
 ```
 
-- open `.angular-cli.json` and insert a new entry into the styles array 
+- open `angular.json` and insert a new entry into the styles array 
 
 ```json
       "styles": [
@@ -76,7 +76,7 @@ import { NotificationModule } from 'patternfly-ng';
 
 1. To enable table drag and drop, add dragula.min.css from the ng2-dragula package
 
-- open `.angular-cli.json` and insert a new entry into the styles array 
+- open `angular.json` and insert a new entry into the styles array 
 
 ```json
       "styles": [
@@ -90,7 +90,7 @@ import { NotificationModule } from 'patternfly-ng';
 
 2. To enable charts, add patternfly-settings.js from the patternfly package
 
-- open `.angular-cli.json` and insert a new entry into the scripts array 
+- open `angular.json` and insert a new entry into the scripts array 
 
 ```json
       "scripts": [
