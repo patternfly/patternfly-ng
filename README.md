@@ -55,9 +55,9 @@ import { NotificationModule } from 'patternfly-ng';
 ```json
       "styles": [
 
-        "../node_modules/patternfly/dist/css/patternfly.min.css",
-        "../node_modules/patternfly/dist/css/patternfly-additions.min.css",
-        "../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
+        "./node_modules/patternfly/dist/css/patternfly.min.css",
+        "./node_modules/patternfly/dist/css/patternfly-additions.min.css",
+        "./node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
         "styles.css",
       ],
 ```
@@ -80,10 +80,10 @@ import { NotificationModule } from 'patternfly-ng';
 
 ```json
       "styles": [
-        "../node_modules/dragula/dist/dragula.min.css",
-        "../node_modules/patternfly/dist/css/patternfly.min.css",
-        "../node_modules/patternfly/dist/css/patternfly-additions.min.css",
-        "../node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
+        "./node_modules/dragula/dist/dragula.min.css",
+        "./node_modules/patternfly/dist/css/patternfly.min.css",
+        "./node_modules/patternfly/dist/css/patternfly-additions.min.css",
+        "./node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
         "styles.css",
       ],
 ```
@@ -94,7 +94,7 @@ import { NotificationModule } from 'patternfly-ng';
 
 ```json
       "scripts": [
-        "../node_modules/patternfly/dist/js/patternfly-settings.js"
+        "./node_modules/patternfly/dist/js/patternfly-settings.js"
       ],
 ```
 
