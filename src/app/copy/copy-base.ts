@@ -7,6 +7,14 @@ import {
 import { CopyService } from './copy-service/copy.service';
 
   /**
+   * A standard structure for result of copied to clipboard action
+   */
+export interface CopiedMsg {
+  name: string;
+  msg: string;
+}
+
+  /**
    * A config containing properties for copy components
    */
 export abstract class CopyBase {
@@ -63,7 +71,10 @@ export abstract class CopyBase {
   protected copyValueToClipboard(accessibleName: string): void {
     let result = this.copyService.copy(this.copyValue);
     if (result) {
-      this.copiedToClipboard.emit(`${accessibleName} copied!`);
+      this.copiedToClipboard.emit({
+        name: accessibleName,
+        msg: `${accessibleName} copied!`
+      } as CopiedMsg);
       this._recentlyCopied = true;
       setTimeout(() => {
         this._recentlyCopied = false;

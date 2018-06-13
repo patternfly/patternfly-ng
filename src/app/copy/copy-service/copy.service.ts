@@ -22,6 +22,7 @@ export class CopyService {
   copy(value: string): boolean {
     let result = false;
     let textarea = this.dom.createElement('textarea');
+    const triggerElement = <HTMLElement>document.activeElement;
 
     textarea.style.width = '0px';
     textarea.style.height = '0px';
@@ -32,7 +33,12 @@ export class CopyService {
     textarea.value = value;
 
     this.dom.body.appendChild(textarea);
+
     textarea.select();
+
+    if (!!triggerElement) {
+      triggerElement.focus();
+    }
 
     try {
       result = this.dom.execCommand('copy');

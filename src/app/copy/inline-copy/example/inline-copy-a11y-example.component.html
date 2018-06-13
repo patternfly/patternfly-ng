@@ -14,7 +14,12 @@
         [copyBtnAriaLabel]="'Copy ' + a11yEx02.copyBtnAriaLabel + ' to clipboard'"
         [copyValue]="a11yEx02.copyValue"
         [tooltip]="a11yEx02.tooltip"
-        (copiedToClipboard)="notify(a11yEx02.copyBtnAriaLabel + ' copied!')"></pfng-inline-copy>
+        (copiedToClipboard)="
+          notify({
+            name: a11yEx02.copyBtnAriaLabel,
+            msg: a11yEx02.copyBtnAriaLabel + ' copied!'
+          })">
+        </pfng-inline-copy>
     </div>
   </div>
   <pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>

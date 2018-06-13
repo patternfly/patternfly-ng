@@ -26,11 +26,13 @@
         class="btn btn-lg btn-default pfng-block-copy-btn"
         [attr.aria-label]="copyBtnAriaLabel"
         (click)="copyToClipboard()">
-          <span *ngIf="!recentlyCopied">{{buttonLabel}}</span>
-          <span *ngIf="recentlyCopied">
+        <span>
+          <ng-container *ngIf="!recentlyCopied">{{buttonLabel}}</ng-container>
+          <ng-container *ngIf="recentlyCopied">
             <i class="fa fa-check" aria-hidden="true"></i>
             Copied
-          </span>
+          </ng-container>
+        </span>
         </button>
     </div>
     <div class="pfng-block-copy-body" *ngIf="expanded">

@@ -4,6 +4,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { CopiedMsg } from '../../copy-base';
+
 import { Notification } from '../../../notification/notification';
 import { NotificationService } from '../../../notification/notification-service/notification.service';
 import { NotificationType } from '../../../notification/notification-type';
@@ -32,11 +34,11 @@ export class BlockCopyNotificationExampleComponent implements OnInit {
     this.notifications = this.notificationService.getNotifications();
   }
 
-  notify(msg: string): void {
+  notify(result: CopiedMsg): void {
     this.notificationService.message(
       NotificationType.SUCCESS,
       null,
-      msg,
+      result.msg,
       false,
       null,
       null);
