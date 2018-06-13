@@ -9,6 +9,11 @@ import { TreeListComponent } from './tree-list.component';
 
 /**
  * A module containing objects associated with tree list components
+ *
+ * @deprecated The tree-list component is deprecated due to issues with Angular 6 and mobx autorun,
+ * introduced by angular-tree-component.
+ *
+ * See: https://github.com/patternfly/patternfly-ng/issues/381
  */
 @NgModule({
   imports: [
@@ -20,4 +25,9 @@ import { TreeListComponent } from './tree-list.component';
   declarations: [TreeListComponent],
   exports: [TreeListComponent]
 })
-export class TreeListModule {}
+export class TreeListModule {
+  constructor() {
+    console.log('patternfly-ng: The tree-list component is deprecated due to issues with Angular 6 and ' +
+      'mobx autorun, introduced by angular-tree-component.');
+  }
+}
