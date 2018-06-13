@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 import { Action } from '../action/action';
-import { ListBaseConfig } from './list-base-config';
+import { ListConfigBase } from './list-config-base';
 import { ListEvent } from './list-event';
 
 /**
@@ -88,9 +88,9 @@ export abstract class ListBase {
   /**
    * Return component config
    *
-   * @returns {ListBaseConfig} The component config
+   * @returns {ListConfigBase} The component config
    */
-  protected abstract getConfig(): ListBaseConfig;
+  protected abstract getConfig(): ListConfigBase;
 
   // Accessors
 

@@ -22,8 +22,8 @@ export {
     CommonModule,
     FormsModule
   ],
-  declarations: [CardFilterComponent],
-  exports: [CardFilterComponent],
-  providers: [BsDropdownConfig]
+  declarations: [ CardFilterComponent ],
+  exports: [ CardFilterComponent ],
+  providers: [ BsDropdownConfig ]
 })
 export class CardFilterModule {}

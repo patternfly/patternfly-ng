@@ -51,8 +51,8 @@ describe('Empty state component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [EmptyStateComponent]
+      imports: [ FormsModule ],
+      declarations: [ EmptyStateComponent ]
     })
       .compileComponents()
       .then(() => {

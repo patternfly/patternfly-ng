@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { ListBase } from './list-base';
-import { ListBaseConfig } from './list-base-config';
+import { ListConfigBase } from './list-config-base';
 import { ListEvent } from './list-event';
 import { ListComponent } from './basic-list/list.component';
 import { ListModule as BasicListModule } from './basic-list/list.module';
@@ -15,7 +15,7 @@ import { TreeListModule } from './tree-list/tree-list.module';
 
 export {
   ListBase,
-  ListBaseConfig,
+  ListConfigBase,
   ListConfig,
   ListEvent,
   TreeListConfig
@@ -24,7 +24,12 @@ export {
 /**
  * A module containing objects associated with list components
  *
- * @deprecated Use BasicListModule or TreeListModule
+ * @deprecated Use individual module imports
+ *
+ * import {
+ *   ListModule, // basic list only
+ *   TreeListModule
+ * } from 'patternfly-ng/list';
  */
 @NgModule({
   imports: [
@@ -33,6 +38,10 @@ export {
     FormsModule,
     TreeListModule
   ],
-  exports: [ListComponent, ListExpandToggleComponent, TreeListComponent]
+  exports: [ ListComponent, ListExpandToggleComponent, TreeListComponent ]
 })
-export class ListModule {}
+export class ListModule {
+  constructor() {
+    console.log('patternfly-ng: ListModule is deprecated; use TreeListModule and ListModule for basic list only');
+  }
+}

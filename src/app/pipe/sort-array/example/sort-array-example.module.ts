@@ -4,8 +4,8 @@ import { NgModule }  from '@angular/core';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { PipeModule } from '../../pipe.module';
 import { SortArrayExampleComponent } from './sort-array-example.component';
+import { SortArrayPipeModule } from '../sort-array.pipe.module';
 
 @NgModule({
   declarations: [ SortArrayExampleComponent ],
@@ -13,7 +13,7 @@ import { SortArrayExampleComponent } from './sort-array-example.component';
     CommonModule,
     DemoComponentsModule,
     FormsModule,
-    PipeModule,
+    SortArrayPipeModule,
     TabsModule.forRoot()
   ],
   providers: [ TabsetConfig ]

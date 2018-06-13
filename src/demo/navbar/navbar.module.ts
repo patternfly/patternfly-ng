@@ -16,7 +16,7 @@ import { NavbarTopComponent } from './navbar-top.component';
     CommonModule,
     FormsModule
   ],
-  declarations: [NavbarComponent, NavbarSideComponent, NavbarTopComponent],
-  exports: [NavbarComponent, NavbarSideComponent, NavbarTopComponent]
+  declarations: [ NavbarComponent, NavbarSideComponent, NavbarTopComponent ],
+  exports: [ NavbarComponent, NavbarSideComponent, NavbarTopComponent ]
 })
 export class NavbarModule {}

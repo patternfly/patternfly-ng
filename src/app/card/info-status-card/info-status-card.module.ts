@@ -17,7 +17,7 @@ export {
     CommonModule,
     FormsModule
   ],
-  declarations: [InfoStatusCardComponent],
-  exports: [InfoStatusCardComponent]
+  declarations: [ InfoStatusCardComponent ],
+  exports: [ InfoStatusCardComponent ]
 })
 export class InfoStatusCardModule {}

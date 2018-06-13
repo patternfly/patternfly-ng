@@ -6,11 +6,12 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { NotificationModule } from '../../notification.module';
 import { NotificationService } from '../notification.service';
+import { NotificationServiceModule } from '../notification.service.module';
 import { NotificationServiceExampleComponent } from './notification-service-example.component';
 import { NotificationServiceBasicExampleComponent } from './notification-service-basic-example.component';
 import { NotificationServiceObserverExampleComponent } from './notification-service-observer-example.component';
+import { ToastNotificationListModule } from '../../toast-notification-list';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import { NotificationServiceObserverExampleComponent } from './notification-serv
     CommonModule,
     DemoComponentsModule,
     FormsModule,
-    NotificationModule,
-    TabsModule.forRoot()
+    NotificationServiceModule,
+    TabsModule.forRoot(),
+    ToastNotificationListModule
   ],
   providers: [
     BsDropdownConfig,

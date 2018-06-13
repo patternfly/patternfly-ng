@@ -15,9 +15,9 @@ import { SortExampleComponent } from './sort-example.component';
     SortModule,
     TabsModule.forRoot()
   ],
-  declarations: [SortExampleComponent],
-  exports: [SortExampleComponent],
-  providers: [TabsetConfig]
+  declarations: [ SortExampleComponent ],
+  exports: [ SortExampleComponent ],
+  providers: [ TabsetConfig ]
 })
 export class SortExampleModule {
   constructor() {}

@@ -27,7 +27,7 @@ import { TreeListModule } from '../tree-list.module';
     TreeListModule,
     TreeModule
   ],
-  providers: [TabsetConfig]
+  providers: [ TabsetConfig ]
 })
 export class TreeListExampleModule {
   constructor() {}

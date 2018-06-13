@@ -22,8 +22,3 @@ export abstract class SparklineChartData {
    */
   yData?: any[];
 }
-
-/**
- * @deprecated Use SparklineChartData
- */
-export abstract class SparklineData extends SparklineChartData {}

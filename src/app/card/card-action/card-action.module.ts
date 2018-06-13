@@ -17,7 +17,7 @@ export {
     CommonModule,
     FormsModule
   ],
-  declarations: [CardActionComponent],
-  exports: [CardActionComponent]
+  declarations: [ CardActionComponent ],
+  exports: [ CardActionComponent ]
 })
 export class CardActionModule {}

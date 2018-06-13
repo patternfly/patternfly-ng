@@ -14,8 +14,8 @@ describe('Sample component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [SampleComponent],
+      imports: [ FormsModule ],
+      declarations: [ SampleComponent ],
       providers: []
     })
       .compileComponents()

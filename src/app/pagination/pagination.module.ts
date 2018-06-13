@@ -17,11 +17,12 @@ export {
  * A module containing objects associated with notification components
  */
 @NgModule({
-  imports: [BsDropdownModule.forRoot(),
+  imports: [
+    BsDropdownModule.forRoot(),
     CommonModule,
     FormsModule],
-  declarations: [PaginationComponent],
-  exports: [PaginationComponent],
-  providers: [BsDropdownConfig]
+  declarations: [ PaginationComponent ],
+  exports: [ PaginationComponent ],
+  providers: [ BsDropdownConfig ]
 })
 export class PaginationModule {}

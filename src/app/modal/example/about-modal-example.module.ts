@@ -19,7 +19,7 @@ import { ModalModule } from '../modal.module';
     TabsModule.forRoot(),
     ModalModule
   ],
-  providers: [TabsetConfig]
+  providers: [ TabsetConfig ]
 })
 export class AboutModalExampleModule {
   constructor() { }

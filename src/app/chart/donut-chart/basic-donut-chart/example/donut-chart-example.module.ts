@@ -17,8 +17,8 @@ import { DonutChartExampleComponent } from './donut-chart-example.component';
     FormsModule,
     TabsModule.forRoot()
   ],
-  declarations: [DonutChartBasicExampleComponent, DonutChartDynamicExampleComponent, DonutChartExampleComponent],
-  providers: [TabsetConfig]
+  declarations: [ DonutChartBasicExampleComponent, DonutChartDynamicExampleComponent, DonutChartExampleComponent ],
+  providers: [ TabsetConfig ]
 })
 export class DonutChartExampleModule {
   constructor() { }

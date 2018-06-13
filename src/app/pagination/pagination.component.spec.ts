@@ -26,8 +26,8 @@ describe('Pagination component - ', () => {
       imports: [
         FormsModule,
         BsDropdownModule.forRoot()],
-      declarations: [PaginationComponent],
-      providers: [BsDropdownConfig]
+      declarations: [ PaginationComponent ],
+      providers: [ BsDropdownConfig ]
     })
       .compileComponents()
       .then(() => {

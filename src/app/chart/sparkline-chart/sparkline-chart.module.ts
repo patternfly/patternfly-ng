@@ -18,8 +18,8 @@ export {
     CommonModule,
     FormsModule
   ],
-  declarations: [SparklineChartComponent],
-  exports: [SparklineChartComponent],
-  providers: [ChartDefaults, WindowReference]
+  declarations: [ SparklineChartComponent ],
+  exports: [ SparklineChartComponent ],
+  providers: [ ChartDefaults, WindowReference ]
 })
 export class SparklineChartModule {}

@@ -3,7 +3,7 @@ import { EmptyStateConfig } from '../empty-state/empty-state-config';
 /**
  * A config containing properties for tree list
  */
-export class ListBaseConfig {
+export class ListConfigBase {
   /**
    * Handle double clicking (item remains selected on a double click). Default is false
    */

@@ -4,7 +4,8 @@ import {
   OnInit, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavigationItemConfig } from '../../navigation-item-config';
+
+import { VerticalNavigationConfig } from '../vertical-navigation-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -44,7 +45,7 @@ import { NavigationItemConfig } from '../../navigation-item-config';
 export class VerticalNavigationExampleComponent implements OnInit {
 
   showExample: boolean = false;
-  navigationItems: NavigationItemConfig[];
+  navigationItems: VerticalNavigationConfig[];
   actionText: string = '';
 
   constructor(private chRef: ChangeDetectorRef, private router: Router) {
@@ -276,11 +277,11 @@ export class VerticalNavigationExampleComponent implements OnInit {
     this.chRef.detectChanges();
   }
 
-  onItemClicked($event: NavigationItemConfig): void {
+  onItemClicked($event: VerticalNavigationConfig): void {
     this.actionText += 'Item Clicked: ' + $event.title + '\n';
   }
 
-  onNavigation($event: NavigationItemConfig): void {
+  onNavigation($event: VerticalNavigationConfig): void {
     this.actionText += 'Navigation event fired: ' + $event.title + '\n';
   }
 }

@@ -26,6 +26,12 @@ export {
 
 /**
  * A module containing objects associated with table components
+ *
+ * @deprecated Use individual module imports
+ *
+ * import {
+ *   TableModule // basic table
+ * } from 'patternfly-ng/table';
  */
 @NgModule({
   imports: [
@@ -37,8 +43,12 @@ export {
     NgxDatatableModule,
     ToolbarModule
   ],
-  declarations: [NgxDataTableDndDirective, TableComponent],
-  exports: [TableComponent],
-  providers: [DragulaService]
+  declarations: [ NgxDataTableDndDirective, TableComponent ],
+  exports: [ TableComponent ],
+  providers: [ DragulaService ]
 })
-export class TableModule {}
+export class TableModule {
+  constructor() {
+    console.log('patternfly-ng: TableModule is deprecated; use TableModule for basic table only');
+  }
+}

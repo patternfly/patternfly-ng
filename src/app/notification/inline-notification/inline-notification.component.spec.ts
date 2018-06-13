@@ -15,8 +15,8 @@ describe('Inline notification component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [InlineNotificationComponent],
+      imports: [ FormsModule ],
+      declarations: [ InlineNotificationComponent ],
       providers: []
     })
       .compileComponents()

@@ -39,9 +39,9 @@ describe('Component: sparkline chart', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule],
-      declarations: [SparklineChartComponent],
-      providers: [ChartDefaults]
+      imports: [ BrowserAnimationsModule, FormsModule ],
+      declarations: [ SparklineChartComponent ],
+      providers: [ ChartDefaults ]
     })
       .compileComponents()
       .then(() => {

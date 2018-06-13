@@ -27,7 +27,7 @@ import { FilterTypeAheadExampleComponent } from './filter-type-ahead-example.com
     FilterSaveExampleComponent,
     FilterTypeAheadExampleComponent
   ],
-  providers: [TabsetConfig]
+  providers: [ TabsetConfig ]
 })
 export class FilterExampleModule {
   constructor() {}

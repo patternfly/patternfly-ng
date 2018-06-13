@@ -12,7 +12,7 @@ import { ToolbarExampleComponent } from './toolbar-example.component';
 import { ToolbarModule } from '../toolbar.module';
 
 @NgModule({
-  declarations: [ToolbarExampleComponent],
+  declarations: [ ToolbarExampleComponent ],
   imports: [
     ActionModule,
     BsDropdownModule.forRoot(),
@@ -23,7 +23,7 @@ import { ToolbarModule } from '../toolbar.module';
     TabsModule.forRoot(),
     ToolbarModule
   ],
-  providers: [BsDropdownConfig, TabsetConfig]
+  providers: [ BsDropdownConfig, TabsetConfig ]
 })
 export class ToolbarExampleModule {
   constructor() {}

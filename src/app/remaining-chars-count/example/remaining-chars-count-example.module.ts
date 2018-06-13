@@ -7,14 +7,14 @@ import { RemainingCharsCountModule } from '../remaining-chars-count.module';
 import { RemainingCharsCountExampleComponent } from './remaining-chars-count-example.component';
 
 @NgModule({
-  declarations: [RemainingCharsCountExampleComponent],
+  declarations: [ RemainingCharsCountExampleComponent ],
   imports: [
     CommonModule,
     DemoComponentsModule,
     RemainingCharsCountModule,
     TabsModule.forRoot(),
   ],
-  providers: [TabsetConfig]
+  providers: [ TabsetConfig ]
 })
 export class RemainingCharsCountExampleModule {
   constructor() {}

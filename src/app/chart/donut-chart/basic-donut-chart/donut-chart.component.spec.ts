@@ -38,9 +38,9 @@ describe('Component: donut chart', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule],
-      declarations: [DonutChartComponent],
-      providers: [ChartDefaults, WindowReference]
+      imports: [ BrowserAnimationsModule, FormsModule ],
+      declarations: [ DonutChartComponent ],
+      providers: [ ChartDefaults, WindowReference ]
     })
       .compileComponents()
       .then(() => {

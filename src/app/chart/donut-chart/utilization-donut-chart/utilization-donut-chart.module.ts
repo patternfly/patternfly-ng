@@ -8,6 +8,7 @@ import { UtilizationDonutChartConfig } from './utilization-donut-chart-config';
 import { WindowReference } from '../../../utilities/window.reference';
 
 export {
+  ChartDefaults,
   UtilizationDonutChartConfig,
 };
 
@@ -16,8 +17,8 @@ export {
     CommonModule,
     FormsModule,
   ],
-  declarations: [UtilizationDonutChartComponent],
-  exports: [UtilizationDonutChartComponent],
-  providers: [ChartDefaults, WindowReference]
+  declarations: [ UtilizationDonutChartComponent ],
+  exports: [ UtilizationDonutChartComponent ],
+  providers: [ ChartDefaults, WindowReference ]
 })
 export class UtilizationDonutChartModule {}

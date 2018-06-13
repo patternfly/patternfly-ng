@@ -22,7 +22,7 @@ import { DemoComponentsModule } from '../../../demo/components/demo-components.m
     DemoComponentsModule,
     TabsModule.forRoot()
   ],
-  providers: [BsDropdownConfig, TabsetConfig]
+  providers: [ BsDropdownConfig, TabsetConfig ]
 })
 export class ActionExampleModule {
   constructor() {}

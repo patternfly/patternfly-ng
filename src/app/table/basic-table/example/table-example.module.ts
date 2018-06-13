@@ -16,7 +16,7 @@ import { TableExpansionExampleComponent } from './table-expansion-example.compon
 import { TableGroupExampleComponent } from './table-group-example.component';
 import { TableViewExampleComponent } from './table-view-example.component';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { TableModule } from '../../table.module';
+import { TableModule } from '../table.module';
 import { ToolbarModule } from '../../../toolbar/toolbar.module';
 
 @NgModule({
@@ -41,7 +41,7 @@ import { ToolbarModule } from '../../../toolbar/toolbar.module';
     TabsModule.forRoot(),
     ToolbarModule
   ],
-  providers: [BsDropdownConfig, TabsetConfig]
+  providers: [ BsDropdownConfig, TabsetConfig ]
 })
 export class TableExampleModule {
   constructor() {}

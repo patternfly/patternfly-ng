@@ -12,8 +12,8 @@ export {
     imports: [
       CommonModule
     ],
-    declarations: [AboutModalComponent],
-    exports: [AboutModalComponent]
+    declarations: [ AboutModalComponent ],
+    exports: [ AboutModalComponent ]
 })
 
 export class ModalModule {}

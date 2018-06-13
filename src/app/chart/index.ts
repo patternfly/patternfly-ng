@@ -1,7 +1,9 @@
 export { ChartBase } from './chart-base';
 export { ChartConfigBase } from './chart-config-base';
 export { ChartDefaults } from './chart-defaults';
-export { ChartModule } from './chart.module'; // @deprecated Use DonutChartModule or SparklineChartModule
+
+export { ChartConfig } from './chart-config'; // @deprecated
+export { ChartModule } from './chart.module'; // @deprecated
 
 export * from './donut-chart/index';
 export * from './donut-chart/basic-donut-chart/index';

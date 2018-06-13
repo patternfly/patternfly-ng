@@ -9,6 +9,7 @@ import { DonutChartComponent } from './donut-chart.component';
 import { WindowReference } from '../../../utilities/window.reference';
 
 export {
+  ChartDefaults,
   DonutChartConfig,
 };
 
@@ -17,8 +18,8 @@ export {
     CommonModule,
     FormsModule,
   ],
-  declarations: [DonutChartComponent],
-  exports: [DonutChartComponent],
-  providers: [ChartDefaults, WindowReference]
+  declarations: [ DonutChartComponent ],
+  exports: [ DonutChartComponent],
+  providers: [ ChartDefaults, WindowReference ]
 })
 export class DonutChartModule {}

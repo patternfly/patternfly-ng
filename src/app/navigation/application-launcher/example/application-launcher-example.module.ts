@@ -4,23 +4,23 @@ import { NgModule } from '@angular/core';
 
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
-import { NavigationModule } from '../../navigation.module';
+import { ApplicationLauncherModule } from '../application-launcher.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { ApplicationLauncherExampleComponent } from './application-launcher-example.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
+    ApplicationLauncherModule,
     CommonModule,
     DemoComponentsModule,
     FormsModule,
     RouterModule,
-    NavigationModule,
     TabsModule.forRoot()
   ],
-  declarations: [ApplicationLauncherExampleComponent],
-  exports: [ApplicationLauncherExampleComponent],
-  providers: [TabsetConfig]
+  declarations: [ ApplicationLauncherExampleComponent ],
+  exports: [ ApplicationLauncherExampleComponent ],
+  providers: [ TabsetConfig ]
 })
 export class ApplicationLauncherExampleModule {
   constructor() {}

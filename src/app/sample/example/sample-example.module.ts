@@ -15,9 +15,9 @@ import { SampleExampleComponent } from './sample-example.component';
     SampleModule,
     TabsModule.forRoot()
   ],
-  declarations: [SampleExampleComponent],
-  exports: [SampleExampleComponent],
-  providers: [TabsetConfig]
+  declarations: [ SampleExampleComponent ],
+  exports: [ SampleExampleComponent ],
+  providers: [ TabsetConfig ]
 })
 export class SampleExampleModule {
   constructor() {}

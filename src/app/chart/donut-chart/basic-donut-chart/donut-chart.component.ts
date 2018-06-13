@@ -32,13 +32,3 @@ export class DonutChartComponent extends DonutChartBaseComponent {
     super(chartDefaults, windowRef);
   }
 }
-
-/**
- * @deprecated Use DonutChartComponent
- */
-@Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'pfng-chart-donut',
-  templateUrl: './donut-chart.component.html'
-})
-export class DonutComponent extends DonutChartComponent {}

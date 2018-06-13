@@ -29,7 +29,7 @@ import { WizardModule } from '../wizard.module';
     TabsModule.forRoot(),
     WizardModule
   ],
-  providers: [TabsetConfig]
+  providers: [ TabsetConfig ]
 })
 export class WizardExampleModule {
   constructor() {}

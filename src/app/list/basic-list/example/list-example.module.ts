@@ -19,7 +19,7 @@ import { ListHeadingExampleComponent } from './list-heading-example.component';
 import { ListExampleComponent } from './list-example.component';
 import { ListPinExampleComponent } from './list-pin-example.component';
 import { NodesContentComponent } from './content/nodes-content.component';
-import { PipeModule } from '../../../pipe/pipe.module';
+import { SortArrayPipeModule } from '../../../pipe/sort-array';
 
 @NgModule({
   declarations: [
@@ -41,11 +41,11 @@ import { PipeModule } from '../../../pipe/pipe.module';
     DemoComponentsModule,
     FormsModule,
     ListModule,
-    PipeModule,
+    SortArrayPipeModule,
     TabsModule.forRoot(),
     TooltipModule.forRoot()
   ],
-  providers: [BsDropdownConfig, TabsetConfig, TooltipConfig]
+  providers: [ BsDropdownConfig, TabsetConfig, TooltipConfig ]
 })
 export class ListExampleModule {
   constructor() {}

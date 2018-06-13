@@ -15,7 +15,7 @@ describe('Info Status Card Component - ', () => {
     infoCard = new InfoStatusCardComponent();
 
     TestBed.configureTestingModule({
-      declarations: [InfoStatusCardComponent]
+      declarations: [ InfoStatusCardComponent ]
     })
     .compileComponents()
     .then(() => {

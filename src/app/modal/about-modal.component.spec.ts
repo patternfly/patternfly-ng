@@ -37,7 +37,7 @@ describe('AboutModal component - ', () => {
         FormsModule,
         ModalModule.forRoot()
       ],
-      declarations: [AboutModalComponent]
+      declarations: [ AboutModalComponent ]
     })
       .compileComponents()
       .then(() => {

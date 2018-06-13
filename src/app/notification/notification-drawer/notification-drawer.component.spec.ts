@@ -219,8 +219,8 @@ describe('notification drawer component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule,  EmptyStateModule, ActionModule],
-      declarations: [NotificationDrawerComponent],
+      imports: [ FormsModule,  EmptyStateModule, ActionModule ],
+      declarations: [ NotificationDrawerComponent ],
       providers: []
     })
       .compileComponents()

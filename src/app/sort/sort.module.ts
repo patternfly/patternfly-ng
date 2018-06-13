@@ -18,9 +18,9 @@ export {
  * A module containing objects associated with the sort component
  */
 @NgModule({
-  imports: [CommonModule, BsDropdownModule.forRoot()],
-  declarations: [SortComponent],
-  exports: [SortComponent],
-  providers: [BsDropdownConfig]
+  imports: [ CommonModule, BsDropdownModule.forRoot() ],
+  declarations: [ SortComponent ],
+  exports: [ SortComponent ],
+  providers: [ BsDropdownConfig ]
 })
 export class SortModule {}

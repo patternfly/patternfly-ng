@@ -5,7 +5,7 @@ import { IncludeContentComponent } from './includeContent.component';
 import { IncludeMarkdownComponent } from './includeMarkdown.component';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [ CommonModule ],
   exports: [
     IncludeContentComponent,
     IncludeMarkdownComponent

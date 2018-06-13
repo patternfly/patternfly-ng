@@ -27,7 +27,7 @@ import { SparklineChartModule } from '../../../chart/sparkline-chart/sparkline-c
     SparklineChartModule,
     TabsModule.forRoot()
   ],
-  providers: [TabsetConfig]
+  providers: [ TabsetConfig ]
 })
 export class CardExampleModule {
   constructor() {}

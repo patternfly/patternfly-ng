@@ -76,7 +76,7 @@ describe('Action component - ', () => {
       declarations: [
         ActionComponent
       ],
-      providers: [BsDropdownConfig, TooltipConfig]
+      providers: [ BsDropdownConfig, TooltipConfig ]
     })
       .compileComponents()
       .then(() => {

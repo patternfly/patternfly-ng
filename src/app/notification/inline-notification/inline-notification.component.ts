@@ -48,7 +48,6 @@ export class InlineNotificationComponent {
    */
   @Output('hiddenChange') hiddenChange = new EventEmitter<boolean>();
 
-
   /**
    * The default constructor
    */
@@ -62,5 +61,4 @@ export class InlineNotificationComponent {
     this.hidden = true;
     this.hiddenChange.emit(this.hidden);
   }
-
 }

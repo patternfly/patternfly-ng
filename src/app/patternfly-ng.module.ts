@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 import {
   ActionModule,
   CardModule,
-  ChartModule,
+  ChartModule, // @deprecated
   EmptyStateModule,
   FilterModule,
   ListModule,
   ModalModule,
-  NavigationModule,
-  NotificationModule,
+  NavigationModule, // @deprecated
+  NotificationServiceModule,
   PaginationModule,
-  PipeModule,
+  PipeModule, // @deprecated
   RemainingCharsCountModule,
   SampleModule,
   SortModule,
@@ -31,16 +31,16 @@ import {
   exports: [
     ActionModule,
     CardModule,
-    ChartModule,
+    ChartModule, // @deprecated
     EmptyStateModule,
     FilterModule,
     ListModule,
     ModalModule,
-    NavigationModule,
-    NotificationModule,
+    NavigationModule, // @deprecated
+    NotificationServiceModule,
     PaginationModule,
     RemainingCharsCountModule,
-    PipeModule,
+    PipeModule, // @deprecated
     SampleModule,
     SortModule,
     TableModule,

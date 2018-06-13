@@ -16,8 +16,8 @@ import { SparklineChartModule } from '../sparkline-chart.module';
     SparklineChartModule,
     TabsModule.forRoot()
   ],
-  declarations: [SparklineChartExampleComponent],
-  providers: [TabsetConfig]
+  declarations: [ SparklineChartExampleComponent ],
+  providers: [ TabsetConfig]
 })
 export class SparklineChartExampleModule {
   constructor() {}

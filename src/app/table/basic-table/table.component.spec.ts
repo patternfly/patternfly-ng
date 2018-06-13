@@ -25,9 +25,9 @@ import { FilterConfig } from '../../filter/filter-config';
 import { FilterField } from '../../filter/filter-field';
 import { FilterType } from '../../filter/filter-type';
 import { NgxDataTableDndDirective } from './ngx-datatable-dnd.directive';
-import { PipeModule } from './../../pipe/pipe.module';
 import { PaginationConfig } from './../../pagination/pagination-config';
 import { PaginationModule } from './../../pagination/pagination.module';
+import { SearchHighlightPipeModule } from '../../pipe/search-highlight/search-highlight.pipe.module';
 import { SortConfig } from '../../sort/sort-config';
 import { SortEvent } from '../../sort/sort-event';
 import { TableComponent } from './table.component';
@@ -297,9 +297,9 @@ describe('Table component - ', () => {
         EmptyStateModule,
         FormsModule,
         PaginationModule,
-        PipeModule,
         PopoverModule.forRoot(),
         NgxDatatableModule,
+        SearchHighlightPipeModule,
         ToolbarModule,
         TooltipModule.forRoot()
       ],
@@ -307,7 +307,7 @@ describe('Table component - ', () => {
         TableComponent,
         NgxDataTableDndDirective
       ],
-      providers: [BsDropdownConfig, TooltipConfig, DragulaService]
+      providers: [ BsDropdownConfig, TooltipConfig, DragulaService ]
     })
       .compileComponents()
       .then(() => {

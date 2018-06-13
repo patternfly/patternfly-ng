@@ -116,7 +116,7 @@ describe('Tree List component - ', () => {
         FormsModule,
         TreeModule
       ],
-      declarations: [TreeListComponent]
+      declarations: [ TreeListComponent ]
     })
       .compileComponents()
       .then(() => {

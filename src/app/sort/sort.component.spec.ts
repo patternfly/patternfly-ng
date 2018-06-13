@@ -44,9 +44,9 @@ describe('Sort component - ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, BsDropdownModule.forRoot(), FormsModule],
-      declarations: [SortComponent],
-      providers: [BsDropdownConfig]
+      imports: [ BrowserAnimationsModule, BsDropdownModule.forRoot(), FormsModule ],
+      declarations: [ SortComponent ],
+      providers: [ BsDropdownConfig ]
     })
       .compileComponents()
       .then(() => {
