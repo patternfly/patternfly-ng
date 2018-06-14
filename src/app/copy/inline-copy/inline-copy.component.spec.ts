@@ -1,6 +1,5 @@
 import {
   async,
-  fakeAsync,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -10,7 +9,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { CopyService } from '../copy-service/copy.service';
 import { InlineCopyComponent } from './inline-copy.component';
-import { Component } from '@angular/core';
 
 class MockedCopyService {
   copy() {
@@ -125,7 +123,7 @@ describe('Inline Copy Component - ', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     inlineCopy.copiedToClipboard.subscribe(eventResponse => {
       expect(spy).toHaveBeenCalled();
-      expect(eventResponse).toBe(`${inlineCopy.copyBtnAriaLabel} copied!`);
+      expect(eventResponse).toBe(`${inlineCopy.copyBtnAriaLabel} copied`);
     });
     const copyBtn = fixture.debugElement.query(By.css('.pfng-inline-copy-btn'));
     copyBtn.triggerEventHandler('click', null);

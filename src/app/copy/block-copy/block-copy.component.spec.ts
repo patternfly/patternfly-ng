@@ -1,6 +1,5 @@
 import {
   async,
-  fakeAsync,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -10,7 +9,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { CopyService } from '../copy-service/copy.service';
 import { BlockCopyComponent } from './block-copy.component';
-import { Component } from '@angular/core';
 
 class MockedCopyService {}
 

@@ -46,7 +46,7 @@ export abstract class CopyBase {
    * Event emitted with the chart reference after load is complete
    * @type {EventEmitter}
    */
-  @Output('copiedToClipboard') copiedToClipboard: EventEmitter<any> = new EventEmitter();
+  @Output('copiedToClipboard') copiedToClipboard: EventEmitter<CopiedMsg> = new EventEmitter();
 
   private _recentlyCopied: boolean = false;
 
@@ -73,7 +73,7 @@ export abstract class CopyBase {
     if (result) {
       this.copiedToClipboard.emit({
         name: accessibleName,
-        msg: `${accessibleName} copied!`
+        msg: `${accessibleName} copied`
       } as CopiedMsg);
       this._recentlyCopied = true;
       setTimeout(() => {

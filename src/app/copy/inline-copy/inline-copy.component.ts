@@ -1,6 +1,5 @@
 import {
   Component,
-  EventEmitter,
   ViewEncapsulation
 } from '@angular/core';
 
