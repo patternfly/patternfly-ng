@@ -1,0 +1,34 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Table Component Example</h4>
+      <hr>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <table-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></table-basic-example>
+    </tab>
+    <tab heading="Embedded View" (select)="tabSelected($event)">
+      <table-embedded-example *ngIf="activeTab === 'Embedded View'"></table-embedded-example>
+    </tab>
+    <tab heading="Table View" (select)="tabSelected($event)">
+      <table-view-example *ngIf="activeTab === 'Table View'"></table-view-example>
+    </tab>
+    <tab heading="Drag and Drop" (select)="tabSelected($event)">
+      <table-dnd-example *ngIf="activeTab === 'Drag and Drop'"></table-dnd-example>
+    </tab>
+    <tab heading="Simple Expansion" (select)="tabSelected($event)">
+      <table-expansion-example *ngIf="activeTab === 'Simple Expansion'"></table-expansion-example>
+    </tab>
+    <tab heading="Group Headers" (select)="tabSelected($event)">
+      <table-group-example *ngIf="activeTab === 'Group Headers'"></table-group-example>
+    </tab>
+    <tab heading="Empty Table" (select)="tabSelected($event)">
+      <table-empty-example *ngIf="activeTab === 'Empty Table'"></table-empty-example>
+    </tab>
+    <tab heading="Full" (select)="tabSelected($event)">
+      <table-full-example *ngIf="activeTab === 'Full'"></table-full-example>
+    </tab>
+  </tabset>
+</div>
