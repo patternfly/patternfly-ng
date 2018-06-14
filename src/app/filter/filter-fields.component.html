@@ -5,7 +5,7 @@
               tooltip="Filter by" placement="{{config?.tooltipPlacement}}"
               [disabled]="config.disabled === true">
         {{currentField?.title}}
-        <span class="caret"></span>
+        <span aria-hidden="true" class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" *dropdownMenu>
         <li role="menuitem" *ngFor="let field of config?.fields"
@@ -30,7 +30,7 @@
         <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle
                 [disabled]="config.disabled === true">
           <span class="filter-option pull-left">{{currentValue || currentField?.placeholder}}</span>
-          <span class="caret"></span>
+          <span aria-hidden="true" class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" *dropdownMenu>
           <li role="menuitem" *ngIf="currentField?.placeholder">

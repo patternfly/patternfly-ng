@@ -23,7 +23,8 @@
      *ngIf="config.moreActions?.length > 0">
   <button class="btn btn-link dropdown-toggle" type="button" dropdownToggle
           [ngClass]="{'disabled': config.moreActionsDisabled}"
-          (click)="initMoreActionsDropup($event)">
+          (click)="initMoreActionsDropup($event)"
+          aria-label="More Actions">
     <span class="fa fa-ellipsis-v"></span>
   </button>
   <ul class="dropdown-menu-right dropdown-menu" aria-labelledby="dropdownKebab" *dropdownMenu>
