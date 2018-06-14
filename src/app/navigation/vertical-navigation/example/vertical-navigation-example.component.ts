@@ -55,12 +55,12 @@ export class VerticalNavigationExampleComponent implements OnInit {
       {
         title: 'Dashboard',
         iconStyleClass: 'fa fa-dashboard',
-        url: '/navigation/dashboard'
+        url: '/verticalnavigation/dashboard'
       },
       {
         title: 'Dolor',
         iconStyleClass: 'fa fa-shield',
-        url: '/navigation/dolor',
+        url: '/verticalnavigation/dolor',
         badges: [
           {
             count: 1283,
@@ -77,7 +77,7 @@ export class VerticalNavigationExampleComponent implements OnInit {
             children: [
               {
                 title: 'Recteque',
-                url: '/navigation/ipsum/intellegam/recteque',
+                url: '/verticalnavigation/ipsum/intellegam/recteque',
                 badges: [
                   {
                     count: 6,
@@ -88,7 +88,7 @@ export class VerticalNavigationExampleComponent implements OnInit {
               },
               {
                 title: 'Suavitate',
-                url: '/navigation/ipsum/intellegam/suavitate',
+                url: '/verticalnavigation/ipsum/intellegam/suavitate',
                 badges: [
                   {
                     count: 2,
@@ -98,7 +98,7 @@ export class VerticalNavigationExampleComponent implements OnInit {
               },
               {
                 title: 'Vituperatoribus',
-                url: '/navigation/ipsum/intellegam/vituperatoribus',
+                url: '/verticalnavigation/ipsum/intellegam/vituperatoribus',
                 badges: [
                   {
                     count: 18,
@@ -114,7 +114,7 @@ export class VerticalNavigationExampleComponent implements OnInit {
             children: [
               {
                 title: 'Exerci',
-                url: '/navigation/ipsum/copiosae/exerci',
+                url: '/verticalnavigation/ipsum/copiosae/exerci',
                 badges: [
                   {
                     count: 2,
@@ -130,7 +130,7 @@ export class VerticalNavigationExampleComponent implements OnInit {
               },
               {
                 title: 'Quaeque',
-                url: '/navigation/ipsum/copiosae/quaeque',
+                url: '/verticalnavigation/ipsum/copiosae/quaeque',
                 badges: [
                   {
                     count: 0,
@@ -146,7 +146,7 @@ export class VerticalNavigationExampleComponent implements OnInit {
               },
               {
                 title: 'Utroque',
-                url: '/navigation/ipsum/copiosae/utroque',
+                url: '/verticalnavigation/ipsum/copiosae/utroque',
                 badges: [
                   {
                     count: 1,
@@ -167,21 +167,21 @@ export class VerticalNavigationExampleComponent implements OnInit {
             children: [
               {
                 title: 'Novum',
-                url: '/navigation/ipsum/patrioque/novum'
+                url: '/verticalnavigation/ipsum/patrioque/novum'
               },
               {
                 title: 'Pericula',
-                url: '/navigation/ipsum/patrioque/pericula'
+                url: '/verticalnavigation/ipsum/patrioque/pericula'
               },
               {
                 title: 'Gubergren',
-                url: '/navigation/ipsum/patrioque/gubergren'
+                url: '/verticalnavigation/ipsum/patrioque/gubergren'
               }
             ]
           },
           {
             title: 'Accumsan',
-            url: '/navigation/ipsum/Accumsan',
+            url: '/verticalnavigation/ipsum/Accumsan',
             badges: [
               {
                 count: 2,
@@ -206,15 +206,15 @@ export class VerticalNavigationExampleComponent implements OnInit {
             children: [
               {
                 title: 'Delicatissimi',
-                url: '/navigation/amet/detracto/delicatissimi'
+                url: '/verticalnavigation/amet/detracto/delicatissimi'
               },
               {
                 title: 'Aliquam',
-                url: '/navigation/amet/detracto/aliquam'
+                url: '/verticalnavigation/amet/detracto/aliquam'
               },
               {
                 title: 'Principes',
-                url: '/navigation/amet/detracto/principes'
+                url: '/verticalnavigation/amet/detracto/principes'
               }
             ]
           },
@@ -223,15 +223,15 @@ export class VerticalNavigationExampleComponent implements OnInit {
             children: [
               {
                 title: 'Convenire',
-                url: '/navigation/amet/mediocrem/convenire'
+                url: '/verticalnavigation/amet/mediocrem/convenire'
               },
               {
                 title: 'Nonumy',
-                url: '/navigation/amet/mediocrem/nonumy'
+                url: '/verticalnavigation/amet/mediocrem/nonumy'
               },
               {
                 title: 'Deserunt',
-                url: '/navigation/amet/mediocrem/deserunt'
+                url: '/verticalnavigation/amet/mediocrem/deserunt'
               }
             ]
           },
@@ -240,33 +240,33 @@ export class VerticalNavigationExampleComponent implements OnInit {
             children: [
               {
                 title: 'Aeque',
-                url: '/navigation/amet/corrumpit/aeque'
+                url: '/verticalnavigation/amet/corrumpit/aeque'
               },
               {
                 title: 'Delenit',
-                url: '/navigation/amet/corrumpit/delenit'
+                url: '/verticalnavigation/amet/corrumpit/delenit'
               },
               {
                 title: 'Qualisque',
-                url: '/navigation/amet/corrumpit/qualisque'
+                url: '/verticalnavigation/amet/corrumpit/qualisque'
               }
             ]
           },
           {
             title: 'urbanitas',
-            url: '/navigation/amet/urbanitas'
+            url: '/verticalnavigation/amet/urbanitas'
           }
         ]
       },
       {
         title: 'Adipscing',
         iconStyleClass: 'fa fa-graduation-cap',
-        url: '/navigation/adipscing'
+        url: '/verticalnavigation/adipscing'
       },
       {
         title: 'Lorem',
         iconStyleClass: 'fa fa-gamepad',
-        url: '/navigation/lorem'
+        url: '/verticalnavigation/lorem'
       }
     ];
   }
