@@ -20,7 +20,8 @@ import { FilterField } from './filter-field';
 import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
 import { FilterType } from './filter-type';
-import { PipeModule } from './../pipe/pipe.module';
+import { SearchHighlightPipeModule } from '../pipe/search-highlight/search-highlight.pipe.module';
+import { TruncatePipeModule } from '../pipe/truncate/truncate.pipe.module';
 
 describe('Filter component - ', () => {
   let comp: FilterComponent;
@@ -125,9 +126,10 @@ describe('Filter component - ', () => {
         BsDropdownModule.forRoot(),
         BrowserAnimationsModule,
         FormsModule,
-        PipeModule,
         PopoverModule.forRoot(),
-        TooltipModule.forRoot()
+        SearchHighlightPipeModule,
+        TooltipModule.forRoot(),
+        TruncatePipeModule
       ],
       declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
       providers: [BsDropdownConfig, TooltipConfig]
