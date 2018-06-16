@@ -49,7 +49,7 @@ export class SparklineChartComponent extends ChartBase implements DoCheck, OnIni
    * Default constructor
    * @param chartDefaults
    */
-  constructor(private chartDefaults: ChartDefaults) {
+  constructor(protected chartDefaults: ChartDefaults) {
     super();
   }
 
@@ -244,4 +244,9 @@ export class SparklineChartComponent extends ChartBase implements DoCheck, OnIni
   selector: 'pfng-chart-sparkline',
   templateUrl: './sparkline-chart.component.html'
 })
-export class SparklineComponent extends SparklineChartComponent {}
+export class SparklineComponent extends SparklineChartComponent {
+  constructor(protected chartDefaults: ChartDefaults) {
+    super(chartDefaults);
+    console.log('patternfly-ng: SparklineComponent is deprecated; use SparklineChartComponent');
+  }
+}

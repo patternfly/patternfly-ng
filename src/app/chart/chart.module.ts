@@ -17,7 +17,11 @@ import { WindowReference } from '../utilities/window.reference';
 export {
   ChartBase,
   ChartConfigBase,
-  ChartDefaults,
+  ChartDefaults
+};
+
+// @deprecated Use DonutChartComponent, SparklineChartConfig, and SparklineChartData
+export {
   DonutConfig,
   SparklineConfig,
   SparklineData
@@ -26,7 +30,12 @@ export {
 /**
  * A module containing objects associated with chart components
  *
- * @deprecated Use Use DonutChartModule or SparklineChartModule
+ * @deprecated Use individual module imports
+ *
+ * import {
+ *   DonutChartModule,
+ *   SparklineChartModule
+ * } from 'patterfnly/chart';
  */
 @NgModule({
   imports: [
@@ -35,8 +44,11 @@ export {
     FormsModule,
     SparklineChartModule
   ],
-  declarations: [DonutComponent, SparklineComponent],
   exports: [DonutComponent, SparklineComponent],
   providers: [ChartDefaults, WindowReference]
 })
-export class ChartModule {}
+export class ChartModule {
+  constructor() {
+    console.log('patternfly-ng: ChartModule is deprecated; use DonutChartModule or SparklineChartModule');
+  }
+}

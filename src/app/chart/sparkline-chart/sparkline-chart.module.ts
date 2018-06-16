@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { ChartDefaults } from '../chart-defaults';
-import { SparklineChartComponent } from './sparkline-chart.component';
+import { SparklineChartComponent, SparklineComponent } from './sparkline-chart.component';
 import { SparklineChartConfig } from './sparkline-chart-config';
 import { SparklineChartData } from './sparkline-chart-data';
 import { WindowReference } from '../../utilities/window.reference';
@@ -18,8 +18,8 @@ export {
     CommonModule,
     FormsModule
   ],
-  declarations: [SparklineChartComponent],
-  exports: [SparklineChartComponent],
+  declarations: [SparklineChartComponent, SparklineComponent],
+  exports: [SparklineChartComponent, SparklineComponent],
   providers: [ChartDefaults, WindowReference]
 })
 export class SparklineChartModule {}
