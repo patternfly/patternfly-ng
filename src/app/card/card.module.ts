@@ -31,7 +31,12 @@ export {
 /**
  * A module containing objects associated with card components
  *
- * @deprecated Use BasicCardModule or InfoStatusCardModule
+ * @deprecated Use individual module imports
+ *
+ * import {
+ *   CardModule, // basic card only
+ *   InfoStatusCardModule
+ * } from 'patternfy/card';
  */
 @NgModule({
   imports: [
@@ -44,4 +49,8 @@ export {
   ],
   exports: [CardComponent, CardFilterComponent, InfoStatusCardComponent]
 })
-export class CardModule {}
+export class CardModule {
+  constructor() {
+    console.log('patternfly-ng: CardModule is deprecated; use InfoStatusCardModule or CardModule for basic card only');
+  }
+}

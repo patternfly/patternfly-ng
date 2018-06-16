@@ -19,7 +19,7 @@ import { DemoComponentsModule } from '../../../../demo/components/demo-component
     InfoStatusCardModule,
     TabsModule.forRoot()
   ],
-  providers: [ TabsetConfig ]
+  providers: [TabsetConfig]
 })
 export class InfoStatusCardExampleModule {
   constructor() {}
