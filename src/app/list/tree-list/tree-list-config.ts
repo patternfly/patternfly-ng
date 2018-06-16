@@ -1,9 +1,9 @@
-import { ListBaseConfig } from '../list-base-config';
+import { ListConfigBase } from '../list-config-base';
 
 /**
  * A config containing properties for tree list
  */
-export class TreeListConfig extends ListBaseConfig {
+export class TreeListConfig extends ListConfigBase {
   /**
    * Indent children by the given value in pixels
    */
