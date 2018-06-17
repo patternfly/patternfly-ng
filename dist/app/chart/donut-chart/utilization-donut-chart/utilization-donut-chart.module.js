@@ -9,9 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ChartDefaults } from '../../chart-defaults';
 import { UtilizationDonutChartComponent } from './utilization-donut-chart.component';
-import { UtilizationDonutChartConfig } from './utilization-donut-chart-config';
 import { WindowReference } from '../../../utilities/window.reference';
-export { ChartDefaults, UtilizationDonutChartConfig, };
 var UtilizationDonutChartModule = /** @class */ (function () {
     function UtilizationDonutChartModule() {
     }

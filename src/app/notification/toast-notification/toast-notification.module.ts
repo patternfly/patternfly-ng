@@ -4,14 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { Notification } from '../notification';
-import { NotificationEvent } from '../notification-event';
 import { ToastNotificationComponent } from './toast-notification.component';
-
-export {
-  Notification,
-  NotificationEvent
-};
 
 /**
  * A module containing objects associated with toast notifications
