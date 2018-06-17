@@ -6,8 +6,8 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { NotificationModule } from '../../notification.module';
 import { ToastNotificationListExampleComponent } from './toast-notification-list-example.component';
+import { ToastNotificationListModule } from '../toast-notification-list.module';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,8 @@ import { ToastNotificationListExampleComponent } from './toast-notification-list
     CommonModule,
     DemoComponentsModule,
     FormsModule,
-    NotificationModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ToastNotificationListModule
   ],
   providers: [
     BsDropdownConfig,
