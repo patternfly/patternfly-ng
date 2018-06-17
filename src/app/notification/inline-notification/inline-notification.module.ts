@@ -3,11 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { InlineNotificationComponent } from './inline-notification.component';
-import { NotificationType } from '../notification-type';
-
-export {
-  NotificationType
-};
 
 /**
  * A module containing objects associated with inline notifications

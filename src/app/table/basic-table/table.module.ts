@@ -7,18 +7,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { PaginationModule } from '../../pagination/pagination.module';
 import { EmptyStateModule } from '../../empty-state/empty-state.module';
-import { NgxDataTableConfig } from './ngx-datatable-config';
 import { NgxDataTableDndDirective } from './ngx-datatable-dnd.directive';
 import { TableComponent } from './table.component';
-import { TableConfig } from './table-config';
-import { TableEvent } from '../table-event';
 import { ToolbarModule } from '../../toolbar/toolbar.module';
-
-export {
-  NgxDataTableConfig,
-  TableConfig,
-  TableEvent
-};
 
 /**
  * A module containing objects associated with table components

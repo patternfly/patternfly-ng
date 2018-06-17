@@ -4,15 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { EmptyStateModule } from '../../empty-state/empty-state.module';
 import { ListComponent } from './list.component';
-import { ListConfig } from './list-config';
-import { ListEvent } from '../list-event';
 import { ListExpandToggleComponent } from './list-expand-toggle.component';
 import { SortArrayPipeModule } from '../../pipe/sort-array/sort-array.pipe.module';
-
-export {
-  ListConfig,
-  ListEvent
-};
 
 /**
  * A module containing objects associated with basic list components
