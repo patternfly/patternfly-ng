@@ -8,6 +8,7 @@ import { UtilizationDonutChartConfig } from './utilization-donut-chart-config';
 import { WindowReference } from '../../../utilities/window.reference';
 
 export {
+  ChartDefaults,
   UtilizationDonutChartConfig,
 };
 
