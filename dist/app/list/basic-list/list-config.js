@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { ListBaseConfig } from '../list-base-config';
+import { ListConfigBase } from '../list-config-base';
 /**
  * A config containing properties for list view
  */
@@ -18,6 +18,6 @@ var ListConfig = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return ListConfig;
-}(ListBaseConfig));
+}(ListConfigBase));
 export { ListConfig };
 //# sourceMappingURL=list-config.js.map

@@ -10,9 +10,10 @@ import { NgModule } from '@angular/core';
 import { EmptyStateModule } from '../../empty-state/empty-state.module';
 import { ListComponent } from './list.component';
 import { ListConfig } from './list-config';
+import { ListEvent } from '../list-event';
 import { ListExpandToggleComponent } from './list-expand-toggle.component';
 import { PipeModule } from '../../pipe/pipe.module';
-export { ListConfig, ListExpandToggleComponent };
+export { ListConfig, ListEvent };
 /**
  * A module containing objects associated with basic list components
  */

@@ -1,6 +1,6 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import { Action } from '../action/action';
-import { ListBaseConfig } from './list-base-config';
+import { ListConfigBase } from './list-config-base';
 /**
  * List base
  */
@@ -44,9 +44,9 @@ export declare abstract class ListBase {
     /**
      * Return component config
      *
-     * @returns {ListBaseConfig} The component config
+     * @returns {ListConfigBase} The component config
      */
-    protected abstract getConfig(): ListBaseConfig;
+    protected abstract getConfig(): ListConfigBase;
     /**
      * Get the flag indicating list has no items
      *

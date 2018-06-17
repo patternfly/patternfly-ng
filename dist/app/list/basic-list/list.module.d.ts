@@ -1,6 +1,6 @@
 import { ListConfig } from './list-config';
-import { ListExpandToggleComponent } from './list-expand-toggle.component';
-export { ListConfig, ListExpandToggleComponent };
+import { ListEvent } from '../list-event';
+export { ListConfig, ListEvent };
 /**
  * A module containing objects associated with basic list components
  */

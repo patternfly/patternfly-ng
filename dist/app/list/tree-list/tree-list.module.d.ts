@@ -1,5 +1,6 @@
+import { ListEvent } from '../list-event';
 import { TreeListConfig } from './tree-list-config';
-export { TreeListConfig };
+export { ListEvent, TreeListConfig };
 /**
  * A module containing objects associated with tree list components
  */
