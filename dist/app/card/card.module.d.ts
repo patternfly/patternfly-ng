@@ -9,7 +9,13 @@ export { CardAction, CardBase, CardConfig, CardConfigBase, CardFilter, CardFilte
 /**
  * A module containing objects associated with card components
  *
- * @deprecated Use BasicCardModule or InfoStatusCardModule
+ * @deprecated Use individual module imports
+ *
+ * import {
+ *   CardModule, // basic card only
+ *   InfoStatusCardModule
+ * } from 'patternfy/card';
  */
 export declare class CardModule {
+    constructor();
 }

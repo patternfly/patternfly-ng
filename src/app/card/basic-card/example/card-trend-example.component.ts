@@ -7,8 +7,8 @@ import {
 import { CardAction } from '../../card-action/card-action';
 import { CardConfig } from '../card-config';
 import { CardFilter } from '../../card-filter/card-filter';
-import { SparklineConfig } from '../../../chart/sparkline-chart/sparkline-chart-config';
-import { SparklineData } from '../../../chart/sparkline-chart/sparkline-chart-data';
+import { SparklineChartConfig } from '../../../chart/sparkline-chart/sparkline-chart-config';
+import { SparklineChartData } from '../../../chart/sparkline-chart/sparkline-chart-data';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -18,12 +18,12 @@ import { SparklineData } from '../../../chart/sparkline-chart/sparkline-chart-da
 export class CardTrendExampleComponent implements OnInit {
   actionsText: string = '';
   chartDates: any[] = ['dates'];
-  chartConfigVirtual: SparklineConfig = {
+  chartConfigVirtual: SparklineChartConfig = {
     chartHeight: 60,
     chartId: 'virtualTrendsChart',
     tooltipType: 'default'
   };
-  chartDataVirtual: SparklineData = {
+  chartDataVirtual: SparklineChartData = {
     dataAvailable: true,
     total: 250,
     xData: this.chartDates,
@@ -31,12 +31,12 @@ export class CardTrendExampleComponent implements OnInit {
       'used', '90', '20', '30', '20', '20', '10', '14', '20', '25',
       '68', '44', '56', '78', '56', '67', '88', '76', '65', '87', '76']
   };
-  chartConfigPhysical: SparklineConfig = {
+  chartConfigPhysical: SparklineChartConfig = {
     chartHeight: 60,
     chartId: 'physicalTrendsChart',
     tooltipType: 'default'
   };
-  chartDataPhysical: SparklineData = {
+  chartDataPhysical: SparklineChartData = {
     dataAvailable: true,
     total: 250,
     xData: this.chartDates,
@@ -44,12 +44,12 @@ export class CardTrendExampleComponent implements OnInit {
       'used', '20', '20', '35', '20', '20', '87', '14', '20', '25',
       '28', '44', '56', '78', '56', '67', '88', '76', '65', '87', '16']
   };
-  chartConfigMemory: SparklineConfig = {
+  chartConfigMemory: SparklineChartConfig = {
     chartHeight: 60,
     chartId: 'memoryTrendsChart',
     tooltipType: 'default'
   };
-  chartDataMemory: SparklineData = {
+  chartDataMemory: SparklineChartData = {
     dataAvailable: true,
     total: 250,
     xData: this.chartDates,
