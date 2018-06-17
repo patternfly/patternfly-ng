@@ -17,7 +17,8 @@ export {
  * A module containing objects associated with notification components
  */
 @NgModule({
-  imports: [BsDropdownModule.forRoot(),
+  imports: [
+    BsDropdownModule.forRoot(),
     CommonModule,
     FormsModule],
   declarations: [PaginationComponent],

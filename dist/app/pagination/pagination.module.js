@@ -20,9 +20,11 @@ var PaginationModule = /** @class */ (function () {
     }
     PaginationModule = __decorate([
         NgModule({
-            imports: [BsDropdownModule.forRoot(),
+            imports: [
+                BsDropdownModule.forRoot(),
                 CommonModule,
-                FormsModule],
+                FormsModule
+            ],
             declarations: [PaginationComponent],
             exports: [PaginationComponent],
             providers: [BsDropdownConfig]
