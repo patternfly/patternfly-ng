@@ -25,7 +25,6 @@ import { FilterConfig } from '../../filter/filter-config';
 import { FilterField } from '../../filter/filter-field';
 import { FilterType } from '../../filter/filter-type';
 import { NgxDataTableDndDirective } from './ngx-datatable-dnd.directive';
-import { PipeModule } from './../../pipe/pipe.module';
 import { PaginationConfig } from './../../pagination/pagination-config';
 import { PaginationModule } from './../../pagination/pagination.module';
 import { SortConfig } from '../../sort/sort-config';
@@ -297,7 +296,6 @@ describe('Table component - ', () => {
         EmptyStateModule,
         FormsModule,
         PaginationModule,
-        PipeModule,
         PopoverModule.forRoot(),
         NgxDatatableModule,
         ToolbarModule,

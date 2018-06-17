@@ -12,7 +12,7 @@ import { ListComponent } from './list.component';
 import { ListConfig } from './list-config';
 import { ListEvent } from '../list-event';
 import { ListExpandToggleComponent } from './list-expand-toggle.component';
-import { PipeModule } from '../../pipe/pipe.module';
+import { SortArrayPipeModule } from '../../pipe/sort-array/sort-array.pipe.module';
 export { ListConfig, ListEvent };
 /**
  * A module containing objects associated with basic list components
@@ -26,7 +26,7 @@ var ListModule = /** @class */ (function () {
                 CommonModule,
                 EmptyStateModule,
                 FormsModule,
-                PipeModule
+                SortArrayPipeModule
             ],
             declarations: [ListComponent, ListExpandToggleComponent],
             exports: [ListComponent, ListExpandToggleComponent]

@@ -19,7 +19,8 @@ import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
 import { FilterQuery } from './filter-query';
 import { FilterType } from './filter-type';
-import { PipeModule } from './../pipe/pipe.module';
+import { SearchHighlightPipeModule } from '../pipe/search-highlight/search-highlight.pipe.module';
+import { TruncatePipeModule } from '../pipe/truncate/truncate.pipe.module';
 export { Filter, FilterConfig, FilterEvent, FilterField, FilterQuery, FilterType };
 /**
  * A module containing objects associated with filter components
@@ -33,9 +34,10 @@ var FilterModule = /** @class */ (function () {
                 BsDropdownModule.forRoot(),
                 CommonModule,
                 FormsModule,
-                PipeModule,
                 PopoverModule.forRoot(),
-                TooltipModule.forRoot()
+                SearchHighlightPipeModule,
+                TooltipModule.forRoot(),
+                TruncatePipeModule
             ],
             declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
             exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],

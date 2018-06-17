@@ -1,21 +1,39 @@
 import { NgModule } from '@angular/core';
+
+import { SearchHighlightPipeModule } from './search-highlight/search-highlight.pipe.module';
 import { SearchHighlightPipe } from './search-highlight/search-highlight.pipe';
+import { SortArrayPipeModule } from './sort-array/sort-array.pipe.module';
 import { SortArrayPipe } from './sort-array/sort-array.pipe';
+import { TruncatePipeModule } from './truncate/truncate.pipe.module';
 import { TruncatePipe } from './truncate/truncate.pipe';
+
+export {
+  SearchHighlightPipe,
+  SortArrayPipe,
+  TruncatePipe
+};
 
 /**
  * A module containing objects associated with pipes
+ *
+ * @deprecated Use individual module imports
+ *
+ * import {
+ *   SearchHighlightModule,
+ *   SortArrayModule,
+ *   TruncateModule
+ * } from 'patternfly-ng/pipe';
  */
 @NgModule({
-  declarations: [
-    SearchHighlightPipe,
-    SortArrayPipe,
-    TruncatePipe
-  ],
-  exports: [
-    SearchHighlightPipe,
-    SortArrayPipe,
-    TruncatePipe
+  imports: [
+    SearchHighlightPipeModule,
+    SortArrayPipeModule,
+    TruncatePipeModule
   ]
 })
-export class PipeModule { }
+export class PipeModule {
+  constructor() {
+    console.log('patternfly-ng: PipeModule is deprecated; use SearchHighlightModule, ' +
+      'SortArrayModule, or TruncateModule');
+  }
+}
