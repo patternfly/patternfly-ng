@@ -1,0 +1,115 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <pfng-list
+            [actionTemplate]="actionTemplate"
+            [config]="listConfig"
+            [expandTemplate]="expandTemplate"
+            [items]="items"
+            [itemTemplate]="itemTemplate"
+            (onActionSelect)="handleAction($event, null)"
+            (onClick)="handleClick($event)">
+          <ng-template #itemTemplate let-item="item">
+            <div class="list-pf-left">
+              <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
+            </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">{{item.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+              </div>
+              <div class="list-pf-additional-content">
+                <pfng-list-expand-toggle [expandId]="'hosts'" [item]="item" [template]="hostsTemplate">
+                  <ng-template #hostsTemplate>
+                    <span class="pficon pficon-screen"></span>
+                    <strong>{{item.hostCount}}</strong> Hosts
+                  </ng-template>
+                </pfng-list-expand-toggle>
+                <pfng-list-expand-toggle [expandId]="'clusters'" [item]="item" [template]="clustersTemplate">
+                  <ng-template #clustersTemplate>
+                    <span class="pficon pficon-cluster"></span>
+                    <strong>{{item.clustersCount}}</strong> Clusters
+                  </ng-template>
+                </pfng-list-expand-toggle>
+                <pfng-list-expand-toggle [expandId]="'nodes'" [item]="item" [template]="nodesTemplate">
+                  <ng-template #nodesTemplate>
+                    <span class="pficon pficon-container-node"></span>
+                    <strong>{{item.nodesCount}}</strong> Nodes
+                  </ng-template>
+                </pfng-list-expand-toggle>
+                <pfng-list-expand-toggle [expandId]="'images'" [item]="item" [template]="imagesTemplate">
+                  <ng-template #imagesTemplate>
+                    <span class="pficon pficon-image"></span>
+                    <strong>{{item.imagesCount}}</strong> Images
+                  </ng-template>
+                </pfng-list-expand-toggle>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #actionTemplate let-item="item" let-index="index">
+            <pfng-action class="list-pf-actions"
+                [config]="actionConfig"
+                (onActionSelect)="handleAction($event, item)">
+            </pfng-action>
+          </ng-template>
+          <ng-template #expandTemplate let-item="item" let-index="index">
+            <basic-content [item]="item" *ngIf="item.expandId === undefined"></basic-content>
+            <clusters-content *ngIf="item.expandId === 'clusters'"></clusters-content>
+            <hosts-content *ngIf="item.expandId === 'hosts'"></hosts-content>
+            <images-content *ngIf="item.expandId === 'images'"></images-content>
+            <nodes-content *ngIf="item.expandId === 'nodes'"></nodes-content>
+          </ng-template>
+        </pfng-list>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
+                   [(ngModel)]="listConfig.useExpandItems">Simple Expansion
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/list/basic-list/example/list-compound-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/list/basic-list/example/list-compound-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
