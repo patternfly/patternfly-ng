@@ -1,0 +1,147 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Wizard Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Basic' || activeTab === ''">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <button (click)="openModal(basicTemplate)" class="btn btn-default">Launch Wizard</button>
+              <ng-template #basicTemplate>
+                <wizard-basic-example></wizard-basic-example>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="row padding-top-10">
+          <div class="col-sm-12">
+            <h4>Code</h4>
+            <hr/>
+          </div>
+        </div>
+        <div>
+          <tabset>
+            <tab heading="api">
+              <iframe class="demoframe" src="docs/classes/wizardcomponent.html"></iframe>
+            </tab>
+            <tab heading="html">
+              <include-content src="src/app/wizard/example/wizard-basic-example.component.html"></include-content>
+            </tab>
+            <tab heading="typescript">
+              <include-content src="src/app/wizard/example/wizard-basic-example.component.ts"></include-content>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Navigation" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Navigation' || activeTab === ''">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+              <p>This ensures navigation can be disabled while simulated processes are running</p>
+              <button (click)="openModal(navTemplate)" class="btn btn-default">Launch Wizard</button>
+              <ng-template #navTemplate>
+                <wizard-nav-example></wizard-nav-example>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="row padding-top-10">
+          <div class="col-sm-12">
+            <h4>Code</h4>
+            <hr/>
+          </div>
+        </div>
+        <div>
+          <tabset>
+            <tab heading="api">
+              <iframe class="demoframe" src="docs/classes/wizardcomponent.html"></iframe>
+            </tab>
+            <tab heading="html">
+              <include-content src="src/app/wizard/example/wizard-nav-example.component.html"></include-content>
+            </tab>
+            <tab heading="typescript">
+              <include-content src="src/app/wizard/example/wizard-nav-example.component.ts"></include-content>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Embeded" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Embeded' || activeTab === ''">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+              <p>This ensures the wizard component can be embedded in a page</p>
+              <div class="example-wizard-embed">
+                <wizard-embed-example></wizard-embed-example>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row padding-top-10">
+          <div class="col-sm-12">
+            <h4>Code</h4>
+            <hr/>
+          </div>
+        </div>
+        <div>
+          <tabset>
+            <tab heading="api">
+              <iframe class="demoframe" src="docs/classes/wizardcomponent.html"></iframe>
+            </tab>
+            <tab heading="html">
+              <include-content src="src/app/wizard/example/wizard-embed-example.component.html"></include-content>
+            </tab>
+            <tab heading="typescript">
+              <include-content src="src/app/wizard/example/wizard-embed-example.component.ts"></include-content>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Lazy Load" (select)="tabSelected($event)">
+      <div class="padding-15" *ngIf="activeTab === 'Lazy Load' || activeTab === ''">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+              <p>This ensures additional steps can be added lazily, after the first step is complete</p>
+              <button (click)="openModal(lazyTemplate)" class="btn btn-default">Launch Wizard</button>
+              <ng-template #lazyTemplate>
+                <wizard-lazy-example></wizard-lazy-example>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="row padding-top-10">
+          <div class="col-sm-12">
+            <h4>Code</h4>
+            <hr/>
+          </div>
+        </div>
+        <div>
+          <tabset>
+            <tab heading="api">
+              <iframe class="demoframe" src="docs/classes/wizardcomponent.html"></iframe>
+            </tab>
+            <tab heading="html">
+              <include-content src="src/app/wizard/example/wizard-lazy-example.component.html"></include-content>
+            </tab>
+            <tab heading="typescript">
+              <include-content src="src/app/wizard/example/wizard-lazy-example.component.ts"></include-content>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>
