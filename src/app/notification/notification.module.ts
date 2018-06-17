@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { InlineNotificationComponent } from './inline-notification/inline-notification.component';
+import { InlineNotificationModule } from './inline-notification/inline-notification.module';
+import { NotificationDrawerComponent } from './notification-drawer/notification-drawer.component';
+import { NotificationDrawerModule } from './notification-drawer/notification-drawer.module';
 import { NotificaitonGroup } from './notification-group';
 import { NotificationEvent } from './notification-event';
 import { NotificationType } from './notification-type';
-import { NotificationService } from './notification-service/notification.service';
 import { ToastNotificationComponent } from './toast-notification/toast-notification.component';
+import { ToastNotificationModule } from './toast-notification/toast-notification.module';
 import { ToastNotificationListComponent } from './toast-notification-list/toast-notification-list.component';
-import { InlineNotificationComponent } from './inline-notification/inline-notification.component';
-import { NotificationDrawerComponent } from './notification-drawer/notification-drawer.component';
-import { EmptyStateModule } from '../empty-state/empty-state.module';
+import { ToastNotificationListModule } from './toast-notification-list/toast-notification-list.module';
 
 export {
   NotificationEvent,
@@ -20,13 +22,35 @@ export {
 
 /**
  * A module containing objects associated with notification components
+ *
+ * @deprecated Use individual module imports
+ *
+ * import {
+ *   InlineNotificationModule,
+ *   NotificationDrawerModule,
+ *   ToastNotificationModule,
+ *   ToastNotificationListModule
+ * } from 'patternfly-ng/notification';
  */
 @NgModule({
-  imports: [BsDropdownModule.forRoot(), CommonModule, EmptyStateModule],
-  declarations: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent, 
-    NotificationDrawerComponent],
-  exports: [ToastNotificationComponent, ToastNotificationListComponent, InlineNotificationComponent, 
-    NotificationDrawerComponent],
-  providers: [BsDropdownConfig, NotificationService]
+  imports: [
+    CommonModule,
+    FormsModule,
+    InlineNotificationModule,
+    NotificationDrawerModule,
+    ToastNotificationModule,
+    ToastNotificationListModule
+  ],
+  exports: [
+    InlineNotificationComponent,
+    NotificationDrawerComponent,
+    ToastNotificationComponent,
+    ToastNotificationListComponent
+  ]
 })
-export class NotificationModule {}
+export class NotificationModule {
+  constructor() {
+    console.log('patternfly-ng: NotificationModule is deprecated; use InlineNotificationModule, ' +
+      'NotificationDrawerModule, ToastNotificationModule, or ToastNotificationListModule');
+  }
+}

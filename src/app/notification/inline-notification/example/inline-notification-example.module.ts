@@ -6,8 +6,8 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { NotificationModule } from '../../notification.module';
 import { InlineNotificationExampleComponent } from './inline-notification-example.component';
+import { InlineNotificationModule } from '../inline-notification.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { InlineNotificationExampleComponent } from './inline-notification-exampl
     CommonModule,
     DemoComponentsModule,
     FormsModule,
-    NotificationModule,
+    InlineNotificationModule,
     TabsModule.forRoot()
   ],
   providers: [
