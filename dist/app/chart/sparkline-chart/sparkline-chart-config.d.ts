@@ -44,4 +44,5 @@ export declare class SparklineChartConfig extends ChartConfigBase {
  * @deprecated Use SparklineChartConfig
  */
 export declare class SparklineConfig extends SparklineChartConfig {
+    constructor();
 }

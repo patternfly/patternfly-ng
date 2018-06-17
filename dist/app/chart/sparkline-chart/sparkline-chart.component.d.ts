@@ -16,7 +16,7 @@ import { SparklineChartData } from './sparkline-chart-data';
  * <br/><code>import { SparklineChartModule } from 'patternfly-ng';</code>
  */
 export declare class SparklineChartComponent extends ChartBase implements DoCheck, OnInit {
-    private chartDefaults;
+    protected chartDefaults: ChartDefaults;
     /**
      * Chart data
      */
@@ -66,4 +66,6 @@ export declare class SparklineChartComponent extends ChartBase implements DoChec
  * @deprecated Use SparklineChartComponent
  */
 export declare class SparklineComponent extends SparklineChartComponent {
+    protected chartDefaults: ChartDefaults;
+    constructor(chartDefaults: ChartDefaults);
 }

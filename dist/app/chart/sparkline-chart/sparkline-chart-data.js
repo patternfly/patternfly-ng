@@ -23,7 +23,9 @@ export { SparklineChartData };
 var SparklineData = /** @class */ (function (_super) {
     __extends(SparklineData, _super);
     function SparklineData() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
+        console.log('patternfly-ng: SparklineData is deprecated; use SparklineChartData');
+        return _this;
     }
     return SparklineData;
 }(SparklineChartData));

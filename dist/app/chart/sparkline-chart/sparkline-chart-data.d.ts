@@ -23,4 +23,5 @@ export declare abstract class SparklineChartData {
  * @deprecated Use SparklineChartData
  */
 export declare abstract class SparklineData extends SparklineChartData {
+    constructor();
 }

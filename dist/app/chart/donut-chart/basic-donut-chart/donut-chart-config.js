@@ -26,7 +26,9 @@ export { DonutChartConfig };
 var DonutConfig = /** @class */ (function (_super) {
     __extends(DonutConfig, _super);
     function DonutConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
+        console.log('patternfly-ng: DonutConfig is deprecated; use DonutChartConfig or UtilizationDonutChartConfig');
+        return _this;
     }
     return DonutConfig;
 }(DonutChartConfig));

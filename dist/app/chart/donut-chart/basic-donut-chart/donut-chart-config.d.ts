@@ -8,4 +8,5 @@ export declare class DonutChartConfig extends DonutChartBaseConfig {
  * @deprecated Use DonutChartConfig
  */
 export declare class DonutConfig extends DonutChartConfig {
+    constructor();
 }

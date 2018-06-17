@@ -60,15 +60,20 @@ export { DonutChartComponent };
  */
 var DonutComponent = /** @class */ (function (_super) {
     __extends(DonutComponent, _super);
-    function DonutComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function DonutComponent(chartDefaults, windowRef) {
+        var _this = _super.call(this, chartDefaults, windowRef) || this;
+        _this.chartDefaults = chartDefaults;
+        _this.windowRef = windowRef;
+        console.log('patternfly-ng: DonutComponent is deprecated; use DonutChartComponent');
+        return _this;
     }
     DonutComponent = __decorate([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-chart-donut',
             template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        })
+        }),
+        __metadata("design:paramtypes", [ChartDefaults, WindowReference])
     ], DonutComponent);
     return DonutComponent;
 }(DonutChartComponent));

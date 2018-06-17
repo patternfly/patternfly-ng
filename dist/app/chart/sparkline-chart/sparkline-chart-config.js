@@ -26,7 +26,9 @@ export { SparklineChartConfig };
 var SparklineConfig = /** @class */ (function (_super) {
     __extends(SparklineConfig, _super);
     function SparklineConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
+        console.log('patternfly-ng: SparklineConfig is deprecated; use SparklineChartConfig');
+        return _this;
     }
     return SparklineConfig;
 }(SparklineChartConfig));

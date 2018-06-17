@@ -25,4 +25,7 @@ export declare class DonutChartComponent extends DonutChartBaseComponent {
  * @deprecated Use DonutChartComponent
  */
 export declare class DonutComponent extends DonutChartComponent {
+    protected chartDefaults: ChartDefaults;
+    protected windowRef: WindowReference;
+    constructor(chartDefaults: ChartDefaults, windowRef: WindowReference);
 }

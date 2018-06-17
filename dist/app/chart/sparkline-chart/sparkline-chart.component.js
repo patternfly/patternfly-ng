@@ -240,15 +240,19 @@ export { SparklineChartComponent };
  */
 var SparklineComponent = /** @class */ (function (_super) {
     __extends(SparklineComponent, _super);
-    function SparklineComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function SparklineComponent(chartDefaults) {
+        var _this = _super.call(this, chartDefaults) || this;
+        _this.chartDefaults = chartDefaults;
+        console.log('patternfly-ng: SparklineComponent is deprecated; use SparklineChartComponent');
+        return _this;
     }
     SparklineComponent = __decorate([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-chart-sparkline',
             template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        })
+        }),
+        __metadata("design:paramtypes", [ChartDefaults])
     ], SparklineComponent);
     return SparklineComponent;
 }(SparklineChartComponent));

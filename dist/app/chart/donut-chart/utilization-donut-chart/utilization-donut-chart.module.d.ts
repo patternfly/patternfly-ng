@@ -1,4 +1,5 @@
+import { ChartDefaults } from '../../chart-defaults';
 import { UtilizationDonutChartConfig } from './utilization-donut-chart-config';
-export { UtilizationDonutChartConfig };
+export { ChartDefaults, UtilizationDonutChartConfig };
 export declare class UtilizationDonutChartModule {
 }
