@@ -13,7 +13,7 @@ import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { EmptyStateModule } from '../../empty-state/empty-state.module';
 import { ListComponent } from './list.component';
 import { ListConfig } from './list-config';
-import { PipeModule } from '../../pipe/pipe.module';
+import { SortArrayPipeModule } from '../../pipe/sort-array/sort-array.pipe.module';
 
 describe('List component - ', () => {
   let comp: ListComponent;
@@ -121,7 +121,7 @@ describe('List component - ', () => {
         BrowserAnimationsModule,
         EmptyStateModule,
         FormsModule,
-        PipeModule
+        SortArrayPipeModule
       ],
       declarations: [ListComponent],
       providers: []
