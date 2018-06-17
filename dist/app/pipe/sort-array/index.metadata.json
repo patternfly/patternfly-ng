@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":3,"metadata":{},"exports":[{"from":"./sort-array.pipe.module","export":["SortArrayPipeModule"]},{"from":"./sort-array.pipe","export":["SortArrayPipe"]}]},{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./sort-array.pipe.module","export":["SortArrayPipeModule"]},{"from":"./sort-array.pipe","export":["SortArrayPipe"]}]}]
