@@ -12,12 +12,12 @@ import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap';
 
 import { ApplicationLauncherComponent } from './application-launcher.component';
-import { NavigationItemConfig } from '../navigation-item-config';
+import { ApplicationLauncherConfig } from './application-launcher-config';
 
 describe('Application Launcher componet', () => {
   let comp: ApplicationLauncherComponent;
   let fixture: ComponentFixture<ApplicationLauncherComponent>;
-  let navigationItems: NavigationItemConfig[];
+  let navigationItems: ApplicationLauncherConfig[];
 
   beforeEach(() => {
     navigationItems = [{

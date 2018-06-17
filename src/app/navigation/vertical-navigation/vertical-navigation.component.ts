@@ -10,7 +10,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { NavigationItemConfig } from '../navigation-item-config';
+
+import { VerticalNavigationConfig } from './vertical-navigation-config';
 
 import { WindowReference } from '../../utilities/window.reference';
 
@@ -61,7 +62,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   /**
    * The navigation items used to build the menu
    */
-  @Input() items: NavigationItemConfig[];
+  @Input() items: VerticalNavigationConfig[];
 
   /**
    * Sets an active flag on items when they are selected, default: false
@@ -361,7 +362,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param primary
    * @param secondary
    */
-  public handleSecondaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig): void {
+  public handleSecondaryClick(primary: VerticalNavigationConfig, secondary: VerticalNavigationConfig): void {
     if (this.inMobileState === true) {
       if (secondary.children && secondary.children.length > 0) {
         this.updateMobileMenu(primary, secondary);
@@ -380,8 +381,8 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * @param secondary
    * @param tertiary
    */
-  public handleTertiaryClick(primary: NavigationItemConfig, secondary: NavigationItemConfig,
-      tertiary: NavigationItemConfig): void {
+  public handleTertiaryClick(primary: VerticalNavigationConfig, secondary: VerticalNavigationConfig,
+      tertiary: VerticalNavigationConfig): void {
     if (this.inMobileState === true) {
       this.updateMobileMenu();
     }
@@ -392,7 +393,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    *  Show secondary nav bar on hover of primary nav items
    * @param item
    */
-  public handlePrimaryHover(item: NavigationItemConfig): void {
+  public handlePrimaryHover(item: VerticalNavigationConfig): void {
     if (item.children !== undefined && item.children.length > 0) {
       if (this.inMobileState !== true) {
         if (item.blurTimeout !== undefined) {
@@ -413,7 +414,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Hides menus on blur
    * @param item
    */
-  public handlePrimaryBlur(item: NavigationItemConfig): void {
+  public handlePrimaryBlur(item: VerticalNavigationConfig): void {
     if (item.children !== undefined && item.children.length > 0) {
       if (item.hoverTimeout !== undefined) {
         clearTimeout(item.hoverTimeout);
@@ -455,7 +456,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Hides menus on blur
    * @param item
    */
-  public handleSecondaryBlur(item: NavigationItemConfig): void {
+  public handleSecondaryBlur(item: VerticalNavigationConfig): void {
     if (item.children !== undefined && item.children.length > 0) {
       if (item.hoverTimeout !== undefined) {
         clearTimeout(item.hoverTimeout);
@@ -476,7 +477,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Collapse secondary navigation
    * @param item
    */
-  public collapseSecondaryNav(item: NavigationItemConfig): void {
+  public collapseSecondaryNav(item: VerticalNavigationConfig): void {
     if (this.inMobileState === true) {
       this.updateMobileMenu();
     } else {
@@ -494,7 +495,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
    * Collapse tertiary navigation
    * @param item
    */
-  public collapseTertiaryNav(item: NavigationItemConfig): void {
+  public collapseTertiaryNav(item: VerticalNavigationConfig): void {
     if (this.inMobileState === true) {
       this.items.forEach((primaryItem) => {
         if (primaryItem.children !== undefined) {
@@ -544,7 +545,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-  private updateMobileMenu(selected?: NavigationItemConfig, secondaryItem?: NavigationItemConfig): void {
+  private updateMobileMenu(selected?: VerticalNavigationConfig, secondaryItem?: VerticalNavigationConfig): void {
     this.items.forEach((item) => {
       item.mobileItem = false;
       if (item.children !== undefined) {
@@ -642,7 +643,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
-  private setParentActive(item: NavigationItemConfig) {
+  private setParentActive(item: VerticalNavigationConfig) {
     this.items.forEach((topLevel) => {
       if (topLevel.children !== undefined) {
         topLevel.children.forEach((secondLevel) => {
@@ -662,7 +663,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getFirstNavigateChild(item: NavigationItemConfig): NavigationItemConfig {
+  private getFirstNavigateChild(item: VerticalNavigationConfig): VerticalNavigationConfig {
     let firstChild;
     if (item.children === undefined || item.children.length < 1) {
       firstChild = item;
@@ -695,7 +696,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-  private navigateToItem(item: NavigationItemConfig): void {
+  private navigateToItem(item: VerticalNavigationConfig): void {
     let navItem = this.getFirstNavigateChild(item);
     let navTo;
     if (navItem) {
@@ -746,7 +747,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     return hover;
   }
 
-  private updateSecondaryCollapsedState(setCollapsed: boolean, collapsedItem?: NavigationItemConfig) {
+  private updateSecondaryCollapsedState(setCollapsed: boolean, collapsedItem?: VerticalNavigationConfig) {
     if (collapsedItem !== undefined) {
       collapsedItem.secondaryCollapsed = setCollapsed;
     }
@@ -771,7 +772,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     }
   }
 
-  private updateTertiaryCollapsedState(setCollapsed: boolean, collapsedItem?: NavigationItemConfig): void {
+  private updateTertiaryCollapsedState(setCollapsed: boolean, collapsedItem?: VerticalNavigationConfig): void {
     if (collapsedItem !== undefined) {
       collapsedItem.tertiaryCollapsed = setCollapsed;
     }

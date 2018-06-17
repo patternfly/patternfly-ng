@@ -4,7 +4,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NavigationItemConfig } from '../../navigation-item-config';
+import { ApplicationLauncherConfig } from '../application-launcher-config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -13,7 +13,7 @@ import { NavigationItemConfig } from '../../navigation-item-config';
 })
 export class ApplicationLauncherExampleComponent  implements OnInit {
   disabled: boolean = false;
-  navigationItems: NavigationItemConfig[];
+  navigationItems: ApplicationLauncherConfig[];
   showIcons: boolean = true;
 
   ngOnInit(): void {

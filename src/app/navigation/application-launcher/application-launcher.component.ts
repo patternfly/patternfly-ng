@@ -5,17 +5,16 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NavigationItemConfig } from '../navigation-item-config';
+import { ApplicationLauncherConfig } from './application-launcher-config';
 
+/**
+ * Application launcher component
+ */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-application-launcher',
   templateUrl: './application-launcher.component.html'
 })
-
-/**
- * Application launcher component
- */
 export class ApplicationLauncherComponent  implements OnInit {
   /**
    * Disable the application launcher button, default: false
@@ -25,7 +24,7 @@ export class ApplicationLauncherComponent  implements OnInit {
   /**
    * The navigation items used to build the menu
    */
-  @Input() items: NavigationItemConfig[];
+  @Input() items: ApplicationLauncherConfig[];
 
   /**
    *  Use a custom label for the launcher, default: Application Launcher
