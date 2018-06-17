@@ -1,9 +1,9 @@
-import { ListBaseConfig } from '../list-base-config';
+import { ListConfigBase } from '../list-config-base';
 
 /**
  * A config containing properties for list view
  */
-export class ListConfig extends ListBaseConfig {
+export class ListConfig extends ListConfigBase {
   /**
    * Set to true to hide the close button in the expansion area. Default is false
    */

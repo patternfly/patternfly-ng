@@ -2,12 +2,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { EmptyStateModule } from '../../empty-state/empty-state.module';
-import { TreeListComponent } from './tree-list.component';
-import { TreeListConfig } from './tree-list-config';
 import { TreeModule } from 'angular-tree-component';
 
+import { EmptyStateModule } from '../../empty-state/empty-state.module';
+import { ListEvent } from '../list-event';
+import { TreeListComponent } from './tree-list.component';
+import { TreeListConfig } from './tree-list-config';
+
 export {
+  ListEvent,
   TreeListConfig
 };
 
