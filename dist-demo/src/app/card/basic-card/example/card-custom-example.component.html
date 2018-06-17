@@ -1,0 +1,92 @@
+<div class="padding-15">
+  <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+  <p>This ensures a custom header can be added via a template</p>
+  <div class="cards-pf">
+    <div class="row row-cards-pf">
+      <div class="col-sm-4">
+        <pfng-card class="custom-card"
+                   [config]="config"
+                   [headerTemplate]="spacesHeaderTemplate">
+          <ng-template #spacesHeaderTemplate>
+            <div class="card-pf-heading-details">
+              <a class="btn btn-link custom-card-btn-link">
+                <i class="pficon pficon-add-circle-o"></i>
+              </a>
+            </div>
+            <h2 class="card-pf-title">
+              Recent spaces
+            </h2>
+          </ng-template>
+          <div class="col-sm-12 custom-blank-slate-card">
+            <div class="custom-blank-slate-icon">
+              <i class="pficon pficon-add-circle-o"></i>
+            </div>
+            <h3>Create a Space</h3>
+            <p>Learn how to get started <a>in the documentation</a></p>
+            <div class="blank-slate-pf-main-action">
+              <button class="btn btn-primary btn-lg"> Create a space </button>
+            </div>
+          </div>
+        </pfng-card>
+      </div>
+      <div class="col-sm-4">
+        <pfng-card class="custom-card"
+                   [config]="config"
+                   [headerTemplate]="itemsHeaderTemplate">
+          <ng-template #itemsHeaderTemplate>
+            <h2 class="card-pf-title">My work items
+              <select class="col-xs-3 col-sm-6 form-control custom-card-combobox">
+                <option value="default">Select a space to work with...</option>
+                <option value="osio">OSIO</option>
+              </select>
+            </h2>
+          </ng-template>
+          <div class="col-sm-12 custom-blank-slate-card">
+            <div class="custom-blank-slate-icon">
+              <i class="pficon pficon-info"></i>
+            </div>
+            <h3>Work items reflect the work to be done within a space.</h3>
+            <p>Once you create a space or join a space, your work items will begin displaying here.</p>
+          </div>
+        </pfng-card>
+      </div>
+      <div class="col-sm-4">
+        <pfng-card class="custom-card"
+                   [config]="config"
+                   [headerTemplate]="pipelinesHeaderTemplate">
+          <ng-template #pipelinesHeaderTemplate>
+            <h2 class="card-pf-title">Recent active pipelines
+              <span class="badge">1</span>
+            </h2>
+          </ng-template>
+          <div class="col-sm-12 custom-blank-slate-card">
+            <div class="custom-blank-slate-icon">
+              <i class="pficon pficon-info"></i>
+            </div>
+            <h3>No recent failed or active pipelines</h3>
+            <p>Failed pipelines or active pipelines will display here when you commit and build your codebase.</p>
+          </div>
+        </pfng-card>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/cardcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/card/basic-card/example/card-custom-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/card/basic-card/example/card-custom-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
