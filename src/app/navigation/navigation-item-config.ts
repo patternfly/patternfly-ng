@@ -1,28 +1,11 @@
+import { NavigationItemBase } from './navigation-item-base';
+
 /**
  * A config containing properties for navigation items
+ *
+ * @deprecated Use VerticalNavigationItem, or ApplicationLauncherItem
  */
-export class NavigationItemConfig {
-
-  /**
-   * Title for the navigation item
-   */
-  title: string;
-
-  /**
-   * The icon class to use for icons displayed to the left of text
-   */
-  iconStyleClass?: string;
-
-  /**
-   * Link to navigate to
-   */
-  url?: string;
-
-  /**
-   * Badges to display information about the navigation item
-   */
-  badges?: any[];
-
+export class NavigationItemConfig extends NavigationItemBase {
   /**
    * Navigation children (used for secondary and tertiary navigation)
    */
@@ -67,4 +50,10 @@ export class NavigationItemConfig {
    * Internal variable used for blur timeout
    */
   blurTimeout?: any;
+
+  constructor() {
+    super();
+    console.log('patternfly-ng: NavigationItemConfig is deprecated; use VerticalNavigationItem ' +
+      'or ApplicationLauncherItem');
+  }
 }
