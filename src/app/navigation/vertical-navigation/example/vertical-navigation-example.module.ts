@@ -5,20 +5,20 @@ import { NgModule } from '@angular/core';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { NavigationModule } from '../../navigation.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { VerticalNavigationExampleComponent } from './vertical-navigation-example.component';
+import { VerticalNavigationModule } from '../vertical-navigation.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
+    BsDropdownModule.forRoot(),
     CommonModule,
     DemoComponentsModule,
     FormsModule,
     RouterModule,
-    NavigationModule,
     TabsModule.forRoot(),
-    BsDropdownModule.forRoot()
+    VerticalNavigationModule
   ],
   declarations: [VerticalNavigationExampleComponent],
   exports: [VerticalNavigationExampleComponent],

@@ -6,16 +6,16 @@ import {
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { NavigationItemConfig } from '../navigation-item-config';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule } from 'ngx-bootstrap';
 import { VerticalNavigationComponent } from './vertical-navigation.component';
+import { VerticalNavigationItem } from './vertical-navigation-item';
 import { WindowReference } from '../../utilities/window.reference';
 
 describe('Vertical Navigation component - ', () => {
   let comp: VerticalNavigationComponent;
   let fixture: ComponentFixture<VerticalNavigationComponent>;
-  let navigationItems: NavigationItemConfig[];
+  let navigationItems: VerticalNavigationItem[];
   let navigateItem, clickItem;
 
   beforeEach(() => {

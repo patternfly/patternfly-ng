@@ -5,7 +5,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NavigationItemConfig } from '../navigation-item-config';
+import { ApplicationLauncherItem } from './application-launcher-item';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -25,7 +25,7 @@ export class ApplicationLauncherComponent  implements OnInit {
   /**
    * The navigation items used to build the menu
    */
-  @Input() items: NavigationItemConfig[];
+  @Input() items: ApplicationLauncherItem[];
 
   /**
    *  Use a custom label for the launcher, default: Application Launcher
