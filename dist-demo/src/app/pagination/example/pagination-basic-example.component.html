@@ -1,0 +1,56 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <div class="col-sm-12" *ngFor="let item of items
+           | slice:((paginationConfig.pageNumber - 1) * paginationConfig.pageSize):paginationConfig.totalItems
+           | slice:0:paginationConfig.pageSize">
+          <div class="row">
+            <div class="col-sm-3">
+              <span>{{item.id}}</span>
+            </div>
+            <div class="col-sm-7">
+              <span>{{item.status}}</span>
+            </div>
+            <div class="col-sm-2">
+              <span>{{item.value}}</span>
+            </div>
+          </div>
+        </div>
+        <pfng-pagination [config]='paginationConfig'
+                         (onPageSizeChange)="handlePageSize($event)"
+                         (onPageNumberChange)="handlePageNumber($event)"></pfng-pagination>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/paginationcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/pagination/example/pagination-basic-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/pagination/example/pagination-basic-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
