@@ -39,6 +39,11 @@ import { TreeListConfig } from './tree-list-config';
  *
  * Or:
  * <br/><code>import { TreeListModule } from 'patternfly-ng';</code>
+ *
+ * @deprecated The tree-list component is deprecated due to issues with Angular 6 and mobx autorun,
+ * introduced by angular-tree-component.
+ *
+ * See: https://github.com/patternfly/patternfly-ng/issues/381
  */
 var TreeListComponent = /** @class */ (function (_super) {
     __extends(TreeListComponent, _super);
