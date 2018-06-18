@@ -1,10 +1,12 @@
 import {
   ChangeDetectorRef,
   Component,
-  OnInit, ViewEncapsulation
+  OnInit,
+  ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavigationItemConfig } from '../../navigation-item-config';
+
+import { VerticalNavigationItem } from '../vertical-navigation-item';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -44,7 +46,7 @@ import { NavigationItemConfig } from '../../navigation-item-config';
 export class VerticalNavigationExampleComponent implements OnInit {
 
   showExample: boolean = false;
-  navigationItems: NavigationItemConfig[];
+  navigationItems: VerticalNavigationItem[];
   actionText: string = '';
 
   constructor(private chRef: ChangeDetectorRef, private router: Router) {
@@ -276,11 +278,11 @@ export class VerticalNavigationExampleComponent implements OnInit {
     this.chRef.detectChanges();
   }
 
-  onItemClicked($event: NavigationItemConfig): void {
+  onItemClicked($event: VerticalNavigationItem): void {
     this.actionText += 'Item Clicked: ' + $event.title + '\n';
   }
 
-  onNavigation($event: NavigationItemConfig): void {
+  onNavigation($event: VerticalNavigationItem): void {
     this.actionText += 'Navigation event fired: ' + $event.title + '\n';
   }
 }

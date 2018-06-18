@@ -4,18 +4,18 @@ import { NgModule } from '@angular/core';
 
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
-import { NavigationModule } from '../../navigation.module';
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { ApplicationLauncherExampleComponent } from './application-launcher-example.component';
+import { ApplicationLauncherModule } from '../application-launcher.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
+    ApplicationLauncherModule,
     CommonModule,
     DemoComponentsModule,
     FormsModule,
     RouterModule,
-    NavigationModule,
     TabsModule.forRoot()
   ],
   declarations: [ApplicationLauncherExampleComponent],
