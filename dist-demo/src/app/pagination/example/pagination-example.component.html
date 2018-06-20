@@ -1,0 +1,17 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Pagination Component Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <pagination-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></pagination-basic-example>
+    </tab>
+    <tab heading="List" (select)="tabSelected($event)">
+     <pagination-list-example *ngIf="activeTab === 'List'" ></pagination-list-example>
+    Content
+    </tab>
+  </tabset>
+</div>
