@@ -14,6 +14,6 @@ export * from './sample/index';
 export * from './sort/index';
 export * from './table/index';
 export * from './toolbar/index';
-export * from './utilities/window.reference';
+export * from './utilities/index';
 export * from './wizard/index';
 //# sourceMappingURL=index.js.map
