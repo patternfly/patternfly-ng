@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../build/src/app/utilities/index.ts"],"names":[],"mappings":"AAAA,cAAc,oBAAoB,CAAC","sourcesContent":["export * from './window.reference';\n\ninterface DecoratorInvocation {\n  type: Function;\n  args?: any[];\n}\n"]}
