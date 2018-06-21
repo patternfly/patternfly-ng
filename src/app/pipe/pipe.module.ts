@@ -7,12 +7,6 @@ import { SortArrayPipe } from './sort-array/sort-array.pipe';
 import { TruncatePipeModule } from './truncate/truncate.pipe.module';
 import { TruncatePipe } from './truncate/truncate.pipe';
 
-export {
-  SearchHighlightPipe,
-  SortArrayPipe,
-  TruncatePipe
-};
-
 /**
  * A module containing objects associated with pipes
  *
@@ -29,6 +23,11 @@ export {
     SearchHighlightPipeModule,
     SortArrayPipeModule,
     TruncatePipeModule
+  ],
+  exports: [
+    SearchHighlightPipe,
+    SortArrayPipe,
+    TruncatePipe
   ]
 })
 export class PipeModule {

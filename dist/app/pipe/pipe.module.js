@@ -14,7 +14,6 @@ import { SortArrayPipeModule } from './sort-array/sort-array.pipe.module';
 import { SortArrayPipe } from './sort-array/sort-array.pipe';
 import { TruncatePipeModule } from './truncate/truncate.pipe.module';
 import { TruncatePipe } from './truncate/truncate.pipe';
-export { SearchHighlightPipe, SortArrayPipe, TruncatePipe };
 /**
  * A module containing objects associated with pipes
  *
@@ -37,6 +36,11 @@ var PipeModule = /** @class */ (function () {
                 SearchHighlightPipeModule,
                 SortArrayPipeModule,
                 TruncatePipeModule
+            ],
+            exports: [
+                SearchHighlightPipe,
+                SortArrayPipe,
+                TruncatePipe
             ]
         }),
         __metadata("design:paramtypes", [])

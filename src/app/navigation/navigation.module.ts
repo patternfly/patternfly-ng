@@ -27,7 +27,7 @@ export {
     CommonModule,
     VerticalNavigationModule
   ],
-  exports: [ ApplicationLauncherComponent, VerticalNavigationComponent]
+  exports: [ApplicationLauncherComponent, VerticalNavigationComponent]
 })
 export class NavigationModule {
   constructor() {
