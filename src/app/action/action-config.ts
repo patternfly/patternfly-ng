@@ -29,4 +29,9 @@ export class ActionConfig {
    * List of primary actions (e.g., for buttons)
    */
   primaryActions: Action[];
+
+  /**
+   * Text announced to screen readers for the action config button
+   */
+  ariaLabel?: string;
 }

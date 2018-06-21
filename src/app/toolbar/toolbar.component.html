@@ -29,7 +29,7 @@
             <button *ngFor="let view of config.views"
                     class="btn btn-link"
                     [ngClass]="{'active': isViewSelected(view), 'disabled': view.disabled === true}"
-                    [attr.aria-label]="view.tooltip"
+                    [attr.aria-label]="view.ariaLabel || view.tooltip"
                     title={{view.tooltip}}
                     (click)="viewSelected(view)">
               <i class="{{view.iconStyleClass}}"></i>
