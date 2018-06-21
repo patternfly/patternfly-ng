@@ -1,0 +1,176 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+        <p>This ensures list items can be pinned to the top of the list</p>
+        <pfng-list
+            [actionHeadingTemplate]="actionHeadingTemplate"
+            [actionTemplate]="actionTemplate"
+            [config]="listConfig"
+            [expandTemplate]="expandTemplate"
+            [items]="items | sortArray: 'name'"
+            [itemHeadingTemplate]="itemHeadingTemplate"
+            [itemTemplate]="itemTemplate"
+            (onActionSelect)="handleAction($event, null)"
+            (onClick)="handleClick($event)"
+            (onDblClick)="handleDblClick($event)"
+            (onPinChange)="handlePinChange($event)"
+            (onSelectionChange)="handleSelectionChange($event)">
+          <ng-template #itemHeadingTemplate let-item="item">
+            <div class="list-pf-left">
+              <!-- Place holder to match fa-plane icon width below -->
+              <div class="icon-placeholder"></div>
+            </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">NAME</div>
+                <div class="list-pf-description text-overflow-pf">ACTIONS</div>
+              </div>
+              <div class="list-pf-additional-content">
+                <div>ADDITOINAL INFO<i class="pficon pficon-info padding-left-5" tooltip="Additional info"></i></div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #itemTemplate let-item="item" let-index="index">
+            <div class="list-pf-left">
+              <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
+            </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">{{item.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+              </div>
+              <div class="list-pf-additional-content">
+                <div>
+                  <span class="pficon pficon-screen"></span>
+                  <strong>{{item.hostCount}}</strong> Hosts
+                </div>
+                <div>
+                  <span class="pficon pficon-cluster"></span>
+                  <strong>{{item.clusterCount}}</strong> Clusters
+                </div>
+                <div>
+                  <span class="pficon pficon-container-node"></span>
+                  <strong>{{item.nodeCount}}</strong> Nodes
+                </div>
+                <div>
+                  <span class="pficon pficon-image"></span>
+                  <strong>{{item.imageCount}}</strong> Images
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #actionHeadingTemplate let-item="item">
+            <span class="margin-left-40">ADDRESS</span>
+            <!-- Place holder to match action button width below -->
+            <div class="actions-placeholder"></div>
+          </ng-template>
+          <ng-template #actionTemplate let-item="item" let-index="index">
+            <pfng-action class="list-pf-actions"
+                         [config]="getActionConfig(item)"
+                         (onActionSelect)="handleAction($event, item)">
+            </pfng-action>
+          </ng-template>
+          <ng-template #expandTemplate let-item="item" let-index="index">
+            <basic-content [item]="item"></basic-content>
+          </ng-template>
+        </pfng-list>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="radio-inline">
+            <input id="selectType1" name="selectType" type="radio"
+                   [(ngModel)]="selectType" value="checkbox" (ngModelChange)="updateSelectionType()">Checkbox
+          </label>
+          <label class="radio-inline">
+            <input id="selectType2" name="selectType" type="radio"
+                   [(ngModel)]="selectType" value="radio" (ngModelChange)="updateSelectionType()">Radio Button
+          </label>
+          <label class="radio-inline">
+            <input id="selectType3" name="selectType" type="radio"
+                   [(ngModel)]="selectType" value="row" (ngModelChange)="updateSelectionType()">Row
+          </label>
+          <label class="radio-inline">
+            <input id="selectType4" name="selectType" type="radio"
+                   [(ngModel)]="selectType" value="none" (ngModelChange)="updateSelectionType()">None
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="dblClick" name="dblClick" type="checkbox"
+                   [(ngModel)]="listConfig.dblClick"
+                   (ngModelChange)="listConfig.multiSelect = false">Double Click
+          </label>
+          <label class="checkbox-inline">
+            <input id="multiSelect" name="multiSelect" type="checkbox"
+                   [(ngModel)]="listConfig.multiSelect"
+                   [disabled]="listConfig.dblClick">Multi Select
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="useExpandingRows" name="useExpandingRows" type="checkbox"
+                   [(ngModel)]="listConfig.useExpandItems">Simple Expansion
+          </label>
+          <label class="checkbox-inline">
+            <input id="usePinItems" name="usePinItems" type="checkbox"
+                   [(ngModel)]="listConfig.usePinItems">Pinned Items
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/listcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/list/basic-list/example/list-pin-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/list/basic-list/example/list-pin-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
