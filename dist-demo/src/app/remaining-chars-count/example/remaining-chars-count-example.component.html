@@ -1,0 +1,96 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Remaining Chars Directive Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="example-container">
+    <h4>Max limit: 20, warn when 5 or less remaining, disable button after max limit</h4>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label class="sr-only" for="example1">Example 1</label>
+          <textarea class="form-control" id="example1" name="example1" rows="5"
+                    placeholder="Type in your message"
+                    [charsMaxLimit]="20"
+                    [charsRemainingElement]="remainingCountElement1"
+                    [charsRemainingWarning]="5"
+                    (onOverCharsMaxLimit)="handleOverCharsMaxLimit($event, 'example1')"
+                    (onUnderCharsMaxLimit)="handleUnderCharsMaxLimit($event, 'example1')"
+                    (ngModel)="example1"
+                    pfng-remaining-chars-count>Initial text</textarea>
+        </div>
+        <span class="pull-right chars-remaining-pf">
+        <span #remainingCountElement1></span>
+        <button class="btn btn-default" onclick="return false"
+                [disabled]="charsMaxLimitExceeded['example1']">Post New Message</button>
+      </span>
+      </div>
+    </div>
+    <h4>Max limit: 10, warn when 2 or less remaining, block input after max limit</h4>
+    <div class="row">
+      <div class="col-sm-4">
+        <form>
+          <div class="form-group">
+            <label class="sr-only" for="example2">Example 2</label>
+            <textarea class="form-control" id="example2" name="example2" rows="5"
+                      placeholder="Type in your message"
+                      [blockInputAtMaxLimit]="true"
+                      [charsMaxLimit]="10"
+                      [charsRemainingElement]="remainingCountElement2"
+                      [charsRemainingWarning]="2"
+                      (onOverCharsMaxLimit)="handleOverCharsMaxLimit($event, 'example2')"
+                      (onUnderCharsMaxLimit)="handleUnderCharsMaxLimit($event, 'example2')"
+                      (ngModel)="example2"
+                      pfng-remaining-chars-count></textarea>
+          </div>
+          <span class="pull-left">
+          <button class="btn btn-default" onclick="return false;">Submit</button>
+        </span>
+          <span class="pull-right chars-remaining-pf padding-top-3">
+          <span #remainingCountElement2></span>
+        </span>
+        </form>
+      </div>
+    </div>
+    <h4>Max limit: 10, warn when 5 or less remaining, block input after max limit</h4>
+    <div class="row">
+      <div class="col-sm-4">
+        <label class="sr-only" for="example3">Example 3</label>
+        <input id="example3" name="example3" type="text"
+               [blockInputAtMaxLimit]="true"
+               [charsMaxLimit]="10"
+               [charsRemainingElement]="remainingCountElement3"
+               [charsRemainingWarning]="5"
+               (onOverCharsMaxLimit)="handleOverCharsMaxLimit($event, 'example3')"
+               (onUnderCharsMaxLimit)="handleUnderCharsMaxLimit($event, 'example3')"
+               (ngModel)="example3"
+               pfng-remaining-chars-count>
+        <span class="chars-remaining-pf padding-left-5">
+          <span #remainingCountElement3></span>
+          <span>Remaining</span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/remainingcharscountdirective.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/remaining-chars-count/example/remaining-chars-count-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/remaining-chars-count/example/remaining-chars-count-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
