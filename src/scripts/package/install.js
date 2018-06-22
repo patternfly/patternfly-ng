@@ -1,6 +1,18 @@
+/*
+ * This script copies contents of dist directory to the root directory. Thus, allowing module imports like so:
+ *
+ * import { BasicCardModule } from 'patternfly-ng/card';
+ *
+ * Note: In order to support semantic-release, 'npm publish' must be run from the root instead of the dist directory.
+ * When publishing a sub folder, npm loses the ability to insert the correct gitHead information, which prevents
+ * semantic-release from working properly.
+ *
+ * See: https://github.com/npm/read-package-json/issues/66
+ */
 var fs = require('fs');
 var path = require('path');
-var dirPath = './dist/app';
+var appPath = './dist/app';
+var bundlePath = './dist/bundles';
 
 function copyFile(source, target) {
   var targetFile = target;
@@ -62,9 +74,17 @@ if (fs.existsSync('./deploy_key.enc')) {
 //
 // import { NotificationModule } from 'patternfly-ng/notification';
 //
-fs.readdir(dirPath, function(err, items) {
+fs.readdir(appPath, function(err, items) {
   for (var i = 0; i < items.length; i++) {
-    copyFolderRecursive(dirPath + '/' + items[i], '.');
+    copyFolderRecursive(appPath + '/' + items[i], '.');
   }
-  deleteFolderRecursive(dirPath);
+  deleteFolderRecursive(appPath);
+});
+
+fs.readdir(bundlePath, function(err, items) {
+  fs.mkdirSync('./bundles');
+  for (var i = 0; i < items.length; i++) {
+    copyFolderRecursive(bundlePath + '/' + items[i], './bundles');
+  }
+  deleteFolderRecursive(bundlePath);
 });
