@@ -697,10 +697,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
 
   private navigateToItem(item: VerticalNavigationItem): void {
     let navItem = this.getFirstNavigateChild(item);
-    let navTo;
     if (navItem) {
       this._showMobileNav = false;
-      navTo = navItem.url;
+      let navTo = navItem.url;
       if (navTo) {
         this.router.navigateByUrl(navTo);
       }
@@ -709,17 +708,32 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       }
     }
 
-    if (this.itemClickEvent) {
-      this.itemClickEvent.emit(item);
-    }
-
     if (this.updateActiveItemsOnClick) {
       this.clearActiveItems();
       navItem.trackActiveState = true;
       this.setParentActive(navItem);
+    }
+
+    // Dismiss items (leaf nodes) immediately upon click
+    if (!item.children) {
+      this._hoverSecondaryNav = false;
+      this._hoverTertiaryNav = false;
+      this.items.forEach((primary) => {
+        if (!this.persistentSecondary) {
+          primary.trackHoverState = false;
+        }
+        if (primary.children !== undefined) {
+          primary.children.forEach((secondary) => {
+            if (!this.persistentSecondary) {
+              secondary.trackHoverState = false;
+            }
+          });
+        }
+      });
+    } else {
       this.setSecondaryItemVisible();
     }
-    this.setSecondaryItemVisible();
+    this.itemClickEvent.emit(item);
   }
 
   private primaryHover(): boolean {
