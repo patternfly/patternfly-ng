@@ -6372,11 +6372,11 @@
             }
         };
         VerticalNavigationComponent.prototype.navigateToItem = function (item) {
+            var _this = this;
             var navItem = this.getFirstNavigateChild(item);
-            var navTo;
             if (navItem) {
                 this._showMobileNav = false;
-                navTo = navItem.url;
+                var navTo = navItem.url;
                 if (navTo) {
                     this.router.navigateByUrl(navTo);
                 }
@@ -6384,16 +6384,32 @@
                     this.navigationEvent.emit(navItem);
                 }
             }
-            if (this.itemClickEvent) {
-                this.itemClickEvent.emit(item);
-            }
             if (this.updateActiveItemsOnClick) {
                 this.clearActiveItems();
                 navItem.trackActiveState = true;
                 this.setParentActive(navItem);
+            }
+            // Dismiss items (leaf nodes) immediately upon click
+            if (!item.children) {
+                this._hoverSecondaryNav = false;
+                this._hoverTertiaryNav = false;
+                this.items.forEach(function (primary) {
+                    if (!_this.persistentSecondary) {
+                        primary.trackHoverState = false;
+                    }
+                    if (primary.children !== undefined) {
+                        primary.children.forEach(function (secondary) {
+                            if (!_this.persistentSecondary) {
+                                secondary.trackHoverState = false;
+                            }
+                        });
+                    }
+                });
+            }
+            else {
                 this.setSecondaryItemVisible();
             }
-            this.setSecondaryItemVisible();
+            this.itemClickEvent.emit(item);
         };
         VerticalNavigationComponent.prototype.primaryHover = function () {
             var hover = false;
