@@ -1,0 +1,90 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+        <p>This ensures drag and drop works with the underlying ngx-datatable component</p>
+        <pfng-table
+            [columns]="columns"
+            [config]="tableConfig"
+            [rows]="rows"
+            (onDrop)="handleDrop($event)"
+            (onSelectionChange)="handleSelectionChange($event)">
+        </pfng-table>
+        <!-- Column templates -->
+        <ng-template #nameTemplate let-row="row">
+          <span>{{row.name}}</span>
+        </ng-template>
+        <ng-template #addressTemplate let-row="row">
+          <span>{{row.address}}</span>
+        </ng-template>
+        <ng-template #birthMonthTemplate let-row="row">
+          <span>{{row.birthMonth}}</span>
+        </ng-template>
+        <ng-template #weekDayTemplate let-row="row">
+          <span>{{row.weekDay}}</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="cb" name="cb" type="checkbox"
+                   [(ngModel)]="tableConfig.showCheckbox">Checkbox
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form role="form">
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input id="dnd" name="dnd" type="checkbox"
+                   [(ngModel)]="tableConfig.dragEnabled">Drag and Drop
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/tablecomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/table/basic-table/example/table-dnd-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/table/basic-table/example/table-dnd-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
