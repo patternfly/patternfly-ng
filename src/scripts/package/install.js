@@ -13,6 +13,7 @@ var fs = require('fs');
 var path = require('path');
 var appPath = './dist/app';
 var bundlePath = './dist/bundles';
+var bundleTargetPath = './bundles';
 
 function copyFile(source, target) {
   var targetFile = target;
@@ -82,9 +83,11 @@ fs.readdir(appPath, function(err, items) {
 });
 
 fs.readdir(bundlePath, function(err, items) {
-  fs.mkdirSync('./bundles');
+  if (!fs.existsSync(bundleTargetPath)) {
+    fs.mkdirSync(bundleTargetPath);
+  }
   for (var i = 0; i < items.length; i++) {
-    copyFolderRecursive(bundlePath + '/' + items[i], './bundles');
+    copyFolderRecursive(bundlePath + '/' + items[i], bundleTargetPath);
   }
   deleteFolderRecursive(bundlePath);
 });
