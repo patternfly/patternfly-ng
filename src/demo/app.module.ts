@@ -19,13 +19,18 @@ import { ApplicationLauncherExampleModule }
   from '../app/navigation/application-launcher/example/application-launcher-example.module';
 import { CardExampleModule } from '../app/card/basic-card/example/card-example.module';
 import { DonutChartExampleModule } from '../app/chart/donut-chart/basic-donut-chart/example/donut-chart-example.module';
+import { BlockCopyExampleModule } from '../app/copy/block-copy/example/block-copy-example.module';
+import { InlineCopyExampleModule } from '../app/copy/inline-copy/example/inline-copy-example.module';
+import { BlockCopyModule } from '../app/copy/block-copy/block-copy.module';
+import { InlineCopyModule } from '../app/copy/inline-copy/inline-copy.module';
+import { CopyServiceExampleModule } from '../app/copy/copy-service/example/copy-service-example.module';
 import { EmptyStateExampleModule } from '../app/empty-state/example/empty-state-example.module';
 import { FilterExampleModule } from '../app/filter/example/filter-example.module';
 import { InfoStatusCardExampleModule } from '../app/card/info-status-card/example/info-status-card-example.module';
 import { InlineNotificationExampleModule }
   from '../app/notification/inline-notification/example/inline-notification-example.module';
 import { ListExampleModule } from '../app/list/basic-list/example/list-example.module';
-import { NotificationDrawerExampleModule } 
+import { NotificationDrawerExampleModule }
 from '../app/notification/notification-drawer/example/notification-drawer-example.module';
 import { NotificationServiceExampleModule }
   from '../app/notification/notification-service/example/notification-service-example.module';
@@ -58,8 +63,13 @@ import { WizardExampleModule } from '../app/wizard/example/wizard-example.module
     ActionExampleModule,
     AppRoutingModule,
     ApplicationLauncherExampleModule,
+    BlockCopyExampleModule,
+    InlineCopyExampleModule,
     BrowserModule,
     CardExampleModule,
+    BlockCopyModule,
+    InlineCopyModule,
+    CopyServiceExampleModule,
     DemoComponentsModule,
     DonutChartExampleModule,
     EmptyStateExampleModule,
