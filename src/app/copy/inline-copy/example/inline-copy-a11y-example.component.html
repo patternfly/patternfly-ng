@@ -1,3 +1,4 @@
+<pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>
 <div class="padding-15">
   <div class="row">
     <div class="col-sm-6">
@@ -6,7 +7,10 @@
         [copyBtnAriaLabel]="a11yEx01.copyBtnAriaLabel"
         [copyValue]="a11yEx01.copyValue"
         [tooltip]="a11yEx01.tooltip"
-        (copiedToClipboard)="notify($event)"></pfng-inline-copy>
+        (onCopyToClipboard)="handleCopyToClipboard($event, {
+            name: a11yEx01.copyBtnAriaLabel,
+            msg: a11yEx01.copyBtnAriaLabel + ' copied'
+          })"></pfng-inline-copy>
     </div>
     <div class="col-sm-6">
       <p>In the example below you'll find the copy button is announced in the format of "Copy <em>{{'{'}}copyBtnAriaLabel{{'}'}}</em> to clipboard button". By providing custom tailored aria label inputs you can ensure the experience you provide to a visually impared user is aligned well with your standard sighted browsing experience.</p>
@@ -14,15 +18,24 @@
         [copyBtnAriaLabel]="'Copy ' + a11yEx02.copyBtnAriaLabel + ' to clipboard'"
         [copyValue]="a11yEx02.copyValue"
         [tooltip]="a11yEx02.tooltip"
-        (copiedToClipboard)="
-          notify({
+        (onCopyToClipboard)="handleCopyToClipboard($event, {
             name: a11yEx02.copyBtnAriaLabel,
             msg: a11yEx02.copyBtnAriaLabel + ' copied'
           })">
         </pfng-inline-copy>
     </div>
   </div>
-  <pfng-toast-notification-list [notifications]="notifications"></pfng-toast-notification-list>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
   <div class="row padding-top-10">
     <div class="col-sm-12">
       <h4>Code</h4>

@@ -3,19 +3,27 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
+
 import { uniqueId } from 'lodash';
 
 import { CopyBase } from '../copy-base';
-
 import { CopyService } from '../copy-service/copy.service';
 
+/**
+ * Block Copy component
+ *
+ * Usage:
+ * <br/><code>import { BlockCopyModule } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { BlockCopyModule } from 'patternfly-ng';</code>
+ */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-block-copy',
   templateUrl: './block-copy.component.html',
   styleUrls: ['./block-copy.component.less']
 })
-
 export class BlockCopyComponent extends CopyBase {
   /**
    * Label naming the block copy component
@@ -25,7 +33,7 @@ export class BlockCopyComponent extends CopyBase {
   /**
    * Copy button text
    */
-  @Input('buttonLabel') buttonLabel: string = 'Copy';
+  @Input('copyBtnLabel') copyBtnLabel: string = 'Copy';
 
   /**
    * Controls the expanded state of block copy
@@ -67,7 +75,6 @@ export class BlockCopyComponent extends CopyBase {
    * Copies the label value to the users clipboard
    */
   copyToClipboard(): void {
-    this.copyValueToClipboard(this.label);
+    this.copyValueToClipboard();
   }
-
 }

@@ -1,7 +1,1 @@
-export {
-  CopyService
-} from './copy.service';
-
-export {
-  CopyServiceModule
-} from './copy.service.module';
+export { CopyService } from './copy.service';
