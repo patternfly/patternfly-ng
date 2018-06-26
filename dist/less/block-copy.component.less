@@ -1,0 +1,51 @@
+.pfng-block-copy {
+  &-inner-container {
+    border: 1px solid #bbb;
+  }
+  &-preview {
+    display: flex;
+    &.pf-is-open {
+      border-bottom: 1px solid #bbb;
+      background: #ddd;
+    }
+    &-btn {
+      background: none;
+      border: none;
+      border-right: 1px solid #bbb;
+      padding: 0;
+    }
+    &-icon {
+      cursor: pointer;
+      padding: 0 1em;
+      &.fa-angle-right {
+        padding: 0 1.15em;
+      }
+    }
+    &-txt-cont {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    &-txt {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 1em;
+      margin-left: .75em;
+    }
+  }
+  &-btn {
+    border: none;
+    border-left: 1px solid #bbb;
+    box-shadow: none;
+    font-size: 1em;
+    &:active {
+      box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, .25);
+    }
+  }
+  &-body {
+    padding: 15px;
+    word-wrap: break-word;
+  }
+}
