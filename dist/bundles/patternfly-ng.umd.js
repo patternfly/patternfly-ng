@@ -3020,15 +3020,6 @@
         return ChartModule;
     }());
 
-    /**
-     * An empty state config containing component properties
-     */
-    var EmptyStateConfig = /** @class */ (function () {
-        function EmptyStateConfig() {
-        }
-        return EmptyStateConfig;
-    }());
-
     var __decorate$n = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3039,72 +3030,82 @@
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
-     * Component for rendering an empty state.
+     * A config containing properties for copy components
      */
-    var EmptyStateComponent = /** @class */ (function () {
+    var CopyBase = /** @class */ (function () {
         /**
-         * The default constructor
+         * Default constructor
          */
-        function EmptyStateComponent() {
+        function CopyBase(copyService) {
+            this.copyService = copyService;
             /**
-             * The event emitted when an action is selected
+             * The text node to be copied to the users clipboard
+             * @type {string}
              */
-            this.onActionSelect = new core.EventEmitter();
-            this.defaultConfig = {
-                title: 'No Items Available'
-            };
+            this.copyValue = 'Missing \'copyValue\' @Input property';
+            /**
+             * Placement for the tooltip that further describes the copyValue
+             * @type {string}
+             */
+            this.tooltipPlacement = 'top';
+            /**
+             * Event emitted with the chart reference after load is complete
+             * @type {EventEmitter}
+             */
+            this.copiedToClipboard = new core.EventEmitter();
+            this._recentlyCopied = false;
         }
-        // Initialization
+        Object.defineProperty(CopyBase.prototype, "recentlyCopied", {
+            /**
+             * Returns the flag indicating copy action has just happened
+             *
+             * @returns {boolean} True if copy action has been triggered
+             */
+            get: function () {
+                return this._recentlyCopied;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
-         * Setup component configuration upon initialization
+         * Copy value to the user's system clipboard
+         * @param {string} accessibleName An accessible name used to describe the component
          */
-        EmptyStateComponent.prototype.ngOnInit = function () {
-            this.setupConfig();
-        };
-        /**
-         * Check if the component config has changed
-         */
-        EmptyStateComponent.prototype.ngDoCheck = function () {
-            // Do a deep compare on config
-            if (!lodash.isEqual(this.config, this.prevConfig)) {
-                this.setupConfig();
-            }
-        };
-        /**
-         * Set up default config
-         */
-        EmptyStateComponent.prototype.setupConfig = function () {
-            if (this.config !== undefined) {
-                lodash.defaults(this.config, this.defaultConfig);
-            }
-            else {
-                this.config = lodash.cloneDeep(this.defaultConfig);
-            }
-            this.prevConfig = lodash.cloneDeep(this.config);
-        };
-        // Private
-        EmptyStateComponent.prototype.handleAction = function (action) {
-            if (action && action.disabled !== true) {
-                this.onActionSelect.emit(action);
+        CopyBase.prototype.copyValueToClipboard = function (accessibleName) {
+            var _this = this;
+            var result = this.copyService.copy(this.copyValue);
+            if (result) {
+                this.copiedToClipboard.emit({
+                    name: accessibleName,
+                    msg: accessibleName + " copied"
+                });
+                this._recentlyCopied = true;
+                setTimeout(function () {
+                    _this._recentlyCopied = false;
+                }, 3000);
             }
         };
         __decorate$n([
-            core.Input(),
-            __metadata$e("design:type", EmptyStateConfig)
-        ], EmptyStateComponent.prototype, "config", void 0);
+            core.Input('copyBtnAriaLabel'),
+            __metadata$e("design:type", String)
+        ], CopyBase.prototype, "copyBtnAriaLabel", void 0);
         __decorate$n([
-            core.Output('onActionSelect'),
-            __metadata$e("design:type", Object)
-        ], EmptyStateComponent.prototype, "onActionSelect", void 0);
-        EmptyStateComponent = __decorate$n([
-            core.Component({
-                encapsulation: core.ViewEncapsulation.None,
-                selector: 'pfng-empty-state',
-                template: "<div class=\"blank-slate-pf\"><div *ngIf=\"config.iconStyleClass\" class=\"blank-slate-pf-icon\"><span class=\"{{config.iconStyleClass}}\"></span></div><h1 id=\"title\">{{config.title}}</h1><p id=\"info\" *ngIf=\"config.info !== undefined\">{{config.info}}</p><p id=\"helpLink\" *ngIf=\"config.helpLink !== undefined\">{{config.helpLink.text}} <a href=\"{{config.helpLink.url}}\">{{config.helpLink.hypertext}}</a>.</p><div *ngIf=\"config.actions?.primaryActions?.length > 0\" class=\"blank-slate-pf-main-action\"><button *ngFor=\"let action of config.actions.primaryActions\" class=\"btn btn-primary btn-lg {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': action.disabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button></div><div class=\"blank-slate-pf-secondary-action {{config.actions?.moreActionsStyleClass}}\" [ngClass]=\"{'hidden': config.actions?.moreActionsVisible === false}\" *ngIf=\"config.actions?.moreActions?.length > 0\"><button *ngFor=\"let action of config.actions.moreActions\" class=\"btn btn-default {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': config.actions?.moreActionsDisabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\">{{action.title}}</button></div></div>"
-            }),
-            __metadata$e("design:paramtypes", [])
-        ], EmptyStateComponent);
-        return EmptyStateComponent;
+            core.Input('copyValue'),
+            __metadata$e("design:type", String)
+        ], CopyBase.prototype, "copyValue", void 0);
+        __decorate$n([
+            core.Input('tooltip'),
+            __metadata$e("design:type", String)
+        ], CopyBase.prototype, "tooltip", void 0);
+        __decorate$n([
+            core.Input('tooltipPlacement'),
+            __metadata$e("design:type", String)
+        ], CopyBase.prototype, "tooltipPlacement", void 0);
+        __decorate$n([
+            core.Output('copiedToClipboard'),
+            __metadata$e("design:type", core.EventEmitter)
+        ], CopyBase.prototype, "copiedToClipboard", void 0);
+        return CopyBase;
     }());
 
     var __decorate$o = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -3113,38 +3114,78 @@
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
+    var __metadata$f = (undefined && undefined.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
+    };
     /**
-     * A module containing objects associated with the empty state component
+     * A generic service for copying text to clipboard
      */
-    var EmptyStateModule = /** @class */ (function () {
-        function EmptyStateModule() {
+    var CopyService = /** @class */ (function () {
+        /**
+         * The default constructor
+         */
+        function CopyService(dom) {
+            this.verbose = false;
+            this.dom = dom;
         }
-        EmptyStateModule = __decorate$o([
-            core.NgModule({
-                imports: [common.CommonModule],
-                declarations: [EmptyStateComponent],
-                exports: [EmptyStateComponent]
-            })
-        ], EmptyStateModule);
-        return EmptyStateModule;
-    }());
-
-    /**
-     * An object containing filter properties
-     */
-    var Filter = /** @class */ (function () {
-        function Filter() {
-        }
-        return Filter;
-    }());
-
-    /**
-     * A config containing properties for filters
-     */
-    var FilterConfig = /** @class */ (function () {
-        function FilterConfig() {
-        }
-        return FilterConfig;
+        /**
+         * Copy a value to the user's system clipboard
+         */
+        CopyService.prototype.copy = function (value) {
+            var result = false;
+            var textarea = this.dom.createElement('textarea');
+            var triggerElement = document.activeElement;
+            textarea.style.width = '0px';
+            textarea.style.height = '0px';
+            textarea.style.position = 'fixed';
+            textarea.style.top = '-100px';
+            textarea.style.left = '-100px';
+            textarea.style.opacity = '0';
+            textarea.value = value;
+            this.dom.body.appendChild(textarea);
+            textarea.select();
+            if (!!triggerElement) {
+                triggerElement.focus();
+            }
+            try {
+                result = this.dom.execCommand('copy');
+            }
+            catch (error) {
+                this.handleError(error);
+            }
+            finally {
+                if (textarea.parentNode !== undefined) {
+                    textarea.parentNode.removeChild(textarea);
+                }
+            }
+            return result;
+        };
+        /**
+         * Set the verbose mode to on or off (default). During the verbose mode, each unsuccessful copy operation
+         * will be printed to the console.
+         * @param verbose Set to true for verbose mode
+         */
+        CopyService.prototype.setVerbose = function (verbose) {
+            this.verbose = verbose;
+        };
+        /**
+         * Handles an unsuccessful copy operation.
+         * @param error The error message to display in the console.
+         */
+        CopyService.prototype.handleError = function (error) {
+            if (this.verbose) {
+                console.error(error);
+            }
+        };
+        CopyService = __decorate$o([
+            core.Injectable(),
+            __param(0, core.Inject(common.DOCUMENT)),
+            __metadata$f("design:paramtypes", [Document])
+        ], CopyService);
+        return CopyService;
     }());
 
     var __decorate$p = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -3153,272 +3194,30 @@
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$f = (undefined && undefined.__metadata) || function (k, v) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-    };
-    /**
-     * Component for the filter query field and filter query dropdown
-     */
-    var FilterFieldsComponent = /** @class */ (function () {
-        /**
-         * The default constructor
-         */
-        function FilterFieldsComponent() {
-            /**
-             * The event emitted when a filter has been added
-             */
-            this.onAdd = new core.EventEmitter();
-            /**
-             * The event emitted when a saved filter has been deleted
-             */
-            this.onDelete = new core.EventEmitter();
-            /**
-             * The event emitted when a field menu option is selected
-             */
-            this.onFieldSelect = new core.EventEmitter();
-            /**
-             * The event emitted when the user types ahead in the query input field
-             */
-            this.onTypeAhead = new core.EventEmitter();
-            this.defaultConfig = {
-                disabled: false
-            };
+    var CopyServiceModule = /** @class */ (function () {
+        function CopyServiceModule() {
         }
-        // Initialization
-        /**
-         * Setup component configuration upon initialization
-         */
-        FilterFieldsComponent.prototype.ngOnInit = function () {
-            this.setupConfig();
-        };
-        /**
-         * Check if the component config has changed
-         */
-        FilterFieldsComponent.prototype.ngDoCheck = function () {
-            // Do a deep compare on config
-            if (!lodash.isEqual(this.config, this.prevConfig)) {
-                this.setupConfig();
-            }
-        };
-        /**
-         * Set up default config
-         */
-        FilterFieldsComponent.prototype.setupConfig = function () {
-            if (this.config !== undefined) {
-                lodash.defaults(this.config, this.defaultConfig);
-            }
-            else {
-                this.config = lodash.cloneDeep(this.defaultConfig);
-            }
-            if (this.config && this.config.fields === undefined) {
-                this.config.fields = [];
-            }
-            if (this.config && this.config.tooltipPlacement === undefined) {
-                this.config.tooltipPlacement = 'top';
-            }
-            this.initCurrentField();
-            this.prevConfig = lodash.cloneDeep(this.config);
-        };
-        /**
-         * Initialize current field and value
-         */
-        FilterFieldsComponent.prototype.initCurrentField = function () {
-            var _this = this;
-            var fieldFound = false;
-            if (this._currentField !== undefined) {
-                this.config.fields.forEach(function (nextField) {
-                    if (nextField.id === _this._currentField.id) {
-                        fieldFound = true;
-                        return;
-                    }
-                });
-            }
-            if (!fieldFound) {
-                this._currentField = this.config.fields[0];
-                this._currentValue = null;
-            }
-            if (this._currentValue === undefined) {
-                this._currentValue = null;
-            }
-        };
-        /**
-         * Reset current field and value
-         */
-        FilterFieldsComponent.prototype.reset = function () {
-            this._currentField = undefined;
-            this.initCurrentField();
-        };
-        Object.defineProperty(FilterFieldsComponent.prototype, "currentField", {
-            // Accessors
-            /**
-             * Get the current filter field
-             *
-             * @returns {FilterField} The current filter field
-             */
-            get: function () {
-                return this._currentField;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(FilterFieldsComponent.prototype, "currentValue", {
-            /**
-             * Get the current filter field value
-             *
-             * @returns {string} The current filter field value
-             */
-            get: function () {
-                return this._currentValue;
-            },
-            /**
-             * Set the current filter field value
-             *
-             * @param val The current filter field value
-             */
-            set: function (val) {
-                this._currentValue = val;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        // Private
-        FilterFieldsComponent.prototype.deleteQuery = function ($event, filterQuery, el) {
-            // Unset focus
-            if (el !== undefined) {
-                el.blur();
-            }
-            // Close previous open confirmation
-            this.hideDeleteConfirm(false);
-            // Show delete query confirmation
-            filterQuery.showDeleteConfirm = true;
-            // Menu should remain open
-            $event.stopPropagation();
-        };
-        FilterFieldsComponent.prototype.deleteQueryCancel = function ($event, filterQuery) {
-            // Hide delete query confirmation
-            filterQuery.showDeleteConfirm = false;
-            // Menu should remain open
-            $event.stopPropagation();
-        };
-        FilterFieldsComponent.prototype.deleteQueryConfirm = function ($event, filterQuery) {
-            // Hide delete query confirmation
-            filterQuery.showDeleteConfirm = false;
-            // Menu should remain open
-            if (this._currentField.queries.length > 1) {
-                $event.stopPropagation();
-            }
-            this.onDelete.emit({
-                field: this._currentField,
-                query: filterQuery,
-                value: filterQuery.value
-            });
-            this._currentValue = null;
-        };
-        FilterFieldsComponent.prototype.fieldInputKeyPress = function ($event) {
-            if ($event.which === 13 && this._currentValue && this._currentValue.length > 0) {
-                this.onAdd.emit({
-                    field: this._currentField,
-                    value: this._currentValue
-                });
-                this._currentValue = undefined;
-            }
-        };
-        // Hide all delete confirm
-        FilterFieldsComponent.prototype.hideDeleteConfirm = function (isOpen) {
-            this._currentField.queries.forEach(function (query) {
-                query.showDeleteConfirm = false;
-            });
-        };
-        FilterFieldsComponent.prototype.isFieldDisabled = function (field) {
-            if (field.type === undefined || field.type === 'text') {
-                return false;
-            }
-            return (field.queries === undefined || field.queries.length === 0);
-        };
-        FilterFieldsComponent.prototype.queryInputChange = function (value) {
-            this.onTypeAhead.emit({
-                field: this._currentField,
-                value: this._currentValue
-            });
-        };
-        FilterFieldsComponent.prototype.selectField = function (field) {
-            this._currentField = field;
-            this._currentValue = null;
-            this.onFieldSelect.emit({
-                field: this._currentField,
-                value: this._currentValue
-            });
-        };
-        FilterFieldsComponent.prototype.selectQuery = function (filterQuery) {
-            this.onAdd.emit({
-                field: this._currentField,
-                query: filterQuery,
-                value: filterQuery.value
-            });
-            this._currentValue = null;
-        };
-        FilterFieldsComponent.prototype.showDelete = function () {
-            var result = false;
-            this._currentField.queries.forEach(function (query) {
-                if (query.showDelete === true) {
-                    result = true;
-                    return;
-                }
-            });
-            return result;
-        };
-        __decorate$p([
-            core.Input(),
-            __metadata$f("design:type", FilterConfig)
-        ], FilterFieldsComponent.prototype, "config", void 0);
-        __decorate$p([
-            core.Output('onAdd'),
-            __metadata$f("design:type", Object)
-        ], FilterFieldsComponent.prototype, "onAdd", void 0);
-        __decorate$p([
-            core.Output('onDelete'),
-            __metadata$f("design:type", Object)
-        ], FilterFieldsComponent.prototype, "onDelete", void 0);
-        __decorate$p([
-            core.Output('onFieldSelect'),
-            __metadata$f("design:type", Object)
-        ], FilterFieldsComponent.prototype, "onFieldSelect", void 0);
-        __decorate$p([
-            core.Output('onTypeAhead'),
-            __metadata$f("design:type", Object)
-        ], FilterFieldsComponent.prototype, "onTypeAhead", void 0);
-        FilterFieldsComponent = __decorate$p([
-            core.Component({
-                encapsulation: core.ViewEncapsulation.None,
-                selector: 'pfng-filter-fields',
-                template: "<div class=\"filter-pf filter-fields\"><div class=\"input-group form-group\"><div class=\"input-group-btn\" dropdown><button type=\"button\" class=\"btn btn-default filter-fields dropdown-toggle\" dropdownToggle tooltip=\"Filter by\" placement=\"{{config?.tooltipPlacement}}\" [disabled]=\"config.disabled === true\">{{currentField?.title}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let field of config?.fields\" [ngClass]=\"{'disabled': isFieldDisabled(field), 'divider dropdown-divider': field.separator}\"><a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" tabindex=\"-1\" (click)=\"selectField(field)\" *ngIf=\"!field?.separator && !isFieldDisabled(field)\">{{field?.title}}</a> <a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" onclick=\"return false;\" *ngIf=\"!field?.separator && isFieldDisabled(field)\">{{field?.title}}</a></li></ul></div><div *ngIf=\"!currentField?.type || currentField?.type === 'text' || currentField.type === 'default'\"><input class=\"form-control\" type=\"{{currentField?.type}}\" [(ngModel)]=\"currentValue\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\" (keypress)=\"fieldInputKeyPress($event)\"></div><div *ngIf=\"currentField?.type === 'select'\"><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\"><span class=\"filter-option pull-left\">{{currentValue || currentField?.placeholder}}</span> <span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField?.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query?.value === currentValue, 'divider dropdown-divider': query?.separator}\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> {{query.value}}</a></li></ul></div></div><div *ngIf=\"currentField?.type === 'typeahead'\"><div class=\"btn-group bootstrap-select form-control filter-select\" *ngIf=\"config.disabled === true\"><div class=\"pull-left typeahead-input-container disabled\"><input class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\"> <span class=\"caret\"></span></div></div><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown (isOpenChange)=\"hideDeleteConfirm($event)\" *ngIf=\"config.disabled !== true\"><div class=\"pull-left typeahead-input-container dropdown-toggle\" dropdownToggle><input #queryInput class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [(ngModel)]=\"currentValue\" (ngModelChange)=\"queryInputChange($event)\"> <span (click)=\"queryInput.focus()\" class=\"caret\"></span></div><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query.value === currentValue,\n                          'divider dropdown-divider': query?.separator,\n                          'pfng-filter-delete-wrapper': query?.showDelete}\"><div class=\"pfng-filter-delete-slide\" [ngClass]=\"{'slide-in': query?.showDeleteConfirm}\" *ngIf=\"query?.showDelete\"><span class=\"pfng-filter-delete-text\">Delete filter?</span> <span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryConfirm($event, query)\"><span class=\"fa fa-check\"></span> </a></span><span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryCancel($event, query)\"><span class=\"fa fa-remove\"></span></a></span></div><a #blurable class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"pfng-filter-delete close\" *ngIf=\"query?.showDelete\"><a href=\"javascript:void(0);\" tabindex=\"-1\" [ngClass]=\"{'hidden': query?.showDeleteConfirm}\" (click)=\"deleteQuery($event, query, blurable)\"><span class=\"pficon pficon-remove\"></span> </a></span><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> <span [innerHTML]=\"query.value | truncate: 20 | searchHighlight: queryInput.value\"></span></a></li></ul></div></div></div></div>"
-            }),
-            __metadata$f("design:paramtypes", [])
-        ], FilterFieldsComponent);
-        return FilterFieldsComponent;
+        CopyServiceModule = __decorate$p([
+            core.NgModule({
+                imports: [
+                    common.CommonModule
+                ],
+                providers: [CopyService]
+            })
+        ], CopyServiceModule);
+        return CopyServiceModule;
     }());
 
-    /*
-     * An object containing properties for filter types
-     */
-    var FilterType = /** @class */ (function () {
-        function FilterType() {
-        }
-        /**
-         * Select type
-         */
-        FilterType.SELECT = 'select';
-        /**
-         * Text type
-         */
-        FilterType.TEXT = 'text';
-        /**
-         * Type ahead type
-         */
-        FilterType.TYPEAHEAD = 'typeahead';
-        return FilterType;
-    }());
-
+    var __extends$c = (undefined && undefined.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
     var __decorate$q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3428,430 +3227,33 @@
     var __metadata$g = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    /**
-     * Filter component
-     */
-    var FilterComponent = /** @class */ (function () {
+    var InlineCopyComponent = /** @class */ (function (_super) {
+        __extends$c(InlineCopyComponent, _super);
         /**
          * The default constructor
          */
-        function FilterComponent() {
-            /**
-             * The event emitted when a filter has been changed
-             */
-            this.onChange = new core.EventEmitter();
-            /**
-             * The event emitted when a query (i.e., saved filter) has been deleted
-             */
-            this.onDelete = new core.EventEmitter();
-            /**
-             * The event emitted when a field menu option is selected
-             */
-            this.onFilterSelect = new core.EventEmitter();
-            /**
-             * The event emitted when a filter has been changed
-             */
-            this.onSave = new core.EventEmitter();
-            /**
-             * The event emitted when the user types ahead in the query input field
-             */
-            this.onTypeAhead = new core.EventEmitter();
-            this.defaultConfig = {
-                disabled: false
-            };
+        function InlineCopyComponent(copyService) {
+            var _this = _super.call(this, copyService) || this;
+            _this.copyService = copyService;
+            return _this;
         }
-        // Initialization
         /**
-         * Setup component configuration upon initialization
+         * Copies the copyBtnAriaLabel value to the users clipboard
          */
-        FilterComponent.prototype.ngOnInit = function () {
-            this.setupConfig();
+        InlineCopyComponent.prototype.copyToClipboard = function () {
+            this.copyValueToClipboard(this.copyBtnAriaLabel);
         };
-        /**
-         * Check if the component config has changed
-         */
-        FilterComponent.prototype.ngDoCheck = function () {
-            // Do a deep compare on config
-            if (!lodash.isEqual(this.config, this.prevConfig)) {
-                this.setupConfig();
-            }
-        };
-        /**
-         * Set up default config
-         */
-        FilterComponent.prototype.setupConfig = function () {
-            if (this.config !== undefined) {
-                lodash.defaults(this.config, this.defaultConfig);
-            }
-            else {
-                this.config = lodash.cloneDeep(this.defaultConfig);
-            }
-            if (this.config && this.config.appliedFilters === undefined) {
-                this.config.appliedFilters = [];
-            }
-            this.prevConfig = lodash.cloneDeep(this.config);
-        };
-        // Actions
-        /**
-         * Handle add filter event
-         *
-         * @param $event The FilterEvent contining properties for this event
-         */
-        FilterComponent.prototype.addFilter = function ($event) {
-            var newFilter = {
-                field: $event.field,
-                query: $event.query,
-                value: $event.value
-            };
-            if (!this.filterExists(newFilter)) {
-                if (newFilter.field.type === FilterType.SELECT) {
-                    this.enforceSingleSelect(newFilter);
-                }
-                this.config.appliedFilters.push(newFilter);
-                $event.appliedFilters = this.config.appliedFilters;
-                this.onChange.emit($event);
-            }
-        };
-        /**
-         * Handle clear filter event
-         *
-         * @param $event An array of current Filter objects
-         */
-        FilterComponent.prototype.clearFilter = function ($event) {
-            this.config.appliedFilters = $event;
-            this.onChange.emit({
-                appliedFilters: $event
-            });
-        };
-        /**
-         * Handle delete query (i.e., saved filter) event
-         *
-         * @param $event The FilterEvent contining properties for this event
-         */
-        FilterComponent.prototype.deleteQuery = function ($event) {
-            this.onDelete.emit($event);
-        };
-        /**
-         * Handle filter field selected event
-         *
-         * @param $event The FilterEvent contining properties for this event
-         */
-        FilterComponent.prototype.fieldSelected = function ($event) {
-            this.onFilterSelect.emit($event);
-        };
-        /**
-         * Reset current field
-         */
-        FilterComponent.prototype.resetCurrentField = function () {
-            this.filterFields.reset();
-        };
-        /**
-         * Handle save filter event
-         *
-         * @param $event An array of current Filter objects
-         */
-        FilterComponent.prototype.saveFilter = function ($event) {
-            this.onSave.emit($event);
-        };
-        /**
-         * Handle type ahead event
-         *
-         * @param $event The FilterEvent contining properties for this event
-         */
-        FilterComponent.prototype.typeAhead = function ($event) {
-            this.onTypeAhead.emit($event);
-        };
-        // Private
-        FilterComponent.prototype.enforceSingleSelect = function (filter$$1) {
-            lodash.remove(this.config.appliedFilters, { title: filter$$1.field.title });
-        };
-        FilterComponent.prototype.filterExists = function (filter$$1) {
-            var foundFilter = lodash.find(this.config.appliedFilters, {
-                field: filter$$1.field,
-                value: filter$$1.value
-            });
-            return foundFilter !== undefined;
-        };
-        __decorate$q([
-            core.Input(),
-            __metadata$g("design:type", FilterConfig)
-        ], FilterComponent.prototype, "config", void 0);
-        __decorate$q([
-            core.Output('onChange'),
-            __metadata$g("design:type", Object)
-        ], FilterComponent.prototype, "onChange", void 0);
-        __decorate$q([
-            core.Output('onDelete'),
-            __metadata$g("design:type", Object)
-        ], FilterComponent.prototype, "onDelete", void 0);
-        __decorate$q([
-            core.Output('onFieldSelect'),
-            __metadata$g("design:type", Object)
-        ], FilterComponent.prototype, "onFilterSelect", void 0);
-        __decorate$q([
-            core.Output('onSave'),
-            __metadata$g("design:type", Object)
-        ], FilterComponent.prototype, "onSave", void 0);
-        __decorate$q([
-            core.Output('onTypeAhead'),
-            __metadata$g("design:type", Object)
-        ], FilterComponent.prototype, "onTypeAhead", void 0);
-        __decorate$q([
-            core.ViewChild('filterFields'),
-            __metadata$g("design:type", FilterFieldsComponent)
-        ], FilterComponent.prototype, "filterFields", void 0);
-        FilterComponent = __decorate$q([
+        InlineCopyComponent = __decorate$q([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
-                selector: 'pfng-filter',
-                template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
+                selector: 'pfng-inline-copy',
+                template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{copyValue}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
+                styleUrls: ['./inline-copy.component.less']
             }),
-            __metadata$g("design:paramtypes", [])
-        ], FilterComponent);
-        return FilterComponent;
-    }());
-
-    /**
-     * An object containing properties for filter events
-     */
-    var FilterEvent = /** @class */ (function () {
-        function FilterEvent() {
-        }
-        return FilterEvent;
-    }());
-
-    /**
-     * An object containing properties for a filterable field, used to select categories of filters
-     */
-    var FilterField = /** @class */ (function () {
-        function FilterField() {
-        }
-        return FilterField;
-    }());
-
-    /**
-     * Configuration service for the Popover directive.
-     * You can inject this service, typically in your root component, and customize
-     * the values of its properties in order to provide default values for all the
-     * popovers used in the application.
-     */
-    var PopoverConfig = (function () {
-        function PopoverConfig() {
-            /**
-             * Placement of a popover. Accepts: "top", "bottom", "left", "right", "auto"
-             */
-            this.placement = 'top';
-            /**
-             * Specifies events that should trigger. Supports a space separated list of
-             * event names.
-             */
-            this.triggers = 'click';
-            this.outsideClick = false;
-        }
-        PopoverConfig.decorators = [
-            { type: core.Injectable },
-        ];
-        /** @nocollapse */
-        PopoverConfig.ctorParameters = function () { return []; };
-        return PopoverConfig;
-    }());
-
-    var PopoverContainerComponent = (function () {
-        function PopoverContainerComponent(config) {
-            Object.assign(this, config);
-        }
-        Object.defineProperty(PopoverContainerComponent.prototype, "isBs3", {
-            get: function () {
-                return isBs3();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        PopoverContainerComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'popover-container',
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        // tslint:disable-next-line
-                        host: {
-                            '[class]': '"popover in popover-" + placement + " " + "bs-popover-" + placement + " " + placement + " " + containerClass',
-                            '[class.show]': '!isBs3',
-                            role: 'tooltip',
-                            style: 'display:block;'
-                        },
-                        styles: [
-                            "\n    :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {\n      left: 50%;\n      margin-left: -8px;\n    }\n    :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {\n      top: 50%;\n      margin-top: -8px;\n    }\n  "
-                        ],
-                        template: "<div class=\"popover-arrow arrow\"></div> <h3 class=\"popover-title popover-header\" *ngIf=\"title\">{{ title }}</h3> <div class=\"popover-content popover-body\"> <ng-content></ng-content> </div> "
-                    },] },
-        ];
-        /** @nocollapse */
-        PopoverContainerComponent.ctorParameters = function () { return [
-            { type: PopoverConfig, },
-        ]; };
-        PopoverContainerComponent.propDecorators = {
-            'placement': [{ type: core.Input },],
-            'title': [{ type: core.Input },],
-        };
-        return PopoverContainerComponent;
-    }());
-
-    /**
-     * A lightweight, extensible directive for fancy popover creation.
-     */
-    var PopoverDirective = (function () {
-        function PopoverDirective(_elementRef, _renderer, _viewContainerRef, _config, cis) {
-            /**
-             * Close popover on outside click
-             */
-            this.outsideClick = false;
-            /**
-             * Css class for popover container
-             */
-            this.containerClass = '';
-            this._isInited = false;
-            this._popover = cis
-                .createLoader(_elementRef, _viewContainerRef, _renderer)
-                .provide({ provide: PopoverConfig, useValue: _config });
-            Object.assign(this, _config);
-            this.onShown = this._popover.onShown;
-            this.onHidden = this._popover.onHidden;
-            // fix: no focus on button on Mac OS #1795
-            if (typeof window !== 'undefined') {
-                _elementRef.nativeElement.addEventListener('click', function () {
-                    try {
-                        _elementRef.nativeElement.focus();
-                    }
-                    catch (err) {
-                        return;
-                    }
-                });
-            }
-        }
-        Object.defineProperty(PopoverDirective.prototype, "isOpen", {
-            /**
-             * Returns whether or not the popover is currently being shown
-             */
-            get: function () {
-                return this._popover.isShown;
-            },
-            set: function (value) {
-                if (value) {
-                    this.show();
-                }
-                else {
-                    this.hide();
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * Opens an element’s popover. This is considered a “manual” triggering of
-         * the popover.
-         */
-        PopoverDirective.prototype.show = function () {
-            if (this._popover.isShown || !this.popover) {
-                return;
-            }
-            this._popover
-                .attach(PopoverContainerComponent)
-                .to(this.container)
-                .position({ attachment: this.placement })
-                .show({
-                content: this.popover,
-                context: this.popoverContext,
-                placement: this.placement,
-                title: this.popoverTitle,
-                containerClass: this.containerClass
-            });
-            this.isOpen = true;
-        };
-        /**
-         * Closes an element’s popover. This is considered a “manual” triggering of
-         * the popover.
-         */
-        PopoverDirective.prototype.hide = function () {
-            if (this.isOpen) {
-                this._popover.hide();
-                this.isOpen = false;
-            }
-        };
-        /**
-         * Toggles an element’s popover. This is considered a “manual” triggering of
-         * the popover.
-         */
-        PopoverDirective.prototype.toggle = function () {
-            if (this.isOpen) {
-                return this.hide();
-            }
-            this.show();
-        };
-        PopoverDirective.prototype.ngOnInit = function () {
-            var _this = this;
-            // fix: seems there are an issue with `routerLinkActive`
-            // which result in duplicated call ngOnInit without call to ngOnDestroy
-            // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
-            if (this._isInited) {
-                return;
-            }
-            this._isInited = true;
-            this._popover.listen({
-                triggers: this.triggers,
-                outsideClick: this.outsideClick,
-                show: function () { return _this.show(); }
-            });
-        };
-        PopoverDirective.prototype.ngOnDestroy = function () {
-            this._popover.dispose();
-        };
-        PopoverDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[popover]', exportAs: 'bs-popover' },] },
-        ];
-        /** @nocollapse */
-        PopoverDirective.ctorParameters = function () { return [
-            { type: core.ElementRef, },
-            { type: core.Renderer2, },
-            { type: core.ViewContainerRef, },
-            { type: PopoverConfig, },
-            { type: ComponentLoaderFactory, },
-        ]; };
-        PopoverDirective.propDecorators = {
-            'popover': [{ type: core.Input },],
-            'popoverContext': [{ type: core.Input },],
-            'popoverTitle': [{ type: core.Input },],
-            'placement': [{ type: core.Input },],
-            'outsideClick': [{ type: core.Input },],
-            'triggers': [{ type: core.Input },],
-            'container': [{ type: core.Input },],
-            'containerClass': [{ type: core.Input },],
-            'isOpen': [{ type: core.Input },],
-            'onShown': [{ type: core.Output },],
-            'onHidden': [{ type: core.Output },],
-        };
-        return PopoverDirective;
-    }());
-
-    var PopoverModule = (function () {
-        function PopoverModule() {
-        }
-        PopoverModule.forRoot = function () {
-            return {
-                ngModule: PopoverModule,
-                providers: [PopoverConfig, ComponentLoaderFactory, PositioningService]
-            };
-        };
-        PopoverModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [common.CommonModule],
-                        declarations: [PopoverDirective, PopoverContainerComponent],
-                        exports: [PopoverDirective],
-                        entryComponents: [PopoverContainerComponent]
-                    },] },
-        ];
-        /** @nocollapse */
-        PopoverModule.ctorParameters = function () { return []; };
-        return PopoverModule;
-    }());
+            __metadata$g("design:paramtypes", [CopyService])
+        ], InlineCopyComponent);
+        return InlineCopyComponent;
+    }(CopyBase));
 
     /** Default values provider for tooltip */
     var TooltipConfig = (function () {
@@ -4257,7 +3659,981 @@
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
+    var InlineCopyModule = /** @class */ (function () {
+        function InlineCopyModule() {
+        }
+        InlineCopyModule = __decorate$s([
+            core.NgModule({
+                imports: [
+                    common.CommonModule,
+                    TooltipModule.forRoot()
+                ],
+                declarations: [
+                    InlineCopyComponent
+                ],
+                exports: [InlineCopyComponent],
+                providers: [CopyService, TooltipConfig]
+            })
+        ], InlineCopyModule);
+        return InlineCopyModule;
+    }());
+
+    var __extends$d = (undefined && undefined.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    var __decorate$t = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
     var __metadata$i = (undefined && undefined.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    var BlockCopyComponent = /** @class */ (function (_super) {
+        __extends$d(BlockCopyComponent, _super);
+        /**
+         * The default constructor
+         */
+        function BlockCopyComponent(copyService) {
+            var _this = _super.call(this, copyService) || this;
+            _this.copyService = copyService;
+            /**
+             * Copy button text
+             */
+            _this.buttonLabel = 'Copy';
+            /**
+             * Controls the expanded state of block copy
+             */
+            _this.expanded = false;
+            /**
+             * Generates a unique value for an id
+             */
+            _this.uniqueID = lodash.uniqueId('pfng-block-copy');
+            return _this;
+        }
+        Object.defineProperty(BlockCopyComponent.prototype, "copyBtnId", {
+            /**
+             * Used to uniquly relate label to copy button
+             */
+            get: function () {
+                return this.uniqueID + "-button";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * Toggle copyValue panel open and close
+         */
+        BlockCopyComponent.prototype.togglePanel = function () {
+            this.expanded = !this.expanded;
+        };
+        /**
+         * Copies the label value to the users clipboard
+         */
+        BlockCopyComponent.prototype.copyToClipboard = function () {
+            this.copyValueToClipboard(this.label);
+        };
+        __decorate$t([
+            core.Input('label'),
+            __metadata$i("design:type", String)
+        ], BlockCopyComponent.prototype, "label", void 0);
+        __decorate$t([
+            core.Input('buttonLabel'),
+            __metadata$i("design:type", String)
+        ], BlockCopyComponent.prototype, "buttonLabel", void 0);
+        __decorate$t([
+            core.Input('expanded'),
+            __metadata$i("design:type", Boolean)
+        ], BlockCopyComponent.prototype, "expanded", void 0);
+        __decorate$t([
+            core.Input('expandBtnAriaLabel'),
+            __metadata$i("design:type", String)
+        ], BlockCopyComponent.prototype, "expandBtnAriaLabel", void 0);
+        BlockCopyComponent = __decorate$t([
+            core.Component({
+                encapsulation: core.ViewEncapsulation.None,
+                selector: 'pfng-block-copy',
+                template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"copyBtnId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandBtnAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{copyValue}}</span></div><button [attr.id]=\"copyBtnId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{copyValue}}</span></div></div></div>",
+                styleUrls: ['./block-copy.component.less']
+            }),
+            __metadata$i("design:paramtypes", [CopyService])
+        ], BlockCopyComponent);
+        return BlockCopyComponent;
+    }(CopyBase));
+
+    var __decorate$u = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var BlockCopyModule = /** @class */ (function () {
+        function BlockCopyModule() {
+        }
+        BlockCopyModule = __decorate$u([
+            core.NgModule({
+                imports: [
+                    common.CommonModule,
+                    TooltipModule.forRoot()
+                ],
+                declarations: [
+                    BlockCopyComponent
+                ],
+                exports: [BlockCopyComponent],
+                providers: [CopyService, TooltipConfig]
+            })
+        ], BlockCopyModule);
+        return BlockCopyModule;
+    }());
+
+    /**
+     * An empty state config containing component properties
+     */
+    var EmptyStateConfig = /** @class */ (function () {
+        function EmptyStateConfig() {
+        }
+        return EmptyStateConfig;
+    }());
+
+    var __decorate$v = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata$j = (undefined && undefined.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    /**
+     * Component for rendering an empty state.
+     */
+    var EmptyStateComponent = /** @class */ (function () {
+        /**
+         * The default constructor
+         */
+        function EmptyStateComponent() {
+            /**
+             * The event emitted when an action is selected
+             */
+            this.onActionSelect = new core.EventEmitter();
+            this.defaultConfig = {
+                title: 'No Items Available'
+            };
+        }
+        // Initialization
+        /**
+         * Setup component configuration upon initialization
+         */
+        EmptyStateComponent.prototype.ngOnInit = function () {
+            this.setupConfig();
+        };
+        /**
+         * Check if the component config has changed
+         */
+        EmptyStateComponent.prototype.ngDoCheck = function () {
+            // Do a deep compare on config
+            if (!lodash.isEqual(this.config, this.prevConfig)) {
+                this.setupConfig();
+            }
+        };
+        /**
+         * Set up default config
+         */
+        EmptyStateComponent.prototype.setupConfig = function () {
+            if (this.config !== undefined) {
+                lodash.defaults(this.config, this.defaultConfig);
+            }
+            else {
+                this.config = lodash.cloneDeep(this.defaultConfig);
+            }
+            this.prevConfig = lodash.cloneDeep(this.config);
+        };
+        // Private
+        EmptyStateComponent.prototype.handleAction = function (action) {
+            if (action && action.disabled !== true) {
+                this.onActionSelect.emit(action);
+            }
+        };
+        __decorate$v([
+            core.Input(),
+            __metadata$j("design:type", EmptyStateConfig)
+        ], EmptyStateComponent.prototype, "config", void 0);
+        __decorate$v([
+            core.Output('onActionSelect'),
+            __metadata$j("design:type", Object)
+        ], EmptyStateComponent.prototype, "onActionSelect", void 0);
+        EmptyStateComponent = __decorate$v([
+            core.Component({
+                encapsulation: core.ViewEncapsulation.None,
+                selector: 'pfng-empty-state',
+                template: "<div class=\"blank-slate-pf\"><div *ngIf=\"config.iconStyleClass\" class=\"blank-slate-pf-icon\"><span class=\"{{config.iconStyleClass}}\"></span></div><h1 id=\"title\">{{config.title}}</h1><p id=\"info\" *ngIf=\"config.info !== undefined\">{{config.info}}</p><p id=\"helpLink\" *ngIf=\"config.helpLink !== undefined\">{{config.helpLink.text}} <a href=\"{{config.helpLink.url}}\">{{config.helpLink.hypertext}}</a>.</p><div *ngIf=\"config.actions?.primaryActions?.length > 0\" class=\"blank-slate-pf-main-action\"><button *ngFor=\"let action of config.actions.primaryActions\" class=\"btn btn-primary btn-lg {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': action.disabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button></div><div class=\"blank-slate-pf-secondary-action {{config.actions?.moreActionsStyleClass}}\" [ngClass]=\"{'hidden': config.actions?.moreActionsVisible === false}\" *ngIf=\"config.actions?.moreActions?.length > 0\"><button *ngFor=\"let action of config.actions.moreActions\" class=\"btn btn-default {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': config.actions?.moreActionsDisabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\">{{action.title}}</button></div></div>"
+            }),
+            __metadata$j("design:paramtypes", [])
+        ], EmptyStateComponent);
+        return EmptyStateComponent;
+    }());
+
+    var __decorate$w = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    /**
+     * A module containing objects associated with the empty state component
+     */
+    var EmptyStateModule = /** @class */ (function () {
+        function EmptyStateModule() {
+        }
+        EmptyStateModule = __decorate$w([
+            core.NgModule({
+                imports: [common.CommonModule],
+                declarations: [EmptyStateComponent],
+                exports: [EmptyStateComponent]
+            })
+        ], EmptyStateModule);
+        return EmptyStateModule;
+    }());
+
+    /**
+     * An object containing filter properties
+     */
+    var Filter = /** @class */ (function () {
+        function Filter() {
+        }
+        return Filter;
+    }());
+
+    /**
+     * A config containing properties for filters
+     */
+    var FilterConfig = /** @class */ (function () {
+        function FilterConfig() {
+        }
+        return FilterConfig;
+    }());
+
+    var __decorate$x = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata$k = (undefined && undefined.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    /**
+     * Component for the filter query field and filter query dropdown
+     */
+    var FilterFieldsComponent = /** @class */ (function () {
+        /**
+         * The default constructor
+         */
+        function FilterFieldsComponent() {
+            /**
+             * The event emitted when a filter has been added
+             */
+            this.onAdd = new core.EventEmitter();
+            /**
+             * The event emitted when a saved filter has been deleted
+             */
+            this.onDelete = new core.EventEmitter();
+            /**
+             * The event emitted when a field menu option is selected
+             */
+            this.onFieldSelect = new core.EventEmitter();
+            /**
+             * The event emitted when the user types ahead in the query input field
+             */
+            this.onTypeAhead = new core.EventEmitter();
+            this.defaultConfig = {
+                disabled: false
+            };
+        }
+        // Initialization
+        /**
+         * Setup component configuration upon initialization
+         */
+        FilterFieldsComponent.prototype.ngOnInit = function () {
+            this.setupConfig();
+        };
+        /**
+         * Check if the component config has changed
+         */
+        FilterFieldsComponent.prototype.ngDoCheck = function () {
+            // Do a deep compare on config
+            if (!lodash.isEqual(this.config, this.prevConfig)) {
+                this.setupConfig();
+            }
+        };
+        /**
+         * Set up default config
+         */
+        FilterFieldsComponent.prototype.setupConfig = function () {
+            if (this.config !== undefined) {
+                lodash.defaults(this.config, this.defaultConfig);
+            }
+            else {
+                this.config = lodash.cloneDeep(this.defaultConfig);
+            }
+            if (this.config && this.config.fields === undefined) {
+                this.config.fields = [];
+            }
+            if (this.config && this.config.tooltipPlacement === undefined) {
+                this.config.tooltipPlacement = 'top';
+            }
+            this.initCurrentField();
+            this.prevConfig = lodash.cloneDeep(this.config);
+        };
+        /**
+         * Initialize current field and value
+         */
+        FilterFieldsComponent.prototype.initCurrentField = function () {
+            var _this = this;
+            var fieldFound = false;
+            if (this._currentField !== undefined) {
+                this.config.fields.forEach(function (nextField) {
+                    if (nextField.id === _this._currentField.id) {
+                        fieldFound = true;
+                        return;
+                    }
+                });
+            }
+            if (!fieldFound) {
+                this._currentField = this.config.fields[0];
+                this._currentValue = null;
+            }
+            if (this._currentValue === undefined) {
+                this._currentValue = null;
+            }
+        };
+        /**
+         * Reset current field and value
+         */
+        FilterFieldsComponent.prototype.reset = function () {
+            this._currentField = undefined;
+            this.initCurrentField();
+        };
+        Object.defineProperty(FilterFieldsComponent.prototype, "currentField", {
+            // Accessors
+            /**
+             * Get the current filter field
+             *
+             * @returns {FilterField} The current filter field
+             */
+            get: function () {
+                return this._currentField;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(FilterFieldsComponent.prototype, "currentValue", {
+            /**
+             * Get the current filter field value
+             *
+             * @returns {string} The current filter field value
+             */
+            get: function () {
+                return this._currentValue;
+            },
+            /**
+             * Set the current filter field value
+             *
+             * @param val The current filter field value
+             */
+            set: function (val) {
+                this._currentValue = val;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        // Private
+        FilterFieldsComponent.prototype.deleteQuery = function ($event, filterQuery, el) {
+            // Unset focus
+            if (el !== undefined) {
+                el.blur();
+            }
+            // Close previous open confirmation
+            this.hideDeleteConfirm(false);
+            // Show delete query confirmation
+            filterQuery.showDeleteConfirm = true;
+            // Menu should remain open
+            $event.stopPropagation();
+        };
+        FilterFieldsComponent.prototype.deleteQueryCancel = function ($event, filterQuery) {
+            // Hide delete query confirmation
+            filterQuery.showDeleteConfirm = false;
+            // Menu should remain open
+            $event.stopPropagation();
+        };
+        FilterFieldsComponent.prototype.deleteQueryConfirm = function ($event, filterQuery) {
+            // Hide delete query confirmation
+            filterQuery.showDeleteConfirm = false;
+            // Menu should remain open
+            if (this._currentField.queries.length > 1) {
+                $event.stopPropagation();
+            }
+            this.onDelete.emit({
+                field: this._currentField,
+                query: filterQuery,
+                value: filterQuery.value
+            });
+            this._currentValue = null;
+        };
+        FilterFieldsComponent.prototype.fieldInputKeyPress = function ($event) {
+            if ($event.which === 13 && this._currentValue && this._currentValue.length > 0) {
+                this.onAdd.emit({
+                    field: this._currentField,
+                    value: this._currentValue
+                });
+                this._currentValue = undefined;
+            }
+        };
+        // Hide all delete confirm
+        FilterFieldsComponent.prototype.hideDeleteConfirm = function (isOpen) {
+            this._currentField.queries.forEach(function (query) {
+                query.showDeleteConfirm = false;
+            });
+        };
+        FilterFieldsComponent.prototype.isFieldDisabled = function (field) {
+            if (field.type === undefined || field.type === 'text') {
+                return false;
+            }
+            return (field.queries === undefined || field.queries.length === 0);
+        };
+        FilterFieldsComponent.prototype.queryInputChange = function (value) {
+            this.onTypeAhead.emit({
+                field: this._currentField,
+                value: this._currentValue
+            });
+        };
+        FilterFieldsComponent.prototype.selectField = function (field) {
+            this._currentField = field;
+            this._currentValue = null;
+            this.onFieldSelect.emit({
+                field: this._currentField,
+                value: this._currentValue
+            });
+        };
+        FilterFieldsComponent.prototype.selectQuery = function (filterQuery) {
+            this.onAdd.emit({
+                field: this._currentField,
+                query: filterQuery,
+                value: filterQuery.value
+            });
+            this._currentValue = null;
+        };
+        FilterFieldsComponent.prototype.showDelete = function () {
+            var result = false;
+            this._currentField.queries.forEach(function (query) {
+                if (query.showDelete === true) {
+                    result = true;
+                    return;
+                }
+            });
+            return result;
+        };
+        __decorate$x([
+            core.Input(),
+            __metadata$k("design:type", FilterConfig)
+        ], FilterFieldsComponent.prototype, "config", void 0);
+        __decorate$x([
+            core.Output('onAdd'),
+            __metadata$k("design:type", Object)
+        ], FilterFieldsComponent.prototype, "onAdd", void 0);
+        __decorate$x([
+            core.Output('onDelete'),
+            __metadata$k("design:type", Object)
+        ], FilterFieldsComponent.prototype, "onDelete", void 0);
+        __decorate$x([
+            core.Output('onFieldSelect'),
+            __metadata$k("design:type", Object)
+        ], FilterFieldsComponent.prototype, "onFieldSelect", void 0);
+        __decorate$x([
+            core.Output('onTypeAhead'),
+            __metadata$k("design:type", Object)
+        ], FilterFieldsComponent.prototype, "onTypeAhead", void 0);
+        FilterFieldsComponent = __decorate$x([
+            core.Component({
+                encapsulation: core.ViewEncapsulation.None,
+                selector: 'pfng-filter-fields',
+                template: "<div class=\"filter-pf filter-fields\"><div class=\"input-group form-group\"><div class=\"input-group-btn\" dropdown><button type=\"button\" class=\"btn btn-default filter-fields dropdown-toggle\" dropdownToggle tooltip=\"Filter by\" placement=\"{{config?.tooltipPlacement}}\" [disabled]=\"config.disabled === true\">{{currentField?.title}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let field of config?.fields\" [ngClass]=\"{'disabled': isFieldDisabled(field), 'divider dropdown-divider': field.separator}\"><a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" tabindex=\"-1\" (click)=\"selectField(field)\" *ngIf=\"!field?.separator && !isFieldDisabled(field)\">{{field?.title}}</a> <a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" onclick=\"return false;\" *ngIf=\"!field?.separator && isFieldDisabled(field)\">{{field?.title}}</a></li></ul></div><div *ngIf=\"!currentField?.type || currentField?.type === 'text' || currentField.type === 'default'\"><input class=\"form-control\" type=\"{{currentField?.type}}\" [(ngModel)]=\"currentValue\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\" (keypress)=\"fieldInputKeyPress($event)\"></div><div *ngIf=\"currentField?.type === 'select'\"><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\"><span class=\"filter-option pull-left\">{{currentValue || currentField?.placeholder}}</span> <span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField?.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query?.value === currentValue, 'divider dropdown-divider': query?.separator}\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> {{query.value}}</a></li></ul></div></div><div *ngIf=\"currentField?.type === 'typeahead'\"><div class=\"btn-group bootstrap-select form-control filter-select\" *ngIf=\"config.disabled === true\"><div class=\"pull-left typeahead-input-container disabled\"><input class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\"> <span class=\"caret\"></span></div></div><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown (isOpenChange)=\"hideDeleteConfirm($event)\" *ngIf=\"config.disabled !== true\"><div class=\"pull-left typeahead-input-container dropdown-toggle\" dropdownToggle><input #queryInput class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [(ngModel)]=\"currentValue\" (ngModelChange)=\"queryInputChange($event)\"> <span (click)=\"queryInput.focus()\" class=\"caret\"></span></div><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query.value === currentValue,\n                          'divider dropdown-divider': query?.separator,\n                          'pfng-filter-delete-wrapper': query?.showDelete}\"><div class=\"pfng-filter-delete-slide\" [ngClass]=\"{'slide-in': query?.showDeleteConfirm}\" *ngIf=\"query?.showDelete\"><span class=\"pfng-filter-delete-text\">Delete filter?</span> <span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryConfirm($event, query)\"><span class=\"fa fa-check\"></span> </a></span><span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryCancel($event, query)\"><span class=\"fa fa-remove\"></span></a></span></div><a #blurable class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"pfng-filter-delete close\" *ngIf=\"query?.showDelete\"><a href=\"javascript:void(0);\" tabindex=\"-1\" [ngClass]=\"{'hidden': query?.showDeleteConfirm}\" (click)=\"deleteQuery($event, query, blurable)\"><span class=\"pficon pficon-remove\"></span> </a></span><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> <span [innerHTML]=\"query.value | truncate: 20 | searchHighlight: queryInput.value\"></span></a></li></ul></div></div></div></div>"
+            }),
+            __metadata$k("design:paramtypes", [])
+        ], FilterFieldsComponent);
+        return FilterFieldsComponent;
+    }());
+
+    /*
+     * An object containing properties for filter types
+     */
+    var FilterType = /** @class */ (function () {
+        function FilterType() {
+        }
+        /**
+         * Select type
+         */
+        FilterType.SELECT = 'select';
+        /**
+         * Text type
+         */
+        FilterType.TEXT = 'text';
+        /**
+         * Type ahead type
+         */
+        FilterType.TYPEAHEAD = 'typeahead';
+        return FilterType;
+    }());
+
+    var __decorate$y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata$l = (undefined && undefined.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    /**
+     * Filter component
+     */
+    var FilterComponent = /** @class */ (function () {
+        /**
+         * The default constructor
+         */
+        function FilterComponent() {
+            /**
+             * The event emitted when a filter has been changed
+             */
+            this.onChange = new core.EventEmitter();
+            /**
+             * The event emitted when a query (i.e., saved filter) has been deleted
+             */
+            this.onDelete = new core.EventEmitter();
+            /**
+             * The event emitted when a field menu option is selected
+             */
+            this.onFilterSelect = new core.EventEmitter();
+            /**
+             * The event emitted when a filter has been changed
+             */
+            this.onSave = new core.EventEmitter();
+            /**
+             * The event emitted when the user types ahead in the query input field
+             */
+            this.onTypeAhead = new core.EventEmitter();
+            this.defaultConfig = {
+                disabled: false
+            };
+        }
+        // Initialization
+        /**
+         * Setup component configuration upon initialization
+         */
+        FilterComponent.prototype.ngOnInit = function () {
+            this.setupConfig();
+        };
+        /**
+         * Check if the component config has changed
+         */
+        FilterComponent.prototype.ngDoCheck = function () {
+            // Do a deep compare on config
+            if (!lodash.isEqual(this.config, this.prevConfig)) {
+                this.setupConfig();
+            }
+        };
+        /**
+         * Set up default config
+         */
+        FilterComponent.prototype.setupConfig = function () {
+            if (this.config !== undefined) {
+                lodash.defaults(this.config, this.defaultConfig);
+            }
+            else {
+                this.config = lodash.cloneDeep(this.defaultConfig);
+            }
+            if (this.config && this.config.appliedFilters === undefined) {
+                this.config.appliedFilters = [];
+            }
+            this.prevConfig = lodash.cloneDeep(this.config);
+        };
+        // Actions
+        /**
+         * Handle add filter event
+         *
+         * @param $event The FilterEvent contining properties for this event
+         */
+        FilterComponent.prototype.addFilter = function ($event) {
+            var newFilter = {
+                field: $event.field,
+                query: $event.query,
+                value: $event.value
+            };
+            if (!this.filterExists(newFilter)) {
+                if (newFilter.field.type === FilterType.SELECT) {
+                    this.enforceSingleSelect(newFilter);
+                }
+                this.config.appliedFilters.push(newFilter);
+                $event.appliedFilters = this.config.appliedFilters;
+                this.onChange.emit($event);
+            }
+        };
+        /**
+         * Handle clear filter event
+         *
+         * @param $event An array of current Filter objects
+         */
+        FilterComponent.prototype.clearFilter = function ($event) {
+            this.config.appliedFilters = $event;
+            this.onChange.emit({
+                appliedFilters: $event
+            });
+        };
+        /**
+         * Handle delete query (i.e., saved filter) event
+         *
+         * @param $event The FilterEvent contining properties for this event
+         */
+        FilterComponent.prototype.deleteQuery = function ($event) {
+            this.onDelete.emit($event);
+        };
+        /**
+         * Handle filter field selected event
+         *
+         * @param $event The FilterEvent contining properties for this event
+         */
+        FilterComponent.prototype.fieldSelected = function ($event) {
+            this.onFilterSelect.emit($event);
+        };
+        /**
+         * Reset current field
+         */
+        FilterComponent.prototype.resetCurrentField = function () {
+            this.filterFields.reset();
+        };
+        /**
+         * Handle save filter event
+         *
+         * @param $event An array of current Filter objects
+         */
+        FilterComponent.prototype.saveFilter = function ($event) {
+            this.onSave.emit($event);
+        };
+        /**
+         * Handle type ahead event
+         *
+         * @param $event The FilterEvent contining properties for this event
+         */
+        FilterComponent.prototype.typeAhead = function ($event) {
+            this.onTypeAhead.emit($event);
+        };
+        // Private
+        FilterComponent.prototype.enforceSingleSelect = function (filter$$1) {
+            lodash.remove(this.config.appliedFilters, { title: filter$$1.field.title });
+        };
+        FilterComponent.prototype.filterExists = function (filter$$1) {
+            var foundFilter = lodash.find(this.config.appliedFilters, {
+                field: filter$$1.field,
+                value: filter$$1.value
+            });
+            return foundFilter !== undefined;
+        };
+        __decorate$y([
+            core.Input(),
+            __metadata$l("design:type", FilterConfig)
+        ], FilterComponent.prototype, "config", void 0);
+        __decorate$y([
+            core.Output('onChange'),
+            __metadata$l("design:type", Object)
+        ], FilterComponent.prototype, "onChange", void 0);
+        __decorate$y([
+            core.Output('onDelete'),
+            __metadata$l("design:type", Object)
+        ], FilterComponent.prototype, "onDelete", void 0);
+        __decorate$y([
+            core.Output('onFieldSelect'),
+            __metadata$l("design:type", Object)
+        ], FilterComponent.prototype, "onFilterSelect", void 0);
+        __decorate$y([
+            core.Output('onSave'),
+            __metadata$l("design:type", Object)
+        ], FilterComponent.prototype, "onSave", void 0);
+        __decorate$y([
+            core.Output('onTypeAhead'),
+            __metadata$l("design:type", Object)
+        ], FilterComponent.prototype, "onTypeAhead", void 0);
+        __decorate$y([
+            core.ViewChild('filterFields'),
+            __metadata$l("design:type", FilterFieldsComponent)
+        ], FilterComponent.prototype, "filterFields", void 0);
+        FilterComponent = __decorate$y([
+            core.Component({
+                encapsulation: core.ViewEncapsulation.None,
+                selector: 'pfng-filter',
+                template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
+            }),
+            __metadata$l("design:paramtypes", [])
+        ], FilterComponent);
+        return FilterComponent;
+    }());
+
+    /**
+     * An object containing properties for filter events
+     */
+    var FilterEvent = /** @class */ (function () {
+        function FilterEvent() {
+        }
+        return FilterEvent;
+    }());
+
+    /**
+     * An object containing properties for a filterable field, used to select categories of filters
+     */
+    var FilterField = /** @class */ (function () {
+        function FilterField() {
+        }
+        return FilterField;
+    }());
+
+    /**
+     * Configuration service for the Popover directive.
+     * You can inject this service, typically in your root component, and customize
+     * the values of its properties in order to provide default values for all the
+     * popovers used in the application.
+     */
+    var PopoverConfig = (function () {
+        function PopoverConfig() {
+            /**
+             * Placement of a popover. Accepts: "top", "bottom", "left", "right", "auto"
+             */
+            this.placement = 'top';
+            /**
+             * Specifies events that should trigger. Supports a space separated list of
+             * event names.
+             */
+            this.triggers = 'click';
+            this.outsideClick = false;
+        }
+        PopoverConfig.decorators = [
+            { type: core.Injectable },
+        ];
+        /** @nocollapse */
+        PopoverConfig.ctorParameters = function () { return []; };
+        return PopoverConfig;
+    }());
+
+    var PopoverContainerComponent = (function () {
+        function PopoverContainerComponent(config) {
+            Object.assign(this, config);
+        }
+        Object.defineProperty(PopoverContainerComponent.prototype, "isBs3", {
+            get: function () {
+                return isBs3();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        PopoverContainerComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'popover-container',
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        // tslint:disable-next-line
+                        host: {
+                            '[class]': '"popover in popover-" + placement + " " + "bs-popover-" + placement + " " + placement + " " + containerClass',
+                            '[class.show]': '!isBs3',
+                            role: 'tooltip',
+                            style: 'display:block;'
+                        },
+                        styles: [
+                            "\n    :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {\n      left: 50%;\n      margin-left: -8px;\n    }\n    :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {\n      top: 50%;\n      margin-top: -8px;\n    }\n  "
+                        ],
+                        template: "<div class=\"popover-arrow arrow\"></div> <h3 class=\"popover-title popover-header\" *ngIf=\"title\">{{ title }}</h3> <div class=\"popover-content popover-body\"> <ng-content></ng-content> </div> "
+                    },] },
+        ];
+        /** @nocollapse */
+        PopoverContainerComponent.ctorParameters = function () { return [
+            { type: PopoverConfig, },
+        ]; };
+        PopoverContainerComponent.propDecorators = {
+            'placement': [{ type: core.Input },],
+            'title': [{ type: core.Input },],
+        };
+        return PopoverContainerComponent;
+    }());
+
+    /**
+     * A lightweight, extensible directive for fancy popover creation.
+     */
+    var PopoverDirective = (function () {
+        function PopoverDirective(_elementRef, _renderer, _viewContainerRef, _config, cis) {
+            /**
+             * Close popover on outside click
+             */
+            this.outsideClick = false;
+            /**
+             * Css class for popover container
+             */
+            this.containerClass = '';
+            this._isInited = false;
+            this._popover = cis
+                .createLoader(_elementRef, _viewContainerRef, _renderer)
+                .provide({ provide: PopoverConfig, useValue: _config });
+            Object.assign(this, _config);
+            this.onShown = this._popover.onShown;
+            this.onHidden = this._popover.onHidden;
+            // fix: no focus on button on Mac OS #1795
+            if (typeof window !== 'undefined') {
+                _elementRef.nativeElement.addEventListener('click', function () {
+                    try {
+                        _elementRef.nativeElement.focus();
+                    }
+                    catch (err) {
+                        return;
+                    }
+                });
+            }
+        }
+        Object.defineProperty(PopoverDirective.prototype, "isOpen", {
+            /**
+             * Returns whether or not the popover is currently being shown
+             */
+            get: function () {
+                return this._popover.isShown;
+            },
+            set: function (value) {
+                if (value) {
+                    this.show();
+                }
+                else {
+                    this.hide();
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * Opens an element’s popover. This is considered a “manual” triggering of
+         * the popover.
+         */
+        PopoverDirective.prototype.show = function () {
+            if (this._popover.isShown || !this.popover) {
+                return;
+            }
+            this._popover
+                .attach(PopoverContainerComponent)
+                .to(this.container)
+                .position({ attachment: this.placement })
+                .show({
+                content: this.popover,
+                context: this.popoverContext,
+                placement: this.placement,
+                title: this.popoverTitle,
+                containerClass: this.containerClass
+            });
+            this.isOpen = true;
+        };
+        /**
+         * Closes an element’s popover. This is considered a “manual” triggering of
+         * the popover.
+         */
+        PopoverDirective.prototype.hide = function () {
+            if (this.isOpen) {
+                this._popover.hide();
+                this.isOpen = false;
+            }
+        };
+        /**
+         * Toggles an element’s popover. This is considered a “manual” triggering of
+         * the popover.
+         */
+        PopoverDirective.prototype.toggle = function () {
+            if (this.isOpen) {
+                return this.hide();
+            }
+            this.show();
+        };
+        PopoverDirective.prototype.ngOnInit = function () {
+            var _this = this;
+            // fix: seems there are an issue with `routerLinkActive`
+            // which result in duplicated call ngOnInit without call to ngOnDestroy
+            // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
+            if (this._isInited) {
+                return;
+            }
+            this._isInited = true;
+            this._popover.listen({
+                triggers: this.triggers,
+                outsideClick: this.outsideClick,
+                show: function () { return _this.show(); }
+            });
+        };
+        PopoverDirective.prototype.ngOnDestroy = function () {
+            this._popover.dispose();
+        };
+        PopoverDirective.decorators = [
+            { type: core.Directive, args: [{ selector: '[popover]', exportAs: 'bs-popover' },] },
+        ];
+        /** @nocollapse */
+        PopoverDirective.ctorParameters = function () { return [
+            { type: core.ElementRef, },
+            { type: core.Renderer2, },
+            { type: core.ViewContainerRef, },
+            { type: PopoverConfig, },
+            { type: ComponentLoaderFactory, },
+        ]; };
+        PopoverDirective.propDecorators = {
+            'popover': [{ type: core.Input },],
+            'popoverContext': [{ type: core.Input },],
+            'popoverTitle': [{ type: core.Input },],
+            'placement': [{ type: core.Input },],
+            'outsideClick': [{ type: core.Input },],
+            'triggers': [{ type: core.Input },],
+            'container': [{ type: core.Input },],
+            'containerClass': [{ type: core.Input },],
+            'isOpen': [{ type: core.Input },],
+            'onShown': [{ type: core.Output },],
+            'onHidden': [{ type: core.Output },],
+        };
+        return PopoverDirective;
+    }());
+
+    var PopoverModule = (function () {
+        function PopoverModule() {
+        }
+        PopoverModule.forRoot = function () {
+            return {
+                ngModule: PopoverModule,
+                providers: [PopoverConfig, ComponentLoaderFactory, PositioningService]
+            };
+        };
+        PopoverModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [common.CommonModule],
+                        declarations: [PopoverDirective, PopoverContainerComponent],
+                        exports: [PopoverDirective],
+                        entryComponents: [PopoverContainerComponent]
+                    },] },
+        ];
+        /** @nocollapse */
+        PopoverModule.ctorParameters = function () { return []; };
+        return PopoverModule;
+    }());
+
+    var __decorate$z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata$m = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -4343,25 +4719,25 @@
             });
             this.saveFilterName = ''; // Reset
         };
-        __decorate$s([
+        __decorate$z([
             core.Input(),
-            __metadata$i("design:type", FilterConfig)
+            __metadata$m("design:type", FilterConfig)
         ], FilterResultsComponent.prototype, "config", void 0);
-        __decorate$s([
+        __decorate$z([
             core.Output('onClear'),
-            __metadata$i("design:type", Object)
+            __metadata$m("design:type", Object)
         ], FilterResultsComponent.prototype, "onClear", void 0);
-        __decorate$s([
+        __decorate$z([
             core.Output('onSave'),
-            __metadata$i("design:type", Object)
+            __metadata$m("design:type", Object)
         ], FilterResultsComponent.prototype, "onSave", void 0);
-        FilterResultsComponent = __decorate$s([
+        FilterResultsComponent = __decorate$z([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-filter-results',
                 template: "<div class=\"filter-pf\" *ngIf=\"config && (config.appliedFilters && config.appliedFilters.length > 0) || config.totalCount > 0\"><div class=\"row toolbar-pf-results\"><div [ngClass]=\"{'col-sm-9': config.totalCount !== undefined, 'col-sm-12': config.totalCount === undefined}\"><h5 *ngIf=\"config.appliedFilters.length > 0 && config.resultsCount >= 0\">{{config.resultsCount}} Results</h5><p *ngIf=\"config.appliedFilters.length > 0\">Active filters:</p><ul class=\"list-inline\"><li *ngFor=\"let filter of config.appliedFilters\"><span class=\"active-filter label label-info\">{{filter.field.title}}: {{filter.value}} <span class=\"margin-left-5 pficon pficon-close\" (click)=\"clearFilter(filter)\" *ngIf=\"config.disabled !== true\"></span></span></li></ul><p><a class=\"clear-filters\" href=\"javascript:void(0)\" [class.disabled]=\"config.disabled === true\" (click)=\"config.disabled !== true && clearAllFilters()\" *ngIf=\"config.appliedFilters.length > 0\">Clear All Filters</a></p><p class=\"pfng-save-filter margin-left-10\"><ng-template #saveFilterTemplate><label class=\"control-label required-pf margin-right-15\" for=\"saveFilterName\">Name your filter</label><span class=\"pfng-save-filter-close close\"><span class=\"pficon pficon-close\" (click)=\"saveFilterPop.hide(); saveFilterName = ''\"></span></span><div class=\"margin-top-5\"><input class=\"form-control\" id=\"saveFilterName\" name=\"saveFilterName\" type=\"text\" [(ngModel)]=\"saveFilterName\"></div><div class=\"pfng-save-filter-divider\"></div><div class=\"pfng-save-filter-footer\"><button class=\"btn btn-default\" (click)=\"saveFilterPop.hide(); saveFilterName = ''\">Cancel</button> <span class=\"margin-left-5\"><button class=\"btn btn-primary\" [disabled]=\"saveFilterName === undefined || saveFilterName?.length === 0\" (click)=\"saveAllFilters(); saveFilterPop.hide()\">Save</button></span></div></ng-template><span placement=\"bottom\" [popover]=\"saveFilterTemplate\" #saveFilterPop=\"bs-popover\"><a *ngIf=\"config.showSaveFilter && config.disabled !== true\">Save Filter</a> </span><a href=\"javascript:void(0)\" [class.disabled]=\"config.disabled === true\" *ngIf=\"config.showSaveFilter && config.disabled === true\">Save Filter</a></p></div><div class=\"col-sm-3 table-view-pf-select-results\" *ngIf=\"config.totalCount > 0\"><strong>{{config.selectedCount}}</strong> of <strong>{{config.totalCount}}</strong> selected</div></div></div>"
             }),
-            __metadata$i("design:paramtypes", [])
+            __metadata$m("design:paramtypes", [])
         ], FilterResultsComponent);
         return FilterResultsComponent;
     }());
@@ -4375,7 +4751,7 @@
         return FilterQuery;
     }());
 
-    var __decorate$t = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$A = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4430,13 +4806,13 @@
             }
             return output;
         };
-        SearchHighlightPipe = __decorate$t([
+        SearchHighlightPipe = __decorate$A([
             core.Pipe({ name: 'searchHighlight' })
         ], SearchHighlightPipe);
         return SearchHighlightPipe;
     }());
 
-    var __decorate$u = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$B = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4448,7 +4824,7 @@
     var SearchHighlightPipeModule = /** @class */ (function () {
         function SearchHighlightPipeModule() {
         }
-        SearchHighlightPipeModule = __decorate$u([
+        SearchHighlightPipeModule = __decorate$B([
             core.NgModule({
                 declarations: [
                     SearchHighlightPipe
@@ -4461,7 +4837,7 @@
         return SearchHighlightPipeModule;
     }());
 
-    var __decorate$v = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$C = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4488,13 +4864,13 @@
             if (trail === void 0) { trail = '...'; }
             return (value.length > limit) ? value.substring(0, limit) + trail : value;
         };
-        TruncatePipe = __decorate$v([
+        TruncatePipe = __decorate$C([
             core.Pipe({ name: 'truncate' })
         ], TruncatePipe);
         return TruncatePipe;
     }());
 
-    var __decorate$w = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$D = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4506,7 +4882,7 @@
     var TruncatePipeModule = /** @class */ (function () {
         function TruncatePipeModule() {
         }
-        TruncatePipeModule = __decorate$w([
+        TruncatePipeModule = __decorate$D([
             core.NgModule({
                 declarations: [
                     TruncatePipe
@@ -4519,7 +4895,7 @@
         return TruncatePipeModule;
     }());
 
-    var __decorate$x = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$E = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4531,7 +4907,7 @@
     var FilterModule = /** @class */ (function () {
         function FilterModule() {
         }
-        FilterModule = __decorate$x([
+        FilterModule = __decorate$E([
             core.NgModule({
                 imports: [
                     BsDropdownModule.forRoot(),
@@ -4550,13 +4926,13 @@
         return FilterModule;
     }());
 
-    var __decorate$y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$F = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$j = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$n = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -4802,33 +5178,33 @@
                 });
             }
         };
-        __decorate$y([
+        __decorate$F([
             core.Input(),
-            __metadata$j("design:type", core.TemplateRef)
+            __metadata$n("design:type", core.TemplateRef)
         ], ListBase.prototype, "actionTemplate", void 0);
-        __decorate$y([
+        __decorate$F([
             core.Input(),
-            __metadata$j("design:type", Array)
+            __metadata$n("design:type", Array)
         ], ListBase.prototype, "items", void 0);
-        __decorate$y([
+        __decorate$F([
             core.Input(),
-            __metadata$j("design:type", core.TemplateRef)
+            __metadata$n("design:type", core.TemplateRef)
         ], ListBase.prototype, "itemTemplate", void 0);
-        __decorate$y([
+        __decorate$F([
             core.Output('onActionSelect'),
-            __metadata$j("design:type", Object)
+            __metadata$n("design:type", Object)
         ], ListBase.prototype, "onActionSelect", void 0);
-        __decorate$y([
+        __decorate$F([
             core.Output('onClick'),
-            __metadata$j("design:type", Object)
+            __metadata$n("design:type", Object)
         ], ListBase.prototype, "onClick", void 0);
-        __decorate$y([
+        __decorate$F([
             core.Output('onDblClick'),
-            __metadata$j("design:type", Object)
+            __metadata$n("design:type", Object)
         ], ListBase.prototype, "onDblClick", void 0);
-        __decorate$y([
+        __decorate$F([
             core.Output('onSelectionChange'),
-            __metadata$j("design:type", Object)
+            __metadata$n("design:type", Object)
         ], ListBase.prototype, "onSelectionChange", void 0);
         return ListBase;
     }());
@@ -4851,7 +5227,7 @@
         return ListEvent;
     }());
 
-    var __extends$c = (undefined && undefined.__extends) || (function () {
+    var __extends$e = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -4865,14 +5241,14 @@
      * A config containing properties for list view
      */
     var ListConfig = /** @class */ (function (_super) {
-        __extends$c(ListConfig, _super);
+        __extends$e(ListConfig, _super);
         function ListConfig() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return ListConfig;
     }(ListConfigBase));
 
-    var __extends$d = (undefined && undefined.__extends) || (function () {
+    var __extends$f = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -4882,13 +5258,13 @@
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var __decorate$z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$G = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$k = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$o = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -4911,7 +5287,7 @@
      * <br/><code>import { BasicListModule } from 'patternfly-ng';</code>
      */
     var ListComponent = /** @class */ (function (_super) {
-        __extends$d(ListComponent, _super);
+        __extends$f(ListComponent, _super);
         /**
          * The default constructor
          */
@@ -5023,44 +5399,44 @@
                 item: item
             });
         };
-        __decorate$z([
+        __decorate$G([
             core.Input(),
-            __metadata$k("design:type", core.TemplateRef)
+            __metadata$o("design:type", core.TemplateRef)
         ], ListComponent.prototype, "actionHeadingTemplate", void 0);
-        __decorate$z([
+        __decorate$G([
             core.Input(),
-            __metadata$k("design:type", ListConfig)
+            __metadata$o("design:type", ListConfig)
         ], ListComponent.prototype, "config", void 0);
-        __decorate$z([
+        __decorate$G([
             core.Input(),
-            __metadata$k("design:type", core.TemplateRef)
+            __metadata$o("design:type", core.TemplateRef)
         ], ListComponent.prototype, "expandTemplate", void 0);
-        __decorate$z([
+        __decorate$G([
             core.Input(),
-            __metadata$k("design:type", core.TemplateRef)
+            __metadata$o("design:type", core.TemplateRef)
         ], ListComponent.prototype, "itemHeadingTemplate", void 0);
-        __decorate$z([
+        __decorate$G([
             core.Output('onPinChange'),
-            __metadata$k("design:type", Object)
+            __metadata$o("design:type", Object)
         ], ListComponent.prototype, "onPinChange", void 0);
-        ListComponent = __decorate$z([
+        ListComponent = __decorate$G([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-list',
                 template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><div class=\"list-pf-item pfng-list-heading {{item?.itemStyleClass}}\" *ngIf=\"itemHeadingTemplate || actionHeadingTemplate\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-placeholder\" *ngIf=\"config.usePinItems\"></div><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\"></div></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox || config.showRadioButton\"><div class=\"pfng-list-cb-placeholder\"></div></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\"><ng-template *ngIf=\"itemHeadingTemplate\" [ngTemplateOutlet]=\"itemHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionHeadingTemplate\" [ngTemplateOutlet]=\"actionHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div><div class=\"list-pf-item {{item?.itemStyleClass}}\" [ngClass]=\"{'active': item.selected || item.expanded}\" *ngFor=\"let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index\"><div class=\"list-pf-container\" [id]=\"getId('item', i)\" (click)=\"toggleExpandArea($event, item)\"><div class=\"pfng-list-pin-container\" *ngIf=\"config.usePinItems\"><div class=\"pfng-list-pin-placeholder\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin !== true\"></div><div class=\"pfng-list-pin\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin === true\"><a href=\"javascript:void(0);\" tabindex=\"-1\" title=\"Remove pin\" (click)=\"togglePin($event, item)\"><span class=\"fa fa-thumb-tack\"></span></a></div></div><div class=\"list-pf-chevron pfng-list-expand\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\" *ngIf=\"item.hideExpandToggle === true\"></div><span class=\"fa fa-angle-right\" *ngIf=\"item.hideExpandToggle !== true\" (click)=\"toggleExpandArea($event, item)\" [ngClass]=\"{'fa-angle-down': item.expanded && item.expandId === undefined}\"></span></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" [id]=\"getId('checkbox', i)\" [(ngModel)]=\"item.selected\" (ngModelChange)=\"checkboxChange(item)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" [id]=\"getId('radio', i)\" [checked]=\"item.selected\" (click)=\"radioButtonChange(item)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\" (click)=\"toggleSelection($event, item)\" (dblclick)=\"dblClick($event, item)\"><ng-template *ngIf=\"itemTemplate\" [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionTemplate\" [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div><div class=\"pfng-list-expansion list-pf-expansion collapse in\" *ngIf=\"expandTemplate && item.expanded\"><div class=\"list-pf-container\" tabindex=\"0\"><div class=\"list-pf-content\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"closeExpandArea(item)\"></span></div><ng-template [ngTemplateOutlet]=\"expandTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
             }),
-            __metadata$k("design:paramtypes", [core.ElementRef])
+            __metadata$o("design:paramtypes", [core.ElementRef])
         ], ListComponent);
         return ListComponent;
     }(ListBase));
 
-    var __decorate$A = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$H = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$l = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$p = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -5111,30 +5487,30 @@
             this.item.expandId = this.expandId;
             this.item.expanded = !this.item.expanded;
         };
-        __decorate$A([
+        __decorate$H([
             core.Input(),
-            __metadata$l("design:type", String)
+            __metadata$p("design:type", String)
         ], ListExpandToggleComponent.prototype, "expandId", void 0);
-        __decorate$A([
+        __decorate$H([
             core.Input(),
-            __metadata$l("design:type", Object)
+            __metadata$p("design:type", Object)
         ], ListExpandToggleComponent.prototype, "item", void 0);
-        __decorate$A([
+        __decorate$H([
             core.Input(),
-            __metadata$l("design:type", core.TemplateRef)
+            __metadata$p("design:type", core.TemplateRef)
         ], ListExpandToggleComponent.prototype, "template", void 0);
-        ListExpandToggleComponent = __decorate$A([
+        ListExpandToggleComponent = __decorate$H([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-list-expand-toggle',
                 template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpand()\"><span class=\"fa fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
             }),
-            __metadata$l("design:paramtypes", [])
+            __metadata$p("design:paramtypes", [])
         ], ListExpandToggleComponent);
         return ListExpandToggleComponent;
     }());
 
-    var __decorate$B = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$I = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5168,13 +5544,13 @@
             var sortedArray = lodash.orderBy(arr, [prop], [sortOrder]);
             return sortedArray;
         };
-        SortArrayPipe = __decorate$B([
+        SortArrayPipe = __decorate$I([
             core.Pipe({ name: 'sortArray' })
         ], SortArrayPipe);
         return SortArrayPipe;
     }());
 
-    var __decorate$C = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$J = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5186,7 +5562,7 @@
     var SortArrayPipeModule = /** @class */ (function () {
         function SortArrayPipeModule() {
         }
-        SortArrayPipeModule = __decorate$C([
+        SortArrayPipeModule = __decorate$J([
             core.NgModule({
                 declarations: [
                     SortArrayPipe
@@ -5199,7 +5575,7 @@
         return SortArrayPipeModule;
     }());
 
-    var __decorate$D = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$K = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5211,7 +5587,7 @@
     var ListModule = /** @class */ (function () {
         function ListModule() {
         }
-        ListModule = __decorate$D([
+        ListModule = __decorate$K([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -5226,7 +5602,7 @@
         return ListModule;
     }());
 
-    var __extends$e = (undefined && undefined.__extends) || (function () {
+    var __extends$g = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -5245,14 +5621,14 @@
      * See: https://github.com/patternfly/patternfly-ng/issues/381
      */
     var TreeListConfig = /** @class */ (function (_super) {
-        __extends$e(TreeListConfig, _super);
+        __extends$g(TreeListConfig, _super);
         function TreeListConfig() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return TreeListConfig;
     }(ListConfigBase));
 
-    var __extends$f = (undefined && undefined.__extends) || (function () {
+    var __extends$h = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -5262,13 +5638,13 @@
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var __decorate$E = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$L = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$m = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$q = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -5295,7 +5671,7 @@
      * See: https://github.com/patternfly/patternfly-ng/issues/381
      */
     var TreeListComponent = /** @class */ (function (_super) {
-        __extends$f(TreeListComponent, _super);
+        __extends$h(TreeListComponent, _super);
         /**
          * The default constructor
          */
@@ -5400,48 +5776,48 @@
         TreeListComponent.prototype.getIndentChildren = function (nodeLevel) {
             return (nodeLevel > 1) ? (nodeLevel - 1) * this.config.indentChildren + '' : '';
         };
-        __decorate$E([
+        __decorate$L([
             core.Input(),
-            __metadata$m("design:type", TreeListConfig)
+            __metadata$q("design:type", TreeListConfig)
         ], TreeListComponent.prototype, "config", void 0);
-        __decorate$E([
+        __decorate$L([
             core.Input(),
-            __metadata$m("design:type", core.TemplateRef)
+            __metadata$q("design:type", core.TemplateRef)
         ], TreeListComponent.prototype, "loadTemplate", void 0);
-        __decorate$E([
+        __decorate$L([
             core.Output('onEvent'),
-            __metadata$m("design:type", Object)
+            __metadata$q("design:type", Object)
         ], TreeListComponent.prototype, "onEvent", void 0);
-        __decorate$E([
+        __decorate$L([
             core.Output('onMoveNode'),
-            __metadata$m("design:type", Object)
+            __metadata$q("design:type", Object)
         ], TreeListComponent.prototype, "onMoveNode", void 0);
-        __decorate$E([
+        __decorate$L([
             core.Output('onToggleExpanded'),
-            __metadata$m("design:type", Object)
+            __metadata$q("design:type", Object)
         ], TreeListComponent.prototype, "onToggleExpanded", void 0);
-        __decorate$E([
+        __decorate$L([
             core.ViewChild(angularTreeComponent.TreeComponent),
-            __metadata$m("design:type", angularTreeComponent.TreeComponent)
+            __metadata$q("design:type", angularTreeComponent.TreeComponent)
         ], TreeListComponent.prototype, "tree", void 0);
-        TreeListComponent = __decorate$E([
+        TreeListComponent = __decorate$L([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-tree-list',
                 template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><tree-root class=\"pfng-tree-list\" #tree [nodes]=\"items\" [focused]=\"true\" [options]=\"config.treeOptions\" (event)=\"handleEvent($event)\" (moveNode)=\"handleMoveNode($event)\" (toggleExpanded)=\"handleToggleExpanded($event)\"><ng-template #treeNodeTemplate let-node let-index=\"index\"><ng-template [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></ng-template><ng-template #loadingTemplate let-node let-index=\"index\"><ng-template [ngTemplateOutlet]=\"loadTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></ng-template><ng-template #treeNodeFullTemplate let-node=\"node\" let-index=\"index\" let-templates=\"templates\"><div *ngIf=\"node.isHidden !== true\" class=\"tree-node\" [ngClass]=\"node.getClass()\" [class.tree-node-expanded]=\"node.isExpanded && node.hasChildren\" [class.tree-node-collapsed]=\"node.isCollapsed && node.hasChildren\" [class.tree-node-leaf]=\"node.isLeaf\" [class.tree-node-active]=\"node.isActive\" [class.tree-node-focused]=\"node.isFocused\"><div class=\"list-pf-item\" [class.active]=\"node.data.selected\" [class.tree-item-placeholder]=\"index !== 0\" [class.tree-item-selected]=\"node.data.selected\"><tree-node-drop-slot *ngIf=\"index === 0\" [dropIndex]=\"node.index\" [node]=\"node.parent\"></tree-node-drop-slot><div class=\"node-wrapper\" [style.padding-left]=\"node.getNodePadding()\"><div class=\"node-content-wrapper\" (click)=\"node.mouseAction('click', $event)\" (dblclick)=\"node.mouseAction('dblClick', $event)\" (contextmenu)=\"node.mouseAction('contextMenu', $event)\" (dragstart)=\"handleDragStart($event)\" (treeDrop)=\"node.onDrop($event)\" [treeAllowDrop]=\"node.allowDrop\" [treeDrag]=\"node\" [treeDragEnabled]=\"node.allowDrag()\"><div class=\"list-pf-container\" [class.pfng-tree-list-dnd-slot]=\"index === 0\" [class.pfng-tree-list-dnd]=\"node.allowDrag()\" [style.padding-left.px]=\"getIndentChildren(node.level, node)\"><div class=\"list-pf-chevron\"><tree-node-expander [node]=\"node\"></tree-node-expander></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" value=\"node.data.selected\" [(ngModel)]=\"node.data.selected\" (ngModelChange)=\"checkboxChange(node.data)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" value=\"node.data.selected\" [checked]=\"node.data.selected\" (click)=\"radioButtonChange(node.data)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-tree-list-content\" (click)=\"toggleSelection($event, node.data)\" (dblclick)=\"dblClick($event, node.data)\"><ng-template [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></div><div class=\"list-pf-actions\" *ngIf=\"actionTemplate\"><ng-template [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></div></div></div></div></div><tree-node-drop-slot [dropIndex]=\"node.index + 1\" [node]=\"node.parent\"></tree-node-drop-slot></div><tree-node-children [node]=\"node\" [templates]=\"templates\"></tree-node-children></div></ng-template></tree-root></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
             }),
-            __metadata$m("design:paramtypes", [])
+            __metadata$q("design:paramtypes", [])
         ], TreeListComponent);
         return TreeListComponent;
     }(ListBase));
 
-    var __decorate$F = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$M = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$n = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$r = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -5457,7 +5833,7 @@
             console.log('patternfly-ng: The tree-list component is deprecated due to issues with Angular 6 and ' +
                 'mobx autorun, introduced by angular-tree-component.');
         }
-        TreeListModule = __decorate$F([
+        TreeListModule = __decorate$M([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -5468,7 +5844,7 @@
                 declarations: [TreeListComponent],
                 exports: [TreeListComponent]
             }),
-            __metadata$n("design:paramtypes", [])
+            __metadata$r("design:paramtypes", [])
         ], TreeListModule);
         return TreeListModule;
     }());
@@ -5482,13 +5858,13 @@
         return AboutModalConfig;
     }());
 
-    var __decorate$G = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$N = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$o = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$s = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -5542,26 +5918,26 @@
                 close: true
             });
         };
-        __decorate$G([
+        __decorate$N([
             core.Input(),
-            __metadata$o("design:type", AboutModalConfig)
+            __metadata$s("design:type", AboutModalConfig)
         ], AboutModalComponent.prototype, "config", void 0);
-        __decorate$G([
+        __decorate$N([
             core.Output('onCancel'),
-            __metadata$o("design:type", Object)
+            __metadata$s("design:type", Object)
         ], AboutModalComponent.prototype, "onCancel", void 0);
-        AboutModalComponent = __decorate$G([
+        AboutModalComponent = __decorate$N([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-about-modal',
                 template: "<div class=\"about-modal-pf\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" (click)=\"close()\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button></div><div class=\"modal-body\"><h1 *ngIf=\"config.title\">{{config.title}}</h1><div *ngIf=\"config.productInfo && config.productInfo.length > 0\" class=\"product-versions-pf\"><ul class=\"list-unstyled\"><li *ngFor=\"let info of config.productInfo\"><strong>{{info.name}}</strong> {{info.value}}</li></ul></div><div class=\"product-versions-pf\"><ng-content></ng-content></div><div *ngIf=\"config.additionalInfo\" class=\"product-versions-pf\">{{config.additionalInfo}}</div><div *ngIf=\"config.copyright\" class=\"trademark-pf\">{{config.copyright}}</div></div><div class=\"modal-footer\"><img *ngIf=\"config.logoImageSrc\" [src]=\"config.logoImageSrc\" alt=\"{{config.logoImageAlt}}\"></div></div>"
             }),
-            __metadata$o("design:paramtypes", [])
+            __metadata$s("design:paramtypes", [])
         ], AboutModalComponent);
         return AboutModalComponent;
     }());
 
-    var __decorate$H = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$O = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5570,7 +5946,7 @@
     var ModalModule = /** @class */ (function () {
         function ModalModule() {
         }
-        ModalModule = __decorate$H([
+        ModalModule = __decorate$O([
             core.NgModule({
                 imports: [
                     common.CommonModule
@@ -5591,7 +5967,7 @@
         return NavigationItemBase;
     }());
 
-    var __extends$g = (undefined && undefined.__extends) || (function () {
+    var __extends$i = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -5607,7 +5983,7 @@
      * @deprecated Use VerticalNavigationItem, or ApplicationLauncherItem
      */
     var NavigationItemConfig = /** @class */ (function (_super) {
-        __extends$g(NavigationItemConfig, _super);
+        __extends$i(NavigationItemConfig, _super);
         function NavigationItemConfig() {
             var _this = _super.call(this) || this;
             console.log('patternfly-ng: NavigationItemConfig is deprecated; use VerticalNavigationItem ' +
@@ -5617,13 +5993,13 @@
         return NavigationItemConfig;
     }(NavigationItemBase));
 
-    var __decorate$I = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$P = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$p = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$t = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var ApplicationLauncherComponent = /** @class */ (function () {
@@ -5645,27 +6021,27 @@
          */
         ApplicationLauncherComponent.prototype.ngOnInit = function () {
         };
-        __decorate$I([
+        __decorate$P([
             core.Input(),
-            __metadata$p("design:type", Boolean)
+            __metadata$t("design:type", Boolean)
         ], ApplicationLauncherComponent.prototype, "disabled", void 0);
-        __decorate$I([
+        __decorate$P([
             core.Input(),
-            __metadata$p("design:type", Array)
+            __metadata$t("design:type", Array)
         ], ApplicationLauncherComponent.prototype, "items", void 0);
-        __decorate$I([
+        __decorate$P([
             core.Input(),
-            __metadata$p("design:type", String)
+            __metadata$t("design:type", String)
         ], ApplicationLauncherComponent.prototype, "label", void 0);
-        __decorate$I([
+        __decorate$P([
             core.Input(),
-            __metadata$p("design:type", Boolean)
+            __metadata$t("design:type", Boolean)
         ], ApplicationLauncherComponent.prototype, "showAsList", void 0);
-        __decorate$I([
+        __decorate$P([
             core.Input(),
-            __metadata$p("design:type", Boolean)
+            __metadata$t("design:type", Boolean)
         ], ApplicationLauncherComponent.prototype, "showIcons", void 0);
-        ApplicationLauncherComponent = __decorate$I([
+        ApplicationLauncherComponent = __decorate$P([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-application-launcher',
@@ -5675,12 +6051,12 @@
              * Application launcher component
              */
             ,
-            __metadata$p("design:paramtypes", [])
+            __metadata$t("design:paramtypes", [])
         ], ApplicationLauncherComponent);
         return ApplicationLauncherComponent;
     }());
 
-    var __decorate$J = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$Q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5692,7 +6068,7 @@
     var ApplicationLauncherModule = /** @class */ (function () {
         function ApplicationLauncherModule() {
         }
-        ApplicationLauncherModule = __decorate$J([
+        ApplicationLauncherModule = __decorate$Q([
             core.NgModule({
                 imports: [
                     BsDropdownModule.forRoot(),
@@ -5706,13 +6082,13 @@
         return ApplicationLauncherModule;
     }());
 
-    var __decorate$K = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$R = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$q = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$u = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -6484,65 +6860,65 @@
                 }
             }
         };
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", String)
+            __metadata$u("design:type", String)
         ], VerticalNavigationComponent.prototype, "brandSrc", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", String)
+            __metadata$u("design:type", String)
         ], VerticalNavigationComponent.prototype, "brandAlt", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", HTMLElement)
+            __metadata$u("design:type", HTMLElement)
         ], VerticalNavigationComponent.prototype, "contentContainer", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Boolean)
+            __metadata$u("design:type", Boolean)
         ], VerticalNavigationComponent.prototype, "showBadges", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Boolean)
+            __metadata$u("design:type", Boolean)
         ], VerticalNavigationComponent.prototype, "persistentSecondary", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Boolean)
+            __metadata$u("design:type", Boolean)
         ], VerticalNavigationComponent.prototype, "pinnableMenus", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Boolean)
+            __metadata$u("design:type", Boolean)
         ], VerticalNavigationComponent.prototype, "showIcons", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Array)
+            __metadata$u("design:type", Array)
         ], VerticalNavigationComponent.prototype, "items", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Boolean)
+            __metadata$u("design:type", Boolean)
         ], VerticalNavigationComponent.prototype, "updateActiveItemsOnClick", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Boolean)
+            __metadata$u("design:type", Boolean)
         ], VerticalNavigationComponent.prototype, "ignoreMobile", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Input(),
-            __metadata$q("design:type", Boolean)
+            __metadata$u("design:type", Boolean)
         ], VerticalNavigationComponent.prototype, "showTopBanner", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Output('onNavigationEvent'),
-            __metadata$q("design:type", Object)
+            __metadata$u("design:type", Object)
         ], VerticalNavigationComponent.prototype, "navigationEvent", void 0);
-        __decorate$K([
+        __decorate$R([
             core.Output('onItemClickEvent'),
-            __metadata$q("design:type", Object)
+            __metadata$u("design:type", Object)
         ], VerticalNavigationComponent.prototype, "itemClickEvent", void 0);
-        VerticalNavigationComponent = __decorate$K([
+        VerticalNavigationComponent = __decorate$R([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-vertical-navigation',
                 template: "<div><nav class=\"navbar navbar-pf-vertical pfng-vertical-container\" [ngClass]=\"{'pfng-vertical-hide-nav': !showTopBanner}\"><ng-container *ngIf=\"showTopBanner\"><div class=\"navbar-header\"><button type=\"button\" class=\"navbar-toggle\" (click)=\"handleNavBarToggleClick()\"><span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span></button> <span class=\"navbar-brand\"><img class=\"navbar-brand-icon\" *ngIf=\"brandSrc\" [src]=\"brandSrc\" alt=\"{{brandAlt}}\"> <span class=\"navbar-brand-txt\" *ngIf=\"!brandSrc\">{{brandAlt}}</span></span></div><nav class=\"collapse navbar-collapse\"><ng-content></ng-content></nav></ng-container><div class=\"nav-pf-vertical\" [ngClass]=\"{'nav-pf-persistent-secondary': persistentSecondary,\n                    'nav-pf-vertical-collapsible-menus': pinnableMenus,\n                    'hidden-icons-pf': !showIcons,\n                    'nav-pf-vertical-with-badges': showBadges,\n                    'secondary-visible-pf': activeSecondary,\n                    'show-mobile-secondary': showMobileSecondary,\n                    'show-mobile-tertiary': showMobileTertiary,\n                    'hover-secondary-nav-pf': hoverSecondaryNav,\n                    'hover-tertiary-nav-pf': hoverTertiaryNav,\n                    'collapsed-secondary-nav-pf': collapsedSecondaryNav,\n                    'collapsed-tertiary-nav-pf': collapsedTertiaryNav,\n                    'hidden': inMobileState,\n                    'collapsed': navCollapsed,\n                    'force-hide-secondary-nav-pf': forceHidden,\n                    'show-mobile-nav': showMobileNav}\"><ul class=\"list-group\"><li *ngFor=\"let item of items\" class=\"list-group-item\" [ngClass]=\"{'secondary-nav-item-pf': item.children && item.children.length > 0,\n                       'active': item.trackActiveState,\n                       'is-hover': item.trackHoverState,\n                       'mobile-nav-item-pf': item.mobileItem && showMobileSecondary,\n                       'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}\" (mouseenter)=\"handlePrimaryHover(item)\" (mouseleave)=\"handlePrimaryBlur(item)\"><a (click)=\"handlePrimaryClick(item)\"><span class=\"{{item.iconStyleClass}}\" *ngIf=\"item.iconStyleClass\" [ngClass]=\"{hidden: !showIcons}\" tooltip=\"{{item.title}}\" container=\"body\" placement=\"bottom\" isDisabled=\"!{{navCollapsed}}\" containerClass=\"nav-pf-vertical-tooltip\"></span> <span class=\"list-group-item-value\">{{item.title}}</span><div *ngIf=\"showBadges && item.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of item.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"item.children && item.children.length > 0\" class=\"nav-pf-secondary-nav\"><div class=\"nav-item-pf-header\"><a class=\"secondary-collapse-toggle-pf\" (click)=\"collapseSecondaryNav(item)\" [ngClass]=\"{'collapsed': item.secondaryCollapsed}\"></a> <span>{{item.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let secondaryItem of item.children\" class=\"list-group-item\" [ngClass]=\"{'tertiary-nav-item-pf': secondaryItem.children && secondaryItem.children.length > 0,\n                             'active': secondaryItem.trackActiveState,\n                             'is-hover': secondaryItem.trackHoverState,\n                             'mobile-nav-item-pf': secondaryItem.mobileItem}\" (mouseenter)=\"handleSecondaryHover(secondaryItem)\" (mouseleave)=\"handleSecondaryBlur(secondaryItem)\"><a (click)=\"handleSecondaryClick(item, secondaryItem)\"><span class=\"list-group-item-value\">{{secondaryItem.title}}</span><div *ngIf=\"showBadges && secondaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of secondaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"secondaryItem.children && secondaryItem.children.length > 0\" class=\"nav-pf-tertiary-nav\"><div class=\"nav-item-pf-header\"><a class=\"tertiary-collapse-toggle-pf\" (click)=\"collapseTertiaryNav(secondaryItem)\" [ngClass]=\"{'collapsed': secondaryItem.tertiaryCollapsed}\"></a> <span>{{secondaryItem.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let tertiaryItem of secondaryItem.children\" class=\"list-group-item\" [ngClass]=\"{'active': tertiaryItem.trackActiveState}\"><a (click)=\"handleTertiaryClick(item, secondaryItem, tertiaryItem)\"><span class=\"list-group-item-value\">{{tertiaryItem.title}}</span><div *ngIf=\"showBadges && tertiaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of tertiaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a></li></ul></div></li></ul></div></li></ul></div></nav></div>"
             }),
-            __metadata$q("design:paramtypes", [core.ElementRef,
+            __metadata$u("design:paramtypes", [core.ElementRef,
                 core.Renderer2,
                 router.Router,
                 WindowReference])
@@ -6550,7 +6926,7 @@
         return VerticalNavigationComponent;
     }());
 
-    var __decorate$L = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$S = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -6562,7 +6938,7 @@
     var VerticalNavigationModule = /** @class */ (function () {
         function VerticalNavigationModule() {
         }
-        VerticalNavigationModule = __decorate$L([
+        VerticalNavigationModule = __decorate$S([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -6576,13 +6952,13 @@
         return VerticalNavigationModule;
     }());
 
-    var __decorate$M = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$T = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$r = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$v = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -6600,7 +6976,7 @@
             console.log('patternfly-ng: NavigationModule is deprecated; use ApplicationLauncherModule ' +
                 'or VerticalNavigationModule');
         }
-        NavigationModule = __decorate$M([
+        NavigationModule = __decorate$T([
             core.NgModule({
                 imports: [
                     ApplicationLauncherModule,
@@ -6609,7 +6985,7 @@
                 ],
                 exports: [ApplicationLauncherComponent, VerticalNavigationComponent]
             }),
-            __metadata$r("design:paramtypes", [])
+            __metadata$v("design:paramtypes", [])
         ], NavigationModule);
         return NavigationModule;
     }());
@@ -6666,13 +7042,13 @@
         return NotificationType;
     }());
 
-    var __decorate$N = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$U = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$s = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$w = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -6700,42 +7076,42 @@
             this.hidden = true;
             this.hiddenChange.emit(this.hidden);
         };
-        __decorate$N([
+        __decorate$U([
             core.Input(),
-            __metadata$s("design:type", NotificationType)
+            __metadata$w("design:type", NotificationType)
         ], InlineNotificationComponent.prototype, "type", void 0);
-        __decorate$N([
+        __decorate$U([
             core.Input(),
-            __metadata$s("design:type", String)
+            __metadata$w("design:type", String)
         ], InlineNotificationComponent.prototype, "message", void 0);
-        __decorate$N([
+        __decorate$U([
             core.Input(),
-            __metadata$s("design:type", String)
+            __metadata$w("design:type", String)
         ], InlineNotificationComponent.prototype, "header", void 0);
-        __decorate$N([
+        __decorate$U([
             core.Input(),
-            __metadata$s("design:type", Boolean)
+            __metadata$w("design:type", Boolean)
         ], InlineNotificationComponent.prototype, "dismissable", void 0);
-        __decorate$N([
+        __decorate$U([
             core.Input(),
-            __metadata$s("design:type", Boolean)
+            __metadata$w("design:type", Boolean)
         ], InlineNotificationComponent.prototype, "hidden", void 0);
-        __decorate$N([
+        __decorate$U([
             core.Output('hiddenChange'),
-            __metadata$s("design:type", Object)
+            __metadata$w("design:type", Object)
         ], InlineNotificationComponent.prototype, "hiddenChange", void 0);
-        InlineNotificationComponent = __decorate$N([
+        InlineNotificationComponent = __decorate$U([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-inline-notification',
                 template: "<div class=\"alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': dismissable === true}\" *ngIf=\"!hidden\"><button *ngIf=\"dismissable\" (click)=\"notificationRemove()\" type=\"button\" class=\"close\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button> <span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <strong>{{header}}</strong> {{message}}</div>"
             }),
-            __metadata$s("design:paramtypes", [])
+            __metadata$w("design:paramtypes", [])
         ], InlineNotificationComponent);
         return InlineNotificationComponent;
     }());
 
-    var __decorate$O = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$V = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -6747,7 +7123,7 @@
     var InlineNotificationModule = /** @class */ (function () {
         function InlineNotificationModule() {
         }
-        InlineNotificationModule = __decorate$O([
+        InlineNotificationModule = __decorate$V([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -6764,13 +7140,13 @@
         return InlineNotificationModule;
     }());
 
-    var __decorate$P = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$W = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$t = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$x = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -6919,86 +7295,86 @@
                 this.unreadNotifications.emit(false);
             }
         };
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", Boolean)
+            __metadata$x("design:type", Boolean)
         ], NotificationDrawerComponent.prototype, "allowExpand", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", Boolean)
+            __metadata$x("design:type", Boolean)
         ], NotificationDrawerComponent.prototype, "expanded", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", core.TemplateRef)
+            __metadata$x("design:type", core.TemplateRef)
         ], NotificationDrawerComponent.prototype, "headingTemplate", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", Boolean)
+            __metadata$x("design:type", Boolean)
         ], NotificationDrawerComponent.prototype, "hidden", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", String)
+            __metadata$x("design:type", String)
         ], NotificationDrawerComponent.prototype, "noNotificationsText", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", core.TemplateRef)
+            __metadata$x("design:type", core.TemplateRef)
         ], NotificationDrawerComponent.prototype, "notificationBodyTemplate", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", core.TemplateRef)
+            __metadata$x("design:type", core.TemplateRef)
         ], NotificationDrawerComponent.prototype, "notificationFooterTemplate", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", Array)
+            __metadata$x("design:type", Array)
         ], NotificationDrawerComponent.prototype, "notificationGroups", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", String)
+            __metadata$x("design:type", String)
         ], NotificationDrawerComponent.prototype, "notificationTrackField", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", Boolean)
+            __metadata$x("design:type", Boolean)
         ], NotificationDrawerComponent.prototype, "showMarkAllRead", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", Boolean)
+            __metadata$x("design:type", Boolean)
         ], NotificationDrawerComponent.prototype, "showClearAll", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", Boolean)
+            __metadata$x("design:type", Boolean)
         ], NotificationDrawerComponent.prototype, "singleGroup", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", core.TemplateRef)
+            __metadata$x("design:type", core.TemplateRef)
         ], NotificationDrawerComponent.prototype, "subHeadingTemplate", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", String)
+            __metadata$x("design:type", String)
         ], NotificationDrawerComponent.prototype, "title", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Input(),
-            __metadata$t("design:type", core.TemplateRef)
+            __metadata$x("design:type", core.TemplateRef)
         ], NotificationDrawerComponent.prototype, "titleTemplate", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Output('close'),
-            __metadata$t("design:type", Object)
+            __metadata$x("design:type", Object)
         ], NotificationDrawerComponent.prototype, "close", void 0);
-        __decorate$P([
+        __decorate$W([
             core.Output('unreadNotifications'),
-            __metadata$t("design:type", Object)
+            __metadata$x("design:type", Object)
         ], NotificationDrawerComponent.prototype, "unreadNotifications", void 0);
-        NotificationDrawerComponent = __decorate$P([
+        NotificationDrawerComponent = __decorate$W([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-notification-drawer',
                 template: "<div class=\"drawer-pf\" [ngClass]=\"{'hide': hidden, 'drawer-pf-expanded': expanded}\"><div *ngIf=\"title\" class=\"drawer-pf-title\"><a *ngIf=\"allowExpand\" class=\"drawer-pf-toggle-expand fa fa-angle-double-left hidden-xs\" (click)=\"toggleExpandDrawer()\"></a> <a class=\"drawer-pf-close pficon pficon-close\" (click)=\"onClose()\"></a><div *ngIf=\"titleTemplate; then showTitleTemplate else showTitle\"></div><ng-template #showTitle><h3 class=\"text-center\">{{title}}</h3></ng-template><ng-template #showTitleTemplate [ngTemplateOutlet]=\"titleTemplate\"></ng-template></div><div *ngIf=\"!notificationGroups\"><pfng-empty-state [config]=\"emptyStateConfig\"></pfng-empty-state></div><div *ngIf=\"notificationGroups\" class=\"panel-group\"><div class=\"panel panel-default\" [ngClass]=\"{expanded: notificationGroup.open}\" *ngFor=\"let notificationGroup of notificationGroups, let index = index\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a *ngIf=\"!singleGroup\" (click)=\"toggleCollapse(notificationGroup)\" [ngClass]=\"{collapsed: !notificationGroup.open}\"><span><ng-template let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"headingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></span></a></h4><ng-template class=\"panel-counter\" let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"subHeadingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></div><div class=\"panel-collapse collapse\" [ngClass]=\"{in: notificationGroup.open || notificationGroups.length === 1}\"><div *ngIf=\"hasNotifications(notificationGroup)\" class=\"panel-body\"><div class=\"drawer-pf-notification\" [ngClass]=\"{unread: !notification.isViewing, 'expanded-notification': expanded}\" *ngFor=\"let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index\"><ng-template let-notify=\"notification\" let-index=\"index\" [ngTemplateOutlet]=\"notificationBodyTemplate\" [ngTemplateOutletContext]=\"{notify:notification, index: index}\"></ng-template></div><div *ngIf=\"notificationGroup.loading\" class=\"drawer-pf-loading text-center\"><span class=\"spinner spinner-xs spinner-inline\"></span> Loading More</div></div><div *ngIf=\"(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)\" class=\"drawer-pf-action\"><span class=\"drawer-pf-action-link\" *ngIf=\"showMarkAllRead && hasUnread(notificationGroup)\"><button class=\"btn btn-link\" (click)=\"onMarkAllRead(notificationGroup)\">Mark All Read</button> </span><span class=\"drawer-pf-action-link\"><button class=\"btn btn-link\" *ngIf=\"showClearAll\" (click)=\"onClearAll(notificationGroup)\"><span class=\"pficon pficon-close\"></span> Clear All</button></span></div><div *ngIf=\"!hasNotifications(notificationGroup)\"><div class=\"panel-body\"><pfng-empty-state [config]=\"notificationGroup.emptyStateConfig\"></pfng-empty-state></div></div><ng-template *ngIf=\"notificationFooterTemplate\" [ngTemplateOutlet]=\"notificationFooterTemplate\"></ng-template></div></div></div></div>"
             }),
-            __metadata$t("design:paramtypes", [])
+            __metadata$x("design:paramtypes", [])
         ], NotificationDrawerComponent);
         return NotificationDrawerComponent;
     }());
 
-    var __decorate$Q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$X = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7010,7 +7386,7 @@
     var NotificationDrawerModule = /** @class */ (function () {
         function NotificationDrawerModule() {
         }
-        NotificationDrawerModule = __decorate$Q([
+        NotificationDrawerModule = __decorate$X([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -7028,13 +7404,13 @@
         return NotificationDrawerModule;
     }());
 
-    var __decorate$R = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$Y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$u = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$y = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -7116,58 +7492,58 @@
         ToastNotificationComponent.prototype.handleClose = function ($event) {
             this.onCloseSelect.emit({ notification: this.notification });
         };
-        __decorate$R([
+        __decorate$Y([
             core.Input(),
-            __metadata$u("design:type", String)
+            __metadata$y("design:type", String)
         ], ToastNotificationComponent.prototype, "header", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Input(),
-            __metadata$u("design:type", String)
+            __metadata$y("design:type", String)
         ], ToastNotificationComponent.prototype, "message", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Input(),
-            __metadata$u("design:type", Array)
+            __metadata$y("design:type", Array)
         ], ToastNotificationComponent.prototype, "moreActions", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Input(),
-            __metadata$u("design:type", Notification)
+            __metadata$y("design:type", Notification)
         ], ToastNotificationComponent.prototype, "notification", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Input(),
-            __metadata$u("design:type", Action)
+            __metadata$y("design:type", Action)
         ], ToastNotificationComponent.prototype, "primaryAction", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Input(),
-            __metadata$u("design:type", Boolean)
+            __metadata$y("design:type", Boolean)
         ], ToastNotificationComponent.prototype, "showClose", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Input(),
-            __metadata$u("design:type", String)
+            __metadata$y("design:type", String)
         ], ToastNotificationComponent.prototype, "type", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Output('onActionSelect'),
-            __metadata$u("design:type", Object)
+            __metadata$y("design:type", Object)
         ], ToastNotificationComponent.prototype, "onActionSelect", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Output('onCloseSelect'),
-            __metadata$u("design:type", Object)
+            __metadata$y("design:type", Object)
         ], ToastNotificationComponent.prototype, "onCloseSelect", void 0);
-        __decorate$R([
+        __decorate$Y([
             core.Output('onViewingChange'),
-            __metadata$u("design:type", Object)
+            __metadata$y("design:type", Object)
         ], ToastNotificationComponent.prototype, "onViewingChange", void 0);
-        ToastNotificationComponent = __decorate$R([
+        ToastNotificationComponent = __decorate$Y([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-toast-notification',
                 template: "<div class=\"toast-pf alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': showCloseButton}\" (mouseenter)=\"handleEnter($event)\" (mouseleave)=\"handleLeave($event)\"><div *ngIf=\"moreActions?.length > 0\" class=\"pull-right dropdown-kebab-pf\" dropdown><button class=\"btn btn-link dropdown-toggle\" type=\"button\" id=\"dropdownKebabRight\" dropdownToggle><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownKebabRight\" *dropdownMenu><li *ngFor=\"let action of moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div><button *ngIf=\"showCloseButton\" type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"handleClose($event)\"><span class=\"pficon pficon-close\"></span></button><div *ngIf=\"primaryAction\" class=\"pull-right toast-pf-action {{primaryAction.styleClass}}\" [ngClass]=\"{'padding-right-15': showCloseButton == true, 'hidden': primaryAction?.visible === false}\"><div *ngIf=\"primaryAction.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"primaryAction.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton><a *ngIf=\"primaryAction.disabled !== true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" (click)=\"handleAction(primaryAction)\">{{primaryAction?.title}}</a> <a *ngIf=\"primaryAction.disabled === true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" onclick=\"return false;\">{{primaryAction?.title}}</a></ng-template></div><span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <span *ngIf=\"header\"><strong>{{header}}</strong> {{message}} </span><span *ngIf=\"!header\">{{message}}</span></div>"
             }),
-            __metadata$u("design:paramtypes", [])
+            __metadata$y("design:paramtypes", [])
         ], ToastNotificationComponent);
         return ToastNotificationComponent;
     }());
 
-    var __decorate$S = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$Z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7179,7 +7555,7 @@
     var ToastNotificationModule = /** @class */ (function () {
         function ToastNotificationModule() {
         }
-        ToastNotificationModule = __decorate$S([
+        ToastNotificationModule = __decorate$Z([
             core.NgModule({
                 imports: [
                     BsDropdownModule.forRoot(),
@@ -7200,13 +7576,13 @@
         return ToastNotificationModule;
     }());
 
-    var __decorate$T = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$v = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$z = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -7249,38 +7625,38 @@
         ToastNotificationListComponent.prototype.handleViewingChange = function ($event) {
             this.onViewingChange.emit($event);
         };
-        __decorate$T([
+        __decorate([
             core.Input(),
-            __metadata$v("design:type", Array)
+            __metadata$z("design:type", Array)
         ], ToastNotificationListComponent.prototype, "notifications", void 0);
-        __decorate$T([
+        __decorate([
             core.Input(),
-            __metadata$v("design:type", Boolean)
+            __metadata$z("design:type", Boolean)
         ], ToastNotificationListComponent.prototype, "showClose", void 0);
-        __decorate$T([
+        __decorate([
             core.Output('onActionSelect'),
-            __metadata$v("design:type", Object)
+            __metadata$z("design:type", Object)
         ], ToastNotificationListComponent.prototype, "onActionSelect", void 0);
-        __decorate$T([
+        __decorate([
             core.Output('onCloseSelect'),
-            __metadata$v("design:type", Object)
+            __metadata$z("design:type", Object)
         ], ToastNotificationListComponent.prototype, "onCloseSelect", void 0);
-        __decorate$T([
+        __decorate([
             core.Output('onViewingChange'),
-            __metadata$v("design:type", Object)
+            __metadata$z("design:type", Object)
         ], ToastNotificationListComponent.prototype, "onViewingChange", void 0);
-        ToastNotificationListComponent = __decorate$T([
+        ToastNotificationListComponent = __decorate([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-toast-notification-list',
                 template: "<div class=\"toast-notifications-list-pf\" *ngIf=\"notifications?.length > 0\"><div *ngFor=\"let notification of notifications\"><pfng-toast-notification [header]=\"notification.header\" [message]=\"notification.message\" [notification]=\"notification\" [moreActions]=\"notification.moreActions\" [primaryAction]=\"notification.primaryAction\" [showClose]=\"showClose === true || notification.isPersistent === true\" [type]=\"notification.type\" (onActionSelect)=\"handleAction($event)\" (onCloseSelect)=\"handleClose($event)\" (onViewingChange)=\"handleViewingChange($event)\"></pfng-toast-notification></div></div>"
             }),
-            __metadata$v("design:paramtypes", [])
+            __metadata$z("design:paramtypes", [])
         ], ToastNotificationListComponent);
         return ToastNotificationListComponent;
     }());
 
-    var __decorate$U = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$_ = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7292,7 +7668,7 @@
     var ToastNotificationListModule = /** @class */ (function () {
         function ToastNotificationListModule() {
         }
-        ToastNotificationListModule = __decorate$U([
+        ToastNotificationListModule = __decorate$_([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -7310,13 +7686,13 @@
         return ToastNotificationListModule;
     }());
 
-    var __decorate$V = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$10 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$w = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$A = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -7336,7 +7712,7 @@
             console.log('patternfly-ng: NotificationModule is deprecated; use InlineNotificationModule, ' +
                 'NotificationDrawerModule, ToastNotificationModule, or ToastNotificationListModule');
         }
-        NotificationModule = __decorate$V([
+        NotificationModule = __decorate$10([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -7353,7 +7729,7 @@
                     ToastNotificationListComponent
                 ]
             }),
-            __metadata$w("design:paramtypes", [])
+            __metadata$A("design:paramtypes", [])
         ], NotificationModule);
         return NotificationModule;
     }());
@@ -7443,7 +7819,7 @@
     	tryCatch: tryCatch_2
     };
 
-    var __extends$h = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$j = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -7453,7 +7829,7 @@
      * `unsubscribe` of a {@link Subscription}.
      */
     var UnsubscriptionError = (function (_super) {
-        __extends$h(UnsubscriptionError, _super);
+        __extends$j(UnsubscriptionError, _super);
         function UnsubscriptionError(errors) {
             _super.call(this);
             this.errors = errors;
@@ -7689,7 +8065,7 @@
     var rxSubscriber_1 = rxSubscriber.rxSubscriber;
     var rxSubscriber_2 = rxSubscriber.$$rxSubscriber;
 
-    var __extends$i = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$k = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -7709,7 +8085,7 @@
      * @class Subscriber<T>
      */
     var Subscriber = (function (_super) {
-        __extends$i(Subscriber, _super);
+        __extends$k(Subscriber, _super);
         /**
          * @param {Observer|function(value: T): void} [destinationOrNext] A partially
          * defined Observer or a `next` callback function.
@@ -7846,7 +8222,7 @@
      * @extends {Ignored}
      */
     var SafeSubscriber = (function (_super) {
-        __extends$i(SafeSubscriber, _super);
+        __extends$k(SafeSubscriber, _super);
         function SafeSubscriber(_parentSubscriber, observerOrNext, error, complete) {
             _super.call(this);
             this._parentSubscriber = _parentSubscriber;
@@ -8359,7 +8735,7 @@
     	Observable: Observable_2
     };
 
-    var __extends$j = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$l = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -8374,7 +8750,7 @@
      * @class ObjectUnsubscribedError
      */
     var ObjectUnsubscribedError = (function (_super) {
-        __extends$j(ObjectUnsubscribedError, _super);
+        __extends$l(ObjectUnsubscribedError, _super);
         function ObjectUnsubscribedError() {
             var err = _super.call(this, 'object unsubscribed');
             this.name = err.name = 'ObjectUnsubscribedError';
@@ -8390,7 +8766,7 @@
     	ObjectUnsubscribedError: ObjectUnsubscribedError_2
     };
 
-    var __extends$k = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$m = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -8402,7 +8778,7 @@
      * @extends {Ignored}
      */
     var SubjectSubscription = (function (_super) {
-        __extends$k(SubjectSubscription, _super);
+        __extends$m(SubjectSubscription, _super);
         function SubjectSubscription(subject, subscriber) {
             _super.call(this);
             this.subject = subject;
@@ -8434,7 +8810,7 @@
     	SubjectSubscription: SubjectSubscription_2
     };
 
-    var __extends$l = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$n = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -8449,7 +8825,7 @@
      * @class SubjectSubscriber<T>
      */
     var SubjectSubscriber = (function (_super) {
-        __extends$l(SubjectSubscriber, _super);
+        __extends$n(SubjectSubscriber, _super);
         function SubjectSubscriber(destination) {
             _super.call(this, destination);
             this.destination = destination;
@@ -8461,7 +8837,7 @@
      * @class Subject<T>
      */
     var Subject = (function (_super) {
-        __extends$l(Subject, _super);
+        __extends$n(Subject, _super);
         function Subject() {
             _super.call(this);
             this.observers = [];
@@ -8564,7 +8940,7 @@
      * @class AnonymousSubject<T>
      */
     var AnonymousSubject = (function (_super) {
-        __extends$l(AnonymousSubject, _super);
+        __extends$n(AnonymousSubject, _super);
         function AnonymousSubject(destination, source) {
             _super.call(this);
             this.destination = destination;
@@ -8608,7 +8984,7 @@
     	AnonymousSubject: AnonymousSubject_1
     };
 
-    var __extends$m = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$o = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -8619,7 +8995,7 @@
      * @class AsyncSubject<T>
      */
     var AsyncSubject = (function (_super) {
-        __extends$m(AsyncSubject, _super);
+        __extends$o(AsyncSubject, _super);
         function AsyncSubject() {
             _super.apply(this, arguments);
             this.value = null;
@@ -8665,7 +9041,7 @@
     	AsyncSubject: AsyncSubject_2
     };
 
-    var __extends$n = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$p = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -8680,7 +9056,7 @@
      * @hide true
      */
     var BoundCallbackObservable = (function (_super) {
-        __extends$n(BoundCallbackObservable, _super);
+        __extends$p(BoundCallbackObservable, _super);
         function BoundCallbackObservable(callbackFunc, selector, args, context, scheduler) {
             _super.call(this);
             this.callbackFunc = callbackFunc;
@@ -8942,7 +9318,7 @@
 
     Observable_1.Observable.bindCallback = bindCallback.bindCallback;
 
-    var __extends$o = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -8957,7 +9333,7 @@
      * @hide true
      */
     var BoundNodeCallbackObservable = (function (_super) {
-        __extends$o(BoundNodeCallbackObservable, _super);
+        __extends$q(BoundNodeCallbackObservable, _super);
         function BoundNodeCallbackObservable(callbackFunc, selector, args, context, scheduler) {
             _super.call(this);
             this.callbackFunc = callbackFunc;
@@ -9228,7 +9604,7 @@
     	isScheduler: isScheduler_2
     };
 
-    var __extends$p = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$r = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -9240,7 +9616,7 @@
      * @hide true
      */
     var ScalarObservable = (function (_super) {
-        __extends$p(ScalarObservable, _super);
+        __extends$r(ScalarObservable, _super);
         function ScalarObservable(value, scheduler) {
             _super.call(this);
             this.value = value;
@@ -9290,7 +9666,7 @@
     	ScalarObservable: ScalarObservable_2
     };
 
-    var __extends$q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$s = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -9302,7 +9678,7 @@
      * @hide true
      */
     var EmptyObservable = (function (_super) {
-        __extends$q(EmptyObservable, _super);
+        __extends$s(EmptyObservable, _super);
         function EmptyObservable(scheduler) {
             _super.call(this);
             this.scheduler = scheduler;
@@ -9375,7 +9751,7 @@
     	EmptyObservable: EmptyObservable_2
     };
 
-    var __extends$r = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$t = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -9390,7 +9766,7 @@
      * @hide true
      */
     var ArrayObservable = (function (_super) {
-        __extends$r(ArrayObservable, _super);
+        __extends$t(ArrayObservable, _super);
         function ArrayObservable(array, scheduler) {
             _super.call(this);
             this.array = array;
@@ -9501,7 +9877,7 @@
     	ArrayObservable: ArrayObservable_2
     };
 
-    var __extends$s = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$u = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -9513,7 +9889,7 @@
      * @extends {Ignored}
      */
     var OuterSubscriber = (function (_super) {
-        __extends$s(OuterSubscriber, _super);
+        __extends$u(OuterSubscriber, _super);
         function OuterSubscriber() {
             _super.apply(this, arguments);
         }
@@ -9595,7 +9971,7 @@
     var iterator_2 = iterator.iterator;
     var iterator_3 = iterator.$$iterator;
 
-    var __extends$t = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$v = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -9607,7 +9983,7 @@
      * @extends {Ignored}
      */
     var InnerSubscriber = (function (_super) {
-        __extends$t(InnerSubscriber, _super);
+        __extends$v(InnerSubscriber, _super);
         function InnerSubscriber(parent, outerValue, outerIndex) {
             _super.call(this);
             this.parent = parent;
@@ -9710,7 +10086,7 @@
     	subscribeToResult: subscribeToResult_2
     };
 
-    var __extends$u = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$w = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -9797,7 +10173,7 @@
      * @extends {Ignored}
      */
     var CombineLatestSubscriber = (function (_super) {
-        __extends$u(CombineLatestSubscriber, _super);
+        __extends$w(CombineLatestSubscriber, _super);
         function CombineLatestSubscriber(destination, project) {
             _super.call(this, destination);
             this.project = project;
@@ -10012,7 +10388,7 @@
     	of: of_1
     };
 
-    var __extends$v = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$x = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -10025,7 +10401,7 @@
      * @hide true
      */
     var PromiseObservable = (function (_super) {
-        __extends$v(PromiseObservable, _super);
+        __extends$x(PromiseObservable, _super);
         function PromiseObservable(promise, scheduler) {
             _super.call(this);
             this.promise = promise;
@@ -10137,7 +10513,7 @@
     	PromiseObservable: PromiseObservable_2
     };
 
-    var __extends$w = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -10151,7 +10527,7 @@
      * @hide true
      */
     var IteratorObservable = (function (_super) {
-        __extends$w(IteratorObservable, _super);
+        __extends$y(IteratorObservable, _super);
         function IteratorObservable(iterator$$1, scheduler) {
             _super.call(this);
             this.scheduler = scheduler;
@@ -10304,7 +10680,7 @@
     	IteratorObservable: IteratorObservable_2
     };
 
-    var __extends$x = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -10318,7 +10694,7 @@
      * @hide true
      */
     var ArrayLikeObservable = (function (_super) {
-        __extends$x(ArrayLikeObservable, _super);
+        __extends$z(ArrayLikeObservable, _super);
         function ArrayLikeObservable(arrayLike, scheduler) {
             _super.call(this);
             this.arrayLike = arrayLike;
@@ -10508,7 +10884,7 @@
     	Notification: Notification_2
     };
 
-    var __extends$y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$A = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -10586,7 +10962,7 @@
      * @extends {Ignored}
      */
     var ObserveOnSubscriber = (function (_super) {
-        __extends$y(ObserveOnSubscriber, _super);
+        __extends$A(ObserveOnSubscriber, _super);
         function ObserveOnSubscriber(destination, scheduler, delay) {
             if (delay === void 0) { delay = 0; }
             _super.call(this, destination);
@@ -10630,7 +11006,7 @@
     	ObserveOnMessage: ObserveOnMessage_1
     };
 
-    var __extends$z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$B = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -10652,7 +11028,7 @@
      * @hide true
      */
     var FromObservable = (function (_super) {
-        __extends$z(FromObservable, _super);
+        __extends$B(FromObservable, _super);
         function FromObservable(ish, scheduler) {
             _super.call(this, null);
             this.ish = ish;
@@ -10763,7 +11139,7 @@
     	from: from_1
     };
 
-    var __extends$A = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$C = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -10859,7 +11235,7 @@
      * @extends {Ignored}
      */
     var MergeMapSubscriber = (function (_super) {
-        __extends$A(MergeMapSubscriber, _super);
+        __extends$C(MergeMapSubscriber, _super);
         function MergeMapSubscriber(destination, project, resultSelector, concurrent) {
             if (concurrent === void 0) { concurrent = Number.POSITIVE_INFINITY; }
             _super.call(this, destination);
@@ -11178,7 +11554,7 @@
 
     Observable_1.Observable.concat = concat_1.concat;
 
-    var __extends$B = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$D = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -11192,7 +11568,7 @@
      * @hide true
      */
     var DeferObservable = (function (_super) {
-        __extends$B(DeferObservable, _super);
+        __extends$D(DeferObservable, _super);
         function DeferObservable(observableFactory) {
             _super.call(this);
             this.observableFactory = observableFactory;
@@ -11253,7 +11629,7 @@
     }(Observable_1.Observable));
     var DeferObservable_2 = DeferObservable;
     var DeferSubscriber = (function (_super) {
-        __extends$B(DeferSubscriber, _super);
+        __extends$D(DeferSubscriber, _super);
         function DeferSubscriber(destination, factory) {
             _super.call(this, destination);
             this.factory = factory;
@@ -11299,7 +11675,7 @@
 
     Observable_1.Observable.empty = empty$1.empty;
 
-    var __extends$C = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$E = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -11315,7 +11691,7 @@
      * @hide true
      */
     var ForkJoinObservable = (function (_super) {
-        __extends$C(ForkJoinObservable, _super);
+        __extends$E(ForkJoinObservable, _super);
         function ForkJoinObservable(sources, resultSelector) {
             _super.call(this);
             this.sources = sources;
@@ -11453,7 +11829,7 @@
      * @extends {Ignored}
      */
     var ForkJoinSubscriber = (function (_super) {
-        __extends$C(ForkJoinSubscriber, _super);
+        __extends$E(ForkJoinSubscriber, _super);
         function ForkJoinSubscriber(destination, sources, resultSelector) {
             _super.call(this, destination);
             this.sources = sources;
@@ -11516,7 +11892,7 @@
 
     Observable_1.Observable.from = from.from;
 
-    var __extends$D = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$F = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -11548,7 +11924,7 @@
      * @hide true
      */
     var FromEventObservable = (function (_super) {
-        __extends$D(FromEventObservable, _super);
+        __extends$F(FromEventObservable, _super);
         function FromEventObservable(sourceObj, eventName, selector, options) {
             _super.call(this);
             this.sourceObj = sourceObj;
@@ -11745,7 +12121,7 @@
 
     Observable_1.Observable.fromEvent = fromEvent.fromEvent;
 
-    var __extends$E = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$G = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -11759,7 +12135,7 @@
      * @hide true
      */
     var FromEventPatternObservable = (function (_super) {
-        __extends$E(FromEventPatternObservable, _super);
+        __extends$G(FromEventPatternObservable, _super);
         function FromEventPatternObservable(addHandler, removeHandler, selector) {
             _super.call(this);
             this.addHandler = addHandler;
@@ -11880,7 +12256,7 @@
 
     Observable_1.Observable.fromPromise = fromPromise.fromPromise;
 
-    var __extends$F = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$H = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -11894,7 +12270,7 @@
      * @hide true
      */
     var GenerateObservable = (function (_super) {
-        __extends$F(GenerateObservable, _super);
+        __extends$H(GenerateObservable, _super);
         function GenerateObservable(initialState, condition, iterate, resultSelector, scheduler) {
             _super.call(this);
             this.initialState = initialState;
@@ -12028,7 +12404,7 @@
 
     Observable_1.Observable.generate = generate.generate;
 
-    var __extends$G = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$I = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12042,7 +12418,7 @@
      * @hide true
      */
     var IfObservable = (function (_super) {
-        __extends$G(IfObservable, _super);
+        __extends$I(IfObservable, _super);
         function IfObservable(condition, thenSource, elseSource) {
             _super.call(this);
             this.condition = condition;
@@ -12060,7 +12436,7 @@
     }(Observable_1.Observable));
     var IfObservable_2 = IfObservable;
     var IfSubscriber = (function (_super) {
-        __extends$G(IfSubscriber, _super);
+        __extends$I(IfSubscriber, _super);
         function IfSubscriber(destination, condition, thenSource, elseSource) {
             _super.call(this, destination);
             this.condition = condition;
@@ -12116,7 +12492,7 @@
     	isNumeric: isNumeric_2
     };
 
-    var __extends$H = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$J = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12137,7 +12513,7 @@
      * @class Action<T>
      */
     var Action$1 = (function (_super) {
-        __extends$H(Action, _super);
+        __extends$J(Action, _super);
         function Action(scheduler, work) {
             _super.call(this);
         }
@@ -12164,7 +12540,7 @@
     	Action: Action_2
     };
 
-    var __extends$I = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$K = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12177,7 +12553,7 @@
      * @extends {Ignored}
      */
     var AsyncAction = (function (_super) {
-        __extends$I(AsyncAction, _super);
+        __extends$K(AsyncAction, _super);
         function AsyncAction(scheduler, work) {
             _super.call(this, scheduler, work);
             this.scheduler = scheduler;
@@ -12363,14 +12739,14 @@
     	Scheduler: Scheduler_2
     };
 
-    var __extends$J = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$L = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 
     var AsyncScheduler = (function (_super) {
-        __extends$J(AsyncScheduler, _super);
+        __extends$L(AsyncScheduler, _super);
         function AsyncScheduler() {
             _super.apply(this, arguments);
             this.actions = [];
@@ -12467,7 +12843,7 @@
     	async: async_1
     };
 
-    var __extends$K = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$M = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12481,7 +12857,7 @@
      * @hide true
      */
     var IntervalObservable = (function (_super) {
-        __extends$K(IntervalObservable, _super);
+        __extends$M(IntervalObservable, _super);
         function IntervalObservable(period, scheduler) {
             if (period === void 0) { period = 0; }
             if (scheduler === void 0) { scheduler = async.async; }
@@ -12660,7 +13036,7 @@
 
     Observable_1.Observable.merge = merge_1.merge;
 
-    var __extends$L = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$N = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12702,7 +13078,7 @@
      * @extends {Ignored}
      */
     var RaceSubscriber = (function (_super) {
-        __extends$L(RaceSubscriber, _super);
+        __extends$N(RaceSubscriber, _super);
         function RaceSubscriber(destination) {
             _super.call(this, destination);
             this.hasFirst = false;
@@ -12757,7 +13133,7 @@
 
     Observable_1.Observable.race = race_1.race;
 
-    var __extends$M = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$O = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12770,7 +13146,7 @@
      * @hide true
      */
     var NeverObservable = (function (_super) {
-        __extends$M(NeverObservable, _super);
+        __extends$O(NeverObservable, _super);
         function NeverObservable() {
             _super.call(this);
         }
@@ -12830,7 +13206,7 @@
 
     Observable_1.Observable.of = of.of;
 
-    var __extends$N = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$P = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12936,7 +13312,7 @@
         return OnErrorResumeNextOperator;
     }());
     var OnErrorResumeNextSubscriber = (function (_super) {
-        __extends$N(OnErrorResumeNextSubscriber, _super);
+        __extends$P(OnErrorResumeNextSubscriber, _super);
         function OnErrorResumeNextSubscriber(destination, nextSources) {
             _super.call(this, destination);
             this.destination = destination;
@@ -12981,7 +13357,7 @@
 
     Observable_1.Observable.onErrorResumeNext = onErrorResumeNext$1.onErrorResumeNext;
 
-    var __extends$O = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$Q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13004,7 +13380,7 @@
      * @hide true
      */
     var PairsObservable = (function (_super) {
-        __extends$O(PairsObservable, _super);
+        __extends$Q(PairsObservable, _super);
         function PairsObservable(obj, scheduler) {
             _super.call(this);
             this.obj = obj;
@@ -13079,7 +13455,7 @@
 
     Observable_1.Observable.pairs = pairs.pairs;
 
-    var __extends$P = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$R = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13091,7 +13467,7 @@
      * @hide true
      */
     var RangeObservable = (function (_super) {
-        __extends$P(RangeObservable, _super);
+        __extends$R(RangeObservable, _super);
         function RangeObservable(start, count, scheduler) {
             _super.call(this);
             this.start = start;
@@ -13188,7 +13564,7 @@
 
     Observable_1.Observable.range = range.range;
 
-    var __extends$Q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$S = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13202,7 +13578,7 @@
      * @hide true
      */
     var UsingObservable = (function (_super) {
-        __extends$Q(UsingObservable, _super);
+        __extends$S(UsingObservable, _super);
         function UsingObservable(resourceFactory, observableFactory) {
             _super.call(this);
             this.resourceFactory = resourceFactory;
@@ -13226,7 +13602,7 @@
     }(Observable_1.Observable));
     var UsingObservable_2 = UsingObservable;
     var UsingSubscriber = (function (_super) {
-        __extends$Q(UsingSubscriber, _super);
+        __extends$S(UsingSubscriber, _super);
         function UsingSubscriber(destination, resource, observableFactory) {
             _super.call(this, destination);
             this.resource = resource;
@@ -13262,7 +13638,7 @@
 
     Observable_1.Observable.using = using.using;
 
-    var __extends$R = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$T = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13274,7 +13650,7 @@
      * @hide true
      */
     var ErrorObservable = (function (_super) {
-        __extends$R(ErrorObservable, _super);
+        __extends$T(ErrorObservable, _super);
         function ErrorObservable(error, scheduler) {
             _super.call(this);
             this.error = error;
@@ -13368,7 +13744,7 @@
     	isDate: isDate_2
     };
 
-    var __extends$S = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$U = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13384,7 +13760,7 @@
      * @hide true
      */
     var TimerObservable = (function (_super) {
-        __extends$S(TimerObservable, _super);
+        __extends$U(TimerObservable, _super);
         function TimerObservable(dueTime, period, scheduler) {
             if (dueTime === void 0) { dueTime = 0; }
             _super.call(this);
@@ -13488,7 +13864,7 @@
 
     Observable_1.Observable.timer = timer$1.timer;
 
-    var __extends$T = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$V = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13576,7 +13952,7 @@
      * @extends {Ignored}
      */
     var ZipSubscriber = (function (_super) {
-        __extends$T(ZipSubscriber, _super);
+        __extends$V(ZipSubscriber, _super);
         function ZipSubscriber(destination, project, values) {
             if (values === void 0) { values = Object.create(null); }
             _super.call(this, destination);
@@ -13720,7 +14096,7 @@
      * @extends {Ignored}
      */
     var ZipBufferIterator = (function (_super) {
-        __extends$T(ZipBufferIterator, _super);
+        __extends$V(ZipBufferIterator, _super);
         function ZipBufferIterator(destination, parent, observable) {
             _super.call(this, destination);
             this.parent = parent;
@@ -13785,7 +14161,7 @@
 
     Observable_1.Observable.zip = zip$1.zip;
 
-    var __extends$U = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$W = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13850,7 +14226,7 @@
      * @extends {Ignored}
      */
     var MapSubscriber = (function (_super) {
-        __extends$U(MapSubscriber, _super);
+        __extends$W(MapSubscriber, _super);
         function MapSubscriber(destination, project, thisArg) {
             _super.call(this, destination);
             this.project = project;
@@ -13879,7 +14255,7 @@
     	MapOperator: MapOperator_1
     };
 
-    var __extends$V = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$X = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -13963,7 +14339,7 @@
      * @hide true
      */
     var AjaxObservable = (function (_super) {
-        __extends$V(AjaxObservable, _super);
+        __extends$X(AjaxObservable, _super);
         function AjaxObservable(urlOrRequest) {
             _super.call(this);
             var request = {
@@ -14040,7 +14416,7 @@
      * @extends {Ignored}
      */
     var AjaxSubscriber = (function (_super) {
-        __extends$V(AjaxSubscriber, _super);
+        __extends$X(AjaxSubscriber, _super);
         function AjaxSubscriber(destination, request) {
             _super.call(this, destination);
             this.request = request;
@@ -14248,7 +14624,7 @@
      * @class AjaxError
      */
     var AjaxError = (function (_super) {
-        __extends$V(AjaxError, _super);
+        __extends$X(AjaxError, _super);
         function AjaxError(message, xhr, request) {
             _super.call(this, message);
             this.message = message;
@@ -14288,7 +14664,7 @@
      * @class AjaxTimeoutError
      */
     var AjaxTimeoutError = (function (_super) {
-        __extends$V(AjaxTimeoutError, _super);
+        __extends$X(AjaxTimeoutError, _super);
         function AjaxTimeoutError(xhr, request) {
             _super.call(this, 'ajax timeout', xhr, request);
         }
@@ -14320,7 +14696,7 @@
 
     Observable_1.Observable.ajax = ajax.ajax;
 
-    var __extends$W = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$Y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -14332,7 +14708,7 @@
      * @extends {Ignored}
      */
     var QueueAction = (function (_super) {
-        __extends$W(QueueAction, _super);
+        __extends$Y(QueueAction, _super);
         function QueueAction(scheduler, work) {
             _super.call(this, scheduler, work);
             this.scheduler = scheduler;
@@ -14373,14 +14749,14 @@
     	QueueAction: QueueAction_2
     };
 
-    var __extends$X = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$Z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 
     var QueueScheduler = (function (_super) {
-        __extends$X(QueueScheduler, _super);
+        __extends$Z(QueueScheduler, _super);
         function QueueScheduler() {
             _super.apply(this, arguments);
         }
@@ -14461,7 +14837,7 @@
     	queue: queue_1
     };
 
-    var __extends$Y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -14476,7 +14852,7 @@
      * @class ReplaySubject<T>
      */
     var ReplaySubject = (function (_super) {
-        __extends$Y(ReplaySubject, _super);
+        __extends(ReplaySubject, _super);
         function ReplaySubject(bufferSize, windowTime, scheduler) {
             if (bufferSize === void 0) { bufferSize = Number.POSITIVE_INFINITY; }
             if (windowTime === void 0) { windowTime = Number.POSITIVE_INFINITY; }
@@ -14597,7 +14973,7 @@
     	assign: assign_1
     };
 
-    var __extends$Z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$_ = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -14617,7 +14993,7 @@
      * @hide true
      */
     var WebSocketSubject = (function (_super) {
-        __extends$Z(WebSocketSubject, _super);
+        __extends$_(WebSocketSubject, _super);
         function WebSocketSubject(urlConfigOrSource, destination) {
             if (urlConfigOrSource instanceof Observable_1.Observable) {
                 _super.call(this, destination, urlConfigOrSource);
@@ -14860,7 +15236,7 @@
 
     Observable_1.Observable.webSocket = webSocket.webSocket;
 
-    var __extends = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$10 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -14920,7 +15296,7 @@
      * @extends {Ignored}
      */
     var BufferSubscriber = (function (_super) {
-        __extends(BufferSubscriber, _super);
+        __extends$10(BufferSubscriber, _super);
         function BufferSubscriber(destination, closingNotifier) {
             _super.call(this, destination);
             this.buffer = [];
@@ -14986,7 +15362,7 @@
 
     Observable_1.Observable.prototype.buffer = buffer_2$1.buffer;
 
-    var __extends$_ = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$11 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -15062,7 +15438,7 @@
      * @extends {Ignored}
      */
     var BufferCountSubscriber = (function (_super) {
-        __extends$_(BufferCountSubscriber, _super);
+        __extends$11(BufferCountSubscriber, _super);
         function BufferCountSubscriber(destination, bufferSize) {
             _super.call(this, destination);
             this.bufferSize = bufferSize;
@@ -15091,7 +15467,7 @@
      * @extends {Ignored}
      */
     var BufferSkipCountSubscriber = (function (_super) {
-        __extends$_(BufferSkipCountSubscriber, _super);
+        __extends$11(BufferSkipCountSubscriber, _super);
         function BufferSkipCountSubscriber(destination, bufferSize, startBufferEvery) {
             _super.call(this, destination);
             this.bufferSize = bufferSize;
@@ -15186,7 +15562,7 @@
 
     Observable_1.Observable.prototype.bufferCount = bufferCount_2$1.bufferCount;
 
-    var __extends$10 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$12 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -15282,7 +15658,7 @@
      * @extends {Ignored}
      */
     var BufferTimeSubscriber = (function (_super) {
-        __extends$10(BufferTimeSubscriber, _super);
+        __extends$12(BufferTimeSubscriber, _super);
         function BufferTimeSubscriber(destination, bufferTimeSpan, bufferCreationInterval, maxBufferSize, scheduler) {
             _super.call(this, destination);
             this.bufferTimeSpan = bufferTimeSpan;
@@ -15461,7 +15837,7 @@
 
     Observable_1.Observable.prototype.bufferTime = bufferTime_2$1.bufferTime;
 
-    var __extends$11 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$13 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -15529,7 +15905,7 @@
      * @extends {Ignored}
      */
     var BufferToggleSubscriber = (function (_super) {
-        __extends$11(BufferToggleSubscriber, _super);
+        __extends$13(BufferToggleSubscriber, _super);
         function BufferToggleSubscriber(destination, openings, closingSelector) {
             _super.call(this, destination);
             this.openings = openings;
@@ -15669,7 +16045,7 @@
 
     Observable_1.Observable.prototype.bufferToggle = bufferToggle_2$1.bufferToggle;
 
-    var __extends$12 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$14 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -15733,7 +16109,7 @@
      * @extends {Ignored}
      */
     var BufferWhenSubscriber = (function (_super) {
-        __extends$12(BufferWhenSubscriber, _super);
+        __extends$14(BufferWhenSubscriber, _super);
         function BufferWhenSubscriber(destination, closingSelector) {
             _super.call(this, destination);
             this.closingSelector = closingSelector;
@@ -15842,7 +16218,7 @@
 
     Observable_1.Observable.prototype.bufferWhen = bufferWhen_2$1.bufferWhen;
 
-    var __extends$13 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$15 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -15929,7 +16305,7 @@
      * @extends {Ignored}
      */
     var CatchSubscriber = (function (_super) {
-        __extends$13(CatchSubscriber, _super);
+        __extends$15(CatchSubscriber, _super);
         function CatchSubscriber(destination, selector, caught) {
             _super.call(this, destination);
             this.selector = selector;
@@ -16630,7 +17006,7 @@
 
     Observable_1.Observable.prototype.concatMapTo = concatMapTo_2$1.concatMapTo;
 
-    var __extends$14 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$16 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -16704,7 +17080,7 @@
      * @extends {Ignored}
      */
     var CountSubscriber = (function (_super) {
-        __extends$14(CountSubscriber, _super);
+        __extends$16(CountSubscriber, _super);
         function CountSubscriber(destination, predicate, source) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -16805,7 +17181,7 @@
 
     Observable_1.Observable.prototype.count = count_2$1.count;
 
-    var __extends$15 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$17 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -16871,7 +17247,7 @@
      * @extends {Ignored}
      */
     var DeMaterializeSubscriber = (function (_super) {
-        __extends$15(DeMaterializeSubscriber, _super);
+        __extends$17(DeMaterializeSubscriber, _super);
         function DeMaterializeSubscriber(destination) {
             _super.call(this, destination);
         }
@@ -16938,7 +17314,7 @@
 
     Observable_1.Observable.prototype.dematerialize = dematerialize_2$1.dematerialize;
 
-    var __extends$16 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$18 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -17006,7 +17382,7 @@
      * @extends {Ignored}
      */
     var DebounceSubscriber = (function (_super) {
-        __extends$16(DebounceSubscriber, _super);
+        __extends$18(DebounceSubscriber, _super);
         function DebounceSubscriber(destination, durationSelector) {
             _super.call(this, destination);
             this.durationSelector = durationSelector;
@@ -17123,7 +17499,7 @@
 
     Observable_1.Observable.prototype.debounce = debounce_2$1.debounce;
 
-    var __extends$17 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$19 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -17197,7 +17573,7 @@
      * @extends {Ignored}
      */
     var DebounceTimeSubscriber = (function (_super) {
-        __extends$17(DebounceTimeSubscriber, _super);
+        __extends$19(DebounceTimeSubscriber, _super);
         function DebounceTimeSubscriber(destination, dueTime, scheduler) {
             _super.call(this, destination);
             this.dueTime = dueTime;
@@ -17302,7 +17678,7 @@
 
     Observable_1.Observable.prototype.debounceTime = debounceTime_2$1.debounceTime;
 
-    var __extends$18 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1a = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -17359,7 +17735,7 @@
      * @extends {Ignored}
      */
     var DefaultIfEmptySubscriber = (function (_super) {
-        __extends$18(DefaultIfEmptySubscriber, _super);
+        __extends$1a(DefaultIfEmptySubscriber, _super);
         function DefaultIfEmptySubscriber(destination, defaultValue) {
             _super.call(this, destination);
             this.defaultValue = defaultValue;
@@ -17427,7 +17803,7 @@
 
     Observable_1.Observable.prototype.defaultIfEmpty = defaultIfEmpty_2$1.defaultIfEmpty;
 
-    var __extends$19 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1b = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -17498,7 +17874,7 @@
      * @extends {Ignored}
      */
     var DelaySubscriber = (function (_super) {
-        __extends$19(DelaySubscriber, _super);
+        __extends$1b(DelaySubscriber, _super);
         function DelaySubscriber(destination, delay, scheduler) {
             _super.call(this, destination);
             this.delay = delay;
@@ -17618,7 +17994,7 @@
 
     Observable_1.Observable.prototype.delay = delay_2$1.delay;
 
-    var __extends$1a = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1c = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -17697,7 +18073,7 @@
      * @extends {Ignored}
      */
     var DelayWhenSubscriber = (function (_super) {
-        __extends$1a(DelayWhenSubscriber, _super);
+        __extends$1c(DelayWhenSubscriber, _super);
         function DelayWhenSubscriber(destination, delayDurationSelector) {
             _super.call(this, destination);
             this.delayDurationSelector = delayDurationSelector;
@@ -17767,7 +18143,7 @@
      * @extends {Ignored}
      */
     var SubscriptionDelayObservable = (function (_super) {
-        __extends$1a(SubscriptionDelayObservable, _super);
+        __extends$1c(SubscriptionDelayObservable, _super);
         function SubscriptionDelayObservable(/** @deprecated internal use only */ source, subscriptionDelay) {
             _super.call(this);
             this.source = source;
@@ -17784,7 +18160,7 @@
      * @extends {Ignored}
      */
     var SubscriptionDelaySubscriber = (function (_super) {
-        __extends$1a(SubscriptionDelaySubscriber, _super);
+        __extends$1c(SubscriptionDelaySubscriber, _super);
         function SubscriptionDelaySubscriber(parent, source) {
             _super.call(this);
             this.parent = parent;
@@ -17910,7 +18286,7 @@
     	Set: Set
     };
 
-    var __extends$1b = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1d = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -17983,7 +18359,7 @@
      * @extends {Ignored}
      */
     var DistinctSubscriber = (function (_super) {
-        __extends$1b(DistinctSubscriber, _super);
+        __extends$1d(DistinctSubscriber, _super);
         function DistinctSubscriber(destination, keySelector, flushes) {
             _super.call(this, destination);
             this.keySelector = keySelector;
@@ -18092,7 +18468,7 @@
 
     Observable_1.Observable.prototype.distinct = distinct_2$1.distinct;
 
-    var __extends$1c = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1e = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -18160,7 +18536,7 @@
      * @extends {Ignored}
      */
     var DistinctUntilChangedSubscriber = (function (_super) {
-        __extends$1c(DistinctUntilChangedSubscriber, _super);
+        __extends$1e(DistinctUntilChangedSubscriber, _super);
         function DistinctUntilChangedSubscriber(destination, compare, keySelector) {
             _super.call(this, destination);
             this.keySelector = keySelector;
@@ -18394,7 +18770,7 @@
 
     Observable_1.Observable.prototype.distinctUntilKeyChanged = distinctUntilKeyChanged_2$1.distinctUntilKeyChanged;
 
-    var __extends$1d = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1f = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -18465,7 +18841,7 @@
      * @extends {Ignored}
      */
     var DoSubscriber = (function (_super) {
-        __extends$1d(DoSubscriber, _super);
+        __extends$1f(DoSubscriber, _super);
         function DoSubscriber(destination, nextOrObserver, error, complete) {
             _super.call(this, destination);
             var safeSubscriber = new Subscriber_1.Subscriber(nextOrObserver, error, complete);
@@ -18568,7 +18944,7 @@
     Observable_1.Observable.prototype.do = _do_1._do;
     Observable_1.Observable.prototype._do = _do_1._do;
 
-    var __extends$1e = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1g = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -18628,7 +19004,7 @@
      * @extends {Ignored}
      */
     var SwitchFirstSubscriber = (function (_super) {
-        __extends$1e(SwitchFirstSubscriber, _super);
+        __extends$1g(SwitchFirstSubscriber, _super);
         function SwitchFirstSubscriber(destination) {
             _super.call(this, destination);
             this.hasCompleted = false;
@@ -18708,7 +19084,7 @@
 
     Observable_1.Observable.prototype.exhaust = exhaust_2$1.exhaust;
 
-    var __extends$1f = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1h = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -18781,7 +19157,7 @@
      * @extends {Ignored}
      */
     var SwitchFirstMapSubscriber = (function (_super) {
-        __extends$1f(SwitchFirstMapSubscriber, _super);
+        __extends$1h(SwitchFirstMapSubscriber, _super);
         function SwitchFirstMapSubscriber(destination, project, resultSelector) {
             _super.call(this, destination);
             this.project = project;
@@ -18908,7 +19284,7 @@
 
     Observable_1.Observable.prototype.exhaustMap = exhaustMap_2$1.exhaustMap;
 
-    var __extends$1g = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1i = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -18988,7 +19364,7 @@
      * @extends {Ignored}
      */
     var ExpandSubscriber = (function (_super) {
-        __extends$1g(ExpandSubscriber, _super);
+        __extends$1i(ExpandSubscriber, _super);
         function ExpandSubscriber(destination, project, concurrent, scheduler) {
             _super.call(this, destination);
             this.project = project;
@@ -19126,7 +19502,7 @@
 
     Observable_1.Observable.prototype.expand = expand_2$1.expand;
 
-    var __extends$1h = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1j = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19142,7 +19518,7 @@
      * @class ArgumentOutOfRangeError
      */
     var ArgumentOutOfRangeError = (function (_super) {
-        __extends$1h(ArgumentOutOfRangeError, _super);
+        __extends$1j(ArgumentOutOfRangeError, _super);
         function ArgumentOutOfRangeError() {
             var err = _super.call(this, 'argument out of range');
             this.name = err.name = 'ArgumentOutOfRangeError';
@@ -19158,7 +19534,7 @@
     	ArgumentOutOfRangeError: ArgumentOutOfRangeError_2
     };
 
-    var __extends$1i = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1k = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19230,7 +19606,7 @@
      * @extends {Ignored}
      */
     var ElementAtSubscriber = (function (_super) {
-        __extends$1i(ElementAtSubscriber, _super);
+        __extends$1k(ElementAtSubscriber, _super);
         function ElementAtSubscriber(destination, index, defaultValue) {
             _super.call(this, destination);
             this.index = index;
@@ -19316,7 +19692,7 @@
 
     Observable_1.Observable.prototype.elementAt = elementAt_2$1.elementAt;
 
-    var __extends$1j = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1l = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19384,7 +19760,7 @@
      * @extends {Ignored}
      */
     var FilterSubscriber = (function (_super) {
-        __extends$1j(FilterSubscriber, _super);
+        __extends$1l(FilterSubscriber, _super);
         function FilterSubscriber(destination, predicate, thisArg) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -19466,7 +19842,7 @@
 
     Observable_1.Observable.prototype.filter = filter_2$1.filter;
 
-    var __extends$1k = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1m = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19500,7 +19876,7 @@
      * @extends {Ignored}
      */
     var FinallySubscriber = (function (_super) {
-        __extends$1k(FinallySubscriber, _super);
+        __extends$1m(FinallySubscriber, _super);
         function FinallySubscriber(destination, callback) {
             _super.call(this, destination);
             this.add(new Subscription_1.Subscription(callback));
@@ -19534,7 +19910,7 @@
     Observable_1.Observable.prototype.finally = _finally_1._finally;
     Observable_1.Observable.prototype._finally = _finally_1._finally;
 
-    var __extends$1l = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1n = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19599,7 +19975,7 @@
      * @extends {Ignored}
      */
     var FindValueSubscriber = (function (_super) {
-        __extends$1l(FindValueSubscriber, _super);
+        __extends$1n(FindValueSubscriber, _super);
         function FindValueSubscriber(destination, predicate, source, yieldIndex, thisArg) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -19776,7 +20152,7 @@
 
     Observable_1.Observable.prototype.findIndex = findIndex_2$1.findIndex;
 
-    var __extends$1m = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1o = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19792,7 +20168,7 @@
      * @class EmptyError
      */
     var EmptyError = (function (_super) {
-        __extends$1m(EmptyError, _super);
+        __extends$1o(EmptyError, _super);
         function EmptyError() {
             var err = _super.call(this, 'no elements in sequence');
             this.name = err.name = 'EmptyError';
@@ -19808,7 +20184,7 @@
     	EmptyError: EmptyError_2
     };
 
-    var __extends$1n = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1p = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19886,7 +20262,7 @@
      * @extends {Ignored}
      */
     var FirstSubscriber = (function (_super) {
-        __extends$1n(FirstSubscriber, _super);
+        __extends$1p(FirstSubscriber, _super);
         function FirstSubscriber(destination, predicate, resultSelector, defaultValue, source) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -20118,7 +20494,7 @@
     	FastMap: FastMap_2
     };
 
-    var __extends$1o = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20221,7 +20597,7 @@
      * @extends {Ignored}
      */
     var GroupBySubscriber = (function (_super) {
-        __extends$1o(GroupBySubscriber, _super);
+        __extends$1q(GroupBySubscriber, _super);
         function GroupBySubscriber(destination, keySelector, elementSelector, durationSelector, subjectSelector) {
             _super.call(this, destination);
             this.keySelector = keySelector;
@@ -20321,7 +20697,7 @@
      * @extends {Ignored}
      */
     var GroupDurationSubscriber = (function (_super) {
-        __extends$1o(GroupDurationSubscriber, _super);
+        __extends$1q(GroupDurationSubscriber, _super);
         function GroupDurationSubscriber(key, group, parent) {
             _super.call(this, group);
             this.key = key;
@@ -20349,7 +20725,7 @@
      * @class GroupedObservable<K, T>
      */
     var GroupedObservable = (function (_super) {
-        __extends$1o(GroupedObservable, _super);
+        __extends$1q(GroupedObservable, _super);
         function GroupedObservable(key, groupSubject, refCountSubscription) {
             _super.call(this);
             this.key = key;
@@ -20374,7 +20750,7 @@
      * @extends {Ignored}
      */
     var InnerRefCountSubscription = (function (_super) {
-        __extends$1o(InnerRefCountSubscription, _super);
+        __extends$1q(InnerRefCountSubscription, _super);
         function InnerRefCountSubscription(parent) {
             _super.call(this);
             this.parent = parent;
@@ -20481,7 +20857,7 @@
 
     Observable_1.Observable.prototype.groupBy = groupBy_2$1.groupBy;
 
-    var __extends$1p = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1r = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20518,7 +20894,7 @@
      * @extends {Ignored}
      */
     var IgnoreElementsSubscriber = (function (_super) {
-        __extends$1p(IgnoreElementsSubscriber, _super);
+        __extends$1r(IgnoreElementsSubscriber, _super);
         function IgnoreElementsSubscriber() {
             _super.apply(this, arguments);
         }
@@ -20554,7 +20930,7 @@
 
     Observable_1.Observable.prototype.ignoreElements = ignoreElements_2$1.ignoreElements;
 
-    var __extends$1q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1s = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20578,7 +20954,7 @@
      * @extends {Ignored}
      */
     var IsEmptySubscriber = (function (_super) {
-        __extends$1q(IsEmptySubscriber, _super);
+        __extends$1s(IsEmptySubscriber, _super);
         function IsEmptySubscriber(destination) {
             _super.call(this, destination);
         }
@@ -20622,7 +20998,7 @@
 
     Observable_1.Observable.prototype.isEmpty = isEmpty_2$1.isEmpty;
 
-    var __extends$1r = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1t = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20692,7 +21068,7 @@
      * @extends {Ignored}
      */
     var AuditSubscriber = (function (_super) {
-        __extends$1r(AuditSubscriber, _super);
+        __extends$1t(AuditSubscriber, _super);
         function AuditSubscriber(destination, durationSelector) {
             _super.call(this, destination);
             this.durationSelector = durationSelector;
@@ -20904,7 +21280,7 @@
 
     Observable_1.Observable.prototype.auditTime = auditTime_2$1.auditTime;
 
-    var __extends$1s = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1u = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20951,7 +21327,7 @@
      * @extends {Ignored}
      */
     var LastSubscriber = (function (_super) {
-        __extends$1s(LastSubscriber, _super);
+        __extends$1u(LastSubscriber, _super);
         function LastSubscriber(destination, predicate, resultSelector, defaultValue, source) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -21076,7 +21452,7 @@
     Observable_1.Observable.prototype.let = _let.letProto;
     Observable_1.Observable.prototype.letBind = _let.letProto;
 
-    var __extends$1t = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1v = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21117,7 +21493,7 @@
      * @extends {Ignored}
      */
     var EverySubscriber = (function (_super) {
-        __extends$1t(EverySubscriber, _super);
+        __extends$1v(EverySubscriber, _super);
         function EverySubscriber(destination, predicate, thisArg, source) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -21225,7 +21601,7 @@
 
     Observable_1.Observable.prototype.map = map_2$1.map;
 
-    var __extends$1u = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1w = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21276,7 +21652,7 @@
      * @extends {Ignored}
      */
     var MapToSubscriber = (function (_super) {
-        __extends$1u(MapToSubscriber, _super);
+        __extends$1w(MapToSubscriber, _super);
         function MapToSubscriber(destination, value) {
             _super.call(this, destination);
             this.value = value;
@@ -21330,7 +21706,7 @@
 
     Observable_1.Observable.prototype.mapTo = mapTo_2$1.mapTo;
 
-    var __extends$1v = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1x = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21401,7 +21777,7 @@
      * @extends {Ignored}
      */
     var MaterializeSubscriber = (function (_super) {
-        __extends$1v(MaterializeSubscriber, _super);
+        __extends$1x(MaterializeSubscriber, _super);
         function MaterializeSubscriber(destination) {
             _super.call(this, destination);
         }
@@ -21482,7 +21858,7 @@
 
     Observable_1.Observable.prototype.materialize = materialize_2$1.materialize;
 
-    var __extends$1w = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21559,7 +21935,7 @@
      * @extends {Ignored}
      */
     var ScanSubscriber = (function (_super) {
-        __extends$1w(ScanSubscriber, _super);
+        __extends$1y(ScanSubscriber, _super);
         function ScanSubscriber(destination, accumulator, _seed, hasSeed) {
             _super.call(this, destination);
             this.accumulator = accumulator;
@@ -21607,7 +21983,7 @@
     	scan: scan_2
     };
 
-    var __extends$1x = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21680,7 +22056,7 @@
      * @extends {Ignored}
      */
     var TakeLastSubscriber = (function (_super) {
-        __extends$1x(TakeLastSubscriber, _super);
+        __extends$1z(TakeLastSubscriber, _super);
         function TakeLastSubscriber(destination, total) {
             _super.call(this, destination);
             this.total = total;
@@ -22135,7 +22511,7 @@
     Observable_1.Observable.prototype.mergeMap = mergeMap_2$1.mergeMap;
     Observable_1.Observable.prototype.flatMap = mergeMap_2$1.mergeMap;
 
-    var __extends$1y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1A = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22216,7 +22592,7 @@
      * @extends {Ignored}
      */
     var MergeMapToSubscriber = (function (_super) {
-        __extends$1y(MergeMapToSubscriber, _super);
+        __extends$1A(MergeMapToSubscriber, _super);
         function MergeMapToSubscriber(destination, ish, resultSelector, concurrent) {
             if (concurrent === void 0) { concurrent = Number.POSITIVE_INFINITY; }
             _super.call(this, destination);
@@ -22354,7 +22730,7 @@
     Observable_1.Observable.prototype.flatMapTo = mergeMapTo_2$1.mergeMapTo;
     Observable_1.Observable.prototype.mergeMapTo = mergeMapTo_2$1.mergeMapTo;
 
-    var __extends$1z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1B = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22417,7 +22793,7 @@
      * @extends {Ignored}
      */
     var MergeScanSubscriber = (function (_super) {
-        __extends$1z(MergeScanSubscriber, _super);
+        __extends$1B(MergeScanSubscriber, _super);
         function MergeScanSubscriber(destination, accumulator, acc, concurrent) {
             _super.call(this, destination);
             this.accumulator = accumulator;
@@ -22620,7 +22996,7 @@
 
     Observable_1.Observable.prototype.min = min_2$1.min;
 
-    var __extends$1A = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1C = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22649,7 +23025,7 @@
         return RefCountOperator;
     }());
     var RefCountSubscriber = (function (_super) {
-        __extends$1A(RefCountSubscriber, _super);
+        __extends$1C(RefCountSubscriber, _super);
         function RefCountSubscriber(destination, connectable) {
             _super.call(this, destination);
             this.connectable = connectable;
@@ -22709,7 +23085,7 @@
     	refCount: refCount_2
     };
 
-    var __extends$1B = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1D = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22723,7 +23099,7 @@
      * @class ConnectableObservable<T>
      */
     var ConnectableObservable = (function (_super) {
-        __extends$1B(ConnectableObservable, _super);
+        __extends$1D(ConnectableObservable, _super);
         function ConnectableObservable(/** @deprecated internal use only */ source, 
             /** @deprecated internal use only */ subjectFactory) {
             _super.call(this);
@@ -22778,7 +23154,7 @@
         refCount: { value: connectableProto.refCount }
     };
     var ConnectableSubscriber = (function (_super) {
-        __extends$1B(ConnectableSubscriber, _super);
+        __extends$1D(ConnectableSubscriber, _super);
         function ConnectableSubscriber(destination, connectable) {
             _super.call(this, destination);
             this.connectable = connectable;
@@ -22808,7 +23184,7 @@
         return ConnectableSubscriber;
     }(Subject_1.SubjectSubscriber));
     var RefCountSubscriber$1 = (function (_super) {
-        __extends$1B(RefCountSubscriber, _super);
+        __extends$1D(RefCountSubscriber, _super);
         function RefCountSubscriber(destination, connectable) {
             _super.call(this, destination);
             this.connectable = connectable;
@@ -23176,7 +23552,7 @@
 
     Observable_1.Observable.prototype.onErrorResumeNext = onErrorResumeNext_2$2.onErrorResumeNext;
 
-    var __extends$1C = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1E = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -23235,7 +23611,7 @@
      * @extends {Ignored}
      */
     var PairwiseSubscriber = (function (_super) {
-        __extends$1C(PairwiseSubscriber, _super);
+        __extends$1E(PairwiseSubscriber, _super);
         function PairwiseSubscriber(destination) {
             _super.call(this, destination);
             this.hasPrev = false;
@@ -23580,7 +23956,7 @@
 
     Observable_1.Observable.prototype.publish = publish_2$1.publish;
 
-    var __extends$1D = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1F = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -23591,7 +23967,7 @@
      * @class BehaviorSubject<T>
      */
     var BehaviorSubject = (function (_super) {
-        __extends$1D(BehaviorSubject, _super);
+        __extends$1F(BehaviorSubject, _super);
         function BehaviorSubject(_value) {
             _super.call(this);
             this._value = _value;
@@ -23857,7 +24233,7 @@
 
     Observable_1.Observable.prototype.reduce = reduce_2$1.reduce;
 
-    var __extends$1E = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1G = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -23907,7 +24283,7 @@
      * @extends {Ignored}
      */
     var RepeatSubscriber = (function (_super) {
-        __extends$1E(RepeatSubscriber, _super);
+        __extends$1G(RepeatSubscriber, _super);
         function RepeatSubscriber(destination, count, source) {
             _super.call(this, destination);
             this.count = count;
@@ -23958,7 +24334,7 @@
 
     Observable_1.Observable.prototype.repeat = repeat_2$1.repeat;
 
-    var __extends$1F = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1H = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24001,7 +24377,7 @@
      * @extends {Ignored}
      */
     var RepeatWhenSubscriber = (function (_super) {
-        __extends$1F(RepeatWhenSubscriber, _super);
+        __extends$1H(RepeatWhenSubscriber, _super);
         function RepeatWhenSubscriber(destination, notifier, source) {
             _super.call(this, destination);
             this.notifier = notifier;
@@ -24096,7 +24472,7 @@
 
     Observable_1.Observable.prototype.repeatWhen = repeatWhen_2$1.repeatWhen;
 
-    var __extends$1G = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1I = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24139,7 +24515,7 @@
      * @extends {Ignored}
      */
     var RetrySubscriber = (function (_super) {
-        __extends$1G(RetrySubscriber, _super);
+        __extends$1I(RetrySubscriber, _super);
         function RetrySubscriber(destination, count, source) {
             _super.call(this, destination);
             this.count = count;
@@ -24194,7 +24570,7 @@
 
     Observable_1.Observable.prototype.retry = retry_2$1.retry;
 
-    var __extends$1H = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1J = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24238,7 +24614,7 @@
      * @extends {Ignored}
      */
     var RetryWhenSubscriber = (function (_super) {
-        __extends$1H(RetryWhenSubscriber, _super);
+        __extends$1J(RetryWhenSubscriber, _super);
         function RetryWhenSubscriber(destination, notifier, source) {
             _super.call(this, destination);
             this.notifier = notifier;
@@ -24325,7 +24701,7 @@
 
     Observable_1.Observable.prototype.retryWhen = retryWhen_2$1.retryWhen;
 
-    var __extends$1I = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1K = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24388,7 +24764,7 @@
      * @extends {Ignored}
      */
     var SampleSubscriber = (function (_super) {
-        __extends$1I(SampleSubscriber, _super);
+        __extends$1K(SampleSubscriber, _super);
         function SampleSubscriber() {
             _super.apply(this, arguments);
             this.hasValue = false;
@@ -24463,7 +24839,7 @@
 
     Observable_1.Observable.prototype.sample = sample_2$1.sample;
 
-    var __extends$1J = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1L = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24527,7 +24903,7 @@
      * @extends {Ignored}
      */
     var SampleTimeSubscriber = (function (_super) {
-        __extends$1J(SampleTimeSubscriber, _super);
+        __extends$1L(SampleTimeSubscriber, _super);
         function SampleTimeSubscriber(destination, period, scheduler) {
             _super.call(this, destination);
             this.period = period;
@@ -24660,7 +25036,7 @@
 
     Observable_1.Observable.prototype.scan = scan_2$1.scan;
 
-    var __extends$1K = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1M = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24741,7 +25117,7 @@
      * @extends {Ignored}
      */
     var SequenceEqualSubscriber = (function (_super) {
-        __extends$1K(SequenceEqualSubscriber, _super);
+        __extends$1M(SequenceEqualSubscriber, _super);
         function SequenceEqualSubscriber(destination, compareTo, comparor) {
             _super.call(this, destination);
             this.compareTo = compareTo;
@@ -24806,7 +25182,7 @@
     }(Subscriber_1.Subscriber));
     var SequenceEqualSubscriber_1 = SequenceEqualSubscriber;
     var SequenceEqualCompareToSubscriber = (function (_super) {
-        __extends$1K(SequenceEqualCompareToSubscriber, _super);
+        __extends$1M(SequenceEqualCompareToSubscriber, _super);
         function SequenceEqualCompareToSubscriber(destination, parent) {
             _super.call(this, destination);
             this.parent = parent;
@@ -25010,7 +25386,7 @@
 
     Observable_1.Observable.prototype.shareReplay = shareReplay_2$1.shareReplay;
 
-    var __extends$1L = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1N = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25053,7 +25429,7 @@
      * @extends {Ignored}
      */
     var SingleSubscriber = (function (_super) {
-        __extends$1L(SingleSubscriber, _super);
+        __extends$1N(SingleSubscriber, _super);
         function SingleSubscriber(destination, predicate, source) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -25135,7 +25511,7 @@
 
     Observable_1.Observable.prototype.single = single_2$1.single;
 
-    var __extends$1M = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1O = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25171,7 +25547,7 @@
      * @extends {Ignored}
      */
     var SkipSubscriber = (function (_super) {
-        __extends$1M(SkipSubscriber, _super);
+        __extends$1O(SkipSubscriber, _super);
         function SkipSubscriber(destination, total) {
             _super.call(this, destination);
             this.total = total;
@@ -25213,7 +25589,7 @@
 
     Observable_1.Observable.prototype.skip = skip_2$1.skip;
 
-    var __extends$1N = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1P = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25281,7 +25657,7 @@
      * @extends {Ignored}
      */
     var SkipLastSubscriber = (function (_super) {
-        __extends$1N(SkipLastSubscriber, _super);
+        __extends$1P(SkipLastSubscriber, _super);
         function SkipLastSubscriber(destination, _skipCount) {
             _super.call(this, destination);
             this._skipCount = _skipCount;
@@ -25354,7 +25730,7 @@
 
     Observable_1.Observable.prototype.skipLast = skipLast_2$1.skipLast;
 
-    var __extends$1O = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1Q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25392,7 +25768,7 @@
      * @extends {Ignored}
      */
     var SkipUntilSubscriber = (function (_super) {
-        __extends$1O(SkipUntilSubscriber, _super);
+        __extends$1Q(SkipUntilSubscriber, _super);
         function SkipUntilSubscriber(destination, notifier) {
             _super.call(this, destination);
             this.hasValue = false;
@@ -25453,7 +25829,7 @@
 
     Observable_1.Observable.prototype.skipUntil = skipUntil_2$1.skipUntil;
 
-    var __extends$1P = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1R = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25490,7 +25866,7 @@
      * @extends {Ignored}
      */
     var SkipWhileSubscriber = (function (_super) {
-        __extends$1P(SkipWhileSubscriber, _super);
+        __extends$1R(SkipWhileSubscriber, _super);
         function SkipWhileSubscriber(destination, predicate) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -25835,7 +26211,7 @@
     	Immediate: Immediate_1
     };
 
-    var __extends$1Q = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1S = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25848,7 +26224,7 @@
      * @extends {Ignored}
      */
     var AsapAction = (function (_super) {
-        __extends$1Q(AsapAction, _super);
+        __extends$1S(AsapAction, _super);
         function AsapAction(scheduler, work) {
             _super.call(this, scheduler, work);
             this.scheduler = scheduler;
@@ -25894,14 +26270,14 @@
     	AsapAction: AsapAction_2
     };
 
-    var __extends$1R = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1T = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 
     var AsapScheduler = (function (_super) {
-        __extends$1R(AsapScheduler, _super);
+        __extends$1T(AsapScheduler, _super);
         function AsapScheduler() {
             _super.apply(this, arguments);
         }
@@ -25976,7 +26352,7 @@
     	asap: asap_1
     };
 
-    var __extends$1S = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1U = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25990,7 +26366,7 @@
      * @hide true
      */
     var SubscribeOnObservable = (function (_super) {
-        __extends$1S(SubscribeOnObservable, _super);
+        __extends$1U(SubscribeOnObservable, _super);
         function SubscribeOnObservable(source, delayTime, scheduler) {
             if (delayTime === void 0) { delayTime = 0; }
             if (scheduler === void 0) { scheduler = asap.asap; }
@@ -26089,7 +26465,7 @@
 
     Observable_1.Observable.prototype.subscribeOn = subscribeOn_2$1.subscribeOn;
 
-    var __extends$1T = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1V = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -26166,7 +26542,7 @@
      * @extends {Ignored}
      */
     var SwitchMapSubscriber = (function (_super) {
-        __extends$1T(SwitchMapSubscriber, _super);
+        __extends$1V(SwitchMapSubscriber, _super);
         function SwitchMapSubscriber(destination, project, resultSelector) {
             _super.call(this, destination);
             this.project = project;
@@ -26360,7 +26736,7 @@
 
     Observable_1.Observable.prototype.switchMap = switchMap_2$1.switchMap;
 
-    var __extends$1U = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1W = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -26430,7 +26806,7 @@
      * @extends {Ignored}
      */
     var SwitchMapToSubscriber = (function (_super) {
-        __extends$1U(SwitchMapToSubscriber, _super);
+        __extends$1W(SwitchMapToSubscriber, _super);
         function SwitchMapToSubscriber(destination, inner, resultSelector) {
             _super.call(this, destination);
             this.inner = inner;
@@ -26544,7 +26920,7 @@
 
     Observable_1.Observable.prototype.switchMapTo = switchMapTo_2$1.switchMapTo;
 
-    var __extends$1V = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1X = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -26614,7 +26990,7 @@
      * @extends {Ignored}
      */
     var TakeSubscriber = (function (_super) {
-        __extends$1V(TakeSubscriber, _super);
+        __extends$1X(TakeSubscriber, _super);
         function TakeSubscriber(destination, total) {
             _super.call(this, destination);
             this.total = total;
@@ -26732,7 +27108,7 @@
 
     Observable_1.Observable.prototype.takeLast = takeLast_2$1.takeLast;
 
-    var __extends$1W = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1Y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -26791,7 +27167,7 @@
      * @extends {Ignored}
      */
     var TakeUntilSubscriber = (function (_super) {
-        __extends$1W(TakeUntilSubscriber, _super);
+        __extends$1Y(TakeUntilSubscriber, _super);
         function TakeUntilSubscriber(destination, notifier) {
             _super.call(this, destination);
             this.notifier = notifier;
@@ -26856,7 +27232,7 @@
 
     Observable_1.Observable.prototype.takeUntil = takeUntil_2$1.takeUntil;
 
-    var __extends$1X = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1Z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -26917,7 +27293,7 @@
      * @extends {Ignored}
      */
     var TakeWhileSubscriber = (function (_super) {
-        __extends$1X(TakeWhileSubscriber, _super);
+        __extends$1Z(TakeWhileSubscriber, _super);
         function TakeWhileSubscriber(destination, predicate) {
             _super.call(this, destination);
             this.predicate = predicate;
@@ -27199,7 +27575,7 @@
 
     Observable_1.Observable.prototype.throttle = throttle_2$1.throttle;
 
-    var __extends$1Y = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1$ = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -27270,7 +27646,7 @@
      * @extends {Ignored}
      */
     var ThrottleTimeSubscriber = (function (_super) {
-        __extends$1Y(ThrottleTimeSubscriber, _super);
+        __extends$1$(ThrottleTimeSubscriber, _super);
         function ThrottleTimeSubscriber(destination, duration, scheduler, leading, trailing) {
             _super.call(this, destination);
             this.duration = duration;
@@ -27372,7 +27748,7 @@
 
     Observable_1.Observable.prototype.throttleTime = throttleTime_2$1.throttleTime;
 
-    var __extends$1Z = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$1_ = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -27407,7 +27783,7 @@
      * @extends {Ignored}
      */
     var TimeIntervalSubscriber = (function (_super) {
-        __extends$1Z(TimeIntervalSubscriber, _super);
+        __extends$1_(TimeIntervalSubscriber, _super);
         function TimeIntervalSubscriber(destination, scheduler) {
             _super.call(this, destination);
             this.scheduler = scheduler;
@@ -27450,7 +27826,7 @@
 
     Observable_1.Observable.prototype.timeInterval = timeInterval_2$1.timeInterval;
 
-    var __extends$1$ = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$20 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -27463,7 +27839,7 @@
      * @class TimeoutError
      */
     var TimeoutError = (function (_super) {
-        __extends$1$(TimeoutError, _super);
+        __extends$20(TimeoutError, _super);
         function TimeoutError() {
             var err = _super.call(this, 'Timeout has occurred');
             this.name = err.name = 'TimeoutError';
@@ -27479,7 +27855,7 @@
     	TimeoutError: TimeoutError_2
     };
 
-    var __extends$1_ = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$21 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -27578,7 +27954,7 @@
      * @extends {Ignored}
      */
     var TimeoutSubscriber = (function (_super) {
-        __extends$1_(TimeoutSubscriber, _super);
+        __extends$21(TimeoutSubscriber, _super);
         function TimeoutSubscriber(destination, absoluteTimeout, waitFor, scheduler, errorInstance) {
             _super.call(this, destination);
             this.absoluteTimeout = absoluteTimeout;
@@ -27702,7 +28078,7 @@
 
     Observable_1.Observable.prototype.timeout = timeout_2$1.timeout;
 
-    var __extends$20 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$22 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -27786,7 +28162,7 @@
      * @extends {Ignored}
      */
     var TimeoutWithSubscriber = (function (_super) {
-        __extends$20(TimeoutWithSubscriber, _super);
+        __extends$22(TimeoutWithSubscriber, _super);
         function TimeoutWithSubscriber(destination, absoluteTimeout, waitFor, withObservable, scheduler) {
             _super.call(this, destination);
             this.absoluteTimeout = absoluteTimeout;
@@ -27996,7 +28372,7 @@
     // HACK: does nothing, because `toPromise` now lives on the `Observable` itself.
     // leaving this module here to prevent breakage.
 
-    var __extends$21 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$23 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -28066,7 +28442,7 @@
      * @extends {Ignored}
      */
     var WindowSubscriber = (function (_super) {
-        __extends$21(WindowSubscriber, _super);
+        __extends$23(WindowSubscriber, _super);
         function WindowSubscriber(destination) {
             _super.call(this, destination);
             this.window = new Subject_1.Subject();
@@ -28160,7 +28536,7 @@
 
     Observable_1.Observable.prototype.window = window_2$1.window;
 
-    var __extends$22 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$24 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -28238,7 +28614,7 @@
      * @extends {Ignored}
      */
     var WindowCountSubscriber = (function (_super) {
-        __extends$22(WindowCountSubscriber, _super);
+        __extends$24(WindowCountSubscriber, _super);
         function WindowCountSubscriber(destination, windowSize, startWindowEvery) {
             _super.call(this, destination);
             this.destination = destination;
@@ -28358,7 +28734,7 @@
 
     Observable_1.Observable.prototype.windowCount = windowCount_2$1.windowCount;
 
-    var __extends$23 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$25 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -28405,7 +28781,7 @@
         return WindowTimeOperator;
     }());
     var CountedSubject = (function (_super) {
-        __extends$23(CountedSubject, _super);
+        __extends$25(CountedSubject, _super);
         function CountedSubject() {
             _super.apply(this, arguments);
             this._numberOfNextedValues = 0;
@@ -28429,7 +28805,7 @@
      * @extends {Ignored}
      */
     var WindowTimeSubscriber = (function (_super) {
-        __extends$23(WindowTimeSubscriber, _super);
+        __extends$25(WindowTimeSubscriber, _super);
         function WindowTimeSubscriber(destination, windowTimeSpan, windowCreationInterval, maxWindowSize, scheduler) {
             _super.call(this, destination);
             this.destination = destination;
@@ -28555,7 +28931,7 @@
 
     Observable_1.Observable.prototype.windowTime = windowTime_2$1.windowTime;
 
-    var __extends$24 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$26 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -28627,7 +29003,7 @@
      * @extends {Ignored}
      */
     var WindowToggleSubscriber = (function (_super) {
-        __extends$24(WindowToggleSubscriber, _super);
+        __extends$26(WindowToggleSubscriber, _super);
         function WindowToggleSubscriber(destination, openings, closingSelector) {
             _super.call(this, destination);
             this.openings = openings;
@@ -28792,7 +29168,7 @@
 
     Observable_1.Observable.prototype.windowToggle = windowToggle_2$1.windowToggle;
 
-    var __extends$25 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$27 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -28861,7 +29237,7 @@
      * @extends {Ignored}
      */
     var WindowSubscriber$1 = (function (_super) {
-        __extends$25(WindowSubscriber, _super);
+        __extends$27(WindowSubscriber, _super);
         function WindowSubscriber(destination, closingSelector) {
             _super.call(this, destination);
             this.destination = destination;
@@ -28975,7 +29351,7 @@
 
     Observable_1.Observable.prototype.windowWhen = windowWhen_2$1.windowWhen;
 
-    var __extends$26 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$28 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29052,7 +29428,7 @@
      * @extends {Ignored}
      */
     var WithLatestFromSubscriber = (function (_super) {
-        __extends$26(WithLatestFromSubscriber, _super);
+        __extends$28(WithLatestFromSubscriber, _super);
         function WithLatestFromSubscriber(destination, observables, project) {
             _super.call(this, destination);
             this.observables = observables;
@@ -29271,7 +29647,7 @@
     	applyMixins: applyMixins_2
     };
 
-    var __extends$27 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$29 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29286,7 +29662,7 @@
      * @extends {Ignored}
      */
     var ColdObservable = (function (_super) {
-        __extends$27(ColdObservable, _super);
+        __extends$29(ColdObservable, _super);
         function ColdObservable(messages, scheduler) {
             _super.call(this, function (subscriber) {
                 var observable = this;
@@ -29321,7 +29697,7 @@
     	ColdObservable: ColdObservable_2
     };
 
-    var __extends$28 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$2a = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29336,7 +29712,7 @@
      * @extends {Ignored}
      */
     var HotObservable = (function (_super) {
-        __extends$28(HotObservable, _super);
+        __extends$2a(HotObservable, _super);
         function HotObservable(messages, scheduler) {
             _super.call(this);
             this.messages = messages;
@@ -29373,7 +29749,7 @@
     	HotObservable: HotObservable_2
     };
 
-    var __extends$29 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$2b = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29381,7 +29757,7 @@
 
 
     var VirtualTimeScheduler = (function (_super) {
-        __extends$29(VirtualTimeScheduler, _super);
+        __extends$2b(VirtualTimeScheduler, _super);
         function VirtualTimeScheduler(SchedulerAction, maxFrames) {
             var _this = this;
             if (SchedulerAction === void 0) { SchedulerAction = VirtualAction; }
@@ -29421,7 +29797,7 @@
      * @extends {Ignored}
      */
     var VirtualAction = (function (_super) {
-        __extends$29(VirtualAction, _super);
+        __extends$2b(VirtualAction, _super);
         function VirtualAction(scheduler, work, index) {
             if (index === void 0) { index = scheduler.index += 1; }
             _super.call(this, scheduler, work);
@@ -29491,7 +29867,7 @@
     	VirtualAction: VirtualAction_1
     };
 
-    var __extends$2a = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$2c = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29504,7 +29880,7 @@
 
     var defaultMaxFrame = 750;
     var TestScheduler = (function (_super) {
-        __extends$2a(TestScheduler, _super);
+        __extends$2c(TestScheduler, _super);
         function TestScheduler(assertDeepEqual) {
             _super.call(this, VirtualTimeScheduler_1.VirtualAction, defaultMaxFrame);
             this.assertDeepEqual = assertDeepEqual;
@@ -29750,7 +30126,7 @@
     	AnimationFrame: AnimationFrame_1
     };
 
-    var __extends$2b = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$2d = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29763,7 +30139,7 @@
      * @extends {Ignored}
      */
     var AnimationFrameAction = (function (_super) {
-        __extends$2b(AnimationFrameAction, _super);
+        __extends$2d(AnimationFrameAction, _super);
         function AnimationFrameAction(scheduler, work) {
             _super.call(this, scheduler, work);
             this.scheduler = scheduler;
@@ -29809,14 +30185,14 @@
     	AnimationFrameAction: AnimationFrameAction_2
     };
 
-    var __extends$2c = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
+    var __extends$2e = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 
     var AnimationFrameScheduler = (function (_super) {
-        __extends$2c(AnimationFrameScheduler, _super);
+        __extends$2e(AnimationFrameScheduler, _super);
         function AnimationFrameScheduler() {
             _super.apply(this, arguments);
         }
@@ -29909,13 +30285,13 @@
         iterator: iterator.iterator
     };
 
-    var __decorate$W = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$11 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$x = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$B = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -30084,9 +30460,9 @@
         NotificationService.prototype.updateNotificationsStream = function () {
             this._notificationsSubject.next(this.getNotifications());
         };
-        NotificationService = __decorate$W([
+        NotificationService = __decorate$11([
             core.Injectable(),
-            __metadata$x("design:paramtypes", [])
+            __metadata$B("design:paramtypes", [])
         ], NotificationService);
         return NotificationService;
     }());
@@ -30100,13 +30476,13 @@
         return PaginationConfig;
     }());
 
-    var __decorate$X = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$12 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$y = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$C = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -30307,25 +30683,25 @@
         PaginationComponent.prototype.isLastPage = function () {
             return (this.config.pageNumber === this.lastPageNumber);
         };
-        __decorate$X([
+        __decorate$12([
             core.Input(),
-            __metadata$y("design:type", PaginationConfig)
+            __metadata$C("design:type", PaginationConfig)
         ], PaginationComponent.prototype, "config", void 0);
-        __decorate$X([
+        __decorate$12([
             core.Output('onPageSizeChange'),
-            __metadata$y("design:type", Object)
+            __metadata$C("design:type", Object)
         ], PaginationComponent.prototype, "onPageSizeChange", void 0);
-        __decorate$X([
+        __decorate$12([
             core.Output('onPageNumberChange'),
-            __metadata$y("design:type", Object)
+            __metadata$C("design:type", Object)
         ], PaginationComponent.prototype, "onPageNumberChange", void 0);
-        PaginationComponent = __decorate$X([
+        PaginationComponent = __decorate$12([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-pagination',
                 template: "<form class=\"content-view-pf-pagination list-view-pf-pagination clearfix\"><div class=\"form-group\"><div class=\"padding-right-10\"><div class=\"btn-group dropdown\" dropdown><button #pageSizeMenu type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle>{{config.pageSize}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu\" *dropdownMenu><li class=\"display-length-increment\" [ngClass]=\"{'selected': increment === config?.pageSize}\" *ngFor=\"let increment of config?.pageSizeIncrements\"><a role=\"menuitem\" (click)=\"onPageSizeUpdate($event, increment)\">{{increment}}</a></li></ul></div></div><span for=\"pageSizeMenu\" class=\"per-page-label\">per page</span></div><div class=\"form-group\"><span><span class=\"pagination-pf-item-current\">{{getCurrentPage()}}</span>&nbsp;of&nbsp; <span class=\"pagination-pf-items-total\">{{config.totalItems}}</span></span><ul class=\"pagination pagination-pf-back\"><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-first-page\" title=\"First Page\" (click)=\"gotoFirstPage()\"><span class=\"i fa fa-angle-double-left\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-prev-page\" title=\"Previous Page\" (click)=\"gotoPreviousPage()\"><span class=\"i fa fa-angle-left\"></span></a></li></ul><input class=\"pagination-pf-page\" name=\"pageNumber\" type=\"text\" [(ngModel)]=\"pageNumber\" (blur)=\"onPageNumberBlur($event)\" (keyup.enter)=\"onPageNumberKeyup($event)\"> <span>of&nbsp;<span class=\"pagination-pf-pages\">{{lastPageNumber}}</span></span><ul class=\"pagination pagination-pf-forward\"><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-next-page\" title=\"Next Page\" (click)=\"gotoNextPage()\"><span class=\"i fa fa-angle-right\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-last-page\" title=\"Last Page\" (click)=\"gotoLastPage()\"><span class=\"i fa fa-angle-double-right\"></span></a></li></ul></div></form>"
             }),
-            __metadata$y("design:paramtypes", [])
+            __metadata$C("design:paramtypes", [])
         ], PaginationComponent);
         return PaginationComponent;
     }());
@@ -30339,7 +30715,7 @@
         return PaginationEvent;
     }());
 
-    var __decorate$Y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$13 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30351,7 +30727,7 @@
     var PaginationModule = /** @class */ (function () {
         function PaginationModule() {
         }
-        PaginationModule = __decorate$Y([
+        PaginationModule = __decorate$13([
             core.NgModule({
                 imports: [
                     BsDropdownModule.forRoot(),
@@ -30366,13 +30742,13 @@
         return PaginationModule;
     }());
 
-    var __decorate$Z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$14 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$z = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$D = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -30391,7 +30767,7 @@
             console.log('patternfly-ng: PipeModule is deprecated; use SearchHighlightModule, ' +
                 'SortArrayModule, or TruncateModule');
         }
-        PipeModule = __decorate$Z([
+        PipeModule = __decorate$14([
             core.NgModule({
                 imports: [
                     SearchHighlightPipeModule,
@@ -30404,18 +30780,18 @@
                     TruncatePipe
                 ]
             }),
-            __metadata$z("design:paramtypes", [])
+            __metadata$D("design:paramtypes", [])
         ], PipeModule);
         return PipeModule;
     }());
 
-    var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$15 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$A = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$E = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -30527,46 +30903,46 @@
                 }
             }
         };
-        __decorate([
+        __decorate$15([
             core.Input(),
-            __metadata$A("design:type", Boolean)
+            __metadata$E("design:type", Boolean)
         ], RemainingCharsCountDirective.prototype, "blockInputAtMaxLimit", void 0);
-        __decorate([
+        __decorate$15([
             core.Input(),
-            __metadata$A("design:type", Number)
+            __metadata$E("design:type", Number)
         ], RemainingCharsCountDirective.prototype, "charsMaxLimit", void 0);
-        __decorate([
+        __decorate$15([
             core.Input(),
-            __metadata$A("design:type", Object)
+            __metadata$E("design:type", Object)
         ], RemainingCharsCountDirective.prototype, "charsRemainingElement", void 0);
-        __decorate([
+        __decorate$15([
             core.Input(),
-            __metadata$A("design:type", Number)
+            __metadata$E("design:type", Number)
         ], RemainingCharsCountDirective.prototype, "charsRemainingWarning", void 0);
-        __decorate([
+        __decorate$15([
             core.Output('onOverCharsMaxLimit'),
-            __metadata$A("design:type", Object)
+            __metadata$E("design:type", Object)
         ], RemainingCharsCountDirective.prototype, "onOverCharsMaxLimit", void 0);
-        __decorate([
+        __decorate$15([
             core.Output('onUnderCharsMaxLimit'),
-            __metadata$A("design:type", Object)
+            __metadata$E("design:type", Object)
         ], RemainingCharsCountDirective.prototype, "onUnderCharsMaxLimit", void 0);
-        __decorate([
+        __decorate$15([
             core.HostListener('keyup', ['$event']),
-            __metadata$A("design:type", Function),
-            __metadata$A("design:paramtypes", [KeyboardEvent]),
-            __metadata$A("design:returntype", void 0)
+            __metadata$E("design:type", Function),
+            __metadata$E("design:paramtypes", [KeyboardEvent]),
+            __metadata$E("design:returntype", void 0)
         ], RemainingCharsCountDirective.prototype, "handleKeypress", null);
-        RemainingCharsCountDirective = __decorate([
+        RemainingCharsCountDirective = __decorate$15([
             core.Directive({
                 selector: '[pfng-remaining-chars-count]'
             }),
-            __metadata$A("design:paramtypes", [core.ElementRef, core.Renderer2])
+            __metadata$E("design:paramtypes", [core.ElementRef, core.Renderer2])
         ], RemainingCharsCountDirective);
         return RemainingCharsCountDirective;
     }());
 
-    var __decorate$_ = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$16 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30578,7 +30954,7 @@
     var RemainingCharsCountModule = /** @class */ (function () {
         function RemainingCharsCountModule() {
         }
-        RemainingCharsCountModule = __decorate$_([
+        RemainingCharsCountModule = __decorate$16([
             core.NgModule({
                 imports: [common.CommonModule, forms.FormsModule],
                 declarations: [RemainingCharsCountDirective],
@@ -30588,13 +30964,13 @@
         return RemainingCharsCountModule;
     }());
 
-    var __decorate$10 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$17 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$B = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$F = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -30606,27 +30982,27 @@
          */
         function SampleComponent() {
         }
-        __decorate$10([
+        __decorate$17([
             core.Input(),
-            __metadata$B("design:type", Boolean)
+            __metadata$F("design:type", Boolean)
         ], SampleComponent.prototype, "disabled", void 0);
-        __decorate$10([
+        __decorate$17([
             core.Input(),
-            __metadata$B("design:type", String)
+            __metadata$F("design:type", String)
         ], SampleComponent.prototype, "label", void 0);
-        SampleComponent = __decorate$10([
+        SampleComponent = __decorate$17([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pf-sample-component',
                 styles: ["\n    .pfng__samplecomponent { \n      color: blueviolet; \n    }\n    .pfng__samplecomponent--disabled  { \n      color: grey; \n    }\n  "],
                 template: "<div class=\"pfng__samplecomponent\" [ngClass]=\"{'pfng__samplecomponent--disabled': disabled}\">{{label}}</div>"
             }),
-            __metadata$B("design:paramtypes", [])
+            __metadata$F("design:paramtypes", [])
         ], SampleComponent);
         return SampleComponent;
     }());
 
-    var __decorate$11 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$18 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30638,7 +31014,7 @@
     var SampleModule = /** @class */ (function () {
         function SampleModule() {
         }
-        SampleModule = __decorate$11([
+        SampleModule = __decorate$18([
             core.NgModule({
                 imports: [common.CommonModule],
                 declarations: [SampleComponent],
@@ -30657,13 +31033,13 @@
         return SortConfig;
     }());
 
-    var __decorate$12 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$19 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$C = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$G = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -30754,21 +31130,21 @@
                 isAscending: this.config.isAscending
             });
         };
-        __decorate$12([
+        __decorate$19([
             core.Input(),
-            __metadata$C("design:type", SortConfig)
+            __metadata$G("design:type", SortConfig)
         ], SortComponent.prototype, "config", void 0);
-        __decorate$12([
+        __decorate$19([
             core.Output('onChange'),
-            __metadata$C("design:type", Object)
+            __metadata$G("design:type", Object)
         ], SortComponent.prototype, "onChange", void 0);
-        SortComponent = __decorate$12([
+        SortComponent = __decorate$19([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-sort',
                 template: "<div class=\"sort-pf\" *ngIf=\"config?.visible !== false\"><div class=\"btn-group dropdown\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\">{{currentField?.title}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let item of config?.fields\" [ngClass]=\"{'selected': item === currentField}\"><a href=\"javascript:void(0);\" class=\"sortfield sort-field dropdown-item\" tabindex=\"-1\" (click)=\"selectField(item)\">{{item?.title}}</a></li></ul></div><button class=\"btn btn-link\" type=\"button\" [disabled]=\"config.disabled === true\" (click)=\"onChangeDirection()\"><span class=\"sort-direction\" [ngClass]=\"getIconStyleClass()\"></span></button></div>"
             }),
-            __metadata$C("design:paramtypes", [])
+            __metadata$G("design:paramtypes", [])
         ], SortComponent);
         return SortComponent;
     }());
@@ -30791,7 +31167,7 @@
         return SortField;
     }());
 
-    var __decorate$13 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1a = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30803,7 +31179,7 @@
     var SortModule = /** @class */ (function () {
         function SortModule() {
         }
-        SortModule = __decorate$13([
+        SortModule = __decorate$1a([
             core.NgModule({
                 imports: [common.CommonModule, BsDropdownModule.forRoot()],
                 declarations: [SortComponent],
@@ -30814,13 +31190,13 @@
         return SortModule;
     }());
 
-    var __decorate$14 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1b = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$D = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$H = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -30915,57 +31291,57 @@
         TableBase.prototype.handleViewSelect = function ($event) {
             this.onViewSelect.emit($event);
         };
-        __decorate$14([
+        __decorate$1b([
             core.Input(),
-            __metadata$D("design:type", core.TemplateRef)
+            __metadata$H("design:type", core.TemplateRef)
         ], TableBase.prototype, "actionTemplate", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Input(),
-            __metadata$D("design:type", core.TemplateRef)
+            __metadata$H("design:type", core.TemplateRef)
         ], TableBase.prototype, "viewTemplate", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onDrop'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onDrop", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onPageSizeChange'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onPageSizeChange", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onPageNumberChange'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onPageNumberChange", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onActionSelect'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onActionSelect", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onFilterFieldSelect'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onFilterFieldSelect", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onFilterChange'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onFilterChange", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onFilterSave'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onFilterSave", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onFilterTypeAhead'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onFilterTypeAhead", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onSelectionChange'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onSelectionChange", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onSortChange'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onSortChange", void 0);
-        __decorate$14([
+        __decorate$1b([
             core.Output('onViewSelect'),
-            __metadata$D("design:type", Object)
+            __metadata$H("design:type", Object)
         ], TableBase.prototype, "onViewSelect", void 0);
         return TableBase;
     }());
@@ -30999,7 +31375,7 @@
         return NgxDataTableConfig;
     }());
 
-    var __extends$2d = (undefined && undefined.__extends) || (function () {
+    var __extends$2f = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -31013,14 +31389,14 @@
      * An config containing properties for table
      */
     var TableConfig = /** @class */ (function (_super) {
-        __extends$2d(TableConfig, _super);
+        __extends$2f(TableConfig, _super);
         function TableConfig() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return TableConfig;
     }(TableConfigBase));
 
-    var __extends$2e = (undefined && undefined.__extends) || (function () {
+    var __extends$2g = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -31030,13 +31406,13 @@
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var __decorate$15 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1c = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$E = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$I = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -31071,7 +31447,7 @@
      * </code>
      */
     var TableComponent = /** @class */ (function (_super) {
-        __extends$2e(TableComponent, _super);
+        __extends$2g(TableComponent, _super);
         /**
          * The default constructor
          */
@@ -31574,100 +31950,100 @@
                 this.datatable.rowDetail.toggleExpandRow(row);
             }
         };
-        __decorate$15([
+        __decorate$1c([
             core.Input(),
-            __metadata$E("design:type", Array)
+            __metadata$I("design:type", Array)
         ], TableComponent.prototype, "columns", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Input(),
-            __metadata$E("design:type", TableConfig)
+            __metadata$I("design:type", TableConfig)
         ], TableComponent.prototype, "config", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Input(),
-            __metadata$E("design:type", NgxDataTableConfig)
+            __metadata$I("design:type", NgxDataTableConfig)
         ], TableComponent.prototype, "dataTableConfig", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Input(),
-            __metadata$E("design:type", core.TemplateRef)
+            __metadata$I("design:type", core.TemplateRef)
         ], TableComponent.prototype, "expandRowTemplate", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Input(),
-            __metadata$E("design:type", core.TemplateRef)
+            __metadata$I("design:type", core.TemplateRef)
         ], TableComponent.prototype, "groupHeaderTemplate", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Input(),
-            __metadata$E("design:type", Array)
+            __metadata$I("design:type", Array)
         ], TableComponent.prototype, "rows", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onActivate'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onActivate", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onDetailToggle'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onDetailToggle", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onPage'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onPage", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onReorder'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onReorder", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onResize'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onResize", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onSelect'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onSelect", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onScroll'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onScroll", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onSort'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onSort", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onTableContextMenu'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onTableContextMenu", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.Output('onDrop'),
-            __metadata$E("design:type", Object)
+            __metadata$I("design:type", Object)
         ], TableComponent.prototype, "onDrop", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.ViewChild('datatable'),
-            __metadata$E("design:type", ngxDatatable.DatatableComponent)
+            __metadata$I("design:type", ngxDatatable.DatatableComponent)
         ], TableComponent.prototype, "_datatable", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.ViewChild('selectCellTemplate'),
-            __metadata$E("design:type", core.TemplateRef)
+            __metadata$I("design:type", core.TemplateRef)
         ], TableComponent.prototype, "selectCellTemplate", void 0);
-        __decorate$15([
+        __decorate$1c([
             core.ViewChild('selectHeadTemplate'),
-            __metadata$E("design:type", core.TemplateRef)
+            __metadata$I("design:type", core.TemplateRef)
         ], TableComponent.prototype, "selectHeadTemplate", void 0);
-        TableComponent = __decorate$15([
+        TableComponent = __decorate$1c([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-table',
                 template: "<div class=\"pfng-table\"><pfng-toolbar [config]=\"config.toolbarConfig\" [actionTemplate]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\" (onFilterChange)=\"handleFilterChange($event)\" (onFilterFieldSelect)=\"handleFilterFieldSelect($event)\" (onFilterTypeAhead)=\"handleFilterTypeAhead($event)\" (onSortChange)=\"handleSortChange($event)\" (onViewSelect)=\"handleViewSelect($event)\" *ngIf=\"config.toolbarConfig !== undefined\"></pfng-toolbar><div *ngIf=\"hasData\"><ngx-datatable #datatable [columns]=\"cols\" [columnMode]=\"dataTableConfig.columnMode\" [count]=\"dataTableConfig.count\" [cssClasses]=\"dataTableConfig.cssClasses\" [displayCheck]=\"dataTableConfig.displayCheck\" [dragulaClassSelector]=\"'pfng-table-dnd-header'\" [dragulaModel]=\"rowsModel\" [dragulaName]=\"dragulaName\" [externalPaging]=\"dataTableConfig.externalPaging\" [externalSorting]=\"dataTableConfig.externalSorting\" [footerHeight]=\"dataTableConfig.footerHeight\" [groupExpansionDefault]=\"dataTableConfig.groupExpansionDefault\" [groupRowsBy]=\"dataTableConfig.groupRowsBy\" [headerHeight]=\"dataTableConfig.headerHeight\" [messages]=\"dataTableConfig.messages\" [ngClass]=\"config.styleClass\" [limit]=\"dataTableConfig.limit\" [loadingIndicator]=\"dataTableConfig.loadingIndicator\" [offset]=\"dataTableConfig.offset\" [reorderable]=\"dataTableConfig.reorderable\" [rowClass]=\"dataTableConfig.rowClass\" [rowHeight]=\"dataTableConfig.rowHeight\" [rowIdentity]=\"dataTableConfig.rowIdentity\" [rows]=\"rows\" [scrollbarH]=\"dataTableConfig.scrollbarH\" [scrollbarV]=\"dataTableConfig.scrollbarV\" [selectAllRowsOnPage]=\"dataTableConfig.selectAllRowsOnPage\" [selectCheck]=\"dataTableConfig.selectCheck\" [selected]=\"selectedRows\" [selectionType]=\"dataTableConfig.selectionType\" [sorts]=\"dataTableConfig.sorts\" [sortType]=\"dataTableConfig.sortType\" [trackByProp]=\"dataTableConfig.trackByProp\" [virtualization]=\"dataTableConfig.virtualization\" (activate)=\"handleActivate($event)\" (detailToggle)=\"handleDetailToggle($event)\" (dragulaDrop)=\"handleDragulaDrop($event)\" (dragulaDrag)=\"handleDragulaDrag($event)\" (page)=\"handlePage($event)\" (reorder)=\"handleReorder($event)\" (resize)=\"handleResize($event)\" (scroll)=\"handleScroll($event)\" (select)=\"handleSelect($event)\" (sort)=\"handleSort($event)\" (tableContextmenu)=\"handleOnTableContextMenu($event)\" *ngIf=\"showTable\"><ng-template #selectHeadTemplate><span class=\"margin-left-5\" *ngIf=\"config.dragEnabled === true\"></span> <span class=\"margin-left-16\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\"></span> </span><input type=\"checkbox\" value=\"allRowsSelected\" title=\"{{(allRowsSelected) ? 'Deselect' : 'Select'}} All Rows\" [disabled]=\"rows === undefined || rows.length === 0\" [(ngModel)]=\"allRowsSelected\" (ngModelChange)=\"selectionsChange()\" *ngIf=\"config.showCheckbox === true\"></ng-template><ng-template #selectCellTemplate let-row=\"row\" let-expanded=\"expanded\"><span class=\"pfng-table-dnd-container\" *ngIf=\"config.dragEnabled === true\"><span class=\"pfng-table-dnd-header\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true}\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\" *ngIf=\"row.hideExpandToggle === true\"></span> <span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandRow(row)\" *ngIf=\"row.hideExpandToggle !== true\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}\" *ngIf=\"config.showCheckbox === true\"><input type=\"checkbox\" value=\"row.selected\" title=\"{{(row.selected) ? 'Deselect' : 'Select'}} Row\" [(ngModel)]=\"row.selected\" (ngModelChange)=\"selectionChange(row)\"></span></ng-template><ngx-datatable-group-header [rowHeight]=\"dataTableConfig.rowHeight\" *ngIf=\"groupHeaderTemplate !== undefined\"><ng-template let-group=\"group\" let-expanded=\"expanded\" ngx-datatable-group-header-template><span class=\"margin-5\"><span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandGroup(group)\"></span></span><ng-template [ngTemplateOutlet]=\"groupHeaderTemplate\" [ngTemplateOutletContext]=\"{ group: group, expanded: expanded }\"></ng-template></ng-template></ngx-datatable-group-header><ngx-datatable-row-detail [rowHeight]=\"auto\" *ngIf=\"expandRowTemplate !== undefined\"><ng-template let-row=\"row\" let-expanded=\"expanded\" ngx-datatable-row-detail-template><div class=\"pfng-table-expand-container\" tabindex=\"0\"><div class=\"pfng-table-expand-content\" style=\"flex-grow: 1\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"toggleExpandRow(row)\"></span></div><ng-template [ngTemplateOutlet]=\"expandRowTemplate\" [ngTemplateOutletContext]=\"{ row: row, expanded: expanded }\"></ng-template></div></div></ng-template></ngx-datatable-row-detail></ngx-datatable><pfng-pagination [config]=\"config.paginationConfig\" (onPageNumberChange)=\"handlePageNumber($event)\" (onPageSizeChange)=\"handlePageSize($event)\" *ngIf=\"config.paginationConfig !== undefined\"></pfng-pagination></div><pfng-empty-state [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\" *ngIf=\"!hasData\"></pfng-empty-state></div>"
             }),
-            __metadata$E("design:paramtypes", [ng2Dragula.DragulaService])
+            __metadata$I("design:paramtypes", [ng2Dragula.DragulaService])
         ], TableComponent);
         return TableComponent;
     }(TableBase));
 
-    var __decorate$16 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1d = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$F = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$J = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -31798,31 +32174,31 @@
             // console.log('EMITTER', args);
             this.dragulaDrop.emit(this.dragulaModel);
         };
-        __decorate$16([
+        __decorate$1d([
             core.Input(),
-            __metadata$F("design:type", String)
+            __metadata$J("design:type", String)
         ], NgxDataTableDndDirective.prototype, "dragulaName", void 0);
-        __decorate$16([
+        __decorate$1d([
             core.Input(),
-            __metadata$F("design:type", Object)
+            __metadata$J("design:type", Object)
         ], NgxDataTableDndDirective.prototype, "dragulaModel", void 0);
-        __decorate$16([
+        __decorate$1d([
             core.Input(),
-            __metadata$F("design:type", String)
+            __metadata$J("design:type", String)
         ], NgxDataTableDndDirective.prototype, "dragulaClassSelector", void 0);
-        __decorate$16([
+        __decorate$1d([
             core.Output(),
-            __metadata$F("design:type", core.EventEmitter)
+            __metadata$J("design:type", core.EventEmitter)
         ], NgxDataTableDndDirective.prototype, "dragulaDrop", void 0);
-        __decorate$16([
+        __decorate$1d([
             core.Output(),
-            __metadata$F("design:type", core.EventEmitter)
+            __metadata$J("design:type", core.EventEmitter)
         ], NgxDataTableDndDirective.prototype, "dragulaDrag", void 0);
-        NgxDataTableDndDirective = __decorate$16([
+        NgxDataTableDndDirective = __decorate$1d([
             core.Directive({
                 selector: 'ngx-datatable[dragulaName]'
             }),
-            __metadata$F("design:paramtypes", [core.ElementRef, ng2Dragula.DragulaService])
+            __metadata$J("design:paramtypes", [core.ElementRef, ng2Dragula.DragulaService])
         ], NgxDataTableDndDirective);
         return NgxDataTableDndDirective;
     }());
@@ -31836,13 +32212,13 @@
         return ToolbarConfig;
     }());
 
-    var __decorate$17 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1e = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$G = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$K = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
@@ -32008,62 +32384,62 @@
         ToolbarComponent.prototype.enforceSingleSelect = function (filter$$1) {
             lodash.remove(this.config.filterConfig.appliedFilters, { title: filter$$1.field.title });
         };
-        __decorate$17([
+        __decorate$1e([
             core.Input(),
-            __metadata$G("design:type", ToolbarConfig)
+            __metadata$K("design:type", ToolbarConfig)
         ], ToolbarComponent.prototype, "config", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Input(),
-            __metadata$G("design:type", core.TemplateRef)
+            __metadata$K("design:type", core.TemplateRef)
         ], ToolbarComponent.prototype, "actionTemplate", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Input(),
-            __metadata$G("design:type", core.TemplateRef)
+            __metadata$K("design:type", core.TemplateRef)
         ], ToolbarComponent.prototype, "viewTemplate", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Output('onActionSelect'),
-            __metadata$G("design:type", Object)
+            __metadata$K("design:type", Object)
         ], ToolbarComponent.prototype, "onActionSelect", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Output('onFilterFieldSelect'),
-            __metadata$G("design:type", Object)
+            __metadata$K("design:type", Object)
         ], ToolbarComponent.prototype, "onFilterFieldSelect", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Output('onFilterChange'),
-            __metadata$G("design:type", Object)
+            __metadata$K("design:type", Object)
         ], ToolbarComponent.prototype, "onFilterChange", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Output('onFilterSave'),
-            __metadata$G("design:type", Object)
+            __metadata$K("design:type", Object)
         ], ToolbarComponent.prototype, "onFilterSave", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Output('onFilterTypeAhead'),
-            __metadata$G("design:type", Object)
+            __metadata$K("design:type", Object)
         ], ToolbarComponent.prototype, "onFilterTypeAhead", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Output('onSortChange'),
-            __metadata$G("design:type", Object)
+            __metadata$K("design:type", Object)
         ], ToolbarComponent.prototype, "onSortChange", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.Output('onViewSelect'),
-            __metadata$G("design:type", Object)
+            __metadata$K("design:type", Object)
         ], ToolbarComponent.prototype, "onViewSelect", void 0);
-        __decorate$17([
+        __decorate$1e([
             core.ViewChild('filterFields'),
-            __metadata$G("design:type", FilterFieldsComponent)
+            __metadata$K("design:type", FilterFieldsComponent)
         ], ToolbarComponent.prototype, "filterFields", void 0);
-        ToolbarComponent = __decorate$17([
+        ToolbarComponent = __decorate$1e([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-toolbar',
                 template: "<div class=\"row toolbar-pf\"><div class=\"col-sm-12\"><form class=\"toolbar-pf-actions\" [ngClass]=\"{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}\" (submit)=\"$event.preventDefault()\"><div class=\"form-group toolbar-apf-filter\"><pfng-filter-fields [config]=\"config.filterConfig\" #filterFields (onAdd)=\"filterAdded($event)\" (onFieldSelect)=\"handleFilterFieldSelect($event)\" (onSave)=\"handleFilterSave($event)\" (onTypeAhead)=\"handleFilterTypeAhead($event)\" *ngIf=\"config.filterConfig?.fields\"></pfng-filter-fields></div><div class=\"form-group\" *ngIf=\"config.sortConfig?.fields && config.sortConfig?.visible !== false\"><pfng-sort [config]=\"config.sortConfig\" (onChange)=\"sortChange($event)\"></pfng-sort></div><div class=\"form-group toolbar-actions\" *ngIf=\"config.actionConfig !== undefined || actionTemplate !== undefined\"><pfng-action [config]=\"config.actionConfig\" [template]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\"></pfng-action></div><div class=\"toolbar-pf-action-right\"><div class=\"form-group toolbar-pf-view-selector\" *ngIf=\"viewTemplate !== undefined || (config.views)\"><ng-template [ngTemplateOutlet]=\"viewTemplate\" [ngTemplateOutletContext]=\"{}\"></ng-template><span *ngIf=\"config.views\"><button *ngFor=\"let view of config.views\" class=\"btn btn-link\" [ngClass]=\"{'active': isViewSelected(view), 'disabled': view.disabled === true}\" title=\"{{view.tooltip}}\" (click)=\"viewSelected(view)\"><i class=\"{{view.iconStyleClass}}\"></i></button></span></div></div></form><pfng-filter-results [config]=\"config.filterConfig\" (onClear)=\"clearFilter($event)\"></pfng-filter-results></div></div>"
             }),
-            __metadata$G("design:paramtypes", [])
+            __metadata$K("design:paramtypes", [])
         ], ToolbarComponent);
         return ToolbarComponent;
     }());
 
-    var __decorate$18 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1f = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -32075,7 +32451,7 @@
     var ToolbarModule = /** @class */ (function () {
         function ToolbarModule() {
         }
-        ToolbarModule = __decorate$18([
+        ToolbarModule = __decorate$1f([
             core.NgModule({
                 imports: [
                     ActionModule,
@@ -32092,7 +32468,7 @@
         return ToolbarModule;
     }());
 
-    var __decorate$19 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1g = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -32104,7 +32480,7 @@
     var TableModule = /** @class */ (function () {
         function TableModule() {
         }
-        TableModule = __decorate$19([
+        TableModule = __decorate$1g([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -32288,7 +32664,7 @@
         return WizardConfig;
     }());
 
-    var __extends$2f = (undefined && undefined.__extends) || (function () {
+    var __extends$2h = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -32298,20 +32674,20 @@
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var __decorate$1a = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1h = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$H = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$L = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     /**
      * Wizard component
      */
     var WizardComponent = /** @class */ (function (_super) {
-        __extends$2f(WizardComponent, _super);
+        __extends$2h(WizardComponent, _super);
         /**
          * The default constructor
          */
@@ -32645,37 +33021,37 @@
                 this.goTo(step, true, false);
             }
         };
-        __decorate$1a([
+        __decorate$1h([
             core.Input(),
-            __metadata$H("design:type", WizardConfig)
+            __metadata$L("design:type", WizardConfig)
         ], WizardComponent.prototype, "config", void 0);
-        __decorate$1a([
+        __decorate$1h([
             core.Output('onCancel'),
-            __metadata$H("design:type", Object)
+            __metadata$L("design:type", Object)
         ], WizardComponent.prototype, "onCancel", void 0);
-        __decorate$1a([
+        __decorate$1h([
             core.Output('onFinish'),
-            __metadata$H("design:type", Object)
+            __metadata$L("design:type", Object)
         ], WizardComponent.prototype, "onFinish", void 0);
-        __decorate$1a([
+        __decorate$1h([
             core.Output('onNext'),
-            __metadata$H("design:type", Object)
+            __metadata$L("design:type", Object)
         ], WizardComponent.prototype, "onNext", void 0);
-        __decorate$1a([
+        __decorate$1h([
             core.Output('onPrevious'),
-            __metadata$H("design:type", Object)
+            __metadata$L("design:type", Object)
         ], WizardComponent.prototype, "onPrevious", void 0);
-        __decorate$1a([
+        __decorate$1h([
             core.Output('onStepChange'),
-            __metadata$H("design:type", Object)
+            __metadata$L("design:type", Object)
         ], WizardComponent.prototype, "onStepChange", void 0);
-        WizardComponent = __decorate$1a([
+        WizardComponent = __decorate$1h([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-wizard',
                 template: "<div class=\"modal-header\" *ngIf=\"!config?.hideHeader\"><button class=\"close wizard-pf-dismiss\" aria-hidden=\"true\" aria-label=\"Close\" type=\"button\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\"><span class=\"pficon pficon-close\"></span></button><h4 class=\"modal-title\">{{config?.title}}</h4></div><div class=\"modal-body wizard-pf-body clearfix\"><div class=\"wizard-pf-steps\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"config?.ready\"><ul class=\"wizard-pf-steps-indicator\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"!config?.hideIndicators\"><li class=\"wizard-pf-step\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps(); let i = index\"><a (click)=\"stepClick(step)\" [ngClass]=\"{'disabled': !allowStepIndicatorClick(step)}\"><span class=\"wizard-pf-step-number\">{{i + 1}}</span> <span class=\"wizard-pf-step-title\">{{step.config?.title}}</span></a></li></ul></div><div *ngIf=\"!config?.ready\" class=\"wizard-pf-main pfng-wizard-main\"><div class=\"wizard-pf-loading blank-slate-pf\"><div class=\"spinner spinner-lg blank-slate-pf-icon\"></div><h3 class=\"blank-slate-pf-main-action\">{{config?.loadingTitle}}</h3><p class=\"blank-slate-pf-secondary-action\">{{config?.loadingSecondaryInfo}}</p></div></div><div class=\"pfng-wizard-position-override\"><ng-content></ng-content></div></div><div class=\"modal-footer wizard-pf-footer pfng-wizard-position-override\" [ngClass]=\"{'pfng-footer-inline': config?.embedInPage}\"><button class=\"btn btn-default wizard-btn btn-cancel\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\">{{config?.cancelTitle}}</button> <button class=\"btn btn-default pfng-wizard-previous-btn\" type=\"button\" tooltip=\"{{selectedStep?.config?.previousTooltip}}\" placement=\"left\" [ngClass]=\"{'pfng-wizard-btn-no-back': config?.hidePreviousButton}\" [disabled]=\"!config?.ready || config?.done || !selectedStep?.previousEnabled || firstStep\" (click)=\"previous(true)\">{{config?.previousTitle}}</button> <button class=\"btn btn-primary wizard-pf-next\" type=\"button\" tooltip=\"{{selectedStep?.config?.nextTooltip}}\" placement=\"left\" [disabled]=\"!config?.ready || !selectedStep?.nextEnabled\" (click)=\"next(true)\">{{config?.nextTitle}}</button> <button class=\"btn btn-default btn-cancel pfng-cancel-inline\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"config?.embedInPage\">{{config?.cancelTitle}}</button></div>"
             }),
-            __metadata$H("design:paramtypes", [])
+            __metadata$L("design:paramtypes", [])
         ], WizardComponent);
         return WizardComponent;
     }(WizardBase));
@@ -32689,16 +33065,16 @@
         return WizardEvent;
     }());
 
-    var __decorate$1b = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1i = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$I = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$M = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    var __param$1 = (undefined && undefined.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
     /**
@@ -32745,14 +33121,14 @@
         WizardReviewComponent.prototype.toggleReviewDetails = function (step) {
             step.config.expandReviewDetails = !step.config.expandReviewDetails;
         };
-        WizardReviewComponent = __decorate$1b([
+        WizardReviewComponent = __decorate$1i([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-wizard-review',
                 template: "<div class=\"wizard-pf-review-page\"><div class=\"wizard-pf-review-steps\"><ul class=\"list-group\"><li class=\"list-group-item\" *ngFor=\"let step of getReviewSteps()\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': step.config.expandReview !== true}\" (click)=\"toggleReview(step)\">{{step.config.title}}</a><div class=\"wizard-pf-review-substeps\" [ngClass]=\"{'collapse': step.config.expandReview !== true}\"><ul class=\"list-group\" *ngIf=\"step.hasSubsteps\"><li class=\"list-group-item\" *ngFor=\"let substep of getReviewSubsteps(step)\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': substep.config.expandReviewDetails !== true}\" (click)=\"toggleReviewDetails(substep)\"><span class=\"wizard-pf-substep-number\">{{getSubstepNumber(step, substep)}}</span> <span class=\"wizard-pf-substep-title\">{{substep.config.title}}</span></a><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': substep.config.expandReviewDetails !== true}\"><ng-template [ngTemplateOutlet]=\"substep.reviewTemplate\"></ng-template></div></li></ul><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': step.config.expandReviewDetails !== true}\" *ngIf=\"step.reviewTemplate\"><ng-template [ngTemplateOutlet]=\"step.reviewTemplate\"></ng-template></div></div></li></ul></div></div>"
             }),
-            __param(0, core.Host()),
-            __metadata$I("design:paramtypes", [WizardComponent])
+            __param$1(0, core.Host()),
+            __metadata$M("design:paramtypes", [WizardComponent])
         ], WizardReviewComponent);
         return WizardReviewComponent;
     }());
@@ -32775,7 +33151,7 @@
         return WizardStepConfig;
     }());
 
-    var __extends$2g = (undefined && undefined.__extends) || (function () {
+    var __extends$2i = (undefined && undefined.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -32785,16 +33161,16 @@
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var __decorate$1c = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1j = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$J = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$N = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var __param$1 = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    var __param$2 = (undefined && undefined.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
     /**
@@ -32803,7 +33179,7 @@
      * Note: This component is expected to be a child of wizard.
      */
     var WizardStepComponent = /** @class */ (function (_super) {
-        __extends$2g(WizardStepComponent, _super);
+        __extends$2i(WizardStepComponent, _super);
         /**
          * The default constructor
          */
@@ -33072,40 +33448,40 @@
                 this.goTo(step);
             }
         };
-        __decorate$1c([
+        __decorate$1j([
             core.Input(),
-            __metadata$J("design:type", WizardStepConfig)
+            __metadata$N("design:type", WizardStepConfig)
         ], WizardStepComponent.prototype, "config", void 0);
-        __decorate$1c([
+        __decorate$1j([
             core.Input(),
-            __metadata$J("design:type", core.TemplateRef)
+            __metadata$N("design:type", core.TemplateRef)
         ], WizardStepComponent.prototype, "reviewTemplate", void 0);
-        __decorate$1c([
+        __decorate$1j([
             core.Output('onShow'),
-            __metadata$J("design:type", Object)
+            __metadata$N("design:type", Object)
         ], WizardStepComponent.prototype, "onShow", void 0);
-        WizardStepComponent = __decorate$1c([
+        WizardStepComponent = __decorate$1j([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-wizard-step',
                 template: "<section class=\"wizard-pf-row\" *ngIf=\"selected\"><div class=\"wizard-pf-sidebar\" [ngClass]=\"wizard?.config?.sidebarStyleClass\" [ngStyle]=\"wizard?.contentStyle\" *ngIf=\"hasSubsteps && !wizard?.config?.hideSidebar\"><ul class=\"list-group\"><li class=\"list-group-item\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps()\"><a (click)=\"stepClick(step)\"><span class=\"wizard-pf-substep-number\">{{getDisplayNumber(step)}}</span> <span class=\"wizard-pf-substep-title\">{{step.config?.title}}</span></a></li></ul></div><div class=\"wizard-pf-main {{wizard.config?.stepStyleClass}}\" [ngClass]=\"{'pfng-wizard-single-step': !hasSubsteps || wizard?.config?.hideSidebar}\" [ngStyle]=\"wizard?.contentStyle\"><div class=\"wizard-pf-contents\"><ng-content></ng-content></div></div></section>"
             }),
-            __param$1(0, core.Host()),
-            __metadata$J("design:paramtypes", [WizardComponent])
+            __param$2(0, core.Host()),
+            __metadata$N("design:paramtypes", [WizardComponent])
         ], WizardStepComponent);
         return WizardStepComponent;
     }(WizardBase));
 
-    var __decorate$1d = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1k = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var __metadata$K = (undefined && undefined.__metadata) || function (k, v) {
+    var __metadata$O = (undefined && undefined.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var __param$2 = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    var __param$3 = (undefined && undefined.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
     /**
@@ -33205,31 +33581,31 @@
                 step: this
             });
         };
-        __decorate$1d([
+        __decorate$1k([
             core.Input(),
-            __metadata$K("design:type", WizardStepConfig)
+            __metadata$O("design:type", WizardStepConfig)
         ], WizardSubstepComponent.prototype, "config", void 0);
-        __decorate$1d([
+        __decorate$1k([
             core.Input(),
-            __metadata$K("design:type", core.TemplateRef)
+            __metadata$O("design:type", core.TemplateRef)
         ], WizardSubstepComponent.prototype, "reviewTemplate", void 0);
-        __decorate$1d([
+        __decorate$1k([
             core.Output('onShow'),
-            __metadata$K("design:type", Object)
+            __metadata$O("design:type", Object)
         ], WizardSubstepComponent.prototype, "onShow", void 0);
-        WizardSubstepComponent = __decorate$1d([
+        WizardSubstepComponent = __decorate$1k([
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-wizard-substep',
                 template: "<ng-content *ngIf=\"selected\"></ng-content>"
             }),
-            __param$2(0, core.Host()),
-            __metadata$K("design:paramtypes", [WizardStepComponent])
+            __param$3(0, core.Host()),
+            __metadata$O("design:paramtypes", [WizardStepComponent])
         ], WizardSubstepComponent);
         return WizardSubstepComponent;
     }());
 
-    var __decorate$1e = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var __decorate$1l = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -33241,7 +33617,7 @@
     var WizardModule = /** @class */ (function () {
         function WizardModule() {
         }
-        WizardModule = __decorate$1e([
+        WizardModule = __decorate$1l([
             core.NgModule({
                 imports: [
                     common.CommonModule,
@@ -33296,6 +33672,13 @@
     exports.SparklineChartConfig = SparklineChartConfig;
     exports.SparklineChartData = SparklineChartData;
     exports.SparklineChartModule = SparklineChartModule;
+    exports.CopyBase = CopyBase;
+    exports.CopyService = CopyService;
+    exports.CopyServiceModule = CopyServiceModule;
+    exports.InlineCopyComponent = InlineCopyComponent;
+    exports.InlineCopyModule = InlineCopyModule;
+    exports.BlockCopyComponent = BlockCopyComponent;
+    exports.BlockCopyModule = BlockCopyModule;
     exports.EmptyStateComponent = EmptyStateComponent;
     exports.EmptyStateConfig = EmptyStateConfig;
     exports.EmptyStateModule = EmptyStateModule;

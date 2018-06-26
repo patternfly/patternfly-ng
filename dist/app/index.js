@@ -1,6 +1,7 @@
 export * from './action/index';
 export * from './card/index';
 export * from './chart/index';
+export * from './copy/index';
 export * from './empty-state/index';
 export * from './filter/index';
 export * from './list/index';
