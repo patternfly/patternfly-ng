@@ -1,9 +1,18 @@
-import { Inject, Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable
+} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-  /**
-   * A generic service for copying text to clipboard
-   */
+/**
+ * A generic service for copying text to clipboard
+ *
+ * Usage:
+ * <br/><code>import { CopyService } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { CopyService } from 'patternfly-ng';</code>
+ */
 @Injectable()
 export class CopyService {
   public dom: Document;
@@ -36,7 +45,7 @@ export class CopyService {
 
     textarea.select();
 
-    if (!!triggerElement) {
+    if (triggerElement !== undefined) {
       triggerElement.focus();
     }
 
