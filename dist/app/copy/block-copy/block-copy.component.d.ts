@@ -1,5 +1,14 @@
 import { CopyBase } from '../copy-base';
 import { CopyService } from '../copy-service/copy.service';
+/**
+ * Block Copy component
+ *
+ * Usage:
+ * <br/><code>import { BlockCopyModule } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { BlockCopyModule } from 'patternfly-ng';</code>
+ */
 export declare class BlockCopyComponent extends CopyBase {
     protected copyService: CopyService;
     /**
@@ -9,7 +18,7 @@ export declare class BlockCopyComponent extends CopyBase {
     /**
      * Copy button text
      */
-    buttonLabel: string;
+    copyBtnLabel: string;
     /**
      * Controls the expanded state of block copy
      */

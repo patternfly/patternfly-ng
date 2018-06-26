@@ -4,7 +4,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { CopiedMsg } from '../../copy-base';
+import { CopyEvent } from '../../copy-event';
 
 import { Notification } from '../../../notification/notification';
 import { NotificationService } from '../../../notification/notification-service/notification.service';
@@ -16,6 +16,7 @@ import { NotificationType } from '../../../notification/notification-type';
   templateUrl: './inline-copy-a11y-example.component.html'
 })
 export class InlineCopyA11yExampleComponent implements OnInit {
+  actionsText: string = '';
   notifications: Notification[];
 
   a11yEx01 = {
@@ -36,7 +37,12 @@ export class InlineCopyA11yExampleComponent implements OnInit {
     this.notifications = this.notificationService.getNotifications();
   }
 
-  notify(result: CopiedMsg): void {
+  handleCopyToClipboard($event: CopyEvent, result: any): void {
+    this.actionsText = 'Copied: ' + $event.value + '\r\n' + this.actionsText;
+    this.notify(result);
+  }
+
+  notify(result: any): void {
     this.notificationService.message(
       NotificationType.SUCCESS,
       null,

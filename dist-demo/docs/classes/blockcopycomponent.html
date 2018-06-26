@@ -64,6 +64,17 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Block Copy component</p>
+					</div>
+					<p>Usage:
+					<br/><code>import { BlockCopyModule } from &#39;patternfly-ng/copy&#39;;</code></p>
+					<p>Or:
+					<br/><code>import { BlockCopyModule } from &#39;patternfly-ng&#39;;</code></p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -90,14 +101,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="blockcopycomponent.html#buttonlabel" class="tsd-kind-icon">button<wbr>Label</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="blockcopycomponent.html#copiedtoclipboard" class="tsd-kind-icon">copied<wbr>ToClipboard</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="blockcopycomponent.html#copybtnarialabel" class="tsd-kind-icon">copy<wbr>Btn<wbr>Aria<wbr>Label</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="blockcopycomponent.html#copybtnlabel" class="tsd-kind-icon">copy<wbr>Btn<wbr>Label</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="blockcopycomponent.html#copyservice" class="tsd-kind-icon">copy<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="blockcopycomponent.html#copyvalue" class="tsd-kind-icon">copy<wbr>Value</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="blockcopycomponent.html#expandbtnarialabel" class="tsd-kind-icon">expand<wbr>Btn<wbr>Aria<wbr>Label</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="blockcopycomponent.html#expanded" class="tsd-kind-icon">expanded</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="blockcopycomponent.html#label" class="tsd-kind-icon">label</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="blockcopycomponent.html#oncopytoclipboard" class="tsd-kind-icon">on<wbr>Copy<wbr>ToClipboard</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="blockcopycomponent.html#tooltip" class="tsd-kind-icon">tooltip</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="blockcopycomponent.html#tooltipplacement" class="tsd-kind-icon">tooltip<wbr>Placement</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="blockcopycomponent.html#uniqueid" class="tsd-kind-icon">uniqueID</a></li>
@@ -134,7 +145,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="copybase.html">CopyBase</a>.<a href="copybase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L43">app/copy/block-copy/block-copy.component.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L51">app/copy/block-copy/block-copy.component.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -155,42 +166,6 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="buttonlabel" class="tsd-anchor"></a>
-					<h3>button<wbr>Label</h3>
-					<div class="tsd-signature tsd-kind-icon">button<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Copy&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L28">app/copy/block-copy/block-copy.component.ts:28</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Copy button text</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="copiedtoclipboard" class="tsd-anchor"></a>
-					<h3>copied<wbr>ToClipboard</h3>
-					<div class="tsd-signature tsd-kind-icon">copied<wbr>ToClipboard<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/copiedmsg.html" class="tsd-signature-type">CopiedMsg</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#copiedtoclipboard">copiedToClipboard</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/copy-base.ts#L49">app/copy/copy-base.ts:49</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Event emitted with the chart reference after load is complete</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>type</dt>
-							<dd><p>{EventEmitter}</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="copybtnarialabel" class="tsd-anchor"></a>
 					<h3>copy<wbr>Btn<wbr>Aria<wbr>Label</h3>
@@ -198,18 +173,28 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#copybtnarialabel">copyBtnAriaLabel</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/copy-base.ts#L25">app/copy/copy-base.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/copy-base.ts#L17">app/copy/copy-base.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Copy button aria label (announced to screen readers)</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>type</dt>
-							<dd><p>{string}</p>
-							</dd>
-						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="copybtnlabel" class="tsd-anchor"></a>
+					<h3>copy<wbr>Btn<wbr>Label</h3>
+					<div class="tsd-signature tsd-kind-icon">copy<wbr>Btn<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Copy&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L36">app/copy/block-copy/block-copy.component.ts:36</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Copy button text</p>
+						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
@@ -219,29 +204,24 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="copybase.html">CopyBase</a>.<a href="copybase.html#copyservice">copyService</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L48">app/copy/block-copy/block-copy.component.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L56">app/copy/block-copy/block-copy.component.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="copyvalue" class="tsd-anchor"></a>
 					<h3>copy<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">copy<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Missing &#x27;copyValue&#x27; @Input property&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">copy<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#copyvalue">copyValue</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/copy-base.ts#L31">app/copy/copy-base.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/copy-base.ts#L22">app/copy/copy-base.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The text node to be copied to the users clipboard</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>type</dt>
-							<dd><p>{string}</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
@@ -250,7 +230,7 @@
 					<div class="tsd-signature tsd-kind-icon">expand<wbr>Btn<wbr>Aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L38">app/copy/block-copy/block-copy.component.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L46">app/copy/block-copy/block-copy.component.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -265,7 +245,7 @@
 					<div class="tsd-signature tsd-kind-icon">expanded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L33">app/copy/block-copy/block-copy.component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L41">app/copy/block-copy/block-copy.component.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -280,12 +260,28 @@
 					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L23">app/copy/block-copy/block-copy.component.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L31">app/copy/block-copy/block-copy.component.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Label naming the block copy component</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="oncopytoclipboard" class="tsd-anchor"></a>
+					<h3>on<wbr>Copy<wbr>ToClipboard</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Copy<wbr>ToClipboard<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/copyevent.html" class="tsd-signature-type">CopyEvent</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#oncopytoclipboard">onCopyToClipboard</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/copy-base.ts#L37">app/copy/copy-base.ts:37</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Event emitted with the chart reference after load is complete</p>
 						</div>
 					</div>
 				</section>
@@ -296,18 +292,13 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#tooltip">tooltip</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/copy-base.ts#L37">app/copy/copy-base.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/copy-base.ts#L27">app/copy/copy-base.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Tooltip text for the copyValue</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>type</dt>
-							<dd><p>{string}</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
@@ -317,18 +308,13 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#tooltipplacement">tooltipPlacement</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/copy-base.ts#L43">app/copy/copy-base.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/copy-base.ts#L32">app/copy/copy-base.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Placement for the tooltip that further describes the copyValue</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>type</dt>
-							<dd><p>{string}</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
@@ -337,7 +323,7 @@
 					<div class="tsd-signature tsd-kind-icon">uniqueID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;uniqueId(&#x27;pfng-block-copy&#x27;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L43">app/copy/block-copy/block-copy.component.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L51">app/copy/block-copy/block-copy.component.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -359,7 +345,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L55">app/copy/block-copy/block-copy.component.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L63">app/copy/block-copy/block-copy.component.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,7 +368,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#recentlycopied">recentlyCopied</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/copy-base.ts#L58">app/copy/copy-base.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/copy-base.ts#L46">app/copy/copy-base.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -408,7 +394,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L69">app/copy/block-copy/block-copy.component.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L77">app/copy/block-copy/block-copy.component.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,14 +410,14 @@
 					<a name="copyvaluetoclipboard" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> copy<wbr>Value<wbr>ToClipboard</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">copy<wbr>Value<wbr>ToClipboard<span class="tsd-signature-symbol">(</span>accessibleName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">copy<wbr>Value<wbr>ToClipboard<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="copybase.html">CopyBase</a>.<a href="copybase.html#copyvaluetoclipboard">copyValueToClipboard</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/copy-base.ts#L71">app/copy/copy-base.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/copy-base.ts#L58">app/copy/copy-base.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -439,15 +425,6 @@
 									<p>Copy value to the user&#39;s system clipboard</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>accessibleName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>An accessible name used to describe the component</p>
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -462,7 +439,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/50155d38/src/app/copy/block-copy/block-copy.component.ts#L62">app/copy/block-copy/block-copy.component.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/e8b022b9/src/app/copy/block-copy/block-copy.component.ts#L70">app/copy/block-copy/block-copy.component.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -494,14 +471,11 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="blockcopycomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="blockcopycomponent.html#buttonlabel" class="tsd-kind-icon">button<wbr>Label</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="blockcopycomponent.html#copiedtoclipboard" class="tsd-kind-icon">copied<wbr>ToClipboard</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="blockcopycomponent.html#copybtnarialabel" class="tsd-kind-icon">copy<wbr>Btn<wbr>Aria<wbr>Label</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="blockcopycomponent.html#copybtnlabel" class="tsd-kind-icon">copy<wbr>Btn<wbr>Label</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 								<a href="blockcopycomponent.html#copyservice" class="tsd-kind-icon">copy<wbr>Service</a>
@@ -517,6 +491,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="blockcopycomponent.html#label" class="tsd-kind-icon">label</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="blockcopycomponent.html#oncopytoclipboard" class="tsd-kind-icon">on<wbr>Copy<wbr>ToClipboard</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="blockcopycomponent.html#tooltip" class="tsd-kind-icon">tooltip</a>

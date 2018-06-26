@@ -18,20 +18,13 @@ var CopyBase = /** @class */ (function () {
     function CopyBase(copyService) {
         this.copyService = copyService;
         /**
-         * The text node to be copied to the users clipboard
-         * @type {string}
-         */
-        this.copyValue = 'Missing \'copyValue\' @Input property';
-        /**
          * Placement for the tooltip that further describes the copyValue
-         * @type {string}
          */
         this.tooltipPlacement = 'top';
         /**
          * Event emitted with the chart reference after load is complete
-         * @type {EventEmitter}
          */
-        this.copiedToClipboard = new EventEmitter();
+        this.onCopyToClipboard = new EventEmitter();
         this._recentlyCopied = false;
     }
     Object.defineProperty(CopyBase.prototype, "recentlyCopied", {
@@ -48,15 +41,13 @@ var CopyBase = /** @class */ (function () {
     });
     /**
      * Copy value to the user's system clipboard
-     * @param {string} accessibleName An accessible name used to describe the component
      */
-    CopyBase.prototype.copyValueToClipboard = function (accessibleName) {
+    CopyBase.prototype.copyValueToClipboard = function () {
         var _this = this;
         var result = this.copyService.copy(this.copyValue);
         if (result) {
-            this.copiedToClipboard.emit({
-                name: accessibleName,
-                msg: accessibleName + " copied"
+            this.onCopyToClipboard.emit({
+                value: this.copyValue
             });
             this._recentlyCopied = true;
             setTimeout(function () {
@@ -81,9 +72,9 @@ var CopyBase = /** @class */ (function () {
         __metadata("design:type", String)
     ], CopyBase.prototype, "tooltipPlacement", void 0);
     __decorate([
-        Output('copiedToClipboard'),
+        Output('onCopyToClipboard'),
         __metadata("design:type", EventEmitter)
-    ], CopyBase.prototype, "copiedToClipboard", void 0);
+    ], CopyBase.prototype, "onCopyToClipboard", void 0);
     return CopyBase;
 }());
 export { CopyBase };

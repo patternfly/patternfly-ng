@@ -27,7 +27,7 @@
         [attr.aria-label]="copyBtnAriaLabel"
         (click)="copyToClipboard()">
         <span>
-          <ng-container *ngIf="!recentlyCopied">{{buttonLabel}}</ng-container>
+          <ng-container *ngIf="!recentlyCopied">{{copyBtnLabel}}</ng-container>
           <ng-container *ngIf="recentlyCopied">
             <i class="fa fa-check" aria-hidden="true"></i>
             Copied

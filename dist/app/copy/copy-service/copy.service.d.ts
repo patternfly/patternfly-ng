@@ -1,5 +1,11 @@
 /**
  * A generic service for copying text to clipboard
+ *
+ * Usage:
+ * <br/><code>import { CopyService } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { CopyService } from 'patternfly-ng';</code>
  */
 export declare class CopyService {
     dom: Document;

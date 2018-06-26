@@ -20,6 +20,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CopyBase } from '../copy-base';
 import { CopyService } from '../copy-service/copy.service';
+/**
+ * Inline Copy component
+ *
+ * Usage:
+ * <br/><code>import { InlineCopyModule } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { InlineCopyModule } from 'patternfly-ng';</code>
+ */
 var InlineCopyComponent = /** @class */ (function (_super) {
     __extends(InlineCopyComponent, _super);
     /**
@@ -34,7 +43,7 @@ var InlineCopyComponent = /** @class */ (function (_super) {
      * Copies the copyBtnAriaLabel value to the users clipboard
      */
     InlineCopyComponent.prototype.copyToClipboard = function () {
-        this.copyValueToClipboard(this.copyBtnAriaLabel);
+        this.copyValueToClipboard();
     };
     InlineCopyComponent = __decorate([
         Component({

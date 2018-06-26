@@ -14,6 +14,12 @@ import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 /**
  * A generic service for copying text to clipboard
+ *
+ * Usage:
+ * <br/><code>import { CopyService } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { CopyService } from 'patternfly-ng';</code>
  */
 var CopyService = /** @class */ (function () {
     /**
@@ -39,7 +45,7 @@ var CopyService = /** @class */ (function () {
         textarea.value = value;
         this.dom.body.appendChild(textarea);
         textarea.select();
-        if (!!triggerElement) {
+        if (triggerElement !== undefined) {
             triggerElement.focus();
         }
         try {

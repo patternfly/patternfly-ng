@@ -3047,20 +3047,13 @@ var CopyBase = /** @class */ (function () {
     function CopyBase(copyService) {
         this.copyService = copyService;
         /**
-         * The text node to be copied to the users clipboard
-         * @type {string}
-         */
-        this.copyValue = 'Missing \'copyValue\' @Input property';
-        /**
          * Placement for the tooltip that further describes the copyValue
-         * @type {string}
          */
         this.tooltipPlacement = 'top';
         /**
          * Event emitted with the chart reference after load is complete
-         * @type {EventEmitter}
          */
-        this.copiedToClipboard = new EventEmitter();
+        this.onCopyToClipboard = new EventEmitter();
         this._recentlyCopied = false;
     }
     Object.defineProperty(CopyBase.prototype, "recentlyCopied", {
@@ -3077,15 +3070,13 @@ var CopyBase = /** @class */ (function () {
     });
     /**
      * Copy value to the user's system clipboard
-     * @param {string} accessibleName An accessible name used to describe the component
      */
-    CopyBase.prototype.copyValueToClipboard = function (accessibleName) {
+    CopyBase.prototype.copyValueToClipboard = function () {
         var _this = this;
         var result = this.copyService.copy(this.copyValue);
         if (result) {
-            this.copiedToClipboard.emit({
-                name: accessibleName,
-                msg: accessibleName + " copied"
+            this.onCopyToClipboard.emit({
+                value: this.copyValue
             });
             this._recentlyCopied = true;
             setTimeout(function () {
@@ -3110,9 +3101,9 @@ var CopyBase = /** @class */ (function () {
         __metadata$e("design:type", String)
     ], CopyBase.prototype, "tooltipPlacement", void 0);
     __decorate$n([
-        Output('copiedToClipboard'),
+        Output('onCopyToClipboard'),
         __metadata$e("design:type", EventEmitter)
-    ], CopyBase.prototype, "copiedToClipboard", void 0);
+    ], CopyBase.prototype, "onCopyToClipboard", void 0);
     return CopyBase;
 }());
 
@@ -3130,6 +3121,12 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 };
 /**
  * A generic service for copying text to clipboard
+ *
+ * Usage:
+ * <br/><code>import { CopyService } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { CopyService } from 'patternfly-ng';</code>
  */
 var CopyService = /** @class */ (function () {
     /**
@@ -3155,7 +3152,7 @@ var CopyService = /** @class */ (function () {
         textarea.value = value;
         this.dom.body.appendChild(textarea);
         textarea.select();
-        if (!!triggerElement) {
+        if (triggerElement !== undefined) {
             triggerElement.focus();
         }
         try {
@@ -3196,26 +3193,6 @@ var CopyService = /** @class */ (function () {
     return CopyService;
 }());
 
-var __decorate$p = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var CopyServiceModule = /** @class */ (function () {
-    function CopyServiceModule() {
-    }
-    CopyServiceModule = __decorate$p([
-        NgModule({
-            imports: [
-                CommonModule
-            ],
-            providers: [CopyService]
-        })
-    ], CopyServiceModule);
-    return CopyServiceModule;
-}());
-
 var __extends$c = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -3226,7 +3203,7 @@ var __extends$c = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$p = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -3235,32 +3212,85 @@ var __decorate$q = (undefined && undefined.__decorate) || function (decorators, 
 var __metadata$g = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var InlineCopyComponent = /** @class */ (function (_super) {
-    __extends$c(InlineCopyComponent, _super);
+/**
+ * Block Copy component
+ *
+ * Usage:
+ * <br/><code>import { BlockCopyModule } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { BlockCopyModule } from 'patternfly-ng';</code>
+ */
+var BlockCopyComponent = /** @class */ (function (_super) {
+    __extends$c(BlockCopyComponent, _super);
     /**
      * The default constructor
      */
-    function InlineCopyComponent(copyService) {
+    function BlockCopyComponent(copyService) {
         var _this = _super.call(this, copyService) || this;
         _this.copyService = copyService;
+        /**
+         * Copy button text
+         */
+        _this.copyBtnLabel = 'Copy';
+        /**
+         * Controls the expanded state of block copy
+         */
+        _this.expanded = false;
+        /**
+         * Generates a unique value for an id
+         */
+        _this.uniqueID = uniqueId('pfng-block-copy');
         return _this;
     }
+    Object.defineProperty(BlockCopyComponent.prototype, "copyBtnId", {
+        /**
+         * Used to uniquly relate label to copy button
+         */
+        get: function () {
+            return this.uniqueID + "-button";
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
-     * Copies the copyBtnAriaLabel value to the users clipboard
+     * Toggle copyValue panel open and close
      */
-    InlineCopyComponent.prototype.copyToClipboard = function () {
-        this.copyValueToClipboard(this.copyBtnAriaLabel);
+    BlockCopyComponent.prototype.togglePanel = function () {
+        this.expanded = !this.expanded;
     };
-    InlineCopyComponent = __decorate$q([
+    /**
+     * Copies the label value to the users clipboard
+     */
+    BlockCopyComponent.prototype.copyToClipboard = function () {
+        this.copyValueToClipboard();
+    };
+    __decorate$p([
+        Input('label'),
+        __metadata$g("design:type", String)
+    ], BlockCopyComponent.prototype, "label", void 0);
+    __decorate$p([
+        Input('copyBtnLabel'),
+        __metadata$g("design:type", String)
+    ], BlockCopyComponent.prototype, "copyBtnLabel", void 0);
+    __decorate$p([
+        Input('expanded'),
+        __metadata$g("design:type", Boolean)
+    ], BlockCopyComponent.prototype, "expanded", void 0);
+    __decorate$p([
+        Input('expandBtnAriaLabel'),
+        __metadata$g("design:type", String)
+    ], BlockCopyComponent.prototype, "expandBtnAriaLabel", void 0);
+    BlockCopyComponent = __decorate$p([
         Component({
             encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-inline-copy',
-            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{copyValue}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
-            styleUrls: ['./inline-copy.component.less']
+            selector: 'pfng-block-copy',
+            template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"copyBtnId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandBtnAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{copyValue}}</span></div><button [attr.id]=\"copyBtnId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{copyBtnLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{copyValue}}</span></div></div></div>",
+            styleUrls: ['./block-copy.component.less']
         }),
         __metadata$g("design:paramtypes", [CopyService])
-    ], InlineCopyComponent);
-    return InlineCopyComponent;
+    ], BlockCopyComponent);
+    return BlockCopyComponent;
 }(CopyBase));
 
 /** Default values provider for tooltip */
@@ -3357,7 +3387,7 @@ function warnOnce(msg) {
     console.warn(msg);
 }
 
-var __decorate$r = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -3632,7 +3662,7 @@ var TooltipDirective = (function () {
         '_tooltipTrigger': [{ type: Input, args: ['tooltipTrigger',] },],
         'tooltipStateChanged': [{ type: Output },],
     };
-    __decorate$r([
+    __decorate$q([
         OnChange(),
         __metadata$h("design:type", Object)
     ], TooltipDirective.prototype, "tooltip", void 0);
@@ -3661,123 +3691,7 @@ var TooltipModule = (function () {
     return TooltipModule;
 }());
 
-var __decorate$s = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var InlineCopyModule = /** @class */ (function () {
-    function InlineCopyModule() {
-    }
-    InlineCopyModule = __decorate$s([
-        NgModule({
-            imports: [
-                CommonModule,
-                TooltipModule.forRoot()
-            ],
-            declarations: [
-                InlineCopyComponent
-            ],
-            exports: [InlineCopyComponent],
-            providers: [CopyService, TooltipConfig]
-        })
-    ], InlineCopyModule);
-    return InlineCopyModule;
-}());
-
-var __extends$d = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate$t = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$i = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var BlockCopyComponent = /** @class */ (function (_super) {
-    __extends$d(BlockCopyComponent, _super);
-    /**
-     * The default constructor
-     */
-    function BlockCopyComponent(copyService) {
-        var _this = _super.call(this, copyService) || this;
-        _this.copyService = copyService;
-        /**
-         * Copy button text
-         */
-        _this.buttonLabel = 'Copy';
-        /**
-         * Controls the expanded state of block copy
-         */
-        _this.expanded = false;
-        /**
-         * Generates a unique value for an id
-         */
-        _this.uniqueID = uniqueId('pfng-block-copy');
-        return _this;
-    }
-    Object.defineProperty(BlockCopyComponent.prototype, "copyBtnId", {
-        /**
-         * Used to uniquly relate label to copy button
-         */
-        get: function () {
-            return this.uniqueID + "-button";
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * Toggle copyValue panel open and close
-     */
-    BlockCopyComponent.prototype.togglePanel = function () {
-        this.expanded = !this.expanded;
-    };
-    /**
-     * Copies the label value to the users clipboard
-     */
-    BlockCopyComponent.prototype.copyToClipboard = function () {
-        this.copyValueToClipboard(this.label);
-    };
-    __decorate$t([
-        Input('label'),
-        __metadata$i("design:type", String)
-    ], BlockCopyComponent.prototype, "label", void 0);
-    __decorate$t([
-        Input('buttonLabel'),
-        __metadata$i("design:type", String)
-    ], BlockCopyComponent.prototype, "buttonLabel", void 0);
-    __decorate$t([
-        Input('expanded'),
-        __metadata$i("design:type", Boolean)
-    ], BlockCopyComponent.prototype, "expanded", void 0);
-    __decorate$t([
-        Input('expandBtnAriaLabel'),
-        __metadata$i("design:type", String)
-    ], BlockCopyComponent.prototype, "expandBtnAriaLabel", void 0);
-    BlockCopyComponent = __decorate$t([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-block-copy',
-            template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"copyBtnId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandBtnAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{copyValue}}</span></div><button [attr.id]=\"copyBtnId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{copyValue}}</span></div></div></div>",
-            styleUrls: ['./block-copy.component.less']
-        }),
-        __metadata$i("design:paramtypes", [CopyService])
-    ], BlockCopyComponent);
-    return BlockCopyComponent;
-}(CopyBase));
-
-var __decorate$u = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$r = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -3786,7 +3700,7 @@ var __decorate$u = (undefined && undefined.__decorate) || function (decorators, 
 var BlockCopyModule = /** @class */ (function () {
     function BlockCopyModule() {
     }
-    BlockCopyModule = __decorate$u([
+    BlockCopyModule = __decorate$r([
         NgModule({
             imports: [
                 CommonModule,
@@ -3802,6 +3716,87 @@ var BlockCopyModule = /** @class */ (function () {
     return BlockCopyModule;
 }());
 
+var __extends$d = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate$s = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$i = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * Inline Copy component
+ *
+ * Usage:
+ * <br/><code>import { InlineCopyModule } from 'patternfly-ng/copy';</code>
+ *
+ * Or:
+ * <br/><code>import { InlineCopyModule } from 'patternfly-ng';</code>
+ */
+var InlineCopyComponent = /** @class */ (function (_super) {
+    __extends$d(InlineCopyComponent, _super);
+    /**
+     * The default constructor
+     */
+    function InlineCopyComponent(copyService) {
+        var _this = _super.call(this, copyService) || this;
+        _this.copyService = copyService;
+        return _this;
+    }
+    /**
+     * Copies the copyBtnAriaLabel value to the users clipboard
+     */
+    InlineCopyComponent.prototype.copyToClipboard = function () {
+        this.copyValueToClipboard();
+    };
+    InlineCopyComponent = __decorate$s([
+        Component({
+            encapsulation: ViewEncapsulation.None,
+            selector: 'pfng-inline-copy',
+            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{copyValue}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
+            styleUrls: ['./inline-copy.component.less']
+        }),
+        __metadata$i("design:paramtypes", [CopyService])
+    ], InlineCopyComponent);
+    return InlineCopyComponent;
+}(CopyBase));
+
+var __decorate$t = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var InlineCopyModule = /** @class */ (function () {
+    function InlineCopyModule() {
+    }
+    InlineCopyModule = __decorate$t([
+        NgModule({
+            imports: [
+                CommonModule,
+                TooltipModule.forRoot()
+            ],
+            declarations: [
+                InlineCopyComponent
+            ],
+            exports: [InlineCopyComponent],
+            providers: [CopyService, TooltipConfig]
+        })
+    ], InlineCopyModule);
+    return InlineCopyModule;
+}());
+
 /**
  * An empty state config containing component properties
  */
@@ -3811,7 +3806,7 @@ var EmptyStateConfig = /** @class */ (function () {
     return EmptyStateConfig;
 }());
 
-var __decorate$v = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$u = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -3870,15 +3865,15 @@ var EmptyStateComponent = /** @class */ (function () {
             this.onActionSelect.emit(action);
         }
     };
-    __decorate$v([
+    __decorate$u([
         Input(),
         __metadata$j("design:type", EmptyStateConfig)
     ], EmptyStateComponent.prototype, "config", void 0);
-    __decorate$v([
+    __decorate$u([
         Output('onActionSelect'),
         __metadata$j("design:type", Object)
     ], EmptyStateComponent.prototype, "onActionSelect", void 0);
-    EmptyStateComponent = __decorate$v([
+    EmptyStateComponent = __decorate$u([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-empty-state',
@@ -3889,7 +3884,7 @@ var EmptyStateComponent = /** @class */ (function () {
     return EmptyStateComponent;
 }());
 
-var __decorate$w = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$v = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -3901,7 +3896,7 @@ var __decorate$w = (undefined && undefined.__decorate) || function (decorators, 
 var EmptyStateModule = /** @class */ (function () {
     function EmptyStateModule() {
     }
-    EmptyStateModule = __decorate$w([
+    EmptyStateModule = __decorate$v([
         NgModule({
             imports: [CommonModule],
             declarations: [EmptyStateComponent],
@@ -3929,7 +3924,7 @@ var FilterConfig = /** @class */ (function () {
     return FilterConfig;
 }());
 
-var __decorate$x = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$w = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4149,27 +4144,27 @@ var FilterFieldsComponent = /** @class */ (function () {
         });
         return result;
     };
-    __decorate$x([
+    __decorate$w([
         Input(),
         __metadata$k("design:type", FilterConfig)
     ], FilterFieldsComponent.prototype, "config", void 0);
-    __decorate$x([
+    __decorate$w([
         Output('onAdd'),
         __metadata$k("design:type", Object)
     ], FilterFieldsComponent.prototype, "onAdd", void 0);
-    __decorate$x([
+    __decorate$w([
         Output('onDelete'),
         __metadata$k("design:type", Object)
     ], FilterFieldsComponent.prototype, "onDelete", void 0);
-    __decorate$x([
+    __decorate$w([
         Output('onFieldSelect'),
         __metadata$k("design:type", Object)
     ], FilterFieldsComponent.prototype, "onFieldSelect", void 0);
-    __decorate$x([
+    __decorate$w([
         Output('onTypeAhead'),
         __metadata$k("design:type", Object)
     ], FilterFieldsComponent.prototype, "onTypeAhead", void 0);
-    FilterFieldsComponent = __decorate$x([
+    FilterFieldsComponent = __decorate$w([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-filter-fields',
@@ -4201,7 +4196,7 @@ var FilterType = /** @class */ (function () {
     return FilterType;
 }());
 
-var __decorate$y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$x = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4354,35 +4349,35 @@ var FilterComponent = /** @class */ (function () {
         });
         return foundFilter !== undefined;
     };
-    __decorate$y([
+    __decorate$x([
         Input(),
         __metadata$l("design:type", FilterConfig)
     ], FilterComponent.prototype, "config", void 0);
-    __decorate$y([
+    __decorate$x([
         Output('onChange'),
         __metadata$l("design:type", Object)
     ], FilterComponent.prototype, "onChange", void 0);
-    __decorate$y([
+    __decorate$x([
         Output('onDelete'),
         __metadata$l("design:type", Object)
     ], FilterComponent.prototype, "onDelete", void 0);
-    __decorate$y([
+    __decorate$x([
         Output('onFieldSelect'),
         __metadata$l("design:type", Object)
     ], FilterComponent.prototype, "onFilterSelect", void 0);
-    __decorate$y([
+    __decorate$x([
         Output('onSave'),
         __metadata$l("design:type", Object)
     ], FilterComponent.prototype, "onSave", void 0);
-    __decorate$y([
+    __decorate$x([
         Output('onTypeAhead'),
         __metadata$l("design:type", Object)
     ], FilterComponent.prototype, "onTypeAhead", void 0);
-    __decorate$y([
+    __decorate$x([
         ViewChild('filterFields'),
         __metadata$l("design:type", FilterFieldsComponent)
     ], FilterComponent.prototype, "filterFields", void 0);
-    FilterComponent = __decorate$y([
+    FilterComponent = __decorate$x([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-filter',
@@ -4635,7 +4630,7 @@ var PopoverModule = (function () {
     return PopoverModule;
 }());
 
-var __decorate$z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4727,19 +4722,19 @@ var FilterResultsComponent = /** @class */ (function () {
         });
         this.saveFilterName = ''; // Reset
     };
-    __decorate$z([
+    __decorate$y([
         Input(),
         __metadata$m("design:type", FilterConfig)
     ], FilterResultsComponent.prototype, "config", void 0);
-    __decorate$z([
+    __decorate$y([
         Output('onClear'),
         __metadata$m("design:type", Object)
     ], FilterResultsComponent.prototype, "onClear", void 0);
-    __decorate$z([
+    __decorate$y([
         Output('onSave'),
         __metadata$m("design:type", Object)
     ], FilterResultsComponent.prototype, "onSave", void 0);
-    FilterResultsComponent = __decorate$z([
+    FilterResultsComponent = __decorate$y([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-filter-results',
@@ -4759,7 +4754,7 @@ var FilterQuery = /** @class */ (function () {
     return FilterQuery;
 }());
 
-var __decorate$A = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4814,13 +4809,13 @@ var SearchHighlightPipe = /** @class */ (function () {
         }
         return output;
     };
-    SearchHighlightPipe = __decorate$A([
+    SearchHighlightPipe = __decorate$z([
         Pipe({ name: 'searchHighlight' })
     ], SearchHighlightPipe);
     return SearchHighlightPipe;
 }());
 
-var __decorate$B = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$A = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4832,7 +4827,7 @@ var __decorate$B = (undefined && undefined.__decorate) || function (decorators, 
 var SearchHighlightPipeModule = /** @class */ (function () {
     function SearchHighlightPipeModule() {
     }
-    SearchHighlightPipeModule = __decorate$B([
+    SearchHighlightPipeModule = __decorate$A([
         NgModule({
             declarations: [
                 SearchHighlightPipe
@@ -4845,7 +4840,7 @@ var SearchHighlightPipeModule = /** @class */ (function () {
     return SearchHighlightPipeModule;
 }());
 
-var __decorate$C = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$B = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4872,13 +4867,13 @@ var TruncatePipe = /** @class */ (function () {
         if (trail === void 0) { trail = '...'; }
         return (value.length > limit) ? value.substring(0, limit) + trail : value;
     };
-    TruncatePipe = __decorate$C([
+    TruncatePipe = __decorate$B([
         Pipe({ name: 'truncate' })
     ], TruncatePipe);
     return TruncatePipe;
 }());
 
-var __decorate$D = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$C = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4890,7 +4885,7 @@ var __decorate$D = (undefined && undefined.__decorate) || function (decorators, 
 var TruncatePipeModule = /** @class */ (function () {
     function TruncatePipeModule() {
     }
-    TruncatePipeModule = __decorate$D([
+    TruncatePipeModule = __decorate$C([
         NgModule({
             declarations: [
                 TruncatePipe
@@ -4903,7 +4898,7 @@ var TruncatePipeModule = /** @class */ (function () {
     return TruncatePipeModule;
 }());
 
-var __decorate$E = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$D = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -4915,7 +4910,7 @@ var __decorate$E = (undefined && undefined.__decorate) || function (decorators, 
 var FilterModule = /** @class */ (function () {
     function FilterModule() {
     }
-    FilterModule = __decorate$E([
+    FilterModule = __decorate$D([
         NgModule({
             imports: [
                 BsDropdownModule.forRoot(),
@@ -4934,7 +4929,7 @@ var FilterModule = /** @class */ (function () {
     return FilterModule;
 }());
 
-var __decorate$F = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$E = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5186,31 +5181,31 @@ var ListBase = /** @class */ (function () {
             });
         }
     };
-    __decorate$F([
+    __decorate$E([
         Input(),
         __metadata$n("design:type", TemplateRef)
     ], ListBase.prototype, "actionTemplate", void 0);
-    __decorate$F([
+    __decorate$E([
         Input(),
         __metadata$n("design:type", Array)
     ], ListBase.prototype, "items", void 0);
-    __decorate$F([
+    __decorate$E([
         Input(),
         __metadata$n("design:type", TemplateRef)
     ], ListBase.prototype, "itemTemplate", void 0);
-    __decorate$F([
+    __decorate$E([
         Output('onActionSelect'),
         __metadata$n("design:type", Object)
     ], ListBase.prototype, "onActionSelect", void 0);
-    __decorate$F([
+    __decorate$E([
         Output('onClick'),
         __metadata$n("design:type", Object)
     ], ListBase.prototype, "onClick", void 0);
-    __decorate$F([
+    __decorate$E([
         Output('onDblClick'),
         __metadata$n("design:type", Object)
     ], ListBase.prototype, "onDblClick", void 0);
-    __decorate$F([
+    __decorate$E([
         Output('onSelectionChange'),
         __metadata$n("design:type", Object)
     ], ListBase.prototype, "onSelectionChange", void 0);
@@ -5266,7 +5261,7 @@ var __extends$f = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$G = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$F = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5407,27 +5402,27 @@ var ListComponent = /** @class */ (function (_super) {
             item: item
         });
     };
-    __decorate$G([
+    __decorate$F([
         Input(),
         __metadata$o("design:type", TemplateRef)
     ], ListComponent.prototype, "actionHeadingTemplate", void 0);
-    __decorate$G([
+    __decorate$F([
         Input(),
         __metadata$o("design:type", ListConfig)
     ], ListComponent.prototype, "config", void 0);
-    __decorate$G([
+    __decorate$F([
         Input(),
         __metadata$o("design:type", TemplateRef)
     ], ListComponent.prototype, "expandTemplate", void 0);
-    __decorate$G([
+    __decorate$F([
         Input(),
         __metadata$o("design:type", TemplateRef)
     ], ListComponent.prototype, "itemHeadingTemplate", void 0);
-    __decorate$G([
+    __decorate$F([
         Output('onPinChange'),
         __metadata$o("design:type", Object)
     ], ListComponent.prototype, "onPinChange", void 0);
-    ListComponent = __decorate$G([
+    ListComponent = __decorate$F([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-list',
@@ -5438,7 +5433,7 @@ var ListComponent = /** @class */ (function (_super) {
     return ListComponent;
 }(ListBase));
 
-var __decorate$H = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$G = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5495,19 +5490,19 @@ var ListExpandToggleComponent = /** @class */ (function () {
         this.item.expandId = this.expandId;
         this.item.expanded = !this.item.expanded;
     };
-    __decorate$H([
+    __decorate$G([
         Input(),
         __metadata$p("design:type", String)
     ], ListExpandToggleComponent.prototype, "expandId", void 0);
-    __decorate$H([
+    __decorate$G([
         Input(),
         __metadata$p("design:type", Object)
     ], ListExpandToggleComponent.prototype, "item", void 0);
-    __decorate$H([
+    __decorate$G([
         Input(),
         __metadata$p("design:type", TemplateRef)
     ], ListExpandToggleComponent.prototype, "template", void 0);
-    ListExpandToggleComponent = __decorate$H([
+    ListExpandToggleComponent = __decorate$G([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-list-expand-toggle',
@@ -5518,7 +5513,7 @@ var ListExpandToggleComponent = /** @class */ (function () {
     return ListExpandToggleComponent;
 }());
 
-var __decorate$I = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$H = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5552,13 +5547,13 @@ var SortArrayPipe = /** @class */ (function () {
         var sortedArray = orderBy(arr, [prop], [sortOrder]);
         return sortedArray;
     };
-    SortArrayPipe = __decorate$I([
+    SortArrayPipe = __decorate$H([
         Pipe({ name: 'sortArray' })
     ], SortArrayPipe);
     return SortArrayPipe;
 }());
 
-var __decorate$J = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$I = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5570,7 +5565,7 @@ var __decorate$J = (undefined && undefined.__decorate) || function (decorators, 
 var SortArrayPipeModule = /** @class */ (function () {
     function SortArrayPipeModule() {
     }
-    SortArrayPipeModule = __decorate$J([
+    SortArrayPipeModule = __decorate$I([
         NgModule({
             declarations: [
                 SortArrayPipe
@@ -5583,7 +5578,7 @@ var SortArrayPipeModule = /** @class */ (function () {
     return SortArrayPipeModule;
 }());
 
-var __decorate$K = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$J = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5595,7 +5590,7 @@ var __decorate$K = (undefined && undefined.__decorate) || function (decorators, 
 var ListModule = /** @class */ (function () {
     function ListModule() {
     }
-    ListModule = __decorate$K([
+    ListModule = __decorate$J([
         NgModule({
             imports: [
                 CommonModule,
@@ -5646,7 +5641,7 @@ var __extends$h = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$L = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$K = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5784,31 +5779,31 @@ var TreeListComponent = /** @class */ (function (_super) {
     TreeListComponent.prototype.getIndentChildren = function (nodeLevel) {
         return (nodeLevel > 1) ? (nodeLevel - 1) * this.config.indentChildren + '' : '';
     };
-    __decorate$L([
+    __decorate$K([
         Input(),
         __metadata$q("design:type", TreeListConfig)
     ], TreeListComponent.prototype, "config", void 0);
-    __decorate$L([
+    __decorate$K([
         Input(),
         __metadata$q("design:type", TemplateRef)
     ], TreeListComponent.prototype, "loadTemplate", void 0);
-    __decorate$L([
+    __decorate$K([
         Output('onEvent'),
         __metadata$q("design:type", Object)
     ], TreeListComponent.prototype, "onEvent", void 0);
-    __decorate$L([
+    __decorate$K([
         Output('onMoveNode'),
         __metadata$q("design:type", Object)
     ], TreeListComponent.prototype, "onMoveNode", void 0);
-    __decorate$L([
+    __decorate$K([
         Output('onToggleExpanded'),
         __metadata$q("design:type", Object)
     ], TreeListComponent.prototype, "onToggleExpanded", void 0);
-    __decorate$L([
+    __decorate$K([
         ViewChild(TreeComponent),
         __metadata$q("design:type", TreeComponent)
     ], TreeListComponent.prototype, "tree", void 0);
-    TreeListComponent = __decorate$L([
+    TreeListComponent = __decorate$K([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-tree-list',
@@ -5819,7 +5814,7 @@ var TreeListComponent = /** @class */ (function (_super) {
     return TreeListComponent;
 }(ListBase));
 
-var __decorate$M = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$L = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5841,7 +5836,7 @@ var TreeListModule = /** @class */ (function () {
         console.log('patternfly-ng: The tree-list component is deprecated due to issues with Angular 6 and ' +
             'mobx autorun, introduced by angular-tree-component.');
     }
-    TreeListModule = __decorate$M([
+    TreeListModule = __decorate$L([
         NgModule({
             imports: [
                 CommonModule,
@@ -5866,7 +5861,7 @@ var AboutModalConfig = /** @class */ (function () {
     return AboutModalConfig;
 }());
 
-var __decorate$N = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$M = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5926,15 +5921,15 @@ var AboutModalComponent = /** @class */ (function () {
             close: true
         });
     };
-    __decorate$N([
+    __decorate$M([
         Input(),
         __metadata$s("design:type", AboutModalConfig)
     ], AboutModalComponent.prototype, "config", void 0);
-    __decorate$N([
+    __decorate$M([
         Output('onCancel'),
         __metadata$s("design:type", Object)
     ], AboutModalComponent.prototype, "onCancel", void 0);
-    AboutModalComponent = __decorate$N([
+    AboutModalComponent = __decorate$M([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-about-modal',
@@ -5945,7 +5940,7 @@ var AboutModalComponent = /** @class */ (function () {
     return AboutModalComponent;
 }());
 
-var __decorate$O = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$N = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -5954,7 +5949,7 @@ var __decorate$O = (undefined && undefined.__decorate) || function (decorators, 
 var ModalModule = /** @class */ (function () {
     function ModalModule() {
     }
-    ModalModule = __decorate$O([
+    ModalModule = __decorate$N([
         NgModule({
             imports: [
                 CommonModule
@@ -6001,7 +5996,7 @@ var NavigationItemConfig = /** @class */ (function (_super) {
     return NavigationItemConfig;
 }(NavigationItemBase));
 
-var __decorate$P = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$O = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -6029,27 +6024,27 @@ var ApplicationLauncherComponent = /** @class */ (function () {
      */
     ApplicationLauncherComponent.prototype.ngOnInit = function () {
     };
-    __decorate$P([
+    __decorate$O([
         Input(),
         __metadata$t("design:type", Boolean)
     ], ApplicationLauncherComponent.prototype, "disabled", void 0);
-    __decorate$P([
+    __decorate$O([
         Input(),
         __metadata$t("design:type", Array)
     ], ApplicationLauncherComponent.prototype, "items", void 0);
-    __decorate$P([
+    __decorate$O([
         Input(),
         __metadata$t("design:type", String)
     ], ApplicationLauncherComponent.prototype, "label", void 0);
-    __decorate$P([
+    __decorate$O([
         Input(),
         __metadata$t("design:type", Boolean)
     ], ApplicationLauncherComponent.prototype, "showAsList", void 0);
-    __decorate$P([
+    __decorate$O([
         Input(),
         __metadata$t("design:type", Boolean)
     ], ApplicationLauncherComponent.prototype, "showIcons", void 0);
-    ApplicationLauncherComponent = __decorate$P([
+    ApplicationLauncherComponent = __decorate$O([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-application-launcher',
@@ -6064,7 +6059,7 @@ var ApplicationLauncherComponent = /** @class */ (function () {
     return ApplicationLauncherComponent;
 }());
 
-var __decorate$Q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$P = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -6076,7 +6071,7 @@ var __decorate$Q = (undefined && undefined.__decorate) || function (decorators, 
 var ApplicationLauncherModule = /** @class */ (function () {
     function ApplicationLauncherModule() {
     }
-    ApplicationLauncherModule = __decorate$Q([
+    ApplicationLauncherModule = __decorate$P([
         NgModule({
             imports: [
                 BsDropdownModule.forRoot(),
@@ -6090,7 +6085,7 @@ var ApplicationLauncherModule = /** @class */ (function () {
     return ApplicationLauncherModule;
 }());
 
-var __decorate$R = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$Q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -6868,59 +6863,59 @@ var VerticalNavigationComponent = /** @class */ (function () {
             }
         }
     };
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", String)
     ], VerticalNavigationComponent.prototype, "brandSrc", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", String)
     ], VerticalNavigationComponent.prototype, "brandAlt", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", HTMLElement)
     ], VerticalNavigationComponent.prototype, "contentContainer", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Boolean)
     ], VerticalNavigationComponent.prototype, "showBadges", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Boolean)
     ], VerticalNavigationComponent.prototype, "persistentSecondary", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Boolean)
     ], VerticalNavigationComponent.prototype, "pinnableMenus", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Boolean)
     ], VerticalNavigationComponent.prototype, "showIcons", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Array)
     ], VerticalNavigationComponent.prototype, "items", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Boolean)
     ], VerticalNavigationComponent.prototype, "updateActiveItemsOnClick", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Boolean)
     ], VerticalNavigationComponent.prototype, "ignoreMobile", void 0);
-    __decorate$R([
+    __decorate$Q([
         Input(),
         __metadata$u("design:type", Boolean)
     ], VerticalNavigationComponent.prototype, "showTopBanner", void 0);
-    __decorate$R([
+    __decorate$Q([
         Output('onNavigationEvent'),
         __metadata$u("design:type", Object)
     ], VerticalNavigationComponent.prototype, "navigationEvent", void 0);
-    __decorate$R([
+    __decorate$Q([
         Output('onItemClickEvent'),
         __metadata$u("design:type", Object)
     ], VerticalNavigationComponent.prototype, "itemClickEvent", void 0);
-    VerticalNavigationComponent = __decorate$R([
+    VerticalNavigationComponent = __decorate$Q([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-vertical-navigation',
@@ -6934,7 +6929,7 @@ var VerticalNavigationComponent = /** @class */ (function () {
     return VerticalNavigationComponent;
 }());
 
-var __decorate$S = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$R = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -6946,7 +6941,7 @@ var __decorate$S = (undefined && undefined.__decorate) || function (decorators, 
 var VerticalNavigationModule = /** @class */ (function () {
     function VerticalNavigationModule() {
     }
-    VerticalNavigationModule = __decorate$S([
+    VerticalNavigationModule = __decorate$R([
         NgModule({
             imports: [
                 CommonModule,
@@ -6960,7 +6955,7 @@ var VerticalNavigationModule = /** @class */ (function () {
     return VerticalNavigationModule;
 }());
 
-var __decorate$T = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$S = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -6984,7 +6979,7 @@ var NavigationModule = /** @class */ (function () {
         console.log('patternfly-ng: NavigationModule is deprecated; use ApplicationLauncherModule ' +
             'or VerticalNavigationModule');
     }
-    NavigationModule = __decorate$T([
+    NavigationModule = __decorate$S([
         NgModule({
             imports: [
                 ApplicationLauncherModule,
@@ -7050,7 +7045,7 @@ var NotificationType = /** @class */ (function () {
     return NotificationType;
 }());
 
-var __decorate$U = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$T = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7084,31 +7079,31 @@ var InlineNotificationComponent = /** @class */ (function () {
         this.hidden = true;
         this.hiddenChange.emit(this.hidden);
     };
-    __decorate$U([
+    __decorate$T([
         Input(),
         __metadata$w("design:type", NotificationType)
     ], InlineNotificationComponent.prototype, "type", void 0);
-    __decorate$U([
+    __decorate$T([
         Input(),
         __metadata$w("design:type", String)
     ], InlineNotificationComponent.prototype, "message", void 0);
-    __decorate$U([
+    __decorate$T([
         Input(),
         __metadata$w("design:type", String)
     ], InlineNotificationComponent.prototype, "header", void 0);
-    __decorate$U([
+    __decorate$T([
         Input(),
         __metadata$w("design:type", Boolean)
     ], InlineNotificationComponent.prototype, "dismissable", void 0);
-    __decorate$U([
+    __decorate$T([
         Input(),
         __metadata$w("design:type", Boolean)
     ], InlineNotificationComponent.prototype, "hidden", void 0);
-    __decorate$U([
+    __decorate$T([
         Output('hiddenChange'),
         __metadata$w("design:type", Object)
     ], InlineNotificationComponent.prototype, "hiddenChange", void 0);
-    InlineNotificationComponent = __decorate$U([
+    InlineNotificationComponent = __decorate$T([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-inline-notification',
@@ -7119,7 +7114,7 @@ var InlineNotificationComponent = /** @class */ (function () {
     return InlineNotificationComponent;
 }());
 
-var __decorate$V = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$U = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7131,7 +7126,7 @@ var __decorate$V = (undefined && undefined.__decorate) || function (decorators, 
 var InlineNotificationModule = /** @class */ (function () {
     function InlineNotificationModule() {
     }
-    InlineNotificationModule = __decorate$V([
+    InlineNotificationModule = __decorate$U([
         NgModule({
             imports: [
                 CommonModule,
@@ -7148,7 +7143,7 @@ var InlineNotificationModule = /** @class */ (function () {
     return InlineNotificationModule;
 }());
 
-var __decorate$W = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$V = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7303,75 +7298,75 @@ var NotificationDrawerComponent = /** @class */ (function () {
             this.unreadNotifications.emit(false);
         }
     };
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", Boolean)
     ], NotificationDrawerComponent.prototype, "allowExpand", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", Boolean)
     ], NotificationDrawerComponent.prototype, "expanded", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", TemplateRef)
     ], NotificationDrawerComponent.prototype, "headingTemplate", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", Boolean)
     ], NotificationDrawerComponent.prototype, "hidden", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", String)
     ], NotificationDrawerComponent.prototype, "noNotificationsText", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", TemplateRef)
     ], NotificationDrawerComponent.prototype, "notificationBodyTemplate", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", TemplateRef)
     ], NotificationDrawerComponent.prototype, "notificationFooterTemplate", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", Array)
     ], NotificationDrawerComponent.prototype, "notificationGroups", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", String)
     ], NotificationDrawerComponent.prototype, "notificationTrackField", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", Boolean)
     ], NotificationDrawerComponent.prototype, "showMarkAllRead", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", Boolean)
     ], NotificationDrawerComponent.prototype, "showClearAll", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", Boolean)
     ], NotificationDrawerComponent.prototype, "singleGroup", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", TemplateRef)
     ], NotificationDrawerComponent.prototype, "subHeadingTemplate", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", String)
     ], NotificationDrawerComponent.prototype, "title", void 0);
-    __decorate$W([
+    __decorate$V([
         Input(),
         __metadata$x("design:type", TemplateRef)
     ], NotificationDrawerComponent.prototype, "titleTemplate", void 0);
-    __decorate$W([
+    __decorate$V([
         Output('close'),
         __metadata$x("design:type", Object)
     ], NotificationDrawerComponent.prototype, "close", void 0);
-    __decorate$W([
+    __decorate$V([
         Output('unreadNotifications'),
         __metadata$x("design:type", Object)
     ], NotificationDrawerComponent.prototype, "unreadNotifications", void 0);
-    NotificationDrawerComponent = __decorate$W([
+    NotificationDrawerComponent = __decorate$V([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-notification-drawer',
@@ -7382,7 +7377,7 @@ var NotificationDrawerComponent = /** @class */ (function () {
     return NotificationDrawerComponent;
 }());
 
-var __decorate$X = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$W = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7394,7 +7389,7 @@ var __decorate$X = (undefined && undefined.__decorate) || function (decorators, 
 var NotificationDrawerModule = /** @class */ (function () {
     function NotificationDrawerModule() {
     }
-    NotificationDrawerModule = __decorate$X([
+    NotificationDrawerModule = __decorate$W([
         NgModule({
             imports: [
                 CommonModule,
@@ -7412,7 +7407,7 @@ var NotificationDrawerModule = /** @class */ (function () {
     return NotificationDrawerModule;
 }());
 
-var __decorate$Y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$X = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7500,47 +7495,47 @@ var ToastNotificationComponent = /** @class */ (function () {
     ToastNotificationComponent.prototype.handleClose = function ($event) {
         this.onCloseSelect.emit({ notification: this.notification });
     };
-    __decorate$Y([
+    __decorate$X([
         Input(),
         __metadata$y("design:type", String)
     ], ToastNotificationComponent.prototype, "header", void 0);
-    __decorate$Y([
+    __decorate$X([
         Input(),
         __metadata$y("design:type", String)
     ], ToastNotificationComponent.prototype, "message", void 0);
-    __decorate$Y([
+    __decorate$X([
         Input(),
         __metadata$y("design:type", Array)
     ], ToastNotificationComponent.prototype, "moreActions", void 0);
-    __decorate$Y([
+    __decorate$X([
         Input(),
         __metadata$y("design:type", Notification)
     ], ToastNotificationComponent.prototype, "notification", void 0);
-    __decorate$Y([
+    __decorate$X([
         Input(),
         __metadata$y("design:type", Action)
     ], ToastNotificationComponent.prototype, "primaryAction", void 0);
-    __decorate$Y([
+    __decorate$X([
         Input(),
         __metadata$y("design:type", Boolean)
     ], ToastNotificationComponent.prototype, "showClose", void 0);
-    __decorate$Y([
+    __decorate$X([
         Input(),
         __metadata$y("design:type", String)
     ], ToastNotificationComponent.prototype, "type", void 0);
-    __decorate$Y([
+    __decorate$X([
         Output('onActionSelect'),
         __metadata$y("design:type", Object)
     ], ToastNotificationComponent.prototype, "onActionSelect", void 0);
-    __decorate$Y([
+    __decorate$X([
         Output('onCloseSelect'),
         __metadata$y("design:type", Object)
     ], ToastNotificationComponent.prototype, "onCloseSelect", void 0);
-    __decorate$Y([
+    __decorate$X([
         Output('onViewingChange'),
         __metadata$y("design:type", Object)
     ], ToastNotificationComponent.prototype, "onViewingChange", void 0);
-    ToastNotificationComponent = __decorate$Y([
+    ToastNotificationComponent = __decorate$X([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-toast-notification',
@@ -7551,7 +7546,7 @@ var ToastNotificationComponent = /** @class */ (function () {
     return ToastNotificationComponent;
 }());
 
-var __decorate$Z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$Y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7563,7 +7558,7 @@ var __decorate$Z = (undefined && undefined.__decorate) || function (decorators, 
 var ToastNotificationModule = /** @class */ (function () {
     function ToastNotificationModule() {
     }
-    ToastNotificationModule = __decorate$Z([
+    ToastNotificationModule = __decorate$Y([
         NgModule({
             imports: [
                 BsDropdownModule.forRoot(),
@@ -7584,7 +7579,7 @@ var ToastNotificationModule = /** @class */ (function () {
     return ToastNotificationModule;
 }());
 
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$Z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7633,27 +7628,27 @@ var ToastNotificationListComponent = /** @class */ (function () {
     ToastNotificationListComponent.prototype.handleViewingChange = function ($event) {
         this.onViewingChange.emit($event);
     };
-    __decorate([
+    __decorate$Z([
         Input(),
         __metadata$z("design:type", Array)
     ], ToastNotificationListComponent.prototype, "notifications", void 0);
-    __decorate([
+    __decorate$Z([
         Input(),
         __metadata$z("design:type", Boolean)
     ], ToastNotificationListComponent.prototype, "showClose", void 0);
-    __decorate([
+    __decorate$Z([
         Output('onActionSelect'),
         __metadata$z("design:type", Object)
     ], ToastNotificationListComponent.prototype, "onActionSelect", void 0);
-    __decorate([
+    __decorate$Z([
         Output('onCloseSelect'),
         __metadata$z("design:type", Object)
     ], ToastNotificationListComponent.prototype, "onCloseSelect", void 0);
-    __decorate([
+    __decorate$Z([
         Output('onViewingChange'),
         __metadata$z("design:type", Object)
     ], ToastNotificationListComponent.prototype, "onViewingChange", void 0);
-    ToastNotificationListComponent = __decorate([
+    ToastNotificationListComponent = __decorate$Z([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-toast-notification-list',
@@ -7664,7 +7659,7 @@ var ToastNotificationListComponent = /** @class */ (function () {
     return ToastNotificationListComponent;
 }());
 
-var __decorate$_ = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7676,7 +7671,7 @@ var __decorate$_ = (undefined && undefined.__decorate) || function (decorators, 
 var ToastNotificationListModule = /** @class */ (function () {
     function ToastNotificationListModule() {
     }
-    ToastNotificationListModule = __decorate$_([
+    ToastNotificationListModule = __decorate([
         NgModule({
             imports: [
                 CommonModule,
@@ -7694,7 +7689,7 @@ var ToastNotificationListModule = /** @class */ (function () {
     return ToastNotificationListModule;
 }());
 
-var __decorate$10 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$_ = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -7720,7 +7715,7 @@ var NotificationModule = /** @class */ (function () {
         console.log('patternfly-ng: NotificationModule is deprecated; use InlineNotificationModule, ' +
             'NotificationDrawerModule, ToastNotificationModule, or ToastNotificationListModule');
     }
-    NotificationModule = __decorate$10([
+    NotificationModule = __decorate$_([
         NgModule({
             imports: [
                 CommonModule,
@@ -30293,7 +30288,7 @@ var Symbol = {
     iterator: iterator.iterator
 };
 
-var __decorate$11 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$10 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30468,7 +30463,7 @@ var NotificationService = /** @class */ (function () {
     NotificationService.prototype.updateNotificationsStream = function () {
         this._notificationsSubject.next(this.getNotifications());
     };
-    NotificationService = __decorate$11([
+    NotificationService = __decorate$10([
         Injectable(),
         __metadata$B("design:paramtypes", [])
     ], NotificationService);
@@ -30484,7 +30479,7 @@ var PaginationConfig = /** @class */ (function () {
     return PaginationConfig;
 }());
 
-var __decorate$12 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$11 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30691,19 +30686,19 @@ var PaginationComponent = /** @class */ (function () {
     PaginationComponent.prototype.isLastPage = function () {
         return (this.config.pageNumber === this.lastPageNumber);
     };
-    __decorate$12([
+    __decorate$11([
         Input(),
         __metadata$C("design:type", PaginationConfig)
     ], PaginationComponent.prototype, "config", void 0);
-    __decorate$12([
+    __decorate$11([
         Output('onPageSizeChange'),
         __metadata$C("design:type", Object)
     ], PaginationComponent.prototype, "onPageSizeChange", void 0);
-    __decorate$12([
+    __decorate$11([
         Output('onPageNumberChange'),
         __metadata$C("design:type", Object)
     ], PaginationComponent.prototype, "onPageNumberChange", void 0);
-    PaginationComponent = __decorate$12([
+    PaginationComponent = __decorate$11([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-pagination',
@@ -30723,7 +30718,7 @@ var PaginationEvent = /** @class */ (function () {
     return PaginationEvent;
 }());
 
-var __decorate$13 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$12 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30735,7 +30730,7 @@ var __decorate$13 = (undefined && undefined.__decorate) || function (decorators,
 var PaginationModule = /** @class */ (function () {
     function PaginationModule() {
     }
-    PaginationModule = __decorate$13([
+    PaginationModule = __decorate$12([
         NgModule({
             imports: [
                 BsDropdownModule.forRoot(),
@@ -30750,7 +30745,7 @@ var PaginationModule = /** @class */ (function () {
     return PaginationModule;
 }());
 
-var __decorate$14 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$13 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30775,7 +30770,7 @@ var PipeModule = /** @class */ (function () {
         console.log('patternfly-ng: PipeModule is deprecated; use SearchHighlightModule, ' +
             'SortArrayModule, or TruncateModule');
     }
-    PipeModule = __decorate$14([
+    PipeModule = __decorate$13([
         NgModule({
             imports: [
                 SearchHighlightPipeModule,
@@ -30793,7 +30788,7 @@ var PipeModule = /** @class */ (function () {
     return PipeModule;
 }());
 
-var __decorate$15 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$14 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30911,37 +30906,37 @@ var RemainingCharsCountDirective = /** @class */ (function () {
             }
         }
     };
-    __decorate$15([
+    __decorate$14([
         Input(),
         __metadata$E("design:type", Boolean)
     ], RemainingCharsCountDirective.prototype, "blockInputAtMaxLimit", void 0);
-    __decorate$15([
+    __decorate$14([
         Input(),
         __metadata$E("design:type", Number)
     ], RemainingCharsCountDirective.prototype, "charsMaxLimit", void 0);
-    __decorate$15([
+    __decorate$14([
         Input(),
         __metadata$E("design:type", Object)
     ], RemainingCharsCountDirective.prototype, "charsRemainingElement", void 0);
-    __decorate$15([
+    __decorate$14([
         Input(),
         __metadata$E("design:type", Number)
     ], RemainingCharsCountDirective.prototype, "charsRemainingWarning", void 0);
-    __decorate$15([
+    __decorate$14([
         Output('onOverCharsMaxLimit'),
         __metadata$E("design:type", Object)
     ], RemainingCharsCountDirective.prototype, "onOverCharsMaxLimit", void 0);
-    __decorate$15([
+    __decorate$14([
         Output('onUnderCharsMaxLimit'),
         __metadata$E("design:type", Object)
     ], RemainingCharsCountDirective.prototype, "onUnderCharsMaxLimit", void 0);
-    __decorate$15([
+    __decorate$14([
         HostListener('keyup', ['$event']),
         __metadata$E("design:type", Function),
         __metadata$E("design:paramtypes", [KeyboardEvent]),
         __metadata$E("design:returntype", void 0)
     ], RemainingCharsCountDirective.prototype, "handleKeypress", null);
-    RemainingCharsCountDirective = __decorate$15([
+    RemainingCharsCountDirective = __decorate$14([
         Directive({
             selector: '[pfng-remaining-chars-count]'
         }),
@@ -30950,7 +30945,7 @@ var RemainingCharsCountDirective = /** @class */ (function () {
     return RemainingCharsCountDirective;
 }());
 
-var __decorate$16 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$15 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30962,7 +30957,7 @@ var __decorate$16 = (undefined && undefined.__decorate) || function (decorators,
 var RemainingCharsCountModule = /** @class */ (function () {
     function RemainingCharsCountModule() {
     }
-    RemainingCharsCountModule = __decorate$16([
+    RemainingCharsCountModule = __decorate$15([
         NgModule({
             imports: [CommonModule, FormsModule],
             declarations: [RemainingCharsCountDirective],
@@ -30972,7 +30967,7 @@ var RemainingCharsCountModule = /** @class */ (function () {
     return RemainingCharsCountModule;
 }());
 
-var __decorate$17 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$16 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -30990,15 +30985,15 @@ var SampleComponent = /** @class */ (function () {
      */
     function SampleComponent() {
     }
-    __decorate$17([
+    __decorate$16([
         Input(),
         __metadata$F("design:type", Boolean)
     ], SampleComponent.prototype, "disabled", void 0);
-    __decorate$17([
+    __decorate$16([
         Input(),
         __metadata$F("design:type", String)
     ], SampleComponent.prototype, "label", void 0);
-    SampleComponent = __decorate$17([
+    SampleComponent = __decorate$16([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pf-sample-component',
@@ -31010,7 +31005,7 @@ var SampleComponent = /** @class */ (function () {
     return SampleComponent;
 }());
 
-var __decorate$18 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$17 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -31022,7 +31017,7 @@ var __decorate$18 = (undefined && undefined.__decorate) || function (decorators,
 var SampleModule = /** @class */ (function () {
     function SampleModule() {
     }
-    SampleModule = __decorate$18([
+    SampleModule = __decorate$17([
         NgModule({
             imports: [CommonModule],
             declarations: [SampleComponent],
@@ -31041,7 +31036,7 @@ var SortConfig = /** @class */ (function () {
     return SortConfig;
 }());
 
-var __decorate$19 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$18 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -31138,15 +31133,15 @@ var SortComponent = /** @class */ (function () {
             isAscending: this.config.isAscending
         });
     };
-    __decorate$19([
+    __decorate$18([
         Input(),
         __metadata$G("design:type", SortConfig)
     ], SortComponent.prototype, "config", void 0);
-    __decorate$19([
+    __decorate$18([
         Output('onChange'),
         __metadata$G("design:type", Object)
     ], SortComponent.prototype, "onChange", void 0);
-    SortComponent = __decorate$19([
+    SortComponent = __decorate$18([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-sort',
@@ -31175,7 +31170,7 @@ var SortField = /** @class */ (function () {
     return SortField;
 }());
 
-var __decorate$1a = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$19 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -31187,7 +31182,7 @@ var __decorate$1a = (undefined && undefined.__decorate) || function (decorators,
 var SortModule = /** @class */ (function () {
     function SortModule() {
     }
-    SortModule = __decorate$1a([
+    SortModule = __decorate$19([
         NgModule({
             imports: [CommonModule, BsDropdownModule.forRoot()],
             declarations: [SortComponent],
@@ -31198,7 +31193,7 @@ var SortModule = /** @class */ (function () {
     return SortModule;
 }());
 
-var __decorate$1b = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1a = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -31299,55 +31294,55 @@ var TableBase = /** @class */ (function () {
     TableBase.prototype.handleViewSelect = function ($event) {
         this.onViewSelect.emit($event);
     };
-    __decorate$1b([
+    __decorate$1a([
         Input(),
         __metadata$H("design:type", TemplateRef)
     ], TableBase.prototype, "actionTemplate", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Input(),
         __metadata$H("design:type", TemplateRef)
     ], TableBase.prototype, "viewTemplate", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onDrop'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onDrop", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onPageSizeChange'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onPageSizeChange", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onPageNumberChange'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onPageNumberChange", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onActionSelect'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onActionSelect", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onFilterFieldSelect'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onFilterFieldSelect", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onFilterChange'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onFilterChange", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onFilterSave'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onFilterSave", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onFilterTypeAhead'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onFilterTypeAhead", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onSelectionChange'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onSelectionChange", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onSortChange'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onSortChange", void 0);
-    __decorate$1b([
+    __decorate$1a([
         Output('onViewSelect'),
         __metadata$H("design:type", Object)
     ], TableBase.prototype, "onViewSelect", void 0);
@@ -31414,7 +31409,7 @@ var __extends$2g = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$1c = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1b = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -31958,83 +31953,83 @@ var TableComponent = /** @class */ (function (_super) {
             this.datatable.rowDetail.toggleExpandRow(row);
         }
     };
-    __decorate$1c([
+    __decorate$1b([
         Input(),
         __metadata$I("design:type", Array)
     ], TableComponent.prototype, "columns", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Input(),
         __metadata$I("design:type", TableConfig)
     ], TableComponent.prototype, "config", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Input(),
         __metadata$I("design:type", NgxDataTableConfig)
     ], TableComponent.prototype, "dataTableConfig", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Input(),
         __metadata$I("design:type", TemplateRef)
     ], TableComponent.prototype, "expandRowTemplate", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Input(),
         __metadata$I("design:type", TemplateRef)
     ], TableComponent.prototype, "groupHeaderTemplate", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Input(),
         __metadata$I("design:type", Array)
     ], TableComponent.prototype, "rows", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onActivate'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onActivate", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onDetailToggle'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onDetailToggle", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onPage'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onPage", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onReorder'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onReorder", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onResize'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onResize", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onSelect'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onSelect", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onScroll'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onScroll", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onSort'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onSort", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onTableContextMenu'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onTableContextMenu", void 0);
-    __decorate$1c([
+    __decorate$1b([
         Output('onDrop'),
         __metadata$I("design:type", Object)
     ], TableComponent.prototype, "onDrop", void 0);
-    __decorate$1c([
+    __decorate$1b([
         ViewChild('datatable'),
         __metadata$I("design:type", DatatableComponent)
     ], TableComponent.prototype, "_datatable", void 0);
-    __decorate$1c([
+    __decorate$1b([
         ViewChild('selectCellTemplate'),
         __metadata$I("design:type", TemplateRef)
     ], TableComponent.prototype, "selectCellTemplate", void 0);
-    __decorate$1c([
+    __decorate$1b([
         ViewChild('selectHeadTemplate'),
         __metadata$I("design:type", TemplateRef)
     ], TableComponent.prototype, "selectHeadTemplate", void 0);
-    TableComponent = __decorate$1c([
+    TableComponent = __decorate$1b([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-table',
@@ -32045,7 +32040,7 @@ var TableComponent = /** @class */ (function (_super) {
     return TableComponent;
 }(TableBase));
 
-var __decorate$1d = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1c = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -32182,27 +32177,27 @@ var NgxDataTableDndDirective = /** @class */ (function () {
         // console.log('EMITTER', args);
         this.dragulaDrop.emit(this.dragulaModel);
     };
-    __decorate$1d([
+    __decorate$1c([
         Input(),
         __metadata$J("design:type", String)
     ], NgxDataTableDndDirective.prototype, "dragulaName", void 0);
-    __decorate$1d([
+    __decorate$1c([
         Input(),
         __metadata$J("design:type", Object)
     ], NgxDataTableDndDirective.prototype, "dragulaModel", void 0);
-    __decorate$1d([
+    __decorate$1c([
         Input(),
         __metadata$J("design:type", String)
     ], NgxDataTableDndDirective.prototype, "dragulaClassSelector", void 0);
-    __decorate$1d([
+    __decorate$1c([
         Output(),
         __metadata$J("design:type", EventEmitter)
     ], NgxDataTableDndDirective.prototype, "dragulaDrop", void 0);
-    __decorate$1d([
+    __decorate$1c([
         Output(),
         __metadata$J("design:type", EventEmitter)
     ], NgxDataTableDndDirective.prototype, "dragulaDrag", void 0);
-    NgxDataTableDndDirective = __decorate$1d([
+    NgxDataTableDndDirective = __decorate$1c([
         Directive({
             selector: 'ngx-datatable[dragulaName]'
         }),
@@ -32220,7 +32215,7 @@ var ToolbarConfig = /** @class */ (function () {
     return ToolbarConfig;
 }());
 
-var __decorate$1e = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1d = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -32392,51 +32387,51 @@ var ToolbarComponent = /** @class */ (function () {
     ToolbarComponent.prototype.enforceSingleSelect = function (filter$$1) {
         remove(this.config.filterConfig.appliedFilters, { title: filter$$1.field.title });
     };
-    __decorate$1e([
+    __decorate$1d([
         Input(),
         __metadata$K("design:type", ToolbarConfig)
     ], ToolbarComponent.prototype, "config", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Input(),
         __metadata$K("design:type", TemplateRef)
     ], ToolbarComponent.prototype, "actionTemplate", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Input(),
         __metadata$K("design:type", TemplateRef)
     ], ToolbarComponent.prototype, "viewTemplate", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Output('onActionSelect'),
         __metadata$K("design:type", Object)
     ], ToolbarComponent.prototype, "onActionSelect", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Output('onFilterFieldSelect'),
         __metadata$K("design:type", Object)
     ], ToolbarComponent.prototype, "onFilterFieldSelect", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Output('onFilterChange'),
         __metadata$K("design:type", Object)
     ], ToolbarComponent.prototype, "onFilterChange", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Output('onFilterSave'),
         __metadata$K("design:type", Object)
     ], ToolbarComponent.prototype, "onFilterSave", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Output('onFilterTypeAhead'),
         __metadata$K("design:type", Object)
     ], ToolbarComponent.prototype, "onFilterTypeAhead", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Output('onSortChange'),
         __metadata$K("design:type", Object)
     ], ToolbarComponent.prototype, "onSortChange", void 0);
-    __decorate$1e([
+    __decorate$1d([
         Output('onViewSelect'),
         __metadata$K("design:type", Object)
     ], ToolbarComponent.prototype, "onViewSelect", void 0);
-    __decorate$1e([
+    __decorate$1d([
         ViewChild('filterFields'),
         __metadata$K("design:type", FilterFieldsComponent)
     ], ToolbarComponent.prototype, "filterFields", void 0);
-    ToolbarComponent = __decorate$1e([
+    ToolbarComponent = __decorate$1d([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-toolbar',
@@ -32447,7 +32442,7 @@ var ToolbarComponent = /** @class */ (function () {
     return ToolbarComponent;
 }());
 
-var __decorate$1f = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1e = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -32459,7 +32454,7 @@ var __decorate$1f = (undefined && undefined.__decorate) || function (decorators,
 var ToolbarModule = /** @class */ (function () {
     function ToolbarModule() {
     }
-    ToolbarModule = __decorate$1f([
+    ToolbarModule = __decorate$1e([
         NgModule({
             imports: [
                 ActionModule,
@@ -32476,7 +32471,7 @@ var ToolbarModule = /** @class */ (function () {
     return ToolbarModule;
 }());
 
-var __decorate$1g = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1f = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -32488,7 +32483,7 @@ var __decorate$1g = (undefined && undefined.__decorate) || function (decorators,
 var TableModule = /** @class */ (function () {
     function TableModule() {
     }
-    TableModule = __decorate$1g([
+    TableModule = __decorate$1f([
         NgModule({
             imports: [
                 CommonModule,
@@ -32682,7 +32677,7 @@ var __extends$2h = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$1h = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1g = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -33029,31 +33024,31 @@ var WizardComponent = /** @class */ (function (_super) {
             this.goTo(step, true, false);
         }
     };
-    __decorate$1h([
+    __decorate$1g([
         Input(),
         __metadata$L("design:type", WizardConfig)
     ], WizardComponent.prototype, "config", void 0);
-    __decorate$1h([
+    __decorate$1g([
         Output('onCancel'),
         __metadata$L("design:type", Object)
     ], WizardComponent.prototype, "onCancel", void 0);
-    __decorate$1h([
+    __decorate$1g([
         Output('onFinish'),
         __metadata$L("design:type", Object)
     ], WizardComponent.prototype, "onFinish", void 0);
-    __decorate$1h([
+    __decorate$1g([
         Output('onNext'),
         __metadata$L("design:type", Object)
     ], WizardComponent.prototype, "onNext", void 0);
-    __decorate$1h([
+    __decorate$1g([
         Output('onPrevious'),
         __metadata$L("design:type", Object)
     ], WizardComponent.prototype, "onPrevious", void 0);
-    __decorate$1h([
+    __decorate$1g([
         Output('onStepChange'),
         __metadata$L("design:type", Object)
     ], WizardComponent.prototype, "onStepChange", void 0);
-    WizardComponent = __decorate$1h([
+    WizardComponent = __decorate$1g([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-wizard',
@@ -33073,7 +33068,7 @@ var WizardEvent = /** @class */ (function () {
     return WizardEvent;
 }());
 
-var __decorate$1i = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1h = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -33129,7 +33124,7 @@ var WizardReviewComponent = /** @class */ (function () {
     WizardReviewComponent.prototype.toggleReviewDetails = function (step) {
         step.config.expandReviewDetails = !step.config.expandReviewDetails;
     };
-    WizardReviewComponent = __decorate$1i([
+    WizardReviewComponent = __decorate$1h([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-wizard-review',
@@ -33169,7 +33164,7 @@ var __extends$2i = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$1j = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1i = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -33456,19 +33451,19 @@ var WizardStepComponent = /** @class */ (function (_super) {
             this.goTo(step);
         }
     };
-    __decorate$1j([
+    __decorate$1i([
         Input(),
         __metadata$N("design:type", WizardStepConfig)
     ], WizardStepComponent.prototype, "config", void 0);
-    __decorate$1j([
+    __decorate$1i([
         Input(),
         __metadata$N("design:type", TemplateRef)
     ], WizardStepComponent.prototype, "reviewTemplate", void 0);
-    __decorate$1j([
+    __decorate$1i([
         Output('onShow'),
         __metadata$N("design:type", Object)
     ], WizardStepComponent.prototype, "onShow", void 0);
-    WizardStepComponent = __decorate$1j([
+    WizardStepComponent = __decorate$1i([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-wizard-step',
@@ -33480,7 +33475,7 @@ var WizardStepComponent = /** @class */ (function (_super) {
     return WizardStepComponent;
 }(WizardBase));
 
-var __decorate$1k = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1j = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -33589,19 +33584,19 @@ var WizardSubstepComponent = /** @class */ (function () {
             step: this
         });
     };
-    __decorate$1k([
+    __decorate$1j([
         Input(),
         __metadata$O("design:type", WizardStepConfig)
     ], WizardSubstepComponent.prototype, "config", void 0);
-    __decorate$1k([
+    __decorate$1j([
         Input(),
         __metadata$O("design:type", TemplateRef)
     ], WizardSubstepComponent.prototype, "reviewTemplate", void 0);
-    __decorate$1k([
+    __decorate$1j([
         Output('onShow'),
         __metadata$O("design:type", Object)
     ], WizardSubstepComponent.prototype, "onShow", void 0);
-    WizardSubstepComponent = __decorate$1k([
+    WizardSubstepComponent = __decorate$1j([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-wizard-substep',
@@ -33613,7 +33608,7 @@ var WizardSubstepComponent = /** @class */ (function () {
     return WizardSubstepComponent;
 }());
 
-var __decorate$1l = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate$1k = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
@@ -33625,7 +33620,7 @@ var __decorate$1l = (undefined && undefined.__decorate) || function (decorators,
 var WizardModule = /** @class */ (function () {
     function WizardModule() {
     }
-    WizardModule = __decorate$1l([
+    WizardModule = __decorate$1k([
         NgModule({
             imports: [
                 CommonModule,
@@ -33639,5 +33634,5 @@ var WizardModule = /** @class */ (function () {
     return WizardModule;
 }());
 
-export { Action, ActionConfig, ActionComponent, ActionModule, CardBase, CardConfigBase, CardModule$1 as CardModule, CardAction, CardActionComponent, CardActionModule, CardComponent, CardConfig, CardFilter, CardFilterComponent, CardFilterPosition, CardFilterModule, InfoStatusCardComponent, InfoStatusCardConfig, InfoStatusCardModule, ChartBase, ChartConfigBase, ChartDefaults, ChartConfig, ChartModule, DonutComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData, DonutChartBaseComponent, DonutChartBaseConfig, DonutChartComponent, DonutChartConfig, DonutChartModule, UtilizationDonutChartComponent, UtilizationDonutChartConfig, UtilizationDonutChartModule, SparklineChartComponent, SparklineChartConfig, SparklineChartData, SparklineChartModule, CopyBase, CopyService, CopyServiceModule, InlineCopyComponent, InlineCopyModule, BlockCopyComponent, BlockCopyModule, EmptyStateComponent, EmptyStateConfig, EmptyStateModule, Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, FilterFieldsComponent, FilterModule, FilterResultsComponent, FilterQuery, FilterType, ListBase, ListConfigBase, ListEvent, ListComponent, ListConfig, ListExpandToggleComponent, ListModule, TreeListComponent, TreeListConfig, TreeListModule, AboutModalConfig, AboutModalComponent, ModalModule, NavigationItemConfig, NavigationModule, VerticalNavigationComponent, ApplicationLauncherComponent, Notification, NotificationEvent, NotificaitonGroup, NotificationModule, NotificationType, InlineNotificationComponent, InlineNotificationModule, NotificationDrawerComponent, NotificationDrawerModule, NotificationService, ToastNotificationComponent, ToastNotificationModule, ToastNotificationListComponent, ToastNotificationListModule, PaginationComponent, PaginationConfig, PaginationEvent, PaginationModule, PipeModule, SearchHighlightPipeModule, SearchHighlightPipe, SortArrayPipeModule, SortArrayPipe, TruncatePipeModule, TruncatePipe, RemainingCharsCountDirective, RemainingCharsCountModule, SampleModule, SortComponent, SortConfig, SortEvent, SortField, SortModule, TableBase, TableConfigBase, TableEvent, NgxDataTableConfig, TableComponent, TableConfig, TableModule, ToolbarConfig, ToolbarComponent, ToolbarModule, ToolbarView, WindowReference, WizardBase, WizardComponent, WizardConfig, WizardEvent, WizardModule, WizardReviewComponent, WizardStep, WizardStepComponent, WizardStepConfig, WizardSubstepComponent };
+export { Action, ActionConfig, ActionComponent, ActionModule, CardBase, CardConfigBase, CardModule$1 as CardModule, CardAction, CardActionComponent, CardActionModule, CardComponent, CardConfig, CardFilter, CardFilterComponent, CardFilterPosition, CardFilterModule, InfoStatusCardComponent, InfoStatusCardConfig, InfoStatusCardModule, ChartBase, ChartConfigBase, ChartDefaults, ChartConfig, ChartModule, DonutComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData, DonutChartBaseComponent, DonutChartBaseConfig, DonutChartComponent, DonutChartConfig, DonutChartModule, UtilizationDonutChartComponent, UtilizationDonutChartConfig, UtilizationDonutChartModule, SparklineChartComponent, SparklineChartConfig, SparklineChartData, SparklineChartModule, CopyBase, BlockCopyComponent, BlockCopyModule, CopyService, InlineCopyComponent, InlineCopyModule, EmptyStateComponent, EmptyStateConfig, EmptyStateModule, Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, FilterFieldsComponent, FilterModule, FilterResultsComponent, FilterQuery, FilterType, ListBase, ListConfigBase, ListEvent, ListComponent, ListConfig, ListExpandToggleComponent, ListModule, TreeListComponent, TreeListConfig, TreeListModule, AboutModalConfig, AboutModalComponent, ModalModule, NavigationItemConfig, NavigationModule, VerticalNavigationComponent, ApplicationLauncherComponent, Notification, NotificationEvent, NotificaitonGroup, NotificationModule, NotificationType, InlineNotificationComponent, InlineNotificationModule, NotificationDrawerComponent, NotificationDrawerModule, NotificationService, ToastNotificationComponent, ToastNotificationModule, ToastNotificationListComponent, ToastNotificationListModule, PaginationComponent, PaginationConfig, PaginationEvent, PaginationModule, PipeModule, SearchHighlightPipeModule, SearchHighlightPipe, SortArrayPipeModule, SortArrayPipe, TruncatePipeModule, TruncatePipe, RemainingCharsCountDirective, RemainingCharsCountModule, SampleModule, SortComponent, SortConfig, SortEvent, SortField, SortModule, TableBase, TableConfigBase, TableEvent, NgxDataTableConfig, TableComponent, TableConfig, TableModule, ToolbarConfig, ToolbarComponent, ToolbarModule, ToolbarView, WindowReference, WizardBase, WizardComponent, WizardConfig, WizardEvent, WizardModule, WizardReviewComponent, WizardStep, WizardStepComponent, WizardStepConfig, WizardSubstepComponent };
 //# sourceMappingURL=patternfly-ng.esm.js.map

@@ -118,10 +118,10 @@ describe('Inline Copy Component - ', () => {
     expect(ariaLabel).toBe(`${componentConfig.copyBtnAriaLabel}`);
   });
 
-  it('should emit a copiedToClipboard event', () => {
-    const spy = spyOn(inlineCopy.copiedToClipboard, 'emit');
+  it('should emit a onCopyToClipboard event', () => {
+    const spy = spyOn(inlineCopy.onCopyToClipboard, 'emit');
     (<any>Object).assign(inlineCopy, componentConfig);
-    inlineCopy.copiedToClipboard.subscribe(eventResponse => {
+    inlineCopy.onCopyToClipboard.subscribe(eventResponse => {
       expect(spy).toHaveBeenCalled();
       expect(eventResponse).toBe(`${inlineCopy.copyBtnAriaLabel} copied`);
     });

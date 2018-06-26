@@ -3,6 +3,7 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
+import {CopyEvent} from '../../copy-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -10,7 +11,7 @@ import {
   templateUrl: './inline-copy-wrap-example.component.html'
 })
 export class InlineCopyWrapExampleComponent implements OnInit {
-
+  actionsText: string = '';
   wrapExConfig = {
     copyBtnAriaLabel: 'Copy JSON+LD Schema Example',
     // tslint:disable-next-line:max-line-length
@@ -20,4 +21,8 @@ export class InlineCopyWrapExampleComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  handleCopyToClipboard($event: CopyEvent): void {
+    this.actionsText = 'Copied: ' + $event.value + '\r\n' + this.actionsText;
+  }
 }
