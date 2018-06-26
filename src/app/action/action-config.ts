@@ -11,6 +11,11 @@ export class ActionConfig {
   moreActions?: Action[];
 
   /**
+   * Text announced to screen readers for the action config button
+   */
+  moreActionsAriaLabel?: string;
+  
+  /**
    * Set to true to disable secondary actions
    */
   moreActionsDisabled: boolean;
@@ -29,9 +34,4 @@ export class ActionConfig {
    * List of primary actions (e.g., for buttons)
    */
   primaryActions: Action[];
-
-  /**
-   * Text announced to screen readers for the action config button
-   */
-  ariaLabel?: string;
 }
