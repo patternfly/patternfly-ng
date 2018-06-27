@@ -39,22 +39,18 @@ var BlockCopyComponent = /** @class */ (function (_super) {
         var _this = _super.call(this, copyService) || this;
         _this.copyService = copyService;
         /**
-         * Copy button text
-         */
-        _this.copyBtnLabel = 'Copy';
-        /**
-         * Controls the expanded state of block copy
+         * Flag indicating the expanded state for the expansion panel
          */
         _this.expanded = false;
         /**
-         * Generates a unique value for an id
+         * Generates a unique prefix for element IDs
          */
         _this.uniqueID = uniqueId('pfng-block-copy');
         return _this;
     }
-    Object.defineProperty(BlockCopyComponent.prototype, "copyBtnId", {
+    Object.defineProperty(BlockCopyComponent.prototype, "buttonId", {
         /**
-         * Used to uniquly relate label to copy button
+         * Generates a unique ID for the button
          */
         get: function () {
             return this.uniqueID + "-button";
@@ -63,38 +59,32 @@ var BlockCopyComponent = /** @class */ (function (_super) {
         configurable: true
     });
     /**
-     * Toggle copyValue panel open and close
+     * Toggle expansion panel open and close
      */
     BlockCopyComponent.prototype.togglePanel = function () {
         this.expanded = !this.expanded;
-    };
-    /**
-     * Copies the label value to the users clipboard
-     */
-    BlockCopyComponent.prototype.copyToClipboard = function () {
-        this.copyValueToClipboard();
     };
     __decorate([
         Input('label'),
         __metadata("design:type", String)
     ], BlockCopyComponent.prototype, "label", void 0);
     __decorate([
-        Input('copyBtnLabel'),
+        Input('buttonLabel'),
         __metadata("design:type", String)
-    ], BlockCopyComponent.prototype, "copyBtnLabel", void 0);
+    ], BlockCopyComponent.prototype, "buttonLabel", void 0);
     __decorate([
         Input('expanded'),
         __metadata("design:type", Boolean)
     ], BlockCopyComponent.prototype, "expanded", void 0);
     __decorate([
-        Input('expandBtnAriaLabel'),
+        Input('expandToggleAriaLabel'),
         __metadata("design:type", String)
-    ], BlockCopyComponent.prototype, "expandBtnAriaLabel", void 0);
+    ], BlockCopyComponent.prototype, "expandToggleAriaLabel", void 0);
     BlockCopyComponent = __decorate([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-block-copy',
-            template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"copyBtnId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandBtnAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{copyValue}}</span></div><button [attr.id]=\"copyBtnId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{copyBtnLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{copyValue}}</span></div></div></div>",
+            template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"buttonId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandToggleAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{value}}</span></div><button [attr.id]=\"buttonId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{value}}</span></div></div></div>",
             styleUrls: ['./block-copy.component.less']
         }),
         __metadata("design:paramtypes", [CopyService])

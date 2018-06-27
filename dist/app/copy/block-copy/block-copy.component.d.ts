@@ -12,39 +12,35 @@ import { CopyService } from '../copy-service/copy.service';
 export declare class BlockCopyComponent extends CopyBase {
     protected copyService: CopyService;
     /**
-     * Label naming the block copy component
+     * Label output above the block copy component
      */
     label: string;
     /**
-     * Copy button text
+     * Copy button label
      */
-    copyBtnLabel: string;
+    buttonLabel: string;
     /**
-     * Controls the expanded state of block copy
+     * Flag indicating the expanded state for the expansion panel
      */
     expanded: boolean;
     /**
-     * Expand/toggle button aria label (announced to screen readers)
+     * Aria label for the expansion toggle
      */
-    expandBtnAriaLabel: string;
+    expandToggleAriaLabel: string;
     /**
-     * Generates a unique value for an id
+     * Generates a unique prefix for element IDs
      */
-    uniqueID: string;
+    protected uniqueID: string;
     /**
      * The default constructor
      */
     constructor(copyService: CopyService);
     /**
-     * Used to uniquly relate label to copy button
+     * Generates a unique ID for the button
      */
-    readonly copyBtnId: string;
+    readonly buttonId: string;
     /**
-     * Toggle copyValue panel open and close
+     * Toggle expansion panel open and close
      */
     togglePanel(): void;
-    /**
-     * Copies the label value to the users clipboard
-     */
-    copyToClipboard(): void;
 }

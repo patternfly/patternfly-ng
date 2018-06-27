@@ -2,11 +2,11 @@
   <label
     *ngIf="label"
     class="pfng-block-copy-label"
-    [attr.for]="copyBtnId">{{label}}</label>
+    [attr.for]="buttonId">{{label}}</label>
   <div class="pfng-block-copy-inner-container">
     <div class="pfng-block-copy-preview" [ngClass]="{'pf-is-open': expanded}">
       <button
-        [attr.aria-label]="expandBtnAriaLabel"
+        [attr.aria-label]="expandToggleAriaLabel"
         [attr.aria-expanded]="expanded"
         class="pfng-block-copy-preview-btn"
         (click)="togglePanel()">
@@ -19,15 +19,15 @@
         class="pfng-block-copy-preview-txt-cont"
         placement="{{tooltipPlacement ? tooltipPlacement : null}}"
         tooltip="{{tooltip ? tooltip : null}}">
-        <span class="pfng-block-copy-preview-txt">{{copyValue}}</span>
+        <span class="pfng-block-copy-preview-txt">{{value}}</span>
       </div>
       <button
-        [attr.id]="copyBtnId"
+        [attr.id]="buttonId"
         class="btn btn-lg btn-default pfng-block-copy-btn"
-        [attr.aria-label]="copyBtnAriaLabel"
-        (click)="copyToClipboard()">
+        [attr.aria-label]="buttonAriaLabel"
+        (click)="copy()">
         <span>
-          <ng-container *ngIf="!recentlyCopied">{{copyBtnLabel}}</ng-container>
+          <ng-container *ngIf="!recentlyCopied">{{buttonLabel}}</ng-container>
           <ng-container *ngIf="recentlyCopied">
             <i class="fa fa-check" aria-hidden="true"></i>
             Copied
@@ -36,7 +36,7 @@
         </button>
     </div>
     <div class="pfng-block-copy-body" *ngIf="expanded">
-      <span>{{copyValue}}</span>
+      <span>{{value}}</span>
     </div>
   </div>
 </div>

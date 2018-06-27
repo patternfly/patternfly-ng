@@ -39,17 +39,11 @@ var InlineCopyComponent = /** @class */ (function (_super) {
         _this.copyService = copyService;
         return _this;
     }
-    /**
-     * Copies the copyBtnAriaLabel value to the users clipboard
-     */
-    InlineCopyComponent.prototype.copyToClipboard = function () {
-        this.copyValueToClipboard();
-    };
     InlineCopyComponent = __decorate([
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-inline-copy',
-            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{copyValue}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"copyBtnAriaLabel\" (click)=\"copyToClipboard()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
+            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
             styleUrls: ['./inline-copy.component.less']
         }),
         __metadata("design:paramtypes", [CopyService])

@@ -9,24 +9,28 @@ export declare abstract class CopyBase {
     /**
      * Copy button aria label (announced to screen readers)
      */
-    copyBtnAriaLabel: string;
+    buttonAriaLabel: string;
     /**
-     * The text node to be copied to the users clipboard
-     */
-    copyValue: string;
-    /**
-     * Tooltip text for the copyValue
+     * A tooltip that describes the value to be copied
      */
     tooltip: string;
     /**
-     * Placement for the tooltip that further describes the copyValue
+     * Placement for the tooltip
      */
     tooltipPlacement: string;
     /**
-     * Event emitted with the chart reference after load is complete
+     * The value to be copied to the clipboard
      */
-    onCopyToClipboard: EventEmitter<CopyEvent>;
+    value: string;
+    /**
+     * Event emitted when values are copied to the clipboard
+     */
+    onCopy: EventEmitter<CopyEvent>;
     private _recentlyCopied;
+    /**
+     * Default constructor
+     */
+    constructor(copyService: CopyService);
     /**
      * Returns the flag indicating copy action has just happened
      *
@@ -34,11 +38,7 @@ export declare abstract class CopyBase {
      */
     readonly recentlyCopied: boolean;
     /**
-     * Default constructor
+     * Copy given value to the clipboard
      */
-    constructor(copyService: CopyService);
-    /**
-     * Copy value to the user's system clipboard
-     */
-    protected copyValueToClipboard(): void;
+    copy(): void;
 }

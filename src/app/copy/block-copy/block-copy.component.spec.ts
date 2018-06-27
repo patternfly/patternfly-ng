@@ -31,9 +31,9 @@ describe('Block Copy Component - ', () => {
     .then(() => {
       componentConfig = {
         label: 'Block-level Foobar',
-        copyValue: 'Token',
-        expandBtnAriaLabel: 'Expand Block-level Foobar',
-        tooltip: 'Block Copy Tooltip'
+        expandToggleAriaLabel: 'Expand Block-level Foobar',
+        tooltip: 'Block Copy Tooltip',
+        value: 'Token'
       };
     })
     .then(() => {
@@ -59,8 +59,8 @@ describe('Block Copy Component - ', () => {
   });
 
   it('should ensure there is a single copy value container', () => {
-    const numCopyValueContainers = fixture.debugElement.queryAll(By.css('.pfng-block-copy-preview-txt-cont')).length;
-    expect(numCopyValueContainers).toBe(1);
+    const numValueContainers = fixture.debugElement.queryAll(By.css('.pfng-block-copy-preview-txt-cont')).length;
+    expect(numValueContainers).toBe(1);
   });
 
   it('should ensure there is a single copy button', () => {

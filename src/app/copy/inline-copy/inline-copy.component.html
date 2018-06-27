@@ -4,12 +4,12 @@
     class="pfng-inline-copy-txt-cont"
     placement="{{tooltipPlacement ? tooltipPlacement : null}}"
     tooltip="{{tooltip ? tooltip : null}}">
-    {{copyValue}}
+    {{value}}
   </span>
   <button
     class="pfng-inline-copy-btn"
-    [attr.aria-label]="copyBtnAriaLabel"
-    (click)="copyToClipboard()">
+    [attr.aria-label]="buttonAriaLabel"
+    (click)="copy()">
     <i
       class="fa"
       [ngClass]="{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}"

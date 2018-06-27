@@ -15,8 +15,4 @@ export declare class InlineCopyComponent extends CopyBase {
      * The default constructor
      */
     constructor(copyService: CopyService);
-    /**
-     * Copies the copyBtnAriaLabel value to the users clipboard
-     */
-    copyToClipboard(): void;
 }

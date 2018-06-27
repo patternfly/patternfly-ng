@@ -14,38 +14,29 @@ export abstract class CopyBase {
   /**
    * Copy button aria label (announced to screen readers)
    */
-  @Input('copyBtnAriaLabel') copyBtnAriaLabel: string;
+  @Input('buttonAriaLabel') buttonAriaLabel: string;
 
   /**
-   * The text node to be copied to the users clipboard
-   */
-  @Input('copyValue') copyValue: string;
-
-  /**
-   * Tooltip text for the copyValue
+   * A tooltip that describes the value to be copied
    */
   @Input('tooltip') tooltip: string;
 
   /**
-   * Placement for the tooltip that further describes the copyValue
+   * Placement for the tooltip
    */
   @Input('tooltipPlacement') tooltipPlacement: string = 'top';
 
   /**
-   * Event emitted with the chart reference after load is complete
+   * The value to be copied to the clipboard
    */
-  @Output('onCopyToClipboard') onCopyToClipboard: EventEmitter<CopyEvent> = new EventEmitter();
-
-  private _recentlyCopied: boolean = false;
+  @Input('value') value: string;
 
   /**
-   * Returns the flag indicating copy action has just happened
-   *
-   * @returns {boolean} True if copy action has been triggered
+   * Event emitted when values are copied to the clipboard
    */
-  public get recentlyCopied(): boolean {
-    return this._recentlyCopied;
-  }
+  @Output('onCopy') onCopy: EventEmitter<CopyEvent> = new EventEmitter();
+
+  private _recentlyCopied: boolean = false;
 
   /**
    * Default constructor
@@ -53,13 +44,22 @@ export abstract class CopyBase {
   constructor(protected copyService: CopyService) {}
 
   /**
-   * Copy value to the user's system clipboard
+   * Returns the flag indicating copy action has just happened
+   *
+   * @returns {boolean} True if copy action has been triggered
    */
-  protected copyValueToClipboard(): void {
-    let result = this.copyService.copy(this.copyValue);
+  get recentlyCopied(): boolean {
+    return this._recentlyCopied;
+  }
+
+  /**
+   * Copy given value to the clipboard
+   */
+  copy(): void {
+    let result = this.copyService.copy(this.value);
     if (result) {
-      this.onCopyToClipboard.emit({
-        value: this.copyValue
+      this.onCopy.emit({
+        value: this.value
       } as CopyEvent);
       this._recentlyCopied = true;
       setTimeout(() => {

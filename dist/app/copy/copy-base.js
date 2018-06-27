@@ -18,13 +18,13 @@ var CopyBase = /** @class */ (function () {
     function CopyBase(copyService) {
         this.copyService = copyService;
         /**
-         * Placement for the tooltip that further describes the copyValue
+         * Placement for the tooltip
          */
         this.tooltipPlacement = 'top';
         /**
-         * Event emitted with the chart reference after load is complete
+         * Event emitted when values are copied to the clipboard
          */
-        this.onCopyToClipboard = new EventEmitter();
+        this.onCopy = new EventEmitter();
         this._recentlyCopied = false;
     }
     Object.defineProperty(CopyBase.prototype, "recentlyCopied", {
@@ -40,14 +40,14 @@ var CopyBase = /** @class */ (function () {
         configurable: true
     });
     /**
-     * Copy value to the user's system clipboard
+     * Copy given value to the clipboard
      */
-    CopyBase.prototype.copyValueToClipboard = function () {
+    CopyBase.prototype.copy = function () {
         var _this = this;
-        var result = this.copyService.copy(this.copyValue);
+        var result = this.copyService.copy(this.value);
         if (result) {
-            this.onCopyToClipboard.emit({
-                value: this.copyValue
+            this.onCopy.emit({
+                value: this.value
             });
             this._recentlyCopied = true;
             setTimeout(function () {
@@ -56,13 +56,9 @@ var CopyBase = /** @class */ (function () {
         }
     };
     __decorate([
-        Input('copyBtnAriaLabel'),
+        Input('buttonAriaLabel'),
         __metadata("design:type", String)
-    ], CopyBase.prototype, "copyBtnAriaLabel", void 0);
-    __decorate([
-        Input('copyValue'),
-        __metadata("design:type", String)
-    ], CopyBase.prototype, "copyValue", void 0);
+    ], CopyBase.prototype, "buttonAriaLabel", void 0);
     __decorate([
         Input('tooltip'),
         __metadata("design:type", String)
@@ -72,9 +68,13 @@ var CopyBase = /** @class */ (function () {
         __metadata("design:type", String)
     ], CopyBase.prototype, "tooltipPlacement", void 0);
     __decorate([
-        Output('onCopyToClipboard'),
+        Input('value'),
+        __metadata("design:type", String)
+    ], CopyBase.prototype, "value", void 0);
+    __decorate([
+        Output('onCopy'),
         __metadata("design:type", EventEmitter)
-    ], CopyBase.prototype, "onCopyToClipboard", void 0);
+    ], CopyBase.prototype, "onCopy", void 0);
     return CopyBase;
 }());
 export { CopyBase };
