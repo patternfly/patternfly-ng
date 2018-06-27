@@ -34,7 +34,7 @@ export abstract class CopyBase {
   /**
    * Event emitted when values are copied to the clipboard
    */
-  @Output('onCopy') onCopy: EventEmitter<CopyEvent> = new EventEmitter();
+  @Output('onCopy') onCopy = new EventEmitter();
 
   private _recentlyCopied: boolean = false;
 
