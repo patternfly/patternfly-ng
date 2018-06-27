@@ -66,7 +66,7 @@ export class ListExpandToggleComponent implements OnInit {
   /**
    * Toggle expand item open/close
    */
-  toggleExpand(): void {
+  toggleExpandItem(): void {
     // Item may already be open
     if (this.item.expanded && this.item.expandId !== this.expandId) {
       this.item.expandId = this.expandId;

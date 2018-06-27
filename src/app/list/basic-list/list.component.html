@@ -35,7 +35,7 @@
   <div class="list-pf-item {{item?.itemStyleClass}}"
        [ngClass]="{'active': item.selected || item.expanded}"
        *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index">
-    <div class="list-pf-container" [id]="getId('item', i)" (click)="toggleExpandArea($event, item)">
+    <div class="list-pf-container" [id]="getId('item', i)" (click)="toggleExpandItem($event, item)">
       <!-- pin -->
       <div class="pfng-list-pin-container" *ngIf="config.usePinItems">
         <div class="pfng-list-pin-placeholder"
@@ -55,7 +55,7 @@
         <div class="pfng-list-expand-placeholder" *ngIf="item.hideExpandToggle === true"></div>
         <span class="fa fa-angle-right"
               *ngIf="item.hideExpandToggle !== true"
-              (click)="toggleExpandArea($event, item)"
+              (click)="toggleExpandItem($event, item)"
               [ngClass]="{'fa-angle-down': item.expanded && item.expandId === undefined}"></span>
       </div>
       <!-- checkbox -->
@@ -97,7 +97,7 @@
       <div class="list-pf-container" tabindex="0">
         <div class="list-pf-content">
           <div class="close" *ngIf="config.hideClose !== true">
-            <span class="pficon pficon-close" (click)="closeExpandArea(item)"></span>
+            <span class="pficon pficon-close" (click)="closeExpandItem(item)"></span>
           </div>
           <ng-template [ngTemplateOutlet]="expandTemplate"
                        [ngTemplateOutletContext]="{ item: item, index: i }"></ng-template>
