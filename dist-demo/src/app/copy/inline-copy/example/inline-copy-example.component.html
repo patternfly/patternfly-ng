@@ -1,0 +1,19 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Inline Copy Component Example</h4>
+      <hr>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <inline-copy-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></inline-copy-basic-example>
+    </tab>
+    <tab heading="Wrap" (select)="tabSelected($event)">
+      <inline-copy-wrap-example *ngIf="activeTab === 'Wrap'"></inline-copy-wrap-example>
+    </tab>
+    <tab heading="A11y" (select)="tabSelected($event)">
+      <inline-copy-a11y-example *ngIf="activeTab === 'A11y'"></inline-copy-a11y-example>
+    </tab>
+  </tabset>
+</div>
