@@ -1,0 +1,27 @@
+.pfng-inline-copy {
+  display: inline-flex;
+  border: 1px solid #bbb;
+  background-color: #fff;
+  font-size: smaller;
+  margin-left: .25em;
+  margin-right: .25em;
+  max-width: 100%;
+  &-txt-cont {
+    flex-grow: 1;
+    padding: 2px 6px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  &-btn {
+    border: none;
+    border-left: 1px solid #bbb;
+    box-shadow: none;
+    background-image: linear-gradient(to bottom, #fafafa, #ededed);
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: #f1f1f1;
+    }
+  }
+}
