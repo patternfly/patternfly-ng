@@ -154,7 +154,7 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
 
   /**
    * Toggles the list item expansion
-   * 
+   *
    * @param {MouseEvent} $event The event emitted when an item has been clicked
    * @param {Object} item The object associated with the current row
    */

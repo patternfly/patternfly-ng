@@ -20,15 +20,15 @@ export class InlineCopyA11yExampleComponent implements OnInit {
   notifications: Notification[];
 
   a11yEx01 = {
-    copyBtnAriaLabel: 'WAI-ARIA URL',
-    copyValue: 'https://www.w3.org/TR/wai-aria-1.1/',
-    tooltip: 'ARIA W3C Recommendation'
+    buttonAriaLabel: 'WAI-ARIA URL',
+    tooltip: 'ARIA W3C Recommendation',
+    value: 'https://www.w3.org/TR/wai-aria-1.1/'
   };
 
   a11yEx02 = {
-    copyBtnAriaLabel: 'Example Sparql Query',
-    copyValue: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}',
-    tooltip: 'Semantic Triple (SPO)'
+    buttonAriaLabel: 'Example Sparql Query',
+    tooltip: 'Semantic Triple (SPO)',
+    value: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}'
   };
 
   constructor(private notificationService: NotificationService) {}
@@ -37,7 +37,7 @@ export class InlineCopyA11yExampleComponent implements OnInit {
     this.notifications = this.notificationService.getNotifications();
   }
 
-  handleCopyToClipboard($event: CopyEvent, result: any): void {
+  handleCopy($event: CopyEvent, result: any): void {
     this.actionsText = 'Copied: ' + $event.value + '\r\n' + this.actionsText;
     this.notify(result);
   }

@@ -34,9 +34,9 @@ describe('Inline Copy Component - ', () => {
     .compileComponents()
     .then(() => {
       componentConfig = {
-        copyBtnAriaLabel: 'Foobar',
-        copyValue: 'Test String',
-        tooltip: 'Test tooltip'
+        buttonAriaLabel: 'Foobar',
+        tooltip: 'Test tooltip',
+        value: 'Test String'
       };
     })
     .then(() => {
@@ -107,23 +107,23 @@ describe('Inline Copy Component - ', () => {
   it('should set the copyValue container text node', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
-    const copyValueText = fixture.debugElement.children[0].nativeElement.innerText;
-    expect(copyValueText).toContain('Test String');
+    const valueText = fixture.debugElement.children[0].nativeElement.innerText;
+    expect(valueText).toContain('Test String');
   });
 
   it('should set the copy button aria label', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
     const ariaLabel = fixture.debugElement.children[0].children[1].attributes['aria-label'];
-    expect(ariaLabel).toBe(`${componentConfig.copyBtnAriaLabel}`);
+    expect(ariaLabel).toBe(`${componentConfig.buttonAriaLabel}`);
   });
 
-  it('should emit a onCopyToClipboard event', () => {
-    const spy = spyOn(inlineCopy.onCopyToClipboard, 'emit');
+  it('should emit a onCopy event', () => {
+    const spy = spyOn(inlineCopy.onCopy, 'emit');
     (<any>Object).assign(inlineCopy, componentConfig);
-    inlineCopy.onCopyToClipboard.subscribe(eventResponse => {
+    inlineCopy.onCopy.subscribe(eventResponse => {
       expect(spy).toHaveBeenCalled();
-      expect(eventResponse).toBe(`${inlineCopy.copyBtnAriaLabel} copied`);
+      expect(eventResponse).toBe(`${inlineCopy.buttonAriaLabel} copied`);
     });
     const copyBtn = fixture.debugElement.query(By.css('.pfng-inline-copy-btn'));
     copyBtn.triggerEventHandler('click', null);

@@ -4,15 +4,15 @@
     <div class="col-sm-8 padding-bottom-15">
       <p>This example illustrates how copiedToClipboard event can be used to notify user of successful copy action.</p>
       <pfng-block-copy
-        [copyBtnAriaLabel]="cbExConfig.copyBtnAriaLabel"
-        [copyBtnLabel]="cbExConfig.copyBtnLabel"
-        [copyValue]="cbExConfig.copyValue"
-        [expandBtnAriaLabel]="cbExConfig.expandBtnAriaLabel"
+        [buttonAriaLabel]="cbExConfig.buttonAriaLabel"
+        [buttonLabel]="cbExConfig.buttonLabel"
+        [expandToggleAriaLabel]="cbExConfig.expandToggleAriaLabel"
         [label]="cbExConfig.label"
         [tooltip]="cbExConfig.tooltip"
-        (onCopyToClipboard)="handleCopyToClipboard($event, {
-            name: cbExConfig.expandBtnAriaLabel,
-            msg: cbExConfig.expandBtnAriaLabel + ' copied'
+        [value]="cbExConfig.value"
+        (onCopy)="handleCopy($event, {
+            name: cbExConfig.buttonAriaLabel,
+            msg: cbExConfig.buttonAriaLabel + ' copied'
           })"></pfng-block-copy>
     </div>
   </div>
