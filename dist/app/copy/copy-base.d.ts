@@ -1,5 +1,4 @@
 import { EventEmitter } from '@angular/core';
-import { CopyEvent } from './copy-event';
 import { CopyService } from './copy-service/copy.service';
 /**
  * A config containing properties for copy components
@@ -25,7 +24,7 @@ export declare abstract class CopyBase {
     /**
      * Event emitted when values are copied to the clipboard
      */
-    onCopy: EventEmitter<CopyEvent>;
+    onCopy: EventEmitter<{}>;
     private _recentlyCopied;
     /**
      * Default constructor

@@ -1,7 +1,7 @@
 /**
  * An object containing properties for copy events
  */
-export interface CopyEvent {
+export declare class CopyEvent {
     /**
      * The copied value
      */

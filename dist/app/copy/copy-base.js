@@ -73,7 +73,7 @@ var CopyBase = /** @class */ (function () {
     ], CopyBase.prototype, "value", void 0);
     __decorate([
         Output('onCopy'),
-        __metadata("design:type", EventEmitter)
+        __metadata("design:type", Object)
     ], CopyBase.prototype, "onCopy", void 0);
     return CopyBase;
 }());

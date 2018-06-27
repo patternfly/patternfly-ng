@@ -43,8 +43,7 @@ var InlineCopyComponent = /** @class */ (function (_super) {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-inline-copy',
-            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
-            styleUrls: ['./inline-copy.component.less']
+            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>"
         }),
         __metadata("design:paramtypes", [CopyService])
     ], InlineCopyComponent);

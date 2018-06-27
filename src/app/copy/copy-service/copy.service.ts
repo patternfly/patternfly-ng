@@ -15,15 +15,12 @@ import { DOCUMENT } from '@angular/common';
  */
 @Injectable()
 export class CopyService {
-  public dom: Document;
   private verbose: boolean = false;
 
   /**
    * The default constructor
    */
-  constructor(@Inject(DOCUMENT) dom: Document) {
-    this.dom = dom;
-  }
+  constructor(@Inject(DOCUMENT) private dom: any) {}
 
   /**
    * Copy a value to the user's system clipboard

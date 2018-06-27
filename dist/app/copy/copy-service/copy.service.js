@@ -26,8 +26,8 @@ var CopyService = /** @class */ (function () {
      * The default constructor
      */
     function CopyService(dom) {
-        this.verbose = false;
         this.dom = dom;
+        this.verbose = false;
     }
     /**
      * Copy a value to the user's system clipboard
@@ -81,7 +81,7 @@ var CopyService = /** @class */ (function () {
     CopyService = __decorate([
         Injectable(),
         __param(0, Inject(DOCUMENT)),
-        __metadata("design:paramtypes", [Document])
+        __metadata("design:paramtypes", [Object])
     ], CopyService);
     return CopyService;
 }());

@@ -3102,9 +3102,18 @@ var CopyBase = /** @class */ (function () {
     ], CopyBase.prototype, "value", void 0);
     __decorate$n([
         Output('onCopy'),
-        __metadata$e("design:type", EventEmitter)
+        __metadata$e("design:type", Object)
     ], CopyBase.prototype, "onCopy", void 0);
     return CopyBase;
+}());
+
+/**
+ * An object containing properties for copy events
+ */
+var CopyEvent = /** @class */ (function () {
+    function CopyEvent() {
+    }
+    return CopyEvent;
 }());
 
 var __decorate$o = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -3133,8 +3142,8 @@ var CopyService = /** @class */ (function () {
      * The default constructor
      */
     function CopyService(dom) {
-        this.verbose = false;
         this.dom = dom;
+        this.verbose = false;
     }
     /**
      * Copy a value to the user's system clipboard
@@ -3188,7 +3197,7 @@ var CopyService = /** @class */ (function () {
     CopyService = __decorate$o([
         Injectable(),
         __param(0, Inject(DOCUMENT)),
-        __metadata$f("design:paramtypes", [Document])
+        __metadata$f("design:paramtypes", [Object])
     ], CopyService);
     return CopyService;
 }());
@@ -3275,8 +3284,7 @@ var BlockCopyComponent = /** @class */ (function (_super) {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-block-copy',
-            template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"buttonId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandToggleAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{value}}</span></div><button [attr.id]=\"buttonId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{value}}</span></div></div></div>",
-            styleUrls: ['./block-copy.component.less']
+            template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"buttonId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandToggleAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{value}}</span></div><button [attr.id]=\"buttonId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{value}}</span></div></div></div>"
         }),
         __metadata$g("design:paramtypes", [CopyService])
     ], BlockCopyComponent);
@@ -3748,8 +3756,7 @@ var InlineCopyComponent = /** @class */ (function (_super) {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-inline-copy',
-            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
-            styleUrls: ['./inline-copy.component.less']
+            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>"
         }),
         __metadata$i("design:paramtypes", [CopyService])
     ], InlineCopyComponent);
@@ -33618,5 +33625,5 @@ var WizardModule = /** @class */ (function () {
     return WizardModule;
 }());
 
-export { Action, ActionConfig, ActionComponent, ActionModule, CardBase, CardConfigBase, CardModule$1 as CardModule, CardAction, CardActionComponent, CardActionModule, CardComponent, CardConfig, CardFilter, CardFilterComponent, CardFilterPosition, CardFilterModule, InfoStatusCardComponent, InfoStatusCardConfig, InfoStatusCardModule, ChartBase, ChartConfigBase, ChartDefaults, ChartConfig, ChartModule, DonutComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData, DonutChartBaseComponent, DonutChartBaseConfig, DonutChartComponent, DonutChartConfig, DonutChartModule, UtilizationDonutChartComponent, UtilizationDonutChartConfig, UtilizationDonutChartModule, SparklineChartComponent, SparklineChartConfig, SparklineChartData, SparklineChartModule, CopyBase, BlockCopyComponent, BlockCopyModule, CopyService, InlineCopyComponent, InlineCopyModule, EmptyStateComponent, EmptyStateConfig, EmptyStateModule, Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, FilterFieldsComponent, FilterModule, FilterResultsComponent, FilterQuery, FilterType, ListBase, ListConfigBase, ListEvent, ListComponent, ListConfig, ListExpandToggleComponent, ListModule, TreeListComponent, TreeListConfig, TreeListModule, AboutModalConfig, AboutModalComponent, ModalModule, NavigationItemConfig, NavigationModule, VerticalNavigationComponent, ApplicationLauncherComponent, Notification, NotificationEvent, NotificaitonGroup, NotificationModule, NotificationType, InlineNotificationComponent, InlineNotificationModule, NotificationDrawerComponent, NotificationDrawerModule, NotificationService, ToastNotificationComponent, ToastNotificationModule, ToastNotificationListComponent, ToastNotificationListModule, PaginationComponent, PaginationConfig, PaginationEvent, PaginationModule, PipeModule, SearchHighlightPipeModule, SearchHighlightPipe, SortArrayPipeModule, SortArrayPipe, TruncatePipeModule, TruncatePipe, RemainingCharsCountDirective, RemainingCharsCountModule, SampleModule, SortComponent, SortConfig, SortEvent, SortField, SortModule, TableBase, TableConfigBase, TableEvent, NgxDataTableConfig, TableComponent, TableConfig, TableModule, ToolbarConfig, ToolbarComponent, ToolbarModule, ToolbarView, WindowReference, WizardBase, WizardComponent, WizardConfig, WizardEvent, WizardModule, WizardReviewComponent, WizardStep, WizardStepComponent, WizardStepConfig, WizardSubstepComponent };
+export { Action, ActionConfig, ActionComponent, ActionModule, CardBase, CardConfigBase, CardModule$1 as CardModule, CardAction, CardActionComponent, CardActionModule, CardComponent, CardConfig, CardFilter, CardFilterComponent, CardFilterPosition, CardFilterModule, InfoStatusCardComponent, InfoStatusCardConfig, InfoStatusCardModule, ChartBase, ChartConfigBase, ChartDefaults, ChartConfig, ChartModule, DonutComponent, DonutConfig, SparklineComponent, SparklineConfig, SparklineData, DonutChartBaseComponent, DonutChartBaseConfig, DonutChartComponent, DonutChartConfig, DonutChartModule, UtilizationDonutChartComponent, UtilizationDonutChartConfig, UtilizationDonutChartModule, SparklineChartComponent, SparklineChartConfig, SparklineChartData, SparklineChartModule, CopyBase, CopyEvent, BlockCopyComponent, BlockCopyModule, CopyService, InlineCopyComponent, InlineCopyModule, EmptyStateComponent, EmptyStateConfig, EmptyStateModule, Filter, FilterComponent, FilterConfig, FilterEvent, FilterField, FilterFieldsComponent, FilterModule, FilterResultsComponent, FilterQuery, FilterType, ListBase, ListConfigBase, ListEvent, ListComponent, ListConfig, ListExpandToggleComponent, ListModule, TreeListComponent, TreeListConfig, TreeListModule, AboutModalConfig, AboutModalComponent, ModalModule, NavigationItemConfig, NavigationModule, VerticalNavigationComponent, ApplicationLauncherComponent, Notification, NotificationEvent, NotificaitonGroup, NotificationModule, NotificationType, InlineNotificationComponent, InlineNotificationModule, NotificationDrawerComponent, NotificationDrawerModule, NotificationService, ToastNotificationComponent, ToastNotificationModule, ToastNotificationListComponent, ToastNotificationListModule, PaginationComponent, PaginationConfig, PaginationEvent, PaginationModule, PipeModule, SearchHighlightPipeModule, SearchHighlightPipe, SortArrayPipeModule, SortArrayPipe, TruncatePipeModule, TruncatePipe, RemainingCharsCountDirective, RemainingCharsCountModule, SampleModule, SortComponent, SortConfig, SortEvent, SortField, SortModule, TableBase, TableConfigBase, TableEvent, NgxDataTableConfig, TableComponent, TableConfig, TableModule, ToolbarConfig, ToolbarComponent, ToolbarModule, ToolbarView, WindowReference, WizardBase, WizardComponent, WizardConfig, WizardEvent, WizardModule, WizardReviewComponent, WizardStep, WizardStepComponent, WizardStepConfig, WizardSubstepComponent };
 //# sourceMappingURL=patternfly-ng.esm.js.map

@@ -3094,9 +3094,18 @@
         ], CopyBase.prototype, "value", void 0);
         __decorate$n([
             core.Output('onCopy'),
-            __metadata$e("design:type", core.EventEmitter)
+            __metadata$e("design:type", Object)
         ], CopyBase.prototype, "onCopy", void 0);
         return CopyBase;
+    }());
+
+    /**
+     * An object containing properties for copy events
+     */
+    var CopyEvent = /** @class */ (function () {
+        function CopyEvent() {
+        }
+        return CopyEvent;
     }());
 
     var __decorate$o = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -3125,8 +3134,8 @@
          * The default constructor
          */
         function CopyService(dom) {
-            this.verbose = false;
             this.dom = dom;
+            this.verbose = false;
         }
         /**
          * Copy a value to the user's system clipboard
@@ -3180,7 +3189,7 @@
         CopyService = __decorate$o([
             core.Injectable(),
             __param(0, core.Inject(common.DOCUMENT)),
-            __metadata$f("design:paramtypes", [Document])
+            __metadata$f("design:paramtypes", [Object])
         ], CopyService);
         return CopyService;
     }());
@@ -3267,8 +3276,7 @@
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-block-copy',
-                template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"buttonId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandToggleAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{value}}</span></div><button [attr.id]=\"buttonId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{value}}</span></div></div></div>",
-                styleUrls: ['./block-copy.component.less']
+                template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"buttonId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandToggleAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{value}}</span></div><button [attr.id]=\"buttonId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{value}}</span></div></div></div>"
             }),
             __metadata$g("design:paramtypes", [CopyService])
         ], BlockCopyComponent);
@@ -3740,8 +3748,7 @@
             core.Component({
                 encapsulation: core.ViewEncapsulation.None,
                 selector: 'pfng-inline-copy',
-                template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>",
-                styleUrls: ['./inline-copy.component.less']
+                template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>"
             }),
             __metadata$i("design:paramtypes", [CopyService])
         ], InlineCopyComponent);
@@ -33652,6 +33659,7 @@
     exports.SparklineChartData = SparklineChartData;
     exports.SparklineChartModule = SparklineChartModule;
     exports.CopyBase = CopyBase;
+    exports.CopyEvent = CopyEvent;
     exports.BlockCopyComponent = BlockCopyComponent;
     exports.BlockCopyModule = BlockCopyModule;
     exports.CopyService = CopyService;
