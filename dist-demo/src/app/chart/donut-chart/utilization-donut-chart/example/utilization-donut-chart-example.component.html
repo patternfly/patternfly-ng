@@ -1,0 +1,95 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Utilization Donut Chart Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row margin-left-20">
+    <div class="col-sm-3">
+      <div style="width: 180px;">
+        <pfng-utilization-donut-chart [config]="config" (thresholdChanged)="thresholdChanged($event)">
+          <div id="outerLabel" style="width: 100px; margin: auto">
+            <div><em>Pods Available</em></div>
+            <div>{{config.available}} {{config.units}} available</div>
+          </div>
+        </pfng-utilization-donut-chart>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Settings</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <b>Center Label Format</b>
+      <form role="form">
+        <div class="form-group">
+          <label class="radio-inline">
+            <input id="labelFormatType1" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.centerLabelFormat" value="used" (ngModelChange)="clearCenterLabelFn()">Used
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType2" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.centerLabelFormat" value="available" (ngModelChange)="clearCenterLabelFn()">Available
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType3" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.centerLabelFormat" value="percent" (ngModelChange)="clearCenterLabelFn()">Percent
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType4" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.centerLabelFormat" value="none" (ngModelChange)="clearCenterLabelFn()">None
+          </label>
+          <label class="radio-inline">
+            <input id="labelFormatType5" name="labelFormatType" type="radio"
+                   [(ngModel)]="config.centerLabelFormat" value="txt-func" (ngModelChange)="setCenterLabelFn()">Custom Function
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <b>Outer Label Alignment</b>
+      <form role="form">
+        <div class="form-group">
+          <label class="radio-inline">
+            <input id="labelAlignmentType1" name="labelAlignmentType" type="radio"
+                   [(ngModel)]="config.outerLabelAlignment" value="left">Left
+          </label>
+          <label class="radio-inline">
+            <input id="labelAlignmentType2" name="labelAlignmentType" type="radio"
+                   [(ngModel)]="config.outerLabelAlignment" value="center">Center
+          </label>
+          <label class="radio-inline">
+            <input id="labelAlignmentType3" name="labelAlignmentType" type="radio"
+                   [(ngModel)]="config.outerLabelAlignment" value="right">Right
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/utilizationdonutchartcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/chart/donut-chart/utilization-donut-chart/example/utilization-donut-chart-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/chart/donut-chart/utilization-donut-chart/example/utilization-donut-chart-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
