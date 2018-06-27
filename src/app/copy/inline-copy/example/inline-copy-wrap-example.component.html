@@ -6,9 +6,9 @@
           flex formatting context</a>.
         Inline Copy features an inline-flex container and does not wrap over multiple lines, and instead handles overflow content gracefully with an ellipsis.</p>
       <pfng-inline-copy
-        [copyBtnAriaLabel]="wrapExConfig.copyBtnAriaLabel"
-        [copyValue]="wrapExConfig.copyValue"
-        (onCopyToClipboard)="handleCopyToClipboard($event)"></pfng-inline-copy>
+        [buttonAriaLabel]="wrapExConfig.buttonAriaLabel"
+        [value]="wrapExConfig.value"
+        (onCopy)="handleCopy($event)"></pfng-inline-copy>
     </div>
   </div>
   <div class="row padding-top-10">

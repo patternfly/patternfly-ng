@@ -12,17 +12,17 @@ import {CopyEvent} from '../../copy-event';
 export class BlockCopyExpandedExampleComponent {
   actionsText: string = '';
   expandedEx01 = {
-    copyBtnAriaLabel: 'Copy GraphQl Query',
-    copyBtnLabel: 'Copy Query',
-    copyValue: 'query HeroNameAndFriends($episode: Episode) {hero(episode: $episode) {name friends {name}}}',
-    expandBtnAriaLabel: 'Toggle GraphQL Query',
+    buttonAriaLabel: 'Copy GraphQl Query',
+    buttonLabel: 'Copy Query',
+    expandToggleAriaLabel: 'Toggle GraphQL Query',
     expanded: true,
-    label: 'GraphQL Query'
+    label: 'GraphQL Query',
+    value: 'query HeroNameAndFriends($episode: Episode) {hero(episode: $episode) {name friends {name}}}'
   };
 
   constructor() {}
 
-  handleCopyToClipboard($event: CopyEvent): void {
+  handleCopy($event: CopyEvent): void {
     this.actionsText = 'Copied: ' + $event.value + '\r\n' + this.actionsText;
   }
 }
