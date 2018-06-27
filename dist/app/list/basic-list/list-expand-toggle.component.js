@@ -47,7 +47,7 @@ var ListExpandToggleComponent = /** @class */ (function () {
     /**
      * Toggle expand item open/close
      */
-    ListExpandToggleComponent.prototype.toggleExpand = function () {
+    ListExpandToggleComponent.prototype.toggleExpandItem = function () {
         // Item may already be open
         if (this.item.expanded && this.item.expandId !== this.expandId) {
             this.item.expandId = this.expandId;
@@ -72,7 +72,7 @@ var ListExpandToggleComponent = /** @class */ (function () {
         Component({
             encapsulation: ViewEncapsulation.None,
             selector: 'pfng-list-expand-toggle',
-            template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpand()\"><span class=\"fa fa-fw fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
+            template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpandItem()\"><span class=\"fa fa-fw fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
         }),
         __metadata("design:paramtypes", [])
     ], ListExpandToggleComponent);

@@ -34,5 +34,5 @@ export declare class ListExpandToggleComponent implements OnInit {
     /**
      * Toggle expand item open/close
      */
-    toggleExpand(): void;
+    toggleExpandItem(): void;
 }

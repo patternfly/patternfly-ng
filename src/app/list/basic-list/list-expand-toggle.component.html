@@ -1,4 +1,4 @@
-<div class="list-pf-chevron" (click)="toggleExpand()">
+<div class="list-pf-chevron" (click)="toggleExpandItem()">
   <span class="fa fa-fw fa-angle-right" [ngClass]="{'fa-angle-down': isExpanded}"></span>
   <ng-template *ngIf="template" let-item="item"
                [ngTemplateOutlet]="template"
