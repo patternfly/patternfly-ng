@@ -3,13 +3,13 @@
     <div class="col-sm-8 padding-bottom-15">
       <p>This basic example illustrates how you can control various bits of text within the component. Block copy is not intended for use with small strings of text.</p>
       <pfng-block-copy
-        [copyBtnLabel]="basicEx01.copyBtnLabel"
-        [copyBtnAriaLabel]="basicEx01.copyBtnAriaLabel"
-        [copyValue]="basicEx01.copyValue"
-        [expandBtnAriaLabel]="basicEx01.expandBtnAriaLabel"
+        [buttonAriaLabel]="basicEx01.buttonAriaLabel"
+        [buttonLabel]="basicEx01.buttonLabel"
+        [expandToggleAriaLabel]="basicEx01.expandToggleAriaLabel"
         [label]="basicEx01.label"
         [tooltip]="basicEx01.tooltip"
-        (onCopyToClipboard)="handleCopyToClipboard($event)"></pfng-block-copy>
+        [value]="basicEx01.value"
+        (onCopy)="handleCopy($event)"></pfng-block-copy>
     </div>
   </div>
   <div class="row padding-top-10">

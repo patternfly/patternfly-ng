@@ -28,11 +28,4 @@ export class InlineCopyComponent extends CopyBase {
   constructor(protected copyService: CopyService) {
     super(copyService);
   }
-
-  /**
-   * Copies the copyBtnAriaLabel value to the users clipboard
-   */
-  copyToClipboard(): void {
-    this.copyValueToClipboard();
-  }
 }

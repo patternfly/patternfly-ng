@@ -26,29 +26,29 @@ import { CopyService } from '../copy-service/copy.service';
 })
 export class BlockCopyComponent extends CopyBase {
   /**
-   * Label naming the block copy component
+   * Label output above the block copy component
    */
   @Input('label') label: string;
 
   /**
-   * Copy button text
+   * Copy button label
    */
-  @Input('copyBtnLabel') copyBtnLabel: string = 'Copy';
+  @Input('buttonLabel') buttonLabel: string;
 
   /**
-   * Controls the expanded state of block copy
+   * Flag indicating the expanded state for the expansion panel
    */
   @Input('expanded') expanded: boolean = false;
 
   /**
-   * Expand/toggle button aria label (announced to screen readers)
+   * Aria label for the expansion toggle
    */
-  @Input('expandBtnAriaLabel') expandBtnAriaLabel: string;
+  @Input('expandToggleAriaLabel') expandToggleAriaLabel: string;
 
   /**
-   * Generates a unique value for an id
+   * Generates a unique prefix for element IDs
    */
-  public uniqueID: string = uniqueId('pfng-block-copy');
+  protected uniqueID: string = uniqueId('pfng-block-copy');
 
   /**
    * The default constructor
@@ -58,23 +58,16 @@ export class BlockCopyComponent extends CopyBase {
   }
 
   /**
-   * Used to uniquly relate label to copy button
+   * Generates a unique ID for the button
    */
-  get copyBtnId(): string {
+  get buttonId(): string {
     return `${this.uniqueID}-button`;
   }
 
   /**
-   * Toggle copyValue panel open and close
+   * Toggle expansion panel open and close
    */
   togglePanel(): void {
     this.expanded = !this.expanded;
-  }
-
-  /**
-   * Copies the label value to the users clipboard
-   */
-  copyToClipboard(): void {
-    this.copyValueToClipboard();
   }
 }
