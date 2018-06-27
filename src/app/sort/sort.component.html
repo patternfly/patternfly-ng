@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle
             [disabled]="config.disabled === true">
       {{currentField?.title}}
-      <span class="caret"></span>
+      <span aria-hidden="true" class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" *dropdownMenu>
       <li role="menuitem" *ngFor="let item of config?.fields" [ngClass]="{'selected': item === currentField}">
@@ -13,6 +13,7 @@
     </ul>
   </div>
   <button class="btn btn-link" type="button"
+          aria-label="Sort Direction"
           [disabled]="config.disabled === true"
           (click)="onChangeDirection()">
     <span class="sort-direction" [ngClass]="getIconStyleClass()"></span>

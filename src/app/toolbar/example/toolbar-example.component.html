@@ -19,7 +19,7 @@
           <ng-template #actionTemplate>
             <span class="dropdown primary-action" dropdown>
               <button class="btn btn-default dropdown-toggle" type="button" dropdownToggle>
-                Menu Action<span class="caret"></span>
+                Menu Action<span aria-hidden="true" class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" *dropdownMenu>
                 <li role="menuitem">
@@ -37,7 +37,7 @@
               </ul>
             </span>
             <button class="btn btn-default primary-action" type="button" (click)="doAdd()">
-              <span class="fa fa-plus"></span>
+              <span aria-hidden="true" class="fa fa-plus"></span>
               Add Action
             </button>
           </ng-template>
