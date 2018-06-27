@@ -21,8 +21,7 @@ import { CopyService } from '../copy-service/copy.service';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-block-copy',
-  templateUrl: './block-copy.component.html',
-  styleUrls: ['./block-copy.component.less']
+  templateUrl: './block-copy.component.html'
 })
 export class BlockCopyComponent extends CopyBase {
   /**

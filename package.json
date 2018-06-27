@@ -6,8 +6,8 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "npm-run-all --serial remove-dist ts:lint build:bundle build:demo copy-examples:demo",
-    "build:bundle": "npm-run-all build:library build:es2015 build:umd build:umd-uglify",
+    "build": "npm-run-all --serial ts:lint build:bundle build:demo copy-examples:demo",
+    "build:bundle": "npm-run-all remove-dist build:library build:es2015 build:umd build:umd-uglify",
     "build:demo": "webpack --config config/webpack.demo.js --progress --profile --bail",
     "build:es2015": "rollup --config src/scripts/bundle/es2015.config.js",
     "build:library": "gulp build",

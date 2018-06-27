@@ -18,8 +18,7 @@ import { CopyService } from '../copy-service/copy.service';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-inline-copy',
-  templateUrl: './inline-copy.component.html',
-  styleUrls: ['./inline-copy.component.less']
+  templateUrl: './inline-copy.component.html'
 })
 export class InlineCopyComponent extends CopyBase {
   /**
