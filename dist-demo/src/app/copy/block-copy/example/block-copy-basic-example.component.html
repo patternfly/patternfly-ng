@@ -1,0 +1,45 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-8 padding-bottom-15">
+      <p>This basic example illustrates how you can control various bits of text within the component. Block copy is not intended for use with small strings of text.</p>
+      <pfng-block-copy
+        [buttonAriaLabel]="basicEx01.buttonAriaLabel"
+        [buttonLabel]="basicEx01.buttonLabel"
+        [expandToggleAriaLabel]="basicEx01.expandToggleAriaLabel"
+        [label]="basicEx01.label"
+        [tooltip]="basicEx01.tooltip"
+        [value]="basicEx01.value"
+        (onCopy)="handleCopy($event)"></pfng-block-copy>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/blockcopycomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/copy/block-copy/example/block-copy-basic-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/copy/block-copy/example/block-copy-basic-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
