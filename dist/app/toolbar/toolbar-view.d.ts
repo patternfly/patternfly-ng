@@ -18,4 +18,8 @@ export declare class ToolbarView {
      * A tooltip for the view selector
      */
     tooltip?: string;
+    /**
+     * Text announced to screen readers for the action config button
+     */
+    ariaLabel?: string;
 }

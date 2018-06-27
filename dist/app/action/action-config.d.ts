@@ -9,6 +9,10 @@ export declare class ActionConfig {
      */
     moreActions?: Action[];
     /**
+     * Text announced to screen readers for the action config button
+     */
+    moreActionsAriaLabel?: string;
+    /**
      * Set to true to disable secondary actions
      */
     moreActionsDisabled: boolean;
