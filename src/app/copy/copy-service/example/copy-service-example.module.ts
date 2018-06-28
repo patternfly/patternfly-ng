@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
-import { NotificationModule } from '../../../notification/notification.module';
-
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { CopyService } from '../copy.service';
 import { CopyServiceExampleComponent } from './copy-service-example.component';
 import { CopyServiceButtonExampleComponent } from './copy-service-button-example.component';
+import { ToastNotificationListModule }
+  from '../../../notification/toast-notification-list/toast-notification-list.module';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,8 @@ import { CopyServiceButtonExampleComponent } from './copy-service-button-example
   imports: [
     CommonModule,
     DemoComponentsModule,
-    NotificationModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ToastNotificationListModule
   ],
   providers: [
     CopyService,
