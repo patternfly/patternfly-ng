@@ -1,0 +1,16 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Tree List Component Example (deprecated)</h4>
+      <hr/>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Basic" (select)="tabSelected($event)">
+      <tree-list-basic-example *ngIf="activeTab === 'Basic' || activeTab === ''"></tree-list-basic-example>
+    </tab>
+    <tab heading="Selective Drag" (select)="tabSelected($event)">
+      <tree-list-dnd-example *ngIf="activeTab === 'Selective Drag'"></tree-list-dnd-example>
+    </tab>
+  </tabset>
+</div>

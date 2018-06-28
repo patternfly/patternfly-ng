@@ -1,0 +1,93 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Sort Array Pipe Example</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h5>Sort Array Ascending by "name"</h5>
+      <div class="col-sm-12"
+           *ngFor="let item of (items1 | sortArray: 'name')">
+        <div class="row">
+          <div class="col-sm-3">
+            <span>{{item.name}}</span>
+          </div>
+          <div class="col-sm-3">
+            <span>{{item.address}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.city}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.state}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h5>Sort Array Descending by "name"</h5>
+      <div class="col-sm-12"
+           *ngFor="let item of (items2 | sortArray: 'name': true)">
+        <div class="row">
+          <div class="col-sm-3">
+            <span>{{item.name}}</span>
+          </div>
+          <div class="col-sm-3">
+            <span>{{item.address}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.city}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.state}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h5>Sort Array Ascending by "name", Then Sort Descending by "pin"</h5>
+      <div class="col-sm-12"
+           *ngFor="let item of (items3 | sortArray: 'name' | sortArray: 'pin')">
+        <div class="row">
+          <div class="col-sm-3">
+            <span>{{item.name}}</span><strong *ngIf="item.pin"> (pinned)</strong>
+          </div>
+          <div class="col-sm-3">
+            <span>{{item.address}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.city}}</span>
+          </div>
+          <div class="col-sm-2">
+            <span>{{item.state}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/sortarraypipe.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/pipe/sort-array/example/sort-array-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/pipe/sort-array/example/sort-array-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

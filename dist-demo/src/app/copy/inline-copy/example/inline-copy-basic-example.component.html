@@ -1,0 +1,52 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-8">
+          <p>
+            This example shows how the inline copy component looks when surrounded by text content.
+            Inline Copy only occupies as much space as necessary to display its content.
+            Font size for this component is reduced slightly relative to the surrounding text.
+            <pfng-inline-copy
+              [buttonAriaLabel]="basicExConfig.buttonAriaLabel"
+              [tooltip]="basicExConfig.tooltip"
+              [value]="basicExConfig.value"
+              (onCopy)="handleCopy($event)"></pfng-inline-copy>
+            It is recommended to not repeat the copyValue text for the tooltip as this would be redundant.
+            Just as with BlockCopy, you have full and independent control over tooltips, aria labels, button labels, and every other piece of text that's displayed as part of this component.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/inlinecopycomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-basic-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-basic-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
