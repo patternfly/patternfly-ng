@@ -33694,7 +33694,9 @@
     exports.NavigationItemConfig = NavigationItemConfig;
     exports.NavigationModule = NavigationModule;
     exports.VerticalNavigationComponent = VerticalNavigationComponent;
+    exports.VerticalNavigationModule = VerticalNavigationModule;
     exports.ApplicationLauncherComponent = ApplicationLauncherComponent;
+    exports.ApplicationLauncherModule = ApplicationLauncherModule;
     exports.Notification = Notification;
     exports.NotificationEvent = NotificationEvent;
     exports.NotificaitonGroup = NotificaitonGroup;
