@@ -13,7 +13,7 @@ import { NavbarModule } from './navbar/navbar.module';
 
 // Main areas
 //  import example modules
-import { AboutModalExampleModule } from '../app/modal/example/about-modal-example.module';
+import { AboutModalExampleModule } from '../app/modal/about-modal/example/about-modal-example.module';
 import { ActionExampleModule } from '../app/action/example/action-example.module';
 import { ApplicationLauncherExampleModule }
   from '../app/navigation/application-launcher/example/application-launcher-example.module';

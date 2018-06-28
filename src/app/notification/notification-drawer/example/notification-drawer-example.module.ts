@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
+import { ActionModule } from '../../../action/action.module';
+import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { NotificationDrawerExampleComponent } from './notification-drawer-example.component';
 import { NotificationDrawerModule } from '../notification-drawer.module';
-import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
-import { ActionModule } from '../../../action/action.module';
 
 @NgModule({
   imports: [
