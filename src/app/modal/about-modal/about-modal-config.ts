@@ -1,5 +1,5 @@
 /**
- * A config containing properties for About Modal
+ * A config containing properties for about modal
  */
 export class AboutModalConfig {
   /**

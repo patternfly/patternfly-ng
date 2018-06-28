@@ -273,7 +273,6 @@ export class NotificationDrawerExampleComponent implements OnInit {
         moreActions: this.actionConfig.moreActions,
         timeStamp: this.currentTime - (240 * 60 * 60 * 1000)
       }]
-    },
-    ];
+    }];
   }
 }

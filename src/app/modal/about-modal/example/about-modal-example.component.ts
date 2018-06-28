@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   TemplateRef,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -18,7 +17,6 @@ import { AboutModalEvent } from '../about-modal-event';
   templateUrl: './about-modal-example.component.html'
 })
 export class AboutModalExampleComponent implements OnInit {
-
   aboutConfig: AboutModalConfig;
   modalRef: BsModalRef;
 
