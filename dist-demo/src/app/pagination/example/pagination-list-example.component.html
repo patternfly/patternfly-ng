@@ -1,0 +1,86 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <p>Warning: This example is for development testing purposes. It is not an official pattern and subject to change</p>
+        <p>This ensures pagination works with the list component</p>
+        <pfng-list [actionTemplate]="actionTemplate"
+                   [config]="listConfig"
+                   [items]="items"
+                   [itemTemplate]="itemTemplate"
+                   (onActionSelect)="handleAction($event, null)"
+                   (onClick)="handleClick($event)"
+                   (onSelectionChange)="handleSelectionChange($event)">
+          <ng-template #itemTemplate let-item="item" let-index="index">
+            <div class="list-pf-left">
+              <span class="fa {{item.typeIcon}} list-pf-icon list-pf-icon-bordered list-pf-icon-small"></span>
+            </div>
+            <div class="list-pf-content-wrapper">
+              <div class="list-pf-main-content">
+                <div class="list-pf-title">{{item.name}}</div>
+                <div class="list-pf-description text-overflow-pf">{{item.address}}</div>
+              </div>
+              <div class="list-pf-additional-content">
+                <div>
+                  <span class="pficon pficon-screen"></span>
+                  <strong>{{item.hostCount}}</strong> Hosts
+                </div>
+                <div>
+                  <span class="pficon pficon-cluster"></span>
+                  <strong>{{item.clusterCount}}</strong> Clusters
+                </div>
+                <div>
+                  <span class="pficon pficon-container-node"></span>
+                  <strong>{{item.nodeCount}}</strong> Nodes
+                </div>
+                <div>
+                  <span class="pficon pficon-image"></span>
+                  <strong>{{item.imageCount}}</strong> Images
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #actionTemplate let-item="item" let-index="index">
+            <pfng-action class="list-pf-actions"
+                         [config]="actionConfig"
+                         (onActionSelect)="handleAction($event, item)">
+            </pfng-action>
+          </ng-template>
+        </pfng-list>
+        <pfng-pagination [config]="paginationConfig"
+                         (onPageNumberChange)="handlePageNumber($event)"
+                         (onPageSizeChange)="handlePageSize($event)"></pfng-pagination>
+      </div>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr/>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/paginationcomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/pagination/example/pagination-list-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/pagination/example/pagination-list-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>
