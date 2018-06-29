@@ -15,6 +15,24 @@ import { EmptyStateConfig } from './empty-state-config';
 
 /**
  * Component for rendering an empty state.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { EmptyStateModule } from 'patternfly-ng/empty-state';
+ * // Or
+ * import { EmptyStateModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [EmptyStateModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { EmptyStateConfig } from 'patternfly-ng/empty-state';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

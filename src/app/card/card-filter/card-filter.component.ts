@@ -13,10 +13,22 @@ import { CardFilter } from '../card-filter/card-filter';
  * Card filter component
  *
  * Usage:
- * <br/><code>import { CardFilterModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CardFilterModule } from 'patternfly-ng/card';
+ * // Or
+ * import { CardFilterModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { CardFilterModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [CardFilterModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CardFilter, CardFilterPosition } from 'patternfly-ng/card';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

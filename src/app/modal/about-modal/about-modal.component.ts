@@ -14,14 +14,34 @@ import { AboutModalConfig } from './about-modal-config';
 import { AboutModalEvent } from './about-modal-event';
 
 /**
- * Component for rendering AboutModal
+ * About Modal component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { AboutModalModule } from 'patternfly-ng/modal';
+ * // Or
+ * import { AboutModalModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { ModalModule } from 'ngx-bootstrap/modal';
+ *
+ * &#64;NgModule({
+ *   imports: [AboutModalModule, ModalModule.forRoot(),...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { AboutModalConfig, AboutModalEvent } from 'patternfly-ng/modal';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-about-modal',
   templateUrl: './about-modal.component.html'
 })
-
 export class AboutModalComponent implements DoCheck, OnInit {
   /**
    * The AboutModal config contaning component properties
