@@ -197,9 +197,10 @@ module.exports = {
       mode: 'file',
       includeDeclarations: false,
       ignoreCompilerErrors: true,
+      excludeExternals: true,
       excludePrivate: true,
-      exclude: '**/+(example|demo)/**'
-    }, './src'),
+      exclude: '**/+(demo|example)/**'
+    }, './src/app'),
 
     /**
      * Plugin: AotPlugin
@@ -209,7 +210,7 @@ module.exports = {
      */
     new AotPlugin({
       entryModule: helpers.root('src/demo/app.module.ts#AppModule'),
-      tsConfigPath: helpers.root('tsconfig-aot.json')
+      tsConfigPath: helpers.root('tsconfig-demo.json')
     }),
 
     /**

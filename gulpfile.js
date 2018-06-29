@@ -5,6 +5,7 @@ var gulp = require('gulp'),
   cssmin = require('gulp-cssmin'),
   csso = require('csso'),
   del = require('del'),
+  exec = require('child_process').exec,
   fs = require("fs"),
   htmlMinifier = require('html-minifier'),
   lessCompiler = require('gulp-less'),
@@ -22,7 +23,12 @@ var libraryBuild = 'build';
 var libraryDist = 'dist';
 var demoDist = 'dist-demo';
 var watchDist = 'dist-watch';
-var globalExcludes = [ '!./**/example/**', '!./**/example', '!./**/demo/**', '!./**/demo.*' ];
+var globalExcludes = [
+  '!./**/demo.*',
+  '!./**/demo/**',
+  '!./**/example',
+  '!./**/example/**'
+];
 
 /**
  * FUNCTION LIBRARY
@@ -120,16 +126,29 @@ gulp.task('min-css', ['transpile-less'], function () {
 });
 
 // Put the files back to normal 'transpile',
-gulp.task('build',
-  [
-    'transpile',
-    'copy-css',
-    'copy-less'
-  ]);
+gulp.task('build', [
+  'transpile',
+  'copy-css',
+  'copy-less'
+]);
+
+// Library build and AOT testing
+gulp.task('aot', ['transpile-aot']);
+gulp.task('build', ['transpile', 'copy-css', 'copy-less']);
 
 // Build the components
 gulp.task('transpile', ['inline-template'], function () {
-  return ngc('tsconfig-prod.json');
+  return exec('ngc -p tsconfig-prod.json', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+  });
+});
+
+gulp.task('transpile-aot', ['inline-template'], function () {
+  return exec('ngc -p tsconfig-aot.json', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+  });
 });
 
 // Inline HTML templates in component classes
