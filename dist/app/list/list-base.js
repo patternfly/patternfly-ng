@@ -1,13 +1,4 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-import { EventEmitter, Input, Output, TemplateRef, } from '@angular/core';
+import { EventEmitter, Input, Output, } from '@angular/core';
 /**
  * List base
  */
@@ -251,34 +242,15 @@ var ListBase = /** @class */ (function () {
             });
         }
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], ListBase.prototype, "actionTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Array)
-    ], ListBase.prototype, "items", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], ListBase.prototype, "itemTemplate", void 0);
-    __decorate([
-        Output('onActionSelect'),
-        __metadata("design:type", Object)
-    ], ListBase.prototype, "onActionSelect", void 0);
-    __decorate([
-        Output('onClick'),
-        __metadata("design:type", Object)
-    ], ListBase.prototype, "onClick", void 0);
-    __decorate([
-        Output('onDblClick'),
-        __metadata("design:type", Object)
-    ], ListBase.prototype, "onDblClick", void 0);
-    __decorate([
-        Output('onSelectionChange'),
-        __metadata("design:type", Object)
-    ], ListBase.prototype, "onSelectionChange", void 0);
+    ListBase.propDecorators = {
+        'actionTemplate': [{ type: Input },],
+        'items': [{ type: Input },],
+        'itemTemplate': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onClick': [{ type: Output, args: ['onClick',] },],
+        'onDblClick': [{ type: Output, args: ['onDblClick',] },],
+        'onSelectionChange': [{ type: Output, args: ['onSelectionChange',] },],
+    };
     return ListBase;
 }());
 export { ListBase };

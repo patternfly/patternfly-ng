@@ -1,13 +1,4 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation, } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation, } from '@angular/core';
 import { filter, get, size } from 'lodash';
 /**
  * Notification drawer component
@@ -155,82 +146,34 @@ var NotificationDrawerComponent = /** @class */ (function () {
             this.unreadNotifications.emit(false);
         }
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "allowExpand", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "expanded", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "headingTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "hidden", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", String)
-    ], NotificationDrawerComponent.prototype, "noNotificationsText", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "notificationBodyTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "notificationFooterTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Array)
-    ], NotificationDrawerComponent.prototype, "notificationGroups", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", String)
-    ], NotificationDrawerComponent.prototype, "notificationTrackField", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "showMarkAllRead", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "showClearAll", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "singleGroup", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "subHeadingTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", String)
-    ], NotificationDrawerComponent.prototype, "title", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "titleTemplate", void 0);
-    __decorate([
-        Output('close'),
-        __metadata("design:type", Object)
-    ], NotificationDrawerComponent.prototype, "close", void 0);
-    __decorate([
-        Output('unreadNotifications'),
-        __metadata("design:type", Object)
-    ], NotificationDrawerComponent.prototype, "unreadNotifications", void 0);
-    NotificationDrawerComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-notification-drawer',
-            template: "<div class=\"drawer-pf\" [ngClass]=\"{'hide': hidden, 'drawer-pf-expanded': expanded}\"><div *ngIf=\"title\" class=\"drawer-pf-title\"><a *ngIf=\"allowExpand\" class=\"drawer-pf-toggle-expand fa fa-angle-double-left hidden-xs\" (click)=\"toggleExpandDrawer()\"></a> <a class=\"drawer-pf-close pficon pficon-close\" (click)=\"onClose()\"></a><div *ngIf=\"titleTemplate; then showTitleTemplate else showTitle\"></div><ng-template #showTitle><h3 class=\"text-center\">{{title}}</h3></ng-template><ng-template #showTitleTemplate [ngTemplateOutlet]=\"titleTemplate\"></ng-template></div><div *ngIf=\"!notificationGroups\"><pfng-empty-state [config]=\"emptyStateConfig\"></pfng-empty-state></div><div *ngIf=\"notificationGroups\" class=\"panel-group\"><div class=\"panel panel-default\" [ngClass]=\"{expanded: notificationGroup.open}\" *ngFor=\"let notificationGroup of notificationGroups, let index = index\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a *ngIf=\"!singleGroup\" (click)=\"toggleCollapse(notificationGroup)\" [ngClass]=\"{collapsed: !notificationGroup.open}\"><span><ng-template let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"headingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></span></a></h4><ng-template class=\"panel-counter\" let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"subHeadingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></div><div class=\"panel-collapse collapse\" [ngClass]=\"{in: notificationGroup.open || notificationGroups.length === 1}\"><div *ngIf=\"hasNotifications(notificationGroup)\" class=\"panel-body\"><div class=\"drawer-pf-notification\" [ngClass]=\"{unread: !notification.isViewing, 'expanded-notification': expanded}\" *ngFor=\"let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index\"><ng-template let-notify=\"notification\" let-index=\"index\" [ngTemplateOutlet]=\"notificationBodyTemplate\" [ngTemplateOutletContext]=\"{notify:notification, index: index}\"></ng-template></div><div *ngIf=\"notificationGroup.loading\" class=\"drawer-pf-loading text-center\"><span class=\"spinner spinner-xs spinner-inline\"></span> Loading More</div></div><div *ngIf=\"(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)\" class=\"drawer-pf-action\"><span class=\"drawer-pf-action-link\" *ngIf=\"showMarkAllRead && hasUnread(notificationGroup)\"><button class=\"btn btn-link\" (click)=\"onMarkAllRead(notificationGroup)\">Mark All Read</button> </span><span class=\"drawer-pf-action-link\"><button class=\"btn btn-link\" *ngIf=\"showClearAll\" (click)=\"onClearAll(notificationGroup)\"><span class=\"pficon pficon-close\"></span> Clear All</button></span></div><div *ngIf=\"!hasNotifications(notificationGroup)\"><div class=\"panel-body\"><pfng-empty-state [config]=\"notificationGroup.emptyStateConfig\"></pfng-empty-state></div></div><ng-template *ngIf=\"notificationFooterTemplate\" [ngTemplateOutlet]=\"notificationFooterTemplate\"></ng-template></div></div></div></div>"
-        }),
-        __metadata("design:paramtypes", [])
-    ], NotificationDrawerComponent);
+    NotificationDrawerComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-notification-drawer',
+                    template: "<div class=\"drawer-pf\" [ngClass]=\"{'hide': hidden, 'drawer-pf-expanded': expanded}\"><div *ngIf=\"title\" class=\"drawer-pf-title\"><a *ngIf=\"allowExpand\" class=\"drawer-pf-toggle-expand fa fa-angle-double-left hidden-xs\" (click)=\"toggleExpandDrawer()\"></a> <a class=\"drawer-pf-close pficon pficon-close\" (click)=\"onClose()\"></a><div *ngIf=\"titleTemplate; then showTitleTemplate else showTitle\"></div><ng-template #showTitle><h3 class=\"text-center\">{{title}}</h3></ng-template><ng-template #showTitleTemplate [ngTemplateOutlet]=\"titleTemplate\"></ng-template></div><div *ngIf=\"!notificationGroups\"><pfng-empty-state [config]=\"emptyStateConfig\"></pfng-empty-state></div><div *ngIf=\"notificationGroups\" class=\"panel-group\"><div class=\"panel panel-default\" [ngClass]=\"{expanded: notificationGroup.open}\" *ngFor=\"let notificationGroup of notificationGroups, let index = index\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a *ngIf=\"!singleGroup\" (click)=\"toggleCollapse(notificationGroup)\" [ngClass]=\"{collapsed: !notificationGroup.open}\"><span><ng-template let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"headingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></span></a></h4><ng-template class=\"panel-counter\" let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"subHeadingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></div><div class=\"panel-collapse collapse\" [ngClass]=\"{in: notificationGroup.open || notificationGroups.length === 1}\"><div *ngIf=\"hasNotifications(notificationGroup)\" class=\"panel-body\"><div class=\"drawer-pf-notification\" [ngClass]=\"{unread: !notification.isViewing, 'expanded-notification': expanded}\" *ngFor=\"let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index\"><ng-template let-notify=\"notification\" let-index=\"index\" [ngTemplateOutlet]=\"notificationBodyTemplate\" [ngTemplateOutletContext]=\"{notify:notification, index: index}\"></ng-template></div><div *ngIf=\"notificationGroup.loading\" class=\"drawer-pf-loading text-center\"><span class=\"spinner spinner-xs spinner-inline\"></span> Loading More</div></div><div *ngIf=\"(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)\" class=\"drawer-pf-action\"><span class=\"drawer-pf-action-link\" *ngIf=\"showMarkAllRead && hasUnread(notificationGroup)\"><button class=\"btn btn-link\" (click)=\"onMarkAllRead(notificationGroup)\">Mark All Read</button> </span><span class=\"drawer-pf-action-link\"><button class=\"btn btn-link\" *ngIf=\"showClearAll\" (click)=\"onClearAll(notificationGroup)\"><span class=\"pficon pficon-close\"></span> Clear All</button></span></div><div *ngIf=\"!hasNotifications(notificationGroup)\"><div class=\"panel-body\"><pfng-empty-state [config]=\"notificationGroup.emptyStateConfig\"></pfng-empty-state></div></div><ng-template *ngIf=\"notificationFooterTemplate\" [ngTemplateOutlet]=\"notificationFooterTemplate\"></ng-template></div></div></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    NotificationDrawerComponent.ctorParameters = function () { return []; };
+    NotificationDrawerComponent.propDecorators = {
+        'allowExpand': [{ type: Input },],
+        'expanded': [{ type: Input },],
+        'headingTemplate': [{ type: Input },],
+        'hidden': [{ type: Input },],
+        'noNotificationsText': [{ type: Input },],
+        'notificationBodyTemplate': [{ type: Input },],
+        'notificationFooterTemplate': [{ type: Input },],
+        'notificationGroups': [{ type: Input },],
+        'notificationTrackField': [{ type: Input },],
+        'showMarkAllRead': [{ type: Input },],
+        'showClearAll': [{ type: Input },],
+        'singleGroup': [{ type: Input },],
+        'subHeadingTemplate': [{ type: Input },],
+        'title': [{ type: Input },],
+        'titleTemplate': [{ type: Input },],
+        'close': [{ type: Output, args: ['close',] },],
+        'unreadNotifications': [{ type: Output, args: ['unreadNotifications',] },],
+    };
     return NotificationDrawerComponent;
 }());
 export { NotificationDrawerComponent };

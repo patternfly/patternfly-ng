@@ -1,15 +1,5 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, isEqual } from 'lodash';
-import { SortConfig } from './sort-config';
 /**
  * Sort component
  */
@@ -98,22 +88,19 @@ var SortComponent = /** @class */ (function () {
             isAscending: this.config.isAscending
         });
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", SortConfig)
-    ], SortComponent.prototype, "config", void 0);
-    __decorate([
-        Output('onChange'),
-        __metadata("design:type", Object)
-    ], SortComponent.prototype, "onChange", void 0);
-    SortComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-sort',
-            template: "<div class=\"sort-pf\" *ngIf=\"config?.visible !== false\"><div class=\"btn-group dropdown\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\">{{currentField?.title}} <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let item of config?.fields\" [ngClass]=\"{'selected': item === currentField}\"><a href=\"javascript:void(0);\" class=\"sortfield sort-field dropdown-item\" tabindex=\"-1\" (click)=\"selectField(item)\">{{item?.title}}</a></li></ul></div><button class=\"btn btn-link\" type=\"button\" aria-label=\"Sort Direction\" [disabled]=\"config.disabled === true\" (click)=\"onChangeDirection()\"><span class=\"sort-direction\" [ngClass]=\"getIconStyleClass()\"></span></button></div>"
-        }),
-        __metadata("design:paramtypes", [])
-    ], SortComponent);
+    SortComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-sort',
+                    template: "<div class=\"sort-pf\" *ngIf=\"config?.visible !== false\"><div class=\"btn-group dropdown\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\">{{currentField?.title}} <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let item of config?.fields\" [ngClass]=\"{'selected': item === currentField}\"><a href=\"javascript:void(0);\" class=\"sortfield sort-field dropdown-item\" tabindex=\"-1\" (click)=\"selectField(item)\">{{item?.title}}</a></li></ul></div><button class=\"btn btn-link\" type=\"button\" aria-label=\"Sort Direction\" [disabled]=\"config.disabled === true\" (click)=\"onChangeDirection()\"><span class=\"sort-direction\" [ngClass]=\"getIconStyleClass()\"></span></button></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    SortComponent.ctorParameters = function () { return []; };
+    SortComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onChange': [{ type: Output, args: ['onChange',] },],
+    };
     return SortComponent;
 }());
 export { SortComponent };

@@ -32,7 +32,6 @@
     "build/src/app/index.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "compiled",
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true
   },

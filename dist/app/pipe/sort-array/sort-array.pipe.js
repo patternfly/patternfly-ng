@@ -1,9 +1,3 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 import { Pipe } from '@angular/core';
 import { orderBy } from 'lodash';
 /**
@@ -34,9 +28,11 @@ var SortArrayPipe = /** @class */ (function () {
         var sortedArray = orderBy(arr, [prop], [sortOrder]);
         return sortedArray;
     };
-    SortArrayPipe = __decorate([
-        Pipe({ name: 'sortArray' })
-    ], SortArrayPipe);
+    SortArrayPipe.decorators = [
+        { type: Pipe, args: [{ name: 'sortArray' },] },
+    ];
+    /** @nocollapse */
+    SortArrayPipe.ctorParameters = function () { return []; };
     return SortArrayPipe;
 }());
 export { SortArrayPipe };

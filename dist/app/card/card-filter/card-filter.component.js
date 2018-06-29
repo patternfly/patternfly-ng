@@ -1,12 +1,3 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 /**
  * Card filter component
@@ -69,22 +60,19 @@ var CardFilterComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    __decorate([
-        Input(),
-        __metadata("design:type", Array)
-    ], CardFilterComponent.prototype, "filters", void 0);
-    __decorate([
-        Output('onFilterSelect'),
-        __metadata("design:type", Object)
-    ], CardFilterComponent.prototype, "onSelect", void 0);
-    CardFilterComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-card-filter',
-            template: "<div class=\"card-pf-time-frame-filter\"><div class=\"dropdown primary-action\" dropdown><button class=\"btn btn-default dropdown-toggle\" type=\"button\" dropdownToggle>{{currentFilter?.title}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let filter of filters\" [ngClass]=\"{'selected': filter === currentFilter}\"><a class=\"dropdown-item\" role=\"menuitem\" tabindex=\"-1\" (click)=\"select(filter)\">{{filter?.title}}</a></li></ul></div></div>"
-        }),
-        __metadata("design:paramtypes", [])
-    ], CardFilterComponent);
+    CardFilterComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-card-filter',
+                    template: "<div class=\"card-pf-time-frame-filter\"><div class=\"dropdown primary-action\" dropdown><button class=\"btn btn-default dropdown-toggle\" type=\"button\" dropdownToggle>{{currentFilter?.title}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let filter of filters\" [ngClass]=\"{'selected': filter === currentFilter}\"><a class=\"dropdown-item\" role=\"menuitem\" tabindex=\"-1\" (click)=\"select(filter)\">{{filter?.title}}</a></li></ul></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    CardFilterComponent.ctorParameters = function () { return []; };
+    CardFilterComponent.propDecorators = {
+        'filters': [{ type: Input },],
+        'onSelect': [{ type: Output, args: ['onFilterSelect',] },],
+    };
     return CardFilterComponent;
 }());
 export { CardFilterComponent };

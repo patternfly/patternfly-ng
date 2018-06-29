@@ -8,19 +8,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, isEqual } from 'lodash';
 import { WizardBase } from './wizard-base';
-import { WizardConfig } from './wizard-config';
 /**
  * Wizard component
  */
@@ -359,38 +349,23 @@ var WizardComponent = /** @class */ (function (_super) {
             this.goTo(step, true, false);
         }
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", WizardConfig)
-    ], WizardComponent.prototype, "config", void 0);
-    __decorate([
-        Output('onCancel'),
-        __metadata("design:type", Object)
-    ], WizardComponent.prototype, "onCancel", void 0);
-    __decorate([
-        Output('onFinish'),
-        __metadata("design:type", Object)
-    ], WizardComponent.prototype, "onFinish", void 0);
-    __decorate([
-        Output('onNext'),
-        __metadata("design:type", Object)
-    ], WizardComponent.prototype, "onNext", void 0);
-    __decorate([
-        Output('onPrevious'),
-        __metadata("design:type", Object)
-    ], WizardComponent.prototype, "onPrevious", void 0);
-    __decorate([
-        Output('onStepChange'),
-        __metadata("design:type", Object)
-    ], WizardComponent.prototype, "onStepChange", void 0);
-    WizardComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-wizard',
-            template: "<div class=\"modal-header\" *ngIf=\"!config?.hideHeader\"><button class=\"close wizard-pf-dismiss\" aria-hidden=\"true\" aria-label=\"Close\" type=\"button\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\"><span class=\"pficon pficon-close\"></span></button><h4 class=\"modal-title\">{{config?.title}}</h4></div><div class=\"modal-body wizard-pf-body clearfix\"><div class=\"wizard-pf-steps\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"config?.ready\"><ul class=\"wizard-pf-steps-indicator\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"!config?.hideIndicators\"><li class=\"wizard-pf-step\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps(); let i = index\"><a (click)=\"stepClick(step)\" [ngClass]=\"{'disabled': !allowStepIndicatorClick(step)}\"><span class=\"wizard-pf-step-number\">{{i + 1}}</span> <span class=\"wizard-pf-step-title\">{{step.config?.title}}</span></a></li></ul></div><div *ngIf=\"!config?.ready\" class=\"wizard-pf-main pfng-wizard-main\"><div class=\"wizard-pf-loading blank-slate-pf\"><div class=\"spinner spinner-lg blank-slate-pf-icon\"></div><h3 class=\"blank-slate-pf-main-action\">{{config?.loadingTitle}}</h3><p class=\"blank-slate-pf-secondary-action\">{{config?.loadingSecondaryInfo}}</p></div></div><div class=\"pfng-wizard-position-override\"><ng-content></ng-content></div></div><div class=\"modal-footer wizard-pf-footer pfng-wizard-position-override\" [ngClass]=\"{'pfng-footer-inline': config?.embedInPage}\"><button class=\"btn btn-default wizard-btn btn-cancel\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\">{{config?.cancelTitle}}</button> <button class=\"btn btn-default pfng-wizard-previous-btn\" type=\"button\" tooltip=\"{{selectedStep?.config?.previousTooltip}}\" placement=\"left\" [ngClass]=\"{'pfng-wizard-btn-no-back': config?.hidePreviousButton}\" [disabled]=\"!config?.ready || config?.done || !selectedStep?.previousEnabled || firstStep\" (click)=\"previous(true)\">{{config?.previousTitle}}</button> <button class=\"btn btn-primary wizard-pf-next\" type=\"button\" tooltip=\"{{selectedStep?.config?.nextTooltip}}\" placement=\"left\" [disabled]=\"!config?.ready || !selectedStep?.nextEnabled\" (click)=\"next(true)\">{{config?.nextTitle}}</button> <button class=\"btn btn-default btn-cancel pfng-cancel-inline\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"config?.embedInPage\">{{config?.cancelTitle}}</button></div>"
-        }),
-        __metadata("design:paramtypes", [])
-    ], WizardComponent);
+    WizardComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-wizard',
+                    template: "<div class=\"modal-header\" *ngIf=\"!config?.hideHeader\"><button class=\"close wizard-pf-dismiss\" aria-hidden=\"true\" aria-label=\"Close\" type=\"button\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\"><span class=\"pficon pficon-close\"></span></button><h4 class=\"modal-title\">{{config?.title}}</h4></div><div class=\"modal-body wizard-pf-body clearfix\"><div class=\"wizard-pf-steps\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"config?.ready\"><ul class=\"wizard-pf-steps-indicator\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"!config?.hideIndicators\"><li class=\"wizard-pf-step\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps(); let i = index\"><a (click)=\"stepClick(step)\" [ngClass]=\"{'disabled': !allowStepIndicatorClick(step)}\"><span class=\"wizard-pf-step-number\">{{i + 1}}</span> <span class=\"wizard-pf-step-title\">{{step.config?.title}}</span></a></li></ul></div><div *ngIf=\"!config?.ready\" class=\"wizard-pf-main pfng-wizard-main\"><div class=\"wizard-pf-loading blank-slate-pf\"><div class=\"spinner spinner-lg blank-slate-pf-icon\"></div><h3 class=\"blank-slate-pf-main-action\">{{config?.loadingTitle}}</h3><p class=\"blank-slate-pf-secondary-action\">{{config?.loadingSecondaryInfo}}</p></div></div><div class=\"pfng-wizard-position-override\"><ng-content></ng-content></div></div><div class=\"modal-footer wizard-pf-footer pfng-wizard-position-override\" [ngClass]=\"{'pfng-footer-inline': config?.embedInPage}\"><button class=\"btn btn-default wizard-btn btn-cancel\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\">{{config?.cancelTitle}}</button> <button class=\"btn btn-default pfng-wizard-previous-btn\" type=\"button\" tooltip=\"{{selectedStep?.config?.previousTooltip}}\" placement=\"left\" [ngClass]=\"{'pfng-wizard-btn-no-back': config?.hidePreviousButton}\" [disabled]=\"!config?.ready || config?.done || !selectedStep?.previousEnabled || firstStep\" (click)=\"previous(true)\">{{config?.previousTitle}}</button> <button class=\"btn btn-primary wizard-pf-next\" type=\"button\" tooltip=\"{{selectedStep?.config?.nextTooltip}}\" placement=\"left\" [disabled]=\"!config?.ready || !selectedStep?.nextEnabled\" (click)=\"next(true)\">{{config?.nextTitle}}</button> <button class=\"btn btn-default btn-cancel pfng-cancel-inline\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"config?.embedInPage\">{{config?.cancelTitle}}</button></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    WizardComponent.ctorParameters = function () { return []; };
+    WizardComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onCancel': [{ type: Output, args: ['onCancel',] },],
+        'onFinish': [{ type: Output, args: ['onFinish',] },],
+        'onNext': [{ type: Output, args: ['onNext',] },],
+        'onPrevious': [{ type: Output, args: ['onPrevious',] },],
+        'onStepChange': [{ type: Output, args: ['onStepChange',] },],
+    };
     return WizardComponent;
 }(WizardBase));
 export { WizardComponent };

@@ -8,20 +8,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Input } from '@angular/core';
 import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash';
 import * as d3 from 'd3';
 import { ChartBase } from '../chart-base';
-import { DonutChartBaseConfig } from './donut-chart-base-config';
 /**
  * Donut base
  */
@@ -158,14 +148,10 @@ var DonutChartBaseComponent = /** @class */ (function (_super) {
                 classed('donut-title-small-pf', true).attr('dy', 20).attr('x', 0);
         }
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", Array)
-    ], DonutChartBaseComponent.prototype, "chartData", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", DonutChartBaseConfig)
-    ], DonutChartBaseComponent.prototype, "config", void 0);
+    DonutChartBaseComponent.propDecorators = {
+        'chartData': [{ type: Input },],
+        'config': [{ type: Input },],
+    };
     return DonutChartBaseComponent;
 }(ChartBase));
 export { DonutChartBaseComponent };

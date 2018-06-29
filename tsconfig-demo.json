@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es6"],
+    "noImplicitAny": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "files": [
+    "src/demo/app.module.ts",
+    "src/demo.ts"
+  ],
+  "angularCompilerOptions": {
+    "skipMetadataEmit" : true
+  }
+}

@@ -1,16 +1,5 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
-import { FilterConfig } from './filter-config';
-import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterType } from './filter-type';
 /**
  * Filter component
@@ -156,42 +145,24 @@ var FilterComponent = /** @class */ (function () {
         });
         return foundFilter !== undefined;
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", FilterConfig)
-    ], FilterComponent.prototype, "config", void 0);
-    __decorate([
-        Output('onChange'),
-        __metadata("design:type", Object)
-    ], FilterComponent.prototype, "onChange", void 0);
-    __decorate([
-        Output('onDelete'),
-        __metadata("design:type", Object)
-    ], FilterComponent.prototype, "onDelete", void 0);
-    __decorate([
-        Output('onFieldSelect'),
-        __metadata("design:type", Object)
-    ], FilterComponent.prototype, "onFilterSelect", void 0);
-    __decorate([
-        Output('onSave'),
-        __metadata("design:type", Object)
-    ], FilterComponent.prototype, "onSave", void 0);
-    __decorate([
-        Output('onTypeAhead'),
-        __metadata("design:type", Object)
-    ], FilterComponent.prototype, "onTypeAhead", void 0);
-    __decorate([
-        ViewChild('filterFields'),
-        __metadata("design:type", FilterFieldsComponent)
-    ], FilterComponent.prototype, "filterFields", void 0);
-    FilterComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-filter',
-            template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
-        }),
-        __metadata("design:paramtypes", [])
-    ], FilterComponent);
+    FilterComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-filter',
+                    template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    FilterComponent.ctorParameters = function () { return []; };
+    FilterComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onChange': [{ type: Output, args: ['onChange',] },],
+        'onDelete': [{ type: Output, args: ['onDelete',] },],
+        'onFilterSelect': [{ type: Output, args: ['onFieldSelect',] },],
+        'onSave': [{ type: Output, args: ['onSave',] },],
+        'onTypeAhead': [{ type: Output, args: ['onTypeAhead',] },],
+        'filterFields': [{ type: ViewChild, args: ['filterFields',] },],
+    };
     return FilterComponent;
 }());
 export { FilterComponent };

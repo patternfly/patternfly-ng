@@ -8,23 +8,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-import { Component, EventEmitter, Host, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Host, Input, Output, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, isEqual } from 'lodash';
 import { WizardBase } from './wizard-base';
 import { WizardComponent } from './wizard.component';
-import { WizardStepConfig } from './wizard-step-config';
 /**
  * Wizard step component. Each step can stand alone or have substeps.
  *
@@ -300,27 +287,22 @@ var WizardStepComponent = /** @class */ (function (_super) {
             this.goTo(step);
         }
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", WizardStepConfig)
-    ], WizardStepComponent.prototype, "config", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], WizardStepComponent.prototype, "reviewTemplate", void 0);
-    __decorate([
-        Output('onShow'),
-        __metadata("design:type", Object)
-    ], WizardStepComponent.prototype, "onShow", void 0);
-    WizardStepComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-wizard-step',
-            template: "<section class=\"wizard-pf-row\" *ngIf=\"selected\"><div class=\"wizard-pf-sidebar\" [ngClass]=\"wizard?.config?.sidebarStyleClass\" [ngStyle]=\"wizard?.contentStyle\" *ngIf=\"hasSubsteps && !wizard?.config?.hideSidebar\"><ul class=\"list-group\"><li class=\"list-group-item\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps()\"><a (click)=\"stepClick(step)\"><span class=\"wizard-pf-substep-number\">{{getDisplayNumber(step)}}</span> <span class=\"wizard-pf-substep-title\">{{step.config?.title}}</span></a></li></ul></div><div class=\"wizard-pf-main {{wizard.config?.stepStyleClass}}\" [ngClass]=\"{'pfng-wizard-single-step': !hasSubsteps || wizard?.config?.hideSidebar}\" [ngStyle]=\"wizard?.contentStyle\"><div class=\"wizard-pf-contents\"><ng-content></ng-content></div></div></section>"
-        }),
-        __param(0, Host()),
-        __metadata("design:paramtypes", [WizardComponent])
-    ], WizardStepComponent);
+    WizardStepComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-wizard-step',
+                    template: "<section class=\"wizard-pf-row\" *ngIf=\"selected\"><div class=\"wizard-pf-sidebar\" [ngClass]=\"wizard?.config?.sidebarStyleClass\" [ngStyle]=\"wizard?.contentStyle\" *ngIf=\"hasSubsteps && !wizard?.config?.hideSidebar\"><ul class=\"list-group\"><li class=\"list-group-item\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps()\"><a (click)=\"stepClick(step)\"><span class=\"wizard-pf-substep-number\">{{getDisplayNumber(step)}}</span> <span class=\"wizard-pf-substep-title\">{{step.config?.title}}</span></a></li></ul></div><div class=\"wizard-pf-main {{wizard.config?.stepStyleClass}}\" [ngClass]=\"{'pfng-wizard-single-step': !hasSubsteps || wizard?.config?.hideSidebar}\" [ngStyle]=\"wizard?.contentStyle\"><div class=\"wizard-pf-contents\"><ng-content></ng-content></div></div></section>"
+                },] },
+    ];
+    /** @nocollapse */
+    WizardStepComponent.ctorParameters = function () { return [
+        { type: WizardComponent, decorators: [{ type: Host },] },
+    ]; };
+    WizardStepComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'reviewTemplate': [{ type: Input },],
+        'onShow': [{ type: Output, args: ['onShow',] },],
+    };
     return WizardStepComponent;
 }(WizardBase));
 export { WizardStepComponent };

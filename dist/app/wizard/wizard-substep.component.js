@@ -1,18 +1,5 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-import { Component, EventEmitter, Host, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Host, Input, Output, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, isEqual } from 'lodash';
-import { WizardStepConfig } from './wizard-step-config';
 import { WizardStepComponent } from './wizard-step.component';
 /**
  * Wizard substep component.
@@ -111,27 +98,22 @@ var WizardSubstepComponent = /** @class */ (function () {
             step: this
         });
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", WizardStepConfig)
-    ], WizardSubstepComponent.prototype, "config", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], WizardSubstepComponent.prototype, "reviewTemplate", void 0);
-    __decorate([
-        Output('onShow'),
-        __metadata("design:type", Object)
-    ], WizardSubstepComponent.prototype, "onShow", void 0);
-    WizardSubstepComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-wizard-substep',
-            template: "<ng-content *ngIf=\"selected\"></ng-content>"
-        }),
-        __param(0, Host()),
-        __metadata("design:paramtypes", [WizardStepComponent])
-    ], WizardSubstepComponent);
+    WizardSubstepComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-wizard-substep',
+                    template: "<ng-content *ngIf=\"selected\"></ng-content>"
+                },] },
+    ];
+    /** @nocollapse */
+    WizardSubstepComponent.ctorParameters = function () { return [
+        { type: WizardStepComponent, decorators: [{ type: Host },] },
+    ]; };
+    WizardSubstepComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'reviewTemplate': [{ type: Input },],
+        'onShow': [{ type: Output, args: ['onShow',] },],
+    };
     return WizardSubstepComponent;
 }());
 export { WizardSubstepComponent };

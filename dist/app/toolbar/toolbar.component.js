@@ -1,16 +1,5 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
-import { FilterFieldsComponent } from '../filter/filter-fields.component';
-import { ToolbarConfig } from './toolbar-config';
 /**
  * Toolbar component
  */
@@ -174,58 +163,28 @@ var ToolbarComponent = /** @class */ (function () {
     ToolbarComponent.prototype.enforceSingleSelect = function (filter) {
         remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", ToolbarConfig)
-    ], ToolbarComponent.prototype, "config", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], ToolbarComponent.prototype, "actionTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], ToolbarComponent.prototype, "viewTemplate", void 0);
-    __decorate([
-        Output('onActionSelect'),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "onActionSelect", void 0);
-    __decorate([
-        Output('onFilterFieldSelect'),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterFieldSelect", void 0);
-    __decorate([
-        Output('onFilterChange'),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterChange", void 0);
-    __decorate([
-        Output('onFilterSave'),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterSave", void 0);
-    __decorate([
-        Output('onFilterTypeAhead'),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterTypeAhead", void 0);
-    __decorate([
-        Output('onSortChange'),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "onSortChange", void 0);
-    __decorate([
-        Output('onViewSelect'),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "onViewSelect", void 0);
-    __decorate([
-        ViewChild('filterFields'),
-        __metadata("design:type", FilterFieldsComponent)
-    ], ToolbarComponent.prototype, "filterFields", void 0);
-    ToolbarComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-toolbar',
-            template: "<div class=\"row toolbar-pf\"><div class=\"col-sm-12\"><form class=\"toolbar-pf-actions\" [ngClass]=\"{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}\" (submit)=\"$event.preventDefault()\"><div class=\"form-group toolbar-apf-filter\"><pfng-filter-fields [config]=\"config.filterConfig\" #filterFields (onAdd)=\"filterAdded($event)\" (onFieldSelect)=\"handleFilterFieldSelect($event)\" (onSave)=\"handleFilterSave($event)\" (onTypeAhead)=\"handleFilterTypeAhead($event)\" *ngIf=\"config.filterConfig?.fields\"></pfng-filter-fields></div><div class=\"form-group\" *ngIf=\"config.sortConfig?.fields && config.sortConfig?.visible !== false\"><pfng-sort [config]=\"config.sortConfig\" (onChange)=\"sortChange($event)\"></pfng-sort></div><div class=\"form-group toolbar-actions\" *ngIf=\"config.actionConfig !== undefined || actionTemplate !== undefined\"><pfng-action [config]=\"config.actionConfig\" [template]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\"></pfng-action></div><div class=\"toolbar-pf-action-right\"><div class=\"form-group toolbar-pf-view-selector\" *ngIf=\"viewTemplate !== undefined || (config.views)\"><ng-template [ngTemplateOutlet]=\"viewTemplate\" [ngTemplateOutletContext]=\"{}\"></ng-template><span *ngIf=\"config.views\"><button *ngFor=\"let view of config.views\" class=\"btn btn-link\" [ngClass]=\"{'active': isViewSelected(view), 'disabled': view.disabled === true}\" [attr.aria-label]=\"view.ariaLabel || view.tooltip\" title=\"{{view.tooltip}}\" (click)=\"viewSelected(view)\"><i class=\"{{view.iconStyleClass}}\"></i></button></span></div></div></form><pfng-filter-results [config]=\"config.filterConfig\" (onClear)=\"clearFilter($event)\"></pfng-filter-results></div></div>"
-        }),
-        __metadata("design:paramtypes", [])
-    ], ToolbarComponent);
+    ToolbarComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-toolbar',
+                    template: "<div class=\"row toolbar-pf\"><div class=\"col-sm-12\"><form class=\"toolbar-pf-actions\" [ngClass]=\"{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}\" (submit)=\"$event.preventDefault()\"><div class=\"form-group toolbar-apf-filter\"><pfng-filter-fields [config]=\"config.filterConfig\" #filterFields (onAdd)=\"filterAdded($event)\" (onFieldSelect)=\"handleFilterFieldSelect($event)\" (onSave)=\"handleFilterSave($event)\" (onTypeAhead)=\"handleFilterTypeAhead($event)\" *ngIf=\"config.filterConfig?.fields\"></pfng-filter-fields></div><div class=\"form-group\" *ngIf=\"config.sortConfig?.fields && config.sortConfig?.visible !== false\"><pfng-sort [config]=\"config.sortConfig\" (onChange)=\"sortChange($event)\"></pfng-sort></div><div class=\"form-group toolbar-actions\" *ngIf=\"config.actionConfig !== undefined || actionTemplate !== undefined\"><pfng-action [config]=\"config.actionConfig\" [template]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\"></pfng-action></div><div class=\"toolbar-pf-action-right\"><div class=\"form-group toolbar-pf-view-selector\" *ngIf=\"viewTemplate !== undefined || (config.views)\"><ng-template [ngTemplateOutlet]=\"viewTemplate\" [ngTemplateOutletContext]=\"{}\"></ng-template><span *ngIf=\"config.views\"><button *ngFor=\"let view of config.views\" class=\"btn btn-link\" [ngClass]=\"{'active': isViewSelected(view), 'disabled': view.disabled === true}\" [attr.aria-label]=\"view.ariaLabel || view.tooltip\" title=\"{{view.tooltip}}\" (click)=\"viewSelected(view)\"><i class=\"{{view.iconStyleClass}}\"></i></button></span></div></div></form><pfng-filter-results [config]=\"config.filterConfig\" (onClear)=\"clearFilter($event)\"></pfng-filter-results></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ToolbarComponent.ctorParameters = function () { return []; };
+    ToolbarComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'actionTemplate': [{ type: Input },],
+        'viewTemplate': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onFilterFieldSelect': [{ type: Output, args: ['onFilterFieldSelect',] },],
+        'onFilterChange': [{ type: Output, args: ['onFilterChange',] },],
+        'onFilterSave': [{ type: Output, args: ['onFilterSave',] },],
+        'onFilterTypeAhead': [{ type: Output, args: ['onFilterTypeAhead',] },],
+        'onSortChange': [{ type: Output, args: ['onSortChange',] },],
+        'onViewSelect': [{ type: Output, args: ['onViewSelect',] },],
+        'filterFields': [{ type: ViewChild, args: ['filterFields',] },],
+    };
     return ToolbarComponent;
 }());
 export { ToolbarComponent };

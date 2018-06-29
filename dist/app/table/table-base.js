@@ -1,13 +1,4 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-import { EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
 /**
  * Table base
  */
@@ -100,58 +91,21 @@ var TableBase = /** @class */ (function () {
     TableBase.prototype.handleViewSelect = function ($event) {
         this.onViewSelect.emit($event);
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], TableBase.prototype, "actionTemplate", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], TableBase.prototype, "viewTemplate", void 0);
-    __decorate([
-        Output('onDrop'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onDrop", void 0);
-    __decorate([
-        Output('onPageSizeChange'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onPageSizeChange", void 0);
-    __decorate([
-        Output('onPageNumberChange'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onPageNumberChange", void 0);
-    __decorate([
-        Output('onActionSelect'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onActionSelect", void 0);
-    __decorate([
-        Output('onFilterFieldSelect'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onFilterFieldSelect", void 0);
-    __decorate([
-        Output('onFilterChange'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onFilterChange", void 0);
-    __decorate([
-        Output('onFilterSave'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onFilterSave", void 0);
-    __decorate([
-        Output('onFilterTypeAhead'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onFilterTypeAhead", void 0);
-    __decorate([
-        Output('onSelectionChange'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onSelectionChange", void 0);
-    __decorate([
-        Output('onSortChange'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onSortChange", void 0);
-    __decorate([
-        Output('onViewSelect'),
-        __metadata("design:type", Object)
-    ], TableBase.prototype, "onViewSelect", void 0);
+    TableBase.propDecorators = {
+        'actionTemplate': [{ type: Input },],
+        'viewTemplate': [{ type: Input },],
+        'onDrop': [{ type: Output, args: ['onDrop',] },],
+        'onPageSizeChange': [{ type: Output, args: ['onPageSizeChange',] },],
+        'onPageNumberChange': [{ type: Output, args: ['onPageNumberChange',] },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onFilterFieldSelect': [{ type: Output, args: ['onFilterFieldSelect',] },],
+        'onFilterChange': [{ type: Output, args: ['onFilterChange',] },],
+        'onFilterSave': [{ type: Output, args: ['onFilterSave',] },],
+        'onFilterTypeAhead': [{ type: Output, args: ['onFilterTypeAhead',] },],
+        'onSelectionChange': [{ type: Output, args: ['onSelectionChange',] },],
+        'onSortChange': [{ type: Output, args: ['onSortChange',] },],
+        'onViewSelect': [{ type: Output, args: ['onViewSelect',] },],
+    };
     return TableBase;
 }());
 export { TableBase };

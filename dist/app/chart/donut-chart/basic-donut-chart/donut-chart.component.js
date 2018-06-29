@@ -8,15 +8,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ChartDefaults } from '../../chart-defaults';
 import { DonutChartBaseComponent } from '../donut-chart-base.component';
@@ -44,14 +35,18 @@ var DonutChartComponent = /** @class */ (function (_super) {
         _this.windowRef = windowRef;
         return _this;
     }
-    DonutChartComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-donut-chart',
-            template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        }),
-        __metadata("design:paramtypes", [ChartDefaults, WindowReference])
-    ], DonutChartComponent);
+    DonutChartComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-donut-chart',
+                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    DonutChartComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+        { type: WindowReference, },
+    ]; };
     return DonutChartComponent;
 }(DonutChartBaseComponent));
 export { DonutChartComponent };
@@ -67,14 +62,18 @@ var DonutComponent = /** @class */ (function (_super) {
         console.log('patternfly-ng: DonutComponent is deprecated; use DonutChartComponent');
         return _this;
     }
-    DonutComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-chart-donut',
-            template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        }),
-        __metadata("design:paramtypes", [ChartDefaults, WindowReference])
-    ], DonutComponent);
+    DonutComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-chart-donut',
+                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    DonutComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+        { type: WindowReference, },
+    ]; };
     return DonutComponent;
 }(DonutChartComponent));
 export { DonutComponent };

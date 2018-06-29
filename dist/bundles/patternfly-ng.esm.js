@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation, ReflectiveInjector, Injectable, ApplicationRef, ComponentFactoryResolver, Injector, NgZone, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Directive, ViewContainerRef, HostBinding, HostListener, NgModule, Inject, isDevMode, ViewChild, Pipe, Host } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation, ReflectiveInjector, TemplateRef, Injectable, ApplicationRef, ComponentFactoryResolver, Injector, NgZone, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Directive, ViewContainerRef, HostBinding, HostListener, NgModule, Inject, isDevMode, ViewChild, Pipe, Host } from '@angular/core';
 import { clone, cloneDeep, defaults, isEqual, defaultsDeep, merge, uniqueId, find, remove, orderBy, filter, get, size } from 'lodash';
 import 'rxjs/add/operator/filter';
 import { CommonModule, DOCUMENT } from '@angular/common';
@@ -10,7 +10,7 @@ import 'rxjs/add/observable/timer';
 import { TreeComponent, TreeModule } from 'angular-tree-component';
 import { NavigationEnd, Router } from '@angular/router';
 import { DragulaService, dragula, DragulaModule } from 'ng2-dragula';
-import { DatatableComponent, NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /**
  * An action containing common properties for buttons, kebabs, etc.
@@ -31,15 +31,6 @@ var ActionConfig = /** @class */ (function () {
     return ActionConfig;
 }());
 
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * List actions component.
  *
@@ -149,26 +140,22 @@ var ActionComponent = /** @class */ (function () {
         }
         return retval;
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", ActionConfig)
-    ], ActionComponent.prototype, "config", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], ActionComponent.prototype, "template", void 0);
-    __decorate([
-        Output('onActionSelect'),
-        __metadata("design:type", Object)
-    ], ActionComponent.prototype, "onActionSelect", void 0);
-    ActionComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-action',
-            template: "<button class=\"btn btn-default primary-action {{action.styleClass}}\" title=\"{{action.tooltip}}\" type=\"button\" *ngFor=\"let action of config.primaryActions\" [disabled]=\"action.disabled\" [ngClass]=\"{'invisible': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button><ng-template *ngIf=\"template !== undefined\" let-action=\"action\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><div class=\"dropdown-kebab-pf pull-right {{config.moreActionsStyleClass}}\" dropdown [ngClass]=\"{'dropdown': !isMoreActionsDropup, 'dropup': isMoreActionsDropup, 'invisible': config.moreActionsVisible === false}\" *ngIf=\"config.moreActions?.length > 0\"><button class=\"btn btn-link dropdown-toggle\" type=\"button\" dropdownToggle [ngClass]=\"{'disabled': config.moreActionsDisabled}\" (click)=\"initMoreActionsDropup($event)\" [attr.aria-label]=\"config.moreActionsAriaLabel\"><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu-right dropdown-menu\" aria-labelledby=\"dropdownKebab\" *dropdownMenu><li *ngFor=\"let action of config.moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div>"
-        }),
-        __metadata("design:paramtypes", [ElementRef])
-    ], ActionComponent);
+    ActionComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-action',
+                    template: "<button class=\"btn btn-default primary-action {{action.styleClass}}\" title=\"{{action.tooltip}}\" type=\"button\" *ngFor=\"let action of config.primaryActions\" [disabled]=\"action.disabled\" [ngClass]=\"{'invisible': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button><ng-template *ngIf=\"template !== undefined\" let-action=\"action\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><div class=\"dropdown-kebab-pf pull-right {{config.moreActionsStyleClass}}\" dropdown [ngClass]=\"{'dropdown': !isMoreActionsDropup, 'dropup': isMoreActionsDropup, 'invisible': config.moreActionsVisible === false}\" *ngIf=\"config.moreActions?.length > 0\"><button class=\"btn btn-link dropdown-toggle\" type=\"button\" dropdownToggle [ngClass]=\"{'disabled': config.moreActionsDisabled}\" (click)=\"initMoreActionsDropup($event)\" [attr.aria-label]=\"config.moreActionsAriaLabel\"><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu-right dropdown-menu\" aria-labelledby=\"dropdownKebab\" *dropdownMenu><li *ngFor=\"let action of config.moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ActionComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
+    ActionComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'template': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+    };
     return ActionComponent;
 }());
 
@@ -841,7 +828,7 @@ var gc = win['gc'] ? function () { return win['gc'](); } : function () { return 
 var performance = win['performance'] ? win['performance'] : null;
 var Event$1 = win['Event'];
 var MouseEvent = win['MouseEvent'];
-var KeyboardEvent$1 = win['KeyboardEvent'];
+var KeyboardEvent = win['KeyboardEvent'];
 var EventTarget = win['EventTarget'];
 var History = win['History'];
 var Location = win['Location'];
@@ -1319,42 +1306,29 @@ var BsDropdownModule = (function () {
     return BsDropdownModule;
 }());
 
-var __decorate$1 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with action components
  */
 var ActionModule = /** @class */ (function () {
     function ActionModule() {
     }
-    ActionModule = __decorate$1([
-        NgModule({
-            imports: [
-                BsDropdownModule.forRoot(),
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [ActionComponent],
-            exports: [ActionComponent],
-            providers: [BsDropdownConfig]
-        })
-    ], ActionModule);
+    ActionModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        BsDropdownModule.forRoot(),
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [ActionComponent],
+                    exports: [ActionComponent],
+                    providers: [BsDropdownConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    ActionModule.ctorParameters = function () { return []; };
     return ActionModule;
 }());
 
-var __decorate$2 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$1 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Card base component
  *
@@ -1366,14 +1340,10 @@ var CardBase = /** @class */ (function () {
      */
     function CardBase() {
     }
-    __decorate$2([
-        Input(),
-        __metadata$1("design:type", TemplateRef)
-    ], CardBase.prototype, "footerTemplate", void 0);
-    __decorate$2([
-        Input(),
-        __metadata$1("design:type", TemplateRef)
-    ], CardBase.prototype, "headerTemplate", void 0);
+    CardBase.propDecorators = {
+        'footerTemplate': [{ type: Input },],
+        'headerTemplate': [{ type: Input },],
+    };
     return CardBase;
 }());
 
@@ -1395,27 +1365,6 @@ var CardAction = /** @class */ (function () {
     return CardAction;
 }());
 
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-/**
- * A config containing properties for card
- */
-var CardConfig = /** @class */ (function (_super) {
-    __extends(CardConfig, _super);
-    function CardConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return CardConfig;
-}(CardConfigBase));
-
 /*
  * An object containing filter positions
  */
@@ -1433,7 +1382,7 @@ var CardFilterPosition = /** @class */ (function () {
     return CardFilterPosition;
 }());
 
-var __extends$1 = (undefined && undefined.__extends) || (function () {
+var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
         function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
@@ -1443,15 +1392,6 @@ var __extends$1 = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$3 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$2 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Card component
  *
@@ -1464,7 +1404,7 @@ var __metadata$2 = (undefined && undefined.__metadata) || function (k, v) {
  * <br/><code>import { BasicCardModule } from 'patternfly-ng';</code>
  */
 var CardComponent = /** @class */ (function (_super) {
-    __extends$1(CardComponent, _super);
+    __extends(CardComponent, _super);
     /**
      * The default constructor
      */
@@ -1582,28 +1522,43 @@ var CardComponent = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    __decorate$3([
-        Input(),
-        __metadata$2("design:type", CardConfig)
-    ], CardComponent.prototype, "config", void 0);
-    __decorate$3([
-        Output('onActionSelect'),
-        __metadata$2("design:type", Object)
-    ], CardComponent.prototype, "onActionSelect", void 0);
-    __decorate$3([
-        Output('onFilterSelect'),
-        __metadata$2("design:type", Object)
-    ], CardComponent.prototype, "onFilterSelect", void 0);
-    CardComponent = __decorate$3([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-card',
-            template: "<div class=\"pfng-card card-pf\" [ngClass]=\"{'card-pf-accented': config?.topBorder, 'pfng-card-no-padding': config.noPadding}\"><div [ngClass]=\"config?.titleBorder ? 'card-pf-heading' : 'pfng-card-heading-no-bottom'\" *ngIf=\"showHeader\"><div *ngIf=\"headerTemplate; then showHeaderTemplate else showHeader\"></div><ng-template #showHeaderTemplate><ng-template [ngTemplateOutlet]=\"headerTemplate\"></ng-template></ng-template><ng-template #showHeader><div *ngIf=\"showFilterInHeader\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><h2 class=\"card-pf-title\">{{config?.title}}</h2></ng-template></div><span *ngIf=\"config?.subTitle\" class=\"card-pf-subtitle\">{{config?.subTitle}}</span><div class=\"card-pf-body\"><ng-content></ng-content></div><div class=\"card-pf-footer\" *ngIf=\"showFooter\"><div *ngIf=\"footerTemplate; then showFooterTemplate else showFooter\"></div><ng-template #showFooterTemplate><ng-template [ngTemplateOutlet]=\"footerTemplate\"></ng-template></ng-template><ng-template #showFooter><div *ngIf=\"showFilterInFooter\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><p><pfng-card-action [action]=\"config?.action\" (onActionSelect)=\"handleActionSelect($event)\"></pfng-card-action></p></ng-template></div></div>"
-        }),
-        __metadata$2("design:paramtypes", [])
-    ], CardComponent);
+    CardComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-card',
+                    template: "<div class=\"pfng-card card-pf\" [ngClass]=\"{'card-pf-accented': config?.topBorder, 'pfng-card-no-padding': config.noPadding}\"><div [ngClass]=\"config?.titleBorder ? 'card-pf-heading' : 'pfng-card-heading-no-bottom'\" *ngIf=\"showHeader\"><div *ngIf=\"headerTemplate; then showHeaderTemplate else showHeader\"></div><ng-template #showHeaderTemplate><ng-template [ngTemplateOutlet]=\"headerTemplate\"></ng-template></ng-template><ng-template #showHeader><div *ngIf=\"showFilterInHeader\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><h2 class=\"card-pf-title\">{{config?.title}}</h2></ng-template></div><span *ngIf=\"config?.subTitle\" class=\"card-pf-subtitle\">{{config?.subTitle}}</span><div class=\"card-pf-body\"><ng-content></ng-content></div><div class=\"card-pf-footer\" *ngIf=\"showFooter\"><div *ngIf=\"footerTemplate; then showFooterTemplate else showFooter\"></div><ng-template #showFooterTemplate><ng-template [ngTemplateOutlet]=\"footerTemplate\"></ng-template></ng-template><ng-template #showFooter><div *ngIf=\"showFilterInFooter\"><pfng-card-filter [filters]=\"config?.filters\" (onFilterSelect)=\"handleFilterSelect($event)\"></pfng-card-filter></div><p><pfng-card-action [action]=\"config?.action\" (onActionSelect)=\"handleActionSelect($event)\"></pfng-card-action></p></ng-template></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    CardComponent.ctorParameters = function () { return []; };
+    CardComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onFilterSelect': [{ type: Output, args: ['onFilterSelect',] },],
+    };
     return CardComponent;
 }(CardBase));
+
+var __extends$1 = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * A config containing properties for card
+ */
+var CardConfig = /** @class */ (function (_super) {
+    __extends$1(CardConfig, _super);
+    function CardConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return CardConfig;
+}(CardConfigBase));
 
 /**
  * An object containing card filter properties
@@ -1614,15 +1569,6 @@ var CardFilter = /** @class */ (function () {
     return CardFilter;
 }());
 
-var __decorate$4 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$3 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Card filter component
  *
@@ -1684,43 +1630,22 @@ var CardFilterComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    __decorate$4([
-        Input(),
-        __metadata$3("design:type", Array)
-    ], CardFilterComponent.prototype, "filters", void 0);
-    __decorate$4([
-        Output('onFilterSelect'),
-        __metadata$3("design:type", Object)
-    ], CardFilterComponent.prototype, "onSelect", void 0);
-    CardFilterComponent = __decorate$4([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-card-filter',
-            template: "<div class=\"card-pf-time-frame-filter\"><div class=\"dropdown primary-action\" dropdown><button class=\"btn btn-default dropdown-toggle\" type=\"button\" dropdownToggle>{{currentFilter?.title}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let filter of filters\" [ngClass]=\"{'selected': filter === currentFilter}\"><a class=\"dropdown-item\" role=\"menuitem\" tabindex=\"-1\" (click)=\"select(filter)\">{{filter?.title}}</a></li></ul></div></div>"
-        }),
-        __metadata$3("design:paramtypes", [])
-    ], CardFilterComponent);
+    CardFilterComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-card-filter',
+                    template: "<div class=\"card-pf-time-frame-filter\"><div class=\"dropdown primary-action\" dropdown><button class=\"btn btn-default dropdown-toggle\" type=\"button\" dropdownToggle>{{currentFilter?.title}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let filter of filters\" [ngClass]=\"{'selected': filter === currentFilter}\"><a class=\"dropdown-item\" role=\"menuitem\" tabindex=\"-1\" (click)=\"select(filter)\">{{filter?.title}}</a></li></ul></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    CardFilterComponent.ctorParameters = function () { return []; };
+    CardFilterComponent.propDecorators = {
+        'filters': [{ type: Input },],
+        'onSelect': [{ type: Output, args: ['onFilterSelect',] },],
+    };
     return CardFilterComponent;
 }());
 
-/**
- * A config containing properties for the info status card
- */
-var InfoStatusCardConfig = /** @class */ (function () {
-    function InfoStatusCardConfig() {
-    }
-    return InfoStatusCardConfig;
-}());
-
-var __decorate$5 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$4 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Info Status Card Component
  *
@@ -1766,55 +1691,51 @@ var InfoStatusCardComponent = /** @class */ (function () {
         }
         this.prevConfig = cloneDeep(this.config);
     };
-    __decorate$5([
-        Input('config'),
-        __metadata$4("design:type", InfoStatusCardConfig)
-    ], InfoStatusCardComponent.prototype, "config", void 0);
-    InfoStatusCardComponent = __decorate$5([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-info-status-card',
-            template: "<div class=\"card-pf pfng-card-info-status\" [class.card-pf-accented]=\"config.showTopBorder\"><div class=\"pfng-card-info-image\"><img *ngIf=\"config.iconImageSrc\" src=\"{{config.iconImageSrc}}\" alt=\"\" class=\"info-img\"> <span class=\"info-icon {{config.iconStyleClass}}\"></span></div><div class=\"pfng-card-info-content\"><h2 *ngIf=\"config.title\" class=\"pfng-card-title\"><a *ngIf=\"config.href\" href=\"{{config.href}}\"><span>{{config.title}}</span> </a><span *ngIf=\"!config.href\"><span>{{config.title}}</span></span></h2><ng-container *ngIf=\"config.htmlContent !== undefined\"><div *ngIf=\"config.htmlContent; then showHtmlContent else showPlainTextContent\"></div><ng-template #showHtmlContent><div [innerHTML]=\"item\" class=\"pfng-card-info-item\" *ngFor=\"let item of config.info\"></div></ng-template><ng-template #showPlainTextContent><div class=\"pfng-card-info-item\" *ngFor=\"let item of config.info\">{{item}}</div></ng-template></ng-container></div></div>"
-        }),
-        __metadata$4("design:paramtypes", [])
-    ], InfoStatusCardComponent);
+    InfoStatusCardComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-info-status-card',
+                    template: "<div class=\"card-pf pfng-card-info-status\" [class.card-pf-accented]=\"config.showTopBorder\"><div class=\"pfng-card-info-image\"><img *ngIf=\"config.iconImageSrc\" src=\"{{config.iconImageSrc}}\" alt=\"\" class=\"info-img\"> <span class=\"info-icon {{config.iconStyleClass}}\"></span></div><div class=\"pfng-card-info-content\"><h2 *ngIf=\"config.title\" class=\"pfng-card-title\"><a *ngIf=\"config.href\" href=\"{{config.href}}\"><span>{{config.title}}</span> </a><span *ngIf=\"!config.href\"><span>{{config.title}}</span></span></h2><ng-container *ngIf=\"config.htmlContent !== undefined\"><div *ngIf=\"config.htmlContent; then showHtmlContent else showPlainTextContent\"></div><ng-template #showHtmlContent><div [innerHTML]=\"item\" class=\"pfng-card-info-item\" *ngFor=\"let item of config.info\"></div></ng-template><ng-template #showPlainTextContent><div class=\"pfng-card-info-item\" *ngFor=\"let item of config.info\">{{item}}</div></ng-template></ng-container></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    InfoStatusCardComponent.ctorParameters = function () { return []; };
+    InfoStatusCardComponent.propDecorators = {
+        'config': [{ type: Input, args: ['config',] },],
+    };
     return InfoStatusCardComponent;
 }());
 
-var __decorate$6 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+/**
+ * A config containing properties for the info status card
+ */
+var InfoStatusCardConfig = /** @class */ (function () {
+    function InfoStatusCardConfig() {
+    }
+    return InfoStatusCardConfig;
+}());
+
 /**
  * A module containing objects associated with info status card components
  */
 var InfoStatusCardModule = /** @class */ (function () {
     function InfoStatusCardModule() {
     }
-    InfoStatusCardModule = __decorate$6([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [InfoStatusCardComponent],
-            exports: [InfoStatusCardComponent]
-        })
-    ], InfoStatusCardModule);
+    InfoStatusCardModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [InfoStatusCardComponent],
+                    exports: [InfoStatusCardComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    InfoStatusCardModule.ctorParameters = function () { return []; };
     return InfoStatusCardModule;
 }());
 
-var __decorate$7 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$5 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Card action component
  *
@@ -1844,113 +1765,89 @@ var CardActionComponent = /** @class */ (function () {
     CardActionComponent.prototype.select = function ($event) {
         this.onActionSelect.emit(this.action);
     };
-    __decorate$7([
-        Input(),
-        __metadata$5("design:type", CardAction)
-    ], CardActionComponent.prototype, "action", void 0);
-    __decorate$7([
-        Output('onActionSelect'),
-        __metadata$5("design:type", Object)
-    ], CardActionComponent.prototype, "onActionSelect", void 0);
-    CardActionComponent = __decorate$7([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-card-action',
-            template: "<div *ngIf=\"action === undefined || action?.disabled; then showDisabled else showEnabled\"></div><ng-template #showDisabled><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></ng-template><ng-template #showEnabled><a href=\"{{action?.url}}\" *ngIf=\"action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span> </a><a *ngIf=\"!action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\" (click)=\"select($event)\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></a></ng-template>"
-        }),
-        __metadata$5("design:paramtypes", [])
-    ], CardActionComponent);
+    CardActionComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-card-action',
+                    template: "<div *ngIf=\"action === undefined || action?.disabled; then showDisabled else showEnabled\"></div><ng-template #showDisabled><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></ng-template><ng-template #showEnabled><a href=\"{{action?.url}}\" *ngIf=\"action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span> </a><a *ngIf=\"!action?.url\" [ngClass]=\"{'card-pf-link-with-icon': action?.iconStyleClass, 'card-pf-link': !action?.iconStyleClass}\" (click)=\"select($event)\"><span class=\"{{action?.iconStyleClass}} card-pf-footer-text\" *ngIf=\"action?.iconStyleClass\"></span> <span class=\"card-pf-footer-text\" *ngIf=\"action?.hypertext\">{{action?.hypertext}}</span></a></ng-template>"
+                },] },
+    ];
+    /** @nocollapse */
+    CardActionComponent.ctorParameters = function () { return []; };
+    CardActionComponent.propDecorators = {
+        'action': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+    };
     return CardActionComponent;
 }());
 
-var __decorate$8 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with card action components
  */
 var CardActionModule = /** @class */ (function () {
     function CardActionModule() {
     }
-    CardActionModule = __decorate$8([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [CardActionComponent],
-            exports: [CardActionComponent]
-        })
-    ], CardActionModule);
+    CardActionModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [CardActionComponent],
+                    exports: [CardActionComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    CardActionModule.ctorParameters = function () { return []; };
     return CardActionModule;
 }());
 
-var __decorate$9 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with card filter components
  */
 var CardFilterModule = /** @class */ (function () {
     function CardFilterModule() {
     }
-    CardFilterModule = __decorate$9([
-        NgModule({
-            imports: [
-                BsDropdownModule.forRoot(),
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [CardFilterComponent],
-            exports: [CardFilterComponent],
-            providers: [BsDropdownConfig]
-        })
-    ], CardFilterModule);
+    CardFilterModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        BsDropdownModule.forRoot(),
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [CardFilterComponent],
+                    exports: [CardFilterComponent],
+                    providers: [BsDropdownConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    CardFilterModule.ctorParameters = function () { return []; };
     return CardFilterModule;
 }());
 
-var __decorate$a = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with basic card components
  */
 var CardModule = /** @class */ (function () {
     function CardModule() {
     }
-    CardModule = __decorate$a([
-        NgModule({
-            imports: [
-                CardActionModule,
-                CardFilterModule,
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [CardComponent],
-            exports: [CardComponent]
-        })
-    ], CardModule);
+    CardModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CardActionModule,
+                        CardFilterModule,
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [CardComponent],
+                    exports: [CardComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    CardModule.ctorParameters = function () { return []; };
     return CardModule;
 }());
 
-var __decorate$b = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$6 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * A module containing objects associated with card components
  *
@@ -1965,32 +1862,24 @@ var CardModule$1 = /** @class */ (function () {
     function CardModule$$1() {
         console.log('patternfly-ng: CardModule is deprecated; use InfoStatusCardModule or CardModule for basic card only');
     }
-    CardModule$$1 = __decorate$b([
-        NgModule({
-            imports: [
-                CardModule,
-                CardActionModule,
-                CardFilterModule,
-                CommonModule,
-                FormsModule,
-                InfoStatusCardModule
-            ],
-            exports: [CardComponent, CardFilterComponent, InfoStatusCardComponent]
-        }),
-        __metadata$6("design:paramtypes", [])
-    ], CardModule$$1);
+    CardModule$$1.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CardModule,
+                        CardActionModule,
+                        CardFilterModule,
+                        CommonModule,
+                        FormsModule,
+                        InfoStatusCardModule
+                    ],
+                    exports: [CardComponent, CardFilterComponent, InfoStatusCardComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    CardModule$$1.ctorParameters = function () { return []; };
     return CardModule$$1;
 }());
 
-var __decorate$c = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$7 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Chart base
  *
@@ -2030,10 +1919,9 @@ var ChartBase = /** @class */ (function () {
             _this.chartLoaded.emit(_this.chart);
         });
     };
-    __decorate$c([
-        Output(),
-        __metadata$7("design:type", EventEmitter)
-    ], ChartBase.prototype, "chartLoaded", void 0);
+    ChartBase.propDecorators = {
+        'chartLoaded': [{ type: Output },],
+    };
     return ChartBase;
 }());
 
@@ -2068,15 +1956,6 @@ var ChartConfig = /** @class */ (function (_super) {
     return ChartConfig;
 }(ChartConfigBase));
 
-var __decorate$d = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$8 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var ChartDefaults = /** @class */ (function () {
     function ChartDefaults() {
         this.patternflyDefaults = window.patternfly.c3ChartDefaults();
@@ -2098,10 +1977,11 @@ var ChartDefaults = /** @class */ (function () {
         this.getDefaultSparklineConfig = this.patternflyDefaults.getDefaultSparklineConfig;
         this.getDefaultLineConfig = this.patternflyDefaults.getDefaultLineConfig;
     }
-    ChartDefaults = __decorate$d([
-        Injectable(),
-        __metadata$8("design:paramtypes", [])
-    ], ChartDefaults);
+    ChartDefaults.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    ChartDefaults.ctorParameters = function () { return []; };
     return ChartDefaults;
 }());
 
@@ -2116,40 +1996,10 @@ var __extends$3 = (undefined && undefined.__extends) || (function () {
     };
 })();
 /**
- * A config containing properties for the sparkline chart
- */
-var DonutChartBaseConfig = /** @class */ (function (_super) {
-    __extends$3(DonutChartBaseConfig, _super);
-    function DonutChartBaseConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return DonutChartBaseConfig;
-}(ChartConfigBase));
-
-var __extends$4 = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate$e = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$9 = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
  * Donut base
  */
 var DonutChartBaseComponent = /** @class */ (function (_super) {
-    __extends$4(DonutChartBaseComponent, _super);
+    __extends$3(DonutChartBaseComponent, _super);
     /**
      * Default constructor
      * @param chartDefaults
@@ -2281,23 +2131,34 @@ var DonutChartBaseComponent = /** @class */ (function (_super) {
                 classed('donut-title-small-pf', true).attr('dy', 20).attr('x', 0);
         }
     };
-    __decorate$e([
-        Input(),
-        __metadata$9("design:type", Array)
-    ], DonutChartBaseComponent.prototype, "chartData", void 0);
-    __decorate$e([
-        Input(),
-        __metadata$9("design:type", DonutChartBaseConfig)
-    ], DonutChartBaseComponent.prototype, "config", void 0);
+    DonutChartBaseComponent.propDecorators = {
+        'chartData': [{ type: Input },],
+        'config': [{ type: Input },],
+    };
     return DonutChartBaseComponent;
 }(ChartBase));
 
-var __decorate$f = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+var __extends$4 = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * A config containing properties for the sparkline chart
+ */
+var DonutChartBaseConfig = /** @class */ (function (_super) {
+    __extends$4(DonutChartBaseConfig, _super);
+    function DonutChartBaseConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return DonutChartBaseConfig;
+}(ChartConfigBase));
+
 function _window() {
     // return the global native browser window object
     return window;
@@ -2312,9 +2173,11 @@ var WindowReference = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    WindowReference = __decorate$f([
-        Injectable()
-    ], WindowReference);
+    WindowReference.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    WindowReference.ctorParameters = function () { return []; };
     return WindowReference;
 }());
 
@@ -2328,15 +2191,6 @@ var __extends$5 = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$g = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$a = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Donut chart component.
  *
@@ -2360,14 +2214,18 @@ var DonutChartComponent = /** @class */ (function (_super) {
         _this.windowRef = windowRef;
         return _this;
     }
-    DonutChartComponent = __decorate$g([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-donut-chart',
-            template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        }),
-        __metadata$a("design:paramtypes", [ChartDefaults, WindowReference])
-    ], DonutChartComponent);
+    DonutChartComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-donut-chart',
+                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    DonutChartComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+        { type: WindowReference, },
+    ]; };
     return DonutChartComponent;
 }(DonutChartBaseComponent));
 /**
@@ -2382,14 +2240,18 @@ var DonutComponent = /** @class */ (function (_super) {
         console.log('patternfly-ng: DonutComponent is deprecated; use DonutChartComponent');
         return _this;
     }
-    DonutComponent = __decorate$g([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-chart-donut',
-            template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        }),
-        __metadata$a("design:paramtypes", [ChartDefaults, WindowReference])
-    ], DonutComponent);
+    DonutComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-chart-donut',
+                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    DonutComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+        { type: WindowReference, },
+    ]; };
     return DonutComponent;
 }(DonutChartComponent));
 
@@ -2426,26 +2288,22 @@ var DonutConfig = /** @class */ (function (_super) {
     return DonutConfig;
 }(DonutChartConfig));
 
-var __decorate$h = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var DonutChartModule = /** @class */ (function () {
     function DonutChartModule() {
     }
-    DonutChartModule = __decorate$h([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule,
-            ],
-            declarations: [DonutChartComponent, DonutComponent],
-            exports: [DonutChartComponent, DonutComponent],
-            providers: [ChartDefaults, WindowReference]
-        })
-    ], DonutChartModule);
+    DonutChartModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule,
+                    ],
+                    declarations: [DonutChartComponent, DonutComponent],
+                    exports: [DonutChartComponent, DonutComponent],
+                    providers: [ChartDefaults, WindowReference]
+                },] },
+    ];
+    /** @nocollapse */
+    DonutChartModule.ctorParameters = function () { return []; };
     return DonutChartModule;
 }());
 
@@ -2460,36 +2318,6 @@ var __extends$7 = (undefined && undefined.__extends) || (function () {
     };
 })();
 /**
- * A config containing properties for the utilization donut chart
- */
-var UtilizationDonutChartConfig = /** @class */ (function (_super) {
-    __extends$7(UtilizationDonutChartConfig, _super);
-    function UtilizationDonutChartConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return UtilizationDonutChartConfig;
-}(DonutChartBaseConfig));
-
-var __extends$8 = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate$i = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$b = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
  * Donut Utilization chart component.
  *
  * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
@@ -2502,7 +2330,7 @@ var __metadata$b = (undefined && undefined.__metadata) || function (k, v) {
  * <br/><code>import { UtilizationDonutChartModule } from 'patternfly-ng';</code>
  */
 var UtilizationDonutChartComponent = /** @class */ (function (_super) {
-    __extends$8(UtilizationDonutChartComponent, _super);
+    __extends$7(UtilizationDonutChartComponent, _super);
     /**
      * Default constructor
      */
@@ -2608,45 +2436,62 @@ var UtilizationDonutChartComponent = /** @class */ (function (_super) {
         }
         return color;
     };
-    __decorate$i([
-        Input(),
-        __metadata$b("design:type", UtilizationDonutChartConfig)
-    ], UtilizationDonutChartComponent.prototype, "config", void 0);
-    __decorate$i([
-        Output(),
-        __metadata$b("design:type", EventEmitter)
-    ], UtilizationDonutChartComponent.prototype, "thresholdChanged", void 0);
-    UtilizationDonutChartComponent = __decorate$i([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-utilization-donut-chart',
-            template: "<div class=\"pct-donut-chart-pf\"><span [ngClass]=\"{'pct-donut-chart-pf-left': config.outerLabelAlignment === 'left',\n                   'pct-donut-chart-pf-right': config.outerLabelAlignment === 'right'}\"><span class=\"pct-donut-chart-pf-chart\"><div #chartElement id=\"{{config.chartId}}\"></div></span><span [ngClass]=\"{'text-right': config.outerLabelAlignment === 'left',\n                      'text-left': config.outerLabelAlignment === 'right',\n                      'text-center': config.outerLabelAlignment !== 'left' && config.outerLabelAlignment !== 'right'}\"><ng-content></ng-content></span></span></div>"
-        }),
-        __metadata$b("design:paramtypes", [ChartDefaults, WindowReference])
-    ], UtilizationDonutChartComponent);
+    UtilizationDonutChartComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-utilization-donut-chart',
+                    template: "<div class=\"pct-donut-chart-pf\"><span [ngClass]=\"{'pct-donut-chart-pf-left': config.outerLabelAlignment === 'left',\n                   'pct-donut-chart-pf-right': config.outerLabelAlignment === 'right'}\"><span class=\"pct-donut-chart-pf-chart\"><div #chartElement id=\"{{config.chartId}}\"></div></span><span [ngClass]=\"{'text-right': config.outerLabelAlignment === 'left',\n                      'text-left': config.outerLabelAlignment === 'right',\n                      'text-center': config.outerLabelAlignment !== 'left' && config.outerLabelAlignment !== 'right'}\"><ng-content></ng-content></span></span></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    UtilizationDonutChartComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+        { type: WindowReference, },
+    ]; };
+    UtilizationDonutChartComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'thresholdChanged': [{ type: Output },],
+    };
     return UtilizationDonutChartComponent;
 }(DonutChartBaseComponent));
 
-var __decorate$j = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+var __extends$8 = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * A config containing properties for the utilization donut chart
+ */
+var UtilizationDonutChartConfig = /** @class */ (function (_super) {
+    __extends$8(UtilizationDonutChartConfig, _super);
+    function UtilizationDonutChartConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return UtilizationDonutChartConfig;
+}(DonutChartBaseConfig));
+
 var UtilizationDonutChartModule = /** @class */ (function () {
     function UtilizationDonutChartModule() {
     }
-    UtilizationDonutChartModule = __decorate$j([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule,
-            ],
-            declarations: [UtilizationDonutChartComponent],
-            exports: [UtilizationDonutChartComponent],
-            providers: [ChartDefaults, WindowReference]
-        })
-    ], UtilizationDonutChartModule);
+    UtilizationDonutChartModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule,
+                    ],
+                    declarations: [UtilizationDonutChartComponent],
+                    exports: [UtilizationDonutChartComponent],
+                    providers: [ChartDefaults, WindowReference]
+                },] },
+    ];
+    /** @nocollapse */
+    UtilizationDonutChartModule.ctorParameters = function () { return []; };
     return UtilizationDonutChartModule;
 }());
 
@@ -2661,79 +2506,6 @@ var __extends$9 = (undefined && undefined.__extends) || (function () {
     };
 })();
 /**
- * A config containing properties for the sparkline chart
- */
-var SparklineChartConfig = /** @class */ (function (_super) {
-    __extends$9(SparklineChartConfig, _super);
-    function SparklineChartConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return SparklineChartConfig;
-}(ChartConfigBase));
-/**
- * @deprecated Use SparklineChartConfig
- */
-var SparklineConfig = /** @class */ (function (_super) {
-    __extends$9(SparklineConfig, _super);
-    function SparklineConfig() {
-        var _this = _super.call(this) || this;
-        console.log('patternfly-ng: SparklineConfig is deprecated; use SparklineChartConfig');
-        return _this;
-    }
-    return SparklineConfig;
-}(SparklineChartConfig));
-
-var __extends$a = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-/**
- * A base config containing properties for chart data
- */
-var SparklineChartData = /** @class */ (function () {
-    function SparklineChartData() {
-    }
-    return SparklineChartData;
-}());
-/**
- * @deprecated Use SparklineChartData
- */
-var SparklineData = /** @class */ (function (_super) {
-    __extends$a(SparklineData, _super);
-    function SparklineData() {
-        var _this = _super.call(this) || this;
-        console.log('patternfly-ng: SparklineData is deprecated; use SparklineChartData');
-        return _this;
-    }
-    return SparklineData;
-}(SparklineChartData));
-
-var __extends$b = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate$k = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$c = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
  * Sparkline chart component
  *
  * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
@@ -2746,7 +2518,7 @@ var __metadata$c = (undefined && undefined.__metadata) || function (k, v) {
  * <br/><code>import { SparklineChartModule } from 'patternfly-ng';</code>
  */
 var SparklineChartComponent = /** @class */ (function (_super) {
-    __extends$b(SparklineChartComponent, _super);
+    __extends$9(SparklineChartComponent, _super);
     /**
      * Default constructor
      * @param chartDefaults
@@ -2926,78 +2698,131 @@ var SparklineChartComponent = /** @class */ (function (_super) {
             '  </table>' +
             '</div>';
     };
-    __decorate$k([
-        Input(),
-        __metadata$c("design:type", SparklineChartData)
-    ], SparklineChartComponent.prototype, "chartData", void 0);
-    __decorate$k([
-        Input(),
-        __metadata$c("design:type", SparklineChartConfig)
-    ], SparklineChartComponent.prototype, "config", void 0);
-    SparklineChartComponent = __decorate$k([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-sparkline-chart',
-            template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        }),
-        __metadata$c("design:paramtypes", [ChartDefaults])
-    ], SparklineChartComponent);
+    SparklineChartComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-sparkline-chart',
+                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    SparklineChartComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+    ]; };
+    SparklineChartComponent.propDecorators = {
+        'chartData': [{ type: Input },],
+        'config': [{ type: Input },],
+    };
     return SparklineChartComponent;
 }(ChartBase));
 /**
  * @deprecated Use SparklineChartComponent
  */
 var SparklineComponent = /** @class */ (function (_super) {
-    __extends$b(SparklineComponent, _super);
+    __extends$9(SparklineComponent, _super);
     function SparklineComponent(chartDefaults) {
         var _this = _super.call(this, chartDefaults) || this;
         _this.chartDefaults = chartDefaults;
         console.log('patternfly-ng: SparklineComponent is deprecated; use SparklineChartComponent');
         return _this;
     }
-    SparklineComponent = __decorate$k([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-chart-sparkline',
-            template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-        }),
-        __metadata$c("design:paramtypes", [ChartDefaults])
-    ], SparklineComponent);
+    SparklineComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-chart-sparkline',
+                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    SparklineComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+    ]; };
     return SparklineComponent;
 }(SparklineChartComponent));
 
-var __decorate$l = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+var __extends$a = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * A config containing properties for the sparkline chart
+ */
+var SparklineChartConfig = /** @class */ (function (_super) {
+    __extends$a(SparklineChartConfig, _super);
+    function SparklineChartConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return SparklineChartConfig;
+}(ChartConfigBase));
+/**
+ * @deprecated Use SparklineChartConfig
+ */
+var SparklineConfig = /** @class */ (function (_super) {
+    __extends$a(SparklineConfig, _super);
+    function SparklineConfig() {
+        var _this = _super.call(this) || this;
+        console.log('patternfly-ng: SparklineConfig is deprecated; use SparklineChartConfig');
+        return _this;
+    }
+    return SparklineConfig;
+}(SparklineChartConfig));
+
+var __extends$b = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * A base config containing properties for chart data
+ */
+var SparklineChartData = /** @class */ (function () {
+    function SparklineChartData() {
+    }
+    return SparklineChartData;
+}());
+/**
+ * @deprecated Use SparklineChartData
+ */
+var SparklineData = /** @class */ (function (_super) {
+    __extends$b(SparklineData, _super);
+    function SparklineData() {
+        var _this = _super.call(this) || this;
+        console.log('patternfly-ng: SparklineData is deprecated; use SparklineChartData');
+        return _this;
+    }
+    return SparklineData;
+}(SparklineChartData));
+
 var SparklineChartModule = /** @class */ (function () {
     function SparklineChartModule() {
     }
-    SparklineChartModule = __decorate$l([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [SparklineChartComponent, SparklineComponent],
-            exports: [SparklineChartComponent, SparklineComponent],
-            providers: [ChartDefaults, WindowReference]
-        })
-    ], SparklineChartModule);
+    SparklineChartModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [SparklineChartComponent, SparklineComponent],
+                    exports: [SparklineChartComponent, SparklineComponent],
+                    providers: [ChartDefaults, WindowReference]
+                },] },
+    ];
+    /** @nocollapse */
+    SparklineChartModule.ctorParameters = function () { return []; };
     return SparklineChartModule;
 }());
 
-var __decorate$m = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$d = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * A module containing objects associated with chart components
  *
@@ -3012,31 +2837,23 @@ var ChartModule = /** @class */ (function () {
     function ChartModule() {
         console.log('patternfly-ng: ChartModule is deprecated; use DonutChartModule or SparklineChartModule');
     }
-    ChartModule = __decorate$m([
-        NgModule({
-            imports: [
-                CommonModule,
-                DonutChartModule,
-                FormsModule,
-                SparklineChartModule
-            ],
-            exports: [DonutComponent, SparklineComponent],
-            providers: [ChartDefaults, WindowReference]
-        }),
-        __metadata$d("design:paramtypes", [])
-    ], ChartModule);
+    ChartModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        DonutChartModule,
+                        FormsModule,
+                        SparklineChartModule
+                    ],
+                    exports: [DonutComponent, SparklineComponent],
+                    providers: [ChartDefaults, WindowReference]
+                },] },
+    ];
+    /** @nocollapse */
+    ChartModule.ctorParameters = function () { return []; };
     return ChartModule;
 }());
 
-var __decorate$n = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$e = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * A config containing properties for copy components
  */
@@ -3084,26 +2901,13 @@ var CopyBase = /** @class */ (function () {
             }, 3000);
         }
     };
-    __decorate$n([
-        Input('buttonAriaLabel'),
-        __metadata$e("design:type", String)
-    ], CopyBase.prototype, "buttonAriaLabel", void 0);
-    __decorate$n([
-        Input('tooltip'),
-        __metadata$e("design:type", String)
-    ], CopyBase.prototype, "tooltip", void 0);
-    __decorate$n([
-        Input('tooltipPlacement'),
-        __metadata$e("design:type", String)
-    ], CopyBase.prototype, "tooltipPlacement", void 0);
-    __decorate$n([
-        Input('value'),
-        __metadata$e("design:type", String)
-    ], CopyBase.prototype, "value", void 0);
-    __decorate$n([
-        Output('onCopy'),
-        __metadata$e("design:type", Object)
-    ], CopyBase.prototype, "onCopy", void 0);
+    CopyBase.propDecorators = {
+        'buttonAriaLabel': [{ type: Input, args: ['buttonAriaLabel',] },],
+        'tooltip': [{ type: Input, args: ['tooltip',] },],
+        'tooltipPlacement': [{ type: Input, args: ['tooltipPlacement',] },],
+        'value': [{ type: Input, args: ['value',] },],
+        'onCopy': [{ type: Output, args: ['onCopy',] },],
+    };
     return CopyBase;
 }());
 
@@ -3116,18 +2920,6 @@ var CopyEvent = /** @class */ (function () {
     return CopyEvent;
 }());
 
-var __decorate$o = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$f = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 /**
  * A generic service for copying text to clipboard
  *
@@ -3206,11 +2998,13 @@ var CopyService = /** @class */ (function () {
             console.error(error);
         }
     };
-    CopyService = __decorate$o([
-        Injectable(),
-        __param(0, Inject(DOCUMENT)),
-        __metadata$f("design:paramtypes", [Object])
-    ], CopyService);
+    CopyService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    CopyService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] },] },
+    ]; };
     return CopyService;
 }());
 
@@ -3224,15 +3018,6 @@ var __extends$c = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$p = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$g = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Block Copy component
  *
@@ -3276,30 +3061,23 @@ var BlockCopyComponent = /** @class */ (function (_super) {
     BlockCopyComponent.prototype.togglePanel = function () {
         this.expanded = !this.expanded;
     };
-    __decorate$p([
-        Input('label'),
-        __metadata$g("design:type", String)
-    ], BlockCopyComponent.prototype, "label", void 0);
-    __decorate$p([
-        Input('buttonLabel'),
-        __metadata$g("design:type", String)
-    ], BlockCopyComponent.prototype, "buttonLabel", void 0);
-    __decorate$p([
-        Input('expanded'),
-        __metadata$g("design:type", Boolean)
-    ], BlockCopyComponent.prototype, "expanded", void 0);
-    __decorate$p([
-        Input('expandToggleAriaLabel'),
-        __metadata$g("design:type", String)
-    ], BlockCopyComponent.prototype, "expandToggleAriaLabel", void 0);
-    BlockCopyComponent = __decorate$p([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-block-copy',
-            template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"buttonId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandToggleAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{value}}</span></div><button [attr.id]=\"buttonId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{value}}</span></div></div></div>"
-        }),
-        __metadata$g("design:paramtypes", [CopyService])
-    ], BlockCopyComponent);
+    BlockCopyComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-block-copy',
+                    template: "<div class=\"pfng-block-copy\"><label *ngIf=\"label\" class=\"pfng-block-copy-label\" [attr.for]=\"buttonId\">{{label}}</label><div class=\"pfng-block-copy-inner-container\"><div class=\"pfng-block-copy-preview\" [ngClass]=\"{'pf-is-open': expanded}\"><button [attr.aria-label]=\"expandToggleAriaLabel\" [attr.aria-expanded]=\"expanded\" class=\"pfng-block-copy-preview-btn\" (click)=\"togglePanel()\"><i aria-hidden=\"true\" class=\"fa pfng-block-copy-preview-icon\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right': !expanded}\"></i></button><div class=\"pfng-block-copy-preview-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\"><span class=\"pfng-block-copy-preview-txt\">{{value}}</span></div><button [attr.id]=\"buttonId\" class=\"btn btn-lg btn-default pfng-block-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><span><ng-container *ngIf=\"!recentlyCopied\">{{buttonLabel}}</ng-container><ng-container *ngIf=\"recentlyCopied\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Copied</ng-container></span></button></div><div class=\"pfng-block-copy-body\" *ngIf=\"expanded\"><span>{{value}}</span></div></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    BlockCopyComponent.ctorParameters = function () { return [
+        { type: CopyService, },
+    ]; };
+    BlockCopyComponent.propDecorators = {
+        'label': [{ type: Input, args: ['label',] },],
+        'buttonLabel': [{ type: Input, args: ['buttonLabel',] },],
+        'expanded': [{ type: Input, args: ['expanded',] },],
+        'expandToggleAriaLabel': [{ type: Input, args: ['expandToggleAriaLabel',] },],
+    };
     return BlockCopyComponent;
 }(CopyBase));
 
@@ -3397,13 +3175,13 @@ function warnOnce(msg) {
     console.warn(msg);
 }
 
-var __decorate$q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata$h = (undefined && undefined.__metadata) || function (k, v) {
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var TooltipDirective = (function () {
@@ -3672,9 +3450,9 @@ var TooltipDirective = (function () {
         '_tooltipTrigger': [{ type: Input, args: ['tooltipTrigger',] },],
         'tooltipStateChanged': [{ type: Output },],
     };
-    __decorate$q([
+    __decorate([
         OnChange(),
-        __metadata$h("design:type", Object)
+        __metadata("design:type", Object)
     ], TooltipDirective.prototype, "tooltip", void 0);
     return TooltipDirective;
 }());
@@ -3701,28 +3479,24 @@ var TooltipModule = (function () {
     return TooltipModule;
 }());
 
-var __decorate$r = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var BlockCopyModule = /** @class */ (function () {
     function BlockCopyModule() {
     }
-    BlockCopyModule = __decorate$r([
-        NgModule({
-            imports: [
-                CommonModule,
-                TooltipModule.forRoot()
-            ],
-            declarations: [
-                BlockCopyComponent
-            ],
-            exports: [BlockCopyComponent],
-            providers: [CopyService, TooltipConfig]
-        })
-    ], BlockCopyModule);
+    BlockCopyModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        TooltipModule.forRoot()
+                    ],
+                    declarations: [
+                        BlockCopyComponent
+                    ],
+                    exports: [BlockCopyComponent],
+                    providers: [CopyService, TooltipConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    BlockCopyModule.ctorParameters = function () { return []; };
     return BlockCopyModule;
 }());
 
@@ -3736,15 +3510,6 @@ var __extends$d = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$s = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$i = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Inline Copy component
  *
@@ -3764,60 +3529,41 @@ var InlineCopyComponent = /** @class */ (function (_super) {
         _this.copyService = copyService;
         return _this;
     }
-    InlineCopyComponent = __decorate$s([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-inline-copy',
-            template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>"
-        }),
-        __metadata$i("design:paramtypes", [CopyService])
-    ], InlineCopyComponent);
+    InlineCopyComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-inline-copy',
+                    template: "<span class=\"pfng-inline-copy\"><span class=\"pfng-inline-copy-txt-cont\" placement=\"{{tooltipPlacement ? tooltipPlacement : null}}\" tooltip=\"{{tooltip ? tooltip : null}}\">{{value}} </span><button class=\"pfng-inline-copy-btn\" [attr.aria-label]=\"buttonAriaLabel\" (click)=\"copy()\"><i class=\"fa\" [ngClass]=\"{'fa-check': recentlyCopied, 'fa-clipboard': !recentlyCopied}\" aria-hidden=\"true\"></i></button></span>"
+                },] },
+    ];
+    /** @nocollapse */
+    InlineCopyComponent.ctorParameters = function () { return [
+        { type: CopyService, },
+    ]; };
     return InlineCopyComponent;
 }(CopyBase));
 
-var __decorate$t = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var InlineCopyModule = /** @class */ (function () {
     function InlineCopyModule() {
     }
-    InlineCopyModule = __decorate$t([
-        NgModule({
-            imports: [
-                CommonModule,
-                TooltipModule.forRoot()
-            ],
-            declarations: [
-                InlineCopyComponent
-            ],
-            exports: [InlineCopyComponent],
-            providers: [CopyService, TooltipConfig]
-        })
-    ], InlineCopyModule);
+    InlineCopyModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        TooltipModule.forRoot()
+                    ],
+                    declarations: [
+                        InlineCopyComponent
+                    ],
+                    exports: [InlineCopyComponent],
+                    providers: [CopyService, TooltipConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    InlineCopyModule.ctorParameters = function () { return []; };
     return InlineCopyModule;
 }());
 
-/**
- * An empty state config containing component properties
- */
-var EmptyStateConfig = /** @class */ (function () {
-    function EmptyStateConfig() {
-    }
-    return EmptyStateConfig;
-}());
-
-var __decorate$u = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$j = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Component for rendering an empty state.
  */
@@ -3868,44 +3614,46 @@ var EmptyStateComponent = /** @class */ (function () {
             this.onActionSelect.emit(action);
         }
     };
-    __decorate$u([
-        Input(),
-        __metadata$j("design:type", EmptyStateConfig)
-    ], EmptyStateComponent.prototype, "config", void 0);
-    __decorate$u([
-        Output('onActionSelect'),
-        __metadata$j("design:type", Object)
-    ], EmptyStateComponent.prototype, "onActionSelect", void 0);
-    EmptyStateComponent = __decorate$u([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-empty-state',
-            template: "<div class=\"blank-slate-pf\"><div *ngIf=\"config.iconStyleClass\" class=\"blank-slate-pf-icon\"><span class=\"{{config.iconStyleClass}}\"></span></div><h1 id=\"title\">{{config.title}}</h1><p id=\"info\" *ngIf=\"config.info !== undefined\">{{config.info}}</p><p id=\"helpLink\" *ngIf=\"config.helpLink !== undefined\">{{config.helpLink.text}} <a href=\"{{config.helpLink.url}}\">{{config.helpLink.hypertext}}</a>.</p><div *ngIf=\"config.actions?.primaryActions?.length > 0\" class=\"blank-slate-pf-main-action\"><button *ngFor=\"let action of config.actions.primaryActions\" class=\"btn btn-primary btn-lg {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': action.disabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button></div><div class=\"blank-slate-pf-secondary-action {{config.actions?.moreActionsStyleClass}}\" [ngClass]=\"{'hidden': config.actions?.moreActionsVisible === false}\" *ngIf=\"config.actions?.moreActions?.length > 0\"><button *ngFor=\"let action of config.actions.moreActions\" class=\"btn btn-default {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': config.actions?.moreActionsDisabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\">{{action.title}}</button></div></div>"
-        }),
-        __metadata$j("design:paramtypes", [])
-    ], EmptyStateComponent);
+    EmptyStateComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-empty-state',
+                    template: "<div class=\"blank-slate-pf\"><div *ngIf=\"config.iconStyleClass\" class=\"blank-slate-pf-icon\"><span class=\"{{config.iconStyleClass}}\"></span></div><h1 id=\"title\">{{config.title}}</h1><p id=\"info\" *ngIf=\"config.info !== undefined\">{{config.info}}</p><p id=\"helpLink\" *ngIf=\"config.helpLink !== undefined\">{{config.helpLink.text}} <a href=\"{{config.helpLink.url}}\">{{config.helpLink.hypertext}}</a>.</p><div *ngIf=\"config.actions?.primaryActions?.length > 0\" class=\"blank-slate-pf-main-action\"><button *ngFor=\"let action of config.actions.primaryActions\" class=\"btn btn-primary btn-lg {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': action.disabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button></div><div class=\"blank-slate-pf-secondary-action {{config.actions?.moreActionsStyleClass}}\" [ngClass]=\"{'hidden': config.actions?.moreActionsVisible === false}\" *ngIf=\"config.actions?.moreActions?.length > 0\"><button *ngFor=\"let action of config.actions.moreActions\" class=\"btn btn-default {{action.styleClass}}\" title=\"{{action.tooltip}}\" [disabled]=\"action.disabled\" [ngClass]=\"{'disabled': config.actions?.moreActionsDisabled, 'hidden': action.visible === false}\" (click)=\"handleAction(action)\">{{action.title}}</button></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    EmptyStateComponent.ctorParameters = function () { return []; };
+    EmptyStateComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+    };
     return EmptyStateComponent;
 }());
 
-var __decorate$v = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+/**
+ * An empty state config containing component properties
+ */
+var EmptyStateConfig = /** @class */ (function () {
+    function EmptyStateConfig() {
+    }
+    return EmptyStateConfig;
+}());
+
 /**
  * A module containing objects associated with the empty state component
  */
 var EmptyStateModule = /** @class */ (function () {
     function EmptyStateModule() {
     }
-    EmptyStateModule = __decorate$v([
-        NgModule({
-            imports: [CommonModule],
-            declarations: [EmptyStateComponent],
-            exports: [EmptyStateComponent]
-        })
-    ], EmptyStateModule);
+    EmptyStateModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [CommonModule],
+                    declarations: [EmptyStateComponent],
+                    exports: [EmptyStateComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    EmptyStateModule.ctorParameters = function () { return []; };
     return EmptyStateModule;
 }());
 
@@ -3918,6 +3666,192 @@ var Filter = /** @class */ (function () {
     return Filter;
 }());
 
+/*
+ * An object containing properties for filter types
+ */
+var FilterType = /** @class */ (function () {
+    function FilterType() {
+    }
+    /**
+     * Select type
+     */
+    FilterType.SELECT = 'select';
+    /**
+     * Text type
+     */
+    FilterType.TEXT = 'text';
+    /**
+     * Type ahead type
+     */
+    FilterType.TYPEAHEAD = 'typeahead';
+    return FilterType;
+}());
+
+/**
+ * Filter component
+ */
+var FilterComponent = /** @class */ (function () {
+    /**
+     * The default constructor
+     */
+    function FilterComponent() {
+        /**
+         * The event emitted when a filter has been changed
+         */
+        this.onChange = new EventEmitter();
+        /**
+         * The event emitted when a query (i.e., saved filter) has been deleted
+         */
+        this.onDelete = new EventEmitter();
+        /**
+         * The event emitted when a field menu option is selected
+         */
+        this.onFilterSelect = new EventEmitter();
+        /**
+         * The event emitted when a filter has been changed
+         */
+        this.onSave = new EventEmitter();
+        /**
+         * The event emitted when the user types ahead in the query input field
+         */
+        this.onTypeAhead = new EventEmitter();
+        this.defaultConfig = {
+            disabled: false
+        };
+    }
+    // Initialization
+    /**
+     * Setup component configuration upon initialization
+     */
+    FilterComponent.prototype.ngOnInit = function () {
+        this.setupConfig();
+    };
+    /**
+     * Check if the component config has changed
+     */
+    FilterComponent.prototype.ngDoCheck = function () {
+        // Do a deep compare on config
+        if (!isEqual(this.config, this.prevConfig)) {
+            this.setupConfig();
+        }
+    };
+    /**
+     * Set up default config
+     */
+    FilterComponent.prototype.setupConfig = function () {
+        if (this.config !== undefined) {
+            defaults(this.config, this.defaultConfig);
+        }
+        else {
+            this.config = cloneDeep(this.defaultConfig);
+        }
+        if (this.config && this.config.appliedFilters === undefined) {
+            this.config.appliedFilters = [];
+        }
+        this.prevConfig = cloneDeep(this.config);
+    };
+    // Actions
+    /**
+     * Handle add filter event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
+    FilterComponent.prototype.addFilter = function ($event) {
+        var newFilter = {
+            field: $event.field,
+            query: $event.query,
+            value: $event.value
+        };
+        if (!this.filterExists(newFilter)) {
+            if (newFilter.field.type === FilterType.SELECT) {
+                this.enforceSingleSelect(newFilter);
+            }
+            this.config.appliedFilters.push(newFilter);
+            $event.appliedFilters = this.config.appliedFilters;
+            this.onChange.emit($event);
+        }
+    };
+    /**
+     * Handle clear filter event
+     *
+     * @param $event An array of current Filter objects
+     */
+    FilterComponent.prototype.clearFilter = function ($event) {
+        this.config.appliedFilters = $event;
+        this.onChange.emit({
+            appliedFilters: $event
+        });
+    };
+    /**
+     * Handle delete query (i.e., saved filter) event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
+    FilterComponent.prototype.deleteQuery = function ($event) {
+        this.onDelete.emit($event);
+    };
+    /**
+     * Handle filter field selected event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
+    FilterComponent.prototype.fieldSelected = function ($event) {
+        this.onFilterSelect.emit($event);
+    };
+    /**
+     * Reset current field
+     */
+    FilterComponent.prototype.resetCurrentField = function () {
+        this.filterFields.reset();
+    };
+    /**
+     * Handle save filter event
+     *
+     * @param $event An array of current Filter objects
+     */
+    FilterComponent.prototype.saveFilter = function ($event) {
+        this.onSave.emit($event);
+    };
+    /**
+     * Handle type ahead event
+     *
+     * @param $event The FilterEvent contining properties for this event
+     */
+    FilterComponent.prototype.typeAhead = function ($event) {
+        this.onTypeAhead.emit($event);
+    };
+    // Private
+    FilterComponent.prototype.enforceSingleSelect = function (filter$$1) {
+        remove(this.config.appliedFilters, { title: filter$$1.field.title });
+    };
+    FilterComponent.prototype.filterExists = function (filter$$1) {
+        var foundFilter = find(this.config.appliedFilters, {
+            field: filter$$1.field,
+            value: filter$$1.value
+        });
+        return foundFilter !== undefined;
+    };
+    FilterComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-filter',
+                    template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    FilterComponent.ctorParameters = function () { return []; };
+    FilterComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onChange': [{ type: Output, args: ['onChange',] },],
+        'onDelete': [{ type: Output, args: ['onDelete',] },],
+        'onFilterSelect': [{ type: Output, args: ['onFieldSelect',] },],
+        'onSave': [{ type: Output, args: ['onSave',] },],
+        'onTypeAhead': [{ type: Output, args: ['onTypeAhead',] },],
+        'filterFields': [{ type: ViewChild, args: ['filterFields',] },],
+    };
+    return FilterComponent;
+}());
+
 /**
  * A config containing properties for filters
  */
@@ -3927,15 +3861,24 @@ var FilterConfig = /** @class */ (function () {
     return FilterConfig;
 }());
 
-var __decorate$w = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$k = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+/**
+ * An object containing properties for filter events
+ */
+var FilterEvent = /** @class */ (function () {
+    function FilterEvent() {
+    }
+    return FilterEvent;
+}());
+
+/**
+ * An object containing properties for a filterable field, used to select categories of filters
+ */
+var FilterField = /** @class */ (function () {
+    function FilterField() {
+    }
+    return FilterField;
+}());
+
 /**
  * Component for the filter query field and filter query dropdown
  */
@@ -4147,266 +4090,23 @@ var FilterFieldsComponent = /** @class */ (function () {
         });
         return result;
     };
-    __decorate$w([
-        Input(),
-        __metadata$k("design:type", FilterConfig)
-    ], FilterFieldsComponent.prototype, "config", void 0);
-    __decorate$w([
-        Output('onAdd'),
-        __metadata$k("design:type", Object)
-    ], FilterFieldsComponent.prototype, "onAdd", void 0);
-    __decorate$w([
-        Output('onDelete'),
-        __metadata$k("design:type", Object)
-    ], FilterFieldsComponent.prototype, "onDelete", void 0);
-    __decorate$w([
-        Output('onFieldSelect'),
-        __metadata$k("design:type", Object)
-    ], FilterFieldsComponent.prototype, "onFieldSelect", void 0);
-    __decorate$w([
-        Output('onTypeAhead'),
-        __metadata$k("design:type", Object)
-    ], FilterFieldsComponent.prototype, "onTypeAhead", void 0);
-    FilterFieldsComponent = __decorate$w([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-filter-fields',
-            template: "<div class=\"filter-pf filter-fields\"><div class=\"input-group form-group\"><div class=\"input-group-btn\" dropdown><button type=\"button\" class=\"btn btn-default filter-fields dropdown-toggle\" dropdownToggle tooltip=\"Filter by\" placement=\"{{config?.tooltipPlacement}}\" [disabled]=\"config.disabled === true\">{{currentField?.title}} <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let field of config?.fields\" [ngClass]=\"{'disabled': isFieldDisabled(field), 'divider dropdown-divider': field.separator}\"><a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" tabindex=\"-1\" (click)=\"selectField(field)\" *ngIf=\"!field?.separator && !isFieldDisabled(field)\">{{field?.title}}</a> <a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" onclick=\"return false;\" *ngIf=\"!field?.separator && isFieldDisabled(field)\">{{field?.title}}</a></li></ul></div><div *ngIf=\"!currentField?.type || currentField?.type === 'text' || currentField.type === 'default'\"><input class=\"form-control\" type=\"{{currentField?.type}}\" [(ngModel)]=\"currentValue\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\" (keypress)=\"fieldInputKeyPress($event)\"></div><div *ngIf=\"currentField?.type === 'select'\"><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\"><span class=\"filter-option pull-left\">{{currentValue || currentField?.placeholder}}</span> <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField?.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query?.value === currentValue, 'divider dropdown-divider': query?.separator}\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> {{query.value}}</a></li></ul></div></div><div *ngIf=\"currentField?.type === 'typeahead'\"><div class=\"btn-group bootstrap-select form-control filter-select\" *ngIf=\"config.disabled === true\"><div class=\"pull-left typeahead-input-container disabled\"><input class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\"> <span class=\"caret\"></span></div></div><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown (isOpenChange)=\"hideDeleteConfirm($event)\" *ngIf=\"config.disabled !== true\"><div class=\"pull-left typeahead-input-container dropdown-toggle\" dropdownToggle><input #queryInput class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [(ngModel)]=\"currentValue\" (ngModelChange)=\"queryInputChange($event)\"> <span (click)=\"queryInput.focus()\" class=\"caret\"></span></div><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query.value === currentValue,\n                          'divider dropdown-divider': query?.separator,\n                          'pfng-filter-delete-wrapper': query?.showDelete}\"><div class=\"pfng-filter-delete-slide\" [ngClass]=\"{'slide-in': query?.showDeleteConfirm}\" *ngIf=\"query?.showDelete\"><span class=\"pfng-filter-delete-text\">Delete filter?</span> <span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryConfirm($event, query)\"><span class=\"fa fa-check\"></span> </a></span><span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryCancel($event, query)\"><span class=\"fa fa-remove\"></span></a></span></div><a #blurable class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"pfng-filter-delete close\" *ngIf=\"query?.showDelete\"><a href=\"javascript:void(0);\" tabindex=\"-1\" [ngClass]=\"{'hidden': query?.showDeleteConfirm}\" (click)=\"deleteQuery($event, query, blurable)\"><span class=\"pficon pficon-remove\"></span> </a></span><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> <span [innerHTML]=\"query.value | truncate: 20 | searchHighlight: queryInput.value\"></span></a></li></ul></div></div></div></div>"
-        }),
-        __metadata$k("design:paramtypes", [])
-    ], FilterFieldsComponent);
+    FilterFieldsComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-filter-fields',
+                    template: "<div class=\"filter-pf filter-fields\"><div class=\"input-group form-group\"><div class=\"input-group-btn\" dropdown><button type=\"button\" class=\"btn btn-default filter-fields dropdown-toggle\" dropdownToggle tooltip=\"Filter by\" placement=\"{{config?.tooltipPlacement}}\" [disabled]=\"config.disabled === true\">{{currentField?.title}} <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let field of config?.fields\" [ngClass]=\"{'disabled': isFieldDisabled(field), 'divider dropdown-divider': field.separator}\"><a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" tabindex=\"-1\" (click)=\"selectField(field)\" *ngIf=\"!field?.separator && !isFieldDisabled(field)\">{{field?.title}}</a> <a class=\"filter-field dropdown-item\" href=\"javascript:void(0);\" role=\"menuitem\" onclick=\"return false;\" *ngIf=\"!field?.separator && isFieldDisabled(field)\">{{field?.title}}</a></li></ul></div><div *ngIf=\"!currentField?.type || currentField?.type === 'text' || currentField.type === 'default'\"><input class=\"form-control\" type=\"{{currentField?.type}}\" [(ngModel)]=\"currentValue\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\" (keypress)=\"fieldInputKeyPress($event)\"></div><div *ngIf=\"currentField?.type === 'select'\"><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\"><span class=\"filter-option pull-left\">{{currentValue || currentField?.placeholder}}</span> <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField?.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query?.value === currentValue, 'divider dropdown-divider': query?.separator}\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> {{query.value}}</a></li></ul></div></div><div *ngIf=\"currentField?.type === 'typeahead'\"><div class=\"btn-group bootstrap-select form-control filter-select\" *ngIf=\"config.disabled === true\"><div class=\"pull-left typeahead-input-container disabled\"><input class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [disabled]=\"config.disabled === true\"> <span class=\"caret\"></span></div></div><div class=\"btn-group bootstrap-select form-control filter-select\" dropdown (isOpenChange)=\"hideDeleteConfirm($event)\" *ngIf=\"config.disabled !== true\"><div class=\"pull-left typeahead-input-container dropdown-toggle\" dropdownToggle><input #queryInput class=\"form-control\" type=\"text\" placeholder=\"{{currentField?.placeholder}}\" [(ngModel)]=\"currentValue\" (ngModelChange)=\"queryInputChange($event)\"> <span (click)=\"queryInput.focus()\" class=\"caret\"></span></div><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngIf=\"currentField.placeholder\"><a class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery()\">{{currentField?.placeholder}}</a></li><li role=\"menuitem\" *ngFor=\"let query of currentField?.queries\" [ngClass]=\"{'selected': query.value === currentValue,\n                          'divider dropdown-divider': query?.separator,\n                          'pfng-filter-delete-wrapper': query?.showDelete}\"><div class=\"pfng-filter-delete-slide\" [ngClass]=\"{'slide-in': query?.showDeleteConfirm}\" *ngIf=\"query?.showDelete\"><span class=\"pfng-filter-delete-text\">Delete filter?</span> <span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryConfirm($event, query)\"><span class=\"fa fa-check\"></span> </a></span><span class=\"pfng-filter-delete-confirm close\"><a class=\"padding-right-5\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"deleteQueryCancel($event, query)\"><span class=\"fa fa-remove\"></span></a></span></div><a #blurable class=\"dropdown-item\" href=\"javascript:void(0);\" tabindex=\"-1\" (click)=\"selectQuery(query)\" *ngIf=\"!query?.separator\"><span class=\"pfng-filter-delete close\" *ngIf=\"query?.showDelete\"><a href=\"javascript:void(0);\" tabindex=\"-1\" [ngClass]=\"{'hidden': query?.showDeleteConfirm}\" (click)=\"deleteQuery($event, query, blurable)\"><span class=\"pficon pficon-remove\"></span> </a></span><span class=\"{{query?.iconStyleClass}}\" *ngIf=\"query?.iconStyleClass\"></span> <img class=\"avatar\" [attr.src]=\"query?.imageUrl\" *ngIf=\"query?.imageUrl\"> <span [innerHTML]=\"query.value | truncate: 20 | searchHighlight: queryInput.value\"></span></a></li></ul></div></div></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    FilterFieldsComponent.ctorParameters = function () { return []; };
+    FilterFieldsComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onAdd': [{ type: Output, args: ['onAdd',] },],
+        'onDelete': [{ type: Output, args: ['onDelete',] },],
+        'onFieldSelect': [{ type: Output, args: ['onFieldSelect',] },],
+        'onTypeAhead': [{ type: Output, args: ['onTypeAhead',] },],
+    };
     return FilterFieldsComponent;
-}());
-
-/*
- * An object containing properties for filter types
- */
-var FilterType = /** @class */ (function () {
-    function FilterType() {
-    }
-    /**
-     * Select type
-     */
-    FilterType.SELECT = 'select';
-    /**
-     * Text type
-     */
-    FilterType.TEXT = 'text';
-    /**
-     * Type ahead type
-     */
-    FilterType.TYPEAHEAD = 'typeahead';
-    return FilterType;
-}());
-
-var __decorate$x = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$l = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
- * Filter component
- */
-var FilterComponent = /** @class */ (function () {
-    /**
-     * The default constructor
-     */
-    function FilterComponent() {
-        /**
-         * The event emitted when a filter has been changed
-         */
-        this.onChange = new EventEmitter();
-        /**
-         * The event emitted when a query (i.e., saved filter) has been deleted
-         */
-        this.onDelete = new EventEmitter();
-        /**
-         * The event emitted when a field menu option is selected
-         */
-        this.onFilterSelect = new EventEmitter();
-        /**
-         * The event emitted when a filter has been changed
-         */
-        this.onSave = new EventEmitter();
-        /**
-         * The event emitted when the user types ahead in the query input field
-         */
-        this.onTypeAhead = new EventEmitter();
-        this.defaultConfig = {
-            disabled: false
-        };
-    }
-    // Initialization
-    /**
-     * Setup component configuration upon initialization
-     */
-    FilterComponent.prototype.ngOnInit = function () {
-        this.setupConfig();
-    };
-    /**
-     * Check if the component config has changed
-     */
-    FilterComponent.prototype.ngDoCheck = function () {
-        // Do a deep compare on config
-        if (!isEqual(this.config, this.prevConfig)) {
-            this.setupConfig();
-        }
-    };
-    /**
-     * Set up default config
-     */
-    FilterComponent.prototype.setupConfig = function () {
-        if (this.config !== undefined) {
-            defaults(this.config, this.defaultConfig);
-        }
-        else {
-            this.config = cloneDeep(this.defaultConfig);
-        }
-        if (this.config && this.config.appliedFilters === undefined) {
-            this.config.appliedFilters = [];
-        }
-        this.prevConfig = cloneDeep(this.config);
-    };
-    // Actions
-    /**
-     * Handle add filter event
-     *
-     * @param $event The FilterEvent contining properties for this event
-     */
-    FilterComponent.prototype.addFilter = function ($event) {
-        var newFilter = {
-            field: $event.field,
-            query: $event.query,
-            value: $event.value
-        };
-        if (!this.filterExists(newFilter)) {
-            if (newFilter.field.type === FilterType.SELECT) {
-                this.enforceSingleSelect(newFilter);
-            }
-            this.config.appliedFilters.push(newFilter);
-            $event.appliedFilters = this.config.appliedFilters;
-            this.onChange.emit($event);
-        }
-    };
-    /**
-     * Handle clear filter event
-     *
-     * @param $event An array of current Filter objects
-     */
-    FilterComponent.prototype.clearFilter = function ($event) {
-        this.config.appliedFilters = $event;
-        this.onChange.emit({
-            appliedFilters: $event
-        });
-    };
-    /**
-     * Handle delete query (i.e., saved filter) event
-     *
-     * @param $event The FilterEvent contining properties for this event
-     */
-    FilterComponent.prototype.deleteQuery = function ($event) {
-        this.onDelete.emit($event);
-    };
-    /**
-     * Handle filter field selected event
-     *
-     * @param $event The FilterEvent contining properties for this event
-     */
-    FilterComponent.prototype.fieldSelected = function ($event) {
-        this.onFilterSelect.emit($event);
-    };
-    /**
-     * Reset current field
-     */
-    FilterComponent.prototype.resetCurrentField = function () {
-        this.filterFields.reset();
-    };
-    /**
-     * Handle save filter event
-     *
-     * @param $event An array of current Filter objects
-     */
-    FilterComponent.prototype.saveFilter = function ($event) {
-        this.onSave.emit($event);
-    };
-    /**
-     * Handle type ahead event
-     *
-     * @param $event The FilterEvent contining properties for this event
-     */
-    FilterComponent.prototype.typeAhead = function ($event) {
-        this.onTypeAhead.emit($event);
-    };
-    // Private
-    FilterComponent.prototype.enforceSingleSelect = function (filter$$1) {
-        remove(this.config.appliedFilters, { title: filter$$1.field.title });
-    };
-    FilterComponent.prototype.filterExists = function (filter$$1) {
-        var foundFilter = find(this.config.appliedFilters, {
-            field: filter$$1.field,
-            value: filter$$1.value
-        });
-        return foundFilter !== undefined;
-    };
-    __decorate$x([
-        Input(),
-        __metadata$l("design:type", FilterConfig)
-    ], FilterComponent.prototype, "config", void 0);
-    __decorate$x([
-        Output('onChange'),
-        __metadata$l("design:type", Object)
-    ], FilterComponent.prototype, "onChange", void 0);
-    __decorate$x([
-        Output('onDelete'),
-        __metadata$l("design:type", Object)
-    ], FilterComponent.prototype, "onDelete", void 0);
-    __decorate$x([
-        Output('onFieldSelect'),
-        __metadata$l("design:type", Object)
-    ], FilterComponent.prototype, "onFilterSelect", void 0);
-    __decorate$x([
-        Output('onSave'),
-        __metadata$l("design:type", Object)
-    ], FilterComponent.prototype, "onSave", void 0);
-    __decorate$x([
-        Output('onTypeAhead'),
-        __metadata$l("design:type", Object)
-    ], FilterComponent.prototype, "onTypeAhead", void 0);
-    __decorate$x([
-        ViewChild('filterFields'),
-        __metadata$l("design:type", FilterFieldsComponent)
-    ], FilterComponent.prototype, "filterFields", void 0);
-    FilterComponent = __decorate$x([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-filter',
-            template: "<div class=\"filter-pf\"><pfng-filter-fields #filterFields [config]=\"config\" (onAdd)=\"addFilter($event)\" (onDelete)=\"deleteQuery($event)\" (onFieldSelect)=\"fieldSelected($event)\" (onTypeAhead)=\"typeAhead($event)\"></pfng-filter-fields><pfng-filter-results [config]=\"config\" (onClear)=\"clearFilter($event)\" (onSave)=\"saveFilter($event)\"></pfng-filter-results></div>"
-        }),
-        __metadata$l("design:paramtypes", [])
-    ], FilterComponent);
-    return FilterComponent;
-}());
-
-/**
- * An object containing properties for filter events
- */
-var FilterEvent = /** @class */ (function () {
-    function FilterEvent() {
-    }
-    return FilterEvent;
-}());
-
-/**
- * An object containing properties for a filterable field, used to select categories of filters
- */
-var FilterField = /** @class */ (function () {
-    function FilterField() {
-    }
-    return FilterField;
 }());
 
 /**
@@ -4633,15 +4333,6 @@ var PopoverModule = (function () {
     return PopoverModule;
 }());
 
-var __decorate$y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$m = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Component for the filter results
  */
@@ -4725,26 +4416,20 @@ var FilterResultsComponent = /** @class */ (function () {
         });
         this.saveFilterName = ''; // Reset
     };
-    __decorate$y([
-        Input(),
-        __metadata$m("design:type", FilterConfig)
-    ], FilterResultsComponent.prototype, "config", void 0);
-    __decorate$y([
-        Output('onClear'),
-        __metadata$m("design:type", Object)
-    ], FilterResultsComponent.prototype, "onClear", void 0);
-    __decorate$y([
-        Output('onSave'),
-        __metadata$m("design:type", Object)
-    ], FilterResultsComponent.prototype, "onSave", void 0);
-    FilterResultsComponent = __decorate$y([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-filter-results',
-            template: "<div class=\"filter-pf\" *ngIf=\"config && (config.appliedFilters && config.appliedFilters.length > 0) || config.totalCount > 0\"><div class=\"row toolbar-pf-results\"><div [ngClass]=\"{'col-sm-9': config.totalCount !== undefined, 'col-sm-12': config.totalCount === undefined}\"><h5 *ngIf=\"config.appliedFilters.length > 0 && config.resultsCount >= 0\">{{config.resultsCount}} Results</h5><p *ngIf=\"config.appliedFilters.length > 0\">Active filters:</p><ul class=\"list-inline\"><li *ngFor=\"let filter of config.appliedFilters\"><span class=\"active-filter label label-info\">{{filter.field.title}}: {{filter.value}} <span class=\"margin-left-5 pficon pficon-close\" (click)=\"clearFilter(filter)\" *ngIf=\"config.disabled !== true\"></span></span></li></ul><p><a class=\"clear-filters\" href=\"javascript:void(0)\" [class.disabled]=\"config.disabled === true\" (click)=\"config.disabled !== true && clearAllFilters()\" *ngIf=\"config.appliedFilters.length > 0\">Clear All Filters</a></p><p class=\"pfng-save-filter margin-left-10\"><ng-template #saveFilterTemplate><label class=\"control-label required-pf margin-right-15\" for=\"saveFilterName\">Name your filter</label><span class=\"pfng-save-filter-close close\"><span class=\"pficon pficon-close\" (click)=\"saveFilterPop.hide(); saveFilterName = ''\"></span></span><div class=\"margin-top-5\"><input class=\"form-control\" id=\"saveFilterName\" name=\"saveFilterName\" type=\"text\" [(ngModel)]=\"saveFilterName\"></div><div class=\"pfng-save-filter-divider\"></div><div class=\"pfng-save-filter-footer\"><button class=\"btn btn-default\" (click)=\"saveFilterPop.hide(); saveFilterName = ''\">Cancel</button> <span class=\"margin-left-5\"><button class=\"btn btn-primary\" [disabled]=\"saveFilterName === undefined || saveFilterName?.length === 0\" (click)=\"saveAllFilters(); saveFilterPop.hide()\">Save</button></span></div></ng-template><span placement=\"bottom\" [popover]=\"saveFilterTemplate\" #saveFilterPop=\"bs-popover\"><a *ngIf=\"config.showSaveFilter && config.disabled !== true\">Save Filter</a> </span><a href=\"javascript:void(0)\" [class.disabled]=\"config.disabled === true\" *ngIf=\"config.showSaveFilter && config.disabled === true\">Save Filter</a></p></div><div class=\"col-sm-3 table-view-pf-select-results\" *ngIf=\"config.totalCount > 0\"><strong>{{config.selectedCount}}</strong> of <strong>{{config.totalCount}}</strong> selected</div></div></div>"
-        }),
-        __metadata$m("design:paramtypes", [])
-    ], FilterResultsComponent);
+    FilterResultsComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-filter-results',
+                    template: "<div class=\"filter-pf\" *ngIf=\"config && (config.appliedFilters && config.appliedFilters.length > 0) || config.totalCount > 0\"><div class=\"row toolbar-pf-results\"><div [ngClass]=\"{'col-sm-9': config.totalCount !== undefined, 'col-sm-12': config.totalCount === undefined}\"><h5 *ngIf=\"config.appliedFilters.length > 0 && config.resultsCount >= 0\">{{config.resultsCount}} Results</h5><p *ngIf=\"config.appliedFilters.length > 0\">Active filters:</p><ul class=\"list-inline\"><li *ngFor=\"let filter of config.appliedFilters\"><span class=\"active-filter label label-info\">{{filter.field.title}}: {{filter.value}} <span class=\"margin-left-5 pficon pficon-close\" (click)=\"clearFilter(filter)\" *ngIf=\"config.disabled !== true\"></span></span></li></ul><p><a class=\"clear-filters\" href=\"javascript:void(0)\" [class.disabled]=\"config.disabled === true\" (click)=\"config.disabled !== true && clearAllFilters()\" *ngIf=\"config.appliedFilters.length > 0\">Clear All Filters</a></p><p class=\"pfng-save-filter margin-left-10\"><ng-template #saveFilterTemplate><label class=\"control-label required-pf margin-right-15\" for=\"saveFilterName\">Name your filter</label><span class=\"pfng-save-filter-close close\"><span class=\"pficon pficon-close\" (click)=\"saveFilterPop.hide(); saveFilterName = ''\"></span></span><div class=\"margin-top-5\"><input class=\"form-control\" id=\"saveFilterName\" name=\"saveFilterName\" type=\"text\" [(ngModel)]=\"saveFilterName\"></div><div class=\"pfng-save-filter-divider\"></div><div class=\"pfng-save-filter-footer\"><button class=\"btn btn-default\" (click)=\"saveFilterPop.hide(); saveFilterName = ''\">Cancel</button> <span class=\"margin-left-5\"><button class=\"btn btn-primary\" [disabled]=\"saveFilterName === undefined || saveFilterName?.length === 0\" (click)=\"saveAllFilters(); saveFilterPop.hide()\">Save</button></span></div></ng-template><span placement=\"bottom\" [popover]=\"saveFilterTemplate\" #saveFilterPop=\"bs-popover\"><a *ngIf=\"config.showSaveFilter && config.disabled !== true\">Save Filter</a> </span><a href=\"javascript:void(0)\" [class.disabled]=\"config.disabled === true\" *ngIf=\"config.showSaveFilter && config.disabled === true\">Save Filter</a></p></div><div class=\"col-sm-3 table-view-pf-select-results\" *ngIf=\"config.totalCount > 0\"><strong>{{config.selectedCount}}</strong> of <strong>{{config.totalCount}}</strong> selected</div></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    FilterResultsComponent.ctorParameters = function () { return []; };
+    FilterResultsComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onClear': [{ type: Output, args: ['onClear',] },],
+        'onSave': [{ type: Output, args: ['onSave',] },],
+    };
     return FilterResultsComponent;
 }());
 
@@ -4757,12 +4442,6 @@ var FilterQuery = /** @class */ (function () {
     return FilterQuery;
 }());
 
-var __decorate$z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * Search highlight pipe
  *
@@ -4812,43 +4491,35 @@ var SearchHighlightPipe = /** @class */ (function () {
         }
         return output;
     };
-    SearchHighlightPipe = __decorate$z([
-        Pipe({ name: 'searchHighlight' })
-    ], SearchHighlightPipe);
+    SearchHighlightPipe.decorators = [
+        { type: Pipe, args: [{ name: 'searchHighlight' },] },
+    ];
+    /** @nocollapse */
+    SearchHighlightPipe.ctorParameters = function () { return []; };
     return SearchHighlightPipe;
 }());
 
-var __decorate$A = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the search highlight pipe
  */
 var SearchHighlightPipeModule = /** @class */ (function () {
     function SearchHighlightPipeModule() {
     }
-    SearchHighlightPipeModule = __decorate$A([
-        NgModule({
-            declarations: [
-                SearchHighlightPipe
-            ],
-            exports: [
-                SearchHighlightPipe
-            ]
-        })
-    ], SearchHighlightPipeModule);
+    SearchHighlightPipeModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [
+                        SearchHighlightPipe
+                    ],
+                    exports: [
+                        SearchHighlightPipe
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    SearchHighlightPipeModule.ctorParameters = function () { return []; };
     return SearchHighlightPipeModule;
 }());
 
-var __decorate$B = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * Truncate pipe
  *
@@ -4870,77 +4541,62 @@ var TruncatePipe = /** @class */ (function () {
         if (trail === void 0) { trail = '...'; }
         return (value.length > limit) ? value.substring(0, limit) + trail : value;
     };
-    TruncatePipe = __decorate$B([
-        Pipe({ name: 'truncate' })
-    ], TruncatePipe);
+    TruncatePipe.decorators = [
+        { type: Pipe, args: [{ name: 'truncate' },] },
+    ];
+    /** @nocollapse */
+    TruncatePipe.ctorParameters = function () { return []; };
     return TruncatePipe;
 }());
 
-var __decorate$C = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the truncate pipe
  */
 var TruncatePipeModule = /** @class */ (function () {
     function TruncatePipeModule() {
     }
-    TruncatePipeModule = __decorate$C([
-        NgModule({
-            declarations: [
-                TruncatePipe
-            ],
-            exports: [
-                TruncatePipe
-            ]
-        })
-    ], TruncatePipeModule);
+    TruncatePipeModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [
+                        TruncatePipe
+                    ],
+                    exports: [
+                        TruncatePipe
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    TruncatePipeModule.ctorParameters = function () { return []; };
     return TruncatePipeModule;
 }());
 
-var __decorate$D = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with filter components
  */
 var FilterModule = /** @class */ (function () {
     function FilterModule() {
     }
-    FilterModule = __decorate$D([
-        NgModule({
-            imports: [
-                BsDropdownModule.forRoot(),
-                CommonModule,
-                FormsModule,
-                PopoverModule.forRoot(),
-                SearchHighlightPipeModule,
-                TooltipModule.forRoot(),
-                TruncatePipeModule
-            ],
-            declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
-            exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
-            providers: [BsDropdownConfig, TooltipConfig]
-        })
-    ], FilterModule);
+    FilterModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        BsDropdownModule.forRoot(),
+                        CommonModule,
+                        FormsModule,
+                        PopoverModule.forRoot(),
+                        SearchHighlightPipeModule,
+                        TooltipModule.forRoot(),
+                        TruncatePipeModule
+                    ],
+                    declarations: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+                    exports: [FilterComponent, FilterFieldsComponent, FilterResultsComponent],
+                    providers: [BsDropdownConfig, TooltipConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    FilterModule.ctorParameters = function () { return []; };
     return FilterModule;
 }());
 
-var __decorate$E = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$n = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * List base
  */
@@ -5184,34 +4840,15 @@ var ListBase = /** @class */ (function () {
             });
         }
     };
-    __decorate$E([
-        Input(),
-        __metadata$n("design:type", TemplateRef)
-    ], ListBase.prototype, "actionTemplate", void 0);
-    __decorate$E([
-        Input(),
-        __metadata$n("design:type", Array)
-    ], ListBase.prototype, "items", void 0);
-    __decorate$E([
-        Input(),
-        __metadata$n("design:type", TemplateRef)
-    ], ListBase.prototype, "itemTemplate", void 0);
-    __decorate$E([
-        Output('onActionSelect'),
-        __metadata$n("design:type", Object)
-    ], ListBase.prototype, "onActionSelect", void 0);
-    __decorate$E([
-        Output('onClick'),
-        __metadata$n("design:type", Object)
-    ], ListBase.prototype, "onClick", void 0);
-    __decorate$E([
-        Output('onDblClick'),
-        __metadata$n("design:type", Object)
-    ], ListBase.prototype, "onDblClick", void 0);
-    __decorate$E([
-        Output('onSelectionChange'),
-        __metadata$n("design:type", Object)
-    ], ListBase.prototype, "onSelectionChange", void 0);
+    ListBase.propDecorators = {
+        'actionTemplate': [{ type: Input },],
+        'items': [{ type: Input },],
+        'itemTemplate': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onClick': [{ type: Output, args: ['onClick',] },],
+        'onDblClick': [{ type: Output, args: ['onDblClick',] },],
+        'onSelectionChange': [{ type: Output, args: ['onSelectionChange',] },],
+    };
     return ListBase;
 }());
 
@@ -5244,36 +4881,6 @@ var __extends$e = (undefined && undefined.__extends) || (function () {
     };
 })();
 /**
- * A config containing properties for list view
- */
-var ListConfig = /** @class */ (function (_super) {
-    __extends$e(ListConfig, _super);
-    function ListConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ListConfig;
-}(ListConfigBase));
-
-var __extends$f = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate$F = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$o = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
  * List component
  *
  * For items, use a template named itemTemplate to contain content for each item. For each item in the items array, the
@@ -5293,7 +4900,7 @@ var __metadata$o = (undefined && undefined.__metadata) || function (k, v) {
  * <br/><code>import { BasicListModule } from 'patternfly-ng';</code>
  */
 var ListComponent = /** @class */ (function (_super) {
-    __extends$f(ListComponent, _super);
+    __extends$e(ListComponent, _super);
     /**
      * The default constructor
      */
@@ -5405,46 +5012,48 @@ var ListComponent = /** @class */ (function (_super) {
             item: item
         });
     };
-    __decorate$F([
-        Input(),
-        __metadata$o("design:type", TemplateRef)
-    ], ListComponent.prototype, "actionHeadingTemplate", void 0);
-    __decorate$F([
-        Input(),
-        __metadata$o("design:type", ListConfig)
-    ], ListComponent.prototype, "config", void 0);
-    __decorate$F([
-        Input(),
-        __metadata$o("design:type", TemplateRef)
-    ], ListComponent.prototype, "expandTemplate", void 0);
-    __decorate$F([
-        Input(),
-        __metadata$o("design:type", TemplateRef)
-    ], ListComponent.prototype, "itemHeadingTemplate", void 0);
-    __decorate$F([
-        Output('onPinChange'),
-        __metadata$o("design:type", Object)
-    ], ListComponent.prototype, "onPinChange", void 0);
-    ListComponent = __decorate$F([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-list',
-            template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><div class=\"list-pf-item pfng-list-heading {{item?.itemStyleClass}}\" *ngIf=\"itemHeadingTemplate || actionHeadingTemplate\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-placeholder\" *ngIf=\"config.usePinItems\"></div><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\"></div></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox || config.showRadioButton\"><div class=\"pfng-list-cb-placeholder\"></div></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\"><ng-template *ngIf=\"itemHeadingTemplate\" [ngTemplateOutlet]=\"itemHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionHeadingTemplate\" [ngTemplateOutlet]=\"actionHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div><div class=\"list-pf-item {{item?.itemStyleClass}}\" [ngClass]=\"{'active': item.selected || item.expanded}\" *ngFor=\"let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index\"><div class=\"list-pf-container\" [id]=\"getId('item', i)\" (click)=\"toggleExpandItem($event, item)\"><div class=\"pfng-list-pin-container\" *ngIf=\"config.usePinItems\"><div class=\"pfng-list-pin-placeholder\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin !== true\"></div><div class=\"pfng-list-pin\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin === true\"><a href=\"javascript:void(0);\" tabindex=\"-1\" title=\"Remove pin\" (click)=\"togglePin($event, item)\"><span class=\"fa fa-thumb-tack\"></span></a></div></div><div class=\"list-pf-chevron pfng-list-expand\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\" *ngIf=\"item.hideExpandToggle === true\"></div><span class=\"fa fa-angle-right\" *ngIf=\"item.hideExpandToggle !== true\" (click)=\"toggleExpandItem($event, item)\" [ngClass]=\"{'fa-angle-down': item.expanded && item.expandId === undefined}\"></span></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" [id]=\"getId('checkbox', i)\" [(ngModel)]=\"item.selected\" (ngModelChange)=\"checkboxChange(item)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" [id]=\"getId('radio', i)\" [checked]=\"item.selected\" (click)=\"radioButtonChange(item)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\" (click)=\"toggleSelection($event, item)\" (dblclick)=\"dblClick($event, item)\"><ng-template *ngIf=\"itemTemplate\" [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionTemplate\" [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div><div class=\"pfng-list-expansion list-pf-expansion collapse in\" *ngIf=\"expandTemplate && item.expanded\"><div class=\"list-pf-container\" tabindex=\"0\"><div class=\"list-pf-content\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"closeExpandItem(item)\"></span></div><ng-template [ngTemplateOutlet]=\"expandTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
-        }),
-        __metadata$o("design:paramtypes", [ElementRef])
-    ], ListComponent);
+    ListComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-list',
+                    template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><div class=\"list-pf-item pfng-list-heading {{item?.itemStyleClass}}\" *ngIf=\"itemHeadingTemplate || actionHeadingTemplate\"><div class=\"list-pf-container\"><div class=\"pfng-list-pin-placeholder\" *ngIf=\"config.usePinItems\"></div><div class=\"list-pf-chevron\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\"></div></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox || config.showRadioButton\"><div class=\"pfng-list-cb-placeholder\"></div></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\"><ng-template *ngIf=\"itemHeadingTemplate\" [ngTemplateOutlet]=\"itemHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionHeadingTemplate\" [ngTemplateOutlet]=\"actionHeadingTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div><div class=\"list-pf-item {{item?.itemStyleClass}}\" [ngClass]=\"{'active': item.selected || item.expanded}\" *ngFor=\"let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index\"><div class=\"list-pf-container\" [id]=\"getId('item', i)\" (click)=\"toggleExpandItem($event, item)\"><div class=\"pfng-list-pin-container\" *ngIf=\"config.usePinItems\"><div class=\"pfng-list-pin-placeholder\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin !== true\"></div><div class=\"pfng-list-pin\" [ngClass]=\"{'multi-ctrls': config.useExpandItems || config.showCheckbox || config.showRadioButton}\" *ngIf=\"item.showPin === true\"><a href=\"javascript:void(0);\" tabindex=\"-1\" title=\"Remove pin\" (click)=\"togglePin($event, item)\"><span class=\"fa fa-thumb-tack\"></span></a></div></div><div class=\"list-pf-chevron pfng-list-expand\" *ngIf=\"config.useExpandItems\"><div class=\"pfng-list-expand-placeholder\" *ngIf=\"item.hideExpandToggle === true\"></div><span class=\"fa fa-angle-right\" *ngIf=\"item.hideExpandToggle !== true\" (click)=\"toggleExpandItem($event, item)\" [ngClass]=\"{'fa-angle-down': item.expanded && item.expandId === undefined}\"></span></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" [id]=\"getId('checkbox', i)\" [(ngModel)]=\"item.selected\" (ngModelChange)=\"checkboxChange(item)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" [id]=\"getId('radio', i)\" [checked]=\"item.selected\" (click)=\"radioButtonChange(item)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-list-content\" (click)=\"toggleSelection($event, item)\" (dblclick)=\"dblClick($event, item)\"><ng-template *ngIf=\"itemTemplate\" [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div><div class=\"list-pf-actions\"><ng-template *ngIf=\"actionTemplate\" [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div><div class=\"pfng-list-expansion list-pf-expansion collapse in\" *ngIf=\"expandTemplate && item.expanded\"><div class=\"list-pf-container\" tabindex=\"0\"><div class=\"list-pf-content\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"closeExpandItem(item)\"></span></div><ng-template [ngTemplateOutlet]=\"expandTemplate\" [ngTemplateOutletContext]=\"{ item: item, index: i }\"></ng-template></div></div></div></div></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
+                },] },
+    ];
+    /** @nocollapse */
+    ListComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
+    ListComponent.propDecorators = {
+        'actionHeadingTemplate': [{ type: Input },],
+        'config': [{ type: Input },],
+        'expandTemplate': [{ type: Input },],
+        'itemHeadingTemplate': [{ type: Input },],
+        'onPinChange': [{ type: Output, args: ['onPinChange',] },],
+    };
     return ListComponent;
 }(ListBase));
 
-var __decorate$G = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$p = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+var __extends$f = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * A config containing properties for list view
+ */
+var ListConfig = /** @class */ (function (_super) {
+    __extends$f(ListConfig, _super);
+    function ListConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ListConfig;
+}(ListConfigBase));
+
 /**
  * List compund expansion toggle component.
  *
@@ -5493,35 +5102,23 @@ var ListExpandToggleComponent = /** @class */ (function () {
         this.item.expandId = this.expandId;
         this.item.expanded = !this.item.expanded;
     };
-    __decorate$G([
-        Input(),
-        __metadata$p("design:type", String)
-    ], ListExpandToggleComponent.prototype, "expandId", void 0);
-    __decorate$G([
-        Input(),
-        __metadata$p("design:type", Object)
-    ], ListExpandToggleComponent.prototype, "item", void 0);
-    __decorate$G([
-        Input(),
-        __metadata$p("design:type", TemplateRef)
-    ], ListExpandToggleComponent.prototype, "template", void 0);
-    ListExpandToggleComponent = __decorate$G([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-list-expand-toggle',
-            template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpandItem()\"><span class=\"fa fa-fw fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
-        }),
-        __metadata$p("design:paramtypes", [])
-    ], ListExpandToggleComponent);
+    ListExpandToggleComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-list-expand-toggle',
+                    template: "<div class=\"list-pf-chevron\" (click)=\"toggleExpandItem()\"><span class=\"fa fa-fw fa-angle-right\" [ngClass]=\"{'fa-angle-down': isExpanded}\"></span><ng-template *ngIf=\"template\" let-item=\"item\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ListExpandToggleComponent.ctorParameters = function () { return []; };
+    ListExpandToggleComponent.propDecorators = {
+        'expandId': [{ type: Input },],
+        'item': [{ type: Input },],
+        'template': [{ type: Input },],
+    };
     return ListExpandToggleComponent;
 }());
 
-var __decorate$H = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * Sort array pipe
  *
@@ -5550,61 +5147,55 @@ var SortArrayPipe = /** @class */ (function () {
         var sortedArray = orderBy(arr, [prop], [sortOrder]);
         return sortedArray;
     };
-    SortArrayPipe = __decorate$H([
-        Pipe({ name: 'sortArray' })
-    ], SortArrayPipe);
+    SortArrayPipe.decorators = [
+        { type: Pipe, args: [{ name: 'sortArray' },] },
+    ];
+    /** @nocollapse */
+    SortArrayPipe.ctorParameters = function () { return []; };
     return SortArrayPipe;
 }());
 
-var __decorate$I = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the sort array pipe
  */
 var SortArrayPipeModule = /** @class */ (function () {
     function SortArrayPipeModule() {
     }
-    SortArrayPipeModule = __decorate$I([
-        NgModule({
-            declarations: [
-                SortArrayPipe
-            ],
-            exports: [
-                SortArrayPipe
-            ]
-        })
-    ], SortArrayPipeModule);
+    SortArrayPipeModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [
+                        SortArrayPipe
+                    ],
+                    exports: [
+                        SortArrayPipe
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    SortArrayPipeModule.ctorParameters = function () { return []; };
     return SortArrayPipeModule;
 }());
 
-var __decorate$J = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with basic list components
  */
 var ListModule = /** @class */ (function () {
     function ListModule() {
     }
-    ListModule = __decorate$J([
-        NgModule({
-            imports: [
-                CommonModule,
-                EmptyStateModule,
-                FormsModule,
-                SortArrayPipeModule
-            ],
-            declarations: [ListComponent, ListExpandToggleComponent],
-            exports: [ListComponent, ListExpandToggleComponent]
-        })
-    ], ListModule);
+    ListModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        EmptyStateModule,
+                        FormsModule,
+                        SortArrayPipeModule
+                    ],
+                    declarations: [ListComponent, ListExpandToggleComponent],
+                    exports: [ListComponent, ListExpandToggleComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    ListModule.ctorParameters = function () { return []; };
     return ListModule;
 }());
 
@@ -5618,41 +5209,6 @@ var __extends$g = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-/**
- * A config containing properties for tree list
- *
- * @deprecated The tree-list component is deprecated due to issues with Angular 6 and mobx autorun,
- * introduced by angular-tree-component.
- *
- * See: https://github.com/patternfly/patternfly-ng/issues/381
- */
-var TreeListConfig = /** @class */ (function (_super) {
-    __extends$g(TreeListConfig, _super);
-    function TreeListConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return TreeListConfig;
-}(ListConfigBase));
-
-var __extends$h = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate$K = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$q = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Tree List component
  *
@@ -5677,7 +5233,7 @@ var __metadata$q = (undefined && undefined.__metadata) || function (k, v) {
  * See: https://github.com/patternfly/patternfly-ng/issues/381
  */
 var TreeListComponent = /** @class */ (function (_super) {
-    __extends$h(TreeListComponent, _super);
+    __extends$g(TreeListComponent, _super);
     /**
      * The default constructor
      */
@@ -5782,50 +5338,52 @@ var TreeListComponent = /** @class */ (function (_super) {
     TreeListComponent.prototype.getIndentChildren = function (nodeLevel) {
         return (nodeLevel > 1) ? (nodeLevel - 1) * this.config.indentChildren + '' : '';
     };
-    __decorate$K([
-        Input(),
-        __metadata$q("design:type", TreeListConfig)
-    ], TreeListComponent.prototype, "config", void 0);
-    __decorate$K([
-        Input(),
-        __metadata$q("design:type", TemplateRef)
-    ], TreeListComponent.prototype, "loadTemplate", void 0);
-    __decorate$K([
-        Output('onEvent'),
-        __metadata$q("design:type", Object)
-    ], TreeListComponent.prototype, "onEvent", void 0);
-    __decorate$K([
-        Output('onMoveNode'),
-        __metadata$q("design:type", Object)
-    ], TreeListComponent.prototype, "onMoveNode", void 0);
-    __decorate$K([
-        Output('onToggleExpanded'),
-        __metadata$q("design:type", Object)
-    ], TreeListComponent.prototype, "onToggleExpanded", void 0);
-    __decorate$K([
-        ViewChild(TreeComponent),
-        __metadata$q("design:type", TreeComponent)
-    ], TreeListComponent.prototype, "tree", void 0);
-    TreeListComponent = __decorate$K([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-tree-list',
-            template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><tree-root class=\"pfng-tree-list\" #tree [nodes]=\"items\" [focused]=\"true\" [options]=\"config.treeOptions\" (event)=\"handleEvent($event)\" (moveNode)=\"handleMoveNode($event)\" (toggleExpanded)=\"handleToggleExpanded($event)\"><ng-template #treeNodeTemplate let-node let-index=\"index\"><ng-template [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></ng-template><ng-template #loadingTemplate let-node let-index=\"index\"><ng-template [ngTemplateOutlet]=\"loadTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></ng-template><ng-template #treeNodeFullTemplate let-node=\"node\" let-index=\"index\" let-templates=\"templates\"><div *ngIf=\"node.isHidden !== true\" class=\"tree-node\" [ngClass]=\"node.getClass()\" [class.tree-node-expanded]=\"node.isExpanded && node.hasChildren\" [class.tree-node-collapsed]=\"node.isCollapsed && node.hasChildren\" [class.tree-node-leaf]=\"node.isLeaf\" [class.tree-node-active]=\"node.isActive\" [class.tree-node-focused]=\"node.isFocused\"><div class=\"list-pf-item\" [class.active]=\"node.data.selected\" [class.tree-item-placeholder]=\"index !== 0\" [class.tree-item-selected]=\"node.data.selected\"><tree-node-drop-slot *ngIf=\"index === 0\" [dropIndex]=\"node.index\" [node]=\"node.parent\"></tree-node-drop-slot><div class=\"node-wrapper\" [style.padding-left]=\"node.getNodePadding()\"><div class=\"node-content-wrapper\" (click)=\"node.mouseAction('click', $event)\" (dblclick)=\"node.mouseAction('dblClick', $event)\" (contextmenu)=\"node.mouseAction('contextMenu', $event)\" (dragstart)=\"handleDragStart($event)\" (treeDrop)=\"node.onDrop($event)\" [treeAllowDrop]=\"node.allowDrop\" [treeDrag]=\"node\" [treeDragEnabled]=\"node.allowDrag()\"><div class=\"list-pf-container\" [class.pfng-tree-list-dnd-slot]=\"index === 0\" [class.pfng-tree-list-dnd]=\"node.allowDrag()\" [style.padding-left.px]=\"getIndentChildren(node.level, node)\"><div class=\"list-pf-chevron\"><tree-node-expander [node]=\"node\"></tree-node-expander></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" value=\"node.data.selected\" [(ngModel)]=\"node.data.selected\" (ngModelChange)=\"checkboxChange(node.data)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" value=\"node.data.selected\" [checked]=\"node.data.selected\" (click)=\"radioButtonChange(node.data)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-tree-list-content\" (click)=\"toggleSelection($event, node.data)\" (dblclick)=\"dblClick($event, node.data)\"><ng-template [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></div><div class=\"list-pf-actions\" *ngIf=\"actionTemplate\"><ng-template [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></div></div></div></div></div><tree-node-drop-slot [dropIndex]=\"node.index + 1\" [node]=\"node.parent\"></tree-node-drop-slot></div><tree-node-children [node]=\"node\" [templates]=\"templates\"></tree-node-children></div></ng-template></tree-root></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
-        }),
-        __metadata$q("design:paramtypes", [])
-    ], TreeListComponent);
+    TreeListComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-tree-list',
+                    template: "<div class=\"list-pf\" *ngIf=\"!itemsEmpty\"><tree-root class=\"pfng-tree-list\" #tree [nodes]=\"items\" [focused]=\"true\" [options]=\"config.treeOptions\" (event)=\"handleEvent($event)\" (moveNode)=\"handleMoveNode($event)\" (toggleExpanded)=\"handleToggleExpanded($event)\"><ng-template #treeNodeTemplate let-node let-index=\"index\"><ng-template [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></ng-template><ng-template #loadingTemplate let-node let-index=\"index\"><ng-template [ngTemplateOutlet]=\"loadTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></ng-template><ng-template #treeNodeFullTemplate let-node=\"node\" let-index=\"index\" let-templates=\"templates\"><div *ngIf=\"node.isHidden !== true\" class=\"tree-node\" [ngClass]=\"node.getClass()\" [class.tree-node-expanded]=\"node.isExpanded && node.hasChildren\" [class.tree-node-collapsed]=\"node.isCollapsed && node.hasChildren\" [class.tree-node-leaf]=\"node.isLeaf\" [class.tree-node-active]=\"node.isActive\" [class.tree-node-focused]=\"node.isFocused\"><div class=\"list-pf-item\" [class.active]=\"node.data.selected\" [class.tree-item-placeholder]=\"index !== 0\" [class.tree-item-selected]=\"node.data.selected\"><tree-node-drop-slot *ngIf=\"index === 0\" [dropIndex]=\"node.index\" [node]=\"node.parent\"></tree-node-drop-slot><div class=\"node-wrapper\" [style.padding-left]=\"node.getNodePadding()\"><div class=\"node-content-wrapper\" (click)=\"node.mouseAction('click', $event)\" (dblclick)=\"node.mouseAction('dblClick', $event)\" (contextmenu)=\"node.mouseAction('contextMenu', $event)\" (dragstart)=\"handleDragStart($event)\" (treeDrop)=\"node.onDrop($event)\" [treeAllowDrop]=\"node.allowDrop\" [treeDrag]=\"node\" [treeDragEnabled]=\"node.allowDrag()\"><div class=\"list-pf-container\" [class.pfng-tree-list-dnd-slot]=\"index === 0\" [class.pfng-tree-list-dnd]=\"node.allowDrag()\" [style.padding-left.px]=\"getIndentChildren(node.level, node)\"><div class=\"list-pf-chevron\"><tree-node-expander [node]=\"node\"></tree-node-expander></div><div class=\"list-pf-select\" *ngIf=\"config.showCheckbox && !config.showRadioButton\"><input type=\"checkbox\" value=\"node.data.selected\" [(ngModel)]=\"node.data.selected\" (ngModelChange)=\"checkboxChange(node.data)\"></div><div class=\"list-pf-select\" *ngIf=\"!config.showCheckbox && config.showRadioButton\"><input type=\"radio\" value=\"node.data.selected\" [checked]=\"node.data.selected\" (click)=\"radioButtonChange(node.data)\"></div><div class=\"list-pf-content list-pf-content-flex\"><div class=\"pfng-tree-list-content\" (click)=\"toggleSelection($event, node.data)\" (dblclick)=\"dblClick($event, node.data)\"><ng-template [ngTemplateOutlet]=\"itemTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></div><div class=\"list-pf-actions\" *ngIf=\"actionTemplate\"><ng-template [ngTemplateOutlet]=\"actionTemplate\" [ngTemplateOutletContext]=\"{ node: node, index: index }\"></ng-template></div></div></div></div></div><tree-node-drop-slot [dropIndex]=\"node.index + 1\" [node]=\"node.parent\"></tree-node-drop-slot></div><tree-node-children [node]=\"node\" [templates]=\"templates\"></tree-node-children></div></ng-template></tree-root></div><pfng-empty-state *ngIf=\"itemsEmpty\" [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\"></pfng-empty-state>"
+                },] },
+    ];
+    /** @nocollapse */
+    TreeListComponent.ctorParameters = function () { return []; };
+    TreeListComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'loadTemplate': [{ type: Input },],
+        'onEvent': [{ type: Output, args: ['onEvent',] },],
+        'onMoveNode': [{ type: Output, args: ['onMoveNode',] },],
+        'onToggleExpanded': [{ type: Output, args: ['onToggleExpanded',] },],
+        'tree': [{ type: ViewChild, args: [TreeComponent,] },],
+    };
     return TreeListComponent;
 }(ListBase));
 
-var __decorate$L = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$r = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+var __extends$h = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * A config containing properties for tree list
+ *
+ * @deprecated The tree-list component is deprecated due to issues with Angular 6 and mobx autorun,
+ * introduced by angular-tree-component.
+ *
+ * See: https://github.com/patternfly/patternfly-ng/issues/381
+ */
+var TreeListConfig = /** @class */ (function (_super) {
+    __extends$h(TreeListConfig, _super);
+    function TreeListConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return TreeListConfig;
+}(ListConfigBase));
+
 /**
  * A module containing objects associated with tree list components
  *
@@ -5839,40 +5397,23 @@ var TreeListModule = /** @class */ (function () {
         console.log('patternfly-ng: The tree-list component is deprecated due to issues with Angular 6 and ' +
             'mobx autorun, introduced by angular-tree-component.');
     }
-    TreeListModule = __decorate$L([
-        NgModule({
-            imports: [
-                CommonModule,
-                EmptyStateModule,
-                FormsModule,
-                TreeModule
-            ],
-            declarations: [TreeListComponent],
-            exports: [TreeListComponent]
-        }),
-        __metadata$r("design:paramtypes", [])
-    ], TreeListModule);
+    TreeListModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        EmptyStateModule,
+                        FormsModule,
+                        TreeModule
+                    ],
+                    declarations: [TreeListComponent],
+                    exports: [TreeListComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    TreeListModule.ctorParameters = function () { return []; };
     return TreeListModule;
 }());
 
-/**
- * A config containing properties for about modal
- */
-var AboutModalConfig = /** @class */ (function () {
-    function AboutModalConfig() {
-    }
-    return AboutModalConfig;
-}());
-
-var __decorate$M = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$s = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Component for rendering AboutModal
  */
@@ -5924,52 +5465,48 @@ var AboutModalComponent = /** @class */ (function () {
             close: true
         });
     };
-    __decorate$M([
-        Input(),
-        __metadata$s("design:type", AboutModalConfig)
-    ], AboutModalComponent.prototype, "config", void 0);
-    __decorate$M([
-        Output('onCancel'),
-        __metadata$s("design:type", Object)
-    ], AboutModalComponent.prototype, "onCancel", void 0);
-    AboutModalComponent = __decorate$M([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-about-modal',
-            template: "<div class=\"about-modal-pf\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" (click)=\"close()\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button></div><div class=\"modal-body\"><h1 *ngIf=\"config.title\">{{config.title}}</h1><div *ngIf=\"config.productInfo && config.productInfo.length > 0\" class=\"product-versions-pf\"><ul class=\"list-unstyled\"><li *ngFor=\"let info of config.productInfo\"><strong>{{info.name}}</strong> {{info.value}}</li></ul></div><div class=\"product-versions-pf\"><ng-content></ng-content></div><div *ngIf=\"config.additionalInfo\" class=\"product-versions-pf\">{{config.additionalInfo}}</div><div *ngIf=\"config.copyright\" class=\"trademark-pf\">{{config.copyright}}</div></div><div class=\"modal-footer\"><img *ngIf=\"config.logoImageSrc\" [src]=\"config.logoImageSrc\" alt=\"{{config.logoImageAlt}}\"></div></div>"
-        }),
-        __metadata$s("design:paramtypes", [])
-    ], AboutModalComponent);
+    AboutModalComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-about-modal',
+                    template: "<div class=\"about-modal-pf\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" (click)=\"close()\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button></div><div class=\"modal-body\"><h1 *ngIf=\"config.title\">{{config.title}}</h1><div *ngIf=\"config.productInfo && config.productInfo.length > 0\" class=\"product-versions-pf\"><ul class=\"list-unstyled\"><li *ngFor=\"let info of config.productInfo\"><strong>{{info.name}}</strong> {{info.value}}</li></ul></div><div class=\"product-versions-pf\"><ng-content></ng-content></div><div *ngIf=\"config.additionalInfo\" class=\"product-versions-pf\">{{config.additionalInfo}}</div><div *ngIf=\"config.copyright\" class=\"trademark-pf\">{{config.copyright}}</div></div><div class=\"modal-footer\"><img *ngIf=\"config.logoImageSrc\" [src]=\"config.logoImageSrc\" alt=\"{{config.logoImageAlt}}\"></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    AboutModalComponent.ctorParameters = function () { return []; };
+    AboutModalComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onCancel': [{ type: Output, args: ['onCancel',] },],
+    };
     return AboutModalComponent;
 }());
 
-var __decorate$N = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+/**
+ * A config containing properties for about modal
+ */
+var AboutModalConfig = /** @class */ (function () {
+    function AboutModalConfig() {
+    }
+    return AboutModalConfig;
+}());
+
 var AboutModalModule = /** @class */ (function () {
     function AboutModalModule() {
     }
-    AboutModalModule = __decorate$N([
-        NgModule({
-            imports: [
-                CommonModule
-            ],
-            declarations: [AboutModalComponent],
-            exports: [AboutModalComponent]
-        })
-    ], AboutModalModule);
+    AboutModalModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [AboutModalComponent],
+                    exports: [AboutModalComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    AboutModalModule.ctorParameters = function () { return []; };
     return AboutModalModule;
 }());
 
-var __decorate$O = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with modal components
  *
@@ -5980,15 +5517,17 @@ var __decorate$O = (undefined && undefined.__decorate) || function (decorators, 
 var ModalModule = /** @class */ (function () {
     function ModalModule() {
     }
-    ModalModule = __decorate$O([
-        NgModule({
-            imports: [
-                CommonModule,
-                AboutModalModule
-            ],
-            exports: [AboutModalComponent]
-        })
-    ], ModalModule);
+    ModalModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        AboutModalModule
+                    ],
+                    exports: [AboutModalComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    ModalModule.ctorParameters = function () { return []; };
     return ModalModule;
 }());
 
@@ -6036,15 +5575,9 @@ var NavigationItemConfig = /** @class */ (function (_super) {
     return NavigationItemConfig;
 }(NavigationItemBase));
 
-var __decorate$P = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$t = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+/**
+ * Application launcher component
+ */
 var ApplicationLauncherComponent = /** @class */ (function () {
     /**
      * The default constructor
@@ -6064,76 +5597,47 @@ var ApplicationLauncherComponent = /** @class */ (function () {
      */
     ApplicationLauncherComponent.prototype.ngOnInit = function () {
     };
-    __decorate$P([
-        Input(),
-        __metadata$t("design:type", Boolean)
-    ], ApplicationLauncherComponent.prototype, "disabled", void 0);
-    __decorate$P([
-        Input(),
-        __metadata$t("design:type", Array)
-    ], ApplicationLauncherComponent.prototype, "items", void 0);
-    __decorate$P([
-        Input(),
-        __metadata$t("design:type", String)
-    ], ApplicationLauncherComponent.prototype, "label", void 0);
-    __decorate$P([
-        Input(),
-        __metadata$t("design:type", Boolean)
-    ], ApplicationLauncherComponent.prototype, "showAsList", void 0);
-    __decorate$P([
-        Input(),
-        __metadata$t("design:type", Boolean)
-    ], ApplicationLauncherComponent.prototype, "showIcons", void 0);
-    ApplicationLauncherComponent = __decorate$P([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-application-launcher',
-            template: "<div><div class=\"applauncher-pf dropdown dropdown-kebab-pf\" dropdown [ngClass]=\"{'applauncher-pf-block-list': !showAsList}\"><a class=\"dropdown-toggle drawer-pf-trigger-icon\" href=\"javascript:void(0)\" dropdownToggle *ngIf=\"!disabled\"><i class=\"fa fa-th applauncher-pf-icon\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-title\">{{label || 'Application Launcher'}} <span class=\"caret\" aria-hidden=\"true\"></span> </span></a><a class=\"dropdown-toggle drawer-pf-trigger-icon disabled\" href=\"javascript:void(0)\" onclick=\"return false;\" *ngIf=\"disabled\"><i class=\"fa fa-th applauncher-pf-icon\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-title\">{{label || 'Application Launcher'}} <span class=\"caret\" aria-hidden=\"true\"></span></span></a><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li class=\"applauncher-pf-item\" *ngFor=\"let item of items\"><a class=\"applauncher-pf-link\" href=\"{{item.url}}\" target=\"{{item.target || '_blank'}}\" title=\"{{badge.tooltip}}\" role=\"menuitem\" *ngFor=\"let badge of item.badges\"><i class=\"applauncher-pf-link-icon pficon {{item.iconStyleClass}}\" aria-hidden=\"true\" [ngClass]=\"{hidden: !showIcons}\" *ngIf=\"item.iconStyleClass\"></i> <span class=\"applauncher-pf-link-title\">{{item.title}}</span></a></li></ul></div></div>"
-        })
-        /**
-         * Application launcher component
-         */
-        ,
-        __metadata$t("design:paramtypes", [])
-    ], ApplicationLauncherComponent);
+    ApplicationLauncherComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-application-launcher',
+                    template: "<div><div class=\"applauncher-pf dropdown dropdown-kebab-pf\" dropdown [ngClass]=\"{'applauncher-pf-block-list': !showAsList}\"><a class=\"dropdown-toggle drawer-pf-trigger-icon\" href=\"javascript:void(0)\" dropdownToggle *ngIf=\"!disabled\"><i class=\"fa fa-th applauncher-pf-icon\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-title\">{{label || 'Application Launcher'}} <span class=\"caret\" aria-hidden=\"true\"></span> </span></a><a class=\"dropdown-toggle drawer-pf-trigger-icon disabled\" href=\"javascript:void(0)\" onclick=\"return false;\" *ngIf=\"disabled\"><i class=\"fa fa-th applauncher-pf-icon\" aria-hidden=\"true\"></i> <span class=\"applauncher-pf-title\">{{label || 'Application Launcher'}} <span class=\"caret\" aria-hidden=\"true\"></span></span></a><ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" *dropdownMenu><li class=\"applauncher-pf-item\" *ngFor=\"let item of items\"><a class=\"applauncher-pf-link\" href=\"{{item.url}}\" target=\"{{item.target || '_blank'}}\" title=\"{{badge.tooltip}}\" role=\"menuitem\" *ngFor=\"let badge of item.badges\"><i class=\"applauncher-pf-link-icon pficon {{item.iconStyleClass}}\" aria-hidden=\"true\" [ngClass]=\"{hidden: !showIcons}\" *ngIf=\"item.iconStyleClass\"></i> <span class=\"applauncher-pf-link-title\">{{item.title}}</span></a></li></ul></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ApplicationLauncherComponent.ctorParameters = function () { return []; };
+    ApplicationLauncherComponent.propDecorators = {
+        'disabled': [{ type: Input },],
+        'items': [{ type: Input },],
+        'label': [{ type: Input },],
+        'showAsList': [{ type: Input },],
+        'showIcons': [{ type: Input },],
+    };
     return ApplicationLauncherComponent;
 }());
 
-var __decorate$Q = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the application laucnher components
  */
 var ApplicationLauncherModule = /** @class */ (function () {
     function ApplicationLauncherModule() {
     }
-    ApplicationLauncherModule = __decorate$Q([
-        NgModule({
-            imports: [
-                BsDropdownModule.forRoot(),
-                CommonModule
-            ],
-            declarations: [ApplicationLauncherComponent],
-            exports: [ApplicationLauncherComponent],
-            providers: [BsDropdownConfig]
-        })
-    ], ApplicationLauncherModule);
+    ApplicationLauncherModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        BsDropdownModule.forRoot(),
+                        CommonModule
+                    ],
+                    declarations: [ApplicationLauncherComponent],
+                    exports: [ApplicationLauncherComponent],
+                    providers: [BsDropdownConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    ApplicationLauncherModule.ctorParameters = function () { return []; };
     return ApplicationLauncherModule;
 }());
 
-var __decorate$R = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$u = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Vertical navigation component
  */
@@ -6903,107 +6407,60 @@ var VerticalNavigationComponent = /** @class */ (function () {
             }
         }
     };
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", String)
-    ], VerticalNavigationComponent.prototype, "brandSrc", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", String)
-    ], VerticalNavigationComponent.prototype, "brandAlt", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", HTMLElement)
-    ], VerticalNavigationComponent.prototype, "contentContainer", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "showBadges", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "persistentSecondary", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "pinnableMenus", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "showIcons", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Array)
-    ], VerticalNavigationComponent.prototype, "items", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "updateActiveItemsOnClick", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "ignoreMobile", void 0);
-    __decorate$R([
-        Input(),
-        __metadata$u("design:type", Boolean)
-    ], VerticalNavigationComponent.prototype, "showTopBanner", void 0);
-    __decorate$R([
-        Output('onNavigationEvent'),
-        __metadata$u("design:type", Object)
-    ], VerticalNavigationComponent.prototype, "navigationEvent", void 0);
-    __decorate$R([
-        Output('onItemClickEvent'),
-        __metadata$u("design:type", Object)
-    ], VerticalNavigationComponent.prototype, "itemClickEvent", void 0);
-    VerticalNavigationComponent = __decorate$R([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-vertical-navigation',
-            template: "<div><nav class=\"navbar navbar-pf-vertical pfng-vertical-container\" [ngClass]=\"{'pfng-vertical-hide-nav': !showTopBanner}\"><ng-container *ngIf=\"showTopBanner\"><div class=\"navbar-header\"><button type=\"button\" class=\"navbar-toggle\" (click)=\"handleNavBarToggleClick()\"><span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span></button> <span class=\"navbar-brand\"><img class=\"navbar-brand-icon\" *ngIf=\"brandSrc\" [src]=\"brandSrc\" alt=\"{{brandAlt}}\"> <span class=\"navbar-brand-txt\" *ngIf=\"!brandSrc\">{{brandAlt}}</span></span></div><nav class=\"collapse navbar-collapse\"><ng-content></ng-content></nav></ng-container><div class=\"nav-pf-vertical\" [ngClass]=\"{'nav-pf-persistent-secondary': persistentSecondary,\n                    'nav-pf-vertical-collapsible-menus': pinnableMenus,\n                    'hidden-icons-pf': !showIcons,\n                    'nav-pf-vertical-with-badges': showBadges,\n                    'secondary-visible-pf': activeSecondary,\n                    'show-mobile-secondary': showMobileSecondary,\n                    'show-mobile-tertiary': showMobileTertiary,\n                    'hover-secondary-nav-pf': hoverSecondaryNav,\n                    'hover-tertiary-nav-pf': hoverTertiaryNav,\n                    'collapsed-secondary-nav-pf': collapsedSecondaryNav,\n                    'collapsed-tertiary-nav-pf': collapsedTertiaryNav,\n                    'hidden': inMobileState,\n                    'collapsed': navCollapsed,\n                    'force-hide-secondary-nav-pf': forceHidden,\n                    'show-mobile-nav': showMobileNav}\"><ul class=\"list-group\"><li *ngFor=\"let item of items\" class=\"list-group-item\" [ngClass]=\"{'secondary-nav-item-pf': item.children && item.children.length > 0,\n                       'active': item.trackActiveState,\n                       'is-hover': item.trackHoverState,\n                       'mobile-nav-item-pf': item.mobileItem && showMobileSecondary,\n                       'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}\" (mouseenter)=\"handlePrimaryHover(item)\" (mouseleave)=\"handlePrimaryBlur(item)\"><a (click)=\"handlePrimaryClick(item)\"><span class=\"{{item.iconStyleClass}}\" *ngIf=\"item.iconStyleClass\" [ngClass]=\"{hidden: !showIcons}\" tooltip=\"{{item.title}}\" container=\"body\" placement=\"bottom\" isDisabled=\"!{{navCollapsed}}\" containerClass=\"nav-pf-vertical-tooltip\"></span> <span class=\"list-group-item-value\">{{item.title}}</span><div *ngIf=\"showBadges && item.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of item.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"item.children && item.children.length > 0\" class=\"nav-pf-secondary-nav\"><div class=\"nav-item-pf-header\"><a class=\"secondary-collapse-toggle-pf\" (click)=\"collapseSecondaryNav(item)\" [ngClass]=\"{'collapsed': item.secondaryCollapsed}\"></a> <span>{{item.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let secondaryItem of item.children\" class=\"list-group-item\" [ngClass]=\"{'tertiary-nav-item-pf': secondaryItem.children && secondaryItem.children.length > 0,\n                             'active': secondaryItem.trackActiveState,\n                             'is-hover': secondaryItem.trackHoverState,\n                             'mobile-nav-item-pf': secondaryItem.mobileItem}\" (mouseenter)=\"handleSecondaryHover(secondaryItem)\" (mouseleave)=\"handleSecondaryBlur(secondaryItem)\"><a (click)=\"handleSecondaryClick(item, secondaryItem)\"><span class=\"list-group-item-value\">{{secondaryItem.title}}</span><div *ngIf=\"showBadges && secondaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of secondaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"secondaryItem.children && secondaryItem.children.length > 0\" class=\"nav-pf-tertiary-nav\"><div class=\"nav-item-pf-header\"><a class=\"tertiary-collapse-toggle-pf\" (click)=\"collapseTertiaryNav(secondaryItem)\" [ngClass]=\"{'collapsed': secondaryItem.tertiaryCollapsed}\"></a> <span>{{secondaryItem.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let tertiaryItem of secondaryItem.children\" class=\"list-group-item\" [ngClass]=\"{'active': tertiaryItem.trackActiveState}\"><a (click)=\"handleTertiaryClick(item, secondaryItem, tertiaryItem)\"><span class=\"list-group-item-value\">{{tertiaryItem.title}}</span><div *ngIf=\"showBadges && tertiaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of tertiaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a></li></ul></div></li></ul></div></li></ul></div></nav></div>"
-        }),
-        __metadata$u("design:paramtypes", [ElementRef,
-            Renderer2,
-            Router,
-            WindowReference])
-    ], VerticalNavigationComponent);
+    VerticalNavigationComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-vertical-navigation',
+                    template: "<div><nav class=\"navbar navbar-pf-vertical pfng-vertical-container\" [ngClass]=\"{'pfng-vertical-hide-nav': !showTopBanner}\"><ng-container *ngIf=\"showTopBanner\"><div class=\"navbar-header\"><button type=\"button\" class=\"navbar-toggle\" (click)=\"handleNavBarToggleClick()\"><span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span></button> <span class=\"navbar-brand\"><img class=\"navbar-brand-icon\" *ngIf=\"brandSrc\" [src]=\"brandSrc\" alt=\"{{brandAlt}}\"> <span class=\"navbar-brand-txt\" *ngIf=\"!brandSrc\">{{brandAlt}}</span></span></div><nav class=\"collapse navbar-collapse\"><ng-content></ng-content></nav></ng-container><div class=\"nav-pf-vertical\" [ngClass]=\"{'nav-pf-persistent-secondary': persistentSecondary,\n                    'nav-pf-vertical-collapsible-menus': pinnableMenus,\n                    'hidden-icons-pf': !showIcons,\n                    'nav-pf-vertical-with-badges': showBadges,\n                    'secondary-visible-pf': activeSecondary,\n                    'show-mobile-secondary': showMobileSecondary,\n                    'show-mobile-tertiary': showMobileTertiary,\n                    'hover-secondary-nav-pf': hoverSecondaryNav,\n                    'hover-tertiary-nav-pf': hoverTertiaryNav,\n                    'collapsed-secondary-nav-pf': collapsedSecondaryNav,\n                    'collapsed-tertiary-nav-pf': collapsedTertiaryNav,\n                    'hidden': inMobileState,\n                    'collapsed': navCollapsed,\n                    'force-hide-secondary-nav-pf': forceHidden,\n                    'show-mobile-nav': showMobileNav}\"><ul class=\"list-group\"><li *ngFor=\"let item of items\" class=\"list-group-item\" [ngClass]=\"{'secondary-nav-item-pf': item.children && item.children.length > 0,\n                       'active': item.trackActiveState,\n                       'is-hover': item.trackHoverState,\n                       'mobile-nav-item-pf': item.mobileItem && showMobileSecondary,\n                       'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}\" (mouseenter)=\"handlePrimaryHover(item)\" (mouseleave)=\"handlePrimaryBlur(item)\"><a (click)=\"handlePrimaryClick(item)\"><span class=\"{{item.iconStyleClass}}\" *ngIf=\"item.iconStyleClass\" [ngClass]=\"{hidden: !showIcons}\" tooltip=\"{{item.title}}\" container=\"body\" placement=\"bottom\" isDisabled=\"!{{navCollapsed}}\" containerClass=\"nav-pf-vertical-tooltip\"></span> <span class=\"list-group-item-value\">{{item.title}}</span><div *ngIf=\"showBadges && item.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of item.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"item.children && item.children.length > 0\" class=\"nav-pf-secondary-nav\"><div class=\"nav-item-pf-header\"><a class=\"secondary-collapse-toggle-pf\" (click)=\"collapseSecondaryNav(item)\" [ngClass]=\"{'collapsed': item.secondaryCollapsed}\"></a> <span>{{item.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let secondaryItem of item.children\" class=\"list-group-item\" [ngClass]=\"{'tertiary-nav-item-pf': secondaryItem.children && secondaryItem.children.length > 0,\n                             'active': secondaryItem.trackActiveState,\n                             'is-hover': secondaryItem.trackHoverState,\n                             'mobile-nav-item-pf': secondaryItem.mobileItem}\" (mouseenter)=\"handleSecondaryHover(secondaryItem)\" (mouseleave)=\"handleSecondaryBlur(secondaryItem)\"><a (click)=\"handleSecondaryClick(item, secondaryItem)\"><span class=\"list-group-item-value\">{{secondaryItem.title}}</span><div *ngIf=\"showBadges && secondaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of secondaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a><div *ngIf=\"secondaryItem.children && secondaryItem.children.length > 0\" class=\"nav-pf-tertiary-nav\"><div class=\"nav-item-pf-header\"><a class=\"tertiary-collapse-toggle-pf\" (click)=\"collapseTertiaryNav(secondaryItem)\" [ngClass]=\"{'collapsed': secondaryItem.tertiaryCollapsed}\"></a> <span>{{secondaryItem.title}}</span></div><ul class=\"list-group\"><li *ngFor=\"let tertiaryItem of secondaryItem.children\" class=\"list-group-item\" [ngClass]=\"{'active': tertiaryItem.trackActiveState}\"><a (click)=\"handleTertiaryClick(item, secondaryItem, tertiaryItem)\"><span class=\"list-group-item-value\">{{tertiaryItem.title}}</span><div *ngIf=\"showBadges && tertiaryItem.badges\" class=\"badge-container-pf\"><div class=\"badge {{badge.badgeClass}}\" *ngFor=\"let badge of tertiaryItem.badges\" tooltip=\"{{badge.tooltip}}\" container=\"body\" placement=\"right\"><span *ngIf=\"badge.count && badge.iconStyleClass\" class=\"{{badge.iconStyleClass}}\"></span> <span *ngIf=\"badge.count\">{{badge.count}}</span></div></div></a></li></ul></div></li></ul></div></li></ul></div></nav></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    VerticalNavigationComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+        { type: Renderer2, },
+        { type: Router, },
+        { type: WindowReference, },
+    ]; };
+    VerticalNavigationComponent.propDecorators = {
+        'brandSrc': [{ type: Input },],
+        'brandAlt': [{ type: Input },],
+        'contentContainer': [{ type: Input },],
+        'showBadges': [{ type: Input },],
+        'persistentSecondary': [{ type: Input },],
+        'pinnableMenus': [{ type: Input },],
+        'showIcons': [{ type: Input },],
+        'items': [{ type: Input },],
+        'updateActiveItemsOnClick': [{ type: Input },],
+        'ignoreMobile': [{ type: Input },],
+        'showTopBanner': [{ type: Input },],
+        'navigationEvent': [{ type: Output, args: ['onNavigationEvent',] },],
+        'itemClickEvent': [{ type: Output, args: ['onItemClickEvent',] },],
+    };
     return VerticalNavigationComponent;
 }());
 
-var __decorate$S = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with vertical navigation components
  */
 var VerticalNavigationModule = /** @class */ (function () {
     function VerticalNavigationModule() {
     }
-    VerticalNavigationModule = __decorate$S([
-        NgModule({
-            imports: [
-                CommonModule,
-                TooltipModule.forRoot()
-            ],
-            declarations: [VerticalNavigationComponent],
-            exports: [VerticalNavigationComponent],
-            providers: [TooltipConfig, WindowReference]
-        })
-    ], VerticalNavigationModule);
+    VerticalNavigationModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        TooltipModule.forRoot()
+                    ],
+                    declarations: [VerticalNavigationComponent],
+                    exports: [VerticalNavigationComponent],
+                    providers: [TooltipConfig, WindowReference]
+                },] },
+    ];
+    /** @nocollapse */
+    VerticalNavigationModule.ctorParameters = function () { return []; };
     return VerticalNavigationModule;
 }());
 
-var __decorate$T = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$v = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * A module containing objects associated with the navigation components
  *
@@ -7019,17 +6476,18 @@ var NavigationModule = /** @class */ (function () {
         console.log('patternfly-ng: NavigationModule is deprecated; use ApplicationLauncherModule ' +
             'or VerticalNavigationModule');
     }
-    NavigationModule = __decorate$T([
-        NgModule({
-            imports: [
-                ApplicationLauncherModule,
-                CommonModule,
-                VerticalNavigationModule
-            ],
-            exports: [ApplicationLauncherComponent, VerticalNavigationComponent]
-        }),
-        __metadata$v("design:paramtypes", [])
-    ], NavigationModule);
+    NavigationModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        ApplicationLauncherModule,
+                        CommonModule,
+                        VerticalNavigationModule
+                    ],
+                    exports: [ApplicationLauncherComponent, VerticalNavigationComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    NavigationModule.ctorParameters = function () { return []; };
     return NavigationModule;
 }());
 
@@ -7060,40 +6518,6 @@ var NotificaitonGroup = /** @class */ (function () {
     return NotificaitonGroup;
 }());
 
-/*
- * An object containing properties for a notification type
- */
-var NotificationType = /** @class */ (function () {
-    function NotificationType() {
-    }
-    /**
-     * Danger notification type
-     */
-    NotificationType.DANGER = 'danger';
-    /**
-     * Information notification type
-     */
-    NotificationType.INFO = 'info';
-    /**
-     * Success notification type
-     */
-    NotificationType.SUCCESS = 'success';
-    /**
-     * Warning notification type
-     */
-    NotificationType.WARNING = 'warning';
-    return NotificationType;
-}());
-
-var __decorate$U = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$w = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Inline notifications can be used to provide notifications to user that can persist on the page
  * they are also optionally dismissable by the user
@@ -7119,79 +6543,51 @@ var InlineNotificationComponent = /** @class */ (function () {
         this.hidden = true;
         this.hiddenChange.emit(this.hidden);
     };
-    __decorate$U([
-        Input(),
-        __metadata$w("design:type", NotificationType)
-    ], InlineNotificationComponent.prototype, "type", void 0);
-    __decorate$U([
-        Input(),
-        __metadata$w("design:type", String)
-    ], InlineNotificationComponent.prototype, "message", void 0);
-    __decorate$U([
-        Input(),
-        __metadata$w("design:type", String)
-    ], InlineNotificationComponent.prototype, "header", void 0);
-    __decorate$U([
-        Input(),
-        __metadata$w("design:type", Boolean)
-    ], InlineNotificationComponent.prototype, "dismissable", void 0);
-    __decorate$U([
-        Input(),
-        __metadata$w("design:type", Boolean)
-    ], InlineNotificationComponent.prototype, "hidden", void 0);
-    __decorate$U([
-        Output('hiddenChange'),
-        __metadata$w("design:type", Object)
-    ], InlineNotificationComponent.prototype, "hiddenChange", void 0);
-    InlineNotificationComponent = __decorate$U([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-inline-notification',
-            template: "<div class=\"alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': dismissable === true}\" *ngIf=\"!hidden\"><button *ngIf=\"dismissable\" (click)=\"notificationRemove()\" type=\"button\" class=\"close\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button> <span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <strong>{{header}}</strong> {{message}}</div>"
-        }),
-        __metadata$w("design:paramtypes", [])
-    ], InlineNotificationComponent);
+    InlineNotificationComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-inline-notification',
+                    template: "<div class=\"alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': dismissable === true}\" *ngIf=\"!hidden\"><button *ngIf=\"dismissable\" (click)=\"notificationRemove()\" type=\"button\" class=\"close\" aria-hidden=\"true\"><span class=\"pficon pficon-close\"></span></button> <span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <strong>{{header}}</strong> {{message}}</div>"
+                },] },
+    ];
+    /** @nocollapse */
+    InlineNotificationComponent.ctorParameters = function () { return []; };
+    InlineNotificationComponent.propDecorators = {
+        'type': [{ type: Input },],
+        'message': [{ type: Input },],
+        'header': [{ type: Input },],
+        'dismissable': [{ type: Input },],
+        'hidden': [{ type: Input },],
+        'hiddenChange': [{ type: Output, args: ['hiddenChange',] },],
+    };
     return InlineNotificationComponent;
 }());
 
-var __decorate$V = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with inline notifications
  */
 var InlineNotificationModule = /** @class */ (function () {
     function InlineNotificationModule() {
     }
-    InlineNotificationModule = __decorate$V([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [
-                InlineNotificationComponent
-            ],
-            exports: [
-                InlineNotificationComponent
-            ]
-        })
-    ], InlineNotificationModule);
+    InlineNotificationModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [
+                        InlineNotificationComponent
+                    ],
+                    exports: [
+                        InlineNotificationComponent
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    InlineNotificationModule.ctorParameters = function () { return []; };
     return InlineNotificationModule;
 }());
 
-var __decorate$W = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$x = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Notification drawer component
  *
@@ -7338,124 +6734,88 @@ var NotificationDrawerComponent = /** @class */ (function () {
             this.unreadNotifications.emit(false);
         }
     };
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "allowExpand", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "expanded", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "headingTemplate", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "hidden", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", String)
-    ], NotificationDrawerComponent.prototype, "noNotificationsText", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "notificationBodyTemplate", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "notificationFooterTemplate", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", Array)
-    ], NotificationDrawerComponent.prototype, "notificationGroups", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", String)
-    ], NotificationDrawerComponent.prototype, "notificationTrackField", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "showMarkAllRead", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "showClearAll", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", Boolean)
-    ], NotificationDrawerComponent.prototype, "singleGroup", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "subHeadingTemplate", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", String)
-    ], NotificationDrawerComponent.prototype, "title", void 0);
-    __decorate$W([
-        Input(),
-        __metadata$x("design:type", TemplateRef)
-    ], NotificationDrawerComponent.prototype, "titleTemplate", void 0);
-    __decorate$W([
-        Output('close'),
-        __metadata$x("design:type", Object)
-    ], NotificationDrawerComponent.prototype, "close", void 0);
-    __decorate$W([
-        Output('unreadNotifications'),
-        __metadata$x("design:type", Object)
-    ], NotificationDrawerComponent.prototype, "unreadNotifications", void 0);
-    NotificationDrawerComponent = __decorate$W([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-notification-drawer',
-            template: "<div class=\"drawer-pf\" [ngClass]=\"{'hide': hidden, 'drawer-pf-expanded': expanded}\"><div *ngIf=\"title\" class=\"drawer-pf-title\"><a *ngIf=\"allowExpand\" class=\"drawer-pf-toggle-expand fa fa-angle-double-left hidden-xs\" (click)=\"toggleExpandDrawer()\"></a> <a class=\"drawer-pf-close pficon pficon-close\" (click)=\"onClose()\"></a><div *ngIf=\"titleTemplate; then showTitleTemplate else showTitle\"></div><ng-template #showTitle><h3 class=\"text-center\">{{title}}</h3></ng-template><ng-template #showTitleTemplate [ngTemplateOutlet]=\"titleTemplate\"></ng-template></div><div *ngIf=\"!notificationGroups\"><pfng-empty-state [config]=\"emptyStateConfig\"></pfng-empty-state></div><div *ngIf=\"notificationGroups\" class=\"panel-group\"><div class=\"panel panel-default\" [ngClass]=\"{expanded: notificationGroup.open}\" *ngFor=\"let notificationGroup of notificationGroups, let index = index\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a *ngIf=\"!singleGroup\" (click)=\"toggleCollapse(notificationGroup)\" [ngClass]=\"{collapsed: !notificationGroup.open}\"><span><ng-template let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"headingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></span></a></h4><ng-template class=\"panel-counter\" let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"subHeadingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></div><div class=\"panel-collapse collapse\" [ngClass]=\"{in: notificationGroup.open || notificationGroups.length === 1}\"><div *ngIf=\"hasNotifications(notificationGroup)\" class=\"panel-body\"><div class=\"drawer-pf-notification\" [ngClass]=\"{unread: !notification.isViewing, 'expanded-notification': expanded}\" *ngFor=\"let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index\"><ng-template let-notify=\"notification\" let-index=\"index\" [ngTemplateOutlet]=\"notificationBodyTemplate\" [ngTemplateOutletContext]=\"{notify:notification, index: index}\"></ng-template></div><div *ngIf=\"notificationGroup.loading\" class=\"drawer-pf-loading text-center\"><span class=\"spinner spinner-xs spinner-inline\"></span> Loading More</div></div><div *ngIf=\"(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)\" class=\"drawer-pf-action\"><span class=\"drawer-pf-action-link\" *ngIf=\"showMarkAllRead && hasUnread(notificationGroup)\"><button class=\"btn btn-link\" (click)=\"onMarkAllRead(notificationGroup)\">Mark All Read</button> </span><span class=\"drawer-pf-action-link\"><button class=\"btn btn-link\" *ngIf=\"showClearAll\" (click)=\"onClearAll(notificationGroup)\"><span class=\"pficon pficon-close\"></span> Clear All</button></span></div><div *ngIf=\"!hasNotifications(notificationGroup)\"><div class=\"panel-body\"><pfng-empty-state [config]=\"notificationGroup.emptyStateConfig\"></pfng-empty-state></div></div><ng-template *ngIf=\"notificationFooterTemplate\" [ngTemplateOutlet]=\"notificationFooterTemplate\"></ng-template></div></div></div></div>"
-        }),
-        __metadata$x("design:paramtypes", [])
-    ], NotificationDrawerComponent);
+    NotificationDrawerComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-notification-drawer',
+                    template: "<div class=\"drawer-pf\" [ngClass]=\"{'hide': hidden, 'drawer-pf-expanded': expanded}\"><div *ngIf=\"title\" class=\"drawer-pf-title\"><a *ngIf=\"allowExpand\" class=\"drawer-pf-toggle-expand fa fa-angle-double-left hidden-xs\" (click)=\"toggleExpandDrawer()\"></a> <a class=\"drawer-pf-close pficon pficon-close\" (click)=\"onClose()\"></a><div *ngIf=\"titleTemplate; then showTitleTemplate else showTitle\"></div><ng-template #showTitle><h3 class=\"text-center\">{{title}}</h3></ng-template><ng-template #showTitleTemplate [ngTemplateOutlet]=\"titleTemplate\"></ng-template></div><div *ngIf=\"!notificationGroups\"><pfng-empty-state [config]=\"emptyStateConfig\"></pfng-empty-state></div><div *ngIf=\"notificationGroups\" class=\"panel-group\"><div class=\"panel panel-default\" [ngClass]=\"{expanded: notificationGroup.open}\" *ngFor=\"let notificationGroup of notificationGroups, let index = index\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a *ngIf=\"!singleGroup\" (click)=\"toggleCollapse(notificationGroup)\" [ngClass]=\"{collapsed: !notificationGroup.open}\"><span><ng-template let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"headingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></span></a></h4><ng-template class=\"panel-counter\" let-group=\"notificationGroup\" let-index=\"index\" [ngTemplateOutlet]=\"subHeadingTemplate\" [ngTemplateOutletContext]=\"{group:notificationGroup, index: index}\"></ng-template></div><div class=\"panel-collapse collapse\" [ngClass]=\"{in: notificationGroup.open || notificationGroups.length === 1}\"><div *ngIf=\"hasNotifications(notificationGroup)\" class=\"panel-body\"><div class=\"drawer-pf-notification\" [ngClass]=\"{unread: !notification.isViewing, 'expanded-notification': expanded}\" *ngFor=\"let notification of notificationGroup.notifications trackBy notificationTrackField, let index = index\"><ng-template let-notify=\"notification\" let-index=\"index\" [ngTemplateOutlet]=\"notificationBodyTemplate\" [ngTemplateOutletContext]=\"{notify:notification, index: index}\"></ng-template></div><div *ngIf=\"notificationGroup.loading\" class=\"drawer-pf-loading text-center\"><span class=\"spinner spinner-xs spinner-inline\"></span> Loading More</div></div><div *ngIf=\"(showClearAll || showMarkAllRead) && hasNotifications(notificationGroup)\" class=\"drawer-pf-action\"><span class=\"drawer-pf-action-link\" *ngIf=\"showMarkAllRead && hasUnread(notificationGroup)\"><button class=\"btn btn-link\" (click)=\"onMarkAllRead(notificationGroup)\">Mark All Read</button> </span><span class=\"drawer-pf-action-link\"><button class=\"btn btn-link\" *ngIf=\"showClearAll\" (click)=\"onClearAll(notificationGroup)\"><span class=\"pficon pficon-close\"></span> Clear All</button></span></div><div *ngIf=\"!hasNotifications(notificationGroup)\"><div class=\"panel-body\"><pfng-empty-state [config]=\"notificationGroup.emptyStateConfig\"></pfng-empty-state></div></div><ng-template *ngIf=\"notificationFooterTemplate\" [ngTemplateOutlet]=\"notificationFooterTemplate\"></ng-template></div></div></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    NotificationDrawerComponent.ctorParameters = function () { return []; };
+    NotificationDrawerComponent.propDecorators = {
+        'allowExpand': [{ type: Input },],
+        'expanded': [{ type: Input },],
+        'headingTemplate': [{ type: Input },],
+        'hidden': [{ type: Input },],
+        'noNotificationsText': [{ type: Input },],
+        'notificationBodyTemplate': [{ type: Input },],
+        'notificationFooterTemplate': [{ type: Input },],
+        'notificationGroups': [{ type: Input },],
+        'notificationTrackField': [{ type: Input },],
+        'showMarkAllRead': [{ type: Input },],
+        'showClearAll': [{ type: Input },],
+        'singleGroup': [{ type: Input },],
+        'subHeadingTemplate': [{ type: Input },],
+        'title': [{ type: Input },],
+        'titleTemplate': [{ type: Input },],
+        'close': [{ type: Output, args: ['close',] },],
+        'unreadNotifications': [{ type: Output, args: ['unreadNotifications',] },],
+    };
     return NotificationDrawerComponent;
 }());
 
-var __decorate$X = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the notification drawer
  */
 var NotificationDrawerModule = /** @class */ (function () {
     function NotificationDrawerModule() {
     }
-    NotificationDrawerModule = __decorate$X([
-        NgModule({
-            imports: [
-                CommonModule,
-                EmptyStateModule,
-                FormsModule
-            ],
-            declarations: [
-                NotificationDrawerComponent
-            ],
-            exports: [
-                NotificationDrawerComponent
-            ]
-        })
-    ], NotificationDrawerModule);
+    NotificationDrawerModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        EmptyStateModule,
+                        FormsModule
+                    ],
+                    declarations: [
+                        NotificationDrawerComponent
+                    ],
+                    exports: [
+                        NotificationDrawerComponent
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    NotificationDrawerModule.ctorParameters = function () { return []; };
     return NotificationDrawerModule;
 }());
 
-var __decorate$Y = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$y = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+/*
+ * An object containing properties for a notification type
+ */
+var NotificationType = /** @class */ (function () {
+    function NotificationType() {
+    }
+    /**
+     * Danger notification type
+     */
+    NotificationType.DANGER = 'danger';
+    /**
+     * Information notification type
+     */
+    NotificationType.INFO = 'info';
+    /**
+     * Success notification type
+     */
+    NotificationType.SUCCESS = 'success';
+    /**
+     * Warning notification type
+     */
+    NotificationType.WARNING = 'warning';
+    return NotificationType;
+}());
+
 /**
  * Toast notifications are used to notify users of a system occurrence. Toast notifications should be transient and stay
  * on the screen for 8 seconds, so that they do not block the information behind them for too long, but allows the user
@@ -7535,99 +6895,59 @@ var ToastNotificationComponent = /** @class */ (function () {
     ToastNotificationComponent.prototype.handleClose = function ($event) {
         this.onCloseSelect.emit({ notification: this.notification });
     };
-    __decorate$Y([
-        Input(),
-        __metadata$y("design:type", String)
-    ], ToastNotificationComponent.prototype, "header", void 0);
-    __decorate$Y([
-        Input(),
-        __metadata$y("design:type", String)
-    ], ToastNotificationComponent.prototype, "message", void 0);
-    __decorate$Y([
-        Input(),
-        __metadata$y("design:type", Array)
-    ], ToastNotificationComponent.prototype, "moreActions", void 0);
-    __decorate$Y([
-        Input(),
-        __metadata$y("design:type", Notification)
-    ], ToastNotificationComponent.prototype, "notification", void 0);
-    __decorate$Y([
-        Input(),
-        __metadata$y("design:type", Action)
-    ], ToastNotificationComponent.prototype, "primaryAction", void 0);
-    __decorate$Y([
-        Input(),
-        __metadata$y("design:type", Boolean)
-    ], ToastNotificationComponent.prototype, "showClose", void 0);
-    __decorate$Y([
-        Input(),
-        __metadata$y("design:type", String)
-    ], ToastNotificationComponent.prototype, "type", void 0);
-    __decorate$Y([
-        Output('onActionSelect'),
-        __metadata$y("design:type", Object)
-    ], ToastNotificationComponent.prototype, "onActionSelect", void 0);
-    __decorate$Y([
-        Output('onCloseSelect'),
-        __metadata$y("design:type", Object)
-    ], ToastNotificationComponent.prototype, "onCloseSelect", void 0);
-    __decorate$Y([
-        Output('onViewingChange'),
-        __metadata$y("design:type", Object)
-    ], ToastNotificationComponent.prototype, "onViewingChange", void 0);
-    ToastNotificationComponent = __decorate$Y([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-toast-notification',
-            template: "<div class=\"toast-pf alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': showCloseButton}\" (mouseenter)=\"handleEnter($event)\" (mouseleave)=\"handleLeave($event)\"><div *ngIf=\"moreActions?.length > 0\" class=\"pull-right dropdown-kebab-pf\" dropdown><button class=\"btn btn-link dropdown-toggle\" type=\"button\" id=\"dropdownKebabRight\" dropdownToggle><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownKebabRight\" *dropdownMenu><li *ngFor=\"let action of moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div><button *ngIf=\"showCloseButton\" type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"handleClose($event)\"><span class=\"pficon pficon-close\"></span></button><div *ngIf=\"primaryAction\" class=\"pull-right toast-pf-action {{primaryAction.styleClass}}\" [ngClass]=\"{'padding-right-15': showCloseButton == true, 'hidden': primaryAction?.visible === false}\"><div *ngIf=\"primaryAction.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"primaryAction.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton><a *ngIf=\"primaryAction.disabled !== true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" (click)=\"handleAction(primaryAction)\">{{primaryAction?.title}}</a> <a *ngIf=\"primaryAction.disabled === true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" onclick=\"return false;\">{{primaryAction?.title}}</a></ng-template></div><span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <span *ngIf=\"header\"><strong>{{header}}</strong> {{message}} </span><span *ngIf=\"!header\">{{message}}</span></div>"
-        }),
-        __metadata$y("design:paramtypes", [])
-    ], ToastNotificationComponent);
+    ToastNotificationComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-toast-notification',
+                    template: "<div class=\"toast-pf alert alert-{{type}}\" [ngClass]=\"{'alert-dismissable': showCloseButton}\" (mouseenter)=\"handleEnter($event)\" (mouseleave)=\"handleLeave($event)\"><div *ngIf=\"moreActions?.length > 0\" class=\"pull-right dropdown-kebab-pf\" dropdown><button class=\"btn btn-link dropdown-toggle\" type=\"button\" id=\"dropdownKebabRight\" dropdownToggle><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownKebabRight\" *dropdownMenu><li *ngFor=\"let action of moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div><button *ngIf=\"showCloseButton\" type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"handleClose($event)\"><span class=\"pficon pficon-close\"></span></button><div *ngIf=\"primaryAction\" class=\"pull-right toast-pf-action {{primaryAction.styleClass}}\" [ngClass]=\"{'padding-right-15': showCloseButton == true, 'hidden': primaryAction?.visible === false}\"><div *ngIf=\"primaryAction.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"primaryAction.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton><a *ngIf=\"primaryAction.disabled !== true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" (click)=\"handleAction(primaryAction)\">{{primaryAction?.title}}</a> <a *ngIf=\"primaryAction.disabled === true\" href=\"javascript:void(0)\" title=\"{{primaryAction?.tooltip}}\" onclick=\"return false;\">{{primaryAction?.title}}</a></ng-template></div><span class=\"pficon pficon-ok\" *ngIf=\"type === 'success'\"></span> <span class=\"pficon pficon-info\" *ngIf=\"type === 'info'\"></span> <span class=\"pficon pficon-error-circle-o\" *ngIf=\"type === 'danger'\"></span> <span class=\"pficon pficon-warning-triangle-o\" *ngIf=\"type === 'warning'\"></span> <span *ngIf=\"header\"><strong>{{header}}</strong> {{message}} </span><span *ngIf=\"!header\">{{message}}</span></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ToastNotificationComponent.ctorParameters = function () { return []; };
+    ToastNotificationComponent.propDecorators = {
+        'header': [{ type: Input },],
+        'message': [{ type: Input },],
+        'moreActions': [{ type: Input },],
+        'notification': [{ type: Input },],
+        'primaryAction': [{ type: Input },],
+        'showClose': [{ type: Input },],
+        'type': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onCloseSelect': [{ type: Output, args: ['onCloseSelect',] },],
+        'onViewingChange': [{ type: Output, args: ['onViewingChange',] },],
+    };
     return ToastNotificationComponent;
 }());
 
-var __decorate$Z = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with toast notifications
  */
 var ToastNotificationModule = /** @class */ (function () {
     function ToastNotificationModule() {
     }
-    ToastNotificationModule = __decorate$Z([
-        NgModule({
-            imports: [
-                BsDropdownModule.forRoot(),
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [
-                ToastNotificationComponent
-            ],
-            exports: [
-                ToastNotificationComponent
-            ],
-            providers: [
-                BsDropdownConfig
-            ]
-        })
-    ], ToastNotificationModule);
+    ToastNotificationModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        BsDropdownModule.forRoot(),
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [
+                        ToastNotificationComponent
+                    ],
+                    exports: [
+                        ToastNotificationComponent
+                    ],
+                    providers: [
+                        BsDropdownConfig
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    ToastNotificationModule.ctorParameters = function () { return []; };
     return ToastNotificationModule;
 }());
 
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$z = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Component to display a list of toast notifications
  */
@@ -7668,76 +6988,51 @@ var ToastNotificationListComponent = /** @class */ (function () {
     ToastNotificationListComponent.prototype.handleViewingChange = function ($event) {
         this.onViewingChange.emit($event);
     };
-    __decorate([
-        Input(),
-        __metadata$z("design:type", Array)
-    ], ToastNotificationListComponent.prototype, "notifications", void 0);
-    __decorate([
-        Input(),
-        __metadata$z("design:type", Boolean)
-    ], ToastNotificationListComponent.prototype, "showClose", void 0);
-    __decorate([
-        Output('onActionSelect'),
-        __metadata$z("design:type", Object)
-    ], ToastNotificationListComponent.prototype, "onActionSelect", void 0);
-    __decorate([
-        Output('onCloseSelect'),
-        __metadata$z("design:type", Object)
-    ], ToastNotificationListComponent.prototype, "onCloseSelect", void 0);
-    __decorate([
-        Output('onViewingChange'),
-        __metadata$z("design:type", Object)
-    ], ToastNotificationListComponent.prototype, "onViewingChange", void 0);
-    ToastNotificationListComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-toast-notification-list',
-            template: "<div class=\"toast-notifications-list-pf\" *ngIf=\"notifications?.length > 0\"><div *ngFor=\"let notification of notifications\"><pfng-toast-notification [header]=\"notification.header\" [message]=\"notification.message\" [notification]=\"notification\" [moreActions]=\"notification.moreActions\" [primaryAction]=\"notification.primaryAction\" [showClose]=\"showClose === true || notification.isPersistent === true\" [type]=\"notification.type\" (onActionSelect)=\"handleAction($event)\" (onCloseSelect)=\"handleClose($event)\" (onViewingChange)=\"handleViewingChange($event)\"></pfng-toast-notification></div></div>"
-        }),
-        __metadata$z("design:paramtypes", [])
-    ], ToastNotificationListComponent);
+    ToastNotificationListComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-toast-notification-list',
+                    template: "<div class=\"toast-notifications-list-pf\" *ngIf=\"notifications?.length > 0\"><div *ngFor=\"let notification of notifications\"><pfng-toast-notification [header]=\"notification.header\" [message]=\"notification.message\" [notification]=\"notification\" [moreActions]=\"notification.moreActions\" [primaryAction]=\"notification.primaryAction\" [showClose]=\"showClose === true || notification.isPersistent === true\" [type]=\"notification.type\" (onActionSelect)=\"handleAction($event)\" (onCloseSelect)=\"handleClose($event)\" (onViewingChange)=\"handleViewingChange($event)\"></pfng-toast-notification></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ToastNotificationListComponent.ctorParameters = function () { return []; };
+    ToastNotificationListComponent.propDecorators = {
+        'notifications': [{ type: Input },],
+        'showClose': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onCloseSelect': [{ type: Output, args: ['onCloseSelect',] },],
+        'onViewingChange': [{ type: Output, args: ['onViewingChange',] },],
+    };
     return ToastNotificationListComponent;
 }());
 
-var __decorate$_ = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with toast notification lists
  */
 var ToastNotificationListModule = /** @class */ (function () {
     function ToastNotificationListModule() {
     }
-    ToastNotificationListModule = __decorate$_([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule,
-                ToastNotificationModule
-            ],
-            declarations: [
-                ToastNotificationListComponent
-            ],
-            exports: [
-                ToastNotificationListComponent
-            ]
-        })
-    ], ToastNotificationListModule);
+    ToastNotificationListModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule,
+                        ToastNotificationModule
+                    ],
+                    declarations: [
+                        ToastNotificationListComponent
+                    ],
+                    exports: [
+                        ToastNotificationListComponent
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    ToastNotificationListModule.ctorParameters = function () { return []; };
     return ToastNotificationListModule;
 }());
 
-var __decorate$10 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$A = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * A module containing objects associated with notification components
  *
@@ -7755,25 +7050,26 @@ var NotificationModule = /** @class */ (function () {
         console.log('patternfly-ng: NotificationModule is deprecated; use InlineNotificationModule, ' +
             'NotificationDrawerModule, ToastNotificationModule, or ToastNotificationListModule');
     }
-    NotificationModule = __decorate$10([
-        NgModule({
-            imports: [
-                CommonModule,
-                FormsModule,
-                InlineNotificationModule,
-                NotificationDrawerModule,
-                ToastNotificationModule,
-                ToastNotificationListModule
-            ],
-            exports: [
-                InlineNotificationComponent,
-                NotificationDrawerComponent,
-                ToastNotificationComponent,
-                ToastNotificationListComponent
-            ]
-        }),
-        __metadata$A("design:paramtypes", [])
-    ], NotificationModule);
+    NotificationModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule,
+                        InlineNotificationModule,
+                        NotificationDrawerModule,
+                        ToastNotificationModule,
+                        ToastNotificationListModule
+                    ],
+                    exports: [
+                        InlineNotificationComponent,
+                        NotificationDrawerComponent,
+                        ToastNotificationComponent,
+                        ToastNotificationListComponent
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    NotificationModule.ctorParameters = function () { return []; };
     return NotificationModule;
 }());
 
@@ -30328,15 +29624,6 @@ var Symbol = {
     iterator: iterator.iterator
 };
 
-var __decorate$11 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$B = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Notification service used to notify user about important events in the application.
  *
@@ -30503,31 +29790,14 @@ var NotificationService = /** @class */ (function () {
     NotificationService.prototype.updateNotificationsStream = function () {
         this._notificationsSubject.next(this.getNotifications());
     };
-    NotificationService = __decorate$11([
-        Injectable(),
-        __metadata$B("design:paramtypes", [])
-    ], NotificationService);
+    NotificationService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    NotificationService.ctorParameters = function () { return []; };
     return NotificationService;
 }());
 
-/**
- * A config containing properties for Pagination
- */
-var PaginationConfig = /** @class */ (function () {
-    function PaginationConfig() {
-    }
-    return PaginationConfig;
-}());
-
-var __decorate$12 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$C = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Component for rendering pagination
  */
@@ -30726,27 +29996,30 @@ var PaginationComponent = /** @class */ (function () {
     PaginationComponent.prototype.isLastPage = function () {
         return (this.config.pageNumber === this.lastPageNumber);
     };
-    __decorate$12([
-        Input(),
-        __metadata$C("design:type", PaginationConfig)
-    ], PaginationComponent.prototype, "config", void 0);
-    __decorate$12([
-        Output('onPageSizeChange'),
-        __metadata$C("design:type", Object)
-    ], PaginationComponent.prototype, "onPageSizeChange", void 0);
-    __decorate$12([
-        Output('onPageNumberChange'),
-        __metadata$C("design:type", Object)
-    ], PaginationComponent.prototype, "onPageNumberChange", void 0);
-    PaginationComponent = __decorate$12([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-pagination',
-            template: "<form class=\"content-view-pf-pagination list-view-pf-pagination clearfix\"><div class=\"form-group\"><div class=\"padding-right-10\"><div class=\"btn-group dropdown\" dropdown><button #pageSizeMenu type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle>{{config.pageSize}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu\" *dropdownMenu><li class=\"display-length-increment\" [ngClass]=\"{'selected': increment === config?.pageSize}\" *ngFor=\"let increment of config?.pageSizeIncrements\"><a role=\"menuitem\" (click)=\"onPageSizeUpdate($event, increment)\">{{increment}}</a></li></ul></div></div><span for=\"pageSizeMenu\" class=\"per-page-label\">per page</span></div><div class=\"form-group\"><span><span class=\"pagination-pf-item-current\">{{getCurrentPage()}}</span>&nbsp;of&nbsp; <span class=\"pagination-pf-items-total\">{{config.totalItems}}</span></span><ul class=\"pagination pagination-pf-back\"><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-first-page\" title=\"First Page\" (click)=\"gotoFirstPage()\"><span class=\"i fa fa-angle-double-left\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-prev-page\" title=\"Previous Page\" (click)=\"gotoPreviousPage()\"><span class=\"i fa fa-angle-left\"></span></a></li></ul><input class=\"pagination-pf-page\" name=\"pageNumber\" type=\"text\" [(ngModel)]=\"pageNumber\" (blur)=\"onPageNumberBlur($event)\" (keyup.enter)=\"onPageNumberKeyup($event)\"> <span>of&nbsp;<span class=\"pagination-pf-pages\">{{lastPageNumber}}</span></span><ul class=\"pagination pagination-pf-forward\"><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-next-page\" title=\"Next Page\" (click)=\"gotoNextPage()\"><span class=\"i fa fa-angle-right\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-last-page\" title=\"Last Page\" (click)=\"gotoLastPage()\"><span class=\"i fa fa-angle-double-right\"></span></a></li></ul></div></form>"
-        }),
-        __metadata$C("design:paramtypes", [])
-    ], PaginationComponent);
+    PaginationComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-pagination',
+                    template: "<form class=\"content-view-pf-pagination list-view-pf-pagination clearfix\"><div class=\"form-group\"><div class=\"padding-right-10\"><div class=\"btn-group dropdown\" dropdown><button #pageSizeMenu type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle>{{config.pageSize}}<span class=\"caret\"></span></button><ul class=\"dropdown-menu\" *dropdownMenu><li class=\"display-length-increment\" [ngClass]=\"{'selected': increment === config?.pageSize}\" *ngFor=\"let increment of config?.pageSizeIncrements\"><a role=\"menuitem\" (click)=\"onPageSizeUpdate($event, increment)\">{{increment}}</a></li></ul></div></div><span for=\"pageSizeMenu\" class=\"per-page-label\">per page</span></div><div class=\"form-group\"><span><span class=\"pagination-pf-item-current\">{{getCurrentPage()}}</span>&nbsp;of&nbsp; <span class=\"pagination-pf-items-total\">{{config.totalItems}}</span></span><ul class=\"pagination pagination-pf-back\"><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-first-page\" title=\"First Page\" (click)=\"gotoFirstPage()\"><span class=\"i fa fa-angle-double-left\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === 1}\"><a class=\"goto-prev-page\" title=\"Previous Page\" (click)=\"gotoPreviousPage()\"><span class=\"i fa fa-angle-left\"></span></a></li></ul><input class=\"pagination-pf-page\" name=\"pageNumber\" type=\"text\" [(ngModel)]=\"pageNumber\" (blur)=\"onPageNumberBlur($event)\" (keyup.enter)=\"onPageNumberKeyup($event)\"> <span>of&nbsp;<span class=\"pagination-pf-pages\">{{lastPageNumber}}</span></span><ul class=\"pagination pagination-pf-forward\"><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-next-page\" title=\"Next Page\" (click)=\"gotoNextPage()\"><span class=\"i fa fa-angle-right\"></span></a></li><li [ngClass]=\"{'disabled': config.pageNumber === lastPageNumber}\"><a class=\"goto-last-page\" title=\"Last Page\" (click)=\"gotoLastPage()\"><span class=\"i fa fa-angle-double-right\"></span></a></li></ul></div></form>"
+                },] },
+    ];
+    /** @nocollapse */
+    PaginationComponent.ctorParameters = function () { return []; };
+    PaginationComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onPageSizeChange': [{ type: Output, args: ['onPageSizeChange',] },],
+        'onPageNumberChange': [{ type: Output, args: ['onPageNumberChange',] },],
+    };
     return PaginationComponent;
+}());
+
+/**
+ * A config containing properties for Pagination
+ */
+var PaginationConfig = /** @class */ (function () {
+    function PaginationConfig() {
+    }
+    return PaginationConfig;
 }());
 
 /**
@@ -30758,42 +30031,29 @@ var PaginationEvent = /** @class */ (function () {
     return PaginationEvent;
 }());
 
-var __decorate$13 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with notification components
  */
 var PaginationModule = /** @class */ (function () {
     function PaginationModule() {
     }
-    PaginationModule = __decorate$13([
-        NgModule({
-            imports: [
-                BsDropdownModule.forRoot(),
-                CommonModule,
-                FormsModule
-            ],
-            declarations: [PaginationComponent],
-            exports: [PaginationComponent],
-            providers: [BsDropdownConfig]
-        })
-    ], PaginationModule);
+    PaginationModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        BsDropdownModule.forRoot(),
+                        CommonModule,
+                        FormsModule
+                    ],
+                    declarations: [PaginationComponent],
+                    exports: [PaginationComponent],
+                    providers: [BsDropdownConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    PaginationModule.ctorParameters = function () { return []; };
     return PaginationModule;
 }());
 
-var __decorate$14 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$D = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * A module containing objects associated with pipes
  *
@@ -30810,33 +30070,25 @@ var PipeModule = /** @class */ (function () {
         console.log('patternfly-ng: PipeModule is deprecated; use SearchHighlightModule, ' +
             'SortArrayModule, or TruncateModule');
     }
-    PipeModule = __decorate$14([
-        NgModule({
-            imports: [
-                SearchHighlightPipeModule,
-                SortArrayPipeModule,
-                TruncatePipeModule
-            ],
-            exports: [
-                SearchHighlightPipe,
-                SortArrayPipe,
-                TruncatePipe
-            ]
-        }),
-        __metadata$D("design:paramtypes", [])
-    ], PipeModule);
+    PipeModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        SearchHighlightPipeModule,
+                        SortArrayPipeModule,
+                        TruncatePipeModule
+                    ],
+                    exports: [
+                        SearchHighlightPipe,
+                        SortArrayPipe,
+                        TruncatePipe
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    PipeModule.ctorParameters = function () { return []; };
     return PipeModule;
 }());
 
-var __decorate$15 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$E = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Remaining Characters directive for showing a characters remaining count and triggering warning and error
  * behavior when passing specified thresholds. When the <code>charsRemainingWarning</code> threshold is passed,
@@ -30946,76 +30198,46 @@ var RemainingCharsCountDirective = /** @class */ (function () {
             }
         }
     };
-    __decorate$15([
-        Input(),
-        __metadata$E("design:type", Boolean)
-    ], RemainingCharsCountDirective.prototype, "blockInputAtMaxLimit", void 0);
-    __decorate$15([
-        Input(),
-        __metadata$E("design:type", Number)
-    ], RemainingCharsCountDirective.prototype, "charsMaxLimit", void 0);
-    __decorate$15([
-        Input(),
-        __metadata$E("design:type", Object)
-    ], RemainingCharsCountDirective.prototype, "charsRemainingElement", void 0);
-    __decorate$15([
-        Input(),
-        __metadata$E("design:type", Number)
-    ], RemainingCharsCountDirective.prototype, "charsRemainingWarning", void 0);
-    __decorate$15([
-        Output('onOverCharsMaxLimit'),
-        __metadata$E("design:type", Object)
-    ], RemainingCharsCountDirective.prototype, "onOverCharsMaxLimit", void 0);
-    __decorate$15([
-        Output('onUnderCharsMaxLimit'),
-        __metadata$E("design:type", Object)
-    ], RemainingCharsCountDirective.prototype, "onUnderCharsMaxLimit", void 0);
-    __decorate$15([
-        HostListener('keyup', ['$event']),
-        __metadata$E("design:type", Function),
-        __metadata$E("design:paramtypes", [KeyboardEvent]),
-        __metadata$E("design:returntype", void 0)
-    ], RemainingCharsCountDirective.prototype, "handleKeypress", null);
-    RemainingCharsCountDirective = __decorate$15([
-        Directive({
-            selector: '[pfng-remaining-chars-count]'
-        }),
-        __metadata$E("design:paramtypes", [ElementRef, Renderer2])
-    ], RemainingCharsCountDirective);
+    RemainingCharsCountDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[pfng-remaining-chars-count]'
+                },] },
+    ];
+    /** @nocollapse */
+    RemainingCharsCountDirective.ctorParameters = function () { return [
+        { type: ElementRef, },
+        { type: Renderer2, },
+    ]; };
+    RemainingCharsCountDirective.propDecorators = {
+        'blockInputAtMaxLimit': [{ type: Input },],
+        'charsMaxLimit': [{ type: Input },],
+        'charsRemainingElement': [{ type: Input },],
+        'charsRemainingWarning': [{ type: Input },],
+        'onOverCharsMaxLimit': [{ type: Output, args: ['onOverCharsMaxLimit',] },],
+        'onUnderCharsMaxLimit': [{ type: Output, args: ['onUnderCharsMaxLimit',] },],
+        'handleKeypress': [{ type: HostListener, args: ['keyup', ['$event'],] },],
+    };
     return RemainingCharsCountDirective;
 }());
 
-var __decorate$16 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the remaining characters directive
  */
 var RemainingCharsCountModule = /** @class */ (function () {
     function RemainingCharsCountModule() {
     }
-    RemainingCharsCountModule = __decorate$16([
-        NgModule({
-            imports: [CommonModule, FormsModule],
-            declarations: [RemainingCharsCountDirective],
-            exports: [RemainingCharsCountDirective]
-        })
-    ], RemainingCharsCountModule);
+    RemainingCharsCountModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [CommonModule, FormsModule],
+                    declarations: [RemainingCharsCountDirective],
+                    exports: [RemainingCharsCountDirective]
+                },] },
+    ];
+    /** @nocollapse */
+    RemainingCharsCountModule.ctorParameters = function () { return []; };
     return RemainingCharsCountModule;
 }());
 
-var __decorate$17 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$F = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Sample component
  */
@@ -31025,66 +30247,41 @@ var SampleComponent = /** @class */ (function () {
      */
     function SampleComponent() {
     }
-    __decorate$17([
-        Input(),
-        __metadata$F("design:type", Boolean)
-    ], SampleComponent.prototype, "disabled", void 0);
-    __decorate$17([
-        Input(),
-        __metadata$F("design:type", String)
-    ], SampleComponent.prototype, "label", void 0);
-    SampleComponent = __decorate$17([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pf-sample-component',
-            styles: ["\n    .pfng__samplecomponent { \n      color: blueviolet; \n    }\n    .pfng__samplecomponent--disabled  { \n      color: grey; \n    }\n  "],
-            template: "<div class=\"pfng__samplecomponent\" [ngClass]=\"{'pfng__samplecomponent--disabled': disabled}\">{{label}}</div>"
-        }),
-        __metadata$F("design:paramtypes", [])
-    ], SampleComponent);
+    SampleComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pf-sample-component',
+                    styles: ["\n    .pfng__samplecomponent { \n      color: blueviolet; \n    }\n    .pfng__samplecomponent--disabled  { \n      color: grey; \n    }\n  "],
+                    template: "<div class=\"pfng__samplecomponent\" [ngClass]=\"{'pfng__samplecomponent--disabled': disabled}\">{{label}}</div>"
+                },] },
+    ];
+    /** @nocollapse */
+    SampleComponent.ctorParameters = function () { return []; };
+    SampleComponent.propDecorators = {
+        'disabled': [{ type: Input },],
+        'label': [{ type: Input },],
+    };
     return SampleComponent;
 }());
 
-var __decorate$18 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the sample component
  */
 var SampleModule = /** @class */ (function () {
     function SampleModule() {
     }
-    SampleModule = __decorate$18([
-        NgModule({
-            imports: [CommonModule],
-            declarations: [SampleComponent],
-            exports: [SampleComponent]
-        })
-    ], SampleModule);
+    SampleModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [CommonModule],
+                    declarations: [SampleComponent],
+                    exports: [SampleComponent]
+                },] },
+    ];
+    /** @nocollapse */
+    SampleModule.ctorParameters = function () { return []; };
     return SampleModule;
 }());
 
-/**
- * A config containing properties for sort
- */
-var SortConfig = /** @class */ (function () {
-    function SortConfig() {
-    }
-    return SortConfig;
-}());
-
-var __decorate$19 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$G = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Sort component
  */
@@ -31173,23 +30370,29 @@ var SortComponent = /** @class */ (function () {
             isAscending: this.config.isAscending
         });
     };
-    __decorate$19([
-        Input(),
-        __metadata$G("design:type", SortConfig)
-    ], SortComponent.prototype, "config", void 0);
-    __decorate$19([
-        Output('onChange'),
-        __metadata$G("design:type", Object)
-    ], SortComponent.prototype, "onChange", void 0);
-    SortComponent = __decorate$19([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-sort',
-            template: "<div class=\"sort-pf\" *ngIf=\"config?.visible !== false\"><div class=\"btn-group dropdown\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\">{{currentField?.title}} <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let item of config?.fields\" [ngClass]=\"{'selected': item === currentField}\"><a href=\"javascript:void(0);\" class=\"sortfield sort-field dropdown-item\" tabindex=\"-1\" (click)=\"selectField(item)\">{{item?.title}}</a></li></ul></div><button class=\"btn btn-link\" type=\"button\" aria-label=\"Sort Direction\" [disabled]=\"config.disabled === true\" (click)=\"onChangeDirection()\"><span class=\"sort-direction\" [ngClass]=\"getIconStyleClass()\"></span></button></div>"
-        }),
-        __metadata$G("design:paramtypes", [])
-    ], SortComponent);
+    SortComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-sort',
+                    template: "<div class=\"sort-pf\" *ngIf=\"config?.visible !== false\"><div class=\"btn-group dropdown\" dropdown><button type=\"button\" class=\"btn btn-default dropdown-toggle\" dropdownToggle [disabled]=\"config.disabled === true\">{{currentField?.title}} <span aria-hidden=\"true\" class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\" *dropdownMenu><li role=\"menuitem\" *ngFor=\"let item of config?.fields\" [ngClass]=\"{'selected': item === currentField}\"><a href=\"javascript:void(0);\" class=\"sortfield sort-field dropdown-item\" tabindex=\"-1\" (click)=\"selectField(item)\">{{item?.title}}</a></li></ul></div><button class=\"btn btn-link\" type=\"button\" aria-label=\"Sort Direction\" [disabled]=\"config.disabled === true\" (click)=\"onChangeDirection()\"><span class=\"sort-direction\" [ngClass]=\"getIconStyleClass()\"></span></button></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    SortComponent.ctorParameters = function () { return []; };
+    SortComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onChange': [{ type: Output, args: ['onChange',] },],
+    };
     return SortComponent;
+}());
+
+/**
+ * A config containing properties for sort
+ */
+var SortConfig = /** @class */ (function () {
+    function SortConfig() {
+    }
+    return SortConfig;
 }());
 
 /**
@@ -31210,38 +30413,25 @@ var SortField = /** @class */ (function () {
     return SortField;
 }());
 
-var __decorate$1a = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the sort component
  */
 var SortModule = /** @class */ (function () {
     function SortModule() {
     }
-    SortModule = __decorate$1a([
-        NgModule({
-            imports: [CommonModule, BsDropdownModule.forRoot()],
-            declarations: [SortComponent],
-            exports: [SortComponent],
-            providers: [BsDropdownConfig]
-        })
-    ], SortModule);
+    SortModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [CommonModule, BsDropdownModule.forRoot()],
+                    declarations: [SortComponent],
+                    exports: [SortComponent],
+                    providers: [BsDropdownConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    SortModule.ctorParameters = function () { return []; };
     return SortModule;
 }());
 
-var __decorate$1b = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$H = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Table base
  */
@@ -31334,58 +30524,21 @@ var TableBase = /** @class */ (function () {
     TableBase.prototype.handleViewSelect = function ($event) {
         this.onViewSelect.emit($event);
     };
-    __decorate$1b([
-        Input(),
-        __metadata$H("design:type", TemplateRef)
-    ], TableBase.prototype, "actionTemplate", void 0);
-    __decorate$1b([
-        Input(),
-        __metadata$H("design:type", TemplateRef)
-    ], TableBase.prototype, "viewTemplate", void 0);
-    __decorate$1b([
-        Output('onDrop'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onDrop", void 0);
-    __decorate$1b([
-        Output('onPageSizeChange'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onPageSizeChange", void 0);
-    __decorate$1b([
-        Output('onPageNumberChange'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onPageNumberChange", void 0);
-    __decorate$1b([
-        Output('onActionSelect'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onActionSelect", void 0);
-    __decorate$1b([
-        Output('onFilterFieldSelect'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onFilterFieldSelect", void 0);
-    __decorate$1b([
-        Output('onFilterChange'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onFilterChange", void 0);
-    __decorate$1b([
-        Output('onFilterSave'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onFilterSave", void 0);
-    __decorate$1b([
-        Output('onFilterTypeAhead'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onFilterTypeAhead", void 0);
-    __decorate$1b([
-        Output('onSelectionChange'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onSelectionChange", void 0);
-    __decorate$1b([
-        Output('onSortChange'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onSortChange", void 0);
-    __decorate$1b([
-        Output('onViewSelect'),
-        __metadata$H("design:type", Object)
-    ], TableBase.prototype, "onViewSelect", void 0);
+    TableBase.propDecorators = {
+        'actionTemplate': [{ type: Input },],
+        'viewTemplate': [{ type: Input },],
+        'onDrop': [{ type: Output, args: ['onDrop',] },],
+        'onPageSizeChange': [{ type: Output, args: ['onPageSizeChange',] },],
+        'onPageNumberChange': [{ type: Output, args: ['onPageNumberChange',] },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onFilterFieldSelect': [{ type: Output, args: ['onFilterFieldSelect',] },],
+        'onFilterChange': [{ type: Output, args: ['onFilterChange',] },],
+        'onFilterSave': [{ type: Output, args: ['onFilterSave',] },],
+        'onFilterTypeAhead': [{ type: Output, args: ['onFilterTypeAhead',] },],
+        'onSelectionChange': [{ type: Output, args: ['onSelectionChange',] },],
+        'onSortChange': [{ type: Output, args: ['onSortChange',] },],
+        'onViewSelect': [{ type: Output, args: ['onViewSelect',] },],
+    };
     return TableBase;
 }());
 
@@ -31429,36 +30582,6 @@ var __extends$2f = (undefined && undefined.__extends) || (function () {
     };
 })();
 /**
- * An config containing properties for table
- */
-var TableConfig = /** @class */ (function (_super) {
-    __extends$2f(TableConfig, _super);
-    function TableConfig() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return TableConfig;
-}(TableConfigBase));
-
-var __extends$2g = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate$1c = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$I = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/**
  * Table component.
  *
  * In order to use drag and drop, please include the following CSS file from ng2-dragula. For example:
@@ -31490,7 +30613,7 @@ var __metadata$I = (undefined && undefined.__metadata) || function (k, v) {
  * </code>
  */
 var TableComponent = /** @class */ (function (_super) {
-    __extends$2g(TableComponent, _super);
+    __extends$2f(TableComponent, _super);
     /**
      * The default constructor
      */
@@ -31993,102 +31116,62 @@ var TableComponent = /** @class */ (function (_super) {
             this.datatable.rowDetail.toggleExpandRow(row);
         }
     };
-    __decorate$1c([
-        Input(),
-        __metadata$I("design:type", Array)
-    ], TableComponent.prototype, "columns", void 0);
-    __decorate$1c([
-        Input(),
-        __metadata$I("design:type", TableConfig)
-    ], TableComponent.prototype, "config", void 0);
-    __decorate$1c([
-        Input(),
-        __metadata$I("design:type", NgxDataTableConfig)
-    ], TableComponent.prototype, "dataTableConfig", void 0);
-    __decorate$1c([
-        Input(),
-        __metadata$I("design:type", TemplateRef)
-    ], TableComponent.prototype, "expandRowTemplate", void 0);
-    __decorate$1c([
-        Input(),
-        __metadata$I("design:type", TemplateRef)
-    ], TableComponent.prototype, "groupHeaderTemplate", void 0);
-    __decorate$1c([
-        Input(),
-        __metadata$I("design:type", Array)
-    ], TableComponent.prototype, "rows", void 0);
-    __decorate$1c([
-        Output('onActivate'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onActivate", void 0);
-    __decorate$1c([
-        Output('onDetailToggle'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onDetailToggle", void 0);
-    __decorate$1c([
-        Output('onPage'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onPage", void 0);
-    __decorate$1c([
-        Output('onReorder'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onReorder", void 0);
-    __decorate$1c([
-        Output('onResize'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onResize", void 0);
-    __decorate$1c([
-        Output('onSelect'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onSelect", void 0);
-    __decorate$1c([
-        Output('onScroll'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onScroll", void 0);
-    __decorate$1c([
-        Output('onSort'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onSort", void 0);
-    __decorate$1c([
-        Output('onTableContextMenu'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onTableContextMenu", void 0);
-    __decorate$1c([
-        Output('onDrop'),
-        __metadata$I("design:type", Object)
-    ], TableComponent.prototype, "onDrop", void 0);
-    __decorate$1c([
-        ViewChild('datatable'),
-        __metadata$I("design:type", DatatableComponent)
-    ], TableComponent.prototype, "_datatable", void 0);
-    __decorate$1c([
-        ViewChild('selectCellTemplate'),
-        __metadata$I("design:type", TemplateRef)
-    ], TableComponent.prototype, "selectCellTemplate", void 0);
-    __decorate$1c([
-        ViewChild('selectHeadTemplate'),
-        __metadata$I("design:type", TemplateRef)
-    ], TableComponent.prototype, "selectHeadTemplate", void 0);
-    TableComponent = __decorate$1c([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-table',
-            template: "<div class=\"pfng-table\"><pfng-toolbar [config]=\"config.toolbarConfig\" [actionTemplate]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\" (onFilterChange)=\"handleFilterChange($event)\" (onFilterFieldSelect)=\"handleFilterFieldSelect($event)\" (onFilterTypeAhead)=\"handleFilterTypeAhead($event)\" (onSortChange)=\"handleSortChange($event)\" (onViewSelect)=\"handleViewSelect($event)\" *ngIf=\"config.toolbarConfig !== undefined\"></pfng-toolbar><div *ngIf=\"hasData\"><ngx-datatable #datatable [columns]=\"cols\" [columnMode]=\"dataTableConfig.columnMode\" [count]=\"dataTableConfig.count\" [cssClasses]=\"dataTableConfig.cssClasses\" [displayCheck]=\"dataTableConfig.displayCheck\" [dragulaClassSelector]=\"'pfng-table-dnd-header'\" [dragulaModel]=\"rowsModel\" [dragulaName]=\"dragulaName\" [externalPaging]=\"dataTableConfig.externalPaging\" [externalSorting]=\"dataTableConfig.externalSorting\" [footerHeight]=\"dataTableConfig.footerHeight\" [groupExpansionDefault]=\"dataTableConfig.groupExpansionDefault\" [groupRowsBy]=\"dataTableConfig.groupRowsBy\" [headerHeight]=\"dataTableConfig.headerHeight\" [messages]=\"dataTableConfig.messages\" [ngClass]=\"config.styleClass\" [limit]=\"dataTableConfig.limit\" [loadingIndicator]=\"dataTableConfig.loadingIndicator\" [offset]=\"dataTableConfig.offset\" [reorderable]=\"dataTableConfig.reorderable\" [rowClass]=\"dataTableConfig.rowClass\" [rowHeight]=\"dataTableConfig.rowHeight\" [rowIdentity]=\"dataTableConfig.rowIdentity\" [rows]=\"rows\" [scrollbarH]=\"dataTableConfig.scrollbarH\" [scrollbarV]=\"dataTableConfig.scrollbarV\" [selectAllRowsOnPage]=\"dataTableConfig.selectAllRowsOnPage\" [selectCheck]=\"dataTableConfig.selectCheck\" [selected]=\"selectedRows\" [selectionType]=\"dataTableConfig.selectionType\" [sorts]=\"dataTableConfig.sorts\" [sortType]=\"dataTableConfig.sortType\" [trackByProp]=\"dataTableConfig.trackByProp\" [virtualization]=\"dataTableConfig.virtualization\" (activate)=\"handleActivate($event)\" (detailToggle)=\"handleDetailToggle($event)\" (dragulaDrop)=\"handleDragulaDrop($event)\" (dragulaDrag)=\"handleDragulaDrag($event)\" (page)=\"handlePage($event)\" (reorder)=\"handleReorder($event)\" (resize)=\"handleResize($event)\" (scroll)=\"handleScroll($event)\" (select)=\"handleSelect($event)\" (sort)=\"handleSort($event)\" (tableContextmenu)=\"handleOnTableContextMenu($event)\" *ngIf=\"showTable\"><ng-template #selectHeadTemplate><span class=\"margin-left-5\" *ngIf=\"config.dragEnabled === true\"></span> <span class=\"margin-left-16\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\"></span> </span><input type=\"checkbox\" value=\"allRowsSelected\" title=\"{{(allRowsSelected) ? 'Deselect' : 'Select'}} All Rows\" [disabled]=\"rows === undefined || rows.length === 0\" [(ngModel)]=\"allRowsSelected\" (ngModelChange)=\"selectionsChange()\" *ngIf=\"config.showCheckbox === true\"></ng-template><ng-template #selectCellTemplate let-row=\"row\" let-expanded=\"expanded\"><span class=\"pfng-table-dnd-container\" *ngIf=\"config.dragEnabled === true\"><span class=\"pfng-table-dnd-header\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true}\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\" *ngIf=\"row.hideExpandToggle === true\"></span> <span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandRow(row)\" *ngIf=\"row.hideExpandToggle !== true\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}\" *ngIf=\"config.showCheckbox === true\"><input type=\"checkbox\" value=\"row.selected\" title=\"{{(row.selected) ? 'Deselect' : 'Select'}} Row\" [(ngModel)]=\"row.selected\" (ngModelChange)=\"selectionChange(row)\"></span></ng-template><ngx-datatable-group-header [rowHeight]=\"dataTableConfig.rowHeight\" *ngIf=\"groupHeaderTemplate !== undefined\"><ng-template let-group=\"group\" let-expanded=\"expanded\" ngx-datatable-group-header-template><span class=\"margin-5\"><span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandGroup(group)\"></span></span><ng-template [ngTemplateOutlet]=\"groupHeaderTemplate\" [ngTemplateOutletContext]=\"{ group: group, expanded: expanded }\"></ng-template></ng-template></ngx-datatable-group-header><ngx-datatable-row-detail [rowHeight]=\"auto\" *ngIf=\"expandRowTemplate !== undefined\"><ng-template let-row=\"row\" let-expanded=\"expanded\" ngx-datatable-row-detail-template><div class=\"pfng-table-expand-container\" tabindex=\"0\"><div class=\"pfng-table-expand-content\" style=\"flex-grow: 1\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"toggleExpandRow(row)\"></span></div><ng-template [ngTemplateOutlet]=\"expandRowTemplate\" [ngTemplateOutletContext]=\"{ row: row, expanded: expanded }\"></ng-template></div></div></ng-template></ngx-datatable-row-detail></ngx-datatable><pfng-pagination [config]=\"config.paginationConfig\" (onPageNumberChange)=\"handlePageNumber($event)\" (onPageSizeChange)=\"handlePageSize($event)\" *ngIf=\"config.paginationConfig !== undefined\"></pfng-pagination></div><pfng-empty-state [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\" *ngIf=\"!hasData\"></pfng-empty-state></div>"
-        }),
-        __metadata$I("design:paramtypes", [DragulaService])
-    ], TableComponent);
+    TableComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-table',
+                    template: "<div class=\"pfng-table\"><pfng-toolbar [config]=\"config.toolbarConfig\" [actionTemplate]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\" (onFilterChange)=\"handleFilterChange($event)\" (onFilterFieldSelect)=\"handleFilterFieldSelect($event)\" (onFilterTypeAhead)=\"handleFilterTypeAhead($event)\" (onSortChange)=\"handleSortChange($event)\" (onViewSelect)=\"handleViewSelect($event)\" *ngIf=\"config.toolbarConfig !== undefined\"></pfng-toolbar><div *ngIf=\"hasData\"><ngx-datatable #datatable [columns]=\"cols\" [columnMode]=\"dataTableConfig.columnMode\" [count]=\"dataTableConfig.count\" [cssClasses]=\"dataTableConfig.cssClasses\" [displayCheck]=\"dataTableConfig.displayCheck\" [dragulaClassSelector]=\"'pfng-table-dnd-header'\" [dragulaModel]=\"rowsModel\" [dragulaName]=\"dragulaName\" [externalPaging]=\"dataTableConfig.externalPaging\" [externalSorting]=\"dataTableConfig.externalSorting\" [footerHeight]=\"dataTableConfig.footerHeight\" [groupExpansionDefault]=\"dataTableConfig.groupExpansionDefault\" [groupRowsBy]=\"dataTableConfig.groupRowsBy\" [headerHeight]=\"dataTableConfig.headerHeight\" [messages]=\"dataTableConfig.messages\" [ngClass]=\"config.styleClass\" [limit]=\"dataTableConfig.limit\" [loadingIndicator]=\"dataTableConfig.loadingIndicator\" [offset]=\"dataTableConfig.offset\" [reorderable]=\"dataTableConfig.reorderable\" [rowClass]=\"dataTableConfig.rowClass\" [rowHeight]=\"dataTableConfig.rowHeight\" [rowIdentity]=\"dataTableConfig.rowIdentity\" [rows]=\"rows\" [scrollbarH]=\"dataTableConfig.scrollbarH\" [scrollbarV]=\"dataTableConfig.scrollbarV\" [selectAllRowsOnPage]=\"dataTableConfig.selectAllRowsOnPage\" [selectCheck]=\"dataTableConfig.selectCheck\" [selected]=\"selectedRows\" [selectionType]=\"dataTableConfig.selectionType\" [sorts]=\"dataTableConfig.sorts\" [sortType]=\"dataTableConfig.sortType\" [trackByProp]=\"dataTableConfig.trackByProp\" [virtualization]=\"dataTableConfig.virtualization\" (activate)=\"handleActivate($event)\" (detailToggle)=\"handleDetailToggle($event)\" (dragulaDrop)=\"handleDragulaDrop($event)\" (dragulaDrag)=\"handleDragulaDrag($event)\" (page)=\"handlePage($event)\" (reorder)=\"handleReorder($event)\" (resize)=\"handleResize($event)\" (scroll)=\"handleScroll($event)\" (select)=\"handleSelect($event)\" (sort)=\"handleSort($event)\" (tableContextmenu)=\"handleOnTableContextMenu($event)\" *ngIf=\"showTable\"><ng-template #selectHeadTemplate><span class=\"margin-left-5\" *ngIf=\"config.dragEnabled === true\"></span> <span class=\"margin-left-16\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\"></span> </span><input type=\"checkbox\" value=\"allRowsSelected\" title=\"{{(allRowsSelected) ? 'Deselect' : 'Select'}} All Rows\" [disabled]=\"rows === undefined || rows.length === 0\" [(ngModel)]=\"allRowsSelected\" (ngModelChange)=\"selectionsChange()\" *ngIf=\"config.showCheckbox === true\"></ng-template><ng-template #selectCellTemplate let-row=\"row\" let-expanded=\"expanded\"><span class=\"pfng-table-dnd-container\" *ngIf=\"config.dragEnabled === true\"><span class=\"pfng-table-dnd-header\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true}\" *ngIf=\"config.useExpandRows === true\"><span class=\"pfng-list-expand-placeholder\" *ngIf=\"row.hideExpandToggle === true\"></span> <span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandRow(row)\" *ngIf=\"row.hideExpandToggle !== true\"></span> </span><span [ngClass]=\"{'margin-left-5': config.dragEnabled === true || config.useExpandRows === true}\" *ngIf=\"config.showCheckbox === true\"><input type=\"checkbox\" value=\"row.selected\" title=\"{{(row.selected) ? 'Deselect' : 'Select'}} Row\" [(ngModel)]=\"row.selected\" (ngModelChange)=\"selectionChange(row)\"></span></ng-template><ngx-datatable-group-header [rowHeight]=\"dataTableConfig.rowHeight\" *ngIf=\"groupHeaderTemplate !== undefined\"><ng-template let-group=\"group\" let-expanded=\"expanded\" ngx-datatable-group-header-template><span class=\"margin-5\"><span class=\"fa\" [ngClass]=\"{'fa-angle-down': expanded, 'fa-angle-right margin-right-4': !expanded}\" (click)=\"toggleExpandGroup(group)\"></span></span><ng-template [ngTemplateOutlet]=\"groupHeaderTemplate\" [ngTemplateOutletContext]=\"{ group: group, expanded: expanded }\"></ng-template></ng-template></ngx-datatable-group-header><ngx-datatable-row-detail [rowHeight]=\"auto\" *ngIf=\"expandRowTemplate !== undefined\"><ng-template let-row=\"row\" let-expanded=\"expanded\" ngx-datatable-row-detail-template><div class=\"pfng-table-expand-container\" tabindex=\"0\"><div class=\"pfng-table-expand-content\" style=\"flex-grow: 1\"><div class=\"close\" *ngIf=\"config.hideClose !== true\"><span class=\"pficon pficon-close\" (click)=\"toggleExpandRow(row)\"></span></div><ng-template [ngTemplateOutlet]=\"expandRowTemplate\" [ngTemplateOutletContext]=\"{ row: row, expanded: expanded }\"></ng-template></div></div></ng-template></ngx-datatable-row-detail></ngx-datatable><pfng-pagination [config]=\"config.paginationConfig\" (onPageNumberChange)=\"handlePageNumber($event)\" (onPageSizeChange)=\"handlePageSize($event)\" *ngIf=\"config.paginationConfig !== undefined\"></pfng-pagination></div><pfng-empty-state [config]=\"config.emptyStateConfig\" (onActionSelect)=\"handleAction($event)\" *ngIf=\"!hasData\"></pfng-empty-state></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    TableComponent.ctorParameters = function () { return [
+        { type: DragulaService, },
+    ]; };
+    TableComponent.propDecorators = {
+        'columns': [{ type: Input },],
+        'config': [{ type: Input },],
+        'dataTableConfig': [{ type: Input },],
+        'expandRowTemplate': [{ type: Input },],
+        'groupHeaderTemplate': [{ type: Input },],
+        'rows': [{ type: Input },],
+        'onActivate': [{ type: Output, args: ['onActivate',] },],
+        'onDetailToggle': [{ type: Output, args: ['onDetailToggle',] },],
+        'onPage': [{ type: Output, args: ['onPage',] },],
+        'onReorder': [{ type: Output, args: ['onReorder',] },],
+        'onResize': [{ type: Output, args: ['onResize',] },],
+        'onSelect': [{ type: Output, args: ['onSelect',] },],
+        'onScroll': [{ type: Output, args: ['onScroll',] },],
+        'onSort': [{ type: Output, args: ['onSort',] },],
+        'onTableContextMenu': [{ type: Output, args: ['onTableContextMenu',] },],
+        'onDrop': [{ type: Output, args: ['onDrop',] },],
+        '_datatable': [{ type: ViewChild, args: ['datatable',] },],
+        'selectCellTemplate': [{ type: ViewChild, args: ['selectCellTemplate',] },],
+        'selectHeadTemplate': [{ type: ViewChild, args: ['selectHeadTemplate',] },],
+    };
     return TableComponent;
 }(TableBase));
 
-var __decorate$1d = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$J = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+var __extends$2g = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ * An config containing properties for table
+ */
+var TableConfig = /** @class */ (function (_super) {
+    __extends$2g(TableConfig, _super);
+    function TableConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return TableConfig;
+}(TableConfigBase));
+
 /**
  * Drag and drop directive used with the underlying ngx-datatable component.
  *
@@ -32217,53 +31300,26 @@ var NgxDataTableDndDirective = /** @class */ (function () {
         // console.log('EMITTER', args);
         this.dragulaDrop.emit(this.dragulaModel);
     };
-    __decorate$1d([
-        Input(),
-        __metadata$J("design:type", String)
-    ], NgxDataTableDndDirective.prototype, "dragulaName", void 0);
-    __decorate$1d([
-        Input(),
-        __metadata$J("design:type", Object)
-    ], NgxDataTableDndDirective.prototype, "dragulaModel", void 0);
-    __decorate$1d([
-        Input(),
-        __metadata$J("design:type", String)
-    ], NgxDataTableDndDirective.prototype, "dragulaClassSelector", void 0);
-    __decorate$1d([
-        Output(),
-        __metadata$J("design:type", EventEmitter)
-    ], NgxDataTableDndDirective.prototype, "dragulaDrop", void 0);
-    __decorate$1d([
-        Output(),
-        __metadata$J("design:type", EventEmitter)
-    ], NgxDataTableDndDirective.prototype, "dragulaDrag", void 0);
-    NgxDataTableDndDirective = __decorate$1d([
-        Directive({
-            selector: 'ngx-datatable[dragulaName]'
-        }),
-        __metadata$J("design:paramtypes", [ElementRef, DragulaService])
-    ], NgxDataTableDndDirective);
+    NgxDataTableDndDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: 'ngx-datatable[dragulaName]'
+                },] },
+    ];
+    /** @nocollapse */
+    NgxDataTableDndDirective.ctorParameters = function () { return [
+        { type: ElementRef, },
+        { type: DragulaService, },
+    ]; };
+    NgxDataTableDndDirective.propDecorators = {
+        'dragulaName': [{ type: Input },],
+        'dragulaModel': [{ type: Input },],
+        'dragulaClassSelector': [{ type: Input },],
+        'dragulaDrop': [{ type: Output },],
+        'dragulaDrag': [{ type: Output },],
+    };
     return NgxDataTableDndDirective;
 }());
 
-/**
- * A config containing properties for toolbar
- */
-var ToolbarConfig = /** @class */ (function () {
-    function ToolbarConfig() {
-    }
-    return ToolbarConfig;
-}());
-
-var __decorate$1e = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$K = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Toolbar component
  */
@@ -32427,118 +31483,89 @@ var ToolbarComponent = /** @class */ (function () {
     ToolbarComponent.prototype.enforceSingleSelect = function (filter$$1) {
         remove(this.config.filterConfig.appliedFilters, { title: filter$$1.field.title });
     };
-    __decorate$1e([
-        Input(),
-        __metadata$K("design:type", ToolbarConfig)
-    ], ToolbarComponent.prototype, "config", void 0);
-    __decorate$1e([
-        Input(),
-        __metadata$K("design:type", TemplateRef)
-    ], ToolbarComponent.prototype, "actionTemplate", void 0);
-    __decorate$1e([
-        Input(),
-        __metadata$K("design:type", TemplateRef)
-    ], ToolbarComponent.prototype, "viewTemplate", void 0);
-    __decorate$1e([
-        Output('onActionSelect'),
-        __metadata$K("design:type", Object)
-    ], ToolbarComponent.prototype, "onActionSelect", void 0);
-    __decorate$1e([
-        Output('onFilterFieldSelect'),
-        __metadata$K("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterFieldSelect", void 0);
-    __decorate$1e([
-        Output('onFilterChange'),
-        __metadata$K("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterChange", void 0);
-    __decorate$1e([
-        Output('onFilterSave'),
-        __metadata$K("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterSave", void 0);
-    __decorate$1e([
-        Output('onFilterTypeAhead'),
-        __metadata$K("design:type", Object)
-    ], ToolbarComponent.prototype, "onFilterTypeAhead", void 0);
-    __decorate$1e([
-        Output('onSortChange'),
-        __metadata$K("design:type", Object)
-    ], ToolbarComponent.prototype, "onSortChange", void 0);
-    __decorate$1e([
-        Output('onViewSelect'),
-        __metadata$K("design:type", Object)
-    ], ToolbarComponent.prototype, "onViewSelect", void 0);
-    __decorate$1e([
-        ViewChild('filterFields'),
-        __metadata$K("design:type", FilterFieldsComponent)
-    ], ToolbarComponent.prototype, "filterFields", void 0);
-    ToolbarComponent = __decorate$1e([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-toolbar',
-            template: "<div class=\"row toolbar-pf\"><div class=\"col-sm-12\"><form class=\"toolbar-pf-actions\" [ngClass]=\"{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}\" (submit)=\"$event.preventDefault()\"><div class=\"form-group toolbar-apf-filter\"><pfng-filter-fields [config]=\"config.filterConfig\" #filterFields (onAdd)=\"filterAdded($event)\" (onFieldSelect)=\"handleFilterFieldSelect($event)\" (onSave)=\"handleFilterSave($event)\" (onTypeAhead)=\"handleFilterTypeAhead($event)\" *ngIf=\"config.filterConfig?.fields\"></pfng-filter-fields></div><div class=\"form-group\" *ngIf=\"config.sortConfig?.fields && config.sortConfig?.visible !== false\"><pfng-sort [config]=\"config.sortConfig\" (onChange)=\"sortChange($event)\"></pfng-sort></div><div class=\"form-group toolbar-actions\" *ngIf=\"config.actionConfig !== undefined || actionTemplate !== undefined\"><pfng-action [config]=\"config.actionConfig\" [template]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\"></pfng-action></div><div class=\"toolbar-pf-action-right\"><div class=\"form-group toolbar-pf-view-selector\" *ngIf=\"viewTemplate !== undefined || (config.views)\"><ng-template [ngTemplateOutlet]=\"viewTemplate\" [ngTemplateOutletContext]=\"{}\"></ng-template><span *ngIf=\"config.views\"><button *ngFor=\"let view of config.views\" class=\"btn btn-link\" [ngClass]=\"{'active': isViewSelected(view), 'disabled': view.disabled === true}\" [attr.aria-label]=\"view.ariaLabel || view.tooltip\" title=\"{{view.tooltip}}\" (click)=\"viewSelected(view)\"><i class=\"{{view.iconStyleClass}}\"></i></button></span></div></div></form><pfng-filter-results [config]=\"config.filterConfig\" (onClear)=\"clearFilter($event)\"></pfng-filter-results></div></div>"
-        }),
-        __metadata$K("design:paramtypes", [])
-    ], ToolbarComponent);
+    ToolbarComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-toolbar',
+                    template: "<div class=\"row toolbar-pf\"><div class=\"col-sm-12\"><form class=\"toolbar-pf-actions\" [ngClass]=\"{'no-filter-results': config.filterConfig?.resultsCount === 0 && config.filterConfig?.appliedFilters?.length !== 0}\" (submit)=\"$event.preventDefault()\"><div class=\"form-group toolbar-apf-filter\"><pfng-filter-fields [config]=\"config.filterConfig\" #filterFields (onAdd)=\"filterAdded($event)\" (onFieldSelect)=\"handleFilterFieldSelect($event)\" (onSave)=\"handleFilterSave($event)\" (onTypeAhead)=\"handleFilterTypeAhead($event)\" *ngIf=\"config.filterConfig?.fields\"></pfng-filter-fields></div><div class=\"form-group\" *ngIf=\"config.sortConfig?.fields && config.sortConfig?.visible !== false\"><pfng-sort [config]=\"config.sortConfig\" (onChange)=\"sortChange($event)\"></pfng-sort></div><div class=\"form-group toolbar-actions\" *ngIf=\"config.actionConfig !== undefined || actionTemplate !== undefined\"><pfng-action [config]=\"config.actionConfig\" [template]=\"actionTemplate\" (onActionSelect)=\"handleAction($event)\"></pfng-action></div><div class=\"toolbar-pf-action-right\"><div class=\"form-group toolbar-pf-view-selector\" *ngIf=\"viewTemplate !== undefined || (config.views)\"><ng-template [ngTemplateOutlet]=\"viewTemplate\" [ngTemplateOutletContext]=\"{}\"></ng-template><span *ngIf=\"config.views\"><button *ngFor=\"let view of config.views\" class=\"btn btn-link\" [ngClass]=\"{'active': isViewSelected(view), 'disabled': view.disabled === true}\" [attr.aria-label]=\"view.ariaLabel || view.tooltip\" title=\"{{view.tooltip}}\" (click)=\"viewSelected(view)\"><i class=\"{{view.iconStyleClass}}\"></i></button></span></div></div></form><pfng-filter-results [config]=\"config.filterConfig\" (onClear)=\"clearFilter($event)\"></pfng-filter-results></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ToolbarComponent.ctorParameters = function () { return []; };
+    ToolbarComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'actionTemplate': [{ type: Input },],
+        'viewTemplate': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+        'onFilterFieldSelect': [{ type: Output, args: ['onFilterFieldSelect',] },],
+        'onFilterChange': [{ type: Output, args: ['onFilterChange',] },],
+        'onFilterSave': [{ type: Output, args: ['onFilterSave',] },],
+        'onFilterTypeAhead': [{ type: Output, args: ['onFilterTypeAhead',] },],
+        'onSortChange': [{ type: Output, args: ['onSortChange',] },],
+        'onViewSelect': [{ type: Output, args: ['onViewSelect',] },],
+        'filterFields': [{ type: ViewChild, args: ['filterFields',] },],
+    };
     return ToolbarComponent;
 }());
 
-var __decorate$1f = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+/**
+ * A config containing properties for toolbar
+ */
+var ToolbarConfig = /** @class */ (function () {
+    function ToolbarConfig() {
+    }
+    return ToolbarConfig;
+}());
+
 /**
  * A module containing objects associated with the toolbar component
  */
 var ToolbarModule = /** @class */ (function () {
     function ToolbarModule() {
     }
-    ToolbarModule = __decorate$1f([
-        NgModule({
-            imports: [
-                ActionModule,
-                BsDropdownModule.forRoot(),
-                CommonModule,
-                FilterModule,
-                SortModule
-            ],
-            declarations: [ToolbarComponent],
-            exports: [ToolbarComponent],
-            providers: [BsDropdownConfig]
-        })
-    ], ToolbarModule);
+    ToolbarModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        ActionModule,
+                        BsDropdownModule.forRoot(),
+                        CommonModule,
+                        FilterModule,
+                        SortModule
+                    ],
+                    declarations: [ToolbarComponent],
+                    exports: [ToolbarComponent],
+                    providers: [BsDropdownConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    ToolbarModule.ctorParameters = function () { return []; };
     return ToolbarModule;
 }());
 
-var __decorate$1g = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with table components
  */
 var TableModule = /** @class */ (function () {
     function TableModule() {
     }
-    TableModule = __decorate$1g([
-        NgModule({
-            imports: [
-                CommonModule,
-                DragulaModule,
-                EmptyStateModule,
-                FormsModule,
-                PaginationModule,
-                NgxDatatableModule,
-                ToolbarModule
-            ],
-            declarations: [NgxDataTableDndDirective, TableComponent],
-            exports: [TableComponent],
-            providers: [DragulaService]
-        })
-    ], TableModule);
+    TableModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        DragulaModule,
+                        EmptyStateModule,
+                        FormsModule,
+                        PaginationModule,
+                        NgxDatatableModule,
+                        ToolbarModule
+                    ],
+                    declarations: [NgxDataTableDndDirective, TableComponent],
+                    exports: [TableComponent],
+                    providers: [DragulaService]
+                },] },
+    ];
+    /** @nocollapse */
+    TableModule.ctorParameters = function () { return []; };
     return TableModule;
 }());
 
@@ -32698,15 +31725,6 @@ var WizardBase = /** @class */ (function () {
     return WizardBase;
 }());
 
-/**
- * A config containing properties for wizard
- */
-var WizardConfig = /** @class */ (function () {
-    function WizardConfig() {
-    }
-    return WizardConfig;
-}());
-
 var __extends$2h = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -32717,15 +31735,6 @@ var __extends$2h = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$1h = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$L = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 /**
  * Wizard component
  */
@@ -33064,40 +32073,34 @@ var WizardComponent = /** @class */ (function (_super) {
             this.goTo(step, true, false);
         }
     };
-    __decorate$1h([
-        Input(),
-        __metadata$L("design:type", WizardConfig)
-    ], WizardComponent.prototype, "config", void 0);
-    __decorate$1h([
-        Output('onCancel'),
-        __metadata$L("design:type", Object)
-    ], WizardComponent.prototype, "onCancel", void 0);
-    __decorate$1h([
-        Output('onFinish'),
-        __metadata$L("design:type", Object)
-    ], WizardComponent.prototype, "onFinish", void 0);
-    __decorate$1h([
-        Output('onNext'),
-        __metadata$L("design:type", Object)
-    ], WizardComponent.prototype, "onNext", void 0);
-    __decorate$1h([
-        Output('onPrevious'),
-        __metadata$L("design:type", Object)
-    ], WizardComponent.prototype, "onPrevious", void 0);
-    __decorate$1h([
-        Output('onStepChange'),
-        __metadata$L("design:type", Object)
-    ], WizardComponent.prototype, "onStepChange", void 0);
-    WizardComponent = __decorate$1h([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-wizard',
-            template: "<div class=\"modal-header\" *ngIf=\"!config?.hideHeader\"><button class=\"close wizard-pf-dismiss\" aria-hidden=\"true\" aria-label=\"Close\" type=\"button\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\"><span class=\"pficon pficon-close\"></span></button><h4 class=\"modal-title\">{{config?.title}}</h4></div><div class=\"modal-body wizard-pf-body clearfix\"><div class=\"wizard-pf-steps\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"config?.ready\"><ul class=\"wizard-pf-steps-indicator\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"!config?.hideIndicators\"><li class=\"wizard-pf-step\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps(); let i = index\"><a (click)=\"stepClick(step)\" [ngClass]=\"{'disabled': !allowStepIndicatorClick(step)}\"><span class=\"wizard-pf-step-number\">{{i + 1}}</span> <span class=\"wizard-pf-step-title\">{{step.config?.title}}</span></a></li></ul></div><div *ngIf=\"!config?.ready\" class=\"wizard-pf-main pfng-wizard-main\"><div class=\"wizard-pf-loading blank-slate-pf\"><div class=\"spinner spinner-lg blank-slate-pf-icon\"></div><h3 class=\"blank-slate-pf-main-action\">{{config?.loadingTitle}}</h3><p class=\"blank-slate-pf-secondary-action\">{{config?.loadingSecondaryInfo}}</p></div></div><div class=\"pfng-wizard-position-override\"><ng-content></ng-content></div></div><div class=\"modal-footer wizard-pf-footer pfng-wizard-position-override\" [ngClass]=\"{'pfng-footer-inline': config?.embedInPage}\"><button class=\"btn btn-default wizard-btn btn-cancel\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\">{{config?.cancelTitle}}</button> <button class=\"btn btn-default pfng-wizard-previous-btn\" type=\"button\" tooltip=\"{{selectedStep?.config?.previousTooltip}}\" placement=\"left\" [ngClass]=\"{'pfng-wizard-btn-no-back': config?.hidePreviousButton}\" [disabled]=\"!config?.ready || config?.done || !selectedStep?.previousEnabled || firstStep\" (click)=\"previous(true)\">{{config?.previousTitle}}</button> <button class=\"btn btn-primary wizard-pf-next\" type=\"button\" tooltip=\"{{selectedStep?.config?.nextTooltip}}\" placement=\"left\" [disabled]=\"!config?.ready || !selectedStep?.nextEnabled\" (click)=\"next(true)\">{{config?.nextTitle}}</button> <button class=\"btn btn-default btn-cancel pfng-cancel-inline\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"config?.embedInPage\">{{config?.cancelTitle}}</button></div>"
-        }),
-        __metadata$L("design:paramtypes", [])
-    ], WizardComponent);
+    WizardComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-wizard',
+                    template: "<div class=\"modal-header\" *ngIf=\"!config?.hideHeader\"><button class=\"close wizard-pf-dismiss\" aria-hidden=\"true\" aria-label=\"Close\" type=\"button\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\"><span class=\"pficon pficon-close\"></span></button><h4 class=\"modal-title\">{{config?.title}}</h4></div><div class=\"modal-body wizard-pf-body clearfix\"><div class=\"wizard-pf-steps\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"config?.ready\"><ul class=\"wizard-pf-steps-indicator\" [ngClass]=\"{'invisible': !config?.ready}\" *ngIf=\"!config?.hideIndicators\"><li class=\"wizard-pf-step\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps(); let i = index\"><a (click)=\"stepClick(step)\" [ngClass]=\"{'disabled': !allowStepIndicatorClick(step)}\"><span class=\"wizard-pf-step-number\">{{i + 1}}</span> <span class=\"wizard-pf-step-title\">{{step.config?.title}}</span></a></li></ul></div><div *ngIf=\"!config?.ready\" class=\"wizard-pf-main pfng-wizard-main\"><div class=\"wizard-pf-loading blank-slate-pf\"><div class=\"spinner spinner-lg blank-slate-pf-icon\"></div><h3 class=\"blank-slate-pf-main-action\">{{config?.loadingTitle}}</h3><p class=\"blank-slate-pf-secondary-action\">{{config?.loadingSecondaryInfo}}</p></div></div><div class=\"pfng-wizard-position-override\"><ng-content></ng-content></div></div><div class=\"modal-footer wizard-pf-footer pfng-wizard-position-override\" [ngClass]=\"{'pfng-footer-inline': config?.embedInPage}\"><button class=\"btn btn-default wizard-btn btn-cancel\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"!config?.embedInPage\">{{config?.cancelTitle}}</button> <button class=\"btn btn-default pfng-wizard-previous-btn\" type=\"button\" tooltip=\"{{selectedStep?.config?.previousTooltip}}\" placement=\"left\" [ngClass]=\"{'pfng-wizard-btn-no-back': config?.hidePreviousButton}\" [disabled]=\"!config?.ready || config?.done || !selectedStep?.previousEnabled || firstStep\" (click)=\"previous(true)\">{{config?.previousTitle}}</button> <button class=\"btn btn-primary wizard-pf-next\" type=\"button\" tooltip=\"{{selectedStep?.config?.nextTooltip}}\" placement=\"left\" [disabled]=\"!config?.ready || !selectedStep?.nextEnabled\" (click)=\"next(true)\">{{config?.nextTitle}}</button> <button class=\"btn btn-default btn-cancel pfng-cancel-inline\" type=\"button\" [disabled]=\"config?.done\" (click)=\"cancel()\" *ngIf=\"config?.embedInPage\">{{config?.cancelTitle}}</button></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    WizardComponent.ctorParameters = function () { return []; };
+    WizardComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'onCancel': [{ type: Output, args: ['onCancel',] },],
+        'onFinish': [{ type: Output, args: ['onFinish',] },],
+        'onNext': [{ type: Output, args: ['onNext',] },],
+        'onPrevious': [{ type: Output, args: ['onPrevious',] },],
+        'onStepChange': [{ type: Output, args: ['onStepChange',] },],
+    };
     return WizardComponent;
 }(WizardBase));
+
+/**
+ * A config containing properties for wizard
+ */
+var WizardConfig = /** @class */ (function () {
+    function WizardConfig() {
+    }
+    return WizardConfig;
+}());
 
 /**
  * An object containing properties for wizard events
@@ -33108,18 +32111,6 @@ var WizardEvent = /** @class */ (function () {
     return WizardEvent;
 }());
 
-var __decorate$1i = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$M = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param$1 = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 /**
  * Wizard review component
  *
@@ -33164,15 +32155,17 @@ var WizardReviewComponent = /** @class */ (function () {
     WizardReviewComponent.prototype.toggleReviewDetails = function (step) {
         step.config.expandReviewDetails = !step.config.expandReviewDetails;
     };
-    WizardReviewComponent = __decorate$1i([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-wizard-review',
-            template: "<div class=\"wizard-pf-review-page\"><div class=\"wizard-pf-review-steps\"><ul class=\"list-group\"><li class=\"list-group-item\" *ngFor=\"let step of getReviewSteps()\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': step.config.expandReview !== true}\" (click)=\"toggleReview(step)\">{{step.config.title}}</a><div class=\"wizard-pf-review-substeps\" [ngClass]=\"{'collapse': step.config.expandReview !== true}\"><ul class=\"list-group\" *ngIf=\"step.hasSubsteps\"><li class=\"list-group-item\" *ngFor=\"let substep of getReviewSubsteps(step)\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': substep.config.expandReviewDetails !== true}\" (click)=\"toggleReviewDetails(substep)\"><span class=\"wizard-pf-substep-number\">{{getSubstepNumber(step, substep)}}</span> <span class=\"wizard-pf-substep-title\">{{substep.config.title}}</span></a><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': substep.config.expandReviewDetails !== true}\"><ng-template [ngTemplateOutlet]=\"substep.reviewTemplate\"></ng-template></div></li></ul><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': step.config.expandReviewDetails !== true}\" *ngIf=\"step.reviewTemplate\"><ng-template [ngTemplateOutlet]=\"step.reviewTemplate\"></ng-template></div></div></li></ul></div></div>"
-        }),
-        __param$1(0, Host()),
-        __metadata$M("design:paramtypes", [WizardComponent])
-    ], WizardReviewComponent);
+    WizardReviewComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-wizard-review',
+                    template: "<div class=\"wizard-pf-review-page\"><div class=\"wizard-pf-review-steps\"><ul class=\"list-group\"><li class=\"list-group-item\" *ngFor=\"let step of getReviewSteps()\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': step.config.expandReview !== true}\" (click)=\"toggleReview(step)\">{{step.config.title}}</a><div class=\"wizard-pf-review-substeps\" [ngClass]=\"{'collapse': step.config.expandReview !== true}\"><ul class=\"list-group\" *ngIf=\"step.hasSubsteps\"><li class=\"list-group-item\" *ngFor=\"let substep of getReviewSubsteps(step)\"><a class=\"apf-form-collapse\" [ngClass]=\"{'collapsed': substep.config.expandReviewDetails !== true}\" (click)=\"toggleReviewDetails(substep)\"><span class=\"wizard-pf-substep-number\">{{getSubstepNumber(step, substep)}}</span> <span class=\"wizard-pf-substep-title\">{{substep.config.title}}</span></a><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': substep.config.expandReviewDetails !== true}\"><ng-template [ngTemplateOutlet]=\"substep.reviewTemplate\"></ng-template></div></li></ul><div class=\"wizard-pf-review-content\" [ngClass]=\"{'collapse': step.config.expandReviewDetails !== true}\" *ngIf=\"step.reviewTemplate\"><ng-template [ngTemplateOutlet]=\"step.reviewTemplate\"></ng-template></div></div></li></ul></div></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    WizardReviewComponent.ctorParameters = function () { return [
+        { type: WizardComponent, decorators: [{ type: Host },] },
+    ]; };
     return WizardReviewComponent;
 }());
 
@@ -33185,15 +32178,6 @@ var WizardStep = /** @class */ (function () {
     return WizardStep;
 }());
 
-/**
- * A config containing properties for wizard steps and substeps
- */
-var WizardStepConfig = /** @class */ (function () {
-    function WizardStepConfig() {
-    }
-    return WizardStepConfig;
-}());
-
 var __extends$2i = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -33204,18 +32188,6 @@ var __extends$2i = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate$1j = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$N = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param$2 = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 /**
  * Wizard step component. Each step can stand alone or have substeps.
  *
@@ -33491,42 +32463,34 @@ var WizardStepComponent = /** @class */ (function (_super) {
             this.goTo(step);
         }
     };
-    __decorate$1j([
-        Input(),
-        __metadata$N("design:type", WizardStepConfig)
-    ], WizardStepComponent.prototype, "config", void 0);
-    __decorate$1j([
-        Input(),
-        __metadata$N("design:type", TemplateRef)
-    ], WizardStepComponent.prototype, "reviewTemplate", void 0);
-    __decorate$1j([
-        Output('onShow'),
-        __metadata$N("design:type", Object)
-    ], WizardStepComponent.prototype, "onShow", void 0);
-    WizardStepComponent = __decorate$1j([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-wizard-step',
-            template: "<section class=\"wizard-pf-row\" *ngIf=\"selected\"><div class=\"wizard-pf-sidebar\" [ngClass]=\"wizard?.config?.sidebarStyleClass\" [ngStyle]=\"wizard?.contentStyle\" *ngIf=\"hasSubsteps && !wizard?.config?.hideSidebar\"><ul class=\"list-group\"><li class=\"list-group-item\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps()\"><a (click)=\"stepClick(step)\"><span class=\"wizard-pf-substep-number\">{{getDisplayNumber(step)}}</span> <span class=\"wizard-pf-substep-title\">{{step.config?.title}}</span></a></li></ul></div><div class=\"wizard-pf-main {{wizard.config?.stepStyleClass}}\" [ngClass]=\"{'pfng-wizard-single-step': !hasSubsteps || wizard?.config?.hideSidebar}\" [ngStyle]=\"wizard?.contentStyle\"><div class=\"wizard-pf-contents\"><ng-content></ng-content></div></div></section>"
-        }),
-        __param$2(0, Host()),
-        __metadata$N("design:paramtypes", [WizardComponent])
-    ], WizardStepComponent);
+    WizardStepComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-wizard-step',
+                    template: "<section class=\"wizard-pf-row\" *ngIf=\"selected\"><div class=\"wizard-pf-sidebar\" [ngClass]=\"wizard?.config?.sidebarStyleClass\" [ngStyle]=\"wizard?.contentStyle\" *ngIf=\"hasSubsteps && !wizard?.config?.hideSidebar\"><ul class=\"list-group\"><li class=\"list-group-item\" [ngClass]=\"{'active': step.selected}\" *ngFor=\"let step of getEnabledSteps()\"><a (click)=\"stepClick(step)\"><span class=\"wizard-pf-substep-number\">{{getDisplayNumber(step)}}</span> <span class=\"wizard-pf-substep-title\">{{step.config?.title}}</span></a></li></ul></div><div class=\"wizard-pf-main {{wizard.config?.stepStyleClass}}\" [ngClass]=\"{'pfng-wizard-single-step': !hasSubsteps || wizard?.config?.hideSidebar}\" [ngStyle]=\"wizard?.contentStyle\"><div class=\"wizard-pf-contents\"><ng-content></ng-content></div></div></section>"
+                },] },
+    ];
+    /** @nocollapse */
+    WizardStepComponent.ctorParameters = function () { return [
+        { type: WizardComponent, decorators: [{ type: Host },] },
+    ]; };
+    WizardStepComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'reviewTemplate': [{ type: Input },],
+        'onShow': [{ type: Output, args: ['onShow',] },],
+    };
     return WizardStepComponent;
 }(WizardBase));
 
-var __decorate$1k = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata$O = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param$3 = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
+/**
+ * A config containing properties for wizard steps and substeps
+ */
+var WizardStepConfig = /** @class */ (function () {
+    function WizardStepConfig() {
+    }
+    return WizardStepConfig;
+}());
+
 /**
  * Wizard substep component.
  *
@@ -33624,53 +32588,44 @@ var WizardSubstepComponent = /** @class */ (function () {
             step: this
         });
     };
-    __decorate$1k([
-        Input(),
-        __metadata$O("design:type", WizardStepConfig)
-    ], WizardSubstepComponent.prototype, "config", void 0);
-    __decorate$1k([
-        Input(),
-        __metadata$O("design:type", TemplateRef)
-    ], WizardSubstepComponent.prototype, "reviewTemplate", void 0);
-    __decorate$1k([
-        Output('onShow'),
-        __metadata$O("design:type", Object)
-    ], WizardSubstepComponent.prototype, "onShow", void 0);
-    WizardSubstepComponent = __decorate$1k([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-wizard-substep',
-            template: "<ng-content *ngIf=\"selected\"></ng-content>"
-        }),
-        __param$3(0, Host()),
-        __metadata$O("design:paramtypes", [WizardStepComponent])
-    ], WizardSubstepComponent);
+    WizardSubstepComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-wizard-substep',
+                    template: "<ng-content *ngIf=\"selected\"></ng-content>"
+                },] },
+    ];
+    /** @nocollapse */
+    WizardSubstepComponent.ctorParameters = function () { return [
+        { type: WizardStepComponent, decorators: [{ type: Host },] },
+    ]; };
+    WizardSubstepComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'reviewTemplate': [{ type: Input },],
+        'onShow': [{ type: Output, args: ['onShow',] },],
+    };
     return WizardSubstepComponent;
 }());
 
-var __decorate$1l = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 /**
  * A module containing objects associated with the wizard component
  */
 var WizardModule = /** @class */ (function () {
     function WizardModule() {
     }
-    WizardModule = __decorate$1l([
-        NgModule({
-            imports: [
-                CommonModule,
-                TooltipModule.forRoot()
-            ],
-            declarations: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
-            exports: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
-            providers: [TooltipConfig]
-        })
-    ], WizardModule);
+    WizardModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        TooltipModule.forRoot()
+                    ],
+                    declarations: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
+                    exports: [WizardComponent, WizardReviewComponent, WizardStepComponent, WizardSubstepComponent],
+                    providers: [TooltipConfig]
+                },] },
+    ];
+    /** @nocollapse */
+    WizardModule.ctorParameters = function () { return []; };
     return WizardModule;
 }());
 

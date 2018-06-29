@@ -1,12 +1,3 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -38,19 +29,20 @@ var ChartModule = /** @class */ (function () {
     function ChartModule() {
         console.log('patternfly-ng: ChartModule is deprecated; use DonutChartModule or SparklineChartModule');
     }
-    ChartModule = __decorate([
-        NgModule({
-            imports: [
-                CommonModule,
-                DonutChartModule,
-                FormsModule,
-                SparklineChartModule
-            ],
-            exports: [DonutComponent, SparklineComponent],
-            providers: [ChartDefaults, WindowReference]
-        }),
-        __metadata("design:paramtypes", [])
-    ], ChartModule);
+    ChartModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        DonutChartModule,
+                        FormsModule,
+                        SparklineChartModule
+                    ],
+                    exports: [DonutComponent, SparklineComponent],
+                    providers: [ChartDefaults, WindowReference]
+                },] },
+    ];
+    /** @nocollapse */
+    ChartModule.ctorParameters = function () { return []; };
     return ChartModule;
 }());
 export { ChartModule };

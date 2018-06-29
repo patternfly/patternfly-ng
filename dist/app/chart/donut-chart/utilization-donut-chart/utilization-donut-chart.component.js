@@ -8,19 +8,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { ChartDefaults } from '../../chart-defaults';
 import { DonutChartBaseComponent } from '../donut-chart-base.component';
-import { UtilizationDonutChartConfig } from './utilization-donut-chart-config';
 import { WindowReference } from '../../../utilities/window.reference';
 /**
  * Donut Utilization chart component.
@@ -141,22 +131,22 @@ var UtilizationDonutChartComponent = /** @class */ (function (_super) {
         }
         return color;
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", UtilizationDonutChartConfig)
-    ], UtilizationDonutChartComponent.prototype, "config", void 0);
-    __decorate([
-        Output(),
-        __metadata("design:type", EventEmitter)
-    ], UtilizationDonutChartComponent.prototype, "thresholdChanged", void 0);
-    UtilizationDonutChartComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-utilization-donut-chart',
-            template: "<div class=\"pct-donut-chart-pf\"><span [ngClass]=\"{'pct-donut-chart-pf-left': config.outerLabelAlignment === 'left',\n                   'pct-donut-chart-pf-right': config.outerLabelAlignment === 'right'}\"><span class=\"pct-donut-chart-pf-chart\"><div #chartElement id=\"{{config.chartId}}\"></div></span><span [ngClass]=\"{'text-right': config.outerLabelAlignment === 'left',\n                      'text-left': config.outerLabelAlignment === 'right',\n                      'text-center': config.outerLabelAlignment !== 'left' && config.outerLabelAlignment !== 'right'}\"><ng-content></ng-content></span></span></div>"
-        }),
-        __metadata("design:paramtypes", [ChartDefaults, WindowReference])
-    ], UtilizationDonutChartComponent);
+    UtilizationDonutChartComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-utilization-donut-chart',
+                    template: "<div class=\"pct-donut-chart-pf\"><span [ngClass]=\"{'pct-donut-chart-pf-left': config.outerLabelAlignment === 'left',\n                   'pct-donut-chart-pf-right': config.outerLabelAlignment === 'right'}\"><span class=\"pct-donut-chart-pf-chart\"><div #chartElement id=\"{{config.chartId}}\"></div></span><span [ngClass]=\"{'text-right': config.outerLabelAlignment === 'left',\n                      'text-left': config.outerLabelAlignment === 'right',\n                      'text-center': config.outerLabelAlignment !== 'left' && config.outerLabelAlignment !== 'right'}\"><ng-content></ng-content></span></span></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    UtilizationDonutChartComponent.ctorParameters = function () { return [
+        { type: ChartDefaults, },
+        { type: WindowReference, },
+    ]; };
+    UtilizationDonutChartComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'thresholdChanged': [{ type: Output },],
+    };
     return UtilizationDonutChartComponent;
 }(DonutChartBaseComponent));
 export { UtilizationDonutChartComponent };

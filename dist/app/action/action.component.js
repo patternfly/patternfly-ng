@@ -1,15 +1,5 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { clone, cloneDeep, defaults, isEqual } from 'lodash';
-import { ActionConfig } from './action-config';
 /**
  * List actions component.
  *
@@ -119,26 +109,22 @@ var ActionComponent = /** @class */ (function () {
         }
         return retval;
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", ActionConfig)
-    ], ActionComponent.prototype, "config", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", TemplateRef)
-    ], ActionComponent.prototype, "template", void 0);
-    __decorate([
-        Output('onActionSelect'),
-        __metadata("design:type", Object)
-    ], ActionComponent.prototype, "onActionSelect", void 0);
-    ActionComponent = __decorate([
-        Component({
-            encapsulation: ViewEncapsulation.None,
-            selector: 'pfng-action',
-            template: "<button class=\"btn btn-default primary-action {{action.styleClass}}\" title=\"{{action.tooltip}}\" type=\"button\" *ngFor=\"let action of config.primaryActions\" [disabled]=\"action.disabled\" [ngClass]=\"{'invisible': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button><ng-template *ngIf=\"template !== undefined\" let-action=\"action\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><div class=\"dropdown-kebab-pf pull-right {{config.moreActionsStyleClass}}\" dropdown [ngClass]=\"{'dropdown': !isMoreActionsDropup, 'dropup': isMoreActionsDropup, 'invisible': config.moreActionsVisible === false}\" *ngIf=\"config.moreActions?.length > 0\"><button class=\"btn btn-link dropdown-toggle\" type=\"button\" dropdownToggle [ngClass]=\"{'disabled': config.moreActionsDisabled}\" (click)=\"initMoreActionsDropup($event)\" [attr.aria-label]=\"config.moreActionsAriaLabel\"><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu-right dropdown-menu\" aria-labelledby=\"dropdownKebab\" *dropdownMenu><li *ngFor=\"let action of config.moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div>"
-        }),
-        __metadata("design:paramtypes", [ElementRef])
-    ], ActionComponent);
+    ActionComponent.decorators = [
+        { type: Component, args: [{
+                    encapsulation: ViewEncapsulation.None,
+                    selector: 'pfng-action',
+                    template: "<button class=\"btn btn-default primary-action {{action.styleClass}}\" title=\"{{action.tooltip}}\" type=\"button\" *ngFor=\"let action of config.primaryActions\" [disabled]=\"action.disabled\" [ngClass]=\"{'invisible': action.visible === false}\" (click)=\"handleAction(action)\"><div *ngIf=\"action.template; then showButtonTemplate else showButton\"></div><ng-template #showButtonTemplate let-action=\"action\" [ngTemplateOutlet]=\"action.template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><ng-template #showButton>{{action.title}}</ng-template></button><ng-template *ngIf=\"template !== undefined\" let-action=\"action\" [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{ action: action }\"></ng-template><div class=\"dropdown-kebab-pf pull-right {{config.moreActionsStyleClass}}\" dropdown [ngClass]=\"{'dropdown': !isMoreActionsDropup, 'dropup': isMoreActionsDropup, 'invisible': config.moreActionsVisible === false}\" *ngIf=\"config.moreActions?.length > 0\"><button class=\"btn btn-link dropdown-toggle\" type=\"button\" dropdownToggle [ngClass]=\"{'disabled': config.moreActionsDisabled}\" (click)=\"initMoreActionsDropup($event)\" [attr.aria-label]=\"config.moreActionsAriaLabel\"><span class=\"fa fa-ellipsis-v\"></span></button><ul class=\"dropdown-menu-right dropdown-menu\" aria-labelledby=\"dropdownKebab\" *dropdownMenu><li *ngFor=\"let action of config.moreActions\" class=\"{{action.styleClass}}\" [attr.role]=\"action.separator === true ? 'separator' : 'menuitem'\" [ngClass]=\"{'divider': action.separator === true, 'disabled': action.disabled === true, 'hidden': action.visible === false}\"><a *ngIf=\"action.disabled !== true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" (click)=\"handleAction(action)\">{{action.title}}</a> <a *ngIf=\"action.disabled === true && action.separator !== true\" class=\"dropdown-item secondary-action\" href=\"javascript:void(0)\" title=\"{{action.tooltip}}\" onclick=\"return false;\">{{action.title}}</a></li></ul></div>"
+                },] },
+    ];
+    /** @nocollapse */
+    ActionComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
+    ActionComponent.propDecorators = {
+        'config': [{ type: Input },],
+        'template': [{ type: Input },],
+        'onActionSelect': [{ type: Output, args: ['onActionSelect',] },],
+    };
     return ActionComponent;
 }());
 export { ActionComponent };
