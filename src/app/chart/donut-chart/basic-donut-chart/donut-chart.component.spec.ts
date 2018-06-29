@@ -12,7 +12,7 @@ import { DonutChartConfig } from './donut-chart-config';
 import { DonutChartComponent } from './donut-chart.component';
 import { WindowReference } from '../../../utilities/window.reference';
 
-describe('Component: donut chart', () => {
+describe('Donut Chart component', () => {
   let comp: DonutChartComponent;
   let fixture: ComponentFixture<DonutChartComponent>;
 

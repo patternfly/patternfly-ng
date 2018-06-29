@@ -12,7 +12,7 @@ import { BlockCopyComponent } from './block-copy.component';
 
 class MockedCopyService {}
 
-describe('Block Copy Component - ', () => {
+describe('Block Copy component', () => {
 
   let blockCopy: BlockCopyComponent;
   let fixture: ComponentFixture<BlockCopyComponent>;

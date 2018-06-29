@@ -20,7 +20,16 @@ export class CopyService {
   /**
    * The default constructor
    */
-  constructor(@Inject(DOCUMENT) private dom: any) {}
+  constructor(@Inject(DOCUMENT) private _dom: any) {}
+
+  /**
+   * Accessor for testing purposes only
+   *
+   * @returns {any}
+   */
+  get dom(): any {
+    return this._dom;
+  }
 
   /**
    * Copy a value to the user's system clipboard
