@@ -74,6 +74,24 @@
 					</div>
 					<p>Note: Using the kebab menu (more actions) with the close button is not currently supported. If both are specified the
 					close button will not be shown. Add a close menu item if you want to have both capabilities.</p>
+					<p>Usage:
+						<code><pre>
+// Individual module import
+import { ToastNotificationModule } from &#39;patternfly-ng/notification&#39;;
+// Or
+import { ToastNotificationModule } from &#39;patternfly-ng&#39;;</p>
+<p>// NGX Bootstrap
+import { BsDropdownConfig, BsDropdownModule } from &#39;ngx-bootstrap/dropdown&#39;;</p>
+<p>&#64;NgModule({
+  imports: [ToastNotificationModule, BsDropdownModule.forRoot(),...],
+  providers: [BsDropdownConfig]
+})
+export class AppModule(){}
+</pre></code></p>
+					<p>Optional:
+						<code><pre>
+import { Notification, NotificationEvent, NotificationType } from &#39;patternfly-ng/notification&#39;;
+</pre></code></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -146,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L80">notification/toast-notification/toast-notification.component.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L102">notification/toast-notification/toast-notification.component.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -167,7 +185,7 @@
 					<div class="tsd-signature tsd-kind-icon">header<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L33">notification/toast-notification/toast-notification.component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L55">notification/toast-notification/toast-notification.component.ts:55</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -182,7 +200,7 @@
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L38">notification/toast-notification/toast-notification.component.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L60">notification/toast-notification/toast-notification.component.ts:60</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -197,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">more<wbr>Actions<span class="tsd-signature-symbol">:</span> <a href="action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L43">notification/toast-notification/toast-notification.component.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L65">notification/toast-notification/toast-notification.component.ts:65</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,7 +230,7 @@
 					<div class="tsd-signature tsd-kind-icon">notification<span class="tsd-signature-symbol">:</span> <a href="notification.html" class="tsd-signature-type">Notification</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L48">notification/toast-notification/toast-notification.component.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L70">notification/toast-notification/toast-notification.component.ts:70</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -227,7 +245,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Action<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L68">notification/toast-notification/toast-notification.component.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L90">notification/toast-notification/toast-notification.component.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -242,7 +260,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Close<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L73">notification/toast-notification/toast-notification.component.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L95">notification/toast-notification/toast-notification.component.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -257,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Viewing<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L78">notification/toast-notification/toast-notification.component.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L100">notification/toast-notification/toast-notification.component.ts:100</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -272,7 +290,7 @@
 					<div class="tsd-signature tsd-kind-icon">primary<wbr>Action<span class="tsd-signature-symbol">:</span> <a href="action.html" class="tsd-signature-type">Action</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L53">notification/toast-notification/toast-notification.component.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L75">notification/toast-notification/toast-notification.component.ts:75</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -287,7 +305,7 @@
 					<div class="tsd-signature tsd-kind-icon">show<wbr>Close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L58">notification/toast-notification/toast-notification.component.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L80">notification/toast-notification/toast-notification.component.ts:80</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -302,7 +320,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L63">notification/toast-notification/toast-notification.component.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L85">notification/toast-notification/toast-notification.component.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -324,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L111">notification/toast-notification/toast-notification.component.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L133">notification/toast-notification/toast-notification.component.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -350,7 +368,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L117">notification/toast-notification/toast-notification.component.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L139">notification/toast-notification/toast-notification.component.ts:139</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -373,7 +391,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L124">notification/toast-notification/toast-notification.component.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L146">notification/toast-notification/toast-notification.component.ts:146</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -396,7 +414,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L99">notification/toast-notification/toast-notification.component.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L121">notification/toast-notification/toast-notification.component.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -418,7 +436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/notification/toast-notification/toast-notification.component.ts#L93">notification/toast-notification/toast-notification.component.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/notification/toast-notification/toast-notification.component.ts#L115">notification/toast-notification/toast-notification.component.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

@@ -69,6 +69,24 @@
 					<div class="lead">
 						<p>Toolbar component</p>
 					</div>
+					<p>Usage:
+						<code><pre>
+// Individual module import
+import { ToolbarModule } from &#39;patternfly-ng/toolbar&#39;;
+// Or
+import { ToolbarModule } from &#39;patternfly-ng&#39;;</p>
+<p>// NGX Bootstrap
+import { BsDropdownConfig, BsDropdownModule } from &#39;ngx-bootstrap/dropdown&#39;;</p>
+<p>&#64;NgModule({
+  imports: [BsDropdownModule.forRoot(), ToolbarModule,...],
+  providers: [BsDropdownConfig]
+})
+export class AppModule(){}
+</pre></code></p>
+					<p>Optional:
+						<code><pre>
+import { ToolbarConfig, ToolbarView } from &#39;patternfly-ng/toolbar&#39;;
+</pre></code></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -136,7 +154,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L87">toolbar/toolbar.component.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L109">toolbar/toolbar.component.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">action<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L40">toolbar/toolbar.component.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L62">toolbar/toolbar.component.ts:62</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="toolbarconfig.html" class="tsd-signature-type">ToolbarConfig</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L35">toolbar/toolbar.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L57">toolbar/toolbar.component.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -187,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Action<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L50">toolbar/toolbar.component.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L72">toolbar/toolbar.component.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -202,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Filter<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L60">toolbar/toolbar.component.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L82">toolbar/toolbar.component.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -217,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Filter<wbr>Field<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L55">toolbar/toolbar.component.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L77">toolbar/toolbar.component.ts:77</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,7 +250,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Filter<wbr>Save<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L65">toolbar/toolbar.component.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L87">toolbar/toolbar.component.ts:87</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -247,7 +265,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Filter<wbr>Type<wbr>Ahead<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L70">toolbar/toolbar.component.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L92">toolbar/toolbar.component.ts:92</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -262,7 +280,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Sort<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L75">toolbar/toolbar.component.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L97">toolbar/toolbar.component.ts:97</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -277,7 +295,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>View<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L80">toolbar/toolbar.component.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L102">toolbar/toolbar.component.ts:102</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -292,7 +310,7 @@
 					<div class="tsd-signature tsd-kind-icon">view<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L45">toolbar/toolbar.component.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L67">toolbar/toolbar.component.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -314,7 +332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L155">toolbar/toolbar.component.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L177">toolbar/toolbar.component.ts:177</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -345,7 +363,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L107">toolbar/toolbar.component.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L129">toolbar/toolbar.component.ts:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -367,7 +385,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L100">toolbar/toolbar.component.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L122">toolbar/toolbar.component.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -389,7 +407,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L165">toolbar/toolbar.component.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L187">toolbar/toolbar.component.ts:187</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -411,7 +429,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/toolbar/toolbar.component.ts#L117">toolbar/toolbar.component.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/toolbar/toolbar.component.ts#L139">toolbar/toolbar.component.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

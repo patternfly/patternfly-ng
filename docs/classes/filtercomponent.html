@@ -69,6 +69,27 @@
 					<div class="lead">
 						<p>Filter component</p>
 					</div>
+					<p>Usage:
+						<code><pre>
+// Individual module import
+import { FilterModule } from &#39;patternfly-ng/filter&#39;;
+// Or
+import { FilterModule } from &#39;patternfly-ng&#39;;</p>
+<p>&#64;NgModule({
+  imports: [FilterModule,...]
+})
+export class AppModule(){}
+</pre></code></p>
+					<p>Optional:
+						<code><pre>
+import {
+  Filter,
+  FilterConfig,
+  FilterField,
+  FilterEvent,
+  FilterType
+} from &#39;patternfly-ng/filter&#39;;
+</pre></code></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -137,7 +158,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L67">filter/filter.component.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L91">filter/filter.component.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -158,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="filterconfig.html" class="tsd-signature-type">FilterConfig</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L32">filter/filter.component.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L56">filter/filter.component.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -173,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L37">filter/filter.component.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L61">filter/filter.component.ts:61</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L42">filter/filter.component.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L66">filter/filter.component.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -203,7 +224,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Filter<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L47">filter/filter.component.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L71">filter/filter.component.ts:71</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -218,7 +239,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Save<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L52">filter/filter.component.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L76">filter/filter.component.ts:76</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,7 +254,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Type<wbr>Ahead<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L57">filter/filter.component.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L81">filter/filter.component.ts:81</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -255,7 +276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L117">filter/filter.component.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L141">filter/filter.component.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L139">filter/filter.component.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L163">filter/filter.component.ts:163</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -317,7 +338,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L151">filter/filter.component.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L175">filter/filter.component.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -348,7 +369,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L160">filter/filter.component.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L184">filter/filter.component.ts:184</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,7 +400,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L87">filter/filter.component.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L111">filter/filter.component.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -401,7 +422,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L80">filter/filter.component.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L104">filter/filter.component.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -423,7 +444,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L167">filter/filter.component.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L191">filter/filter.component.ts:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -445,7 +466,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L176">filter/filter.component.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L200">filter/filter.component.ts:200</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -476,7 +497,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L97">filter/filter.component.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L121">filter/filter.component.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -498,7 +519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/filter/filter.component.ts#L185">filter/filter.component.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/filter/filter.component.ts#L209">filter/filter.component.ts:209</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
