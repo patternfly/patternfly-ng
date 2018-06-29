@@ -15,7 +15,7 @@ import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 
 /**
- * Component for the filter results
+ * Helper component for the filter results
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

@@ -18,6 +18,19 @@ import {
  * negative value. Setting the <code>blockInputAtMaxLimit</code> to <em>true</em>, will block additional input into the
  * text field after the max has been reached; additionally a right-click 'paste' will only paste characters until the
  * maximum character limit is reached.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { RemainingCharsCountModule } from 'patternfly-ng/remainingCharsCount';
+ * // Or
+ * import { RemainingCharsCountModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [RemainingCharsCountModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 @Directive({
   selector: '[pfng-remaining-chars-count]'

@@ -9,6 +9,19 @@ import { orderBy } from 'lodash';
  *
  * Example:
  * <div *ngFor="let item of (items | sortPin: 'name': true)">
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { SortArrayPipeModule } from 'patternfly-ng/pipe';
+ * // Or
+ * import { SortArrayPipeModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [SortArrayPipeModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 @Pipe({ name: 'sortArray'})
 export class SortArrayPipe implements PipeTransform {

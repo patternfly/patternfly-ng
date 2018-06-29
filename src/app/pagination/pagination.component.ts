@@ -15,6 +15,28 @@ import { PaginationEvent } from './pagination-event';
 
 /**
  * Component for rendering pagination
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { PaginationModule } from 'patternfly-ng/pagination';
+ * // Or
+ * import { PaginationModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [PaginationModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { PaginationConfig, PaginationEvent } from 'patternfly-ng/pagination';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

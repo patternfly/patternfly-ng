@@ -19,6 +19,28 @@ import { ActionConfig } from './action-config';
  * List actions component.
  *
  * By default, buttons and kebab have no padding so they may inherit stying from components such as list and toolbar.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ActionModule } from 'patternfly-ng/action';
+ * // Or
+ * import { ActionModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [ActionModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Action, ActionConfig } from 'patternfly-ng/action';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

@@ -16,7 +16,7 @@ import { FilterField } from './filter-field';
 import { FilterQuery } from './filter-query';
 
 /**
- * Component for the filter query field and filter query dropdown
+ * Helper component for the filter query field and filter query dropdown
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

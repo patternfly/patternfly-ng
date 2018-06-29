@@ -15,8 +15,6 @@ import { ListEvent } from '../../list-event';
 import { TreeListComponent } from '../tree-list.component';
 import { TreeListConfig } from '../tree-list-config';
 
-
-
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'tree-list-basic-example',

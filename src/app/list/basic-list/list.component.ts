@@ -30,10 +30,27 @@ import { ListEvent } from '../list-event';
  * Unique IDs are generated for each list item, which can be overridden by providing an id for the pfng-list tag.
  *
  * Usage:
- * <br/><code>import { BasicListModule } from 'patternfly-ng/list';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { ListModule } from 'patternfly-ng/list';
+ * // Or
+ * import { ListModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { BasicListModule } from 'patternfly-ng';</code>
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ * import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
+ *
+ * &#64;NgModule({
+ *   imports: [ListModule, BsDropdownModule.forRoot(), TooltipModule.forRoot(),...],
+ *   providers: [BsDropdownConfig, TooltipConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { ListConfig, ListEvent } from 'patternfly-ng/list';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
