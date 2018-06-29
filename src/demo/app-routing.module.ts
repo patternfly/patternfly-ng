@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AboutModalExampleComponent } from '../app/modal/example/about-modal-example.component';
+import { AboutModalExampleComponent } from '../app/modal/about-modal/example/about-modal-example.component';
 import { ActionExampleComponent } from '../app/action/example/action-example.component';
 import { ApplicationLauncherExampleComponent }
   from '../app/navigation/application-launcher/example/application-launcher-example.component';

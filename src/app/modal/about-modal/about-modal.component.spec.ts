@@ -4,6 +4,7 @@ import {
   TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+
 import { ModalModule } from 'ngx-bootstrap';
 
 import { AboutModalComponent } from './about-modal.component';

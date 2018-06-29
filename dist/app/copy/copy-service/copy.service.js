@@ -25,10 +25,22 @@ var CopyService = /** @class */ (function () {
     /**
      * The default constructor
      */
-    function CopyService(dom) {
-        this.dom = dom;
+    function CopyService(_dom) {
+        this._dom = _dom;
         this.verbose = false;
     }
+    Object.defineProperty(CopyService.prototype, "dom", {
+        /**
+         * Accessor for testing purposes only
+         *
+         * @returns {any}
+         */
+        get: function () {
+            return this._dom;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Copy a value to the user's system clipboard
      */

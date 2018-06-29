@@ -5,19 +5,19 @@ import { ModalModule as BSModalModule } from 'ngx-bootstrap/modal';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AboutModalExampleComponent } from './about-modal-example.component';
-import { DemoComponentsModule } from '../../../demo/components/demo-components.module';
-import { ModalModule } from '../modal.module';
+import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
+import { AboutModalModule } from '../about-modal.module';
 
 @NgModule({
   declarations: [
     AboutModalExampleComponent
   ],
   imports: [
+    AboutModalModule,
     CommonModule,
     DemoComponentsModule,
     BSModalModule.forRoot(),
-    TabsModule.forRoot(),
-    ModalModule
+    TabsModule.forRoot()
   ],
   providers: [TabsetConfig]
 })

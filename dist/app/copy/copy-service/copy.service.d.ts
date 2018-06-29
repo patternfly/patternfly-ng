@@ -8,12 +8,18 @@
  * <br/><code>import { CopyService } from 'patternfly-ng';</code>
  */
 export declare class CopyService {
-    private dom;
+    private _dom;
     private verbose;
     /**
      * The default constructor
      */
-    constructor(dom: any);
+    constructor(_dom: any);
+    /**
+     * Accessor for testing purposes only
+     *
+     * @returns {any}
+     */
+    readonly dom: any;
     /**
      * Copy a value to the user's system clipboard
      */

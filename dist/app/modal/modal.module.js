@@ -6,18 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AboutModalComponent } from './about-modal.component';
-import { AboutModalConfig } from './about-modal-config';
+import { AboutModalComponent } from './about-modal/about-modal.component';
+import { AboutModalConfig } from './about-modal/about-modal-config';
+import { AboutModalModule } from './about-modal/about-modal.module';
 export { AboutModalConfig };
+/**
+ * A module containing objects associated with modal components
+ *
+ * @deprecated Use individual module imports
+ *
+ * import { AboutModule } from 'patternfly-ng/module';
+ */
 var ModalModule = /** @class */ (function () {
     function ModalModule() {
     }
     ModalModule = __decorate([
         NgModule({
             imports: [
-                CommonModule
+                CommonModule,
+                AboutModalModule
             ],
-            declarations: [AboutModalComponent],
             exports: [AboutModalComponent]
         })
     ], ModalModule);

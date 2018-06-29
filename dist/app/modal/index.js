@@ -1,4 +1,3 @@
-export { AboutModalConfig } from './about-modal-config';
-export { AboutModalComponent } from './about-modal.component';
 export { ModalModule } from './modal.module';
+export * from './about-modal/index';
 //# sourceMappingURL=index.js.map
