@@ -12,7 +12,7 @@ import { SparklineChartComponent } from './sparkline-chart.component';
 import { SparklineChartConfig } from './sparkline-chart-config';
 import { SparklineChartData } from './sparkline-chart-data';
 
-describe('Component: sparkline chart', () => {
+describe('Sparkline Chart component', () => {
   let comp: SparklineChartComponent;
   let fixture: ComponentFixture<SparklineChartComponent>;
 

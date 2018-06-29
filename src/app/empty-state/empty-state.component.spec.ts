@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { EmptyStateComponent } from './empty-state.component';
 import { EmptyStateConfig } from './empty-state-config';
 
-describe('Empty state component - ', () => {
+describe('Empty State component - ', () => {
   let comp: EmptyStateComponent;
   let fixture: ComponentFixture<EmptyStateComponent>;
   let config: EmptyStateConfig;
