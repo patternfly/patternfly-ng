@@ -22,10 +22,22 @@ import { CardFilterPosition } from '../card-filter/card-filter-position';
  * For customization, use the templates named headerTemplate and footerTemplate.
  *
  * Usage:
- * <br/><code>import { BasicCardModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CardModule } from 'patternfly-ng/card';
+ * // Or
+ * import { CardModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { BasicCardModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [CardModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CardAction, CardConfig, CardFilter, CardFilterPosition } from 'patternfly-ng/card';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

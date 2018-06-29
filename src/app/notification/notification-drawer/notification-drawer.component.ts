@@ -18,6 +18,24 @@ import { filter, get, size } from 'lodash';
  *
  * This provides a common mechanism to handle how the notification drawer should look and behave without mandating
  * the look of the notification group heading or notification body.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { NotificationDrawerModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { NotificationDrawerModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [NotificationDrawerModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationGroup } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -167,9 +185,9 @@ export class NotificationDrawerComponent implements OnInit {
     return size(filter(get(group, 'notifications'), { 'isViewing': false })) > 0;
   }
 
-  /** 
+  /**
    * method for the close button, emits event with clicked over close icon
-   *  
+   *
    */
   onClose(): void {
     this.hidden = true;
@@ -178,7 +196,7 @@ export class NotificationDrawerComponent implements OnInit {
 
   /**
    * Method for the mark all read button (Optional)
-   * @param group 
+   * @param group
    */
   onMarkAllRead(group: NotificaitonGroup): void {
     group.notifications.forEach(n => n.isViewing = true);
@@ -248,7 +266,7 @@ export class NotificationDrawerComponent implements OnInit {
 
   /**
    * Total number of unread notifications
-   * @param groups 
+   * @param groups
    */
   private totalUnreadNotifications(groups: NotificaitonGroup[]): number {
     return size(filter(

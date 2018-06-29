@@ -5,6 +5,24 @@ import { filter, get, size } from 'lodash';
  *
  * This provides a common mechanism to handle how the notification drawer should look and behave without mandating
  * the look of the notification group heading or notification body.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { NotificationDrawerModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { NotificationDrawerModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [NotificationDrawerModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationGroup } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 var NotificationDrawerComponent = /** @class */ (function () {
     // Initialization

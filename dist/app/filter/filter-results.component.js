@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { clone, cloneDeep, defaults, isEqual } from 'lodash';
 /**
- * Component for the filter results
+ * Helper component for the filter results
  */
 var FilterResultsComponent = /** @class */ (function () {
     /**

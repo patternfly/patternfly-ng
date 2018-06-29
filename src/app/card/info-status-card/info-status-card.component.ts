@@ -14,10 +14,22 @@ import { InfoStatusCardConfig } from './info-status-card-config';
  * Info Status Card Component
  *
  * Usage:
- * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { InfoStatusCardModule } from 'patternfly-ng/card';
+ * // Or
+ * import { InfoStatusCardModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [InfoStatusCardModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { InfoStatusCardConfig } from 'patternfly-ng/card';
+ * </pre></code>
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

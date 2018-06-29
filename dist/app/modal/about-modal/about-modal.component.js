@@ -1,7 +1,28 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
- * Component for rendering AboutModal
+ * About Modal component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { AboutModalModule } from 'patternfly-ng/modal';
+ * // Or
+ * import { AboutModalModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { ModalModule } from 'ngx-bootstrap/modal';
+ *
+ * &#64;NgModule({
+ *   imports: [AboutModalModule, ModalModule.forRoot(),...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { AboutModalConfig, AboutModalEvent } from 'patternfly-ng/modal';
+ * </pre></code>
  */
 var AboutModalComponent = /** @class */ (function () {
     /**

@@ -3,6 +3,30 @@ import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 import { FilterType } from './filter-type';
 /**
  * Filter component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { FilterModule } from 'patternfly-ng/filter';
+ * // Or
+ * import { FilterModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [FilterModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import {
+ *   Filter,
+ *   FilterConfig,
+ *   FilterField,
+ *   FilterEvent,
+ *   FilterType
+ * } from 'patternfly-ng/filter';
+ * </pre></code>
  */
 var FilterComponent = /** @class */ (function () {
     /**

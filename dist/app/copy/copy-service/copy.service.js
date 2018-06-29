@@ -4,10 +4,12 @@ import { DOCUMENT } from '@angular/common';
  * A generic service for copying text to clipboard
  *
  * Usage:
- * <br/><code>import { CopyService } from 'patternfly-ng/copy';</code>
- *
- * Or:
- * <br/><code>import { CopyService } from 'patternfly-ng';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CopyService } from 'patternfly-ng/copy';
+ * // Or
+ * import { CopyService } from 'patternfly-ng';
+ * </pre></code>
  */
 var CopyService = /** @class */ (function () {
     /**

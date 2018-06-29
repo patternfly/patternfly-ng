@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
- * Component for the filter query field and filter query dropdown
+ * Helper component for the filter query field and filter query dropdown
  */
 var FilterFieldsComponent = /** @class */ (function () {
     /**

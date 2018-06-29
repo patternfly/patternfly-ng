@@ -70,6 +70,24 @@
 						<p>List actions component.</p>
 					</div>
 					<p>By default, buttons and kebab have no padding so they may inherit stying from components such as list and toolbar.</p>
+					<p>Usage:
+						<code><pre>
+// Individual module import
+import { ActionModule } from &#39;patternfly-ng/action&#39;;
+// Or
+import { ActionModule } from &#39;patternfly-ng&#39;;</p>
+<p>// NGX Bootstrap
+import { BsDropdownConfig, BsDropdownModule } from &#39;ngx-bootstrap/dropdown&#39;;</p>
+<p>&#64;NgModule({
+  imports: [ActionModule, BsDropdownModule.forRoot(),...],
+  providers: [BsDropdownConfig]
+})
+export class AppModule(){}
+</pre></code></p>
+					<p>Optional:
+						<code><pre>
+import { Action, ActionConfig } from &#39;patternfly-ng/action&#39;;
+</pre></code></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -128,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/action/action.component.ts#L49">action/action.component.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/action/action.component.ts#L71">action/action.component.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -160,7 +178,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="actionconfig.html" class="tsd-signature-type">ActionConfig</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/action/action.component.ts#L32">action/action.component.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/action/action.component.ts#L54">action/action.component.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -175,7 +193,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Action<wbr>Select<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/action/action.component.ts#L42">action/action.component.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/action/action.component.ts#L64">action/action.component.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +208,7 @@
 					<div class="tsd-signature tsd-kind-icon">template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateRef</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/action/action.component.ts#L37">action/action.component.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/action/action.component.ts#L59">action/action.component.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,7 +230,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/action/action.component.ts#L71">action/action.component.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/action/action.component.ts#L93">action/action.component.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,7 +252,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/action/action.component.ts#L64">action/action.component.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/action/action.component.ts#L86">action/action.component.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -256,7 +274,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/action/action.component.ts#L81">action/action.component.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/action/action.component.ts#L103">action/action.component.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

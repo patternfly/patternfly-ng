@@ -14,10 +14,25 @@ import { TreeListConfig } from './tree-list-config';
  * For angular-tree-component options, see: https://angular2-tree.readme.io/docs
  *
  * Usage:
- * <br/><code>import { TreeListModule } from 'patternfly-ng/list';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { TreeListModule } from 'patternfly-ng/list';
+ * // Or
+ * import { TreeListModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { TreeListModule } from 'patternfly-ng';</code>
+ * // angular-tree-component
+ * import { TreeModule } from 'angular-tree-component';
+ *
+ * &#64;NgModule({
+ *   imports: [TreeListModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { ListEvent, TreeListConfig } from 'patternfly-ng/list';
+ * </pre></code>
  *
  * @deprecated The tree-list component is deprecated due to issues with Angular 6 and mobx autorun,
  * introduced by angular-tree-component.

@@ -3,6 +3,28 @@ import { Filter } from '../filter/filter';
 import { ToolbarConfig } from './toolbar-config';
 /**
  * Toolbar component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ToolbarModule } from 'patternfly-ng/toolbar';
+ * // Or
+ * import { ToolbarModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [BsDropdownModule.forRoot(), ToolbarModule,...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { ToolbarConfig, ToolbarView } from 'patternfly-ng/toolbar';
+ * </pre></code>
  */
 export declare class ToolbarComponent implements DoCheck, OnInit {
     /**

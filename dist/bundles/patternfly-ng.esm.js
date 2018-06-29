@@ -35,6 +35,28 @@ var ActionConfig = /** @class */ (function () {
  * List actions component.
  *
  * By default, buttons and kebab have no padding so they may inherit stying from components such as list and toolbar.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ActionModule } from 'patternfly-ng/action';
+ * // Or
+ * import { ActionModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [ActionModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Action, ActionConfig } from 'patternfly-ng/action';
+ * </pre></code>
  */
 var ActionComponent = /** @class */ (function () {
     /**
@@ -1398,10 +1420,22 @@ var __extends = (undefined && undefined.__extends) || (function () {
  * For customization, use the templates named headerTemplate and footerTemplate.
  *
  * Usage:
- * <br/><code>import { BasicCardModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CardModule } from 'patternfly-ng/card';
+ * // Or
+ * import { CardModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { BasicCardModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [CardModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CardAction, CardConfig, CardFilter, CardFilterPosition } from 'patternfly-ng/card';
+ * </pre></code>
  */
 var CardComponent = /** @class */ (function (_super) {
     __extends(CardComponent, _super);
@@ -1573,10 +1607,22 @@ var CardFilter = /** @class */ (function () {
  * Card filter component
  *
  * Usage:
- * <br/><code>import { CardFilterModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CardFilterModule } from 'patternfly-ng/card';
+ * // Or
+ * import { CardFilterModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { CardFilterModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [CardFilterModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CardFilter, CardFilterPosition } from 'patternfly-ng/card';
+ * </pre></code>
  */
 var CardFilterComponent = /** @class */ (function () {
     /**
@@ -1650,10 +1696,22 @@ var CardFilterComponent = /** @class */ (function () {
  * Info Status Card Component
  *
  * Usage:
- * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { InfoStatusCardModule } from 'patternfly-ng/card';
+ * // Or
+ * import { InfoStatusCardModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { InfoStatusCardModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [InfoStatusCardModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { InfoStatusCardConfig } from 'patternfly-ng/card';
+ * </pre></code>
  */
 var InfoStatusCardComponent = /** @class */ (function () {
     /**
@@ -1740,10 +1798,22 @@ var InfoStatusCardModule = /** @class */ (function () {
  * Card action component
  *
  * Usage:
- * <br/><code>import { CardActionModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CardActionModule } from 'patternfly-ng/card';
+ * // Or
+ * import { CardActionModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { CardActionModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [CardActionModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CardAction } from 'patternfly-ng/card';
+ * </pre></code>
  */
 var CardActionComponent = /** @class */ (function () {
     /**
@@ -2163,6 +2233,16 @@ function _window() {
     // return the global native browser window object
     return window;
 }
+/**
+ * Native window reference
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { WindowReference } from 'patternfly-ng/utilities';
+ * // Or
+ * import { WindowReference } from 'patternfly-ng';
+ */
 var WindowReference = /** @class */ (function () {
     function WindowReference() {
     }
@@ -2194,14 +2274,28 @@ var __extends$5 = (undefined && undefined.__extends) || (function () {
 /**
  * Donut chart component.
  *
- * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
- * <br/><code>require('patternfly/dist/js/patternfly-settings');</code>
+ * Note: In order to use charts, please include the following JavaScript file from PatternFly.
+ * <code><pre>
+ * require('patternfly/dist/js/patternfly-settings');
+ * </pre></code>
  *
  * Usage:
- * <br/><code>import { DonutChartModule } from 'patternfly-ng/chart';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { DonutChartModule } from 'patternfly-ng/chart';
+ * // Or
+ * import { DonutChartModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { DonutChartModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [DonutChartModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { DonutChartConfig } from 'patternfly-ng/chart';
+ * </pre></code>
  */
 var DonutChartComponent = /** @class */ (function (_super) {
     __extends$5(DonutChartComponent, _super);
@@ -2320,14 +2414,28 @@ var __extends$7 = (undefined && undefined.__extends) || (function () {
 /**
  * Donut Utilization chart component.
  *
- * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
- * <br/><code>require('patternfly/dist/js/patternfly-settings');</code>
+ * Note: In order to use charts, please include the following JavaScript file from PatternFly.
+ * <code><pre>
+ * require('patternfly/dist/js/patternfly-settings');
+ * </pre></code>
  *
  * Usage:
- * <br/><code>import { UtilizationDonutChartModule } from 'patternfly-ng/chart';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { UtilizationDonutChartModule } from 'patternfly-ng/chart';
+ * // Or
+ * import { UtilizationDonutChartModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { UtilizationDonutChartModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [UtilizationDonutChartModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { UtilizationDonutChartConfig } from 'patternfly-ng/chart';
+ * </pre></code>
  */
 var UtilizationDonutChartComponent = /** @class */ (function (_super) {
     __extends$7(UtilizationDonutChartComponent, _super);
@@ -2508,14 +2616,28 @@ var __extends$9 = (undefined && undefined.__extends) || (function () {
 /**
  * Sparkline chart component
  *
- * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
- * <br/><code>require('patternfly/dist/js/patternfly-settings');</code>
+ * Note: In order to use charts, please include the following JavaScript file from PatternFly.
+ * <code><pre>
+ * require('patternfly/dist/js/patternfly-settings');
+ * </pre></code>
  *
  * Usage:
- * <br/><code>import { SparklineChartModule } from 'patternfly-ng/chart';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { SparklineChartModule } from 'patternfly-ng/chart';
+ * // Or
+ * import { SparklineChartModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { SparklineChartModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [SparklineChartModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { SparklineChartConfig, SparklineChartData } from 'patternfly-ng/chart';
+ * </pre></code>
  */
 var SparklineChartComponent = /** @class */ (function (_super) {
     __extends$9(SparklineChartComponent, _super);
@@ -2924,10 +3046,12 @@ var CopyEvent = /** @class */ (function () {
  * A generic service for copying text to clipboard
  *
  * Usage:
- * <br/><code>import { CopyService } from 'patternfly-ng/copy';</code>
- *
- * Or:
- * <br/><code>import { CopyService } from 'patternfly-ng';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CopyService } from 'patternfly-ng/copy';
+ * // Or
+ * import { CopyService } from 'patternfly-ng';
+ * </pre></code>
  */
 var CopyService = /** @class */ (function () {
     /**
@@ -3022,10 +3146,22 @@ var __extends$c = (undefined && undefined.__extends) || (function () {
  * Block Copy component
  *
  * Usage:
- * <br/><code>import { BlockCopyModule } from 'patternfly-ng/copy';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { BlockCopyModule } from 'patternfly-ng/copy';
+ * // Or
+ * import { BlockCopyModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { BlockCopyModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [BlockCopyModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CopyEvent } from 'patternfly-ng/copy';
+ * </pre></code>
  */
 var BlockCopyComponent = /** @class */ (function (_super) {
     __extends$c(BlockCopyComponent, _super);
@@ -3514,10 +3650,22 @@ var __extends$d = (undefined && undefined.__extends) || (function () {
  * Inline Copy component
  *
  * Usage:
- * <br/><code>import { InlineCopyModule } from 'patternfly-ng/copy';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { InlineCopyModule } from 'patternfly-ng/copy';
+ * // Or
+ * import { InlineCopyModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { InlineCopyModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [InlineCopyModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CopyEvent } from 'patternfly-ng/copy';
+ * </pre></code>
  */
 var InlineCopyComponent = /** @class */ (function (_super) {
     __extends$d(InlineCopyComponent, _super);
@@ -3566,6 +3714,24 @@ var InlineCopyModule = /** @class */ (function () {
 
 /**
  * Component for rendering an empty state.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { EmptyStateModule } from 'patternfly-ng/empty-state';
+ * // Or
+ * import { EmptyStateModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [EmptyStateModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { EmptyStateConfig } from 'patternfly-ng/empty-state';
+ * </pre></code>
  */
 var EmptyStateComponent = /** @class */ (function () {
     /**
@@ -3689,6 +3855,30 @@ var FilterType = /** @class */ (function () {
 
 /**
  * Filter component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { FilterModule } from 'patternfly-ng/filter';
+ * // Or
+ * import { FilterModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [FilterModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import {
+ *   Filter,
+ *   FilterConfig,
+ *   FilterField,
+ *   FilterEvent,
+ *   FilterType
+ * } from 'patternfly-ng/filter';
+ * </pre></code>
  */
 var FilterComponent = /** @class */ (function () {
     /**
@@ -3880,7 +4070,7 @@ var FilterField = /** @class */ (function () {
 }());
 
 /**
- * Component for the filter query field and filter query dropdown
+ * Helper component for the filter query field and filter query dropdown
  */
 var FilterFieldsComponent = /** @class */ (function () {
     /**
@@ -4334,7 +4524,7 @@ var PopoverModule = (function () {
 }());
 
 /**
- * Component for the filter results
+ * Helper component for the filter results
  */
 var FilterResultsComponent = /** @class */ (function () {
     /**
@@ -4446,11 +4636,25 @@ var FilterQuery = /** @class */ (function () {
  * Search highlight pipe
  *
  * This is currently used with the type ahead feature of the filter fields component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { SearchHighlightPipeModule } from 'patternfly-ng/pipe';
+ * // Or
+ * import { SearchHighlightPipeModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [SearchHighlightPipeModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var SearchHighlightPipe = /** @class */ (function () {
     function SearchHighlightPipe() {
     }
     /**
+     * Transform the substring matching the given search
      *
      * @param {string} val The string to highlight
      * @param {string} search The text to search for
@@ -4524,6 +4728,19 @@ var SearchHighlightPipeModule = /** @class */ (function () {
  * Truncate pipe
  *
  * This is currently used with the save filter feature of the filter fields component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { TruncatePipeModule } from 'patternfly-ng/pipe';
+ * // Or
+ * import { TruncatePipeModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [TruncatePipeModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var TruncatePipe = /** @class */ (function () {
     function TruncatePipe() {
@@ -4894,10 +5111,27 @@ var __extends$e = (undefined && undefined.__extends) || (function () {
  * Unique IDs are generated for each list item, which can be overridden by providing an id for the pfng-list tag.
  *
  * Usage:
- * <br/><code>import { BasicListModule } from 'patternfly-ng/list';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { ListModule } from 'patternfly-ng/list';
+ * // Or
+ * import { ListModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { BasicListModule } from 'patternfly-ng';</code>
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ * import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
+ *
+ * &#64;NgModule({
+ *   imports: [ListModule, BsDropdownModule.forRoot(), TooltipModule.forRoot(),...],
+ *   providers: [BsDropdownConfig, TooltipConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { ListConfig, ListEvent } from 'patternfly-ng/list';
+ * </pre></code>
  */
 var ListComponent = /** @class */ (function (_super) {
     __extends$e(ListComponent, _super);
@@ -5055,9 +5289,7 @@ var ListConfig = /** @class */ (function (_super) {
 }(ListConfigBase));
 
 /**
- * List compund expansion toggle component.
- *
- * This is intended to be used with the list component's itemExpandTemplate
+ * Helper component for the list compund expansion toggle.
  */
 var ListExpandToggleComponent = /** @class */ (function () {
     /**
@@ -5126,6 +5358,19 @@ var ListExpandToggleComponent = /** @class */ (function () {
  *
  * Example:
  * <div *ngFor="let item of (items | sortPin: 'name': true)">
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { SortArrayPipeModule } from 'patternfly-ng/pipe';
+ * // Or
+ * import { SortArrayPipeModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [SortArrayPipeModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var SortArrayPipe = /** @class */ (function () {
     function SortArrayPipe() {
@@ -5222,10 +5467,25 @@ var __extends$g = (undefined && undefined.__extends) || (function () {
  * For angular-tree-component options, see: https://angular2-tree.readme.io/docs
  *
  * Usage:
- * <br/><code>import { TreeListModule } from 'patternfly-ng/list';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { TreeListModule } from 'patternfly-ng/list';
+ * // Or
+ * import { TreeListModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { TreeListModule } from 'patternfly-ng';</code>
+ * // angular-tree-component
+ * import { TreeModule } from 'angular-tree-component';
+ *
+ * &#64;NgModule({
+ *   imports: [TreeListModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { ListEvent, TreeListConfig } from 'patternfly-ng/list';
+ * </pre></code>
  *
  * @deprecated The tree-list component is deprecated due to issues with Angular 6 and mobx autorun,
  * introduced by angular-tree-component.
@@ -5415,7 +5675,28 @@ var TreeListModule = /** @class */ (function () {
 }());
 
 /**
- * Component for rendering AboutModal
+ * About Modal component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { AboutModalModule } from 'patternfly-ng/modal';
+ * // Or
+ * import { AboutModalModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { ModalModule } from 'ngx-bootstrap/modal';
+ *
+ * &#64;NgModule({
+ *   imports: [AboutModalModule, ModalModule.forRoot(),...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { AboutModalConfig, AboutModalEvent } from 'patternfly-ng/modal';
+ * </pre></code>
  */
 var AboutModalComponent = /** @class */ (function () {
     /**
@@ -5577,6 +5858,19 @@ var NavigationItemConfig = /** @class */ (function (_super) {
 
 /**
  * Application launcher component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ApplicationLauncherModule } from 'patternfly-ng/navigation';
+ * // Or
+ * import { ApplicationLauncherModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [ApplicationLauncherModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var ApplicationLauncherComponent = /** @class */ (function () {
     /**
@@ -5639,7 +5933,24 @@ var ApplicationLauncherModule = /** @class */ (function () {
 }());
 
 /**
- * Vertical navigation component
+ * Vertical Navigation component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { VerticalNavigationModule } from 'patternfly-ng/navigation';
+ * // Or
+ * import { VerticalNavigationModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [VerticalNavigationModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var VerticalNavigationComponent = /** @class */ (function () {
     /**
@@ -6521,6 +6832,28 @@ var NotificaitonGroup = /** @class */ (function () {
 /**
  * Inline notifications can be used to provide notifications to user that can persist on the page
  * they are also optionally dismissable by the user
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { InlineNotificationModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { InlineNotificationModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [InlineNotificationModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { NotificationType } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 var InlineNotificationComponent = /** @class */ (function () {
     /**
@@ -6593,6 +6926,24 @@ var InlineNotificationModule = /** @class */ (function () {
  *
  * This provides a common mechanism to handle how the notification drawer should look and behave without mandating
  * the look of the notification group heading or notification body.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { NotificationDrawerModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { NotificationDrawerModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [NotificationDrawerModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationGroup } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 var NotificationDrawerComponent = /** @class */ (function () {
     // Initialization
@@ -6824,6 +7175,28 @@ var NotificationType = /** @class */ (function () {
  *
  * Note: Using the kebab menu (more actions) with the close button is not currently supported. If both are specified the
  * close button will not be shown. Add a close menu item if you want to have both capabilities.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ToastNotificationModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { ToastNotificationModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [ToastNotificationModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationEvent, NotificationType } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 var ToastNotificationComponent = /** @class */ (function () {
     /**
@@ -6950,6 +7323,28 @@ var ToastNotificationModule = /** @class */ (function () {
 
 /**
  * Component to display a list of toast notifications
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ToastNotificationListModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { ToastNotificationListModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [ToastNotificationListModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationEvent, NotificationType } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 var ToastNotificationListComponent = /** @class */ (function () {
     /**
@@ -29628,6 +30023,19 @@ var Symbol = {
  * Notification service used to notify user about important events in the application.
  *
  * You may configure the service with: setDelay, setVerbose and setPersist.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { NotificationServiceModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { NotificationServiceModule } from 'patternfly-ng';
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationType } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 var NotificationService = /** @class */ (function () {
     /**
@@ -29800,6 +30208,28 @@ var NotificationService = /** @class */ (function () {
 
 /**
  * Component for rendering pagination
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { PaginationModule } from 'patternfly-ng/pagination';
+ * // Or
+ * import { PaginationModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [PaginationModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { PaginationConfig, PaginationEvent } from 'patternfly-ng/pagination';
+ * </pre></code>
  */
 var PaginationComponent = /** @class */ (function () {
     /**
@@ -30098,6 +30528,19 @@ var PipeModule = /** @class */ (function () {
  * negative value. Setting the <code>blockInputAtMaxLimit</code> to <em>true</em>, will block additional input into the
  * text field after the max has been reached; additionally a right-click 'paste' will only paste characters until the
  * maximum character limit is reached.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { RemainingCharsCountModule } from 'patternfly-ng/remainingCharsCount';
+ * // Or
+ * import { RemainingCharsCountModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [RemainingCharsCountModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var RemainingCharsCountDirective = /** @class */ (function () {
     /**
@@ -30240,6 +30683,19 @@ var RemainingCharsCountModule = /** @class */ (function () {
 
 /**
  * Sample component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { SampleModule } from 'patternfly-ng/sample';
+ * // Or
+ * import { SampleModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [SampleModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var SampleComponent = /** @class */ (function () {
     /**
@@ -30284,6 +30740,24 @@ var SampleModule = /** @class */ (function () {
 
 /**
  * Sort component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { SortModule } from 'patternfly-ng/sort';
+ * // Or
+ * import { SortModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [SortModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { SortConfig, SortEvent, SortField } from 'patternfly-ng/sort';
+ * </pre></code>
  */
 var SortComponent = /** @class */ (function () {
     /**
@@ -30591,7 +31065,7 @@ var __extends$2f = (undefined && undefined.__extends) || (function () {
  *
  * Note: The underlying ngx-datatable uses ContentChildren to retrieve DataTableColumnDirective (ngx-datatable-column)
  * tags. As a result of wrapping ngx-datatable, these objects are no longer direct descendents and ContentChildren
- * cannot retrieve them. A fix to ContentChildren may be in the works for Angular 5 or later.
+ * cannot retrieve them. A fix to ContentChildren may be in the works...
  *
  * Instead of using ngx-datatable-column, table cells may be defined using templates, provided as the
  * columns cellTemplate property. For example:
@@ -30611,6 +31085,30 @@ var __extends$2f = (undefined && undefined.__extends) || (function () {
  *   &lt;span>{{row.name}}&lt;/span&gt;
  * &lt;/ng-template&gt;
  * </code>
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { TableModule } from 'patternfly-ng/table';
+ * // Or
+ * import { TableModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ * // NGX Datatable
+ * import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+ *
+ * &#64;NgModule({
+ *   imports: [BsDropdownModule.forRoot(), NgxDatatableModule, TableModule,...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { NgxDataTableConfig, TableConfig, TableEvent } from 'patternfly-ng/table';
+ * </pre></code>
  */
 var TableComponent = /** @class */ (function (_super) {
     __extends$2f(TableComponent, _super);
@@ -31322,6 +31820,28 @@ var NgxDataTableDndDirective = /** @class */ (function () {
 
 /**
  * Toolbar component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ToolbarModule } from 'patternfly-ng/toolbar';
+ * // Or
+ * import { ToolbarModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [BsDropdownModule.forRoot(), ToolbarModule,...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { ToolbarConfig, ToolbarView } from 'patternfly-ng/toolbar';
+ * </pre></code>
  */
 var ToolbarComponent = /** @class */ (function () {
     /**
@@ -31737,6 +32257,27 @@ var __extends$2h = (undefined && undefined.__extends) || (function () {
 })();
 /**
  * Wizard component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { WizardModule } from 'patternfly-ng/wizard';
+ * // Or
+ * import { WizardModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { ModalModule } from 'ngx-bootstrap/modal';
+ *
+ * &#64;NgModule({
+ *   imports: [ModalModule.forRoot(), WizardModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { WizardConfig, WizardEvent, WizardStep, WizardStepConfig } from 'patternfly-ng/wizard';
+ * </pre></code>
  */
 var WizardComponent = /** @class */ (function (_super) {
     __extends$2h(WizardComponent, _super);

@@ -3,6 +3,16 @@ function _window() {
     // return the global native browser window object
     return window;
 }
+/**
+ * Native window reference
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { WindowReference } from 'patternfly-ng/utilities';
+ * // Or
+ * import { WindowReference } from 'patternfly-ng';
+ */
 var WindowReference = /** @class */ (function () {
     function WindowReference() {
     }

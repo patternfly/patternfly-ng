@@ -1,6 +1,19 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 /**
  * Application launcher component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ApplicationLauncherModule } from 'patternfly-ng/navigation';
+ * // Or
+ * import { ApplicationLauncherModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [ApplicationLauncherModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 var ApplicationLauncherComponent = /** @class */ (function () {
     /**

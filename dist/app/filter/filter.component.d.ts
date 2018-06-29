@@ -4,6 +4,30 @@ import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
 /**
  * Filter component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { FilterModule } from 'patternfly-ng/filter';
+ * // Or
+ * import { FilterModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [FilterModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import {
+ *   Filter,
+ *   FilterConfig,
+ *   FilterField,
+ *   FilterEvent,
+ *   FilterType
+ * } from 'patternfly-ng/filter';
+ * </pre></code>
  */
 export declare class FilterComponent implements DoCheck, OnInit {
     /**

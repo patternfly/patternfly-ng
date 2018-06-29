@@ -7,9 +7,7 @@ import {
 } from '@angular/core';
 
 /**
- * List compund expansion toggle component.
- *
- * This is intended to be used with the list component's itemExpandTemplate
+ * Helper component for the list compund expansion toggle.
  */
 @Component({
   encapsulation: ViewEncapsulation.None,

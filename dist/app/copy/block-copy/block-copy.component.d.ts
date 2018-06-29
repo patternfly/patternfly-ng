@@ -4,10 +4,22 @@ import { CopyService } from '../copy-service/copy.service';
  * Block Copy component
  *
  * Usage:
- * <br/><code>import { BlockCopyModule } from 'patternfly-ng/copy';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { BlockCopyModule } from 'patternfly-ng/copy';
+ * // Or
+ * import { BlockCopyModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { BlockCopyModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [BlockCopyModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CopyEvent } from 'patternfly-ng/copy';
+ * </pre></code>
  */
 export declare class BlockCopyComponent extends CopyBase {
     protected copyService: CopyService;

@@ -15,10 +15,22 @@ import { CopyService } from '../copy-service/copy.service';
  * Inline Copy component
  *
  * Usage:
- * <br/><code>import { InlineCopyModule } from 'patternfly-ng/copy';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { InlineCopyModule } from 'patternfly-ng/copy';
+ * // Or
+ * import { InlineCopyModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { InlineCopyModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [InlineCopyModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CopyEvent } from 'patternfly-ng/copy';
+ * </pre></code>
  */
 var InlineCopyComponent = /** @class */ (function (_super) {
     __extends(InlineCopyComponent, _super);

@@ -2,6 +2,24 @@ import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { SortConfig } from './sort-config';
 /**
  * Sort component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { SortModule } from 'patternfly-ng/sort';
+ * // Or
+ * import { SortModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [SortModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { SortConfig, SortEvent, SortField } from 'patternfly-ng/sort';
+ * </pre></code>
  */
 export declare class SortComponent implements DoCheck, OnInit {
     /**

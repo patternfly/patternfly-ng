@@ -3,7 +3,24 @@ import { Router } from '@angular/router';
 import { VerticalNavigationItem } from './vertical-navigation-item';
 import { WindowReference } from '../../utilities/window.reference';
 /**
- * Vertical navigation component
+ * Vertical Navigation component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { VerticalNavigationModule } from 'patternfly-ng/navigation';
+ * // Or
+ * import { VerticalNavigationModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [VerticalNavigationModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
  */
 export declare class VerticalNavigationComponent implements OnInit, OnDestroy {
     private elementRef;

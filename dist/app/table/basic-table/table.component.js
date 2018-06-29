@@ -22,7 +22,7 @@ import { clone, cloneDeep, defaults, isEqual } from 'lodash';
  *
  * Note: The underlying ngx-datatable uses ContentChildren to retrieve DataTableColumnDirective (ngx-datatable-column)
  * tags. As a result of wrapping ngx-datatable, these objects are no longer direct descendents and ContentChildren
- * cannot retrieve them. A fix to ContentChildren may be in the works for Angular 5 or later.
+ * cannot retrieve them. A fix to ContentChildren may be in the works...
  *
  * Instead of using ngx-datatable-column, table cells may be defined using templates, provided as the
  * columns cellTemplate property. For example:
@@ -42,6 +42,30 @@ import { clone, cloneDeep, defaults, isEqual } from 'lodash';
  *   &lt;span>{{row.name}}&lt;/span&gt;
  * &lt;/ng-template&gt;
  * </code>
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { TableModule } from 'patternfly-ng/table';
+ * // Or
+ * import { TableModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ * // NGX Datatable
+ * import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+ *
+ * &#64;NgModule({
+ *   imports: [BsDropdownModule.forRoot(), NgxDatatableModule, TableModule,...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { NgxDataTableConfig, TableConfig, TableEvent } from 'patternfly-ng/table';
+ * </pre></code>
  */
 var TableComponent = /** @class */ (function (_super) {
     __extends(TableComponent, _super);

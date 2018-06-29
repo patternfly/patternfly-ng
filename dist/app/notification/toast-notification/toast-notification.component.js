@@ -7,6 +7,28 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
  *
  * Note: Using the kebab menu (more actions) with the close button is not currently supported. If both are specified the
  * close button will not be shown. Add a close menu item if you want to have both capabilities.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { ToastNotificationModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { ToastNotificationModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+ *
+ * &#64;NgModule({
+ *   imports: [ToastNotificationModule, BsDropdownModule.forRoot(),...],
+ *   providers: [BsDropdownConfig]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationEvent, NotificationType } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 var ToastNotificationComponent = /** @class */ (function () {
     /**

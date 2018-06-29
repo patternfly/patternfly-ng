@@ -2,6 +2,24 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 import { cloneDeep, defaults, isEqual } from 'lodash';
 /**
  * Sort component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { SortModule } from 'patternfly-ng/sort';
+ * // Or
+ * import { SortModule } from 'patternfly-ng';
+ *
+ * &#64;NgModule({
+ *   imports: [SortModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { SortConfig, SortEvent, SortField } from 'patternfly-ng/sort';
+ * </pre></code>
  */
 var SortComponent = /** @class */ (function () {
     /**

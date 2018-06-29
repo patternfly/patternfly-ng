@@ -1,7 +1,7 @@
 import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { FilterConfig } from './filter-config';
 /**
- * Component for the filter results
+ * Helper component for the filter results
  */
 export declare class FilterResultsComponent implements DoCheck, OnInit {
     /**

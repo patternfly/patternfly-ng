@@ -4,6 +4,27 @@ import { WizardConfig } from './wizard-config';
 import { WizardStep } from './wizard-step';
 /**
  * Wizard component
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { WizardModule } from 'patternfly-ng/wizard';
+ * // Or
+ * import { WizardModule } from 'patternfly-ng';
+ *
+ * // NGX Bootstrap
+ * import { ModalModule } from 'ngx-bootstrap/modal';
+ *
+ * &#64;NgModule({
+ *   imports: [ModalModule.forRoot(), WizardModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { WizardConfig, WizardEvent, WizardStep, WizardStepConfig } from 'patternfly-ng/wizard';
+ * </pre></code>
  */
 export declare class WizardComponent extends WizardBase implements DoCheck, OnInit {
     /**

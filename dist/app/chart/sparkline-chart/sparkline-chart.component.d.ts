@@ -6,14 +6,28 @@ import { SparklineChartData } from './sparkline-chart-data';
 /**
  * Sparkline chart component
  *
- * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
- * <br/><code>require('patternfly/dist/js/patternfly-settings');</code>
+ * Note: In order to use charts, please include the following JavaScript file from PatternFly.
+ * <code><pre>
+ * require('patternfly/dist/js/patternfly-settings');
+ * </pre></code>
  *
  * Usage:
- * <br/><code>import { SparklineChartModule } from 'patternfly-ng/chart';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { SparklineChartModule } from 'patternfly-ng/chart';
+ * // Or
+ * import { SparklineChartModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { SparklineChartModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [SparklineChartModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { SparklineChartConfig, SparklineChartData } from 'patternfly-ng/chart';
+ * </pre></code>
  */
 export declare class SparklineChartComponent extends ChartBase implements DoCheck, OnInit {
     protected chartDefaults: ChartDefaults;

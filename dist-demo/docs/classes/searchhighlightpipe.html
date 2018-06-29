@@ -70,6 +70,17 @@
 						<p>Search highlight pipe</p>
 					</div>
 					<p>This is currently used with the type ahead feature of the filter fields component</p>
+					<p>Usage:
+						<code><pre>
+// Individual module import
+import { SearchHighlightPipeModule } from &#39;patternfly-ng/pipe&#39;;
+// Or
+import { SearchHighlightPipeModule } from &#39;patternfly-ng&#39;;</p>
+<p>&#64;NgModule({
+  imports: [SearchHighlightPipeModule,...]
+})
+export class AppModule(){}
+</pre></code></p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -111,10 +122,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/5cf32667/src/app/pipe/search-highlight/search-highlight.pipe.ts#L16">pipe/search-highlight/search-highlight.pipe.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/d1613e04/src/app/pipe/search-highlight/search-highlight.pipe.ts#L30">pipe/search-highlight/search-highlight.pipe.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform the substring matching the given search</p>
+								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">

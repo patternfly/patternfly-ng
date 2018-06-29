@@ -3,10 +3,22 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
  * Card action component
  *
  * Usage:
- * <br/><code>import { CardActionModule } from 'patternfly-ng/card';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { CardActionModule } from 'patternfly-ng/card';
+ * // Or
+ * import { CardActionModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { CardActionModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [CardActionModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { CardAction } from 'patternfly-ng/card';
+ * </pre></code>
  */
 var CardActionComponent = /** @class */ (function () {
     /**

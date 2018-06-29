@@ -15,14 +15,28 @@ import { WindowReference } from '../../../utilities/window.reference';
 /**
  * Donut Utilization chart component.
  *
- * Note: In order to use charts, please include the following JavaScript file from patternfly. For example:
- * <br/><code>require('patternfly/dist/js/patternfly-settings');</code>
+ * Note: In order to use charts, please include the following JavaScript file from PatternFly.
+ * <code><pre>
+ * require('patternfly/dist/js/patternfly-settings');
+ * </pre></code>
  *
  * Usage:
- * <br/><code>import { UtilizationDonutChartModule } from 'patternfly-ng/chart';</code>
+ * <code><pre>
+ * // Individual module import
+ * import { UtilizationDonutChartModule } from 'patternfly-ng/chart';
+ * // Or
+ * import { UtilizationDonutChartModule } from 'patternfly-ng';
  *
- * Or:
- * <br/><code>import { UtilizationDonutChartModule } from 'patternfly-ng';</code>
+ * &#64;NgModule({
+ *   imports: [UtilizationDonutChartModule,...]
+ * })
+ * export class AppModule(){}
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { UtilizationDonutChartConfig } from 'patternfly-ng/chart';
+ * </pre></code>
  */
 var UtilizationDonutChartComponent = /** @class */ (function (_super) {
     __extends(UtilizationDonutChartComponent, _super);

@@ -9,6 +9,19 @@ import { NotificationType } from '../notification-type';
  * Notification service used to notify user about important events in the application.
  *
  * You may configure the service with: setDelay, setVerbose and setPersist.
+ *
+ * Usage:
+ * <code><pre>
+ * // Individual module import
+ * import { NotificationServiceModule } from 'patternfly-ng/notification';
+ * // Or
+ * import { NotificationServiceModule } from 'patternfly-ng';
+ * </pre></code>
+ *
+ * Optional:
+ * <code><pre>
+ * import { Notification, NotificationType } from 'patternfly-ng/notification';
+ * </pre></code>
  */
 @Injectable()
 export class NotificationService {

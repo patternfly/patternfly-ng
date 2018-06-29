@@ -2,7 +2,7 @@ import { DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { FilterConfig } from './filter-config';
 import { FilterField } from './filter-field';
 /**
- * Component for the filter query field and filter query dropdown
+ * Helper component for the filter query field and filter query dropdown
  */
 export declare class FilterFieldsComponent implements DoCheck, OnInit {
     /**
