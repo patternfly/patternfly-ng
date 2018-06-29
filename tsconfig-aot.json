@@ -3,21 +3,43 @@
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "rootDir": "build/src",
+    "outDir": "build-aot",
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "es6"],
+    "inlineSources": true,
+    "lib": [ "dom", "es6" ],
+    "noEmitHelpers": false, // apps fail to run if true
     "noImplicitAny": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "sourceMap": true,
-    "suppressImplicitAnyIndexErrors": true
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "@angular/common": ["node_modules/@angular/common"],
+      "@angular/forms": ["node_modules/@angular/forms"],
+      "rxjs/*": ["node_modules/rxjs/*"]
+    },
+    "strictNullChecks": false,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "sourceMap": true
   },
   "files": [
-    "src/demo/app.module.ts",
-    "src/demo.ts"
+    "build/src/app/index.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "aot",
-    "skipMetadataEmit" : true
-  }
+    "genDir": "build-aot/codegen",
+    "strictMetadataEmit": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "atom": { "rewriteTsconfig": false },
+  "buildOnSave": false,
+  "compileOnSave": false
 }
