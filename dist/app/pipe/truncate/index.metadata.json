@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":3,"metadata":{},"exports":[{"from":"./truncate.pipe.module","export":["TruncatePipeModule"]},{"from":"./truncate.pipe","export":["TruncatePipe"]}]},{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./truncate.pipe.module","export":["TruncatePipeModule"]},{"from":"./truncate.pipe","export":["TruncatePipe"]}]}]
