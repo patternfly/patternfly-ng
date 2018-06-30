@@ -1,6 +1,5 @@
 export { CardBase } from './card-base';
 export { CardConfigBase } from './card-config-base';
-export { CardModule } from './card.module'; // @deprecated
 
 export * from './card-action/index';
 export * from './basic-card/index';

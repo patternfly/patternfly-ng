@@ -35,11 +35,3 @@ export declare class DonutChartComponent extends DonutChartBaseComponent {
      */
     constructor(chartDefaults: ChartDefaults, windowRef: WindowReference);
 }
-/**
- * @deprecated Use DonutChartComponent
- */
-export declare class DonutComponent extends DonutChartComponent {
-    protected chartDefaults: ChartDefaults;
-    protected windowRef: WindowReference;
-    constructor(chartDefaults: ChartDefaults, windowRef: WindowReference);
-}

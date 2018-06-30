@@ -22,13 +22,3 @@ export abstract class SparklineChartData {
    */
   yData?: any[];
 }
-
-/**
- * @deprecated Use SparklineChartData
- */
-export abstract class SparklineData extends SparklineChartData {
-  constructor() {
-    super();
-    console.log('patternfly-ng: SparklineData is deprecated; use SparklineChartData');
-  }
-}

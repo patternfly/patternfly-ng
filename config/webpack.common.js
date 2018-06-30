@@ -9,21 +9,14 @@ const path = require('path'),
 /**
  * Webpack Plugins
  */
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const IgnorePlugin = require('webpack/lib/IgnorePlugin');
-const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
-// ExtractTextPlugin
-const extractCSS = new ExtractTextPlugin({
-  filename: '[name].[id].css',
-  allChunks: true
+// MiniCssExtractPlugin
+const extractCSS = new MiniCssExtractPlugin({
+  filename: '[name].css',
+  chunkFilename: "[id].css"
 });
 
 module.exports = {
@@ -41,57 +34,68 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: 'pre',
         test: /\.ts$/,
+        enforce: 'pre',
         use: 'tslint-loader',
         exclude: [helpers.root('node_modules')]
       },
       {
         test: /\.ts$/,
         use: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              declaration: false
-            }
-          },
-          {
-            loader: 'angular2-template-loader'
-          }
+          // 'awesome-typescript-loader',
+          'ts-loader',
+          'angular2-template-loader'
         ],
         exclude: [/\.spec\.ts$/]
-      },{
-        test: /\.css$/,
-        loader: extractCSS.extract({
-          fallback: "style-loader",
-          use: "css-loader?sourceMap&context=/"
-        })
       },
 
-      /* File loader for supporting fonts, for example, in CSS files.
+      /*
+       * to string and css loader support for *.css files
+       * Returns file content as string
+       *
        */
       {
-        test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
-        loaders: [
-          {
-            loader: "url-loader",
-            query: {
-              limit: 3000,
-              name: 'assets/fonts/[name].[ext]'
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, {
+            loader: "css-loader",
+            options: {
+              minimize: true,
+              sourceMap: true
             }
+          }]
+      },
+
+      /**
+       * File loader for supporting fonts, for example, in CSS files.
+       */
+      {
+        test: /\.(woff2|woff|ttf|eot|svg)$/,
+        use: {
+          loader: 'url-loader',
+          query: {
+            limit: 3000,
+            // includePaths: [
+            //   path.resolve(__dirname, "../node_modules/patternfly/dist/fonts/")
+            // ],
+            name: 'assets/fonts/[name].[ext]'
           }
-        ]
-      }, {
-        test: /\.jpg$|\.png$|\.gif$|\.jpeg$/,
-        loaders: [
-          {
-            loader: "url-loader",
-            query: {
-              limit: 3000,
-              name: 'assets/fonts/[name].[ext]'
-            }
+        },
+        exclude: path.resolve(__dirname, "../src/demo/images/")
+      },
+      {
+        test: /\.(jpg|png|svg|gif|jpeg)$/,
+        use: {
+          loader: 'url-loader',
+          query: {
+            limit: 3000,
+            includePaths: [
+              path.resolve(__dirname, "../src/assets/images/")
+            ],
+            name: 'assets/images/[name].[ext]'
           }
-        ]
+        },
+        exclude: path.resolve(__dirname, "../node_modules/patternfly/dist/fonts/")
       },
 
       // Support for *.json files.
@@ -107,8 +111,22 @@ module.exports = {
       }
     ]
   },
-
+/*
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "styles",
+          chunks: "all"
+        }
+      }
+    }
+  },
+*/
   plugins: [
+    extractCSS,
+
     /**
      * Plugin: ContextReplacementPlugin
      * Description: Provides context to Angular's use of System.import
@@ -141,7 +159,6 @@ module.exports = {
      *
      * See: https://github.com/webpack/extract-text-webpack-plugin
      */
-    // new ExtractTextPlugin('[name].[contenthash].css'),
     new ExtractTextPlugin('[name].css'),
 
     new webpack.LoaderOptionsPlugin({
@@ -151,19 +168,6 @@ module.exports = {
          *
          * See: https://github.com/webpack/html-loader#advanced-options
          */
-        // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-        // htmlLoader: {
-        //   minimize: true,
-        //   removeAttributeQuotes: false,
-        //   caseSensitive: true,
-        //   customAttrSurround: [
-        //     [/#/, /(?:)/],
-        //     [/\*/, /(?:)/],
-        //     [/\[?\(?/, /(?:)/]
-        //   ],
-        //   customAttrAssign: [/\)?\]?=/]
-        // },
-
         tslintLoader: {
           emitErrors: false,
           failOnHint: false
@@ -174,19 +178,9 @@ module.exports = {
     // Only emit files when there are no errors
     new webpack.NoEmitOnErrorsPlugin(),
 
-    // // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-    // // Dedupe modules in the output
-    // new webpack.optimize.DedupePlugin(),
-
     // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
     // Minify all javascript, switch loaders to minimizing mode
     // new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }}),
-
-    // Copy assets from the public folder
-    // Reference: https://github.com/kevlened/copy-webpack-plugin
-    // new CopyWebpackPlugin([{
-    //   from: helpers.root('src/public')
-    // }]),
 
     // Reference: https://github.com/johnagan/clean-webpack-plugin
     // Removes the bundle folder before the build
@@ -194,7 +188,6 @@ module.exports = {
       root: helpers.root(),
       verbose: false,
       dry: false
-    }),
-    extractCSS
+    })
   ]
 };

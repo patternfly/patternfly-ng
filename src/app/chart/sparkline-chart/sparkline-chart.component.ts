@@ -249,18 +249,3 @@ export class SparklineChartComponent extends ChartBase implements DoCheck, OnIni
       '</div>';
   }
 }
-
-/**
- * @deprecated Use SparklineChartComponent
- */
-@Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'pfng-chart-sparkline',
-  templateUrl: './sparkline-chart.component.html'
-})
-export class SparklineComponent extends SparklineChartComponent {
-  constructor(protected chartDefaults: ChartDefaults) {
-    super(chartDefaults);
-    console.log('patternfly-ng: SparklineComponent is deprecated; use SparklineChartComponent');
-  }
-}

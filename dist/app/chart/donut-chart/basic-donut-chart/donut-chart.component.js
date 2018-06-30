@@ -64,31 +64,4 @@ var DonutChartComponent = /** @class */ (function (_super) {
     return DonutChartComponent;
 }(DonutChartBaseComponent));
 export { DonutChartComponent };
-/**
- * @deprecated Use DonutChartComponent
- */
-var DonutComponent = /** @class */ (function (_super) {
-    __extends(DonutComponent, _super);
-    function DonutComponent(chartDefaults, windowRef) {
-        var _this = _super.call(this, chartDefaults, windowRef) || this;
-        _this.chartDefaults = chartDefaults;
-        _this.windowRef = windowRef;
-        console.log('patternfly-ng: DonutComponent is deprecated; use DonutChartComponent');
-        return _this;
-    }
-    DonutComponent.decorators = [
-        { type: Component, args: [{
-                    encapsulation: ViewEncapsulation.None,
-                    selector: 'pfng-chart-donut',
-                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-                },] },
-    ];
-    /** @nocollapse */
-    DonutComponent.ctorParameters = function () { return [
-        { type: ChartDefaults, },
-        { type: WindowReference, },
-    ]; };
-    return DonutComponent;
-}(DonutChartComponent));
-export { DonutComponent };
 //# sourceMappingURL=donut-chart.component.js.map

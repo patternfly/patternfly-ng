@@ -183,7 +183,8 @@ var ToolbarComponent = /** @class */ (function () {
     };
     // Utils
     ToolbarComponent.prototype.enforceSingleSelect = function (filter) {
-        remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
+        var filterField = { title: filter.field.title };
+        remove(this.config.filterConfig.appliedFilters, { field: filterField });
     };
     ToolbarComponent.decorators = [
         { type: Component, args: [{

@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Input } from '@angular/core';
+import { Input, } from '@angular/core';
 import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash';
 import * as d3 from 'd3';
 import { ChartBase } from '../chart-base';

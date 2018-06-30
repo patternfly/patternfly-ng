@@ -160,7 +160,8 @@ var FilterComponent = /** @class */ (function () {
     };
     // Private
     FilterComponent.prototype.enforceSingleSelect = function (filter) {
-        remove(this.config.appliedFilters, { title: filter.field.title });
+        var filterField = { title: filter.field.title };
+        remove(this.config.appliedFilters, { field: filterField });
     };
     FilterComponent.prototype.filterExists = function (filter) {
         var foundFilter = find(this.config.appliedFilters, {

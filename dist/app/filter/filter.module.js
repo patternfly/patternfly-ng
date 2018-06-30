@@ -4,18 +4,11 @@ import { NgModule } from '@angular/core';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipConfig, TooltipModule } from 'ngx-bootstrap/tooltip';
-import { Filter } from './filter';
 import { FilterComponent } from './filter.component';
-import { FilterConfig } from './filter-config';
-import { FilterEvent } from './filter-event';
-import { FilterField } from './filter-field';
 import { FilterFieldsComponent } from './filter-fields.component';
 import { FilterResultsComponent } from './filter-results.component';
-import { FilterQuery } from './filter-query';
-import { FilterType } from './filter-type';
 import { SearchHighlightPipeModule } from '../pipe/search-highlight/search-highlight.pipe.module';
 import { TruncatePipeModule } from '../pipe/truncate/truncate.pipe.module';
-export { Filter, FilterConfig, FilterEvent, FilterField, FilterQuery, FilterType };
 /**
  * A module containing objects associated with filter components
  */

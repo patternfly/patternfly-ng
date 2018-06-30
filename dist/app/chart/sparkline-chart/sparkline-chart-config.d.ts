@@ -40,9 +40,3 @@ export declare class SparklineChartConfig extends ChartConfigBase {
      */
     units?: string;
 }
-/**
- * @deprecated Use SparklineChartConfig
- */
-export declare class SparklineConfig extends SparklineChartConfig {
-    constructor();
-}

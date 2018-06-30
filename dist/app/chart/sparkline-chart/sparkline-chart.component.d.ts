@@ -76,10 +76,3 @@ export declare class SparklineChartComponent extends ChartBase implements DoChec
     tooltip(): any;
     private getTooltipTableHTML(tipRows);
 }
-/**
- * @deprecated Use SparklineChartComponent
- */
-export declare class SparklineComponent extends SparklineChartComponent {
-    protected chartDefaults: ChartDefaults;
-    constructor(chartDefaults: ChartDefaults);
-}

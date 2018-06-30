@@ -20,17 +20,4 @@ var SparklineChartConfig = /** @class */ (function (_super) {
     return SparklineChartConfig;
 }(ChartConfigBase));
 export { SparklineChartConfig };
-/**
- * @deprecated Use SparklineChartConfig
- */
-var SparklineConfig = /** @class */ (function (_super) {
-    __extends(SparklineConfig, _super);
-    function SparklineConfig() {
-        var _this = _super.call(this) || this;
-        console.log('patternfly-ng: SparklineConfig is deprecated; use SparklineChartConfig');
-        return _this;
-    }
-    return SparklineConfig;
-}(SparklineChartConfig));
-export { SparklineConfig };
 //# sourceMappingURL=sparkline-chart-config.js.map

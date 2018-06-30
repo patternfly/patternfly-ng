@@ -46,18 +46,3 @@ export class DonutChartComponent extends DonutChartBaseComponent {
     super(chartDefaults, windowRef);
   }
 }
-
-/**
- * @deprecated Use DonutChartComponent
- */
-@Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'pfng-chart-donut',
-  templateUrl: './donut-chart.component.html'
-})
-export class DonutComponent extends DonutChartComponent {
-  constructor(protected chartDefaults: ChartDefaults, protected windowRef: WindowReference) {
-    super(chartDefaults, windowRef);
-    console.log('patternfly-ng: DonutComponent is deprecated; use DonutChartComponent');
-  }
-}

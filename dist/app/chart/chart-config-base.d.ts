@@ -13,9 +13,3 @@ export declare abstract class ChartConfigBase {
      */
     data?: any;
 }
-/**
- * @deprecated Use ChartConfigBase
- */
-export declare abstract class ChartConfig extends ChartConfigBase {
-    constructor();
-}

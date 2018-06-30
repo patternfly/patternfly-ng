@@ -20,17 +20,4 @@ var DonutChartConfig = /** @class */ (function (_super) {
     return DonutChartConfig;
 }(DonutChartBaseConfig));
 export { DonutChartConfig };
-/**
- * @deprecated Use DonutChartConfig
- */
-var DonutConfig = /** @class */ (function (_super) {
-    __extends(DonutConfig, _super);
-    function DonutConfig() {
-        var _this = _super.call(this) || this;
-        console.log('patternfly-ng: DonutConfig is deprecated; use DonutChartConfig or UtilizationDonutChartConfig');
-        return _this;
-    }
-    return DonutConfig;
-}(DonutChartConfig));
-export { DonutConfig };
 //# sourceMappingURL=donut-chart-config.js.map

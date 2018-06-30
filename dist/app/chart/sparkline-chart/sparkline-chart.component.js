@@ -237,29 +237,4 @@ var SparklineChartComponent = /** @class */ (function (_super) {
     return SparklineChartComponent;
 }(ChartBase));
 export { SparklineChartComponent };
-/**
- * @deprecated Use SparklineChartComponent
- */
-var SparklineComponent = /** @class */ (function (_super) {
-    __extends(SparklineComponent, _super);
-    function SparklineComponent(chartDefaults) {
-        var _this = _super.call(this, chartDefaults) || this;
-        _this.chartDefaults = chartDefaults;
-        console.log('patternfly-ng: SparklineComponent is deprecated; use SparklineChartComponent');
-        return _this;
-    }
-    SparklineComponent.decorators = [
-        { type: Component, args: [{
-                    encapsulation: ViewEncapsulation.None,
-                    selector: 'pfng-chart-sparkline',
-                    template: "<div #chartElement id=\"{{config.chartId}}\"></div>"
-                },] },
-    ];
-    /** @nocollapse */
-    SparklineComponent.ctorParameters = function () { return [
-        { type: ChartDefaults, },
-    ]; };
-    return SparklineComponent;
-}(SparklineChartComponent));
-export { SparklineComponent };
 //# sourceMappingURL=sparkline-chart.component.js.map

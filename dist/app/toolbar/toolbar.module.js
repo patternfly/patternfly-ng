@@ -5,8 +5,6 @@ import { ActionModule } from '../action/action.module';
 import { FilterModule } from '../filter/filter.module';
 import { SortModule } from '../sort/sort.module';
 import { ToolbarComponent } from './toolbar.component';
-import { ToolbarConfig } from './toolbar-config';
-export { ToolbarConfig };
 /**
  * A module containing objects associated with the toolbar component
  */
