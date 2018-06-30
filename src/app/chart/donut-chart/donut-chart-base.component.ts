@@ -1,12 +1,10 @@
 import {
-  Component,
   DoCheck,
   Input,
   OnDestroy,
   OnInit,
-  ViewEncapsulation
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash';
 

@@ -14,13 +14,3 @@ export abstract class ChartConfigBase {
    */
   data?: any;
 }
-
-/**
- * @deprecated Use ChartConfigBase
- */
-export abstract class ChartConfig extends ChartConfigBase {
-  constructor() {
-    super();
-    console.log('patternfly-ng: ChartConfig is deprecated; use ChartConfigBase');
-  }
-}

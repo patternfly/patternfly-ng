@@ -18,6 +18,6 @@ import 'highlight.js/styles/github.css';
 import 'dragula/dist/dragula.css';
 import 'patternfly/dist/css/patternfly.css';
 import 'patternfly/dist/css/patternfly-additions.css';
-import 'src/assets/stylesheets/patternfly-ng.css';
+import '../src/assets/stylesheets/patternfly-ng.css';
 
 require('patternfly/dist/js/patternfly-settings');

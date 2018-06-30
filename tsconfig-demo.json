@@ -12,9 +12,15 @@
     "sourceMap": true,
     "suppressImplicitAnyIndexErrors": true
   },
+  "exclude": [
+    "src/app/list/tree-list"
+  ],
   "files": [
     "src/demo/app.module.ts",
-    "src/demo.ts"
+    "src/demo.ts",
+    "src/demo-aot.ts",
+    "src/polyfills.ts",
+    "src/vendor.ts"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit" : true

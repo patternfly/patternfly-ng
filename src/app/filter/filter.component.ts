@@ -213,7 +213,8 @@ export class FilterComponent implements DoCheck, OnInit {
   // Private
 
   private enforceSingleSelect(filter: Filter): void {
-    remove(this.config.appliedFilters, { title: filter.field.title });
+    const filterField = { title: filter.field.title };
+    remove(this.config.appliedFilters, { field: filterField });
   }
 
   private filterExists(filter: Filter): boolean {

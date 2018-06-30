@@ -254,6 +254,7 @@ export class ToolbarComponent implements DoCheck, OnInit {
   // Utils
 
   private enforceSingleSelect(filter: Filter): void {
-    remove(this.config.filterConfig.appliedFilters, { title: filter.field.title });
+    const filterField = { title: filter.field.title };
+    remove(this.config.filterConfig.appliedFilters, { field: filterField });
   }
 }

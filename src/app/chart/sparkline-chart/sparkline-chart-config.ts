@@ -48,13 +48,3 @@ export class SparklineChartConfig extends ChartConfigBase {
    */
   units?: string;
 }
-
-/**
- * @deprecated Use SparklineChartConfig
- */
-export class SparklineConfig extends SparklineChartConfig {
-  constructor() {
-    super();
-    console.log('patternfly-ng: SparklineConfig is deprecated; use SparklineChartConfig');
-  }
-}
