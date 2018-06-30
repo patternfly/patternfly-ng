@@ -26,12 +26,9 @@ export class FilterSaveExampleComponent implements OnInit {
   filterConfig: FilterConfig;
   filterFields: FilterField[];
   filtersText: string = '';
-  monthQueries: any[];
-  monthQueriesFixed: any[];
   savedFilters: any = {};
   savedQueries: FilterQuery[];
   separator: Object;
-  weekDayQueries: any[];
 
   constructor() {
   }
@@ -45,7 +42,8 @@ export class FilterSaveExampleComponent implements OnInit {
       weekDay: 'Sunday',
       weekdayId: 'day1'
     }, {
-      name: 'John Smith', address: '415 East Main Street, Norfolk, Virginia',
+      name: 'John Smith',
+      address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
       weekDay: 'Monday',
@@ -74,106 +72,22 @@ export class FilterSaveExampleComponent implements OnInit {
     }];
     this.items = this.allItems;
 
-    this.monthQueries = [{
-      id: 'month3',
-      value: 'March',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month4',
-      value: 'April',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month5',
-      value: 'May',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month6',
-      value: 'June',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month7',
-      value: 'July',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month8',
-      value: 'August',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month9',
-      value: 'September',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month10',
-      value: 'October',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month11',
-      value: 'November',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month12',
-      value: 'December',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }];
-
-    // Non-filterable queries
-    this.monthQueriesFixed = [{
-      id: 'month1',
-      value: 'January',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month2',
-      value: 'February',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }];
-
     // Separator used with type ahead queries
     this.separator = {
       id: 'separator',
       separator: true
     };
 
-    this.weekDayQueries = [{
-      id: 'day1',
-      value: 'Sunday'
-    }, {
-      id: 'day2',
-      value: 'Monday'
-    }, {
-      id: 'day3',
-      value: 'Tuesday'
-    }, {
-      id: 'day4',
-      value: 'Wednesday'
-    }, {
-      id: 'day5',
-      value: 'Thursday'
-    }, {
-      id: 'day6',
-      value: 'Friday'
-    }, {
-      id: 'day7',
-      value: 'Saturday'
-    }];
-
     this.filterFields = [{
-      id: 'birthMonth',
-      title: 'Birth Month',
-      placeholder: 'Filter by Birth Month...',
-      type: FilterType.TYPEAHEAD,
-      queries: [
-        ...this.monthQueriesFixed,
-        this.separator,
-        ...this.monthQueries
-      ]
+      id: 'name',
+      title: 'Name',
+      placeholder: 'Filter by Name...',
+      type: FilterType.TEXT
     }, {
-      id: 'weekDay',
-      title: 'Week Day',
-      placeholder: 'Filter by Week Day...',
-      type: FilterType.TYPEAHEAD,
-      queries: [
-        ...this.weekDayQueries
-      ]
+      id: 'address',
+      title: 'Address',
+      placeholder: 'Filter by Address...',
+      type: FilterType.TEXT
     }, this.separator, {
       id: 'saved',
       title: 'My Filters',
@@ -242,17 +156,7 @@ export class FilterSaveExampleComponent implements OnInit {
   // Reset filtered queries
   filterFieldSelected($event: FilterEvent): void {
     this.filterConfig.fields.forEach((field) => {
-      if (field.id === 'birthMonth') {
-        field.queries = [
-          ...this.monthQueriesFixed,
-          this.separator,
-          ...this.monthQueries
-        ];
-      } else if (field.id === 'weekDay') {
-        field.queries = [
-          ...this.weekDayQueries
-        ];
-      } else if (field.id === 'saved') {
+      if (field.id === 'saved') {
         field.queries = [];
         for (const key of Object.keys(this.savedFilters)) {
           field.queries.push({
@@ -266,10 +170,11 @@ export class FilterSaveExampleComponent implements OnInit {
 
   matchesFilter(item: any, filter: Filter): boolean {
     let match = true;
-    if (filter.field.id === 'birthMonth') {
-      match = item.birthMonth === filter.value;
-    } else if (filter.field.id === 'weekDay') {
-      match = item.weekDay === filter.value;
+    let re = new RegExp(filter.value, 'i');
+    if (filter.field.id === 'name') {
+      match = item.name.match(re) !== null;
+    } else if (filter.field.id === 'address') {
+      match = item.address.match(re) !== null;
     }
     return match;
   }
@@ -290,29 +195,7 @@ export class FilterSaveExampleComponent implements OnInit {
     const index = (this.filterConfig.fields as any).findIndex((i: any) => i.id === $event.field.id);
     let val = $event.value.trim();
 
-    if (this.filterConfig.fields[index].id === 'birthMonth') {
-      this.filterConfig.fields[index].queries = [
-        ...this.monthQueriesFixed,
-        this.separator,
-        ...this.monthQueries.filter((item: any) => {
-          if (item.value) {
-            return (item.value.toLowerCase().indexOf(val.toLowerCase()) > -1);
-          } else {
-            return true;
-          }
-        })
-      ];
-    } else if (this.filterConfig.fields[index].id === 'weekDay') {
-      this.filterConfig.fields[index].queries = [
-        ...this.weekDayQueries.filter((item: any) => {
-          if (item.value) {
-            return (item.value.toLowerCase().indexOf(val.toLowerCase()) > -1);
-          } else {
-            return true;
-          }
-        })
-      ];
-    } else if (this.filterConfig.fields[index].id === 'saved') {
+    if (this.filterConfig.fields[index].id === 'saved') {
       let queries: FilterQuery[] = [];
       for (const key of Object.keys(this.savedFilters)) {
         queries.push({
@@ -355,19 +238,20 @@ export class FilterSaveExampleComponent implements OnInit {
   // Load saved filters
   loadSavedFilters() {
     let filter1 = {
-      field: this.filterConfig.fields[0], // Birth Month
-      query: this.monthQueriesFixed[1], // February
-      value: this.monthQueriesFixed[1].value
+      field: this.filterConfig.fields[0], // Name
+      query: this.allItems[0],
+      value: 'Fred'
     } as Filter;
     let filter2 = {
-      field: this.filterConfig.fields[1], // Week Day
-      query: this.weekDayQueries[0], // Sunday
-      value: this.weekDayQueries[0].value
+      field: this.filterConfig.fields[1], // Address
+      query: this.allItems[1],
+      value: '2'
     } as Filter;
 
     // Load filters
-    this.savedFilters['Test1'] = [filter1]; // Filter values matching February
-    this.savedFilters['Test2'] = [filter1, filter2]; // Filter values matching February and Sunday
+    this.savedFilters['MySave1'] = [filter1]; // Filter values matching 'Fred'
+    this.savedFilters['MySave2'] = [filter2]; // Filter values matching address '2'
+    this.savedFilters['MySave3'] = [filter1, filter2]; // Filter values matching 'Fred' and address '2'
     this.filterFieldSelected(null); // Refresh queries
   }
 

@@ -6561,7 +6561,7 @@ var FilterComponent = /** @class */ (function () {
             value: $event.value
         };
         if (!this.filterExists(newFilter)) {
-            if (newFilter.field.type === FilterType.SELECT) {
+            if (newFilter.field.type === FilterType.SELECT || newFilter.field.type === FilterType.TYPEAHEAD) {
                 this.enforceSingleSelect(newFilter);
             }
             this.config.appliedFilters.push(newFilter);
