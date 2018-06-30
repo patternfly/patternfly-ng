@@ -34,7 +34,6 @@ export class ToolbarExampleComponent implements OnInit {
   sortConfig: SortConfig;
   currentSortField: SortField;
   toolbarConfig: ToolbarConfig;
-  weekDayQueries: any[];
 
   monthVals: any = {
     'January': 1,
@@ -102,29 +101,6 @@ export class ToolbarExampleComponent implements OnInit {
     }];
     this.items = this.allItems;
 
-    this.weekDayQueries = [{
-      id: 'day1',
-      value: 'Sunday'
-    }, {
-      id: 'day2',
-      value: 'Monday'
-    }, {
-      id: 'day3',
-      value: 'Tuesday'
-    }, {
-      id: 'day4',
-      value: 'Wednesday'
-    }, {
-      id: 'day5',
-      value: 'Thursday'
-    }, {
-      id: 'day6',
-      value: 'Friday'
-    }, {
-      id: 'day7',
-      value: 'Saturday'
-    }];
-
     this.filterConfig = {
       fields: [{
         id: 'name',
@@ -182,10 +158,29 @@ export class ToolbarExampleComponent implements OnInit {
         id: 'weekDay',
         title: 'Week Day',
         placeholder: 'Filter by Week Day...',
-        type: FilterType.TYPEAHEAD,
-        queries: [
-          ...this.weekDayQueries
-        ]
+        type: FilterType.SELECT,
+        queries: [{
+          id: 'day1',
+          value: 'Sunday'
+        }, {
+          id: 'day2',
+          value: 'Monday'
+        }, {
+          id: 'day3',
+          value: 'Tuesday'
+        }, {
+          id: 'day4',
+          value: 'Wednesday'
+        }, {
+          id: 'day5',
+          value: 'Thursday'
+        }, {
+          id: 'day6',
+          value: 'Friday'
+        }, {
+          id: 'day7',
+          value: 'Saturday'
+        }]
       }] as FilterField[],
       resultsCount: this.items.length,
       appliedFilters: []
@@ -307,26 +302,15 @@ export class ToolbarExampleComponent implements OnInit {
       this.filtersText += filter.field.title + ' : ' + filter.value + '\n';
     });
     this.applyFilters($event.appliedFilters);
-    this.filterFieldSelected($event);
-  }
-
-  // Reset filtered queries
-  filterFieldSelected($event: FilterEvent): void {
-    this.filterConfig.fields.forEach((field) => {
-      if (field.id === 'weekDay') {
-        field.queries = [
-          ...this.weekDayQueries
-        ];
-      }
-    });
   }
 
   matchesFilter(item: any, filter: Filter): boolean {
     let match = true;
+    let re = new RegExp(filter.value, 'i');
     if (filter.field.id === 'name') {
-      match = item.name.match(filter.value) !== null;
+      match = item.name.match(re) !== null;
     } else if (filter.field.id === 'address') {
-      match = item.address.match(filter.value) !== null;
+      match = item.address.match(re) !== null;
     } else if (filter.field.id === 'birthMonth') {
       match = item.birthMonth === filter.value;
     } else if (filter.field.id === 'weekDay') {
@@ -344,24 +328,6 @@ export class ToolbarExampleComponent implements OnInit {
       }
     });
     return matches;
-  }
-
-  // Filter queries for type ahead
-  filterQueries($event: FilterEvent) {
-    const index = (this.filterConfig.fields as any).findIndex((i: any) => i.id === $event.field.id);
-    let val = $event.value.trim();
-
-    if (this.filterConfig.fields[index].id === 'weekDay') {
-      this.filterConfig.fields[index].queries = [
-        ...this.weekDayQueries.filter((item: any) => {
-          if (item.value) {
-            return (item.value.toLowerCase().indexOf(val.toLowerCase()) > -1);
-          } else {
-            return true;
-          }
-        })
-      ];
-    }
   }
 
   // Sort

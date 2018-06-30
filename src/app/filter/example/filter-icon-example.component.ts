@@ -10,10 +10,10 @@ import { FilterEvent } from '../filter-event';
 import { FilterType } from '../filter-type';
 
 @Component({
-  selector: 'filter-basic-example',
-  templateUrl: './filter-basic-example.component.html'
+  selector: 'filter-icon-example',
+  templateUrl: './filter-icon-example.component.html'
 })
-export class FilterBasicExampleComponent implements OnInit {
+export class FilterIconExampleComponent implements OnInit {
   allItems: any[];
   items: any[];
   filterConfig: FilterConfig;
@@ -29,13 +29,16 @@ export class FilterBasicExampleComponent implements OnInit {
       address: '20 Dinosaur Way, Bedrock, Washingstone',
       birthMonth: 'February',
       birthMonthId: 'month2',
+      icon: 'bookmark',
+      iconStyleClass: 'fa fa-bookmark',
       weekDay: 'Sunday',
       weekdayId: 'day1'
     }, {
-      name: 'John Smith',
-      address: '415 East Main Street, Norfolk, Virginia',
+      name: 'John Smith', address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
+      icon: 'map',
+      iconStyleClass: 'fa fa-map-marker',
       weekDay: 'Monday',
       weekdayId: 'day2'
     }, {
@@ -43,6 +46,8 @@ export class FilterBasicExampleComponent implements OnInit {
       address: '234 Elm Street, Pittsburgh, Pennsylvania',
       birthMonth: 'March',
       birthMonthId: 'month3',
+      icon: 'gift',
+      iconStyleClass: 'fa fa-gift',
       weekDay: 'Tuesday',
       weekdayId: 'day3'
     }, {
@@ -50,6 +55,8 @@ export class FilterBasicExampleComponent implements OnInit {
       address: '2 Apple Boulevard, Cincinatti, Ohio',
       birthMonth: 'December',
       birthMonthId: 'month12',
+      icon: 'map',
+      iconStyleClass: 'fa fa-map-marker',
       weekDay: 'Wednesday',
       weekdayId: 'day4'
     }, {
@@ -57,6 +64,8 @@ export class FilterBasicExampleComponent implements OnInit {
       address: '50 Second Street, New York, New York',
       birthMonth: 'February',
       birthMonthId: 'month2',
+      icon: 'bookmark',
+      iconStyleClass: 'fa fa-bookmark',
       weekDay: 'Thursday',
       weekdayId: 'day5'
     }];
@@ -64,83 +73,22 @@ export class FilterBasicExampleComponent implements OnInit {
 
     this.filterConfig = {
       fields: [{
-        id: 'name',
-        title: 'Name',
-        placeholder: 'Filter by Name...',
-        type: FilterType.TEXT
-      }, {
-        id: 'address',
-        title: 'Address',
-        placeholder: 'Filter by Address...',
-        type: FilterType.TEXT
-      }, {
-        id: 'birthMonth',
-        title: 'Birth Month',
-        placeholder: 'Filter by Birth Month...',
+        id: 'icon',
+        title: 'By Icon',
+        placeholder: 'Filter by Icon...',
         type: FilterType.SELECT,
         queries: [{
-          id: 'month1',
-          value: 'January'
+          id: 'bookmark',
+          value: 'bookmark',
+          iconStyleClass: 'fa fa-bookmark'
         }, {
-          id: 'month2',
-          value: 'February'
+          id: 'map',
+          value: 'map',
+          iconStyleClass: 'fa fa-map-marker'
         }, {
-          id: 'month3',
-          value: 'March'
-        }, {
-          id: 'month4',
-          value: 'April'
-        }, {
-          id: 'month5',
-          value: 'May'
-        }, {
-          id: 'month6',
-          value: 'June'
-        }, {
-          id: 'month7',
-          value: 'July'
-        }, {
-          id: 'month8',
-          value: 'August'
-        }, {
-          id: 'month9',
-          value: 'September'
-        }, {
-          id: 'month10',
-          value: 'October'
-        }, {
-          id: 'month11',
-          value: 'November'
-        }, {
-          id: 'month12',
-          value: 'December'
-        }]
-      }, {
-        id: 'weekDay',
-        title: 'Week Day',
-        placeholder: 'Filter by Week Day...',
-        type: FilterType.SELECT,
-        queries: [{
-          id: 'day1',
-          value: 'Sunday'
-        }, {
-          id: 'day2',
-          value: 'Monday'
-        }, {
-          id: 'day3',
-          value: 'Tuesday'
-        }, {
-          id: 'day4',
-          value: 'Wednesday'
-        }, {
-          id: 'day5',
-          value: 'Thursday'
-        }, {
-          id: 'day6',
-          value: 'Friday'
-        }, {
-          id: 'day7',
-          value: 'Saturday'
+          id: 'gift',
+          value: 'gift',
+          iconStyleClass: 'fa fa-gift'
         }]
       }] as FilterField[],
       resultsCount: this.items.length,
@@ -174,15 +122,8 @@ export class FilterBasicExampleComponent implements OnInit {
 
   matchesFilter(item: any, filter: Filter): boolean {
     let match = true;
-    let re = new RegExp(filter.value, 'i');
-    if (filter.field.id === 'name') {
-      match = item.name.match(re) !== null;
-    } else if (filter.field.id === 'address') {
-      match = item.address.match(re) !== null;
-    } else if (filter.field.id === 'birthMonth') {
-      match = item.birthMonth === filter.value;
-    } else if (filter.field.id === 'weekDay') {
-      match = item.weekDay === filter.value;
+    if (filter.field.id === 'icon') {
+      match = item.icon === filter.value;
     }
     return match;
   }

@@ -146,7 +146,7 @@ export class FilterComponent implements DoCheck, OnInit {
     } as Filter;
 
     if (!this.filterExists(newFilter)) {
-      if (newFilter.field.type === FilterType.SELECT) {
+      if (newFilter.field.type === FilterType.SELECT || newFilter.field.type === FilterType.TYPEAHEAD) {
         this.enforceSingleSelect(newFilter);
       }
       this.config.appliedFilters.push(newFilter);

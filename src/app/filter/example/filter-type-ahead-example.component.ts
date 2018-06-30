@@ -35,7 +35,8 @@ export class FilterTypeAheadExampleComponent implements OnInit {
       weekDay: 'Sunday',
       weekdayId: 'day1'
     }, {
-      name: 'John Smith', address: '415 East Main Street, Norfolk, Virginia',
+      name: 'John Smith',
+      address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
       weekDay: 'Monday',
