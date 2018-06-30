@@ -18,5 +18,8 @@
     <tab heading="Lazy Load" (select)="tabSelected($event)">
       <filter-lazy-example *ngIf="activeTab === 'Lazy Load'"></filter-lazy-example>
     </tab>
+    <tab heading="Icon" (select)="tabSelected($event)">
+      <filter-icon-example *ngIf="activeTab === 'Icon'"></filter-icon-example>
+    </tab>
   </tabset>
 </div>
