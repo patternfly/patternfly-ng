@@ -32,7 +32,8 @@ export class FilterBasicExampleComponent implements OnInit {
       weekDay: 'Sunday',
       weekdayId: 'day1'
     }, {
-      name: 'John Smith', address: '415 East Main Street, Norfolk, Virginia',
+      name: 'John Smith',
+      address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
       weekDay: 'Monday',
@@ -115,22 +116,31 @@ export class FilterBasicExampleComponent implements OnInit {
           value: 'December'
         }]
       }, {
-        id: 'byIcon',
-        title: 'By Icon',
-        placeholder: 'Filter by Icon...',
+        id: 'weekDay',
+        title: 'Week Day',
+        placeholder: 'Filter by Week Day...',
         type: FilterType.SELECT,
         queries: [{
-          id: 'bookmark',
-          value: 'Bookmark',
-          iconStyleClass: 'fa fa-bookmark'
+          id: 'day1',
+          value: 'Sunday'
         }, {
-          id: 'map',
-          value: 'Map',
-          iconStyleClass: 'fa fa-map-marker'
+          id: 'day2',
+          value: 'Monday'
         }, {
-          id: 'gift',
-          value: 'Gift',
-          iconStyleClass: 'fa fa-gift'
+          id: 'day3',
+          value: 'Tuesday'
+        }, {
+          id: 'day4',
+          value: 'Wednesday'
+        }, {
+          id: 'day5',
+          value: 'Thursday'
+        }, {
+          id: 'day6',
+          value: 'Friday'
+        }, {
+          id: 'day7',
+          value: 'Saturday'
         }]
       }] as FilterField[],
       resultsCount: this.items.length,
@@ -164,10 +174,11 @@ export class FilterBasicExampleComponent implements OnInit {
 
   matchesFilter(item: any, filter: Filter): boolean {
     let match = true;
+    let re = new RegExp(filter.value, 'i');
     if (filter.field.id === 'name') {
-      match = item.name.match(filter.value) !== null;
+      match = item.name.match(re) !== null;
     } else if (filter.field.id === 'address') {
-      match = item.address.match(filter.value) !== null;
+      match = item.address.match(re) !== null;
     } else if (filter.field.id === 'birthMonth') {
       match = item.birthMonth === filter.value;
     } else if (filter.field.id === 'weekDay') {

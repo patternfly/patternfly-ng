@@ -4,7 +4,8 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+
+import { timer, Subscription } from 'rxjs';
 
 import { cloneDeep } from 'lodash';
 
@@ -64,18 +65,14 @@ export class DonutChartDynamicExampleComponent implements OnDestroy, OnInit {
     this.smallConfig.centerLabel = 'Pets';
     this.smallConfig.chartHeight = 120;
 
-    this.subscriptions.push(Observable
-      .timer(0, 1000)
-      .map(() => Math.floor(Math.random() * 5) + 1)
-      .subscribe(val => {
-        this.chartData[0][1] = val;
+    this.subscriptions.push(timer(0, 1000)
+      .subscribe(() => {
+        this.chartData[0][1] = Math.floor(Math.random() * 5) + 1;
       }));
 
-    this.subscriptions.push(Observable
-      .timer(0, 5000)
-      .map(() => Math.floor(Math.random() * 100) + 100)
-      .subscribe(val => {
-        this.smallConfig.chartHeight = val;
+    this.subscriptions.push(timer(0, 5000)
+      .subscribe(() => {
+        this.smallConfig.chartHeight = Math.floor(Math.random() * 100) + 100;
       }));
   }
 }

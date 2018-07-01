@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DemoComponentsModule } from '../../../../demo/components/demo-components.module';
 import { VerticalNavigationExampleComponent } from './vertical-navigation-example.component';

@@ -3,6 +3,7 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
+
 import { NotificationType } from '../../notification-type';
 
 @Component({

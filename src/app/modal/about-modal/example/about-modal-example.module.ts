@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ModalModule as BSModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AboutModalExampleComponent } from './about-modal-example.component';
@@ -16,7 +16,7 @@ import { AboutModalModule } from '../about-modal.module';
     AboutModalModule,
     CommonModule,
     DemoComponentsModule,
-    BSModalModule.forRoot(),
+    ModalModule.forRoot(),
     TabsModule.forRoot()
   ],
   providers: [TabsetConfig]

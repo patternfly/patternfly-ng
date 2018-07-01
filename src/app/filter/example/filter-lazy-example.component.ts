@@ -37,7 +37,8 @@ export class FilterLazyExampleComponent implements OnInit {
       weekDay: 'Sunday',
       weekdayId: 'day1'
     }, {
-      name: 'John Smith', address: '415 East Main Street, Norfolk, Virginia',
+      name: 'John Smith',
+      address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
       weekDay: 'Monday',
@@ -65,59 +66,6 @@ export class FilterLazyExampleComponent implements OnInit {
       weekdayId: 'day5'
     }];
     this.items = this.allItems;
-
-    this.monthQueries = [{
-      id: 'month3',
-      value: 'March',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month4',
-      value: 'April',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month5',
-      value: 'May',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month6',
-      value: 'June',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month7',
-      value: 'July',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month8',
-      value: 'August',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month9',
-      value: 'September',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month10',
-      value: 'October',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month11',
-      value: 'November',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month12',
-      value: 'December',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }];
-
-    // Non-filterable queries
-    this.monthQueriesFixed = [{
-      id: 'month1',
-      value: 'January',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }, {
-      id: 'month2',
-      value: 'February',
-      imageUrl: 'https://avatars2.githubusercontent.com/u/21208769?v=3'
-    }];
 
     // Separator used with type ahead queries
     this.separator = {
@@ -152,12 +100,44 @@ export class FilterLazyExampleComponent implements OnInit {
       id: 'birthMonth',
       title: 'Birth Month',
       placeholder: 'Filter by Birth Month...',
-      type: FilterType.TYPEAHEAD,
-      queries: [
-        ...this.monthQueriesFixed,
-        this.separator,
-        ...this.monthQueries
-      ]
+      type: FilterType.SELECT,
+      queries: [{
+        id: 'month1',
+        value: 'January'
+      }, {
+        id: 'month2',
+        value: 'February'
+      }, {
+        id: 'month3',
+        value: 'March'
+      }, {
+        id: 'month4',
+        value: 'April'
+      }, {
+        id: 'month5',
+        value: 'May'
+      }, {
+        id: 'month6',
+        value: 'June'
+      }, {
+        id: 'month7',
+        value: 'July'
+      }, {
+        id: 'month8',
+        value: 'August'
+      }, {
+        id: 'month9',
+        value: 'September'
+      }, {
+        id: 'month10',
+        value: 'October'
+      }, {
+        id: 'month11',
+        value: 'November'
+      }, {
+        id: 'month12',
+        value: 'December'
+      }]
     }];
 
     this.lazyFilterFields = [{
@@ -241,10 +221,11 @@ export class FilterLazyExampleComponent implements OnInit {
 
   matchesFilter(item: any, filter: Filter): boolean {
     let match = true;
+    let re = new RegExp(filter.value, 'i');
     if (filter.field.id === 'name') {
-      match = item.name.match(filter.value) !== null;
+      match = item.name.match(re) !== null;
     } else if (filter.field.id === 'address') {
-      match = item.address.match(filter.value) !== null;
+      match = item.address.match(re) !== null;
     } else if (filter.field.id === 'birthMonth') {
       match = item.birthMonth === filter.value;
     } else if (filter.field.id === 'weekDay') {
