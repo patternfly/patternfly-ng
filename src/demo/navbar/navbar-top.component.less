@@ -3,7 +3,7 @@
 header {
   + .container-fluid {
     padding-top: 72px;
-    transition: padding-left .2s cubic-bezier(.35,0,.25,1);
+    transition: padding-left .2s cubic-bezier(.35, 0, .25, 1);
     .has-sidebar & {
       padding-left: ((@grid-gutter-width / 2) + @navbar-toggle-sidebar-width);
       @media (min-width: @screen-md) {
@@ -12,25 +12,31 @@ header {
     }
   }
   .navbar.navbar-default {
+    /* stylelint-disable */
     background: #040404 !important;
     border-bottom: 0 !important;
+    /* stylelint-enable */
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0;
     border-top: 2px solid #32a6d7;
     font-size: @font-size-base + 1;
     margin-bottom: 0;
+    /* stylelint-disable */
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
+    /* stylelint-enable */
     .home & {
+      /* stylelint-disable */
       background: transparent !important;
       position: absolute !important;
       top: 0 !important;
+      /* stylelint-enable */
     }
     .form-group {
       display: block;
     }
     .navbar-brand {
-      background: url(../images/patternfly-ng.svg) no-repeat 0 50%;
+      background: url('../images/patternfly-ng.svg') no-repeat 0 50%;
       height: 40px;
       line-height: 0;
       margin-bottom: 15px;
@@ -42,7 +48,7 @@ header {
         margin-left: 0;
       }
       &:hover:after {
-        background: #1F89C7;
+        background: #1f89c7;
         content: '';
         height: 1px;
         left: 56px;
@@ -52,8 +58,8 @@ header {
       }
     }
     .navbar-collapse {
-      border-top-color: rgba(255,255,255,.15);
-      box-shadow: 0 0 3px rgba(0,0,0,.95);
+      border-top-color: rgba(255, 255, 255, .15);
+      box-shadow: 0 0 3px rgba(0, 0, 0, .95);
       @media (max-width: @screen-sm-max) {
         padding-bottom: 10px;
         padding-top: 15px;
@@ -71,11 +77,15 @@ header {
         padding-left: 0;
         padding-right: 0;
         &.collapse {
+          /* stylelint-disable */
           display: none !important;
           overflow-x: hidden !important;
+          /* stylelint-enable */
           &.in {
+            /* stylelint-disable */
             display: block !important;
             overflow-x: visible !important;
+            /* stylelint-enable */
           }
         }
       }
@@ -124,7 +134,7 @@ header {
         display: none;
       }
       .form-control {
-        background: rgba(255,255,255,.15);
+        background: rgba(255, 255, 255, .15);
         border: 0;
         box-shadow: none;
         color: #dbdada;
@@ -141,9 +151,9 @@ header {
           width: 130px;
         }
         &:focus {
-          background: rgba(255,255,255,.3);
+          background: rgba(255, 255, 255, .3);
           color: #fff;
-          transition-duration: 400ms;
+          transition-duration: 400 ms;
           transition-property: background-color;
         }
       }
@@ -157,14 +167,18 @@ header {
     }
     .navbar-right {
       @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+        /* stylelint-disable */
         float: none !important;
+        /* stylelint-enable */
         margin-right: 0;
       }
       > li {
         &.active {
           > a, &:hover > a {
+            /* stylelint-disable */
             background: transparent !important;
             color: #3bb1dc !important;
+            /* stylelint-enable */
           }
         }
         &:hover {
@@ -189,7 +203,7 @@ header {
           .home & {
             &:hover, &.open {
               background: #252525;
-              background: rgba(0,0,0,.1);
+              background: rgba(0, 0, 0, .1);
             }
           }
         }
@@ -213,7 +227,7 @@ header {
       &:hover {
         .icon-bar {
           background-color: #fff;
-          box-shadow: 0 0 3px rgba(255,255,255,.7);
+          box-shadow: 0 0 3px rgba(255, 255, 255, .7);
         }
       }
     }

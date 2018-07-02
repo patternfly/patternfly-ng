@@ -1,7 +1,7 @@
 @import (reference) './navbar';
 
 .navbar-sidebar {
-  background: @navbar-sidebar-bg-color url(../images/grid-sidebar.png) no-repeat 50% 100%;
+  background: @navbar-sidebar-bg-color url('../images/grid-sidebar.png') no-repeat 50% 100%;
   border: 0;
   border-radius: 0;
   bottom: 0;
@@ -10,18 +10,20 @@
   padding: 0;
   position: fixed;
   top: 72px;
-  transition: all .2s cubic-bezier(.35,0,.25,1);
+  transition: all .2s cubic-bezier(.35, 0, .25, 1);
   width: @navbar-sidebar-width;
   z-index: (@zindex-navbar-fixed - 1);
   @media (min-width: @screen-md) {
+    /* stylelint-disable */
     box-shadow: none !important;
+    /* stylelint-enable */
     left: 0;
     overflow-x: hidden;
     overflow-y: auto;
     padding-right: 0;
   }
   &.open {
-    box-shadow: 0 0 3px rgba(0,0,0,.95);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .95);
     left: 0;
     overflow-x: hidden;
     overflow-y: auto;
@@ -31,12 +33,14 @@
       right: 0;
       &:active,
       &:hover {
-        background: rgba(92, 103, 112, 0.5) !important;
+        /* stylelint-disable */
+        background: rgba(92, 103, 112, .5) !important;
+        /* stylelint-enable */
       }
       &:focus {
         background: transparent;
       }
-      .fa-angle-double-right{
+      .fa-angle-double-right {
         left: 6px;
         &:before {
           content: @fa-var-angle-double-left;
@@ -78,7 +82,7 @@
       display: none;
     }
     .form-control {
-      background: rgba(255,255,255,.15);
+      background: rgba(255, 255, 255, .15);
       border: 0;
       box-shadow: none;
       color: #dbdada;
@@ -89,22 +93,26 @@
       padding-top: 1px;
       width: 100%;
       &:focus {
-        background: rgba(255,255,255,.3);
+        background: rgba(255, 255, 255, .3);
         color: #fff;
-        transition-duration: 400ms;
+        transition-duration: 400 ms;
         transition-property: background-color;
       }
     }
   }
   .navbar-right {
+    /* stylelint-disable */
     float: none !important;
+    /* stylelint-enable */
     margin-left: 0px;
     margin-right: 5px;
     > li {
       &.active {
         > a, &:hover > a {
+          /* stylelint-disable */
           background: transparent !important;
           color: #3bb1dc !important;
+          /* stylelint-enable */
         }
       }
       &:hover {
@@ -128,7 +136,7 @@
         .home & {
           &:hover, &.open {
             background: #252525;
-            background: rgba(0,0,0,.1);
+            background: rgba(0, 0, 0, .1);
           }
         }
       }
@@ -138,8 +146,8 @@
     background: @navbar-sidebar-bg-color;
     border: 0;
     border-radius: 0;
-    box-shadow: 0 0 3px rgba(0,0,0,.95);
-    color: rgba(255,255,255,.6);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .95);
+    color: rgba(255, 255, 255, .6);
     height: 100%;
     padding: 0 5px;
     position: absolute;
@@ -147,7 +155,9 @@
     top: 0;
     width: @navbar-toggle-sidebar-width;
     z-index: 3;
+    /* stylelint-disable */
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
+    /* stylelint-enable */
     @media (min-width: @screen-md) {
       display: none;
     }
@@ -155,7 +165,7 @@
     &:focus,
     &:hover {
       background: lighten(@navbar-sidebar-bg-color, 10%);
-      color: rgba(255,255,255,1);
+      color: rgba(255, 255, 255, 1);
       outline: none;
     }
     .fa-angle-double-right {
@@ -199,7 +209,7 @@
       }
       > ul > li {
         &.active {
-          background: rgba(101, 109, 115, 0.25);
+          background: rgba(101, 109, 115, .25);
           &:after {
             background: @link-color;
             content: '';
@@ -223,7 +233,7 @@
                 }
               }
               > a:hover {
-                background: rgba(0,0,0,.1);
+                background: rgba(0, 0, 0, .1);
               }
             }
           }
@@ -247,7 +257,7 @@
             text-decoration: none;
           }
           &:hover {
-            background: rgba(101, 109, 115, 0.15);
+            background: rgba(101, 109, 115, .15);
           }
         }
         > ul {

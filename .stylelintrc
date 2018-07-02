@@ -1,5 +1,5 @@
 {
-"rules": {
+  "rules": {
     "color-hex-case": ["lower", {
       "message": "Use lowercase hex codes for better readability."
     }],
