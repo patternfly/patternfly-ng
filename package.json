@@ -32,9 +32,7 @@
     "test": "karma start",
     "test:debug": "karma --browsers Chrome --no-single-run start",
     "test:trace-deprecation": "node --trace-deprecation ./node_modules/.bin/karma start",
-    "semantic-release": "semantic-release pre && copy package.json npm-shrinkwrap.json dist && npm publish dist && semantic-release post",
-    "semantic-release-post": "semantic-release post",
-    "semantic-release-pre": "semantic-release pre",
+    "semantic-release": "copy package.json dist && semantic-release",
     "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "license": "Apache-2.0",
@@ -169,7 +167,7 @@
     "rollup-plugin-uglify": "4.0.0",
     "rxjs": "6.2.1",
     "rxjs-compat": "6.2.1",
-    "semantic-release": "15.6.0",
+    "semantic-release": "15.8.1",
     "source-map-loader": "0.2.3",
     "style-loader": "0.21.0",
     "stylelint": "9.3.0",
@@ -193,7 +191,8 @@
   },
   "release": {
     "branch": "master-dist",
-    "debug": false
+    "debug": false,
+    "pkgRoot": "./dist"
   },
   "config": {
     "commitizen": {
