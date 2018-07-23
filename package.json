@@ -24,7 +24,6 @@
     "lint:less:fix": "npm run lint:less -- --fix",
     "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:ts:fix": "npm run lint:ts -- --fix",
-    "postinstall": "node src/scripts/package/install.js",
     "publish-travis": "node_modules/patternfly-eng-publish/script/publish-ghpages.sh -t dist-demo",
     "reinstall": "npm run clean && npm install",
     "rimraf": "rimraf",
@@ -56,13 +55,38 @@
     "ng5",
     "ng6"
   ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/patternfly/patternfly-ng/issues"
+  },
   "homepage": "https://github.com/patternfly/patternfly-ng",
   "repository": {
     "type": "git",
     "url": "https://github.com/patternfly/patternfly-ng.git"
   },
-  "bugs": {
-    "url": "https://github.com/patternfly/patternfly-ng/issues"
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
+  },
+  "release": {
+    "branch": "master",
+    "prepare": [
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "dist"
+      }
+    ],
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "dist"
+      },
+      "@semantic-release/github"
+    ]
   },
   "engines": {
     "node": ">=8.11.1",
@@ -155,7 +179,7 @@
     "nsp": "3.2.1",
     "optimize-js-plugin": "0.0.4",
     "patternfly-eng-publish": "0.0.4",
-    "patternfly-eng-release": "^3.26.73",
+    "patternfly-eng-release": "^3.26.74",
     "phantomjs-prebuilt": "2.1.16",
     "protractor": "5.4.0",
     "raw-loader": "0.5.1",
@@ -188,19 +212,5 @@
     "webpack-dev-server": "3.1.5",
     "webpack-merge": "4.1.3",
     "zone.js": "0.8.26"
-  },
-  "release": {
-    "branch": "master-dist",
-    "debug": false,
-    "pkgRoot": "./dist"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "files": [
-    "dist",
-    "src/scripts"
-  ]
+  }
 }
