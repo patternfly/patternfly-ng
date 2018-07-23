@@ -222,7 +222,7 @@ module.exports = {
       excludeExternals: true,
       excludePrivate: true,
       excludeProtected: true,
-      exclude: ['**/+(example|demo)/**' ],
+      exclude: ['**/+(example|demo|tree-list)/**' ],
       tsconfig: 'tsconfig.json'
     }, './src/app'),
 

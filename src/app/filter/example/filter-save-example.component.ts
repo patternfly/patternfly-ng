@@ -220,7 +220,7 @@ export class FilterSaveExampleComponent implements OnInit {
     let foundFilter = find(filters, {
       field: filter.field,
       value: filter.value
-    });
+    } as any);
     return foundFilter !== undefined;
   }
 
