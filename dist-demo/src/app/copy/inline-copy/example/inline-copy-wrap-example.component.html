@@ -1,0 +1,44 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-8 margin-bottom-15">
+      <p>This example shows a long string being truncated as the component meets the edge of a
+        <a href="https://www.w3.org/TR/css-flexbox-1/#flex-formatting-context" target="_blank">
+          flex formatting context</a>.
+        Inline Copy features an inline-flex container and does not wrap over multiple lines, and instead handles overflow content gracefully with an ellipsis.</p>
+      <pfng-inline-copy
+        [buttonAriaLabel]="wrapExConfig.buttonAriaLabel"
+        [value]="wrapExConfig.value"
+        (onCopy)="handleCopy($event)"></pfng-inline-copy>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4 class="actions-label">Actions</h4>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea rows="3" class="col-sm-12">{{actionsText}}</textarea>
+    </div>
+  </div>
+  <div class="row padding-top-10">
+    <div class="col-sm-12">
+      <h4>Code</h4>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <tabset>
+      <tab heading="api">
+        <iframe class="demoframe" src="docs/classes/inlinecopycomponent.html"></iframe>
+      </tab>
+      <tab heading="html">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-wrap-example.component.html"></include-content>
+      </tab>
+      <tab heading="typescript">
+        <include-content src="src/app/copy/inline-copy/example/inline-copy-wrap-example.component.ts"></include-content>
+      </tab>
+    </tabset>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="padding-15">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Copy Service Example</h4>
+      <hr>
+    </div>
+  </div>
+  <tabset>
+    <tab heading="Button" (select)="tabSelected($event)">
+      <copy-service-button-example *ngIf="activeTab === 'Button' || activeTab === ''"></copy-service-button-example>
+    </tab>
+  </tabset>
+</div>
