@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../build/src/app/sample/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,iBAAiB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { SampleModule } from './sample.module';\n"]}

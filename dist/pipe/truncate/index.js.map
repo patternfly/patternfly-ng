@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../build/src/app/pipe/truncate/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,wBAAwB,CAAC;AAC5D,OAAO,EAAE,YAAY,EAAE,MAAM,iBAAiB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { TruncatePipeModule } from './truncate.pipe.module';\nexport { TruncatePipe } from './truncate.pipe';\n"]}

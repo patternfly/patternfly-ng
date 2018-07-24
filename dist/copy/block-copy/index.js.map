@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../build/src/app/copy/block-copy/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,wBAAwB,CAAC;AAC5D,OAAO,EAAE,eAAe,EAAE,MAAM,qBAAqB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { BlockCopyComponent } from './block-copy.component';\nexport { BlockCopyModule } from './block-copy.module';\n"]}

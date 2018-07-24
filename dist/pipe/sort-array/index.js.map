@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../build/src/app/pipe/sort-array/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,mBAAmB,EAAE,MAAM,0BAA0B,CAAC;AAC/D,OAAO,EAAE,aAAa,EAAE,MAAM,mBAAmB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { SortArrayPipeModule } from './sort-array.pipe.module';\nexport { SortArrayPipe } from './sort-array.pipe';\n"]}

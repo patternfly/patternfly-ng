@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../build/src/app/copy/copy-event.ts"],"names":[],"mappings":"AAAA;;GAEG;AACH;IAAA;IAKA,CAAC;IAAD,gBAAC;AAAD,CALA,AAKC,IAAA","file":"copy-event.js","sourceRoot":"","sourcesContent":["/**\n * An object containing properties for copy events\n */\nexport class CopyEvent {\n  /**\n   * The copied value\n   */\n  value: string;\n}\n"]}
