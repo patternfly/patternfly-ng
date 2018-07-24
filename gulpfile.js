@@ -42,6 +42,14 @@ function copyExamples() {
   ]);
 }
 
+// Copy package files to dist
+function copyPkgFiles() {
+  return copyToDist([
+    './README.md',
+    './package.json'
+  ]);
+}
+
 // Copy given files to demo directory
 function copyToDemo(srcArr) {
   return gulp.src(srcArr)
@@ -241,9 +249,11 @@ function updateWatchDist() {
 
 const buildLessSeries = gulp.series(copyAssetsLess, copyLess);
 const buildCssSeries = gulp.series(lintCss, transpileLess, minCss, copyCss);
-const buildSeries = gulp.series(inlineTemplate, transpile, buildCssSeries, buildLessSeries);
 const buildAotSeries = gulp.series(inlineTemplate, transpileAot);
 const copyExamplesSeries = gulp.series(copyExamples);
+const copyPkgFilesSeries = gulp.series(copyPkgFiles);
+
+const buildSeries = gulp.series(inlineTemplate, transpile, buildCssSeries, buildLessSeries, copyPkgFilesSeries);
 const updateWatchDistSeries = gulp.series(buildSeries, updateWatchDist);
 const watchSeries = gulp.series(updateWatchDistSeries, watch);
 
@@ -252,5 +262,6 @@ gulp.task('build-aot', buildAotSeries);
 gulp.task('build-css', buildCssSeries);
 gulp.task('build-less', buildLessSeries);
 gulp.task('copy-examples', copyExamplesSeries);
+gulp.task('copy-pkg-files', copyPkgFilesSeries);
 gulp.task('watch', watchSeries);
 gulp.task('update-watch-dist', updateWatchDistSeries);
