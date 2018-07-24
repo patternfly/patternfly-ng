@@ -8,7 +8,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const rollup = require('rollup');
 
 export const LIB_NAME = 'patternfly-ng';
-export const PATH_SRC = 'dist/app/';
+export const PATH_SRC = 'dist/';
 export const PATH_DIST = 'dist/bundles/';
 
 export const config = {
