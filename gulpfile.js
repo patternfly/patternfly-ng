@@ -45,6 +45,7 @@ function copyExamples() {
 // Copy package files to dist
 function copyPkgFiles() {
   return copyToDist([
+    './LICENSE.txt',
     './README.md',
     './package.json'
   ]);
@@ -124,14 +125,14 @@ function copyAssetsLess() {
       return '@import \'';
     }))
     .pipe(rename({dirname: ''}))
-    .pipe(gulp.dest(libraryDist + '/less'));
+    .pipe(gulp.dest(libraryDist + '/dist/less'));
 }
 
 // Copy component LESS to dist/less in a flattened directory
 function copyLess() {
   return gulp.src(['./src/app/**/*.less'].concat(globalExcludes))
     .pipe(rename({dirname: ''}))
-    .pipe(gulp.dest(libraryDist + '/less'));
+    .pipe(gulp.dest(libraryDist + '/dist/less'));
 }
 
 /**
@@ -142,7 +143,7 @@ function copyLess() {
 function copyCss() {
   return gulp.src(['./src/assets/stylesheets/*.css'], {base: './src/assets/stylesheets'})
     .pipe(gulp.dest(function (file) {
-      return libraryDist + '/css' + file.base.slice(__dirname.length); // save directly to dist
+      return libraryDist + '/dist/css' + file.base.slice(__dirname.length); // save directly to dist
     }));
 }
 
