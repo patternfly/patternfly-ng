@@ -82,6 +82,9 @@ PatternFly-ng uses npm, webpack and gulp.  With the exception of node.js, all de
  - npm run reinstall - this clears your npm packages and installs them fresh
 
 ##### The following commands will help you run the demo via RawGit:
+
+Note: This currently works with the 3.x branch only, patternfly-ng 4.x relies on Netlify to provide PR snapshots.
+
 - If you are developing PatternFly-ng and would like to provide a link to the demo from your fork, TravisCI can be configured to create a copy of your branch with the dist files generated for you. No code changes are necessary to enable this, all that is needed is to login to [TravisCI](https://travis-ci.org/) and configure it to point at your PatternFly-ng fork. The first three steps at their [Getting Started page](https://docs.travis-ci.com/user/for-beginners) provide instructions on how to do this. However, we've also provided step-by-step instructions below.
 
 1. Generate a Github personal access token
