@@ -1,10 +1,11 @@
 .idea
 .DS_Store
 .vscode
+build
+build-aot
+coverage
 dist
 dist-demo
 node_modules
-build
 npm-debug.log
 src/**/*.css
-build-aot

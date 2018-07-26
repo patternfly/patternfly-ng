@@ -13,6 +13,7 @@ const webpack = require('webpack');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -31,6 +32,12 @@ module.exports = function (options) {
     entry: {
       'app': './src/app/index.ts'
     },
+
+    /**
+     * As of Webpack 4 we need to set the mode.
+     * Since this is a library and it uses gulp to build the library
+     */
+    mode: 'development',
 
     /**
      * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
@@ -116,7 +123,8 @@ module.exports = function (options) {
          */
         {
           test: /\.json$/,
-          use: ['json-loader'],
+          type: "javascript/auto",
+          use: ['custom-json-loader'],
           exclude: [helpers.root('src/index.html')]
         },
 
@@ -202,6 +210,26 @@ module.exports = function (options) {
           test: /\.html$/,
           use: ['raw-loader'],
           exclude: [helpers.root('src/index.html')]
+        },
+
+        /**
+         * Instruments JS files with Istanbul for subsequent code coverage reporting.
+         * Instrument only testing sources.
+         *
+         * See: https://github.com/deepsweet/istanbul-instrumenter-loader
+         */
+        {
+          enforce: 'post',
+          test: /\.(js|ts)$/,
+          loader: 'istanbul-instrumenter-loader',
+          query: {
+            esModules: true
+          },
+          include: helpers.root('src'),
+          exclude: [
+            /\.(e2e|spec)\.ts$/,
+            /node_modules/
+          ]
         }
       ]
     },
@@ -212,6 +240,18 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+
+      /*
+       * StyleLintPlugin
+       */
+      new StyleLintPlugin({
+        configFile: '.stylelintrc',
+        syntax: 'less',
+        context: 'src',
+        files: '**/*.less',
+        failOnError: true,
+        quiet: false,
+      }),
 
       /**
        * Plugin: DefinePlugin
@@ -241,6 +281,12 @@ module.exports = function (options) {
        * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
        * See: https://github.com/angular/angular/issues/11580
        */
+      new ContextReplacementPlugin(
+        // The (\\|\/) piece accounts for path separators in *nix and Windows
+        // /angular(\\|\/)core(\\|\/)@angular/,
+        /\@angular(\\|\/)core(\\|\/)fesm5/,
+        helpers.root('./src')
+      ),
       new ContextReplacementPlugin(
         // The (\\|\/) piece accounts for path separators in *nix and Windows
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
