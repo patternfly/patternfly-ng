@@ -6,10 +6,12 @@ const path = require('path');
  * Webpack Plugins
  */
 const AotPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 // MiniCssExtractPlugin
@@ -36,6 +38,10 @@ module.exports = {
     'app': aotMode ? './src/demo-aot.ts' : './src/demo.ts'
   },
 
+  /**
+   * As of Webpack 4 we need to set the mode.
+   * Since this is a library and it uses gulp to build the library
+   */
   mode: 'development',
 
   resolve: {
@@ -164,21 +170,21 @@ module.exports = {
     chunkFilename: '[id].chunk.js',
     sourceMapFilename: '[name].map'
   },
-/*
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "styles",
-          chunks: "all"
-        }
-      }
-    }
-  },
-*/
+
   plugins: [
     extractCSS,
+
+    /*
+     * StyleLintPlugin
+     */
+    new StyleLintPlugin({
+      configFile: '.stylelintrc',
+      syntax: 'less',
+      context: 'src',
+      files: '**/*.less',
+      failOnError: false,
+      quiet: false,
+    }),
 
     /*
      * Plugin: HtmlWebpackPlugin
@@ -208,10 +214,16 @@ module.exports = {
      * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
      * See: https://github.com/angular/angular/issues/11580
      */
-    new webpack.ContextReplacementPlugin(
+    new ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      helpers.root('src') // location of your src
+      // /angular(\\|\/)core(\\|\/)@angular/,
+      /\@angular(\\|\/)core(\\|\/)fesm5/,
+      helpers.root('./src')
+    ),
+    new ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)@angular/,
+      helpers.root('./src')
     ),
 
     new TypedocWebpackPlugin({
@@ -235,7 +247,19 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: helpers.root('README.md')
     }])
-  ]
+  ],
+
+  /**
+   * These common plugins were removed from Webpack 3 and are now set in this object.
+   */
+  optimization: {
+    namedModules: true, // NamedModulesPlugin()
+    splitChunks: { // CommonsChunkPlugin()
+      name: 'all'
+    },
+    noEmitOnErrors: true, // NoEmitOnErrorsPlugin
+    concatenateModules: true //ModuleConcatenationPlugin
+  },
 };
 
 /**
