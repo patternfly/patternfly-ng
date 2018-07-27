@@ -13,7 +13,6 @@ const webpack = require('webpack');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -240,18 +239,6 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
-
-      /*
-       * StyleLintPlugin
-       */
-      new StyleLintPlugin({
-        configFile: '.stylelintrc',
-        syntax: 'less',
-        context: 'src',
-        files: '**/*.less',
-        failOnError: true,
-        quiet: false,
-      }),
 
       /**
        * Plugin: DefinePlugin
