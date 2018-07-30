@@ -9,8 +9,11 @@
             Font size for this component is reduced slightly relative to the surrounding text.
             <pfng-inline-copy
               [buttonAriaLabel]="basicExConfig.buttonAriaLabel"
-              [tooltip]="basicExConfig.tooltip"
+              [tooltipText]="basicExConfig.tooltip"
               [value]="basicExConfig.value"
+              [width]="basicExConfig.width"
+              [copyBtnTooltipText]="basicExConfig.copyBtnTooltip"
+              [tooltipCopiedText]="basicExConfig.copiedTxt"
               (onCopy)="handleCopy($event)"></pfng-inline-copy>
             It is recommended to not repeat the copyValue text for the tooltip as this would be redundant.
             Just as with BlockCopy, you have full and independent control over tooltips, aria labels, button labels, and every other piece of text that's displayed as part of this component.

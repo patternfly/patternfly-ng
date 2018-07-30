@@ -32,7 +32,7 @@ describe('Block Copy component', () => {
       componentConfig = {
         label: 'Block-level Foobar',
         expandToggleAriaLabel: 'Expand Block-level Foobar',
-        tooltip: 'Block Copy Tooltip',
+        tooltipText: 'Block Copy Tooltip',
         value: 'Token'
       };
     })

@@ -15,7 +15,8 @@ export class InlineCopyWrapExampleComponent implements OnInit {
   wrapExConfig = {
     buttonAriaLabel: 'Copy JSON+LD Schema Example',
     // tslint:disable-next-line:max-line-length
-    value: '{"@context": "http://json-ld.org/contexts/person.jsonld", "@id": "http://dbpedia.org/resource/John_Lennon", "name": "John Lennon", "born": "1940-10-09", "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"}'
+    value: '{"@context": "http://json-ld.org/contexts/person.jsonld", "@id": "http://dbpedia.org/resource/John_Lennon", "name": "John Lennon", "born": "1940-10-09", "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"}',
+    width: '100%'
   };
 
   constructor() {}
