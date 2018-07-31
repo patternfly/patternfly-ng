@@ -8,6 +8,7 @@
             [expandTemplate]="expandTemplate"
             [items]="items"
             [itemTemplate]="itemTemplate"
+            [trackByFn]="getTrackBy"
             (onActionSelect)="handleAction($event, null)"
             (onClick)="handleClick($event)"
             (onDblClick)="handleDblClick($event)"

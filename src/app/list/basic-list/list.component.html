@@ -34,7 +34,7 @@
   <!-- items -->
   <div class="list-pf-item {{item?.itemStyleClass}}"
        [ngClass]="{'active': item.selected || item.expanded}"
-       *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index">
+       *ngFor="let item of (config.usePinItems ? (items | sortArray: 'showPin': true) : items); let i = index; trackBy: trackByFn">
     <div class="list-pf-container" [id]="getId('item', i)" (click)="toggleExpandItem($event, item)">
       <!-- pin -->
       <div class="pfng-list-pin-container" *ngIf="config.usePinItems">
