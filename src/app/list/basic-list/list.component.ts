@@ -6,7 +6,8 @@ import {
   Input,
   OnInit,
   Output,
-  TemplateRef, TrackByFunction,
+  TemplateRef,
+  TrackByFunction,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -165,10 +166,6 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
       result = this.el.nativeElement.id;
     }
     return result + '-' + suffix + index;
-  }
-
-  protected getTrackBy(index: number, item: any): string {
-    return `track-${index}`;
   }
 
   // Toggle
