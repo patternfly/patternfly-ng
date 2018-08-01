@@ -27,83 +27,9 @@ describe('List component - ', () => {
   let items: any[];
 
   beforeEach(() => {
-    items = [{
-      name: 'Fred Flintstone',
-      address: '20 Dinosaur Way',
-      city: 'Bedrock',
-      state: 'Washingstone'
-    }, {
-      name: 'John Smith',
-      address: '415 East Main Street',
-      city: 'Norfolk',
-      state: 'Virginia',
-      rowExpansionDisabled: true
-    }, {
-      name: 'Frank Livingston',
-      address: '234 Elm Street',
-      city: 'Pittsburgh',
-      state: 'Pennsylvania'
-    }, {
-      name: 'Linda McGovern',
-      address: '22 Oak Street',
-      city: 'Denver',
-      state: 'Colorado'
-    }, {
-      name: 'Jim Brown',
-      address: '72 Bourbon Way',
-      city: 'Nashville',
-      state: 'Tennessee'
-    }, {
-      name: 'Holly Nichols',
-      address: '21 Jump Street',
-      city: 'Hollywood',
-      state: 'California'
-    }, {
-      name: 'Marie Edwards',
-      address: '17 Cross Street',
-      city: 'Boston',
-      state: 'Massachusetts'
-    }, {
-      name: 'Pat Thomas',
-      address: '50 Second Street',
-      city: 'New York',
-      state: 'New York'
-    }];
-
-    actionConfig = {
-      primaryActions: [{
-        id: 'action1',
-        title: 'Main Action',
-        tooltip: 'Start the server'
-      }],
-      moreActions: [{
-        id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
-      }, {
-        id: 'action3',
-        title: 'Secondary Action 2',
-        tooltip: 'Do something else'
-      }, {
-        id: 'action4',
-        title: 'Secondary Action 3',
-        tooltip: 'Do something special'
-      }]
-    } as ActionConfig;
-
-    emptyStateConfig = {
-      actions: actionConfig,
-      iconStyleClass: 'pficon-warning-triangle-o',
-      info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
-        'objects exists and you want to guide the user to perform specific actions.',
-      helpLink: {
-        hypertext: 'EmptyState example',
-        text: 'For more information please see the',
-        url: '/emptystate'
-      },
-      title: 'No Items Available'
-    } as EmptyStateConfig;
+    items = ITEMS;
+    actionConfig = ACTION_CONFIG;
+    emptyStateConfig = EMPTY_STATE_CONFIG;
 
     config = {
       dblClick: false,
@@ -301,11 +227,6 @@ describe('List component - ', () => {
 describe('List component - ', () => {
   let fixture: ComponentFixture<TestComponent>;
 
-  let actionConfig: ActionConfig;
-  let config: ListConfig;
-  let emptyStateConfig: EmptyStateConfig;
-  let items: any[];
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -364,51 +285,9 @@ class TestComponent implements OnInit {
   items: any[];
 
   ngOnInit() {
-    this.items = [
-      { name: 'Fred Flintstone' },
-      { name: 'John Smith' },
-      { name: 'Frank Livingston' },
-      { name: 'Linda McGovern' },
-      { name: 'Jim Brown' },
-      { name: 'Holly Nichols' },
-      { name: 'Marie Edwards' },
-      { name: 'Pat Thomas' }
-    ];
-
-    this.actionConfig = {
-      primaryActions: [{
-        id: 'action1',
-        title: 'Main Action',
-        tooltip: 'Start the server'
-      }],
-      moreActions: [{
-        id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
-      }, {
-        id: 'action3',
-        title: 'Secondary Action 2',
-        tooltip: 'Do something else'
-      }, {
-        id: 'action4',
-        title: 'Secondary Action 3',
-        tooltip: 'Do something special'
-      }]
-    } as ActionConfig;
-
-    this.emptyStateConfig = {
-      actions: this.actionConfig,
-      iconStyleClass: 'pficon-warning-triangle-o',
-      info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
-        'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
-        'objects exists and you want to guide the user to perform specific actions.',
-      helpLink: {
-        hypertext: 'EmptyState example',
-        text: 'For more information please see the',
-        url: '/emptystate'
-      },
-      title: 'No Items Available'
-    } as EmptyStateConfig;
+    this.items = ITEMS;
+    this.actionConfig = ACTION_CONFIG;
+    this.emptyStateConfig = EMPTY_STATE_CONFIG;
 
     this.config = {
       dblClick: false,
@@ -430,3 +309,82 @@ function createTestComponent(template: string): ComponentFixture<TestComponent> 
   return TestBed.overrideComponent(TestComponent, {set: {template: template}})
     .createComponent(TestComponent);
 }
+
+
+const ITEMS = [{
+  name: 'Fred Flintstone',
+  address: '20 Dinosaur Way',
+  city: 'Bedrock',
+  state: 'Washingstone'
+}, {
+  name: 'John Smith',
+  address: '415 East Main Street',
+  city: 'Norfolk',
+  state: 'Virginia',
+  rowExpansionDisabled: true
+}, {
+  name: 'Frank Livingston',
+  address: '234 Elm Street',
+  city: 'Pittsburgh',
+  state: 'Pennsylvania'
+}, {
+  name: 'Linda McGovern',
+  address: '22 Oak Street',
+  city: 'Denver',
+  state: 'Colorado'
+}, {
+  name: 'Jim Brown',
+  address: '72 Bourbon Way',
+  city: 'Nashville',
+  state: 'Tennessee'
+}, {
+  name: 'Holly Nichols',
+  address: '21 Jump Street',
+  city: 'Hollywood',
+  state: 'California'
+}, {
+  name: 'Marie Edwards',
+  address: '17 Cross Street',
+  city: 'Boston',
+  state: 'Massachusetts'
+}, {
+  name: 'Pat Thomas',
+  address: '50 Second Street',
+  city: 'New York',
+  state: 'New York'
+}];
+
+const ACTION_CONFIG = {
+  primaryActions: [{
+    id: 'action1',
+    title: 'Main Action',
+    tooltip: 'Start the server'
+  }],
+  moreActions: [{
+    id: 'action2',
+    title: 'Secondary Action 1',
+    tooltip: 'Do the first thing'
+  }, {
+    id: 'action3',
+    title: 'Secondary Action 2',
+    tooltip: 'Do something else'
+  }, {
+    id: 'action4',
+    title: 'Secondary Action 3',
+    tooltip: 'Do something special'
+  }]
+} as ActionConfig;
+
+const EMPTY_STATE_CONFIG = {
+  actions: ACTION_CONFIG,
+  iconStyleClass: 'pficon-warning-triangle-o',
+  info: 'This is the Empty State component. The goal of a empty state pattern is to provide a good first ' +
+    'impression that helps users to achieve their goals. It should be used when a list is empty because no ' +
+    'objects exists and you want to guide the user to perform specific actions.',
+  helpLink: {
+    hypertext: 'EmptyState example',
+    text: 'For more information please see the',
+    url: '/emptystate'
+  },
+  title: 'No Items Available'
+} as EmptyStateConfig;
