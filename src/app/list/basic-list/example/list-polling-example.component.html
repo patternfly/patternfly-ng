@@ -8,6 +8,7 @@
             [expandTemplate]="expandTemplate"
             [items]="items"
             [itemTemplate]="itemTemplate"
+            [trackBy]="trackByIndex"
             (onActionSelect)="handleAction($event, null)"
             (onClick)="handleClick($event)"
             (onDblClick)="handleDblClick($event)"
@@ -43,17 +44,12 @@
           </ng-template>
           <ng-template #actionTemplate let-item="item" let-index="index">
             <pfng-action class="list-pf-actions"
-                [config]="getActionConfig(item, actionButtonTemplate, startButtonTemplate)"
+                [config]="actionConfig"
                 (onActionSelect)="handleAction($event, item)">
-              <ng-template #actionButtonTemplate let-action="action">
-                <span class="fa fa-plus">&nbsp;</span>{{action.title}}
-              </ng-template>
-              <ng-template #startButtonTemplate let-action="action">
-                {{item.started === true ? "Starting" : action.title}}
-              </ng-template>
             </pfng-action>
           </ng-template>
           <ng-template #expandTemplate let-item="item" let-index="index">
+            <p>This should stay open while the list updates.</p>
             <basic-content [item]="item"></basic-content>
           </ng-template>
         </pfng-list>
@@ -123,6 +119,11 @@
           </label>
         </div>
       </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button (click)="resetItems()">Reset items</button>
     </div>
   </div>
   <div class="row padding-top-10">

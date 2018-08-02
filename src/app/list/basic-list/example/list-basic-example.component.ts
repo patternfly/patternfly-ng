@@ -27,7 +27,6 @@ export class ListBasicExampleComponent implements OnInit {
   itemsAvailable: boolean = true;
   listConfig: ListConfig;
   selectType: string = 'checkbox';
-  setItemInterval: number;
 
   constructor() {
   }
@@ -115,6 +114,7 @@ export class ListBasicExampleComponent implements OnInit {
       nodeCount: 10,
       imageCount: 8
     }];
+    this.items = cloneDeep(this.allItems);
 
     this.emptyStateConfig = {
       actions: {
@@ -159,20 +159,9 @@ export class ListBasicExampleComponent implements OnInit {
       showRadioButton: false,
       useExpandItems: false
     } as ListConfig;
-
-    this.setItemInterval = setInterval(() => this.setItems(), 1000);
-    this.setItems();
   }
 
   ngDoCheck(): void {
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.setItemInterval);
-  }
-
-  setItems(): void {
-    this.items = cloneDeep(this.allItems);
   }
 
   /**
@@ -259,17 +248,6 @@ export class ListBasicExampleComponent implements OnInit {
       actionConfig.moreActionsVisible = false;
     }
     return actionConfig;
-  }
-
-  /**
-   * Get the tracking id to use for each row
-   *
-   * @param index The current row index
-   * @param item The current row item
-   * @returns number
-   */
-  getTrackBy(index: number, item: any): any {
-    return index;
   }
 
   // Actions

@@ -27,9 +27,9 @@ describe('List component - ', () => {
   let items: any[];
 
   beforeEach(() => {
-    items = ITEMS;
-    actionConfig = ACTION_CONFIG;
-    emptyStateConfig = EMPTY_STATE_CONFIG;
+    items = cloneDeep(ITEMS);
+    actionConfig = cloneDeep(ACTION_CONFIG);
+    emptyStateConfig = cloneDeep(EMPTY_STATE_CONFIG);
 
     config = {
       dblClick: false,
@@ -285,9 +285,9 @@ class TestComponent implements OnInit {
   items: any[];
 
   ngOnInit() {
-    this.items = ITEMS;
-    this.actionConfig = ACTION_CONFIG;
-    this.emptyStateConfig = EMPTY_STATE_CONFIG;
+    this.items = cloneDeep(ITEMS);
+    this.actionConfig = cloneDeep(ACTION_CONFIG);
+    this.emptyStateConfig = cloneDeep(EMPTY_STATE_CONFIG);
 
     this.config = {
       dblClick: false,

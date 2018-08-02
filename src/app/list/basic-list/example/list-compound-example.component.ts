@@ -1,6 +1,5 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
@@ -9,20 +8,18 @@ import { Action } from '../../../action/action';
 import { ActionConfig } from '../../../action/action-config';
 import { ListEvent } from '../../list-event';
 import { ListConfig } from '../list-config';
-import { cloneDeep } from 'lodash';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'list-compound-example',
   templateUrl: './list-compound-example.component.html'
 })
-export class ListCompoundExampleComponent implements OnInit, OnDestroy {
+export class ListCompoundExampleComponent implements OnInit {
   actionConfig: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   items: any[];
   listConfig: ListConfig;
-  setItemInterval: number;
 
   constructor() {
   }
@@ -110,7 +107,7 @@ export class ListCompoundExampleComponent implements OnInit, OnDestroy {
       nodeCount: 10,
       imageCount: 8
     }];
-    this.items = cloneDeep(this.allItems);
+    this.items = this.allItems;
 
     this.actionConfig = {
       primaryActions: [{
@@ -158,25 +155,9 @@ export class ListCompoundExampleComponent implements OnInit, OnDestroy {
       showCheckbox: false,
       useExpandItems: false
     } as ListConfig;
-
-
-    this.setItemInterval = setInterval(() => this.setItems(), 1000);
-    this.setItems();
   }
 
   ngDoCheck(): void {
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.setItemInterval);
-  }
-
-  setItems(): void {
-    this.items = cloneDeep(this.items);
-  }
-
-  getTrackBy(index: number, item: any): any {
-    return index;
   }
 
   // Actions

@@ -18,5 +18,8 @@
     <tab heading="Heading" (select)="tabSelected($event)">
       <list-heading-example *ngIf="activeTab === 'Heading'"></list-heading-example>
     </tab>
+    <tab heading="Polling" (select)="tabSelected($event)">
+      <list-polling-example *ngIf="activeTab === 'Polling'"></list-polling-example>
+    </tab>
   </tabset>
 </div>

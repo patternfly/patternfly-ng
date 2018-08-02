@@ -8,7 +8,6 @@
             [expandTemplate]="expandTemplate"
             [items]="items"
             [itemTemplate]="itemTemplate"
-            [trackByFn]="getTrackBy"
             (onActionSelect)="handleAction($event, null)"
             (onClick)="handleClick($event)">
           <ng-template #itemTemplate let-item="item">
