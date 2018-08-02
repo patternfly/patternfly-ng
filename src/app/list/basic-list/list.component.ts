@@ -82,7 +82,7 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
   /**
    * The function to pass to the underlying ngFor trackBy property
    */
-  @Input() trackByFn: TrackByFunction<any>;
+  @Input() trackBy: TrackByFunction<any>;
 
   /**
    * The event emitted when an item pin has been changed

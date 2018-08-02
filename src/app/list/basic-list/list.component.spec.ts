@@ -249,7 +249,7 @@ describe('List component - ', () => {
       <pfng-list
             [config]="config"
             [items]="items"
-            [trackByFn]="trackByIndex"
+            [trackBy]="trackByIndex"
             [actionTemplate]="actionTemplate"
             [itemTemplate]="itemTemplate">
           <ng-template #itemTemplate let-item="item" let-index="index">
