@@ -117,7 +117,8 @@ describe('List component - ', () => {
   });
 
   it('should add active class to clicked list item', function() {
-    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
+    let listItems = fixture.debugElement.queryAll(By.css(
+      '.list-pf-content.list-pf-content-flex .list-pf-content.list-pf-content-flex'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);
@@ -135,7 +136,8 @@ describe('List component - ', () => {
   });
 
   it('should manage selected items', function() {
-    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
+    let listItems = fixture.debugElement.queryAll(By.css(
+      '.list-pf-content.list-pf-content-flex .list-pf-content.list-pf-content-flex'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     // allow item selection
@@ -151,7 +153,8 @@ describe('List component - ', () => {
   });
 
   it('should respect the multiSelect setting', function() {
-    let listItems = fixture.debugElement.queryAll(By.css('.pfng-list-content'));
+    let listItems = fixture.debugElement.queryAll(By.css(
+      '.list-pf-content.list-pf-content-flex .list-pf-content.list-pf-content-flex'));
     let selectedItems = fixture.debugElement.queryAll(By.css('.active'));
 
     expect(selectedItems.length).toBe(0);

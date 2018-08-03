@@ -15,7 +15,7 @@
       </div>
       <!-- content -->
       <div class="list-pf-content list-pf-content-flex">
-        <div class="pfng-list-content">
+        <div class="pfng-list-heading">
           <ng-template *ngIf="itemHeadingTemplate"
                        [ngTemplateOutlet]="itemHeadingTemplate"
                        [ngTemplateOutletContext]="{ item: item, index: i }">
@@ -74,7 +74,7 @@
       </div>
       <!-- content -->
       <div class="list-pf-content list-pf-content-flex">
-        <div class="pfng-list-content"
+        <div class="list-pf-content list-pf-content-flex"
              (click)="toggleSelection($event, item)"
              (dblclick)="dblClick($event, item)">
           <ng-template *ngIf="itemTemplate"
