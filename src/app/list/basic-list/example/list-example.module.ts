@@ -16,6 +16,7 @@ import { ListModule } from '../list.module';
 import { ListBasicExampleComponent } from './list-basic-example.component';
 import { ListCompoundExampleComponent } from './list-compound-example.component';
 import { ListHeadingExampleComponent } from './list-heading-example.component';
+import { ListPollingExampleComponent } from './list-polling-example.component';
 import { ListExampleComponent } from './list-example.component';
 import { ListPinExampleComponent } from './list-pin-example.component';
 import { NodesContentComponent } from './content/nodes-content.component';
@@ -30,6 +31,7 @@ import { SortArrayPipeModule } from '../../../pipe/sort-array';
     ListBasicExampleComponent,
     ListCompoundExampleComponent,
     ListHeadingExampleComponent,
+    ListPollingExampleComponent,
     ListExampleComponent,
     ListPinExampleComponent,
     NodesContentComponent
