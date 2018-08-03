@@ -96,7 +96,7 @@ export class ListPollingExampleComponent implements OnInit {
       useExpandItems: true
     } as ListConfig;
 
-    this.updateItemsInterval = setInterval(() => this.updateItems(), 2500);
+    this.updateItemsInterval = <any>setInterval(() => this.updateItems(), 2500);
   }
 
   ngDoCheck(): void {
