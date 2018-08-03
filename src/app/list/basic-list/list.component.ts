@@ -7,6 +7,7 @@ import {
   OnInit,
   Output,
   TemplateRef,
+  TrackByFunction,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -77,6 +78,11 @@ export class ListComponent extends ListBase implements DoCheck, OnInit {
    * The name of the template containing item heading layout
    */
   @Input() itemHeadingTemplate: TemplateRef<any>;
+
+  /**
+   * The function to pass to the underlying ngFor trackBy property
+   */
+  @Input() trackBy: TrackByFunction<any>;
 
   /**
    * The event emitted when an item pin has been changed
