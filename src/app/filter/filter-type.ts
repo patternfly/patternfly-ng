@@ -16,4 +16,10 @@ export class FilterType {
    * Type ahead type
    */
   static readonly TYPEAHEAD: string = 'typeahead';
+
+  /**
+   * Disabled type
+   */
+  static readonly DISABLED: string = 'disabled';
+
 }
