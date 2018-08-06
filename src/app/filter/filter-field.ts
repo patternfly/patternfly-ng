@@ -33,4 +33,9 @@ export class FilterField {
    * Set to true when a separator should be shown instead of a menu option
    */
   separator?: boolean;
+
+  /**
+   * A flag indicating the field is disabled
+   */
+  disabled?: boolean;
 }

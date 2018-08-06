@@ -220,6 +220,9 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
   }
 
   private isFieldDisabled(field: FilterField): boolean {
+    if (field.disabled) {
+      return true;
+    }
     if (field.type === undefined || field.type === 'text') {
       return false;
     }

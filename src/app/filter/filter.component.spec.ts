@@ -114,6 +114,12 @@ describe('Filter component - ', () => {
           id: 'day7',
           value: 'Saturday'
         }]
+      }, {
+        id: 'apples',
+        title: 'Apples',
+        placeholder: 'Filter by apples...',
+        type: FilterType.TEXT,
+        disabled: true
       }] as FilterField[],
       appliedFilters: [],
       resultsCount: 5
@@ -152,7 +158,19 @@ describe('Filter component - ', () => {
     fixture.detectChanges(); // Workaround to fix dropdown tests
 
     let fields = element.querySelectorAll('.filter-field');
-    expect(fields.length).toBe(5);
+    expect(fields.length).toBe(6);
+  }));
+
+  it('should have correct number of disabled filter fields', fakeAsync(function() {
+    const element = fixture.nativeElement;
+
+    let button = element.querySelector('.filter-pf button');
+    button.click();
+    tick();
+    fixture.detectChanges(); // Workaround to fix dropdown tests
+
+    let fields = element.querySelectorAll('.filter-pf .disabled');
+    expect(fields.length).toBe(1);
   }));
 
   it('should have correct number of results', function() {
