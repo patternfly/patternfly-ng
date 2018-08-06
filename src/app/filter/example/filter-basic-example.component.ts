@@ -142,6 +142,11 @@ export class FilterBasicExampleComponent implements OnInit {
           id: 'day7',
           value: 'Saturday'
         }]
+      }, {
+        id: 'apples',
+        title: 'Apples',
+        placeholder: 'Filter by apples...',
+        type: FilterType.DISABLED
       }] as FilterField[],
       resultsCount: this.items.length,
       appliedFilters: []

@@ -223,6 +223,9 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
     if (field.type === undefined || field.type === 'text') {
       return false;
     }
+    if (field.type === 'disabled') {
+      return true;
+    }
     return (field.queries === undefined || field.queries.length === 0);
   }
 
