@@ -56,9 +56,14 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   @Input() contentContainer: HTMLElement;
 
   /**
-   * Boolean to indicate whether or not to show badges, default: false
+   * Indicates whether or not this is a mobile friendly navigation, default: false
    */
-  @Input() showBadges: boolean = false;
+  @Input() ignoreMobile: boolean = false;
+
+  /**
+   * The navigation items used to build the menu
+   */
+  @Input() items: VerticalNavigationItem[];
 
   /**
    * Indicates whether or not to allow the secondary to persist, default: false
@@ -71,29 +76,31 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   @Input() pinnableMenus: boolean = false;
 
   /**
+   * Boolean to indicate whether or not to show badges, default: false
+   */
+  @Input() showBadges: boolean = false;
+
+  /**
    * Show menu icons, default: true
    */
   @Input() showIcons: boolean = true;
 
   /**
-   * The navigation items used to build the menu
+   * Boolean indicating menu is shown initially collapsed
+   *
+   * Note that this does not apply for the mobile state
    */
-  @Input() items: VerticalNavigationItem[];
-
-  /**
-   * Sets an active flag on items when they are selected, default: false
-   */
-  @Input() updateActiveItemsOnClick: boolean = false;
-
-  /**
-   * Indicates whether or not this is a mobile friendly navigation, default: false
-   */
-  @Input() ignoreMobile: boolean = false;
+  @Input() showMenuCollapsed: boolean = false;
 
   /**
    * Show top banner, default: true
    */
   @Input() showTopBanner: boolean = true;
+
+  /**
+   * Sets an active flag on items when they are selected, default: false
+   */
+  @Input() updateActiveItemsOnClick: boolean = false;
 
   /**
    * This event is fired any time the user has initiated navigation
@@ -160,6 +167,9 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
       this.initActiveItems();
     }
 
+    if (this.showMenuCollapsed !== undefined) {
+      this.explicitCollapse = this.showMenuCollapsed;
+    }
     this.initBodyElement();
     this.checkNavState();
   }

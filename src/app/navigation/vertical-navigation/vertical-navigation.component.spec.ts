@@ -615,6 +615,16 @@ describe('Vertical Navigation component - ', () => {
     expect(badgesShown).toBeNull();
   });
 
+  it('should show initially collapsed menu', function() {
+    let badgesMenu = fixture.debugElement.query(By.css('.nav-pf-vertical.nav-pf-vertical-with-badges.collapsed'));
+    expect(badgesMenu).toBeNull();
+
+    comp.showMenuCollapsed = true;
+    fixture.detectChanges();
+
+    badgesMenu = fixture.debugElement.query(By.css('.nav-pf-vertical-with-badges.collapsed'));
+    expect(badgesMenu).toBeNull();
+  });
 });
 
 
