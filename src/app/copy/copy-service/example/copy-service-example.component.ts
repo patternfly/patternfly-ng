@@ -16,6 +16,8 @@ export class CopyServiceExampleComponent {
   constructor() {}
 
   tabSelected($event: TabDirective): void {
-    this.activeTab = $event.heading;
+    if ($event instanceof TabDirective) {
+      this.activeTab = $event.heading;
+    }
   }
 }
