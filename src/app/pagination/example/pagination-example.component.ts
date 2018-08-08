@@ -23,6 +23,8 @@ export class PaginationExampleComponent implements OnInit {
   // Actions
 
   tabSelected($event: TabDirective): void {
-    this.activeTab = $event.heading;
+    if ($event instanceof TabDirective) {
+      this.activeTab = $event.heading;
+    }
   }
 }
