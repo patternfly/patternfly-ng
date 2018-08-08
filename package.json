@@ -22,7 +22,7 @@
     "demo:webserver": "npm run webpack-dev-server -- --config config/webpack.demo.js --host 0.0.0.0 --port 8001 --progress --profile --hot --content-base dist-demo",
     "lint:less": "stylelint 'src/**/*.less' --config .stylelintrc",
     "lint:less:fix": "npm run lint:less -- --fix",
-    "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:ts": "tslint -c tslint.json --project tsconfig.json 'src/**/*.ts'",
     "lint:ts:fix": "npm run lint:ts -- --fix",
     "publish-travis": "node_modules/patternfly-eng-publish/script/publish-ghpages.sh -t dist-demo",
     "reinstall": "npm run clean && npm install",

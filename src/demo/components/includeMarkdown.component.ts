@@ -1,10 +1,9 @@
 import {
   Component,
   Input,
-  OnInit,
-  ViewChild
+  OnInit
 } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 
 const hljs = require('highlight.js');
 const md = require('markdown-it')({
