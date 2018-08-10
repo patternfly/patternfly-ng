@@ -22,13 +22,15 @@ export class InlineCopyA11yExampleComponent implements OnInit {
   a11yEx01 = {
     buttonAriaLabel: 'WAI-ARIA URL',
     tooltip: 'ARIA W3C Recommendation',
-    value: 'https://www.w3.org/TR/wai-aria-1.1/'
+    value: 'https://www.w3.org/TR/wai-aria-1.1/',
+    width: '200px'
   };
 
   a11yEx02 = {
     buttonAriaLabel: 'Example Sparql Query',
     tooltip: 'Semantic Triple (SPO)',
-    value: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}'
+    value: 'SELECT ?x ?fname WHERE {?x <http://www.w3.org/2001/vcard-rdf/3.0#FN> ?fname}',
+    width: '420px'
   };
 
   constructor(private notificationService: NotificationService) {}

@@ -5,7 +5,8 @@
       <p>Copy components are accessible via the Form Controls rotor menu in VoiceOver. By default, like in the example below, they are exposed to the rotor menu as "<em>{{'{'}}copyBtnAriaLabel{{'}'}}</em> button". This isn't great from an accessibility standpoint as it doesn't inform the user that it's a <em>copy</em> action that the button performs. Let's fix that.</p>
       <pfng-inline-copy
         [buttonAriaLabel]="a11yEx01.buttonAriaLabel"
-        [tooltip]="a11yEx01.tooltip"
+        [tooltipText]="a11yEx01.tooltip"
+        [width]="a11yEx01.width"
         [value]="a11yEx01.value"
         (onCopy)="handleCopy($event, {
             name: a11yEx01.buttonAriaLabel,
@@ -16,7 +17,8 @@
       <p>In the example below you'll find the copy button is announced in the format of "Copy <em>{{'{'}}copyBtnAriaLabel{{'}'}}</em> to clipboard button". By providing custom tailored aria label inputs you can ensure the experience you provide to a visually impared user is aligned well with your standard sighted browsing experience.</p>
       <pfng-inline-copy
         [buttonAriaLabel]="'Copy ' + a11yEx02.buttonAriaLabel + ' to clipboard'"
-        [tooltip]="a11yEx02.tooltip"
+        [tooltipText]="a11yEx02.tooltip"
+        [width]="a11yEx02.width"
         [value]="a11yEx02.value"
         (onCopy)="handleCopy($event, {
             name: a11yEx02.buttonAriaLabel,

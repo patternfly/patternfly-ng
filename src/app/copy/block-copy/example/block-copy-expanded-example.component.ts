@@ -17,7 +17,8 @@ export class BlockCopyExpandedExampleComponent {
     expandToggleAriaLabel: 'Toggle GraphQL Query',
     expanded: true,
     label: 'GraphQL Query',
-    value: 'query HeroNameAndFriends($episode: Episode) {hero(episode: $episode) {name friends {name}}}'
+    value: 'query HeroNameAndFriends($episode: Episode) {hero(episode: $episode) {name friends {name}}}',
+    width: '605px'
   };
 
   constructor() {}

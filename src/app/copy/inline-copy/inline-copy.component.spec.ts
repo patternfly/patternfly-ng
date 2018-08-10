@@ -35,7 +35,7 @@ describe('Inline Copy component - ', () => {
     .then(() => {
       componentConfig = {
         buttonAriaLabel: 'Foobar',
-        tooltip: 'Test tooltip',
+        tooltipText: 'Test tooltip',
         value: 'Test String'
       };
     })
@@ -62,7 +62,10 @@ describe('Inline Copy component - ', () => {
   });
 
   it('should find a single copyValue container element', () => {
-    const numCopyValueContainers = fixture.debugElement.queryAll(By.css('.pfng-inline-copy-txt-cont')).length;
+    const numCopyValueContainers = fixture
+                                    .debugElement
+                                    .queryAll(By.css('.pfng-inline-copy-txt-cont'))
+                                    .length;
     expect(numCopyValueContainers).toBe(1);
   });
 
@@ -71,7 +74,7 @@ describe('Inline Copy component - ', () => {
     expect(numCopyBtns).toBe(1);
   });
 
-  it('should set the tooltip text', () => {
+  it('should set the copy value tooltip text', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
     const tooltipText = fixture
@@ -80,6 +83,17 @@ describe('Inline Copy component - ', () => {
                           .nativeElement
                           .getAttribute('ng-reflect-tooltip');
     expect(tooltipText).toBe('Test tooltip');
+  });
+
+  it('should set the copy button tooltip text', () => {
+    (<any>Object).assign(inlineCopy, componentConfig);
+    fixture.detectChanges();
+    const tooltipText = fixture
+                          .debugElement
+                          .query(By.css('.pfng-inline-copy-btn'))
+                          .nativeElement
+                          .getAttribute('ng-reflect-tooltip');
+    expect(tooltipText).toBe('Copy to Clipboard');
   });
 
   it('should set the default tooltip placement', () => {
@@ -107,15 +121,34 @@ describe('Inline Copy component - ', () => {
   it('should set the copyValue container text node', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
-    const valueText = fixture.debugElement.children[0].nativeElement.innerText;
+    const valueText = fixture
+                        .debugElement
+                        .query(By.css('.pfng-inline-copy-txt-cont'))
+                        .nativeElement
+                        .value;
     expect(valueText).toContain('Test String');
   });
 
   it('should set the copy button aria label', () => {
     (<any>Object).assign(inlineCopy, componentConfig);
     fixture.detectChanges();
-    const ariaLabel = fixture.debugElement.children[0].children[1].attributes['aria-label'];
+    const ariaLabel = fixture
+                        .debugElement
+                        .query(By.css('.pfng-inline-copy-btn'))
+                        .nativeElement
+                        .getAttribute('aria-label');
     expect(ariaLabel).toBe(`${componentConfig.buttonAriaLabel}`);
+  });
+
+  it('should override the copy button aria label', () => {
+    (<any>Object).assign(inlineCopy, componentConfig, {buttonAriaLabel: 'Override'});
+    fixture.detectChanges();
+    const ariaLabel = fixture
+                        .debugElement
+                        .query(By.css('.pfng-inline-copy-btn'))
+                        .nativeElement
+                        .getAttribute('aria-label');
+    expect(ariaLabel).toBe('Override');
   });
 
   it('should emit a onCopy event', () => {

@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  OnInit,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -35,7 +36,7 @@ import { CopyService } from '../copy-service/copy.service';
   selector: 'pfng-block-copy',
   templateUrl: './block-copy.component.html'
 })
-export class BlockCopyComponent extends CopyBase {
+export class BlockCopyComponent extends CopyBase implements OnInit {
   /**
    * Label output above the block copy component
    */
@@ -66,6 +67,12 @@ export class BlockCopyComponent extends CopyBase {
    */
   constructor(protected copyService: CopyService) {
     super(copyService);
+  }
+
+  ngOnInit() {
+    if (!this.buttonAriaLabel && this.buttonLabel) {
+      this.buttonAriaLabel = this.buttonLabel;
+    }
   }
 
   /**

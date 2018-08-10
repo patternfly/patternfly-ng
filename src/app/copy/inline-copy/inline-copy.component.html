@@ -1,13 +1,25 @@
 <span
+  [ngStyle]="{'width': width}"
   class="pfng-inline-copy">
   <span
-    class="pfng-inline-copy-txt-cont"
-    placement="{{tooltipPlacement ? tooltipPlacement : null}}"
-    tooltip="{{tooltip ? tooltip : null}}">
-    {{value}}
+    class="pfng-inline-copy-body">
+    <input
+      type="text"
+      tabindex="-1"
+      [value]="value"
+      class="pfng-inline-copy-txt-cont"
+      [tooltip]="tooltipText"
+      [placement]="tooltipPlacement"
+      container="body"
+      readonly="readonly">
   </span>
   <button
+    type="button"
     class="pfng-inline-copy-btn"
+    [tooltip]="copyBtnTooltipText"
+    [placement]="copyBtnTooltipPlacement"
+    triggers="hover"
+    container="body"
     [attr.aria-label]="buttonAriaLabel"
     (click)="copy()">
     <i

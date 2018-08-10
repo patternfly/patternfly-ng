@@ -15,7 +15,10 @@ export class InlineCopyBasicExampleComponent implements OnInit {
   basicExConfig = {
     buttonAriaLabel: 'Copy WAI-ARIA URL',
     tooltip: 'ARIA W3C Recommendation',
-    value: 'https://www.w3.org/TR/wai-aria-1.1/'
+    value: 'https://www.w3.org/TR/wai-aria-1.1/',
+    width: '200px',
+    copyBtnTooltip: 'Copy WAI-ARIA URL',
+    copiedTxt: 'Copied WAI-ARIA URL to clipboard'
   };
 
   constructor() {}
