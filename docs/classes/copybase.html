@@ -101,10 +101,14 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#buttonarialabel" class="tsd-kind-icon">button<wbr>Aria<wbr>Label</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#copybtntooltipplacement" class="tsd-kind-icon">copy<wbr>Btn<wbr>Tooltip<wbr>Placement</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#copybtntooltiptext" class="tsd-kind-icon">copy<wbr>Btn<wbr>Tooltip<wbr>Text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#oncopy" class="tsd-kind-icon">on<wbr>Copy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#tooltip" class="tsd-kind-icon">tooltip</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#tooltipcopiedtext" class="tsd-kind-icon">tooltip<wbr>Copied<wbr>Text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#tooltipplacement" class="tsd-kind-icon">tooltip<wbr>Placement</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#tooltiptext" class="tsd-kind-icon">tooltip<wbr>Text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="copybase.html#width" class="tsd-kind-icon">width</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -134,7 +138,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L39">copy/copy-base.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L64">copy/copy-base.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -161,7 +165,7 @@
 					<div class="tsd-signature tsd-kind-icon">button<wbr>Aria<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L17">copy/copy-base.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L22">copy/copy-base.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,12 +175,42 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="copybtntooltipplacement" class="tsd-anchor"></a>
+					<h3>copy<wbr>Btn<wbr>Tooltip<wbr>Placement</h3>
+					<div class="tsd-signature tsd-kind-icon">copy<wbr>Btn<wbr>Tooltip<wbr>Placement<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;top&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L47">copy/copy-base.ts:47</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Placement for the copy button tooltip</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="copybtntooltiptext" class="tsd-anchor"></a>
+					<h3>copy<wbr>Btn<wbr>Tooltip<wbr>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">copy<wbr>Btn<wbr>Tooltip<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this._copyDefaults.copyBtnTooltipText</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L37">copy/copy-base.ts:37</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A tooltip that describes what the copy button does</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="oncopy" class="tsd-anchor"></a>
 					<h3>on<wbr>Copy</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Copy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L37">copy/copy-base.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L62">copy/copy-base.ts:62</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -186,17 +220,17 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="tooltip" class="tsd-anchor"></a>
-					<h3>tooltip</h3>
-					<div class="tsd-signature tsd-kind-icon">tooltip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="tooltipcopiedtext" class="tsd-anchor"></a>
+					<h3>tooltip<wbr>Copied<wbr>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">tooltip<wbr>Copied<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;this._copyDefaults.tooltipCopiedText</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L22">copy/copy-base.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L42">copy/copy-base.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A tooltip that describes the value to be copied</p>
+							<p>A tooltip that informs user that copy action recently occurred</p>
 						</div>
 					</div>
 				</section>
@@ -206,7 +240,7 @@
 					<div class="tsd-signature tsd-kind-icon">tooltip<wbr>Placement<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;top&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L27">copy/copy-base.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L32">copy/copy-base.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -216,17 +250,47 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="tooltiptext" class="tsd-anchor"></a>
+					<h3>tooltip<wbr>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">tooltip<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L27">copy/copy-base.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A tooltip that describes the value to be copied</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="value" class="tsd-anchor"></a>
 					<h3>value</h3>
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L32">copy/copy-base.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L52">copy/copy-base.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The value to be copied to the clipboard</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="width" class="tsd-anchor"></a>
+					<h3>width</h3>
+					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L57">copy/copy-base.ts:57</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A width to set on the copy container</p>
 						</div>
 					</div>
 				</section>
@@ -243,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L51">copy/copy-base.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L76">copy/copy-base.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -269,7 +333,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/28749c6/src/app/copy/copy-base.ts#L58">copy/copy-base.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/patternfly/patternfly-ng/blob/37b8a88/src/app/copy/copy-base.ts#L83">copy/copy-base.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -305,16 +369,28 @@
 								<a href="copybase.html#buttonarialabel" class="tsd-kind-icon">button<wbr>Aria<wbr>Label</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="copybase.html#copybtntooltipplacement" class="tsd-kind-icon">copy<wbr>Btn<wbr>Tooltip<wbr>Placement</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="copybase.html#copybtntooltiptext" class="tsd-kind-icon">copy<wbr>Btn<wbr>Tooltip<wbr>Text</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="copybase.html#oncopy" class="tsd-kind-icon">on<wbr>Copy</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="copybase.html#tooltip" class="tsd-kind-icon">tooltip</a>
+								<a href="copybase.html#tooltipcopiedtext" class="tsd-kind-icon">tooltip<wbr>Copied<wbr>Text</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="copybase.html#tooltipplacement" class="tsd-kind-icon">tooltip<wbr>Placement</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="copybase.html#tooltiptext" class="tsd-kind-icon">tooltip<wbr>Text</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="copybase.html#value" class="tsd-kind-icon">value</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="copybase.html#width" class="tsd-kind-icon">width</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="copybase.html#recentlycopied" class="tsd-kind-icon">recently<wbr>Copied</a>

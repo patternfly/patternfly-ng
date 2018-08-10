@@ -94,14 +94,14 @@ ng serve
 					</li>
 					<li>open <code>src/app/app.module.ts</code> and add</li>
 				</ol>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng/notification'</span>;
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { ToastNotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng/notification'</span>;
 <span class="hljs-comment">// Or</span>
-<span class="hljs-keyword">import</span> { NotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng'</span>;
+<span class="hljs-keyword">import</span> { ToastNotificationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'patternfly-ng'</span>;
 ...
 
 <span class="hljs-meta">@NgModule</span>({
    ...
-   imports: [NotificationModule, ... ],
+   imports: [ToastNotificationModule, ... ],
     ... 
 })
 </code></pre>

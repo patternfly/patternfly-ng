@@ -3,8 +3,7 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import {CopyEvent} from '../../copy-event';
-import {NotificationType} from '../../../notification/notification-type';
+import { CopyEvent } from '../../copy-event';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -14,7 +13,6 @@ import {NotificationType} from '../../../notification/notification-type';
 export class BlockCopyBasicExampleComponent implements OnInit {
   actionsText: string = '';
   basicEx01 = {
-    buttonLabel: 'Copy JSON',
     buttonAriaLabel: 'Copy Swagger JSON',
     expandToggleAriaLabel: 'Toggle Swagger JSON',
     label: 'Swagger JSON',

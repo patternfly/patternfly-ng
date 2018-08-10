@@ -38,14 +38,14 @@ This example demonstrates using the Angular-cli to get started with PatternFly-n
 - open `src/app/app.module.ts` and add
 
 ```typescript
-import { NotificationModule } from 'patternfly-ng/notification';
+import { ToastNotificationModule } from 'patternfly-ng/notification';
 // Or
-import { NotificationModule } from 'patternfly-ng';
+import { ToastNotificationModule } from 'patternfly-ng';
 ...
 
 @NgModule({
    ...
-   imports: [NotificationModule, ... ],
+   imports: [ToastNotificationModule, ... ],
     ... 
 })
 ```
