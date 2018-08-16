@@ -18,6 +18,7 @@ import { ActionExampleModule } from '../app/action/example/action-example.module
 import { ApplicationLauncherExampleModule }
   from '../app/navigation/application-launcher/example/application-launcher-example.module';
 import { CardExampleModule } from '../app/card/basic-card/example/card-example.module';
+import { ComboboxExampleModule } from '../app/combobox/example/combobox-example.module';
 import { DonutChartExampleModule } from '../app/chart/donut-chart/basic-donut-chart/example/donut-chart-example.module';
 import { BlockCopyExampleModule } from '../app/copy/block-copy/example/block-copy-example.module';
 import { InlineCopyExampleModule } from '../app/copy/inline-copy/example/inline-copy-example.module';
@@ -67,6 +68,7 @@ import { WizardExampleModule } from '../app/wizard/example/wizard-example.module
     InlineCopyExampleModule,
     BrowserModule,
     CardExampleModule,
+    ComboboxExampleModule,
     BlockCopyModule,
     InlineCopyModule,
     CopyServiceExampleModule,

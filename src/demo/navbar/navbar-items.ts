@@ -44,6 +44,10 @@ export class NavbarItems {
       title: 'Block Copy'
     }]
   }, {
+    id: 'combobox',
+    path: 'combobox',
+    title: 'Combobox'
+  }, {
     id: 'emptystate',
     path: 'emptystate',
     title: 'Empty State'
