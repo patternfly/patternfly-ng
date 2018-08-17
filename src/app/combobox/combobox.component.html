@@ -8,10 +8,15 @@
            class="combobox form-control"
            [disabled]="disabled"
            [value]="selectedItem ? selectedItem.label : search"
-           (input)="onSearchChange($event.target.value)">
+           (input)="onSearchChange($event.target.value)"
+           (keydown.arrowup)="onArrowUp()"
+           (keydown.arrowdown)="onArrowDown()"
+           (keydown.enter)="selectActiveItem()">
     <ul class="typeahead typeahead-long dropdown-menu" *ngIf="isOpen && filteredItems.length > 0" style="display: block;">
       <li *ngFor="let item of filteredItems; let i = index"
-          [value]="item.value">
+          [value]="item.value"
+          [class.active]="activeElementIndex === i"
+          (mouseover)="setActiveIndex(i)">
         <a (click)="selectItem(item)">
           <ng-container *ngFor="let letter of item.label.split('')">
             <strong *ngIf="lowercaseSearch.includes(letter.toLowerCase()) else notIncluded">{{letter}}</strong>

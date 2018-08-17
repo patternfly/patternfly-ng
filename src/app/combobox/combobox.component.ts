@@ -75,6 +75,7 @@ export class ComboboxComponent {
   protected filteredItems: ComboboxItem[];
   protected search = '';
   protected lowercaseSearch = '';
+  protected activeElementIndex = 0;
 
   /**
    * The default constructor
@@ -87,6 +88,7 @@ export class ComboboxComponent {
     this.search = '';
     this.lowercaseSearch = '';
     this.filteredItems = this.allItems;
+    this.activeElementIndex = 0;
   }
 
   toggleOpen() {
@@ -96,6 +98,27 @@ export class ComboboxComponent {
   selectItem(item: ComboboxItem) {
     this.selectedItem = item;
     this.reset();
+  }
+
+  selectActiveItem() {
+    this.selectedItem = this.filteredItems[this.activeElementIndex];
+    this.reset();
+  }
+
+  setActiveIndex(index: number) {
+    this.activeElementIndex = index;
+  }
+
+  onArrowUp() {
+    this.activeElementIndex = this.activeElementIndex > 0
+      ? this.activeElementIndex - 1
+      : this.activeElementIndex;
+  }
+
+  onArrowDown() {
+    this.activeElementIndex = this.activeElementIndex < (this.filteredItems.length - 1)
+      ? this.activeElementIndex + 1
+      : this.activeElementIndex;
   }
 
   onSearchChange(search: string) {
