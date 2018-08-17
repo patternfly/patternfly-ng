@@ -4,6 +4,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+export interface ComboboxItem {
+  value: string;
+  label: string;
+  lowercaseLabel: string;
+}
+
 /**
  * Sample component
  *
@@ -23,20 +29,52 @@ import {
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'pfng-combobox',
+  styles: [`
+    .combobox-disabled .dropdown-toggle {
+      cursor: not-allowed;
+      background-image: none;
+      box-shadow: none !important;
+    }
+  `],
   templateUrl: './combobox.component.html'
 })
 export class ComboboxComponent {
-  isOpen = false;
+  /**
+   * The placeholder to show in the input area
+   */
+  placeholder = 'Select an item';
 
   /**
-   * Set to true to disable
    */
-  @Input() items: any[] = [];
+  @Input('items')
+  set items(value: string[] | ComboboxItem[]) {
+    this.rawItems = value;
+    this.filteredItems = this.allItems =
+      this.rawItems.map((item: any): ComboboxItem => {
+        if (typeof item === 'string') {
+          const itemAsString: string = `${item}`;
+          return {
+            value: itemAsString,
+            label: itemAsString,
+            lowercaseLabel: itemAsString.toLowerCase()
+          };
+        }
+        return item;
+      });
+  }
 
   /**
    * Set to true to disable
    */
   @Input() disabled: Boolean;
+
+  protected selectedItem: ComboboxItem;
+  protected isOpen = false;
+  protected rawItems: any[];
+  protected allItems: ComboboxItem[];
+  protected filteredItems: ComboboxItem[];
+  protected search = '';
+  protected lowercaseSearch = '';
 
   /**
    * The default constructor
@@ -44,7 +82,34 @@ export class ComboboxComponent {
   constructor() {
   }
 
+  reset() {
+    this.isOpen = false;
+    this.search = '';
+    this.lowercaseSearch = '';
+    this.filteredItems = this.allItems;
+  }
+
   toggleOpen() {
-    this.isOpen = !this.isOpen;
+    this.isOpen = this.disabled ? false : !this.isOpen;
+  }
+
+  selectItem(item: ComboboxItem) {
+    this.selectedItem = item;
+    this.reset();
+  }
+
+  onSearchChange(search: string) {
+    this.selectedItem = null;
+    this.search = search;
+    this.lowercaseSearch = this.search.toLowerCase();
+    this.isOpen = true;
+    this.filteredItems =
+      this.allItems.filter((item: ComboboxItem) =>
+        item.lowercaseLabel.includes(this.lowercaseSearch));
+  }
+
+  cancelSelection() {
+    this.selectedItem = null;
+    this.reset();
   }
 }

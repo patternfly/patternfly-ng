@@ -1,62 +1,29 @@
-<div class="combobox-container">
-  <input type="hidden" name="" value="">
+<div class="combobox-container"
+     [class.combobox-disabled]="disabled"
+     [class.combobox-selected]="!!selectedItem">
   <div class="input-group">
-    <input type="text" autocomplete="false" id="" placeholder="Select a State" class="combobox form-control">
-    <ul class="typeahead typeahead-long dropdown-menu" *ngIf="isOpen" style="display: block;">
-      <li data-value="Alabama" class="active"><a href="#">Alabama</a></li>
-      <li data-value="Alaska"><a href="#">Alaska</a></li>
-      <li data-value="Arizona"><a href="#">Arizona</a></li>
-      <li data-value="Arkansas"><a href="#">Arkansas</a></li>
-      <li data-value="California"><a href="#">California</a></li>
-      <li data-value="Colorado"><a href="#">Colorado</a></li>
-      <li data-value="Connecticut"><a href="#">Connecticut</a></li>
-      <li data-value="Delaware"><a href="#">Delaware</a></li>
-      <li data-value="District Of Columbia"><a href="#">District Of Columbia</a></li>
-      <li data-value="Florida"><a href="#">Florida</a></li>
-      <li data-value="Georgia"><a href="#">Georgia</a></li>
-      <li data-value="Hawaii"><a href="#">Hawaii</a></li>
-      <li data-value="Idaho"><a href="#">Idaho</a></li>
-      <li data-value="Illinois"><a href="#">Illinois</a></li>
-      <li data-value="Indiana"><a href="#">Indiana</a></li>
-      <li data-value="Iowa"><a href="#">Iowa</a></li>
-      <li data-value="Kansas"><a href="#">Kansas</a></li>
-      <li data-value="Kentucky"><a href="#">Kentucky</a></li>
-      <li data-value="Louisiana"><a href="#">Louisiana</a></li>
-      <li data-value="Maine"><a href="#">Maine</a></li>
-      <li data-value="Maryland"><a href="#">Maryland</a></li>
-      <li data-value="Massachusetts"><a href="#">Massachusetts</a></li>
-      <li data-value="Michigan"><a href="#">Michigan</a></li>
-      <li data-value="Minnesota"><a href="#">Minnesota</a></li>
-      <li data-value="Mississippi"><a href="#">Mississippi</a></li>
-      <li data-value="Missouri"><a href="#">Missouri</a></li>
-      <li data-value="Montana"><a href="#">Montana</a></li>
-      <li data-value="Nebraska"><a href="#">Nebraska</a></li>
-      <li data-value="Nevada"><a href="#">Nevada</a></li>
-      <li data-value="New Hampshire"><a href="#">New Hampshire</a></li>
-      <li data-value="New Jersey"><a href="#">New Jersey</a></li>
-      <li data-value="New Mexico"><a href="#">New Mexico</a></li>
-      <li data-value="New York"><a href="#">New York</a></li>
-      <li data-value="North Carolina"><a href="#">North Carolina</a></li>
-      <li data-value="North Dakota"><a href="#">North Dakota</a></li>
-      <li data-value="Ohio"><a href="#">Ohio</a></li>
-      <li data-value="Oklahoma"><a href="#">Oklahoma</a></li>
-      <li data-value="Oregon"><a href="#">Oregon</a></li>
-      <li data-value="Pennsylvania"><a href="#">Pennsylvania</a></li>
-      <li data-value="Rhode Island"><a href="#">Rhode Island</a></li>
-      <li data-value="South Carolina"><a href="#">South Carolina</a></li>
-      <li data-value="South Dakota"><a href="#">South Dakota</a></li>
-      <li data-value="Tennessee"><a href="#">Tennessee</a></li>
-      <li data-value="Texas"><a href="#">Texas</a></li>
-      <li data-value="Utah"><a href="#">Utah</a></li>
-      <li data-value="Vermont"><a href="#">Vermont</a></li>
-      <li data-value="Virginia"><a href="#">Virginia</a></li>
-      <li data-value="Washington"><a href="#">Washington</a></li>
-      <li data-value="West Virginia"><a href="#">West Virginia</a></li>
-      <li data-value="Wisconsin"><a href="#">Wisconsin</a></li>
-      <li data-value="Wyoming"><a href="#">Wyoming</a></li>
+    <input type="text"
+           autocomplete="false"
+           [placeholder]="placeholder"
+           class="combobox form-control"
+           [disabled]="disabled"
+           [value]="selectedItem ? selectedItem.label : search"
+           (input)="onSearchChange($event.target.value)">
+    <ul class="typeahead typeahead-long dropdown-menu" *ngIf="isOpen && filteredItems.length > 0" style="display: block;">
+      <li *ngFor="let item of filteredItems; let i = index"
+          [value]="item.value">
+        <a (click)="selectItem(item)">
+          <ng-container *ngFor="let letter of item.label.split('')">
+            <strong *ngIf="lowercaseSearch.includes(letter.toLowerCase()) else notIncluded">{{letter}}</strong>
+            <ng-template #notIncluded>{{letter}}</ng-template>
+          </ng-container>
+        </a>
+      </li>
     </ul>
-    <span class="input-group-addon dropdown-toggle" (click)="toggleOpen()">
-      <span class="caret"></span> <span class="glyphicon glyphicon-remove"></span>
+    <span class="input-group-addon dropdown-toggle"
+          (click)="selectedItem ? cancelSelection() : toggleOpen()">
+      <span class="caret"></span>
+      <span class="glyphicon glyphicon-remove"></span>
     </span>
   </div>
 </div>

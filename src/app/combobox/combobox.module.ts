@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgxSelectModule } from 'ngx-select-ex';
+import { FormsModule } from '@angular/forms';
 
 import { ComboboxComponent } from './combobox.component';
 
@@ -8,7 +8,7 @@ import { ComboboxComponent } from './combobox.component';
  * A module containing objects associated with the sample component
  */
 @NgModule({
-  imports: [CommonModule, NgxSelectModule],
+  imports: [CommonModule, FormsModule],
   declarations: [ComboboxComponent],
   exports: [ComboboxComponent]
 })
