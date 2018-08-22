@@ -240,7 +240,7 @@ describe('Filter component - ', () => {
     fixture.detectChanges();
 
     let items = element.querySelectorAll('.filter-select li');
-    expect(items.length).toBe(config.fields[3].queries.length + 1); // +1 for the null value
+    expect(items.length).toBe(config.fields[3].queries.length);
   }));
 
   it('should clear a filter when the close button is clicked', function() {

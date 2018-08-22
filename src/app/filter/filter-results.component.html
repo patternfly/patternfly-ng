@@ -3,7 +3,7 @@
   <div class="row toolbar-pf-results">
     <div [ngClass]="{'col-sm-9': config.totalCount !== undefined, 'col-sm-12': config.totalCount === undefined}">
       <h5 *ngIf="config.appliedFilters.length > 0 && config.resultsCount >= 0">{{config.resultsCount}} Results</h5>
-      <p *ngIf="config.appliedFilters.length > 0">Active filters:</p>
+      <p *ngIf="config.appliedFilters.length > 0" class="filter-pf-active-label">Active filters:</p>
       <ul class="list-inline">
         <li *ngFor="let filter of config.appliedFilters">
           <span class="active-filter label label-info">
