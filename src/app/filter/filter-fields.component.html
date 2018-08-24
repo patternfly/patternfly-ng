@@ -29,15 +29,13 @@
       <div class="btn-group bootstrap-select form-control filter-select" dropdown>
         <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle
                 [disabled]="config.disabled === true">
-          <span class="filter-option pull-left">{{currentValue || currentField?.placeholder}}</span>
+          <span class="filter-option pull-left"
+                [ngClass]="{'placeholder': !currentValue}">
+            {{currentValue || currentField?.placeholder}}
+          </span>
           <span aria-hidden="true" class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" *dropdownMenu>
-          <li role="menuitem" *ngIf="currentField?.placeholder">
-            <a class="dropdown-item" href="javascript:void(0);" tabindex="-1" (click)="selectQuery()">
-              {{currentField?.placeholder}}
-            </a>
-          </li>
           <li role="menuitem" *ngFor="let query of currentField?.queries"
               [ngClass]="{'selected': query?.value === currentValue, 'divider dropdown-divider': query?.separator}">
             <a class="dropdown-item" href="javascript:void(0);" tabindex="-1"
@@ -70,11 +68,6 @@
           <span (click)="queryInput.focus()" class="caret"></span>
         </div>
         <ul class="dropdown-menu" role="menu" *dropdownMenu>
-          <li role="menuitem" *ngIf="currentField.placeholder">
-            <a class="dropdown-item" href="javascript:void(0);" tabindex="-1" (click)="selectQuery()">
-              {{currentField?.placeholder}}
-            </a>
-          </li>
           <li role="menuitem" *ngFor="let query of currentField?.queries"
               [ngClass]="{'selected': query.value === currentValue,
                           'divider dropdown-divider': query?.separator,

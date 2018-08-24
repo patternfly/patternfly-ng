@@ -8,7 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, find, isEqual } from 'lodash';
 
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';
@@ -117,10 +117,22 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
     if (!fieldFound) {
       this._currentField = this.config.fields[0];
       this._currentValue = null;
+    } else if (this._currentField.type === 'select' || this._currentField.type === 'typeahead') {
+      // clear dropdown if there is no applied filter for it
+      if (!this.getAppliedFilterByField(this._currentField)) {
+        this._currentValue = null;
+      }
     }
     if (this._currentValue === undefined) {
       this._currentValue = null;
     }
+  }
+
+  protected getAppliedFilterByField(field: any): any {
+    let foundFilter = find(this.config.appliedFilters, {
+      field: field
+    });
+    return foundFilter;
   }
 
   /**
@@ -238,7 +250,13 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
 
   private selectField(field: FilterField): void {
     this._currentField = field;
-    this._currentValue = null;
+    if (this._currentField.type === 'select' || this._currentField.type === 'typeahead') {
+      // Restore selected value for dropdown if there is an applied filter for it
+      let filterField: any = this.getAppliedFilterByField(this._currentField);
+      this._currentValue = filterField ? filterField.value : null;
+    } else {
+      this._currentValue = null;
+    }
     this.onFieldSelect.emit({
       field: this._currentField,
       value: this._currentValue
@@ -251,7 +269,7 @@ export class FilterFieldsComponent implements DoCheck, OnInit {
       query: filterQuery,
       value: filterQuery.value
     } as FilterEvent);
-    this._currentValue = null;
+    this._currentValue = filterQuery.value;
   }
 
   private showDelete(): boolean {
