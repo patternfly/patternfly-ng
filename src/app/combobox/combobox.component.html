@@ -1,0 +1,34 @@
+<div class="combobox-container"
+     [class.combobox-disabled]="disabled"
+     [class.combobox-selected]="!!selectedItem">
+  <div class="input-group">
+    <input type="text"
+           autocomplete="false"
+           [placeholder]="placeholder"
+           class="combobox form-control"
+           [disabled]="disabled"
+           [value]="selectedItem ? selectedItem.label : search"
+           (input)="onSearchChange($event.target.value)"
+           (keydown.arrowup)="onArrowUp()"
+           (keydown.arrowdown)="onArrowDown()"
+           (keydown.enter)="selectActiveItem()">
+    <ul class="typeahead typeahead-long dropdown-menu" *ngIf="isOpen && filteredItems.length > 0" style="display: block;">
+      <li *ngFor="let item of filteredItems; let i = index"
+          [value]="item.value"
+          [class.active]="activeElementIndex === i"
+          (mouseover)="setActiveIndex(i)">
+        <a (click)="selectItem(item)">
+          <ng-container *ngFor="let letter of item.label.split('')">
+            <strong *ngIf="lowercaseSearch.includes(letter.toLowerCase()) else notIncluded">{{letter}}</strong>
+            <ng-template #notIncluded>{{letter}}</ng-template>
+          </ng-container>
+        </a>
+      </li>
+    </ul>
+    <span class="input-group-addon dropdown-toggle"
+          (click)="selectedItem ? cancelSelection() : toggleOpen()">
+      <span class="caret"></span>
+      <span class="glyphicon glyphicon-remove"></span>
+    </span>
+  </div>
+</div>

@@ -9,6 +9,7 @@ import { DonutChartExampleComponent }
   from '../app/chart/donut-chart/basic-donut-chart/example/donut-chart-example.component';
 import { BlockCopyExampleComponent } from '../app/copy/block-copy/example/block-copy-example.component';
 import { CardExampleComponent } from '../app/card/basic-card/example/card-example.component';
+import { ComboboxExampleComponent } from '../app/combobox/example/combobox-example.component';
 import { CopyServiceExampleComponent } from '../app/copy/copy-service/example/copy-service-example.component';
 import { EmptyStateExampleComponent } from '../app/empty-state/example/empty-state-example.component';
 import { FilterExampleComponent } from '../app/filter/example/filter-example.component';
@@ -70,6 +71,9 @@ const routes: Routes = [{
   }, {
     path: 'card',
     component: CardExampleComponent
+  }, {
+    path: 'combobox',
+    component: ComboboxExampleComponent
   }, {
     path: 'copyservice',
     component: CopyServiceExampleComponent
