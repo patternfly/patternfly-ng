@@ -206,6 +206,22 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     return result + '-' + suffix + index;
   }
 
+  /**
+   * Return an ID for the given element prefix and index. This ID is overridden by providing an ID via
+   * VerticalNavigationItem.
+   *
+   * @param {string} suffix The element suffix
+   * @param {number} index The current item index
+   * @param {VerticalNavigationItem} The vertical nav item ID to use, if provided
+   * @returns {string}
+   */
+  protected getNavItemId(suffix: string, index: number, item: VerticalNavigationItem): string {
+    if (item.id !== undefined && item.id.length > 0) {
+      return item.id;
+    }
+    return this.getId(suffix, index);
+  }
+
   // Accessors
 
   /**
