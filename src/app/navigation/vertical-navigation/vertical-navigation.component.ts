@@ -14,6 +14,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { VerticalNavigationItem } from './vertical-navigation-item';
 import { WindowReference } from '../../utilities/window.reference';
 
+import { uniqueId } from 'lodash';
+
 /**
  * Vertical Navigation component
  *
@@ -134,6 +136,7 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
   private explicitCollapse: boolean = false;
   private hoverDelay: number = 500;
   private hideDelay: number = this.hoverDelay + 200;
+  private id: string = uniqueId('pfng-vertical-navigation');
   private windowListener: any;
 
   /**
@@ -184,6 +187,39 @@ export class VerticalNavigationComponent implements OnInit, OnDestroy {
     if (this.windowListener !== undefined) {
       this.windowRef.nativeWindow.removeEventListener('resize', this.windowListener);
     }
+  }
+
+  /**
+   * Return an ID for the given element prefix and index (e.g., 'pfng-vertical-navigation1-item0')
+   *
+   * Note: The ID prefix can be overridden by providing an id for the pfng-list tag.
+   *
+   * @param {string} suffix The element suffix (e.g., 'item')
+   * @param {number} index The current item index
+   * @returns {string}
+   */
+  protected getId(suffix: string, index: number): string {
+    let result = this.id;
+    if (this.elementRef.nativeElement.id !== undefined && this.elementRef.nativeElement.id.length > 0) {
+      result = this.elementRef.nativeElement.id;
+    }
+    return result + '-' + suffix + index;
+  }
+
+  /**
+   * Return an ID for the given element prefix and index. This ID is overridden by providing an ID via
+   * VerticalNavigationItem.
+   *
+   * @param {string} suffix The element suffix
+   * @param {number} index The current item index
+   * @param {VerticalNavigationItem} The vertical nav item ID to use, if provided
+   * @returns {string}
+   */
+  protected getNavItemId(suffix: string, index: number, item: VerticalNavigationItem): string {
+    if (item.id !== undefined && item.id.length > 0) {
+      return item.id;
+    }
+    return this.getId(suffix, index);
   }
 
   // Accessors

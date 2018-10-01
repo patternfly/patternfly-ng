@@ -15,6 +15,11 @@ export class VerticalNavigationItem extends NavigationItemBase {
   activeOnLoad?: boolean;
 
   /**
+   * Unique Id for the navigation item
+   */
+  id?: string;
+
+  /**
    * Track the active state of the navigation item
    */
   trackActiveState?: boolean;
@@ -35,7 +40,7 @@ export class VerticalNavigationItem extends NavigationItemBase {
   tertiaryCollapsed?: boolean;
 
   /**
-   * Indicates if this is a mobile item
+   * Indicates if this is a mobile item -- for component use only
    */
   mobileItem?: boolean;
 

@@ -36,14 +36,14 @@
                     'force-hide-secondary-nav-pf': forceHidden,
                     'show-mobile-nav': showMobileNav}">
       <ul class="list-group">
-        <li *ngFor="let item of items" class="list-group-item"
+        <li *ngFor="let item of items; let i = index;" class="list-group-item"
             [ngClass]="{'secondary-nav-item-pf': item.children && item.children.length > 0,
                        'active': item.trackActiveState,
                        'is-hover': item.trackHoverState,
                        'mobile-nav-item-pf': item.mobileItem && showMobileSecondary,
                        'mobile-secondary-item-pf': item.mobileItem && showMobileTertiary}"
             (mouseenter)="handlePrimaryHover(item)" (mouseleave)="handlePrimaryBlur(item)">
-          <a (click)="handlePrimaryClick(item)">
+          <a [id]="getNavItemId('primary-nav-item', i, item)" (click)="handlePrimaryClick(item)">
             <span class="{{item.iconStyleClass}}" *ngIf="item.iconStyleClass" [ngClass]="{hidden: !showIcons}"
                   tooltip="{{item.title}}"
                   container="body"
@@ -74,7 +74,8 @@
                              'is-hover': secondaryItem.trackHoverState,
                              'mobile-nav-item-pf': secondaryItem.mobileItem}"
                   (mouseenter)="handleSecondaryHover(secondaryItem)" (mouseleave)="handleSecondaryBlur(secondaryItem)">
-                <a (click)="handleSecondaryClick(item, secondaryItem)">
+                <a [id]="getNavItemId('secondary-nav-item', i, secondaryItem)"
+                   (click)="handleSecondaryClick(item, secondaryItem)">
                   <span class="list-group-item-value">{{secondaryItem.title}}</span>
                   <div *ngIf="showBadges && secondaryItem.badges" class="badge-container-pf">
                     <div class="badge {{badge.badgeClass}}" *ngFor="let badge of secondaryItem.badges"
@@ -93,7 +94,8 @@
                   </div>
                   <ul class="list-group">
                     <li *ngFor="let tertiaryItem of secondaryItem.children" class="list-group-item" [ngClass]="{'active': tertiaryItem.trackActiveState}">
-                      <a (click)="handleTertiaryClick(item, secondaryItem, tertiaryItem)">
+                      <a [id]="getNavItemId('tertiary-nav-item', i, tertiaryItem)"
+                         (click)="handleTertiaryClick(item, secondaryItem, tertiaryItem)">
                         <span class="list-group-item-value">{{tertiaryItem.title}}</span>
                         <div *ngIf="showBadges && tertiaryItem.badges" class="badge-container-pf">
                           <div class="badge {{badge.badgeClass}}" *ngFor="let badge of tertiaryItem.badges"
