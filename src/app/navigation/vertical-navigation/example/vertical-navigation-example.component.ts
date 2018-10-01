@@ -202,6 +202,7 @@ export class VerticalNavigationExampleComponent implements OnInit {
       {
         title: 'Amet',
         iconStyleClass: 'fa fa-paper-plane',
+        id: 'myAmetId',
         children: [
           {
             title: 'Detracto',
