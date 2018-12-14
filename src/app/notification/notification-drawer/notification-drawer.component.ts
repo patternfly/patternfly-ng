@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { EmptyStateConfig } from '../../empty-state/empty-state-config';
-import { NotificaitonGroup } from '../notification-group';
+import { NotificationGroup } from '../notification-group';
 
 import { filter, get, size } from 'lodash';
 
@@ -85,7 +85,7 @@ export class NotificationDrawerComponent implements OnInit {
    * Collection notification groups to add to the drawer. Alternatively, a single group object
    * can be given if categorization is not used.
    */
-  @Input() notificationGroups: NotificaitonGroup[];
+  @Input() notificationGroups: NotificationGroup[];
 
   /**
    * Optional field from the notifications to use to track by in the notifications listing ($index used otherwise).
@@ -173,7 +173,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Return boolean if group has notifications
    *  @param group
    */
-  hasNotifications(group: NotificaitonGroup[]): boolean {
+  hasNotifications(group: NotificationGroup[]): boolean {
     return size(get(group, 'notifications')) > 0;
   }
 
@@ -181,7 +181,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Return boolean if group has unread notifications
    *  @param group
    */
-  hasUnread(group: NotificaitonGroup): boolean {
+  hasUnread(group: NotificationGroup): boolean {
     return size(filter(get(group, 'notifications'), { 'isViewing': false })) > 0;
   }
 
@@ -198,7 +198,7 @@ export class NotificationDrawerComponent implements OnInit {
    * Method for the mark all read button (Optional)
    * @param group
    */
-  onMarkAllRead(group: NotificaitonGroup): void {
+  onMarkAllRead(group: NotificationGroup): void {
     group.notifications.forEach(n => n.isViewing = true);
     this.updateReadCount();
   }
@@ -207,7 +207,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Method for the clear all button (Optional)
    *  @param group
    */
-  onClearAll(group: NotificaitonGroup): void {
+  onClearAll(group: NotificationGroup): void {
     group.notifications = null;
     group.subHeading = '0 New Events';
   }
@@ -216,7 +216,7 @@ export class NotificationDrawerComponent implements OnInit {
    *  Toggle to show / hide drawer
    *  @param group
    */
-  toggleCollapse(group: NotificaitonGroup): void {
+  toggleCollapse(group: NotificationGroup): void {
     if (group.open) {
       group.open = false;
     } else {
@@ -268,7 +268,7 @@ export class NotificationDrawerComponent implements OnInit {
    * Total number of unread notifications
    * @param groups
    */
-  private totalUnreadNotifications(groups: NotificaitonGroup[]): number {
+  private totalUnreadNotifications(groups: NotificationGroup[]): number {
     return size(filter(
       groups.map(g => filter(get(g, 'notifications'), { 'isViewing': false }).length > 0),
       o => { return o === true; }));

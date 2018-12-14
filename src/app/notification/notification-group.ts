@@ -4,7 +4,7 @@ import { EmptyStateConfig } from '../empty-state/empty-state-config';
 /**
  * An object containing properties for notification groups
  */
-export class NotificaitonGroup {
+export class NotificationGroup {
 
   
   /**
