@@ -28,7 +28,6 @@ script:
   - npm run build
   - npm run build:demo
   - npm run test
-  - node node_modules/.bin/nsp check --output summary
   - sh -x ./node_modules/patternfly-eng-release/scripts/semantic-release/_verify.sh -x || travis_terminate 1
 
 after_success:
