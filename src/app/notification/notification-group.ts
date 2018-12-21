@@ -42,3 +42,14 @@ export class NotificationGroup {
    */
   emptyStateConfig?: EmptyStateConfig;
 }
+
+/**
+ * An object containing properties for notification groups
+ *
+ * @deprecated This is a fallback for the previous erroneous class name of NotificationGroup
+ *
+ * See: https://github.com/patternfly/patternfly-ng/issues/451
+ */
+export class NotificaitonGroup extends NotificationGroup {
+
+}

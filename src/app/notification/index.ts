@@ -1,6 +1,6 @@
 export { Notification } from './notification';
 export { NotificationEvent } from './notification-event';
-export { NotificationGroup } from './notification-group';
+export { NotificationGroup, NotificaitonGroup } from './notification-group';
 export { NotificationType } from './notification-type';
 
 export * from './inline-notification/index';
