@@ -11,14 +11,14 @@ import { ActionModule } from '../../action/action.module';
 import { EmptyStateConfig } from '../../empty-state/empty-state-config';
 import { EmptyStateModule } from '../../empty-state/empty-state.module';
 import { NotificationDrawerComponent } from './notification-drawer.component';
-import { NotificaitonGroup } from '../notification-group';
+import { NotificationGroup } from '../notification-group';
 
 describe('notification drawer component - ', () => {
   let comp: NotificationDrawerComponent;
   let fixture: ComponentFixture<NotificationDrawerComponent>;
   let actionConfig: ActionConfig;
   let emptyStateConfig: EmptyStateConfig;
-  let groups: NotificaitonGroup[];
+  let groups: NotificationGroup[];
   let currentTime: number;
   this.currentTime = (new Date()).getTime();
 

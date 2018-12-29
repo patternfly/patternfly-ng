@@ -5,7 +5,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NotificaitonGroup } from '../../notification-group';
+import { NotificationGroup } from '../../notification-group';
 import { Notification } from '../../notification';
 
 import { Action } from '../../../action/action';
@@ -24,7 +24,7 @@ export class NotificationDrawerExampleComponent implements OnInit {
   emptyStateConfig: EmptyStateConfig;
   empty: boolean = false;
   hide: boolean = true;
-  groups: NotificaitonGroup[];
+  groups: NotificationGroup[];
   unread: boolean = false;
 
   /**
