@@ -34,7 +34,7 @@
     "semantic-release": "semantic-release",
     "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "contributors": [],
   "keywords": [
     "patternfly",
