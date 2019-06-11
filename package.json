@@ -93,10 +93,10 @@
     "npm": ">=5.6.0"
   },
   "peerDependencies": {
-    "@angular/common": "<7.0.0",
-    "@angular/compiler": "<7.0.0",
-    "@angular/core": "<7.0.0",
-    "@angular/forms": "<7.0.0",
+    "@angular/common": "<8.0.0",
+    "@angular/compiler": "<8.0.0",
+    "@angular/core": "<8.0.0",
+    "@angular/forms": "<8.0.0",
     "typescript": "^2.9.2",
     "rxjs": "^6.2.2"
   },
@@ -108,7 +108,7 @@
     "@swimlane/ngx-datatable": "^13.0.0",
     "c3": "^0.4.15",
     "ng2-dragula": "^1.5.0",
-    "ngx-bootstrap": "^3.0.0"
+    "ngx-bootstrap": "^3.0.0 || <3.3.0"
   },
   "devDependencies": {
     "@angular-devkit/core": "0.7.1",
