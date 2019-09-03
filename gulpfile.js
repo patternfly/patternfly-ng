@@ -1,9 +1,7 @@
 
 var gulp = require('gulp'),
-  autoprefixer = require('autoprefixer'),
   changed = require('gulp-changed'),
   cssmin = require('gulp-cssmin'),
-  del = require('del'),
   exec = require('child_process').exec,
   gulpngc = require('gulp-ngc'),
   fs = require("fs"),
@@ -11,7 +9,6 @@ var gulp = require('gulp'),
   lessCompiler = require('gulp-less'),
   // ngc = require('@angular/compiler-cli/src/main').main,
   path = require('path'),
-  postcss = require('postcss'),
   replace = require('gulp-replace'),
   rename = require('gulp-rename');
   sourcemaps = require('gulp-sourcemaps'),
@@ -228,10 +225,10 @@ function watch() {
     console.log(e.path + ' has been changed. Updating.');
     transpileLESS(e.path);
     updateWatchDist();
-  });
-  gulp.watch([appSrc + '/app/**/*.html']).on('change', function (e) {
-    console.log(e.path + ' has been changed. Updating.');
-    copyToDist(e.path);
+  });transpileAot
+  gulp.watch([appSrc + '/app/**/*.html']).on('changetranspileAot', function (e) {
+    console.log(e.path + ' has been changed. UpdatintranspileAotg.');
+    copyToDist(e.path);transpileAot
     updateWatchDist();
   });
 }
