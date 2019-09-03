@@ -116,7 +116,7 @@ module.exports = function(config) {
     singleRun: true
   };
 
-  if (process.env.TRAVIS){
+  if (process.env.CI){
     configuration.browsers = ['ChromeTravisCi'];
   }
 
