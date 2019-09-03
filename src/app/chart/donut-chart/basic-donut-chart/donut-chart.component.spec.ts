@@ -4,7 +4,6 @@ import {
   TestBed
 } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { ChartDefaults } from '../../chart-defaults';
@@ -106,7 +105,7 @@ describe('Donut Chart component', () => {
   });
 
   it('should use patternfly tooltip', () => {
-    expect(typeof(comp.config.tooltip.contents)).toBe('function');
+    expect(typeof(comp.config.tooltip)).toBe('object');
   });
 
   it('should have default donut config with custom title', () => {
