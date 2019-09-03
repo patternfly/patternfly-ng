@@ -20,10 +20,10 @@ env:
     - TRIGGER_REPO_BRANCH: "master"
 
 before_install:
-  - export CHROME_BIN=google-chrome-stable
+  - export CHROME_BIN=chrome
 
 script:
-  - google-chrome-stable -v
+  - chrome -v
   - npm run build
   - npm run build:demo
   - npm run test
