@@ -18,7 +18,7 @@ describe('Donut Chart component', () => {
   let config: DonutChartConfig;
   let chartData: any[];
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     chartData = [
       ['Cats', 2],
       ['Hamsters', 2],
@@ -33,9 +33,7 @@ describe('Donut Chart component', () => {
         title: 'Animals'
       }
     };
-  });
 
-  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule],
       declarations: [DonutChartComponent],

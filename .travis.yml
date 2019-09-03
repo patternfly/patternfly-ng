@@ -23,7 +23,6 @@ before_install:
   - export CHROME_BIN=google-chrome
 
 script:
-  - google-chrome -v
   - ls /usr/bin
   - npm run build
   - npm run build:demo
