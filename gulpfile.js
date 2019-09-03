@@ -225,10 +225,10 @@ function watch() {
     console.log(e.path + ' has been changed. Updating.');
     transpileLESS(e.path);
     updateWatchDist();
-  });transpileAot
-  gulp.watch([appSrc + '/app/**/*.html']).on('changetranspileAot', function (e) {
-    console.log(e.path + ' has been changed. UpdatintranspileAotg.');
-    copyToDist(e.path);transpileAot
+  });
+  gulp.watch([appSrc + '/app/**/*.html']).on('change', function (e) {
+    console.log(e.path + ' has been changed. Updating.');
+    copyToDist(e.path);
     updateWatchDist();
   });
 }

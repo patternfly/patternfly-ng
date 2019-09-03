@@ -4,6 +4,7 @@ import {
   TestBed
 } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { ChartDefaults } from '../../chart-defaults';
@@ -18,7 +19,7 @@ describe('Donut Chart component', () => {
   let config: DonutChartConfig;
   let chartData: any[];
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     chartData = [
       ['Cats', 2],
       ['Hamsters', 2],
@@ -33,7 +34,9 @@ describe('Donut Chart component', () => {
         title: 'Animals'
       }
     };
+  });
 
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule],
       declarations: [DonutChartComponent],
@@ -48,13 +51,6 @@ describe('Donut Chart component', () => {
         fixture.detectChanges();
       });
   }));
-
-  afterEach(() => {
-    fixture = null;
-    comp = null;
-    config = null;
-    chartData = null;
-  });
 
   it('should set chart id', () => {
     expect(comp.config.chartId).toContain('testChart');
@@ -110,7 +106,7 @@ describe('Donut Chart component', () => {
   });
 
   it('should use patternfly tooltip', () => {
-    expect(typeof(comp.config.tooltip)).toBe('object');
+    expect(typeof(comp.config.tooltip.contents)).toBe('function');
   });
 
   it('should have default donut config with custom title', () => {
