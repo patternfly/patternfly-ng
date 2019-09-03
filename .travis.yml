@@ -20,10 +20,10 @@ env:
     - TRIGGER_REPO_BRANCH: "master"
 
 before_install:
-  - export CHROME_BIN=chrome
+  - export CHROME_BIN=chromium-browser
 
 script:
-  - chrome -v
+  - chromium-browser -v
   - npm run build
   - npm run build:demo
   - npm run test
