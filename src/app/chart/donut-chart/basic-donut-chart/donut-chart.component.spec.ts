@@ -51,6 +51,13 @@ describe('Donut Chart component', () => {
       });
   }));
 
+  afterEach(() => {
+    fixture = null;
+    comp = null;
+    config = null;
+    chartData = null;
+  });
+
   it('should set chart id', () => {
     expect(comp.config.chartId).toContain('testChart');
   });
