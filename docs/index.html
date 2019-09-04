@@ -109,7 +109,6 @@ ng serve
 					<li>open <code>angular.json</code> and insert a new entry into the styles array </li>
 				</ul>
 				<pre><code class="lang-json">      &quot;styles&quot;: [
-
         &quot;./node_modules/patternfly/dist/css/patternfly.min.css&quot;,
         &quot;./node_modules/patternfly/dist/css/patternfly-additions.min.css&quot;,
         &quot;./node_modules/patternfly-ng/dist/css/patternfly-ng.min.css&quot;,
@@ -117,15 +116,20 @@ ng serve
       ],
 </code></pre>
 				<ul>
-					<li>open <code>src/app/app.component.html</code> and add<pre><code>&lt;pfng-toast-notification
+					<li><p>open <code>src/app/app.component.html</code> and add</p>
+						<pre><code>&lt;pfng-toast-notification
 <span class="hljs-string">[header]</span>=<span class="hljs-string">"'test header'"</span>
 <span class="hljs-string">[message]</span>=<span class="hljs-string">"'this is a notification'"</span>
 <span class="hljs-string">[showClose]</span>=<span class="hljs-string">"'true'"</span>
 <span class="hljs-string">[type]</span>=<span class="hljs-string">"'success'"</span>&gt;
 &lt;/pfng-toast-notification&gt;
 </code></pre></li>
+					<li><p>For Angular 8, open <code>angular.json</code> and insert the following into the options array</p>
+					</li>
 				</ul>
-				<h3 id="optional-dependencies">Optional Dependencies</h3>
+				<pre><code><span class="hljs-attr">"options":</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">  "preserveSymlinks":</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+</code></pre><h3 id="optional-dependencies">Optional Dependencies</h3>
 				<ol>
 					<li><p>To enable table drag and drop, add dragula.min.css from the ng2-dragula package</p>
 					</li>

@@ -6,7 +6,6 @@ Welcome to PatternFly-Ng.  This is a library of common Angular components for us
 - API Docs: http://www.patternfly.org/patternfly-ng/
 - Build Status: https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master
 
-
 ### Using PatternFly-ng In Your Application
 
 This example demonstrates using the Angular-cli to get started with PatternFly-ng
@@ -54,7 +53,6 @@ import { ToastNotificationModule } from 'patternfly-ng';
 
 ```json
       "styles": [
-
         "./node_modules/patternfly/dist/css/patternfly.min.css",
         "./node_modules/patternfly/dist/css/patternfly-additions.min.css",
         "./node_modules/patternfly-ng/dist/css/patternfly-ng.min.css",
@@ -70,6 +68,13 @@ import { ToastNotificationModule } from 'patternfly-ng';
   [showClose]="'true'"
   [type]="'success'">
 </pfng-toast-notification>
+```
+
+5. For Angular 8, open `angular.json` and insert the following into the options array
+
+```
+"options": {
+  "preserveSymlinks": true,
 ```
 
 ### Optional Dependencies
