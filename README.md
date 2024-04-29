@@ -1,6 +1,12 @@
+# DEPRECATED
+
+This project is no longer active. Please see [patternfly-react](https://github.com/patternfly/patternfly-react) for React based components.
+
+# PatternFly-Ng
+
 [![Build Status](https://travis-ci.org/patternfly/patternfly-ng.svg?branch=master)](https://travis-ci.org/patternfly/patternfly-ng) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-Welcome to PatternFly-Ng.  This is a library of common Angular components for use with the PatternFly reference implementation. Below is information on how to get started using PatternFly-ng.  If you wish to contribute to PatternFly-ng, please go to our [Contributions page][contributing].
+Welcome to PatternFly-Ng.  This is a library of common Angular 6 components for use with the PatternFly 3 reference implementation. Below is information on how to get started using PatternFly-ng.  If you wish to contribute to PatternFly-ng, please go to our [Contributions page][contributing].
 
 - Web site: https://www.patternfly.org
 - API Docs: http://www.patternfly.org/patternfly-ng/
